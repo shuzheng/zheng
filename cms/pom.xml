@@ -16,5 +16,6 @@
 
     <modules>
         <module>cms-dao</module>
+        <module>cms-service</module>
     </modules>
 </project>

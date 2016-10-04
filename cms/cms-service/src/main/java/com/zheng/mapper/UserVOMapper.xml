@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.mapper.UserVOMapper">
+	
+	<!-- 缓存 -->
+	<!--<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>-->
+	
+	<!-- 结果映射关系 -->
+	<resultMap id="UserResultMap" type="userVO">
+		<id column="u_id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="nickname" property="nickname"/>
+		<result column="sex" property="sex"/>
+		<result column="ctime" property="ctime"/>
+		<result column="content" property="content" />
+		<collection column="userid" property="books" ofType="Book">
+			<id column="b_id" property="id"/>
+			<result column="userid" property="userid"/>
+			<result column="name" property="name"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 查询一对多的所有记录 -->
+	<select id="selectUserWithBook" resultMap="UserResultMap" parameterType="int">
+		select
+			u.id u_id,u.username,u.password,u.nickname,u.sex,u.ctime,u.content,
+			b.id b_id,b.userid,b.name
+		from
+			user u
+		left join
+			book b
+		on
+			u.id=b.userid
+		where
+			u.id=#{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 查询所有记录 -->
+	<select id="selectAll" resultType="user" parameterType="java.util.Map">
+		select
+			<choose>
+				<when test="clumns != null">${clumns}</when>
+				<otherwise>
+					*
+				</otherwise>
+			</choose>
+		from
+			user
+		<where>
+			<if test="condition != null and condition != ''">${condition}</if>
+		</where>
+		order by
+			<choose>
+				<when test="order != null and order != ''">${order}</when>
+				<otherwise>id asc</otherwise>
+			</choose>
+	</select>
+	
+	<!-- 插入单条记录，插入前建好id索引 -->
+	<insert id="insertAutoKey" useGeneratedKeys="true" keyProperty="id" parameterType="user">
+		insert into
+			user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">id,</if>
+			<if test="username != null">username,</if>
+			<if test="password != null">password,</if>
+			<if test="nickname != null">nickname,</if>
+			<if test="sex != null">sex,</if>
+			<if test="ctime != null">ctime,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id,jdbcType=INTEGER},</if>
+			<if test="username != null">#{username,jdbcType=VARCHAR},</if>
+			<if test="password != null">#{password,jdbcType=VARCHAR},</if>
+			<if test="nickname != null">#{nickname,jdbcType=VARCHAR},</if>
+			<if test="sex != null">#{sex,jdbcType=INTEGER},</if>
+			<if test="ctime != null">#{ctime,jdbcType=BIGINT},</if>
+		</trim>
+	</insert>
+	
+	
+</mapper>
