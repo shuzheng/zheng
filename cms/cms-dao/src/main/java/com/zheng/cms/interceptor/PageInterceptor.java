@@ -1,4 +1,4 @@
-package com.zheng.interceptor;
+package com.zheng.cms.interceptor;
 
 import java.sql.Connection;
 import java.util.Map;
@@ -15,7 +15,7 @@ import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 
-import com.zheng.util.Paginator;
+import com.zheng.cms.util.Paginator;
 
 
 /**

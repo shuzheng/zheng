@@ -1,4 +1,4 @@
-package com.zheng.model;
+package com.zheng.cms.model;
 
 import java.util.ArrayList;
 import java.util.List;

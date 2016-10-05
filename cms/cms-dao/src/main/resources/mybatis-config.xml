@@ -6,12 +6,12 @@
 
 	<!-- 该包下的model不用写包名，会使用 model的首字母小写的非限定类名来作为它的别名，若有注解@Alias("xxx")，则别名为注解值 -->
 	<typeAliases>
-		<package name="com.zheng.model" />
+		<package name="com.zheng.cms.model" />
 	</typeAliases>
 
 	<plugins>
 		<!-- 手写分页拦截器 -->
-		<plugin interceptor="com.zheng.interceptor.PageInterceptor">
+		<plugin interceptor="com.zheng.cms.interceptor.PageInterceptor">
 			<property name="pageSqlId" value=".*All$" />
 		</plugin>
 		<!-- 分页插件 -->

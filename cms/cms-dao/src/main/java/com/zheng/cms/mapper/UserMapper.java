@@ -1,7 +1,7 @@
-package com.zheng.mapper;
+package com.zheng.cms.mapper;
 
-import com.zheng.model.User;
-import com.zheng.model.UserExample;
+import com.zheng.cms.model.User;
+import com.zheng.cms.model.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
