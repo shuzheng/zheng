@@ -1,4 +1,4 @@
-package com.zheng.model;
+package com.zheng.cms.model;
 
 import java.awt.print.Book;
 import java.util.List;

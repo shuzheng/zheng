@@ -1,12 +1,12 @@
-package com.zheng.mapper;
+package com.zheng.cms.mapper;
 
 import java.util.List;
 import java.util.Map;
 
+import com.zheng.cms.model.User;
 import org.springframework.stereotype.Repository;
 
-import com.zheng.model.User;
-import com.zheng.model.UserVO;
+import com.zheng.cms.model.UserVO;
 
 /**
  * 用户mapper

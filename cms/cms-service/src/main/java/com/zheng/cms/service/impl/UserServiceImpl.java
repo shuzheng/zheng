@@ -1,17 +1,17 @@
-package com.zheng.service.impl;
+package com.zheng.cms.service.impl;
 
 import java.util.List;
 import java.util.Map;
 
+import com.zheng.cms.mapper.UserMapper;
+import com.zheng.cms.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zheng.mapper.UserMapper;
-import com.zheng.mapper.UserVOMapper;
-import com.zheng.model.User;
-import com.zheng.model.UserVO;
-import com.zheng.service.UserService;
+import com.zheng.cms.mapper.UserVOMapper;
+import com.zheng.cms.model.UserVO;
+import com.zheng.cms.service.UserService;
 
 /**
  * 用户service实现

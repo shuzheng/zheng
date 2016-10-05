@@ -1,4 +1,4 @@
-package com.zheng.service;
+package com.zheng.cms.service;
 
 /**
  * baseService接口

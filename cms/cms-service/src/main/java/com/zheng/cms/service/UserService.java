@@ -1,11 +1,12 @@
-package com.zheng.service;
+package com.zheng.cms.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.zheng.mapper.UserMapper;
-import com.zheng.model.User;
-import com.zheng.model.UserVO;
+import com.zheng.cms.mapper.UserMapper;
+import com.zheng.cms.model.User;
+import com.zheng.cms.model.UserVO;
+import com.zheng.cms.service.BaseService;
 
 /**
  * 用户service接口

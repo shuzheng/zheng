@@ -1,5 +1,7 @@
-package com.zheng.service;
+package com.zheng.cms.service;
 
+import com.zheng.cms.model.User;
+import com.zheng.cms.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.zheng.mapper.UserMapper;
-import com.zheng.model.User;
-import com.zheng.model.UserVO;
+import com.zheng.cms.model.UserVO;
 
 /**
  * 测试service
@@ -33,8 +33,8 @@ public class UserServiceTest {
 		UserVO userVO = userService.selectUserWithBook(1);
 		System.out.println(userVO.getBooks().size());
 		// 自动生成接口调用
-		User user2 = userService.getMapper().selectByPrimaryKey(1);
-		System.out.println(user2.getNickname());
+		User user = userService.getMapper().selectByPrimaryKey(1);
+		System.out.println(user.getNickname());
 	}
 	
 }
