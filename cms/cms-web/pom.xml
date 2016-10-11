@@ -40,7 +40,44 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <finalName>cms-web</finalName>
+        <filters>
+            <filter>src/main/resources/profiles/${env}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>src/main/resources/profiles/*</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>
