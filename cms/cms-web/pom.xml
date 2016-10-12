@@ -73,9 +73,6 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>src/main/resources/profiles/*</exclude>
-                </excludes>
                 <filtering>true</filtering>
             </resource>
         </resources>
