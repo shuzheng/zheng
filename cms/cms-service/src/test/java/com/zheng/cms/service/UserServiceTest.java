@@ -31,10 +31,10 @@ public class UserServiceTest {
 	public void index() {
 		// 自定义接口调用
 		UserVO userVO = userService.selectUserWithBook(1);
-		System.out.println(userVO.getBooks().size());
+		System.out.println(null == userVO ? "null" : userVO.getBooks().size());
 		// 自动生成接口调用
 		User user = userService.getMapper().selectByPrimaryKey(1);
-		System.out.println(user.getNickname());
+		System.out.println(null == user ? "null" :user.getNickname());
 	}
 	
 }
