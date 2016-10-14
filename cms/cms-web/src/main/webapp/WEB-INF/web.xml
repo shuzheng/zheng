@@ -28,7 +28,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:applicationContext.xml,
-			classpath:applicationContext-jdbc.xml
+			classpath:applicationContext-jdbc.xml,
+			classpath:applicationContext-ehcache.xml
 		</param-value>
 	</context-param>
 
