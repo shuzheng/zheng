@@ -38,24 +38,19 @@ public class UserServiceTest {
 		User user = userService.getMapper().selectByPrimaryKey(1);
 		System.out.println(null == user ? "null" :user.getNickname());
 
+        // EhCache调用
 		// Create a cache manager
 		final CacheManager cacheManager = CacheManager.getInstance();
-
 		// create the cache called "hello-world"
-		final Cache cache = cacheManager.getCache("ehCache");
-
+		final Cache cache = cacheManager.getCache("ehcache_common");
 		// create a key to map the data to
 		final String key = "key";
-
 		// Create a data element
 		final Element element = new Element(key, "value");
-
 		// Put the element into the data store
 		cache.put(element);
-
 		// Retrieve the data element
 		final Element cacheElement = cache.get(key);
-
 		// Print the value
 		System.out.println(cacheElement.getObjectValue());
 	}

@@ -10,5 +10,5 @@
 
 	<!-- 装载service -->
 	<context:component-scan base-package="**.service" />
-	
+
 </beans>
