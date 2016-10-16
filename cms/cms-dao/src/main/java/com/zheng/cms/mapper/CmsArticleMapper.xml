@@ -3,6 +3,24 @@
 <mapper namespace="com.zheng.cms.mapper.CmsArticleMapper" >
   <resultMap id="BaseResultMap" type="com.zheng.cms.model.CmsArticle" >
     <id column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="fromurl" property="fromurl" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="allowcomments" property="allowcomments" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="up" property="up" jdbcType="INTEGER" />
+    <result column="down" property="down" jdbcType="INTEGER" />
+    <result column="readnumber" property="readnumber" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="BIGINT" />
+    <result column="orders" property="orders" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zheng.cms.model.CmsArticle" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -63,8 +81,28 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    article_id
+    article_id, title, author, fromurl, image, keywords, description, type, allowcomments, 
+    status, user_id, up, down, readnumber, ctime, orders
   </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zheng.cms.model.CmsArticleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zheng.cms.model.CmsArticleExample" >
     select
     <if test="distinct" >
@@ -79,6 +117,14 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cms_article
     where article_id = #{articleId,jdbcType=INTEGER}
@@ -90,8 +136,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.model.CmsArticle" >
-    insert into cms_article (article_id)
-    values (#{articleId,jdbcType=INTEGER})
+    insert into cms_article (article_id, title, author, 
+      fromurl, image, keywords, 
+      description, type, allowcomments, 
+      status, user_id, up, 
+      down, readnumber, ctime, 
+      orders, content)
+    values (#{articleId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{fromurl,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{allowcomments,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, #{up,jdbcType=INTEGER}, 
+      #{down,jdbcType=INTEGER}, #{readnumber,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, 
+      #{orders,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.model.CmsArticle" >
     insert into cms_article
@@ -99,10 +155,106 @@
       <if test="articleId != null" >
         article_id,
       </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="fromurl != null" >
+        fromurl,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="allowcomments != null" >
+        allowcomments,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="up != null" >
+        up,
+      </if>
+      <if test="down != null" >
+        down,
+      </if>
+      <if test="readnumber != null" >
+        readnumber,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="articleId != null" >
         #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="fromurl != null" >
+        #{fromurl,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="allowcomments != null" >
+        #{allowcomments,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="up != null" >
+        #{up,jdbcType=INTEGER},
+      </if>
+      <if test="down != null" >
+        #{down,jdbcType=INTEGER},
+      </if>
+      <if test="readnumber != null" >
+        #{readnumber,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -118,16 +270,195 @@
       <if test="record.articleId != null" >
         article_id = #{record.articleId,jdbcType=INTEGER},
       </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromurl != null" >
+        fromurl = #{record.fromurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keywords != null" >
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.allowcomments != null" >
+        allowcomments = #{record.allowcomments,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.up != null" >
+        up = #{record.up,jdbcType=INTEGER},
+      </if>
+      <if test="record.down != null" >
+        down = #{record.down,jdbcType=INTEGER},
+      </if>
+      <if test="record.readnumber != null" >
+        readnumber = #{record.readnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+      <if test="record.orders != null" >
+        orders = #{record.orders,jdbcType=BIGINT},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cms_article
+    set article_id = #{record.articleId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      fromurl = #{record.fromurl,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=TINYINT},
+      allowcomments = #{record.allowcomments,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      up = #{record.up,jdbcType=INTEGER},
+      down = #{record.down,jdbcType=INTEGER},
+      readnumber = #{record.readnumber,jdbcType=INTEGER},
+      ctime = #{record.ctime,jdbcType=BIGINT},
+      orders = #{record.orders,jdbcType=BIGINT},
+      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
     update cms_article
-    set article_id = #{record.articleId,jdbcType=INTEGER}
+    set article_id = #{record.articleId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      fromurl = #{record.fromurl,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=TINYINT},
+      allowcomments = #{record.allowcomments,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      up = #{record.up,jdbcType=INTEGER},
+      down = #{record.down,jdbcType=INTEGER},
+      readnumber = #{record.readnumber,jdbcType=INTEGER},
+      ctime = #{record.ctime,jdbcType=BIGINT},
+      orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.model.CmsArticle" >
+    update cms_article
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="fromurl != null" >
+        fromurl = #{fromurl,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="allowcomments != null" >
+        allowcomments = #{allowcomments,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="up != null" >
+        up = #{up,jdbcType=INTEGER},
+      </if>
+      <if test="down != null" >
+        down = #{down,jdbcType=INTEGER},
+      </if>
+      <if test="readnumber != null" >
+        readnumber = #{readnumber,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zheng.cms.model.CmsArticle" >
+    update cms_article
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      fromurl = #{fromurl,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      allowcomments = #{allowcomments,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      user_id = #{userId,jdbcType=INTEGER},
+      up = #{up,jdbcType=INTEGER},
+      down = #{down,jdbcType=INTEGER},
+      readnumber = #{readnumber,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=BIGINT},
+      orders = #{orders,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.cms.model.CmsArticle" >
+    update cms_article
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      fromurl = #{fromurl,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      allowcomments = #{allowcomments,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      user_id = #{userId,jdbcType=INTEGER},
+      up = #{up,jdbcType=INTEGER},
+      down = #{down,jdbcType=INTEGER},
+      readnumber = #{readnumber,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=BIGINT},
+      orders = #{orders,jdbcType=BIGINT}
+    where article_id = #{articleId,jdbcType=INTEGER}
   </update>
 </mapper>

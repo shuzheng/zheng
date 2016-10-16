@@ -18,7 +18,13 @@ public interface CmsTagMapper {
 
     List<CmsTag> selectByExample(CmsTagExample example);
 
+    CmsTag selectByPrimaryKey(Integer tagId);
+
     int updateByExampleSelective(@Param("record") CmsTag record, @Param("example") CmsTagExample example);
 
     int updateByExample(@Param("record") CmsTag record, @Param("example") CmsTagExample example);
+
+    int updateByPrimaryKeySelective(CmsTag record);
+
+    int updateByPrimaryKey(CmsTag record);
 }

@@ -16,9 +16,21 @@ public interface CmsArticleMapper {
 
     int insertSelective(CmsArticle record);
 
+    List<CmsArticle> selectByExampleWithBLOBs(CmsArticleExample example);
+
     List<CmsArticle> selectByExample(CmsArticleExample example);
+
+    CmsArticle selectByPrimaryKey(Integer articleId);
 
     int updateByExampleSelective(@Param("record") CmsArticle record, @Param("example") CmsArticleExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") CmsArticle record, @Param("example") CmsArticleExample example);
+
     int updateByExample(@Param("record") CmsArticle record, @Param("example") CmsArticleExample example);
+
+    int updateByPrimaryKeySelective(CmsArticle record);
+
+    int updateByPrimaryKeyWithBLOBs(CmsArticle record);
+
+    int updateByPrimaryKey(CmsArticle record);
 }

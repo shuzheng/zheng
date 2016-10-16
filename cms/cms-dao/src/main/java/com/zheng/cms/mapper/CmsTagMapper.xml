@@ -3,6 +3,13 @@
 <mapper namespace="com.zheng.cms.mapper.CmsTagMapper" >
   <resultMap id="BaseResultMap" type="com.zheng.cms.model.CmsTag" >
     <id column="tag_id" property="tagId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="BIGINT" />
+    <result column="orders" property="orders" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -63,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    tag_id
+    tag_id, name, description, icon, type, alias, ctime, orders
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zheng.cms.model.CmsTagExample" >
     select
@@ -79,6 +86,12 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_tag
+    where tag_id = #{tagId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cms_tag
     where tag_id = #{tagId,jdbcType=INTEGER}
@@ -90,8 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.model.CmsTag" >
-    insert into cms_tag (tag_id)
-    values (#{tagId,jdbcType=INTEGER})
+    insert into cms_tag (tag_id, name, description, 
+      icon, type, alias, 
+      ctime, orders)
+    values (#{tagId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{alias,jdbcType=VARCHAR}, 
+      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.model.CmsTag" >
     insert into cms_tag
@@ -99,10 +116,52 @@
       <if test="tagId != null" >
         tag_id,
       </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tagId != null" >
         #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -118,6 +177,27 @@
       <if test="record.tagId != null" >
         tag_id = #{record.tagId,jdbcType=INTEGER},
       </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+      <if test="record.orders != null" >
+        orders = #{record.orders,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -125,9 +205,54 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update cms_tag
-    set tag_id = #{record.tagId,jdbcType=INTEGER}
+    set tag_id = #{record.tagId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=TINYINT},
+      alias = #{record.alias,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=BIGINT},
+      orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.model.CmsTag" >
+    update cms_tag
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+    </set>
+    where tag_id = #{tagId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.cms.model.CmsTag" >
+    update cms_tag
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      alias = #{alias,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=BIGINT},
+      orders = #{orders,jdbcType=BIGINT}
+    where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
 </mapper>

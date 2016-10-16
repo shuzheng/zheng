@@ -40,5 +40,6 @@
 		<table tableName="cms_article_category" domainObjectName="CmsArticleCategory"></table>
 		<table tableName="cms_article_tag" domainObjectName="CmsArticleTag"></table>
 		<table tableName="cms_category_tag" domainObjectName="CmsCategoryTag"></table>
+		<table tableName="cms_comment" domainObjectName="CmsComment"></table>
 	</context>
 </generatorConfiguration>
