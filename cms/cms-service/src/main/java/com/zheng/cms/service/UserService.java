@@ -6,7 +6,6 @@ import java.util.Map;
 import com.zheng.cms.mapper.UserMapper;
 import com.zheng.cms.model.User;
 import com.zheng.cms.model.UserVO;
-import com.zheng.cms.service.BaseService;
 
 /**
  * 用户service接口

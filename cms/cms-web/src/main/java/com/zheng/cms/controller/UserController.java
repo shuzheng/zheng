@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.zheng.cms.model.User;
+import com.zheng.cms.model.UserExample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.zheng.cms.model.User;
-import com.zheng.cms.model.UserExample;
 import com.zheng.cms.service.UserService;
 import com.zheng.cms.util.Paginator;
 

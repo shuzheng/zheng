@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.zheng.cms.mapper.UserMapper;
 import com.zheng.cms.model.User;
+import com.zheng.cms.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
