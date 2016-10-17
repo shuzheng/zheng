@@ -111,19 +111,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.model.CmsTag" >
-    insert into cms_tag (tag_id, name, description, 
-      icon, type, alias, 
-      ctime, orders)
-    values (#{tagId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{icon,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{alias,jdbcType=VARCHAR}, 
-      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
+    <selectKey resultType="java.lang.Integer" keyProperty="tagId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms_tag (name, description, icon, 
+      type, alias, ctime, 
+      orders)
+    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{type,jdbcType=TINYINT}, #{alias,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, 
+      #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.model.CmsTag" >
+    <selectKey resultType="java.lang.Integer" keyProperty="tagId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into cms_tag
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="tagId != null" >
-        tag_id,
-      </if>
       <if test="name != null" >
         name,
       </if>
@@ -147,9 +150,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="tagId != null" >
-        #{tagId,jdbcType=INTEGER},
-      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>

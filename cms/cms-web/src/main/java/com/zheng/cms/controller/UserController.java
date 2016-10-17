@@ -30,8 +30,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController {
-	
-	private static Logger logger = LoggerFactory.getLogger(UserController.class);
+
+	private static Logger _log = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -59,8 +59,8 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("/list")
 	public String list(
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "20") int rows,
+			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
+			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
 			HttpServletRequest request, Model model) {
 
 		UserExample userExample = new UserExample();
@@ -69,7 +69,7 @@ public class UserController extends BaseController {
 		userExample.setOffset((page -1) * rows);
 		userExample.setLimit(rows);
 		userExample.setDistinct(false);
-		userExample.setOrderByClause(" id desc ");
+		userExample.setOrderByClause(" id asc ");
 		List<User> users = userService.getMapper().selectByExample(userExample);
 		model.addAttribute("users", users);
 
@@ -106,39 +106,26 @@ public class UserController extends BaseController {
 	public String add(@Valid User user, BindingResult binding) {
 		if (binding.hasErrors()) {
 			for (ObjectError error : binding.getAllErrors()) {
-				logger.error(error.getDefaultMessage());
+				_log.error(error.getDefaultMessage());
 			}
 			return "/user/add";
 		}
 		user.setCtime(System.currentTimeMillis());
+
 		userService.getMapper().insertSelective(user);
+
+		_log.info("新增记录id为：{}", user.getId());
+
 		return "redirect:/user/list";
 	}
-	
-	/**
-	 * 新增post2,返回自增主键值
-	 * @param user
-	 * @param binding
-	 * @return
-	 */
-	@RequestMapping(value = "/add2", method = RequestMethod.POST)
-	public String add2(@Valid User user, BindingResult binding) {
-		if (binding.hasErrors()) {
-			return "user/add";
-		}
-		user.setCtime(System.currentTimeMillis());
-		userService.insertAutoKey(user);
-		System.out.println(user.getId());
-		return "redirect:/user/list";
-	}
-	
+
 	/**
 	 * 删除
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-	public String delete(@PathVariable int id) {
+	public String delete(@PathVariable("id") int id) {
 		userService.getMapper().deleteByPrimaryKey(id);
 		return "redirect:/user/list";
 	}
@@ -150,7 +137,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable int id, Model model) {
+	public String update(@PathVariable("id") int id, Model model) {
 		model.addAttribute("user", userService.getMapper().selectByPrimaryKey(id));
 		return "/user/update";
 	}
@@ -164,7 +151,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable int id, @Valid User user, BindingResult binding, Model model) {
+	public String update(@PathVariable("id") int id, @Valid User user, BindingResult binding, Model model) {
 		if (binding.hasErrors()) {
 			model.addAttribute("errors", binding.getAllErrors());
 			return "user/update/" + id;

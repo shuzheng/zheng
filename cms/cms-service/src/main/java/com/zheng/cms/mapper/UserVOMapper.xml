@@ -35,49 +35,5 @@
 		where
 			u.id=#{id,jdbcType=INTEGER}
 	</select>
-
-	<!-- 查询所有记录 -->
-	<select id="selectAll" resultType="user" parameterType="java.util.Map">
-		select
-			<choose>
-				<when test="clumns != null">${clumns}</when>
-				<otherwise>
-					*
-				</otherwise>
-			</choose>
-		from
-			user
-		<where>
-			<if test="condition != null and condition != ''">${condition}</if>
-		</where>
-		order by
-			<choose>
-				<when test="order != null and order != ''">${order}</when>
-				<otherwise>id asc</otherwise>
-			</choose>
-	</select>
-	
-	<!-- 插入单条记录，插入前建好id索引 -->
-	<insert id="insertAutoKey" useGeneratedKeys="true" keyProperty="id" parameterType="user">
-		insert into
-			user
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">id,</if>
-			<if test="username != null">username,</if>
-			<if test="password != null">password,</if>
-			<if test="nickname != null">nickname,</if>
-			<if test="sex != null">sex,</if>
-			<if test="ctime != null">ctime,</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">#{id,jdbcType=INTEGER},</if>
-			<if test="username != null">#{username,jdbcType=VARCHAR},</if>
-			<if test="password != null">#{password,jdbcType=VARCHAR},</if>
-			<if test="nickname != null">#{nickname,jdbcType=VARCHAR},</if>
-			<if test="sex != null">#{sex,jdbcType=INTEGER},</if>
-			<if test="ctime != null">#{ctime,jdbcType=BIGINT},</if>
-		</trim>
-	</insert>
-	
 	
 </mapper>
