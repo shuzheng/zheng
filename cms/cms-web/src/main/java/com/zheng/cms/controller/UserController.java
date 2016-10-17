@@ -1,16 +1,9 @@
 package com.zheng.cms.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import com.zheng.cms.model.User;
 import com.zheng.cms.model.UserExample;
+import com.zheng.cms.service.UserService;
+import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +11,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.zheng.cms.service.UserService;
-import com.zheng.cms.util.Paginator;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户控制器
@@ -68,19 +61,19 @@ public class UserController extends BaseController {
 	public String list(
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "20") int rows,
-			HttpServletRequest request) {
-		// 查询参数
-		String clumns = " * ";
-		String condition = " id>0 ";
-		String order = " id asc ";
-		Map<String,Object> parameters = new HashMap<String, Object>();
-		parameters.put("clumns", clumns);
-		parameters.put("condition", condition);
-		parameters.put("order", order);
-		// 创建分页对象
+			HttpServletRequest request, Model model) {
+
 		UserExample userExample = new UserExample();
 		userExample.createCriteria()
-			.andIdGreaterThan(0);
+				.andIdGreaterThan(0);
+		userExample.setOffset((page -1) * rows);
+		userExample.setLimit(rows);
+		userExample.setDistinct(false);
+		userExample.setOrderByClause(" id desc ");
+		List<User> users = userService.getMapper().selectByExample(userExample);
+		model.addAttribute("users", users);
+
+		// 创建分页对象
 		long total = userService.getMapper().countByExample(userExample);
 		Paginator paginator = new Paginator();
 		paginator.setTotal(total);
@@ -89,15 +82,8 @@ public class UserController extends BaseController {
 		paginator.setParam("page");
 		paginator.setUrl(request.getRequestURI());
 		paginator.setQuery(request.getQueryString());
-		// 调用有分页功能的方法
-		parameters.put("paginator", paginator);
-		List<User> users = userService.selectAll(parameters);
-		// 返回数据
-		request.setAttribute("users", users);
-		request.setAttribute("paginator", paginator);
-		
-		
-		//PageHelper.startPage(1, 10);
+		model.addAttribute("paginator", paginator);
+
 		return "/user/list";
 	}
 	
