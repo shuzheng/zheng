@@ -1,8 +1,8 @@
 package com.zheng.cms.service.impl;
 
-import com.zheng.cms.mapper.UserMapper;
-import com.zheng.cms.mapper.UserVOMapper;
-import com.zheng.cms.model.UserVO;
+import com.zheng.cms.dao.mapper.UserMapper;
+import com.zheng.cms.dao.mapper.UserVOMapper;
+import com.zheng.cms.dao.model.UserVO;
 import com.zheng.cms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

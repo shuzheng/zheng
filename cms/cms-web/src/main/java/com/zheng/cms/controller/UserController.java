@@ -1,7 +1,7 @@
 package com.zheng.cms.controller;
 
-import com.zheng.cms.model.User;
-import com.zheng.cms.model.UserExample;
+import com.zheng.cms.dao.model.User;
+import com.zheng.cms.dao.model.UserExample;
 import com.zheng.cms.service.UserService;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;

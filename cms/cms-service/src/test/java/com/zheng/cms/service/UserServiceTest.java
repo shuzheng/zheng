@@ -1,7 +1,7 @@
 package com.zheng.cms.service;
 
-import com.zheng.cms.model.User;
-import com.zheng.cms.model.UserVO;
+import com.zheng.cms.dao.model.User;
+import com.zheng.cms.dao.model.UserVO;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
