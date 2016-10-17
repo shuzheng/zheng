@@ -1,6 +1,8 @@
 package com.zheng.cms.model;
 
-public class CmsArticle {
+import java.io.Serializable;
+
+public class CmsArticle implements Serializable {
     private Integer articleId;
 
     private String title;
@@ -34,6 +36,8 @@ public class CmsArticle {
     private Long orders;
 
     private String content;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getArticleId() {
         return articleId;
@@ -169,5 +173,32 @@ public class CmsArticle {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", articleId=").append(articleId);
+        sb.append(", title=").append(title);
+        sb.append(", author=").append(author);
+        sb.append(", fromurl=").append(fromurl);
+        sb.append(", image=").append(image);
+        sb.append(", keywords=").append(keywords);
+        sb.append(", description=").append(description);
+        sb.append(", type=").append(type);
+        sb.append(", allowcomments=").append(allowcomments);
+        sb.append(", status=").append(status);
+        sb.append(", userId=").append(userId);
+        sb.append(", up=").append(up);
+        sb.append(", down=").append(down);
+        sb.append(", readnumber=").append(readnumber);
+        sb.append(", ctime=").append(ctime);
+        sb.append(", orders=").append(orders);
+        sb.append(", content=").append(content);
+        sb.append("]");
+        return sb.toString();
     }
 }

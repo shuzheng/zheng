@@ -1,11 +1,15 @@
 package com.zheng.cms.model;
 
-public class CmsArticleTag {
+import java.io.Serializable;
+
+public class CmsArticleTag implements Serializable {
     private Integer articleTagId;
 
     private Integer articleId;
 
     private Integer tagId;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getArticleTagId() {
         return articleTagId;
@@ -29,5 +33,18 @@ public class CmsArticleTag {
 
     public void setTagId(Integer tagId) {
         this.tagId = tagId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", articleTagId=").append(articleTagId);
+        sb.append(", articleId=").append(articleId);
+        sb.append(", tagId=").append(tagId);
+        sb.append("]");
+        return sb.toString();
     }
 }

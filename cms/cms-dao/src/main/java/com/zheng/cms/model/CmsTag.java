@@ -1,6 +1,8 @@
 package com.zheng.cms.model;
 
-public class CmsTag {
+import java.io.Serializable;
+
+public class CmsTag implements Serializable {
     private Integer tagId;
 
     private String name;
@@ -16,6 +18,8 @@ public class CmsTag {
     private Long ctime;
 
     private Long orders;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getTagId() {
         return tagId;
@@ -79,5 +83,23 @@ public class CmsTag {
 
     public void setOrders(Long orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", tagId=").append(tagId);
+        sb.append(", name=").append(name);
+        sb.append(", description=").append(description);
+        sb.append(", icon=").append(icon);
+        sb.append(", type=").append(type);
+        sb.append(", alias=").append(alias);
+        sb.append(", ctime=").append(ctime);
+        sb.append(", orders=").append(orders);
+        sb.append("]");
+        return sb.toString();
     }
 }

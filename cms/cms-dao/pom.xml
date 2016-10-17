@@ -45,6 +45,13 @@
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.zheng</groupId>
+                        <artifactId>common</artifactId>
+                        <version>1.0.0</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>

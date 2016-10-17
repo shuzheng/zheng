@@ -6,11 +6,28 @@
 	<properties resource="jdbc.properties"></properties>
 
 	<!-- mysql驱动包 -->
-	<classPathEntry location="C:\Users\shuzheng\.m2\repository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
+	<classPathEntry location="D:\mysql-connector-java-5.1.34.jar" />
 
 	<context id="context" targetRuntime="MyBatis3">
 
-		<!-- 去掉注释 -->
+		<property name="javaFileEncoding" value="UTF-8"/>
+
+		<!-- 由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写，所以还要将这两个默认值改为**反单引号(`)**，配置如下：  -->
+		<property name="beginningDelimiter" value=""/>
+		<property name="endingDelimiter" value=""/>
+
+		<!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+
+		<!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+			<property name="suppressJavaInterface" value="false"/>
+		</plugin>
+
+		<!-- 生成一个新的selectByExample方法，这个方法可以接受一个RowBounds参数，主要用来实现分页 -->
+        <plugin type="com.zheng.common.plugin.PaginationPlugin"></plugin>
+
+		<!-- 生成的代码去掉注释 -->
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>

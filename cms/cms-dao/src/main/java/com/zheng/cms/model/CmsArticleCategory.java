@@ -1,11 +1,15 @@
 package com.zheng.cms.model;
 
-public class CmsArticleCategory {
+import java.io.Serializable;
+
+public class CmsArticleCategory implements Serializable {
     private Integer articleCategoryId;
 
     private Integer articleId;
 
     private Integer categoryId;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getArticleCategoryId() {
         return articleCategoryId;
@@ -29,5 +33,18 @@ public class CmsArticleCategory {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", articleCategoryId=").append(articleCategoryId);
+        sb.append(", articleId=").append(articleId);
+        sb.append(", categoryId=").append(categoryId);
+        sb.append("]");
+        return sb.toString();
     }
 }

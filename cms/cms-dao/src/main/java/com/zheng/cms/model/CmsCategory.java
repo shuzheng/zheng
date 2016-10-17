@@ -1,6 +1,8 @@
 package com.zheng.cms.model;
 
-public class CmsCategory {
+import java.io.Serializable;
+
+public class CmsCategory implements Serializable {
     private Integer categoryId;
 
     private Integer pid;
@@ -20,6 +22,8 @@ public class CmsCategory {
     private Long ctime;
 
     private Long orders;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getCategoryId() {
         return categoryId;
@@ -99,5 +103,25 @@ public class CmsCategory {
 
     public void setOrders(Long orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", categoryId=").append(categoryId);
+        sb.append(", pid=").append(pid);
+        sb.append(", level=").append(level);
+        sb.append(", name=").append(name);
+        sb.append(", description=").append(description);
+        sb.append(", icon=").append(icon);
+        sb.append(", type=").append(type);
+        sb.append(", alias=").append(alias);
+        sb.append(", ctime=").append(ctime);
+        sb.append(", orders=").append(orders);
+        sb.append("]");
+        return sb.toString();
     }
 }

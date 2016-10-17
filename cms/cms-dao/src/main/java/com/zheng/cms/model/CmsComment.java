@@ -1,6 +1,8 @@
 package com.zheng.cms.model;
 
-public class CmsComment {
+import java.io.Serializable;
+
+public class CmsComment implements Serializable {
     private Integer commentId;
 
     private Integer pid;
@@ -18,6 +20,8 @@ public class CmsComment {
     private Long ctime;
 
     private String content;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getCommentId() {
         return commentId;
@@ -89,5 +93,24 @@ public class CmsComment {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", commentId=").append(commentId);
+        sb.append(", pid=").append(pid);
+        sb.append(", articleId=").append(articleId);
+        sb.append(", userId=").append(userId);
+        sb.append(", status=").append(status);
+        sb.append(", ip=").append(ip);
+        sb.append(", agent=").append(agent);
+        sb.append(", ctime=").append(ctime);
+        sb.append(", content=").append(content);
+        sb.append("]");
+        return sb.toString();
     }
 }
