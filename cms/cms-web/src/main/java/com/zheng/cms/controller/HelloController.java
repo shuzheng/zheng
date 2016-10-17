@@ -29,7 +29,7 @@ import java.util.Map;
 @RequestMapping("/hello")
 public class HelloController {
 
-	private static Logger logger = LoggerFactory.getLogger(HelloController.class);
+	private static Logger _log = LoggerFactory.getLogger(HelloController.class);
 
 	private UserServiceImpl userService;
 
@@ -87,8 +87,8 @@ public class HelloController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String doSave(@ModelAttribute User user) {
 
-		logger.debug("Info of Course:");
-		logger.debug(ReflectionToStringBuilder.toString(user));
+		_log.debug("Info of Course:");
+		_log.debug(ReflectionToStringBuilder.toString(user));
 
 		// 在此进行业务操作，比如数据库持久化
 		user.setId(123);

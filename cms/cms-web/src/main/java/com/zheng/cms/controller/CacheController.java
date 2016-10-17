@@ -1,18 +1,13 @@
 package com.zheng.cms.controller;
 
 import com.zheng.common.util.EhCacheUtil;
-import net.sf.ehcache.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ResourceBundle;
 
 /**
  * 缓存controller
@@ -23,7 +18,7 @@ import java.util.ResourceBundle;
 @RequestMapping("/cache")
 public class CacheController {
 
-	private static Logger logger = LoggerFactory.getLogger(CacheController.class);
+	private static Logger _log = LoggerFactory.getLogger(CacheController.class);
 
 	private final static String CACHE_NAME = "ehcache_common";
 
@@ -65,7 +60,7 @@ public class CacheController {
 		String key = request.getParameter("key");
 		Object object = EhCacheUtil.get(CACHE_NAME, key);
 		if (null == object) {
-			logger.debug("【Ehcache】没有找到key={}的记录！", key);
+			_log.debug("【Ehcache】没有找到key={}的记录！", key);
 			return "value";
 		}
 		return object;

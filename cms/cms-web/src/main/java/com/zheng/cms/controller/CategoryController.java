@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/category")
 public class CategoryController extends BaseController {
 
-	private static Logger logger = LoggerFactory.getLogger(CategoryController.class);
+	private static Logger _log = LoggerFactory.getLogger(CategoryController.class);
 
 	@Autowired
 	private UserService userService;
