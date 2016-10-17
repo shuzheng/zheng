@@ -1,6 +1,5 @@
-package com.zheng.cms.controller.cms;
+package com.zheng.cms.controller;
 
-import com.zheng.cms.controller.BaseController;
 import com.zheng.cms.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
