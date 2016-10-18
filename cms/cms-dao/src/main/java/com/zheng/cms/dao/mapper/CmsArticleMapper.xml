@@ -469,4 +469,5 @@
       orders = #{orders,jdbcType=BIGINT}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
+  <cache eviction="LRU" flushInterval="60000" readOnly="true" size="1024" />
 </mapper>

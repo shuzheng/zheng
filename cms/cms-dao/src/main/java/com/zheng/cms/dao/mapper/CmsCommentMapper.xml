@@ -328,4 +328,5 @@
       ctime = #{ctime,jdbcType=BIGINT}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
+  <cache eviction="LRU" flushInterval="60000" readOnly="true" size="1024" />
 </mapper>

@@ -113,4 +113,43 @@ public class CmsComment implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        CmsComment other = (CmsComment) that;
+        return (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
+            && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
+            && (this.getArticleId() == null ? other.getArticleId() == null : this.getArticleId().equals(other.getArticleId()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
+            && (this.getAgent() == null ? other.getAgent() == null : this.getAgent().equals(other.getAgent()))
+            && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getCommentId() == null) ? 0 : getCommentId().hashCode());
+        result = prime * result + ((getPid() == null) ? 0 : getPid().hashCode());
+        result = prime * result + ((getArticleId() == null) ? 0 : getArticleId().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getIp() == null) ? 0 : getIp().hashCode());
+        result = prime * result + ((getAgent() == null) ? 0 : getAgent().hashCode());
+        result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        return result;
+    }
 }

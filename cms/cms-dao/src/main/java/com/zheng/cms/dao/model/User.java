@@ -91,4 +91,39 @@ public class User implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        User other = (User) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
+            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
+            && (this.getNickname() == null ? other.getNickname() == null : this.getNickname().equals(other.getNickname()))
+            && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
+            && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
+        result = prime * result + ((getNickname() == null) ? 0 : getNickname().hashCode());
+        result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
+        result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        return result;
+    }
 }

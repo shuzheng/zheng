@@ -292,4 +292,5 @@
       ctime = #{ctime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <cache eviction="LRU" flushInterval="60000" readOnly="true" size="1024" />
 </mapper>

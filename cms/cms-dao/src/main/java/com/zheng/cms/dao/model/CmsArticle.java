@@ -201,4 +201,59 @@ public class CmsArticle implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        CmsArticle other = (CmsArticle) that;
+        return (this.getArticleId() == null ? other.getArticleId() == null : this.getArticleId().equals(other.getArticleId()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getAuthor() == null ? other.getAuthor() == null : this.getAuthor().equals(other.getAuthor()))
+            && (this.getFromurl() == null ? other.getFromurl() == null : this.getFromurl().equals(other.getFromurl()))
+            && (this.getImage() == null ? other.getImage() == null : this.getImage().equals(other.getImage()))
+            && (this.getKeywords() == null ? other.getKeywords() == null : this.getKeywords().equals(other.getKeywords()))
+            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getAllowcomments() == null ? other.getAllowcomments() == null : this.getAllowcomments().equals(other.getAllowcomments()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getUp() == null ? other.getUp() == null : this.getUp().equals(other.getUp()))
+            && (this.getDown() == null ? other.getDown() == null : this.getDown().equals(other.getDown()))
+            && (this.getReadnumber() == null ? other.getReadnumber() == null : this.getReadnumber().equals(other.getReadnumber()))
+            && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
+            && (this.getOrders() == null ? other.getOrders() == null : this.getOrders().equals(other.getOrders()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getArticleId() == null) ? 0 : getArticleId().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getAuthor() == null) ? 0 : getAuthor().hashCode());
+        result = prime * result + ((getFromurl() == null) ? 0 : getFromurl().hashCode());
+        result = prime * result + ((getImage() == null) ? 0 : getImage().hashCode());
+        result = prime * result + ((getKeywords() == null) ? 0 : getKeywords().hashCode());
+        result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getAllowcomments() == null) ? 0 : getAllowcomments().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getUp() == null) ? 0 : getUp().hashCode());
+        result = prime * result + ((getDown() == null) ? 0 : getDown().hashCode());
+        result = prime * result + ((getReadnumber() == null) ? 0 : getReadnumber().hashCode());
+        result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
+        result = prime * result + ((getOrders() == null) ? 0 : getOrders().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        return result;
+    }
 }

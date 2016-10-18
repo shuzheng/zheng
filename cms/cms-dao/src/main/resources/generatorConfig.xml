@@ -27,6 +27,17 @@
 		<!-- 生成一个新的selectByExample方法，这个方法可以接受一个RowBounds参数，主要用来实现分页 -->
         <plugin type="com.zheng.common.plugin.PaginationPlugin"></plugin>
 
+		<!-- 生成在XML中的<cache>元素 -->
+		<plugin type="org.mybatis.generator.plugins.CachePlugin">
+			<property name="cache_eviction" value="LRU" />
+			<property name="cache_flushInterval" value="60000" />
+			<property name="cache_readOnly" value="true" />
+			<property name="cache_size" value="1024" />
+		</plugin>
+
+		<!-- Java模型生成equals和hashcode方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+
 		<!-- 生成的代码去掉注释 -->
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" />

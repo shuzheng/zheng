@@ -186,4 +186,5 @@
       tag_id = #{tagId,jdbcType=INTEGER}
     where category_tag_id = #{categoryTagId,jdbcType=INTEGER}
   </update>
+  <cache eviction="LRU" flushInterval="60000" readOnly="true" size="1024" />
 </mapper>
