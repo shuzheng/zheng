@@ -1,5 +1,6 @@
 package com.zheng.cms.controller;
 
+import com.zheng.cms.service.UserService;
 import com.zheng.common.util.EhCacheUtil;
 import com.zheng.common.util.PropertiesFileUtil;
 import net.sf.ehcache.Cache;
@@ -7,6 +8,7 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +27,16 @@ public class CacheController {
 	private static Logger _log = LoggerFactory.getLogger(CacheController.class);
 
 	private final static String EHCACHE_NAME = PropertiesFileUtil.getInstance().get("ehcache");
+
+	@Autowired
+	private UserService userService;
+
+	@RequestMapping("/test")
+	@ResponseBody
+	public Object test(HttpServletRequest request) {
+		System.out.println(System.getProperty("java.io.tmpdir"));
+		return "success";
+	}
 
 	/**
 	 * 新增缓存记录
