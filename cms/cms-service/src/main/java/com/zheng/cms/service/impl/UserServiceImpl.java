@@ -4,9 +4,14 @@ import com.zheng.cms.dao.mapper.UserMapper;
 import com.zheng.cms.dao.mapper.UserVOMapper;
 import com.zheng.cms.dao.model.UserVO;
 import com.zheng.cms.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户service实现
@@ -16,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+
+	private static Logger _log = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private UserMapper userMapper;
@@ -38,6 +45,7 @@ public class UserServiceImpl implements UserService {
 	 * @return
 	 */
 	@Override
+	@Cacheable(value="ehcache")
 	public UserVO selectUserWithBook(int id) {
 		return userVOMapper.selectUserWithBook(id);
 	}

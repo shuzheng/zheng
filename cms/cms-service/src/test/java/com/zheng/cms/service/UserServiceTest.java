@@ -2,9 +2,6 @@ package com.zheng.cms.service;
 
 import com.zheng.cms.dao.model.User;
 import com.zheng.cms.dao.model.UserVO;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Element;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,7 @@ public class UserServiceTest {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Test
 	public void index() {
 		// 自定义接口调用
