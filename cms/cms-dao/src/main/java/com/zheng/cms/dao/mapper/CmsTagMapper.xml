@@ -263,5 +263,5 @@
       orders = #{orders,jdbcType=BIGINT}
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
-  <cache eviction="LRU" flushInterval="60000" readOnly="true" size="1024" />
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>
