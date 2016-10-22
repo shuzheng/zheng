@@ -1,12 +1,12 @@
 ## zheng
 
 # 后端技术:
-* spring
-* springMVC: MVC框架
+* Spring
+* SpringMVC: MVC框架
 * MyBatis: ORM框架
 * MyBatis Generator: 代码生成
 * Druid: 数据库连接池
-* Shiro|spring secutity: 权限认证
+* Spring secutity|Shiro: 权限认证
 * Thymeleaf: 模板引擎
 * ZooKeeper: 协调服务
 * Dubbo: 远程服务调用
@@ -15,15 +15,25 @@
 * Ehcache: 二级缓存
 * Redis: 分布式缓存存储
 * ActiveMQ: 消息队列
-* solr: 检索
+* Solr: 检索
 * Maven: 项目管理(Gradle)
-* qiniu: 云存储
+* Qiniu: 云存储
 * Jenkins: 持续集成
 * Log4J: 日志管理
-* spring-boot
+* Protobuf|json: 数据传输 
+* Spring-boot
+
 
 # 前端技术:
-* jQuery:
+* jQuery
+* Bootstrap
+* jQuery EasyUI
+* AngularJs
+* Webpack
+* Node.js
+* Electron
+* NW.js(Node-Webkit)
+
 
 # 架构技术:
 * MySql: 数据库
