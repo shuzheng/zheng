@@ -20,7 +20,6 @@
 * qiniu: 云存储
 * Jenkins: 持续集成
 * Log4J: 日志管理
-
 * spring-boot
 
 # 前端技术:
