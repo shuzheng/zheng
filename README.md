@@ -35,7 +35,7 @@
 * NW.js(Node-Webkit)
 
 
-# 架构技术:
+# 开发环境:
 * MySql: 数据库
 * jetty: 开发服务器
 * Tomcat: 应用服务器
