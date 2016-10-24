@@ -6,6 +6,11 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
 
+	<!-- 不需要控制权限的资源 -->
+	<http security="none" pattern="/resources/**" />
+	<http security="none" pattern="/**/*.html" />
+	<http security="none" pattern="/**/*.jsp" />
+
 	<http use-expressions="false">
 		<!-- 登录页面不需要控制权限 -->
 		<intercept-url pattern="/manage/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>

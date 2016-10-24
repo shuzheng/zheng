@@ -19,6 +19,7 @@
 </div>
 <div id="main">
 	<form id="form" method="post">
+	<input type="hidden" name="_csrf" value="${_csrf.token}" />
 	<table border="1">
 		<caption>添加用户</caption>
 		<tr><td>帐号：<font color="#cc0000">*</font></td><td><input id="username" type="text" name="username" placeholder="必填" required="true" maxlength="20" autofocus value=""/></td></tr>
