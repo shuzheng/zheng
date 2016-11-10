@@ -166,6 +166,12 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.2.Final</version>
         </dependency>
+        <!-- 七牛云存储 -->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[7.0.0, 7.1.99]</version>
+        </dependency>
         <!-- Thymeleaf -->
         <dependency>
             <groupId>org.thymeleaf</groupId>
