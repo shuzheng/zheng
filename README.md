@@ -3,14 +3,22 @@
 # 介绍
 ```
 zheng
-├---- common/ 公共模块
-├---- cms/ CMS系统
-|    ├---- cms-dao/ DAO数据持久层
-|    ├---- cms-service/ 业务逻辑层
-|    └---- cms-web/ WEB项目
-└---- oss/ OSS系统
-     ├---- oss-sdk/ OSS上传下载管理凭证等
-     └---- oss-web/ OSS在线管理项目
+├---- common 公共模块
+├---- cms 内容管理系统
+|    ├---- cms-dao
+|    ├---- cms-service
+|    └---- cms-web
+├---- qa 问答系统
+|    ├---- qa-dao
+|    ├---- qa-service
+|    └---- qa-web
+├---- upms 通用用户权限管理系统
+|    ├---- qa-dao
+|    ├---- qa-service
+|    └---- qa-web
+└---- oss/ 对象存储系统
+     ├---- oss-sdk
+     └---- oss-web
 ```
 
 # 后端技术:
