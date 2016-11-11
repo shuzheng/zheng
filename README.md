@@ -7,10 +7,12 @@ zheng
 ├---- cms 内容管理系统
 |    ├---- cms-dao
 |    ├---- cms-service
+|    ├---- cms-admin
 |    └---- cms-web
 ├---- qa 问答系统
 |    ├---- qa-dao
 |    ├---- qa-service
+|    ├---- qa-admin
 |    └---- qa-web
 ├---- upms 通用用户权限管理系统
 |    ├---- qa-dao
