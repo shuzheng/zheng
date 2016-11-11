@@ -1,5 +1,18 @@
 ## zheng
 
+# 介绍
+```
+zheng
+├---- common/ 公共模块
+├---- cms/ CMS系统
+|    ├---- cms-dao/ DAO数据持久层
+|    ├---- cms-service/ 业务逻辑层
+|    └---- cms-web/ WEB项目
+└---- oss/ OSS系统
+     ├---- oss-sdk/ OSS上传下载管理凭证等
+     └---- oss-web/ OSS在线管理项目
+```
+
 # 后端技术:
 * Spring
 * SpringMVC: MVC框架
