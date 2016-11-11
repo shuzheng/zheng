@@ -18,7 +18,7 @@ zheng
 |    ├---- qa-dao
 |    ├---- qa-service
 |    └---- qa-web
-└---- oss/ 对象存储系统
+└---- oss 对象存储系统
      ├---- oss-sdk
      └---- oss-web
 ```
