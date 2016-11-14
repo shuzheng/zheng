@@ -22,6 +22,14 @@ zheng
 |    ├── ucenter-dao
 |    ├── ucenter-service
 |    └── ucenter-home
+├── wechat 微信系统
+|    ├── wechat-mp 公众号
+|    |    ├── wechat-mp-dao
+|    |    ├── wechat-mp-service
+|    |    └── wechat-mp-admin
+|    └── wechat-app 小程序
+|         ├── wechat-app-sdk
+|         └── wechat-app-example
 ├── upms 通用用户权限系统
 |    ├── upms-dao
 |    ├── upms-service
