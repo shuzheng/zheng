@@ -1,26 +1,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>upms-dao</module>
+        <module>upms-service</module>
+    </modules>
 
     <parent>
-        <groupId>com.zheng</groupId>
         <artifactId>zheng</artifactId>
+        <groupId>com.zheng</groupId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-cms</artifactId>
+    <artifactId>zheng-upms</artifactId>
     <packaging>pom</packaging>
 
-    <name>zheng-cms</name>
+    <name>zheng-upms</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <modules>
-        <module>cms-dao</module>
-        <module>cms-service</module>
-        <module>cms-web</module>
-    </modules>
 </project>

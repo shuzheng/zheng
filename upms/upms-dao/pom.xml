@@ -4,14 +4,14 @@
 
     <parent>
         <groupId>com.zheng</groupId>
-        <artifactId>zheng-qa</artifactId>
+        <artifactId>zheng-upms</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-qa-dao</artifactId>
+    <artifactId>zheng-upms-dao</artifactId>
     <packaging>jar</packaging>
 
-    <name>zheng-qa-dao</name>
+    <name>zheng-upms-dao</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -28,7 +28,7 @@
     </dependencies>
 
     <build>
-        <finalName>qa-dao</finalName>
+        <finalName>upms-dao</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>

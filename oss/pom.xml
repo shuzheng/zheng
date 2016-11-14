@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>zheng</artifactId>
         <groupId>com.zheng</groupId>
+        <artifactId>zheng</artifactId>
         <version>1.0.0</version>
     </parent>
 

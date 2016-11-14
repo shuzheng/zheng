@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>zheng-qa</artifactId>
         <groupId>com.zheng</groupId>
+        <artifactId>zheng-qa</artifactId>
         <version>1.0.0</version>
     </parent>
 

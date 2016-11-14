@@ -23,5 +23,6 @@
         <module>cms</module>
         <module>oss</module>
         <module>qa</module>
+        <module>upms</module>
     </modules>
 </project>
