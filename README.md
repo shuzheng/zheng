@@ -7,22 +7,28 @@ zheng
 ├── cms 内容管理系统
 |    ├── cms-dao
 |    ├── cms-service
+|    ├── cms-admin
 |    └── cms-web
 ├── qa 问答系统
 |    ├── qa-dao
 |    ├── qa-service
+|    ├── qa-admin
 |    └── qa-web
 ├── pay 支付系统
 |    ├── pay-service
 |    ├── pay-sdk
-|    └── pay-web
+|    └── pay-demo
+├── ucenter 用户系统
+|    ├── ucenter-dao
+|    ├── ucenter-service
+|    └── ucenter-home
 ├── upms 通用用户权限系统
 |    ├── upms-dao
 |    ├── upms-service
-|    └── upms-web
+|    └── upms-admin
 └── oss 对象存储系统
      ├── oss-sdk
-     └── oss-web
+     └── oss-admin
 ```
 
 # 后端技术:
