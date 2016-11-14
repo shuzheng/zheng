@@ -1,4 +1,4 @@
-package com.zheng;
+package com.zheng.upms.service;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

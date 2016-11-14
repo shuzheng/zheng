@@ -1,4 +1,4 @@
-package com.zheng;
+package com.zheng.qa.service;
 
 /**
  * Hello world!
