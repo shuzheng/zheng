@@ -2,13 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>zheng</artifactId>
-        <groupId>com.zheng</groupId>
-        <version>1.0.0</version>
-    </parent>
-
+    <groupId>com.zheng</groupId>
     <artifactId>zheng-common</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>zheng-common</name>

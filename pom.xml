@@ -19,9 +19,8 @@
     </properties>
 
     <modules>
-        <module>common</module>
         <module>cms</module>
+        <module>common</module>
         <module>oss</module>
-        <module>qa</module>
     </modules>
 </project>
