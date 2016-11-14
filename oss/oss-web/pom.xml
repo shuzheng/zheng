@@ -9,7 +9,7 @@
     <artifactId>zheng-oss-web</artifactId>
     <packaging>war</packaging>
 
-    <name>zheng-oss-web Maven Webapp</name>
+    <name>oss-web Maven Webapp</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <dependencies>

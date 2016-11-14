@@ -7,7 +7,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>zheng-common</name>
+    <name>common</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>

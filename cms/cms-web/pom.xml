@@ -9,7 +9,7 @@
     <artifactId>zheng-cms-web</artifactId>
     <packaging>war</packaging>
 
-    <name>zheng-cms-web Maven Webapp</name>
+    <name>cms-web Maven Webapp</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <dependencies>

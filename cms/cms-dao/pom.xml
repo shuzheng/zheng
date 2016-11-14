@@ -10,7 +10,7 @@
     <artifactId>zheng-cms-dao</artifactId>
     <packaging>jar</packaging>
 
-    <name>zheng-cms-dao</name>
+    <name>cms-dao</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -48,7 +48,7 @@
                 <dependencies>
                     <dependency>
                         <groupId>com.zheng</groupId>
-                        <artifactId>zheng-common</artifactId>
+                        <artifactId>common</artifactId>
                         <version>1.0.0</version>
                     </dependency>
                 </dependencies>

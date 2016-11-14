@@ -11,7 +11,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>zheng-oss</name>
+    <name>oss</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>

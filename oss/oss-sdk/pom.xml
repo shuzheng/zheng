@@ -10,7 +10,7 @@
     <artifactId>zheng-oss-sdk</artifactId>
     <packaging>jar</packaging>
 
-    <name>zheng-oss-sdk</name>
+    <name>oss-sdk</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
