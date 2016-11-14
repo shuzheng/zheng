@@ -50,7 +50,7 @@ public class CmsArticleController extends BaseController {
 		CmsArticleExample cmsArticleExample = new CmsArticleExample();
 		cmsArticleExample.setOffset((page - 1) * rows);
 		cmsArticleExample.setLimit(rows);
-		cmsArticleExample.setOrderByClause("articleId desc");
+		cmsArticleExample.setOrderByClause("article_id desc");
 		List<CmsArticle> articles = cmsArticleService.getMapper().selectByExample(cmsArticleExample);
 
 		// 分页对象

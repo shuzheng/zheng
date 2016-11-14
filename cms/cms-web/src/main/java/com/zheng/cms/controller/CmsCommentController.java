@@ -52,7 +52,7 @@ public class CmsCommentController extends BaseController {
 		CmsCommentExample cmsCommentExample = new CmsCommentExample();
 		cmsCommentExample.setOffset((page - 1) * rows);
 		cmsCommentExample.setLimit(rows);
-		cmsCommentExample.setOrderByClause("commentId desc");
+		cmsCommentExample.setOrderByClause("comment_id desc");
 		List<CmsComment> tags = cmsCommentService.getMapper().selectByExample(cmsCommentExample);
 
 		// 分页对象

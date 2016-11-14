@@ -69,7 +69,7 @@ public class UserController extends BaseController {
 		userExample.setOffset((page -1) * rows);
 		userExample.setLimit(rows);
 		userExample.setDistinct(false);
-		userExample.setOrderByClause(" userId asc ");
+		userExample.setOrderByClause(" user_id asc ");
 		List<User> users = userService.getMapper().selectByExample(userExample);
 		model.addAttribute("users", users);
 
