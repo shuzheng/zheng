@@ -19,6 +19,10 @@ public class Paginator {
 	private String url = "";			// 项目路径
 	private String query = "";			// 当前页所有参数
 
+	public Paginator() {
+
+	}
+
 	public Paginator(long total, int page, int rows, HttpServletRequest request) {
 		setTotal(total);
 		setPage(page);
