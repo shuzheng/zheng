@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>oss</artifactId>
+        <artifactId>zheng-oss</artifactId>
         <groupId>com.zheng</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>oss-sdk</artifactId>
+    <artifactId>zheng-oss-sdk</artifactId>
     <packaging>jar</packaging>
 
     <name>oss-sdk</name>
@@ -21,7 +21,7 @@
         <!-- common包 -->
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>zheng-common</artifactId>
             <version>1.0.0</version>
             <type>jar</type>
         </dependency>

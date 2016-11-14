@@ -3,20 +3,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zheng</groupId>
-    <artifactId>zheng-cms</artifactId>
+    <artifactId>zheng</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>cms</name>
+    <name>zheng</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
     </properties>
 
     <modules>
-        <module>cms-dao</module>
-        <module>cms-service</module>
-        <module>cms-web</module>
+        <module>cms</module>
+        <module>common</module>
+        <module>oss</module>
     </modules>
 </project>
