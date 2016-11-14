@@ -71,3 +71,7 @@ zheng
 * Navicat for MySQL: 数据库客户端管理
 * IntelliJ IDEA: 开发IDE
 * PowerDesigner: 建模工具
+
+
+# 数据模型
+![数据库模型](cms.png)
