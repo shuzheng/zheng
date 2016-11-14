@@ -10,7 +10,7 @@
     <artifactId>zheng-cms-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>cms-service</name>
+    <name>zheng-cms-service</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
