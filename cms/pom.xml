@@ -7,7 +7,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>cms</name>
+    <name>zheng-cms</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
