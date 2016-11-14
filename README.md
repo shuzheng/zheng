@@ -16,11 +16,11 @@ zheng
 |    ├── pay-service
 |    ├── pay-sdk
 |    └── pay-web
-├── upms 通用用户权限管理系统
+├── upms 通用用户权限系统
 |    ├── upms-dao
 |    ├── upms-service
 |    └── upms-web
-└── oss 对象存储模块
+└── oss 对象存储系统
      ├── oss-sdk
      └── oss-web
 ```
