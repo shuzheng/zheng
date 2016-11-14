@@ -20,5 +20,6 @@
 
     <modules>
         <module>qa-dao</module>
+        <module>qa-service</module>
     </modules>
 </project>
