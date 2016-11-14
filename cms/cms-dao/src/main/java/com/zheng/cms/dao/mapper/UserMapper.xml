@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zheng.cms.dao.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.zheng.cms.dao.model.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, password, nickname, sex, ctime
+    user_id, username, password, nickname, sex, ctime
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -120,11 +120,11 @@
     ,
     <include refid="Blob_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.UserExample" >
     delete from user
@@ -133,22 +133,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.dao.model.User" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into user (username, password, nickname, 
-      sex, ctime, content
-      )
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR}
-      )
+    insert into user (user_id, username, password, 
+      nickname, sex, ctime, 
+      content)
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.User" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
       <if test="username != null" >
         username,
       </if>
@@ -169,6 +166,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
@@ -198,8 +198,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update user
     <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.username != null" >
         username = #{record.username,jdbcType=VARCHAR},
@@ -226,7 +226,7 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update user
-    set id = #{record.id,jdbcType=INTEGER},
+    set user_id = #{record.userId,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       nickname = #{record.nickname,jdbcType=VARCHAR},
@@ -239,7 +239,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update user
-    set id = #{record.id,jdbcType=INTEGER},
+    set user_id = #{record.userId,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       nickname = #{record.nickname,jdbcType=VARCHAR},
@@ -271,7 +271,7 @@
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zheng.cms.dao.model.User" >
     update user
@@ -281,7 +281,7 @@
       sex = #{sex,jdbcType=INTEGER},
       ctime = #{ctime,jdbcType=BIGINT},
       content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.User" >
     update user
@@ -290,7 +290,7 @@
       nickname = #{nickname,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},
       ctime = #{ctime,jdbcType=BIGINT}
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

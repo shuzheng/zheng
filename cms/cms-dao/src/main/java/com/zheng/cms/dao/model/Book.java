@@ -3,28 +3,28 @@ package com.zheng.cms.dao.model;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    private Integer id;
+    private Integer bookId;
 
-    private Integer userid;
+    private Integer userId;
 
     private String name;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -41,8 +41,8 @@ public class Book implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", userid=").append(userid);
+        sb.append(", bookId=").append(bookId);
+        sb.append(", userId=").append(userId);
         sb.append(", name=").append(name);
         sb.append("]");
         return sb.toString();
@@ -60,8 +60,8 @@ public class Book implements Serializable {
             return false;
         }
         Book other = (Book) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUserid() == null ? other.getUserid() == null : this.getUserid().equals(other.getUserid()))
+        return (this.getBookId() == null ? other.getBookId() == null : this.getBookId().equals(other.getBookId()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
     }
 
@@ -69,8 +69,8 @@ public class Book implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUserid() == null) ? 0 : getUserid().hashCode());
+        result = prime * result + ((getBookId() == null) ? 0 : getBookId().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         return result;
     }

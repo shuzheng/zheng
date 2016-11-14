@@ -10,7 +10,7 @@ public interface BookMapper {
 
     int deleteByExample(BookExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer bookId);
 
     int insert(Book record);
 
@@ -18,7 +18,7 @@ public interface BookMapper {
 
     List<Book> selectByExample(BookExample example);
 
-    Book selectByPrimaryKey(Integer id);
+    Book selectByPrimaryKey(Integer bookId);
 
     int updateByExampleSelective(@Param("record") Book record, @Param("example") BookExample example);
 

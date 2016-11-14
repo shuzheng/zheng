@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zheng.cms.dao.mapper.BookMapper" >
   <resultMap id="BaseResultMap" type="com.zheng.cms.dao.model.Book" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <id column="book_id" property="bookId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, userid, name
+    book_id, user_id, name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zheng.cms.dao.model.BookExample" >
     select
@@ -93,11 +93,11 @@
     select 
     <include refid="Base_Column_List" />
     from book
-    where id = #{id,jdbcType=INTEGER}
+    where book_id = #{bookId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book
-    where id = #{id,jdbcType=INTEGER}
+    where book_id = #{bookId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.BookExample" >
     delete from book
@@ -106,28 +106,30 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.dao.model.Book" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into book (userid, name)
-    values (#{userid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+    insert into book (book_id, user_id, name
+      )
+    values (#{bookId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.Book" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into book
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        userid,
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
       </if>
       <if test="name != null" >
         name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
+      <if test="bookId != null" >
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -143,11 +145,11 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update book
     <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.bookId != null" >
+        book_id = #{record.bookId,jdbcType=INTEGER},
       </if>
-      <if test="record.userid != null" >
-        userid = #{record.userid,jdbcType=INTEGER},
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -159,8 +161,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update book
-    set id = #{record.id,jdbcType=INTEGER},
-      userid = #{record.userid,jdbcType=INTEGER},
+    set book_id = #{record.bookId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -169,20 +171,20 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.dao.model.Book" >
     update book
     <set >
-      <if test="userid != null" >
-        userid = #{userid,jdbcType=INTEGER},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where book_id = #{bookId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.Book" >
     update book
-    set userid = #{userid,jdbcType=INTEGER},
+    set user_id = #{userId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where book_id = #{bookId,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>
