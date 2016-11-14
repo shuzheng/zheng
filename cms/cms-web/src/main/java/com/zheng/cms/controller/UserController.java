@@ -65,11 +65,11 @@ public class UserController extends BaseController {
 
 		UserExample userExample = new UserExample();
 		userExample.createCriteria()
-				.andIdGreaterThan(0);
+				.andUserIdGreaterThan(0);
 		userExample.setOffset((page -1) * rows);
 		userExample.setLimit(rows);
 		userExample.setDistinct(false);
-		userExample.setOrderByClause(" id asc ");
+		userExample.setOrderByClause(" userId asc ");
 		List<User> users = userService.getMapper().selectByExample(userExample);
 		model.addAttribute("users", users);
 
@@ -114,7 +114,7 @@ public class UserController extends BaseController {
 
 		userService.getMapper().insertSelective(user);
 
-		_log.info("新增记录id为：{}", user.getId());
+		_log.info("新增记录id为：{}", user.getUserId());
 
 		return "redirect:/user/list";
 	}

@@ -36,15 +36,6 @@ public class CmsCommentController extends BaseController {
 	private CmsCommentService cmsCommentService;
 
 	/**
-	 * 首页
-	 * @return
-	 */
-	@RequestMapping("")
-	public String index() {
-		return "redirect:/comment/list";
-	}
-	
-	/**
 	 * 列表
 	 * @param page
 	 * @param rows

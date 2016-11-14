@@ -34,15 +34,6 @@ public class CmsCategoryController extends BaseController {
 	private CmsCategoryService cmsCategoryService;
 
 	/**
-	 * 首页
-	 * @return
-	 */
-	@RequestMapping("")
-	public String index() {
-		return "redirect:/category/list";
-	}
-	
-	/**
 	 * 列表
 	 * @param page
 	 * @param rows

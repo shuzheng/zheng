@@ -34,15 +34,6 @@ public class CmsArticleController extends BaseController {
 	private CmsArticleService cmsArticleService;
 
 	/**
-	 * 首页
-	 * @return
-	 */
-	@RequestMapping("")
-	public String index() {
-		return "redirect:/article/list";
-	}
-	
-	/**
 	 * 列表
 	 * @param page
 	 * @param rows

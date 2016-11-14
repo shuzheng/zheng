@@ -91,8 +91,8 @@ public class HelloController {
 		_log.debug(ReflectionToStringBuilder.toString(user));
 
 		// 在此进行业务操作，比如数据库持久化
-		user.setId(123);
-		return "redirect:view2/" + user.getId();
+		user.setUserId(123);
+		return "redirect:view2/" + user.getUserId();
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)

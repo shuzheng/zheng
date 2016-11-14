@@ -34,15 +34,6 @@ public class CmsTagController extends BaseController {
 	private CmsTagService cmsTagService;
 
 	/**
-	 * 首页
-	 * @return
-	 */
-	@RequestMapping("")
-	public String index() {
-		return "redirect:/tag/list";
-	}
-	
-	/**
 	 * 列表
 	 * @param page
 	 * @param rows
