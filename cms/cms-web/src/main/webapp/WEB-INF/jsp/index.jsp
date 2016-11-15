@@ -14,6 +14,7 @@
 <body>
 <ul>
     <li><a href="${basePath}/tag/list">标签管理</a></li>
+    <li><a href="${basePath}/category/list">类目管理</a></li>
 </ul>
 </body>
 </html>

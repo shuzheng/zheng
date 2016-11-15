@@ -13,14 +13,16 @@
 </head>
 <body>
 <div>
-	<a href="${basePath}/">首页</a> &gt; 标签列表
+	<a href="${basePath}/">首页</a> &gt; 类目列表
 </div>
 <div>
 	<table border="1">
-		<caption><a href="${basePath}/tag/add">新增</a> <a href="${basePath}/tag/batchDelete">批量删除</a></caption>
+		<caption><a href="${basePath}/category/add">新增</a> <a href="${basePath}/category/batchDelete">批量删除</a></caption>
 		<thead>
 			<tr>
 				<th>ID</th>
+				<th>上级编号</th>
+				<th>层级</th>
 				<th>名称</th>
 				<th>描述</th>
 				<th>图标</th>
@@ -31,25 +33,27 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="tag" items="${tags}">
+			<c:forEach var="category" items="${categorys}">
 			<tr>
-				<td>${tag.tagId}</td>
-				<td>${tag.name}</td>
-				<td>${tag.description}</td>
-				<td>${tag.icon}</td>
+				<td>${category.categoryId}</td>
+				<td>${category.pid}</td>
+				<td>${category.level}</td>
+				<td>${category.name}</td>
+				<td>${category.description}</td>
+				<td>${category.icon}</td>
 				<td>
-					<c:if test="${tag.type==1}">普通</c:if>
-					<c:if test="${tag.type==2}">热门</c:if>
+					<c:if test="${category.type==1}">普通</c:if>
+					<c:if test="${category.type==2}">热门</c:if>
 				</td>
-				<td>${tag.alias}</td>
+				<td>${category.alias}</td>
 				<td>
 					<jsp:useBean id="date" class="java.util.Date"/>
-					<jsp:setProperty name="date" property="time" value="${tag.ctime}"/>
+					<jsp:setProperty name="date" property="time" value="${category.ctime}"/>
 					<fmt:formatDate value="${date}" type="both" pattern="yyyy-MM-dd HH:mm:ss" timeZone="Asia/Shanghai"/>
 				</td>
 				<td>
-					<a href="${basePath}/tag/update/${tag.tagId}">修改</a>
-					<a href="${basePath}/tag/delete/${tag.tagId}" onclick="return confirm('确认删除吗？');">删除</a>
+					<a href="${basePath}/category/update/${category.tagId}">修改</a>
+					<a href="${basePath}/category/delete/${category.tagId}" onclick="return confirm('确认删除吗？');">删除</a>
 				</td>
 			</tr>
 			</c:forEach>
