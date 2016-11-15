@@ -52,14 +52,14 @@ public class CmsCommentController extends BaseController {
 		CmsCommentExample cmsCommentExample = new CmsCommentExample();
 		cmsCommentExample.setOffset((page - 1) * rows);
 		cmsCommentExample.setLimit(rows);
-		cmsCommentExample.setOrderByClause("comment_id desc");
-		List<CmsComment> tags = cmsCommentService.getMapper().selectByExample(cmsCommentExample);
+		cmsCommentExample.setOrderByClause("orders desc");
+		List<CmsComment> comments = cmsCommentService.getMapper().selectByExample(cmsCommentExample);
 
 		// 分页对象
 		long total = cmsCommentService.getMapper().countByExample(cmsCommentExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
-		model.addAttribute("tags", tags);
+		model.addAttribute("comments", comments);
 		model.addAttribute("paginator", paginator);
 		return "/comment/list";
 	}

@@ -50,7 +50,7 @@ public class CmsCategoryController extends BaseController {
 		CmsCategoryExample cmsCategoryExample = new CmsCategoryExample();
 		cmsCategoryExample.setOffset((page - 1) * rows);
 		cmsCategoryExample.setLimit(rows);
-		cmsCategoryExample.setOrderByClause("category_id desc");
+		cmsCategoryExample.setOrderByClause("orders desc");
 		List<CmsCategory> categorys = cmsCategoryService.getMapper().selectByExample(cmsCategoryExample);
 
 		// 分页对象
@@ -85,7 +85,9 @@ public class CmsCategoryController extends BaseController {
 			}
 			return "/category/add";
 		}
-		cmsCategory.setCtime(System.currentTimeMillis());
+		long time = System.currentTimeMillis();
+		cmsCategory.setCtime(time);
+		cmsCategory.setOrders(time);
 		cmsCategoryService.getMapper().insertSelective(cmsCategory);
 		_log.info("新增记录id为：{}", cmsCategory.getCategoryId());
 		return "redirect:/category/list";

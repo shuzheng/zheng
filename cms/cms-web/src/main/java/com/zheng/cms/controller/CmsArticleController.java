@@ -50,7 +50,7 @@ public class CmsArticleController extends BaseController {
 		CmsArticleExample cmsArticleExample = new CmsArticleExample();
 		cmsArticleExample.setOffset((page - 1) * rows);
 		cmsArticleExample.setLimit(rows);
-		cmsArticleExample.setOrderByClause("article_id desc");
+		cmsArticleExample.setOrderByClause("orders desc");
 		List<CmsArticle> articles = cmsArticleService.getMapper().selectByExample(cmsArticleExample);
 
 		// 分页对象
@@ -85,7 +85,9 @@ public class CmsArticleController extends BaseController {
 			}
 			return "/article/add";
 		}
-		cmsArticle.setCtime(System.currentTimeMillis());
+		long time = System.currentTimeMillis();
+		cmsArticle.setCtime(time);
+		cmsArticle.setOrders(time);
 		cmsArticleService.getMapper().insertSelective(cmsArticle);
 		_log.info("新增记录id为：{}", cmsArticle.getArticleId());
 		return "redirect:/article/list";
