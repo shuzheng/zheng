@@ -18,7 +18,7 @@
 <div>
 	<form method="post">
 	<table border="1">
-		<input type="hidden" name="tagId" value="${category.categoryId}"/>
+		<input type="hidden" name="categoryId" value="${category.categoryId}"/>
 		<tr><td>上级编号：</td><td><input type="text" name="pid" value="${category.pid}"/></td></tr>
 		<tr><td>层级：</td><td><input type="text" name="level" value="${category.level}"/></td></tr>
 		<tr><td>名称：</td><td><input type="text" name="name" value="${category.name}"/></td></tr>

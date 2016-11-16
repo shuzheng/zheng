@@ -52,8 +52,8 @@
 					<fmt:formatDate value="${date}" type="both" pattern="yyyy-MM-dd HH:mm:ss" timeZone="Asia/Shanghai"/>
 				</td>
 				<td>
-					<a href="${basePath}/category/update/${category.tagId}">修改</a>
-					<a href="${basePath}/category/delete/${category.tagId}" onclick="return confirm('确认删除吗？');">删除</a>
+					<a href="${basePath}/category/update/${category.categoryId}">修改</a>
+					<a href="${basePath}/category/delete/${category.categoryId}" onclick="return confirm('确认删除吗？');">删除</a>
 				</td>
 			</tr>
 			</c:forEach>
