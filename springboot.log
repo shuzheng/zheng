@@ -1,0 +1,295 @@
+2016-11-17 16:09:37.904  INFO 2000 --- [main] c.z.springboot.SpringbootApplication     : Starting SpringbootApplication on admin-PC with PID 2000 (E:\GitHub\zheng\springboot\target\classes started by admin in E:\GitHub\zheng)
+2016-11-17 16:09:37.912  INFO 2000 --- [main] c.z.springboot.SpringbootApplication     : No active profile set, falling back to default profiles: default
+2016-11-17 16:09:38.184  INFO 2000 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@610d0828: startup date [Thu Nov 17 16:09:38 CST 2016]; root of context hierarchy
+2016-11-17 16:09:40.098  INFO 2000 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$97936c1f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-17 16:09:40.703  INFO 2000 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-11-17 16:09:40.713  INFO 2000 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-11-17 16:09:40.713  INFO 2000 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
+2016-11-17 16:09:40.797  INFO 2000 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-11-17 16:09:40.798  INFO 2000 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2616 ms
+2016-11-17 16:09:40.951  INFO 2000 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2016-11-17 16:09:40.954  INFO 2000 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-11-17 16:09:40.954  INFO 2000 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-11-17 16:09:40.954  INFO 2000 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-11-17 16:09:40.954  INFO 2000 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2016-11-17 16:09:41.424  INFO 2000 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-11-17 16:09:41.441  INFO 2000 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-11-17 16:09:41.520  INFO 2000 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.11.Final}
+2016-11-17 16:09:41.522  INFO 2000 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2016-11-17 16:09:41.523  INFO 2000 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2016-11-17 16:09:41.587  INFO 2000 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-11-17 16:09:41.725  INFO 2000 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2016-11-17 16:09:42.139  INFO 2000 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2016-11-17 16:09:42.209  INFO 2000 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-11-17 16:09:43.289  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.zheng.springboot.web.HelloController.index(org.springframework.ui.ModelMap)
+2016-11-17 16:09:43.292  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users],methods=[GET]}" onto public java.util.List<com.zheng.springboot.domain.User> com.zheng.springboot.web.UserController.getUserList()
+2016-11-17 16:09:43.293  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users],methods=[POST]}" onto public java.lang.String com.zheng.springboot.web.UserController.postUser(com.zheng.springboot.domain.User)
+2016-11-17 16:09:43.293  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users/{id}],methods=[GET]}" onto public com.zheng.springboot.domain.User com.zheng.springboot.web.UserController.getUser(java.lang.Long)
+2016-11-17 16:09:43.294  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users/{id}],methods=[PUT]}" onto public java.lang.String com.zheng.springboot.web.UserController.putUser(java.lang.Long,com.zheng.springboot.domain.User)
+2016-11-17 16:09:43.294  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users/{id}],methods=[DELETE]}" onto public java.lang.String com.zheng.springboot.web.UserController.deleteUser(java.lang.Long)
+2016-11-17 16:09:43.295  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v2/api-docs],methods=[GET]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String)
+2016-11-17 16:09:43.298  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2016-11-17 16:09:43.299  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2016-11-17 16:09:43.299  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2016-11-17 16:09:43.303  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-11-17 16:09:43.303  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-11-17 16:09:43.628  INFO 2000 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@610d0828: startup date [Thu Nov 17 16:09:38 CST 2016]; root of context hierarchy
+2016-11-17 16:09:43.695  INFO 2000 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 16:09:43.696  INFO 2000 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 16:09:43.746  INFO 2000 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 16:09:44.455  INFO 2000 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-11-17 16:09:44.470  INFO 2000 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2016-11-17 16:09:44.492  INFO 2000 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found {0} custom documentation plugin(s)
+2016-11-17 16:09:44.500  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2016-11-17 16:09:44.504  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method index was hello-controller
+2016-11-17 16:09:44.506  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: index belongs to groups: [[ResourceGroup{groupName='hello-controller', position=0, controller=com.zheng.springboot.web.HelloController}]] 
+2016-11-17 16:09:44.507  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUser was user-controller
+2016-11-17 16:09:44.507  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: getUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:09:44.507  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method putUser was user-controller
+2016-11-17 16:09:44.508  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: putUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:09:44.508  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method deleteUser was user-controller
+2016-11-17 16:09:44.508  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: deleteUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:09:44.508  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUserList was user-controller
+2016-11-17 16:09:44.508  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: getUserList belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:09:44.509  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method postUser was user-controller
+2016-11-17 16:09:44.509  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: postUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:09:44.512  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Created resource listing Path: /default/hello-controller Description: hello-controller Position: 0
+2016-11-17 16:09:44.513  INFO 2000 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Created resource listing Path: /default/user-controller Description: user-controller Position: 0
+2016-11-17 16:09:44.529  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.529  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:09:44.539  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.539  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:09:44.548  INFO 2000 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /index.com.zheng.springboot.web.HelloController.index.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.548  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /index.com.zheng.springboot.web.HelloController.index.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.565  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method index was hello-controller
+2016-11-17 16:09:44.582  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method index was hello-controller
+2016-11-17 16:09:44.599  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.600  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:09:44.600  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.600  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:09:44.600  INFO 2000 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users/{id}.com.zheng.springboot.web.UserController.deleteUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.600  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users/{id}.com.zheng.springboot.web.UserController.deleteUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.604  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method deleteUser was user-controller
+2016-11-17 16:09:44.606  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method deleteUser was user-controller
+2016-11-17 16:09:44.608  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.608  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.609  INFO 2000 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.610  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.633  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.633  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.633  INFO 2000 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.633  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.634  INFO 2000 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users/{id}.com.zheng.springboot.web.UserController.getUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.634  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users/{id}.com.zheng.springboot.web.UserController.getUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.636  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUser was user-controller
+2016-11-17 16:09:44.637  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUser was user-controller
+2016-11-17 16:09:44.638  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:09:44.639  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:09:44.639  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:09:44.639  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:09:44.639  INFO 2000 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.639  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.639  INFO 2000 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:09:44.639  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:09:44.640  INFO 2000 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.640  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:09:44.640  INFO 2000 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users.com.zheng.springboot.web.UserController.getUserList.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.640  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users.com.zheng.springboot.web.UserController.getUserList.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.641  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUserList was user-controller
+2016-11-17 16:09:44.642  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUserList was user-controller
+2016-11-17 16:09:44.644  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.644  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.644  INFO 2000 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.644  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.646  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:09:44.647  INFO 2000 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users.com.zheng.springboot.web.UserController.postUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.647  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users.com.zheng.springboot.web.UserController.postUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.648  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method postUser was user-controller
+2016-11-17 16:09:44.649  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method postUser was user-controller
+2016-11-17 16:09:44.651  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.651  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.651  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.651  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:09:44.651  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.651  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:09:44.652  INFO 2000 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:09:44.652  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:09:44.652  INFO 2000 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users/{id}.com.zheng.springboot.web.UserController.putUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.652  INFO 2000 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users/{id}.com.zheng.springboot.web.UserController.putUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:09:44.655  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method putUser was user-controller
+2016-11-17 16:09:44.656  INFO 2000 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method putUser was user-controller
+2016-11-17 16:09:44.711  INFO 2000 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-11-17 16:09:44.719  INFO 2000 --- [main] c.z.springboot.SpringbootApplication     : Started SpringbootApplication in 7.721 seconds (JVM running for 8.493)
+2016-11-17 16:09:59.484  INFO 2000 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-11-17 16:09:59.484  INFO 2000 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-11-17 16:09:59.505  INFO 2000 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
+2016-11-17 16:52:20.963  INFO 5708 --- [main] c.z.springboot.SpringbootApplication     : Starting SpringbootApplication on admin-PC with PID 5708 (E:\GitHub\zheng\springboot\target\classes started by admin in E:\GitHub\zheng)
+2016-11-17 16:52:20.966  INFO 5708 --- [main] c.z.springboot.SpringbootApplication     : No active profile set, falling back to default profiles: default
+2016-11-17 16:52:21.176  INFO 5708 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4a77b77b: startup date [Thu Nov 17 16:52:21 CST 2016]; root of context hierarchy
+2016-11-17 16:52:22.976  INFO 5708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2016-11-17 16:52:23.101  INFO 5708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2016-11-17 16:52:23.110  INFO 5708 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.zheng.springboot.service.UserRepository.
+2016-11-17 16:52:23.188  INFO 5708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2016-11-17 16:52:23.203  INFO 5708 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.zheng.springboot.service.UserRepository.
+2016-11-17 16:52:23.728  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4802cb74] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-17 16:52:24.346  INFO 5708 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-11-17 16:52:24.356  INFO 5708 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-11-17 16:52:24.357  INFO 5708 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
+2016-11-17 16:52:24.442  INFO 5708 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-11-17 16:52:24.442  INFO 5708 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3269 ms
+2016-11-17 16:52:24.597  INFO 5708 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2016-11-17 16:52:24.601  INFO 5708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-11-17 16:52:24.602  INFO 5708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-11-17 16:52:24.602  INFO 5708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-11-17 16:52:24.602  INFO 5708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2016-11-17 16:52:25.203  INFO 5708 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-11-17 16:52:25.220  INFO 5708 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-11-17 16:52:25.290  INFO 5708 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.11.Final}
+2016-11-17 16:52:25.292  INFO 5708 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2016-11-17 16:52:25.293  INFO 5708 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2016-11-17 16:52:25.336  INFO 5708 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-11-17 16:52:25.487  INFO 5708 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2016-11-17 16:52:25.928  INFO 5708 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2016-11-17 16:52:26.015  INFO 5708 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-11-17 16:52:27.102  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.zheng.springboot.web.HelloController.index(org.springframework.ui.ModelMap)
+2016-11-17 16:52:27.105  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users],methods=[GET]}" onto public java.util.List<com.zheng.springboot.domain.User> com.zheng.springboot.web.UserController.getUserList()
+2016-11-17 16:52:27.106  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users],methods=[POST]}" onto public java.lang.String com.zheng.springboot.web.UserController.postUser(com.zheng.springboot.domain.User)
+2016-11-17 16:52:27.106  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users/{id}],methods=[GET]}" onto public com.zheng.springboot.domain.User com.zheng.springboot.web.UserController.getUser(java.lang.Long)
+2016-11-17 16:52:27.106  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users/{id}],methods=[PUT]}" onto public java.lang.String com.zheng.springboot.web.UserController.putUser(java.lang.Long,com.zheng.springboot.domain.User)
+2016-11-17 16:52:27.106  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users/{id}],methods=[DELETE]}" onto public java.lang.String com.zheng.springboot.web.UserController.deleteUser(java.lang.Long)
+2016-11-17 16:52:27.107  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v2/api-docs],methods=[GET]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String)
+2016-11-17 16:52:27.110  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2016-11-17 16:52:27.110  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2016-11-17 16:52:27.111  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2016-11-17 16:52:27.114  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-11-17 16:52:27.115  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-11-17 16:52:27.429  INFO 5708 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4a77b77b: startup date [Thu Nov 17 16:52:21 CST 2016]; root of context hierarchy
+2016-11-17 16:52:27.494  INFO 5708 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 16:52:27.495  INFO 5708 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 16:52:27.545  INFO 5708 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 16:52:28.152  INFO 5708 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2016-11-17 16:52:28.577  WARN 5708 --- [main] arterDeprecationWarningAutoConfiguration : spring-boot-starter-redis is deprecated as of Spring Boot 1.4, please migrate to spring-boot-starter-data-redis
+2016-11-17 16:52:28.750  INFO 5708 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-11-17 16:52:28.765  INFO 5708 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2016-11-17 16:52:28.783  INFO 5708 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found {0} custom documentation plugin(s)
+2016-11-17 16:52:28.792  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2016-11-17 16:52:28.795  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method index was hello-controller
+2016-11-17 16:52:28.797  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: index belongs to groups: [[ResourceGroup{groupName='hello-controller', position=0, controller=com.zheng.springboot.web.HelloController}]] 
+2016-11-17 16:52:28.797  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUser was user-controller
+2016-11-17 16:52:28.798  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: getUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:52:28.798  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method putUser was user-controller
+2016-11-17 16:52:28.798  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: putUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:52:28.798  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method deleteUser was user-controller
+2016-11-17 16:52:28.798  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: deleteUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:52:28.799  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUserList was user-controller
+2016-11-17 16:52:28.799  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: getUserList belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:52:28.799  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method postUser was user-controller
+2016-11-17 16:52:28.799  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Request mapping: postUser belongs to groups: [[ResourceGroup{groupName='user-controller', position=0, controller=com.zheng.springboot.web.UserController}]] 
+2016-11-17 16:52:28.802  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Created resource listing Path: /default/hello-controller Description: hello-controller Position: 0
+2016-11-17 16:52:28.803  INFO 5708 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Created resource listing Path: /default/user-controller Description: user-controller Position: 0
+2016-11-17 16:52:28.817  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.817  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:52:28.826  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.826  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:52:28.833  INFO 5708 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /index.com.zheng.springboot.web.HelloController.index.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.833  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /index.com.zheng.springboot.web.HelloController.index.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.848  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method index was hello-controller
+2016-11-17 16:52:28.862  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method index was hello-controller
+2016-11-17 16:52:28.876  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.876  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:52:28.876  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.876  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:52:28.876  INFO 5708 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users/{id}.com.zheng.springboot.web.UserController.deleteUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.876  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users/{id}.com.zheng.springboot.web.UserController.deleteUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.879  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method deleteUser was user-controller
+2016-11-17 16:52:28.880  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method deleteUser was user-controller
+2016-11-17 16:52:28.882  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.882  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.883  INFO 5708 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.883  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.909  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.909  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.910  INFO 5708 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.910  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.910  INFO 5708 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users/{id}.com.zheng.springboot.web.UserController.getUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.910  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users/{id}.com.zheng.springboot.web.UserController.getUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.912  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUser was user-controller
+2016-11-17 16:52:28.913  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUser was user-controller
+2016-11-17 16:52:28.915  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:52:28.915  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:52:28.915  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:52:28.915  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:52:28.915  INFO 5708 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.915  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.916  INFO 5708 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:52:28.916  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key java.util.List<com.zheng.springboot.domain.User>(true)
+2016-11-17 16:52:28.916  INFO 5708 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.916  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(true)
+2016-11-17 16:52:28.917  INFO 5708 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users.com.zheng.springboot.web.UserController.getUserList.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.917  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users.com.zheng.springboot.web.UserController.getUserList.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.918  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUserList was user-controller
+2016-11-17 16:52:28.919  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method getUserList was user-controller
+2016-11-17 16:52:28.920  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.921  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.921  INFO 5708 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.921  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.922  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.922  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.922  INFO 5708 --- [main] s.d.s.p.ModelPropertiesKeyGenerator      : Cache key generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.922  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelProperties with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.923  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.923  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:52:28.923  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.923  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:52:28.923  INFO 5708 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users.com.zheng.springboot.web.UserController.postUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.923  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users.com.zheng.springboot.web.UserController.postUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.925  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method postUser was user-controller
+2016-11-17 16:52:28.926  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method postUser was user-controller
+2016-11-17 16:52:28.927  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.927  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.928  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.928  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key com.zheng.springboot.domain.User(false)
+2016-11-17 16:52:28.928  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.928  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache models with key java.lang.String(true)
+2016-11-17 16:52:28.929  INFO 5708 --- [main] s.d.schema.ModelContextKeyGenerator      : Cache Key Generated: java.lang.String(true)
+2016-11-17 16:52:28.929  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache modelDependencies with key java.lang.String(true)
+2016-11-17 16:52:28.929  INFO 5708 --- [main] s.d.spring.web.OperationsKeyGenerator    : Cache key generated: /users/{id}.com.zheng.springboot.web.UserController.putUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.929  INFO 5708 --- [main] s.d.spring.web.caching.CachingAspect     : Caching aspect applied for cache operations with key /users/{id}.com.zheng.springboot.web.UserController.putUser.DefaultGenericTypeNamingStrategy
+2016-11-17 16:52:28.931  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method putUser was user-controller
+2016-11-17 16:52:28.933  INFO 5708 --- [main] s.w.ClassOrApiAnnotationResourceGrouping : Group for method putUser was user-controller
+2016-11-17 16:52:28.984  INFO 5708 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-11-17 16:52:28.991  INFO 5708 --- [main] c.z.springboot.SpringbootApplication     : Started SpringbootApplication in 8.877 seconds (JVM running for 9.203)
+2016-11-17 16:52:29.195  INFO 5708 --- [cluster-ClusterId{value='582d6fcc3e782e164c86bc04', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.connection.SocketStream.open(SocketStream.java:63) ~[mongodb-driver-core-3.2.2.jar:na]
+	at com.mongodb.connection.InternalStreamConnection.open(InternalStreamConnection.java:114) ~[mongodb-driver-core-3.2.2.jar:na]
+	at com.mongodb.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:128) ~[mongodb-driver-core-3.2.2.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[na:1.7.0_67]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[na:1.7.0_67]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339) ~[na:1.7.0_67]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200) ~[na:1.7.0_67]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182) ~[na:1.7.0_67]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[na:1.7.0_67]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:1.7.0_67]
+	at java.net.Socket.connect(Socket.java:579) ~[na:1.7.0_67]
+	at com.mongodb.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:50) ~[mongodb-driver-core-3.2.2.jar:na]
+	at com.mongodb.connection.SocketStream.open(SocketStream.java:58) ~[mongodb-driver-core-3.2.2.jar:na]
+	... 3 common frames omitted
+
+2016-11-17 16:52:32.357  INFO 5708 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-11-17 16:52:32.357  INFO 5708 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-11-17 16:52:32.375  INFO 5708 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms

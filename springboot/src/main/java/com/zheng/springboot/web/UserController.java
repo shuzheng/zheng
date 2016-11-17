@@ -1,9 +1,11 @@
 package com.zheng.springboot.web;
 
 import com.zheng.springboot.domain.User;
+import com.zheng.springboot.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -14,6 +16,9 @@ import java.util.*;
 @RestController
 @RequestMapping(value="/users")     // 通过这里配置使下面的映射都在/users下
 public class UserController {
+
+	@Autowired
+	private UserService userSerivce;
 
 	// 创建线程安全的Map
 	static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
@@ -29,6 +34,7 @@ public class UserController {
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public String postUser(@RequestBody User user) {
 		users.put(user.getId(), user);
+		userSerivce.create(user.getName(), user.getAge());
 		return "success";
 	}
 	@ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
