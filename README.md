@@ -60,6 +60,7 @@ zheng
 * Log4J: 日志管理
 * Protobuf|json: 数据传输 
 * Spring-boot
+* Swagger2: 接口文档
 
 
 # 前端技术:
