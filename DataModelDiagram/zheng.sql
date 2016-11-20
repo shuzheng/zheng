@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/11/3 14:17:39                           */
+/* Created on:     2016/11/20 16:47:38                          */
 /*==============================================================*/
 
 
@@ -36,11 +36,9 @@ create table cms_article
    description          varchar(500) default NULL comment '简介',
    type                 tinyint(4) not null default 1 comment '类型(1:普通,2:热门...)',
    allowcomments        tinyint(4) not null default 1 comment '是否允许评论(0:不允许,1:允许)',
-   status               tinyint(4) not null default 1 comment '状态(-1:审核不通过回收站,0:刚发布未审核,1:已审核公开,2:已审核个人)',
+   status               tinyint(4) not null default 1 comment '状态(-1:不通过,0未审核,1:通过)',
    content              mediumtext comment '内容',
    user_id              int(10) unsigned not null comment '发布人id',
-   up                   int(10) unsigned not null default 0 comment '顶',
-   down                 int(10) unsigned not null default 0 comment '踩',
    readnumber           int(10) unsigned not null default 0 comment '阅读数量',
    ctime                bigint(20) unsigned not null comment '创建时间',
    orders               bigint(20) unsigned not null comment '排序',
@@ -134,7 +132,7 @@ create table cms_comment
    article_id           int(10) unsigned not null comment '文章编号',
    user_id              int(10) unsigned not null comment '用户编号',
    content              text not null comment '评论内容',
-   status               tinyint(4) not null default 1 comment '状态(-1:审核不通过,0:未审核,1:已审核通过)',
+   status               tinyint(4) not null default 1 comment '状态(-1:不通过,0:未审核,1:通过)',
    ip                   varchar(30) default NULL comment '评论人ip地址',
    agent                varchar(200) default NULL comment '评论人终端信息',
    ctime                bigint(20) not null comment '创建时间',
@@ -200,32 +198,32 @@ ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='用户表';
 alter table test_user comment 'test_user 用户';
 
 alter table cms_article_category add constraint FK_Reference_7 foreign key (category_id)
-      references cms_category (category_id) on delete restrict on update restrict;
+      references cms_category (category_id) on delete cascade on update cascade;
 
 alter table cms_article_category add constraint FK_Reference_8 foreign key (article_id)
-      references cms_article (article_id) on delete restrict on update restrict;
-
-alter table cms_article_tag add constraint FK_Reference_3 foreign key (article_id)
-      references cms_article (article_id) on delete restrict on update restrict;
-
-alter table cms_article_tag add constraint FK_Reference_4 foreign key (tag_id)
-      references cms_tag (tag_id) on delete restrict on update restrict;
-
-alter table cms_category add constraint FK_Reference_10 foreign key (pid)
-      references cms_category (category_id) on delete restrict on update restrict;
-
-alter table cms_category_tag add constraint FK_Reference_5 foreign key (category_id)
-      references cms_category (category_id) on delete restrict on update restrict;
-
-alter table cms_category_tag add constraint FK_Reference_6 foreign key (tag_id)
-      references cms_tag (tag_id) on delete restrict on update restrict;
-
-alter table cms_comment add constraint cms_comment_article_id foreign key (article_id)
       references cms_article (article_id) on delete cascade on update cascade;
 
-alter table cms_comment add constraint cms_comment_pid foreign key (pid)
-      references cms_comment (comment_id) on delete cascade on update cascade;
+alter table cms_article_tag add constraint FK_Reference_3 foreign key (article_id)
+      references cms_article (article_id) on delete cascade on update cascade;
+
+alter table cms_article_tag add constraint FK_Reference_4 foreign key (tag_id)
+      references cms_tag (tag_id) on delete cascade on update cascade;
+
+alter table cms_category add constraint FK_Reference_10 foreign key (pid)
+      references cms_category (category_id) on delete set null on update restrict;
+
+alter table cms_category_tag add constraint FK_Reference_5 foreign key (category_id)
+      references cms_category (category_id) on delete cascade on update cascade;
+
+alter table cms_category_tag add constraint FK_Reference_6 foreign key (tag_id)
+      references cms_tag (tag_id) on delete cascade on update cascade;
+
+alter table cms_comment add constraint FK_Reference_1 foreign key (article_id)
+      references cms_article (article_id) on delete cascade on update cascade;
+
+alter table cms_comment add constraint FK_Reference_2 foreign key (pid)
+      references cms_comment (comment_id) on delete set null;
 
 alter table test_book add constraint FK_Reference_9 foreign key (user_id)
-      references test_user (user_id) on delete restrict on update restrict;
+      references test_user (user_id) on delete cascade on update cascade;
 
