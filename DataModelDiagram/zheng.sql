@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/11/20 16:47:38                          */
+/* Created on:     2016/11/20 22:00:49                          */
 /*==============================================================*/
 
 
@@ -222,7 +222,7 @@ alter table cms_comment add constraint FK_Reference_1 foreign key (article_id)
       references cms_article (article_id) on delete cascade on update cascade;
 
 alter table cms_comment add constraint FK_Reference_2 foreign key (pid)
-      references cms_comment (comment_id) on delete set null;
+      references cms_comment (comment_id) on delete cascade on update cascade;
 
 alter table test_book add constraint FK_Reference_9 foreign key (user_id)
       references test_user (user_id) on delete cascade on update cascade;
