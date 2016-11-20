@@ -64,11 +64,11 @@
 		<javaClientGenerator targetPackage="${generator.javaClientGenerator.targetPackage}" targetProject="src/main/java" type="XMLMAPPER" />
 
 		<!-- 需要映射的表 -->
-		<table tableName="user" domainObjectName="User">
-			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		<table tableName="test_user" domainObjectName="User">
+			<generatedKey column="user_id" sqlStatement="MySql" identity="true" />
 		</table>
-		<table tableName="book" domainObjectName="Book">
-			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		<table tableName="test_book" domainObjectName="Book">
+			<generatedKey column="book_id" sqlStatement="MySql" identity="true" />
 		</table>
 		<table tableName="cms_article" domainObjectName="CmsArticle">
 			<generatedKey column="article_id" sqlStatement="MySql" identity="true" />

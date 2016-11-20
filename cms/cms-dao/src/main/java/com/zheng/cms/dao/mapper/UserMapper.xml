@@ -84,7 +84,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from user
+    from test_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -98,7 +98,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from test_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -119,33 +119,36 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from user
+    from test_user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
+    delete from test_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.UserExample" >
-    delete from user
+    delete from test_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.dao.model.User" >
-    insert into user (user_id, username, password, 
-      nickname, sex, ctime, 
-      content)
-    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, 
-      #{content,jdbcType=LONGVARCHAR})
+    <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into test_user (username, password, nickname, 
+      sex, ctime, content
+      )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.User" >
-    insert into user
+    <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into test_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
       <if test="username != null" >
         username,
       </if>
@@ -166,9 +169,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
@@ -190,13 +190,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.zheng.cms.dao.model.UserExample" resultType="java.lang.Integer" >
-    select count(*) from user
+    select count(*) from test_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update user
+    update test_user
     <set >
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -225,7 +225,7 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update user
+    update test_user
     set user_id = #{record.userId,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update user
+    update test_user
     set user_id = #{record.userId,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
@@ -250,7 +250,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.dao.model.User" >
-    update user
+    update test_user
     <set >
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
@@ -274,7 +274,7 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zheng.cms.dao.model.User" >
-    update user
+    update test_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
@@ -284,7 +284,7 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.User" >
-    update user
+    update test_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},

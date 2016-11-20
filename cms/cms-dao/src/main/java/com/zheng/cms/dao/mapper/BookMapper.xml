@@ -73,7 +73,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from book
+    from test_book
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,31 +92,32 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from book
+    from test_book
     where book_id = #{bookId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from book
+    delete from test_book
     where book_id = #{bookId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.BookExample" >
-    delete from book
+    delete from test_book
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.dao.model.Book" >
-    insert into book (book_id, user_id, name
-      )
-    values (#{bookId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="bookId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into test_book (user_id, name)
+    values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.Book" >
-    insert into book
+    <selectKey resultType="java.lang.Integer" keyProperty="bookId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into test_book
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="bookId != null" >
-        book_id,
-      </if>
       <if test="userId != null" >
         user_id,
       </if>
@@ -125,9 +126,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="bookId != null" >
-        #{bookId,jdbcType=INTEGER},
-      </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
@@ -137,13 +135,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.zheng.cms.dao.model.BookExample" resultType="java.lang.Integer" >
-    select count(*) from book
+    select count(*) from test_book
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update book
+    update test_book
     <set >
       <if test="record.bookId != null" >
         book_id = #{record.bookId,jdbcType=INTEGER},
@@ -160,7 +158,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update book
+    update test_book
     set book_id = #{record.bookId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR}
@@ -169,7 +167,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.dao.model.Book" >
-    update book
+    update test_book
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
@@ -181,7 +179,7 @@
     where book_id = #{bookId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.Book" >
-    update book
+    update test_book
     set user_id = #{userId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR}
     where book_id = #{bookId,jdbcType=INTEGER}

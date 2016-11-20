@@ -13,8 +13,6 @@
     <result column="allowcomments" property="allowcomments" jdbcType="TINYINT" />
     <result column="status" property="status" jdbcType="TINYINT" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="up" property="up" jdbcType="INTEGER" />
-    <result column="down" property="down" jdbcType="INTEGER" />
     <result column="readnumber" property="readnumber" jdbcType="INTEGER" />
     <result column="ctime" property="ctime" jdbcType="BIGINT" />
     <result column="orders" property="orders" jdbcType="BIGINT" />
@@ -82,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List" >
     article_id, title, author, fromurl, image, keywords, description, type, allowcomments, 
-    status, user_id, up, down, readnumber, ctime, orders
+    status, user_id, readnumber, ctime, orders
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -150,15 +148,13 @@
     insert into cms_article (title, author, fromurl, 
       image, keywords, description, 
       type, allowcomments, status, 
-      user_id, up, down, readnumber, 
-      ctime, orders, content
-      )
+      user_id, readnumber, ctime, 
+      orders, content)
     values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{fromurl,jdbcType=VARCHAR}, 
       #{image,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{type,jdbcType=TINYINT}, #{allowcomments,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
-      #{userId,jdbcType=INTEGER}, #{up,jdbcType=INTEGER}, #{down,jdbcType=INTEGER}, #{readnumber,jdbcType=INTEGER}, 
-      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{userId,jdbcType=INTEGER}, #{readnumber,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, 
+      #{orders,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsArticle" >
     <selectKey resultType="java.lang.Integer" keyProperty="articleId" order="AFTER" >
@@ -195,12 +191,6 @@
       </if>
       <if test="userId != null" >
         user_id,
-      </if>
-      <if test="up != null" >
-        up,
-      </if>
-      <if test="down != null" >
-        down,
       </if>
       <if test="readnumber != null" >
         readnumber,
@@ -245,12 +235,6 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="up != null" >
-        #{up,jdbcType=INTEGER},
-      </if>
-      <if test="down != null" >
-        #{down,jdbcType=INTEGER},
       </if>
       <if test="readnumber != null" >
         #{readnumber,jdbcType=INTEGER},
@@ -308,12 +292,6 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.up != null" >
-        up = #{record.up,jdbcType=INTEGER},
-      </if>
-      <if test="record.down != null" >
-        down = #{record.down,jdbcType=INTEGER},
-      </if>
       <if test="record.readnumber != null" >
         readnumber = #{record.readnumber,jdbcType=INTEGER},
       </if>
@@ -344,8 +322,6 @@
       allowcomments = #{record.allowcomments,jdbcType=TINYINT},
       status = #{record.status,jdbcType=TINYINT},
       user_id = #{record.userId,jdbcType=INTEGER},
-      up = #{record.up,jdbcType=INTEGER},
-      down = #{record.down,jdbcType=INTEGER},
       readnumber = #{record.readnumber,jdbcType=INTEGER},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT},
@@ -367,8 +343,6 @@
       allowcomments = #{record.allowcomments,jdbcType=TINYINT},
       status = #{record.status,jdbcType=TINYINT},
       user_id = #{record.userId,jdbcType=INTEGER},
-      up = #{record.up,jdbcType=INTEGER},
-      down = #{record.down,jdbcType=INTEGER},
       readnumber = #{record.readnumber,jdbcType=INTEGER},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT}
@@ -409,12 +383,6 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="up != null" >
-        up = #{up,jdbcType=INTEGER},
-      </if>
-      <if test="down != null" >
-        down = #{down,jdbcType=INTEGER},
-      </if>
       <if test="readnumber != null" >
         readnumber = #{readnumber,jdbcType=INTEGER},
       </if>
@@ -442,8 +410,6 @@
       allowcomments = #{allowcomments,jdbcType=TINYINT},
       status = #{status,jdbcType=TINYINT},
       user_id = #{userId,jdbcType=INTEGER},
-      up = #{up,jdbcType=INTEGER},
-      down = #{down,jdbcType=INTEGER},
       readnumber = #{readnumber,jdbcType=INTEGER},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT},
@@ -462,8 +428,6 @@
       allowcomments = #{allowcomments,jdbcType=TINYINT},
       status = #{status,jdbcType=TINYINT},
       user_id = #{userId,jdbcType=INTEGER},
-      up = #{up,jdbcType=INTEGER},
-      down = #{down,jdbcType=INTEGER},
       readnumber = #{readnumber,jdbcType=INTEGER},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT}

@@ -25,10 +25,6 @@ public class CmsArticle implements Serializable {
 
     private Integer userId;
 
-    private Integer up;
-
-    private Integer down;
-
     private Integer readnumber;
 
     private Long ctime;
@@ -127,22 +123,6 @@ public class CmsArticle implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getUp() {
-        return up;
-    }
-
-    public void setUp(Integer up) {
-        this.up = up;
-    }
-
-    public Integer getDown() {
-        return down;
-    }
-
-    public void setDown(Integer down) {
-        this.down = down;
-    }
-
     public Integer getReadnumber() {
         return readnumber;
     }
@@ -192,8 +172,6 @@ public class CmsArticle implements Serializable {
         sb.append(", allowcomments=").append(allowcomments);
         sb.append(", status=").append(status);
         sb.append(", userId=").append(userId);
-        sb.append(", up=").append(up);
-        sb.append(", down=").append(down);
         sb.append(", readnumber=").append(readnumber);
         sb.append(", ctime=").append(ctime);
         sb.append(", orders=").append(orders);
@@ -225,8 +203,6 @@ public class CmsArticle implements Serializable {
             && (this.getAllowcomments() == null ? other.getAllowcomments() == null : this.getAllowcomments().equals(other.getAllowcomments()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getUp() == null ? other.getUp() == null : this.getUp().equals(other.getUp()))
-            && (this.getDown() == null ? other.getDown() == null : this.getDown().equals(other.getDown()))
             && (this.getReadnumber() == null ? other.getReadnumber() == null : this.getReadnumber().equals(other.getReadnumber()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
             && (this.getOrders() == null ? other.getOrders() == null : this.getOrders().equals(other.getOrders()))
@@ -248,8 +224,6 @@ public class CmsArticle implements Serializable {
         result = prime * result + ((getAllowcomments() == null) ? 0 : getAllowcomments().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
-        result = prime * result + ((getUp() == null) ? 0 : getUp().hashCode());
-        result = prime * result + ((getDown() == null) ? 0 : getDown().hashCode());
         result = prime * result + ((getReadnumber() == null) ? 0 : getReadnumber().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         result = prime * result + ((getOrders() == null) ? 0 : getOrders().hashCode());
