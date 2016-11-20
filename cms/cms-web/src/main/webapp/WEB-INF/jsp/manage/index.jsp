@@ -12,6 +12,8 @@
 <ul>
     <li><a href="${basePath}/manage/tag/list">标签管理</a></li>
     <li><a href="${basePath}/manage/category/list">类目管理</a></li>
+    <li><a href="${basePath}/manage/article/list">文章管理</a></li>
+    <li><a href="${basePath}/manage/comment/list">评论管理</a></li>
 </ul>
 </body>
 </html>

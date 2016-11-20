@@ -19,7 +19,7 @@
 	<form method="post">
 	<table border="1">
 		<tr><td>上级编号：</td><td><input type="text" name="pid" autofocus/></td></tr>
-		<tr><td>层级：</td><td><input type="text" name="level"/></td></tr>
+		<tr><td>层级：</td><td><input type="text" name="level" value="1"/></td></tr>
 		<tr><td>名称：</td><td><input type="text" name="name"/></td></tr>
 		<tr><td>描述：</td><td><input type="text" name="description"/></td></tr>
 		<tr><td>图标：</td><td><input type="text" name="icon"/></td></tr>
