@@ -38,6 +38,7 @@ public class CmsCategoryController extends BaseController {
 	 * @param page
 	 * @param rows
 	 * @param request
+	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/list")
@@ -74,33 +75,30 @@ public class CmsCategoryController extends BaseController {
 	/**
 	 * 新增post
 	 * @param cmsCategory
-	 * @param binding
+	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid CmsCategory cmsCategory, BindingResult binding) {
-		if (binding.hasErrors()) {
-			for (ObjectError error : binding.getAllErrors()) {
-				_log.error(error.getDefaultMessage());
-			}
-			return "/category/add";
-		}
+	public String add(@Valid CmsCategory cmsCategory, Model model) {
 		long time = System.currentTimeMillis();
 		cmsCategory.setCtime(time);
 		cmsCategory.setOrders(time);
-		cmsCategoryService.getMapper().insertSelective(cmsCategory);
+		int count = cmsCategoryService.getMapper().insertSelective(cmsCategory);
+		model.addAttribute("count", count);
 		_log.info("新增记录id为：{}", cmsCategory.getCategoryId());
 		return "redirect:/category/list";
 	}
 
 	/**
 	 * 删除
-	 * @param id
+	 * @param ids
+	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-	public String delete(@PathVariable("id") int id) {
-		cmsCategoryService.getMapper().deleteByPrimaryKey(id);
+	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	public String delete(@PathVariable("ids") String ids, Model model) {
+		int count = cmsCategoryService.deleteByPrimaryKeys(ids);
+		model.addAttribute("count", count);
 		return "redirect:/category/list";
 	}
 	
@@ -112,7 +110,8 @@ public class CmsCategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, Model model) {
-		model.addAttribute("category", cmsCategoryService.getMapper().selectByPrimaryKey(id));
+		CmsCategory category = cmsCategoryService.getMapper().selectByPrimaryKey(id);
+		model.addAttribute("category", category);
 		return "/category/update";
 	}
 	
@@ -120,17 +119,14 @@ public class CmsCategoryController extends BaseController {
 	 * 修改post
 	 * @param id
 	 * @param cmsCategory
-	 * @param binding
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, @Valid CmsCategory cmsCategory, BindingResult binding, Model model) {
-		if (binding.hasErrors()) {
-			model.addAttribute("errors", binding.getAllErrors());
-			return "/category/update/" + id;
-		}
-		cmsCategoryService.getMapper().updateByPrimaryKeySelective(cmsCategory);
+	public String update(@PathVariable("id") int id, @Valid CmsCategory cmsCategory, Model model) {
+		int count = cmsCategoryService.getMapper().updateByPrimaryKeySelective(cmsCategory);
+		model.addAttribute("count", count);
+		model.addAttribute("id", id);
 		return "redirect:/category/list";
 	}
 

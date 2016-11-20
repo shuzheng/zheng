@@ -12,5 +12,5 @@ public interface BaseService<Mapper> {
 	 * @return
 	 */
 	Mapper getMapper();
-	
+
 }

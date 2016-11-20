@@ -38,6 +38,7 @@ public class CmsTagController extends BaseController {
 	 * @param page
 	 * @param rows
 	 * @param request
+	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/list")
@@ -74,33 +75,30 @@ public class CmsTagController extends BaseController {
 	/**
 	 * 新增post
 	 * @param cmsTag
-	 * @param binding
+	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid CmsTag cmsTag, BindingResult binding) {
-		if (binding.hasErrors()) {
-			for (ObjectError error : binding.getAllErrors()) {
-				_log.error(error.getDefaultMessage());
-			}
-			return "/tag/add";
-		}
+	public String add(@Valid CmsTag cmsTag, Model model) {
 		long time = System.currentTimeMillis();
 		cmsTag.setCtime(time);
 		cmsTag.setOrders(time);
-		cmsTagService.getMapper().insertSelective(cmsTag);
+		int count = cmsTagService.getMapper().insertSelective(cmsTag);
+		model.addAttribute("count", count);
 		_log.info("新增记录id为：{}", cmsTag.getTagId());
 		return "redirect:/tag/list";
 	}
 
 	/**
 	 * 删除
-	 * @param id
+	 * @param ids
+	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-	public String delete(@PathVariable("id") int id) {
-		cmsTagService.getMapper().deleteByPrimaryKey(id);
+	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	public String delete(@PathVariable("ids") String ids, Model model) {
+		int count = cmsTagService.deleteByPrimaryKeys(ids);
+		model.addAttribute("count", count);
 		return "redirect:/tag/list";
 	}
 	
@@ -112,7 +110,8 @@ public class CmsTagController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, Model model) {
-		model.addAttribute("tag", cmsTagService.getMapper().selectByPrimaryKey(id));
+		CmsTag tag = cmsTagService.getMapper().selectByPrimaryKey(id);
+		model.addAttribute("tag", tag);
 		return "/tag/update";
 	}
 	
@@ -120,17 +119,14 @@ public class CmsTagController extends BaseController {
 	 * 修改post
 	 * @param id
 	 * @param cmsTag
-	 * @param binding
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, @Valid CmsTag cmsTag, BindingResult binding, Model model) {
-		if (binding.hasErrors()) {
-			model.addAttribute("errors", binding.getAllErrors());
-			return "/tag/update/" + id;
-		}
-		cmsTagService.getMapper().updateByPrimaryKeySelective(cmsTag);
+	public String update(@PathVariable("id") int id, @Valid CmsTag cmsTag, Model model) {
+		int count = cmsTagService.getMapper().updateByPrimaryKeySelective(cmsTag);
+		model.addAttribute("count", count);
+		model.addAttribute("id", id);
 		return "redirect:/tag/list";
 	}
 

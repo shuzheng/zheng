@@ -10,4 +10,7 @@ import com.zheng.cms.dao.model.UserVO;
  */
 public interface CmsTagService extends BaseService<CmsTagMapper> {
 
+    // 批量删除
+    int deleteByPrimaryKeys(String ids);
+
 }

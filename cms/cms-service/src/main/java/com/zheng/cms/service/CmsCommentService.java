@@ -8,4 +8,7 @@ import com.zheng.cms.dao.mapper.CmsCommentMapper;
  */
 public interface CmsCommentService extends BaseService<CmsCommentMapper> {
 
+    // 批量删除
+    int deleteByPrimaryKeys(String ids);
+
 }

@@ -8,4 +8,7 @@ import com.zheng.cms.dao.mapper.CmsArticleMapper;
  */
 public interface CmsArticleService extends BaseService<CmsArticleMapper> {
 
+    // 批量删除
+    int deleteByPrimaryKeys(String ids);
+
 }
