@@ -79,7 +79,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid CmsCategory cmsCategory, Model model) {
+	public String add(CmsCategory cmsCategory, Model model) {
 		long time = System.currentTimeMillis();
 		cmsCategory.setCtime(time);
 		cmsCategory.setOrders(time);
@@ -123,7 +123,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, @Valid CmsCategory cmsCategory, Model model) {
+	public String update(@PathVariable("id") int id, CmsCategory cmsCategory, Model model) {
 		int count = cmsCategoryService.getMapper().updateByPrimaryKeySelective(cmsCategory);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);

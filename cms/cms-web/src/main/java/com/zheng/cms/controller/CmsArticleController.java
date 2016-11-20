@@ -79,7 +79,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid CmsArticle cmsArticle, Model model) {
+	public String add(CmsArticle cmsArticle, Model model) {
 		long time = System.currentTimeMillis();
 		cmsArticle.setCtime(time);
 		cmsArticle.setOrders(time);
@@ -123,7 +123,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, @Valid CmsArticle cmsArticle, Model model) {
+	public String update(@PathVariable("id") int id, CmsArticle cmsArticle, Model model) {
 		int count = cmsArticleService.getMapper().updateByPrimaryKeySelective(cmsArticle);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);

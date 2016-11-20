@@ -81,7 +81,7 @@ public class CmsCommentController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid CmsComment cmsComment, Model model) {
+	public String add(CmsComment cmsComment, Model model) {
 		cmsComment.setCtime(System.currentTimeMillis());
 		int count = cmsCommentService.getMapper().insertSelective(cmsComment);
 		model.addAttribute("count", count);
@@ -123,7 +123,7 @@ public class CmsCommentController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, @Valid CmsComment cmsComment, Model model) {
+	public String update(@PathVariable("id") int id, CmsComment cmsComment, Model model) {
 		int count = cmsCommentService.getMapper().updateByPrimaryKeySelective(cmsComment);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);
