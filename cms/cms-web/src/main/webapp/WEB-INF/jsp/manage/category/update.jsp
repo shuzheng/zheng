@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-	<a href="${basePath}/">首页</a> &gt; <a href="${basePath}/category/list">类目列表</a> &gt; 编辑
+	<a href="${basePath}/manage">首页</a> &gt; <a href="${basePath}/manage/category/list">类目列表</a> &gt; 编辑
 </div>
 <div>
 	<form method="post">
@@ -34,7 +34,7 @@
 			</td>
 		</tr>
 		<tr><td>别名：</td><td><input type="text" name="alias" value="${category.alias}"/></td></tr>
-		<tr><td></td><td><a href="${basePath}/category/list">取消</a>　<input type="submit" value="保存"/></td></tr>
+		<tr><td></td><td><a href="${basePath}/manage/category/list">取消</a>　<input type="submit" value="保存"/></td></tr>
 	</table>
 	</form>
 </div>

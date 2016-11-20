@@ -13,11 +13,11 @@
 </head>
 <body>
 <div>
-	<a href="${basePath}/">首页</a> &gt; 标签列表
+	<a href="${basePath}/manage">首页</a> &gt; 标签列表
 </div>
 <div>
 	<table border="1">
-		<caption><a href="${basePath}/tag/add">新增</a> <a href="${basePath}/tag/batchDelete">批量删除</a></caption>
+		<caption><a href="${basePath}/manage/tag/add">新增</a> <a href="${basePath}/manage/tag/batchDelete">批量删除</a></caption>
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -48,8 +48,8 @@
 					<fmt:formatDate value="${date}" type="both" pattern="yyyy-MM-dd HH:mm:ss" timeZone="Asia/Shanghai"/>
 				</td>
 				<td>
-					<a href="${basePath}/tag/update/${tag.tagId}">修改</a>
-					<a href="${basePath}/tag/delete/${tag.tagId}" onclick="return confirm('确认删除吗？');">删除</a>
+					<a href="${basePath}/manage/tag/update/${tag.tagId}">修改</a>
+					<a href="${basePath}/manage/tag/delete/${tag.tagId}" onclick="return confirm('确认删除吗？');">删除</a>
 				</td>
 			</tr>
 			</c:forEach>

@@ -25,12 +25,12 @@ public class ManageController {
 	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
 
 	@RequestMapping(value = {"", "/index"})
-	public Object index() {
+	public String index() {
 		return "/manage/index";
 	}
 
 	@RequestMapping("/login")
-	public Object login() {
+	public String login() {
 		return "/manage/login";
 	}
 

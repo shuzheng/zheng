@@ -12,9 +12,6 @@
     <title>首页</title>
 </head>
 <body>
-<ul>
-    <li><a href="${basePath}/tag/list">标签管理</a></li>
-    <li><a href="${basePath}/category/list">类目管理</a></li>
-</ul>
+<a href="${basePath}/manage">后台首页</a>
 </body>
 </html>

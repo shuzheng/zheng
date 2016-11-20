@@ -1,5 +1,6 @@
-package com.zheng.cms.controller;
+package com.zheng.cms.controller.manage;
 
+import com.zheng.cms.controller.BaseController;
 import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
 import com.zheng.cms.service.CmsArticleService;
@@ -9,15 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -25,7 +23,7 @@ import java.util.List;
  * Created by shuzheng on 2016/11/14.
  */
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/manage/article")
 public class CmsArticleController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(CmsArticleController.class);
@@ -60,7 +58,7 @@ public class CmsArticleController extends BaseController {
 
 		model.addAttribute("articles", articles);
 		model.addAttribute("paginator", paginator);
-		return "/article/list";
+		return "/manage/article/list";
 	}
 	
 	/**
@@ -69,7 +67,7 @@ public class CmsArticleController extends BaseController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
-		return "/article/add";
+		return "/manage/article/add";
 	}
 	
 	/**
@@ -86,7 +84,7 @@ public class CmsArticleController extends BaseController {
 		int count = cmsArticleService.getMapper().insertSelective(cmsArticle);
 		model.addAttribute("count", count);
 		_log.info("新增记录id为：{}", cmsArticle.getArticleId());
-		return "redirect:/article/list";
+		return "redirect:/manage/article/list";
 	}
 
 	/**
@@ -99,7 +97,7 @@ public class CmsArticleController extends BaseController {
 	public String delete(@PathVariable("ids") String ids, Model model) {
 		int count = cmsArticleService.deleteByPrimaryKeys(ids);
 		model.addAttribute("count", count);
-		return "redirect:/article/list";
+		return "redirect:/manage/article/list";
 	}
 	
 	/**
@@ -112,7 +110,7 @@ public class CmsArticleController extends BaseController {
 	public String update(@PathVariable("id") int id, Model model) {
 		CmsArticle article = cmsArticleService.getMapper().selectByPrimaryKey(id);
 		model.addAttribute("article", article);
-		return "/article/update";
+		return "/manage/article/update";
 	}
 	
 	/**
@@ -127,7 +125,7 @@ public class CmsArticleController extends BaseController {
 		int count = cmsArticleService.getMapper().updateByPrimaryKeySelective(cmsArticle);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);
-		return "redirect:/article/list";
+		return "redirect:/manage/article/list";
 	}
 
 }
