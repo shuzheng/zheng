@@ -17,7 +17,7 @@
 </div>
 <div>
 	<table border="1">
-		<caption><a href="${basePath}/manage/tag/add">新增</a> <a href="${basePath}/manage/tag/batchDelete">批量删除</a></caption>
+		<caption><a href="${basePath}/manage/tag/add">新增</a></caption>
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -50,6 +50,8 @@
 				<td>
 					<a href="${basePath}/manage/tag/update/${tag.tagId}">修改</a>
 					<a href="${basePath}/manage/tag/delete/${tag.tagId}" onclick="return confirm('确认删除吗？');">删除</a>
+					<a href="${basePath}/manage/tag/up/${article.articleId}">上移</a>
+					<a href="${basePath}/manage/tag/down/${article.articleId}">下移</a>
 				</td>
 			</tr>
 			</c:forEach>

@@ -33,8 +33,9 @@ public class CmsCategoryController extends BaseController {
 
 	/**
 	 * 列表
-	 * @param page
-	 * @param rows
+	 * @param page 当前页码
+	 * @param rows 每页条数
+	 * @param desc 降序排序
 	 * @param request
 	 * @param model
 	 * @return
@@ -43,13 +44,14 @@ public class CmsCategoryController extends BaseController {
 	public String list(
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
+			@RequestParam(required = false, defaultValue = "false", value = "desc") boolean desc,
 			HttpServletRequest request, Model model) {
 
 		// 数据列表
 		CmsCategoryExample cmsCategoryExample = new CmsCategoryExample();
 		cmsCategoryExample.setOffset((page - 1) * rows);
 		cmsCategoryExample.setLimit(rows);
-		cmsCategoryExample.setOrderByClause("orders desc");
+		cmsCategoryExample.setOrderByClause(desc ? "orders desc" : "orders asc");
 		List<CmsCategory> categorys = cmsCategoryService.getMapper().selectByExample(cmsCategoryExample);
 
 		// 分页对象
