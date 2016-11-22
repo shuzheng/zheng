@@ -12,6 +12,10 @@ zheng
 |    ├── qa-dao
 |    ├── qa-service
 |    └── qa-web
+├── upms 通用用户权限系统
+|    ├── upms-dao
+|    ├── upms-service
+|    └── upms-admin
 ├── pay 支付系统
 |    ├── pay-service
 |    ├── pay-sdk
@@ -28,10 +32,6 @@ zheng
 |    └── wechat-app 小程序
 |         ├── wechat-app-sdk
 |         └── wechat-app-example
-├── upms 通用用户权限系统
-|    ├── upms-dao
-|    ├── upms-service
-|    └── upms-admin
 ├── api 接口系统
 └── oss 对象存储系统
      ├── oss-sdk
