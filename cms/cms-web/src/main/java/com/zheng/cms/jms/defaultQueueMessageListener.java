@@ -27,8 +27,8 @@ public class defaultQueueMessageListener implements MessageListener {
 			public void run() {
 				TextMessage textMessage = (TextMessage) message;
 				try {
-					_log.info("defaultQueueMessageListener接收到：{}", textMessage.getText());
-				} catch (JMSException e) {
+					_log.info("cms-web接收到：{}", textMessage.getText());
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
