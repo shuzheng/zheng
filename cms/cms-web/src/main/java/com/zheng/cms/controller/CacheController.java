@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("/cache")
-public class CacheController {
+public class CacheController extends BaseController {
 
 	private static Logger _log = LoggerFactory.getLogger(CacheController.class);
 

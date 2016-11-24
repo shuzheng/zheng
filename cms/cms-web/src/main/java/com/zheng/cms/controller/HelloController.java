@@ -27,7 +27,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/hello")
-public class HelloController {
+public class HelloController extends BaseController {
 
 	private static Logger _log = LoggerFactory.getLogger(HelloController.class);
 
