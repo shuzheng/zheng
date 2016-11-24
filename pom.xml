@@ -20,7 +20,6 @@
 
     <modules>
         <module>common</module>
-        <module>cms</module>
         <module>oss</module>
         <module>qa</module>
         <module>upms</module>
