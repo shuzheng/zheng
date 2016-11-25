@@ -1,4 +1,4 @@
-package com.zheng.cms.mq.jms;
+package com.zheng.cms.jms;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
