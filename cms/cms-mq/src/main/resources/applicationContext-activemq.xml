@@ -11,7 +11,7 @@
 	</bean>
 	<bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
 		<property name="targetConnectionFactory" ref="activeMqConnectionFactory"/>
-		<!--<property name="sessionCacheSize" value="100"/>-->
+		<property name="sessionCacheSize" value="100"/>
 	</bean>
 	<!-- 点对点队列 -->
 	<bean id="defaultQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
