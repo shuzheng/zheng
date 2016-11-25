@@ -7,6 +7,7 @@ zheng
 ├── cms 内容管理系统
 |    ├── cms-dao
 |    ├── cms-service
+|    ├── cms-mq(备用mq消费者，cms-web自带消费者)
 |    └── cms-web
 ├── qa 问答系统
 |    ├── qa-dao
@@ -61,6 +62,7 @@ zheng
 * Protobuf|json: 数据传输 
 * Spring-boot
 * Swagger2: 接口文档
+* FastDFS: 分布式文件系统
 
 
 # 前端技术:
