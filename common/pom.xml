@@ -178,6 +178,13 @@
             <artifactId>activemq-core</artifactId>
             <version>5.7.0</version>
         </dependency>
+        <!-- json -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
         <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
