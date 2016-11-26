@@ -96,7 +96,7 @@
             <artifactId>mybatis-ehcache</artifactId>
             <version>${mybatis-ehcache.version}</version>
         </dependency>
-        <!-- 数据库 -->
+        <!-- mysql -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -107,6 +107,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.0.14</version>
+        </dependency>
+        <!-- redis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
         </dependency>
         <!-- 日志 -->
         <dependency>

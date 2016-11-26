@@ -21,10 +21,10 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2016年10月15日
  */
 @Controller
-@RequestMapping("/cache")
-public class CacheController extends BaseController {
+@RequestMapping("/ehcache")
+public class EhCacheController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CacheController.class);
+	private static Logger _log = LoggerFactory.getLogger(EhCacheController.class);
 
 	private final static String EHCACHE_NAME = PropertiesFileUtil.getInstance().get("ehcache");
 
@@ -34,8 +34,7 @@ public class CacheController extends BaseController {
 	@RequestMapping("/test")
 	@ResponseBody
 	public Object test(HttpServletRequest request) {
-		System.out.println(System.getProperty("java.io.tmpdir"));
-		return "success";
+		return System.getProperty("java.io.tmpdir");
 	}
 
 	/**
