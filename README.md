@@ -54,7 +54,7 @@ zheng
 * Ehcache: 二级缓存
 * Redis: 分布式缓存存储
 * ActiveMQ: 消息队列
-* Solr: 检索
+* Solr|Elasticsearch: 检索
 * Maven: 项目管理(Gradle)
 * Qiniu: 云存储
 * Jenkins: 持续集成
