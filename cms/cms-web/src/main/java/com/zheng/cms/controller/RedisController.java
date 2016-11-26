@@ -24,11 +24,11 @@ public class RedisController extends BaseController {
     @RequestMapping("/test")
     @ResponseBody
     public Object test(HttpServletRequest request) {
-        System.out.println(System.getProperty("java.io.tmpdir"));
+        long time = System.currentTimeMillis();
         for (int i = 1; i <= 10000; i ++) {
             RedisUtil.set("key" + i, "value" + i, i * 5);
         }
-        return "success";
+        return System.currentTimeMillis() - time;
     }
 
     /**
