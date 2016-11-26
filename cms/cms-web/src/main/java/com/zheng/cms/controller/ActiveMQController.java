@@ -1,6 +1,8 @@
 package com.zheng.cms.controller;
 
+import com.zheng.cms.dao.model.User;
 import com.zheng.common.util.JmsUtil;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +34,29 @@ public class ActiveMQController extends BaseController {
 	@ResponseBody
 	public Object send() {
 		long start = System.currentTimeMillis();
-		for (int i = 0; i < 100; i ++) {
-			_log.info("发送消息" + (i + 1));
-			JmsUtil.sendMessage(jmsQueueTemplate, defaultQueueDestination, "消息" + (i + 1));
+		User user = null;
+		for (int i = 1; i <= 10000; i ++) {
+			user = new User();
+			user.setUsername("用户" + i);
+			user.setPassword("123456");
+			user.setNickname("昵称");
+			user.setSex(1);
+			user.setCtime(System.currentTimeMillis());
+			user.setContent("用户描述");
+			JmsUtil.sendMessage(jmsQueueTemplate, defaultQueueDestination, JSONObject.fromObject(user).toString());
 		}
 		_log.info("发送消息消耗时间" + (System.currentTimeMillis() - start));
 		return "success";
 	}
 
+	public static void main(String[] args) {
+		User user = new User();
+		user.setUsername("用户");
+		user.setPassword("123456");
+		user.setNickname("昵称");
+		user.setSex(1);
+		user.setCtime(System.currentTimeMillis());
+		user.setContent("用户描述");
+		System.out.println(JSONObject.fromObject(user).toString());
+	}
 }
