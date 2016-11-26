@@ -84,19 +84,17 @@
         <plugins>
             <!-- jetty插件 -->
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.9.v20130131</version>
+                <version>9.3.14.v20161028</version>
                 <configuration>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                     <webApp>
                         <contextPath>/cms-web</contextPath>
                     </webApp>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>8080</port>
-                        </connector>
-                    </connectors>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
                     <reload>automatic</reload>
                 </configuration>
             </plugin>
