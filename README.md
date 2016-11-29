@@ -81,7 +81,7 @@ zheng
 * MySql: 数据库
 * jetty: 开发服务器
 * Tomcat: 应用服务器
-* SVN: 版本管理
+* SVN|Git: 版本管理
 * Nginx: 反向代理服务器
 * Varnish: 内存缓存
 * Navicat for MySQL: 数据库客户端管理
