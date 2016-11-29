@@ -52,11 +52,11 @@ zheng
 * TBSchedule: 任务调度
 * Quartz: 定时任务
 * Ehcache: 二级缓存
-* Redis: 分布式缓存存储
+* Redis: 分布式缓存数据库
 * ActiveMQ: 消息队列
 * Solr|Elasticsearch: 检索
 * Maven: 项目管理(Gradle)
-* Qiniu: 云存储
+* Qiniu|AliOSS: 云存储
 * Jenkins: 持续集成
 * Log4J: 日志管理
 * Protobuf|json: 数据传输 
