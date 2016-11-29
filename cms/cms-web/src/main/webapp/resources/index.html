@@ -5,36 +5,156 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>通用用户权限系统</title>
+
 	<link href="plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
+	<link href="plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="css/admin.css" rel="stylesheet"/>
 </head>
 <body>
 <header id="header">
 	<ul id="menu">
-		<li id="guide" class="hi-trigger ma-trigger">
+		<li id="guide" class="line-trigger">
 			<div class="line-wrap">
 				<div class="line top"></div>
 				<div class="line center"></div>
 				<div class="line bottom"></div>
 			</div>
 		</li>
-		<!--
-		<li class="hidden-xs">
-			<a href="index.html" class="m-l-10">
-				<img src="img/logo.png"/>
+		<li id="logo" class="hidden-xs">
+			<a href="index.html">
+				<img src="images/logo.png"/>
 			</a>
 		</li>
-		-->
-		<li id="more">
-			more
+		<li class="pull-right">
+			<ul class="hi-menu">
+				<li class="dropdown">
+					<a class="waves-effect waves-light" data-toggle="dropdown" href="">
+						<i class="him-icon zmdi zmdi-dropbox"></i>
+					</a>
+					<ul class="dropdown-menu dm-icon pull-right">
+						<li class="skin-switch hidden-xs">
+							请选择系统切换
+						</li>
+						<li class="divider hidden-xs"></li>
+						<li class="hidden-xs">
+							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> CMS系统</a>
+						</li>
+						<li>
+							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> OA系统</a>
+						</li>
+						<li>
+							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> CRM系统</a>
+						</li>
+						<li>
+							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> QA系统</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="waves-effect waves-light" data-toggle="dropdown" href="">
+						<i class="him-icon zmdi zmdi-more-vert"></i>
+					</a>
+					<ul class="dropdown-menu dm-icon pull-right">
+						<li class="hidden-xs">
+							<a class="waves-effect" data-ma-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i> 全屏模式</a>
+						</li>
+						<li>
+							<a class="waves-effect" data-ma-action="clear-localstorage" href=""><i class="zmdi zmdi-delete"></i> 清除缓存</a>
+						</li>
+						<li>
+							<a class="waves-effect" href=""><i class="zmdi zmdi-face"></i> 隐私管理</a>
+						</li>
+						<li>
+							<a class="waves-effect" href=""><i class="zmdi zmdi-settings"></i> 系统设置</a>
+						</li>
+						<li>
+							<a class="waves-effect" href=""><i class="zmdi zmdi-run"></i> 退出登录</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </header>
 <section id="main">
-	<aside id="aside">
-		aside
+	<!-- 左侧导航区 -->
+	<aside id="sidebar" class="sidebar c-overflow">
+		<!-- 个人资料区 -->
+		<div class="s-profile">
+			<a class="waves-effect waves-light" href="" data-ma-action="profile-menu-toggle">
+				<div class="sp-pic">
+					<img src="images/avatar.jpg" alt="">
+				</div>
+				<div class="sp-info">
+					张恕征，您好！
+					<i class="zmdi zmdi-caret-down"></i>
+				</div>
+			</a>
+			<ul class="main-menu">
+				<li>
+					<a class="waves-effect" href=""><i class="zmdi zmdi-account"></i> 个人资料</a>
+				</li>
+				<li>
+					<a class="waves-effect" href=""><i class="zmdi zmdi-face"></i> 隐私管理</a>
+				</li>
+				<li>
+					<a class="waves-effect" href=""><i class="zmdi zmdi-settings"></i> 系统设置</a>
+				</li>
+				<li>
+					<a class="waves-effect" href=""><i class="zmdi zmdi-run"></i> 退出登录</a>
+				</li>
+			</ul>
+		</div>
+		<!-- /个人资料区 -->
+		<!-- 菜单区 -->
+		<ul class="main-menu">
+			<li>
+				<a class="waves-effect" href="javascript:;" ng-click="addTab('首页', 'home.html')"><i class="zmdi zmdi-home"></i> 首页</a>
+			</li>
+			<li class="sub-menu">
+				<a class="waves-effect" href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-widgets"></i> 系统组织管理</a>
+				<ul>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('系统注册', 'crud.html')">系统注册</a></li>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('组织管理', 'crud-tree.html')">组织管理</a></li>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a class="waves-effect" href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-widgets"></i> 用户角色管理</a>
+				<ul>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('用户管理', 'form-components.html')">用户管理</a></li>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('角色管理', 'typography.html')">角色管理</a></li>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a class="waves-effect" href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-widgets"></i> 资源权限管理</a>
+				<ul>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('资源管理', 'table.html')">资源管理</a></li>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('权限管理', 'table.html')">权限管理</a></li>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a class="waves-effect" href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-widgets"></i> 权限分配管理</a>
+				<ul>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('角色权限', 'table.html')">角色权限</a></li>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('用户权限', 'table.html')">用户权限</a></li>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a class="waves-effect" href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-widgets"></i> DEMO</a>
+				<ul>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('获取资源(DEMO)', 'table.html')">获取资源(DEMO)</a></li>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('获取权限(DEMO)', 'table.html')">获取权限(DEMO)</a></li>
+					<li><a class="waves-effect" href="javascript:;" ng-click="addTab('单点登录(DEMO)', 'table.html')">单点登录(DEMO)</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class="upms-version">&copy; ZHENG-UPMS V1.0.1</div>
+			</li>
+		</ul>
+		<!-- /菜单区 -->
 	</aside>
+	<!-- /左侧导航区 -->
 	<section id="content">
 		content
 	</section>
@@ -44,6 +164,7 @@
 </footer>
 <script src="plugins/jquery.1.12.4.min.js"></script>
 <script src="plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script src="plugins/waves-0.7.5/waves.min.js"></script>
 <script src="js/admin.js"></script>
 </body>
 </html>
