@@ -11,6 +11,7 @@
 	<link href="plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 	<link href="css/admin.css" rel="stylesheet"/>
+	<script src="js/admin_header.js"></script>
 </head>
 <body>
 <header id="header">
@@ -29,8 +30,12 @@
 		</li>
 		<li class="pull-right">
 			<ul class="hi-menu">
+				<!-- 搜索 -->
+				<li data-ma-action="search-open">
+					<a class="waves-effect waves-light" href="javascript:;"><i class="him-icon zmdi zmdi-search"></i></a>
+				</li>
 				<li class="dropdown">
-					<a class="waves-effect waves-light" data-toggle="dropdown" href="">
+					<a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
 						<i class="him-icon zmdi zmdi-dropbox"></i>
 					</a>
 					<ul class="dropdown-menu dm-icon pull-right">
@@ -39,38 +44,38 @@
 						</li>
 						<li class="divider hidden-xs"></li>
 						<li class="hidden-xs">
-							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> CMS系统</a>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> CMS系统</a>
 						</li>
 						<li>
-							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> OA系统</a>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> OA系统</a>
 						</li>
 						<li>
-							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> CRM系统</a>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> CRM系统</a>
 						</li>
 						<li>
-							<a class="waves-effect" href=""><i class="zmdi zmdi-widgets"></i> QA系统</a>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> QA系统</a>
 						</li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a class="waves-effect waves-light" data-toggle="dropdown" href="">
+					<a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
 						<i class="him-icon zmdi zmdi-more-vert"></i>
 					</a>
 					<ul class="dropdown-menu dm-icon pull-right">
 						<li class="hidden-xs">
-							<a class="waves-effect" data-ma-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i> 全屏模式</a>
+							<a class="waves-effect" data-ma-action="fullscreen" href="javascript:;"><i class="zmdi zmdi-fullscreen"></i> 全屏模式</a>
 						</li>
 						<li>
-							<a class="waves-effect" data-ma-action="clear-localstorage" href=""><i class="zmdi zmdi-delete"></i> 清除缓存</a>
+							<a class="waves-effect" data-ma-action="clear-localstorage" href="javascript:;"><i class="zmdi zmdi-delete"></i> 清除缓存</a>
 						</li>
 						<li>
-							<a class="waves-effect" href=""><i class="zmdi zmdi-face"></i> 隐私管理</a>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-face"></i> 隐私管理</a>
 						</li>
 						<li>
-							<a class="waves-effect" href=""><i class="zmdi zmdi-settings"></i> 系统设置</a>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-settings"></i> 系统设置</a>
 						</li>
 						<li>
-							<a class="waves-effect" href=""><i class="zmdi zmdi-run"></i> 退出登录</a>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-run"></i> 退出登录</a>
 						</li>
 					</ul>
 				</li>
@@ -80,12 +85,12 @@
 </header>
 <section id="main">
 	<!-- 左侧导航区 -->
-	<aside id="sidebar" class="sidebar c-overflow">
+	<aside id="sidebar">
 		<!-- 个人资料区 -->
 		<div class="s-profile">
-			<a class="waves-effect waves-light" href="" data-ma-action="profile-menu-toggle">
+			<a class="waves-effect waves-light" href="javascript:;">
 				<div class="sp-pic">
-					<img src="images/avatar.jpg" alt="">
+					<img src="images/avatar.jpg"/>
 				</div>
 				<div class="sp-info">
 					张恕征，您好！
@@ -94,16 +99,16 @@
 			</a>
 			<ul class="main-menu">
 				<li>
-					<a class="waves-effect" href=""><i class="zmdi zmdi-account"></i> 个人资料</a>
+					<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-account"></i> 个人资料</a>
 				</li>
 				<li>
-					<a class="waves-effect" href=""><i class="zmdi zmdi-face"></i> 隐私管理</a>
+					<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-face"></i> 隐私管理</a>
 				</li>
 				<li>
-					<a class="waves-effect" href=""><i class="zmdi zmdi-settings"></i> 系统设置</a>
+					<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-settings"></i> 系统设置</a>
 				</li>
 				<li>
-					<a class="waves-effect" href=""><i class="zmdi zmdi-run"></i> 退出登录</a>
+					<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-run"></i> 退出登录</a>
 				</li>
 			</ul>
 		</div>
@@ -157,16 +162,26 @@
 	</aside>
 	<!-- /左侧导航区 -->
 	<section id="content">
-		content
+		<div class="tab">
+			<
+			<ul>
+				<li><i class="zmdi zmdi-home"></i> 首页</li>
+				<li><i class="zmdi zmdi-home"></i> 首页</li>
+				<li><i class="zmdi zmdi-home"></i> 首页</li>
+				<li><i class="zmdi zmdi-home"></i> 首页</li>
+				<li><i class="zmdi zmdi-home"></i> 首页</li>
+			</ul>
+		</div>
+		<iframe class="tab_iframe" src="home.html" width="100%" frameborder="0" scrolling="auto" onload="changeFrameHeight(this)"></iframe>
 	</section>
 </section>
-<footer id="footer">
-	footer
-</footer>
+<footer id="footer"></footer>
+
 <script src="plugins/jquery.1.12.4.min.js"></script>
 <script src="plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="plugins/waves-0.7.5/waves.min.js"></script>
 <script src="plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
 <script src="js/admin.js"></script>
 </body>
 </html>

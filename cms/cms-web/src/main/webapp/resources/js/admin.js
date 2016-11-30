@@ -9,6 +9,11 @@ $(function() {
 		$(this).next().slideToggle(200);
 		$(this).parent().toggleClass('toggled');
 	});
+	// 个人资料
+	$('.s-profile a').click(function() {
+		$(this).next().slideToggle(200);
+		$(this).parent().toggleClass('toggled');
+	});
 	// Waves初始化
 	Waves.displayEffect();
 	// 滚动条初始化
