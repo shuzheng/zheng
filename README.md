@@ -29,9 +29,6 @@ zheng
 |    ├── zheng-wechat-mp-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    └── zheng-wechat-mp-admin -- 后台管理
-|── zheng-wechat-app -- 微信小程序
-|    ├── zheng-wechat-app-sdk -- 开发工具包
-|    └── zheng-wechat-app-example -- 演示示例
 ├── zheng-api -- 接口系统
 |         ├── zheng-api-sdk -- 开发工具包
 |         └── zheng-api-example -- 演示示例
