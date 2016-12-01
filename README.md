@@ -16,6 +16,7 @@ zheng
 |    ├── zheng-upms-service -- 业务逻辑
 |    └── zheng-upms-admin -- 后台管理
 ├── zheng-pay -- 支付系统
+|    ├── zheng-pay-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-pay-service -- 业务逻辑
 |    ├── zheng-pay-sdk -- 开发工具包
 |    └── zheng-pay-demo -- 演示示例
@@ -23,14 +24,13 @@ zheng
 |    ├── zheng-ucenter-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-ucenter-service -- 业务逻辑
 |    └── zheng-ucenter-home -- 网站前台
-├── zheng-wechat -- 微信系统
-|    ├── zheng-wechat-mp -- 公众号
-|    |    ├── zheng-wechat-mp-dao -- 数据库MyBatisGenerator操作
-|    |    ├── zheng-wechat-mp-service -- 业务逻辑
-|    |    └── zheng-wechat-mp-admin -- 后台管理
-|    └── zheng-wechat-app -- 小程序
-|         ├── zheng-wechat-app-sdk -- 开发工具包
-|         └── zheng-wechat-app-example -- 演示示例
+|── zheng-wechat-mp -- 微信公众号管理系统
+|    ├── zheng-wechat-mp-dao -- 数据库MyBatisGenerator操作
+|    ├── zheng-wechat-mp-service -- 业务逻辑
+|    └── zheng-wechat-mp-admin -- 后台管理
+|── zheng-wechat-app -- 微信小程序
+|    ├── zheng-wechat-app-sdk -- 开发工具包
+|    └── zheng-wechat-app-example -- 演示示例
 ├── zheng-api -- 接口系统
 |         ├── zheng-api-sdk -- 开发工具包
 |         └── zheng-api-example -- 演示示例
