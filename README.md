@@ -30,8 +30,8 @@ zheng
 |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    └── zheng-wechat-mp-admin -- 后台管理
 ├── zheng-api -- 接口系统
-|         ├── zheng-api-sdk -- 开发工具包
-|         └── zheng-api-example -- 演示示例
+|    ├── zheng-api-sdk -- 开发工具包
+|    └── zheng-api-example -- 演示示例
 └── zheng-oss -- 对象存储系统
      ├── zheng-oss-sdk -- 开发工具包
      └── zheng-oss-web -- 管理界面
