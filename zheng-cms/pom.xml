@@ -23,6 +23,8 @@
         <module>zheng-cms-service</module>
         <module>zheng-cms-web</module>
         <module>zheng-cms-job</module>
+        <module>zheng-cms-search</module>
+        <module>zheng-cms-admin</module>
     </modules>
 
     <dependencyManagement>

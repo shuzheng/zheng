@@ -35,7 +35,7 @@
 	</bean>
 
 	<!-- 消费者 -->
-	<bean id="defaultQueueMessageListener" class="com.zheng.cms.jms.defaultQueueMessageListener"/>
+	<bean id="defaultQueueMessageListener" class="com.zheng.cms.web.jms.defaultQueueMessageListener"/>
 	<bean id="jmsContainer"  class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory"/>
 		<property name="destination" ref="defaultQueueDestination"/>
