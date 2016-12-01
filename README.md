@@ -12,9 +12,9 @@ zheng
 |    ├── zheng-cms-admin -- 后台管理
 |    └── zheng-cms-web -- 网站前台
 ├── zheng-qa -- 问答系统
-|    ├── zheng-qa-dao
-|    ├── zheng-qa-service
-|    └── zheng-qa-web
+|    ├── zheng-qa-dao -- 数据库MyBatisGenerator操作
+|    ├── zheng-qa-service -- 业务逻辑
+|    └── zheng-qa-web -- 网站前台
 ├── zheng-upms -- 通用用户权限系统
 |    ├── zheng-upms-dao
 |    ├── zheng-upms-service
