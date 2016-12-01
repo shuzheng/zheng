@@ -1,16 +1,16 @@
 ## zheng
 
 # 介绍
-
+``` javascript
 zheng
-├── zheng-common **公共模块**
-├── zheng-cms **内容管理系统**
-|    ├── zheng-cms-dao **数据库MyBatisGenerator操作**
-|    ├── zheng-cms-service **业务逻辑**
-|    ├── zheng-cms-search **搜索服务**
-|    ├── zheng-cms-job **消息队列、任务调度等**
-|    ├── zheng-cms-admin **CMS后台管理**
-|    └── zheng-cms-web **CMS网站前台**
+├── zheng-common // 公共模块
+├── zheng-cms // 内容管理系统
+|    ├── zheng-cms-dao // 数据库MyBatisGenerator操作
+|    ├── zheng-cms-service // 业务逻辑
+|    ├── zheng-cms-search // 搜索服务
+|    ├── zheng-cms-job // 消息队列、任务调度等
+|    ├── zheng-cms-admin // CMS后台管理
+|    └── zheng-cms-web // CMS网站前台
 ├── zheng-qa 问答系统
 |    ├── zheng-qa-dao
 |    ├── zheng-qa-service
@@ -39,7 +39,7 @@ zheng
 └── zheng-oss 对象存储系统
      ├── zheng-oss-sdk
      └── zheng-oss-admin
-
+```
 
 # 后端技术:
 * Spring
