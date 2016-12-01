@@ -21,5 +21,6 @@
     <modules>
         <module>zheng-qa-dao</module>
         <module>zheng-qa-service</module>
+        <module>zheng-qa-web</module>
     </modules>
 </project>
