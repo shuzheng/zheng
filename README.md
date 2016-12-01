@@ -19,7 +19,8 @@ zheng
 |    ├── zheng-pay-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-pay-service -- 业务逻辑
 |    ├── zheng-pay-sdk -- 开发工具包
-|    └── zheng-pay-demo -- 演示示例
+|    ├── zheng-pay-admin -- 后台管理
+|    └── zheng-pay-web -- 演示示例
 ├── zheng-ucenter -- 用户系统
 |    ├── zheng-ucenter-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-ucenter-service -- 业务逻辑
