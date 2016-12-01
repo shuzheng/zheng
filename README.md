@@ -37,7 +37,7 @@ zheng
 |         └── zheng-api-example -- 演示示例
 └── zheng-oss -- 对象存储系统
      ├── zheng-oss-sdk -- 开发工具包
-     └── zheng-oss-admin -- 后台管理
+     └── zheng-oss-web -- 管理界面
 ```
 
 # 后端技术:
