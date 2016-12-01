@@ -1,42 +1,42 @@
 ## zheng
 
 # 介绍
-``` css
+``` lua
 zheng
-├── zheng-common /* 公共模块 */
-├── zheng-cms /* 内容管理系统 */
-|    ├── zheng-cms-dao /** 数据库MyBatisGenerator操作 **/
-|    ├── zheng-cms-service /** 业务逻辑 **/
-|    ├── zheng-cms-search /** 搜索服务 **/
-|    ├── zheng-cms-job /** 消息队列、任务调度等 **/
-|    ├── zheng-cms-admin /** CMS后台管理 **/
-|    └── zheng-cms-web /** CMS网站前台 **/
-├── zheng-qa /* 问答系统 */
+├── zheng-common -- 公共模块
+├── zheng-cms -- 内容管理系统
+|    ├── zheng-cms-dao -- 数据库MyBatisGenerator操作
+|    ├── zheng-cms-service -- 业务逻辑
+|    ├── zheng-cms-search -- 搜索服务
+|    ├── zheng-cms-job -- 消息队列、任务调度等
+|    ├── zheng-cms-admin -- CMS后台管理
+|    └── zheng-cms-web -- CMS网站前台
+├── zheng-qa -- 问答系统
 |    ├── zheng-qa-dao
 |    ├── zheng-qa-service
 |    └── zheng-qa-web
-├── zheng-upms /* 通用用户权限系统 */
+├── zheng-upms -- 通用用户权限系统
 |    ├── zheng-upms-dao
 |    ├── zheng-upms-service
 |    └── zheng-upms-admin
-├── zheng-pay /* 支付系统 */
+├── zheng-pay -- 支付系统
 |    ├── zheng-pay-service
 |    ├── zheng-pay-sdk
 |    └── zheng-pay-demo
-├── zheng-ucenter /* 用户系统 */
+├── zheng-ucenter -- 用户系统
 |    ├── zheng-ucenter-dao
 |    ├── zheng-ucenter-service
 |    └── zheng-ucenter-home
-├── zheng-wechat /* 微信系统 */
-|    ├── zheng-wechat-mp /** 公众号 **/
+├── zheng-wechat -- 微信系统
+|    ├── zheng-wechat-mp -- 公众号
 |    |    ├── zheng-wechat-mp-dao
 |    |    ├── zheng-wechat-mp-service
 |    |    └── zheng-wechat-mp-admin
-|    └── zheng-wechat-app /** 小程序 **/
+|    └── zheng-wechat-app -- 小程序
 |         ├── zheng-wechat-app-sdk
 |         └── zheng-wechat-app-example
-├── zheng-api /* 接口系统 */
-└── zheng-oss /* 对象存储系统 */
+├── zheng-api -- 接口系统
+└── zheng-oss -- 对象存储系统
      ├── zheng-oss-sdk
      └── zheng-oss-admin
 ```
