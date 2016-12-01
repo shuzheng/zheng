@@ -22,7 +22,7 @@
         <module>zheng-cms-dao</module>
         <module>zheng-cms-service</module>
         <module>zheng-cms-web</module>
-        <module>zheng-cms-mq</module>
+        <module>zheng-cms-job</module>
     </modules>
 
     <dependencyManagement>

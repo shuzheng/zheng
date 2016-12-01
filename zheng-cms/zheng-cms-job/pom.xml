@@ -8,10 +8,10 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-cms-mq</artifactId>
+    <artifactId>zheng-cms-job</artifactId>
     <packaging>war</packaging>
 
-    <name>zheng-cms-mq Maven Webapp</name>
+    <name>zheng-cms-job Maven Webapp</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <dependencies>
@@ -58,7 +58,7 @@
     </profiles>
 
     <build>
-        <finalName>zheng-cms-mq</finalName>
+        <finalName>zheng-cms-job</finalName>
         <filters>
             <filter>src/main/resources/profiles/${env}.properties</filter>
         </filters>
@@ -77,7 +77,7 @@
                 <configuration>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/zheng-cms-mq</contextPath>
+                        <contextPath>/zheng-cms-job</contextPath>
                     </webApp>
                     <httpConnector>
                         <port>8081</port>

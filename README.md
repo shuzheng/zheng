@@ -7,7 +7,7 @@ zheng
 ├── zheng-cms 内容管理系统
 |    ├── zheng-cms-dao
 |    ├── zheng-cms-service
-|    ├── zheng-cms-mq(备用mq消费者，zheng-cms-web自带消费者)
+|    ├── zheng-cms-job
 |    └── zheng-cms-web
 ├── zheng-qa 问答系统
 |    ├── zheng-qa-dao
