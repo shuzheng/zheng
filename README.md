@@ -38,7 +38,7 @@ zheng
 ```
 
 # 后端技术:
-* Spring
+* Spring Framework
 * SpringMVC: MVC框架
 * MyBatis: ORM框架
 * MyBatis Generator: 代码生成
