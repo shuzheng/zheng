@@ -111,7 +111,7 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 #content {height: 100%;}
 
 /* 选项卡 */
-.content_tab{width:100%;height:48px;background:#25966F;overflow:hidden;}
+.content_tab{width:100%;height:48px;overflow:hidden;}
 .content_tab>ul{margin:0 40px;padding:0;font-size:0;display:block;white-space:nowrap;overflow:auto;}
 .tab_left,.tab_right{width:40px;height:48px;line-height:48px;color:#fff;text-align:center}
 .tab_left{float:left;margin-right:-40px;}
@@ -136,4 +136,5 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 
 /** skins **/
 #header {background: #29a176;}
+.content_tab{background:#25966F;}
 
