@@ -1,6 +1,6 @@
 body, html {height: 100%; position: relative; font-family: 'Microsoft yahei'; font-size: 13px; font-weight: 400; overflow-y: hidden;}
 img {vertical-align: middle;}
-a, a:hover, a:active, a:focus {text-decoration: none;}
+a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 
 /** 头部 **/
 #header {width: 100%; height: 70px; padding: 0 20px; position: fixed; z-index: 11; left: 0; top: 0; box-shadow: 0 1px 4px rgba(0,0,0,.3);}
