@@ -27,4 +27,9 @@ $(function() {
 			preventDefault: true
 		}
 	});
+	// 选项卡
+	$('.content_tab li').click(function() {
+		$('.content_tab li').removeClass('cur');
+		$(this).addClass('cur');
+	});
 });

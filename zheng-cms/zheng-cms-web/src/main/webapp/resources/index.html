@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>通用用户权限系统</title>
+	<title>用户权限管理系统</title>
 
 	<link href="plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
@@ -31,8 +31,20 @@
 		<li class="pull-right">
 			<ul class="hi-menu">
 				<!-- 搜索 -->
-				<li data-ma-action="search-open">
-					<a class="waves-effect waves-light" href="javascript:;"><i class="him-icon zmdi zmdi-search"></i></a>
+				<li class="dropdown">
+					<a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
+						<i class="him-icon zmdi zmdi-search"></i>
+					</a>
+					<ul class="dropdown-menu dm-icon pull-right">
+						<form id="search-form" class="form-inline">
+							<div class="input-group">
+								<input id="keywords" type="text" name="keywords" class="form-control" placeholder="搜索"/>
+								<div class="input-group-btn">
+									<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+								</div>
+							</div>
+						</form>
+					</ul>
 				</li>
 				<li class="dropdown">
 					<a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
@@ -162,17 +174,70 @@
 	</aside>
 	<!-- /左侧导航区 -->
 	<section id="content">
-		<div class="tab">
-			<
+		<div class="content_tab">
+			<div class="tab_left">
+				<a href="javascript:;"><i class="zmdi zmdi-chevron-left"></i></a>
+			</div>
+			<div class="tab_right">
+				<a class="active" href="javascript:;"><i class="zmdi zmdi-chevron-right"></i></a>
+			</div>
 			<ul>
-				<li><i class="zmdi zmdi-home"></i> 首页</li>
-				<li><i class="zmdi zmdi-home"></i> 首页</li>
-				<li><i class="zmdi zmdi-home"></i> 首页</li>
-				<li><i class="zmdi zmdi-home"></i> 首页</li>
-				<li><i class="zmdi zmdi-home"></i> 首页</li>
+				<li class="cur">
+					<a class="waves-effect waves-light" href="javascript:;">首页</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">系统注册</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">新增标签</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">内容编辑</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">个人详情</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">系统注册</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">新增标签</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">内容编辑</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">个人详情</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">系统注册</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">新增标签</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">内容编辑</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">个人详情</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">系统注册</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">新增标签</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">内容编辑</a>
+				</li>
+				<li>
+					<a class="waves-effect waves-light" href="javascript:;">个人详情</a>
+				</li>
 			</ul>
 		</div>
-		<iframe class="tab_iframe" src="home.html" width="100%" frameborder="0" scrolling="auto" onload="changeFrameHeight(this)"></iframe>
+		<div class="content_main">
+			<iframe class="tab_iframe" src="home.html" width="100%" frameborder="0" scrolling="auto" onload="changeFrameHeight(this)"></iframe>
+		</div>
 	</section>
 </section>
 <footer id="footer"></footer>
