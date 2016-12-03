@@ -119,9 +119,9 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 .tab_left>a,.tab_right>a{display:block;width:100%;color:rgba(255, 255, 255, 0.5);font-size:22px;}
 .tab_left>.active,.tab_right>.active{color:#fff;}
 .content_tab>ul>li{display:inline-block; height: 48px; line-height: 48px; margin:0; font-size:14px;}
-.content_tab>ul>li>a{display:block; height: 48px; line-height: 48px;color:#fff;padding:0 28px;transition:background-color .35s cubic-bezier(.35,0,.25,1);border-bottom:none;position: relative;}
+.content_tab>ul>li>a{display:block; height: 48px; line-height: 48px;color:rgba(255, 255, 255, 0.9);padding:0 28px;transition:background-color .35s cubic-bezier(.35,0,.25,1);border-bottom:none;position: relative;}
 .content_tab>ul>li>a:active{background:rgba(255, 255, 255, 0.1);}
-/*.content_tab>ul>.cur>a{border-bottom:3px solid #FFEB3B;}*/
+.content_tab>ul>.cur>a{/*border-bottom:3px solid #FFEB3B;*/color:#fff;}
 .content_tab>ul>li>a:after{content:"";position:absolute;bottom:0;left:50%;right:50%;width:0;border-bottom:3px solid #FFEB3B;transition:all linear .15s}
 .content_tab>ul>.cur>a:after{left:0;bottom:1px;width:100%;opacity:1;transition:all linear .15s}
 
