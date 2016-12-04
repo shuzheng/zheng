@@ -11,7 +11,6 @@
 	<link href="plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 	<link href="css/admin.css" rel="stylesheet"/>
-	<script src="js/admin_header.js"></script>
 </head>
 <body>
 <header id="header">
@@ -128,42 +127,42 @@
 		<!-- 菜单区 -->
 		<ul class="main-menu">
 			<li>
-				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-home"></i> 首页</a>
+				<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页</a>
 			</li>
 			<li class="sub-menu">
 				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 系统组织管理</a>
 				<ul>
-					<li><a class="waves-effect" href="javascript:tab.addTab('系统注册', 'home.html');">系统注册</a></li>
-					<li><a class="waves-effect" href="javascript:tab.addTab('组织管理', 'home.html');">组织管理</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('系统注册', '1.html');">系统注册</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('组织管理', '2.html');">组织管理</a></li>
 				</ul>
 			</li>
 			<li class="sub-menu">
 				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 用户角色管理</a>
 				<ul>
-					<li><a class="waves-effect" href="javascript:tab.addTab('用户管理', 'home.html');">用户管理</a></li>
-					<li><a class="waves-effect" href="javascript:tab.addTab('角色管理', 'home.html');">角色管理</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('用户管理', '3.html');">用户管理</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('角色管理', '4.html');">角色管理</a></li>
 				</ul>
 			</li>
 			<li class="sub-menu">
 				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 资源权限管理</a>
 				<ul>
-					<li><a class="waves-effect" href="javascript:tab.addTab('资源管理', 'home.html');">资源管理</a></li>
-					<li><a class="waves-effect" href="javascript:tab.addTab('权限管理', 'home.html');">权限管理</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('资源管理', '5.html');">资源管理</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('权限管理', '6.html');">权限管理</a></li>
 				</ul>
 			</li>
 			<li class="sub-menu">
 				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 权限分配管理</a>
 				<ul>
-					<li><a class="waves-effect" href="javascript:tab.addTab('角色权限', 'home.html');">角色权限</a></li>
-					<li><a class="waves-effect" href="javascript:tab.addTab('用户权限', 'home.html');">用户权限</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('角色权限', '7.html');">角色权限</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('用户权限', '8.html');">用户权限</a></li>
 				</ul>
 			</li>
 			<li class="sub-menu">
 				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> DEMO</a>
 				<ul>
-					<li><a class="waves-effect" href="javascript:tab.addTab('获取资源(DEMO)', 'home.html');">获取资源(DEMO)</a></li>
-					<li><a class="waves-effect" href="javascript:tab.addTab('获取权限(DEMO)', 'home.html');">获取权限(DEMO)</a></li>
-					<li><a class="waves-effect" href="javascript:tab.addTab('单点登录(DEMO)', 'home.html');">单点登录(DEMO)</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('获取资源(DEMO)', '9.html');">获取资源(DEMO)</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('获取权限(DEMO)', '10.html');">获取权限(DEMO)</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('单点登录(DEMO)', '11.html');">单点登录(DEMO)</a></li>
 				</ul>
 			</li>
 			<li>
@@ -181,17 +180,31 @@
 			<div class="tab_right">
 				<a href="javascript:;"><i class="zmdi zmdi-chevron-right"></i></a>
 			</div>
-			<ul>
-				<li class="cur">
+			<ul class="tabs">
+				<li id="tab_home" data-index="home" data-closeable="false" class="cur">
 					<a class="waves-effect waves-light" href="javascript:;">首页</a>
-				</li>
-				<li>
-					<a class="waves-effect waves-light" href="javascript:;">个人详情</a>
 				</li>
 			</ul>
 		</div>
 		<div class="content_main">
-			<iframe class="tab_iframe" src="home.html" width="100%" frameborder="0" scrolling="auto" onload="changeFrameHeight(this)"></iframe>
+			<div id="iframe_home" class="iframe cur">
+				<p><h4>通用用户权限管理系统</h4></p>
+				<p><b>演示地址</b>：<a href="http://www.zhangshuzheng.cn/upms" target="_blank">http://www.zhangshuzheng.cn/upms</a></p>
+				<p><b>系统简介</b>：本系统是基于RBAC授权和基于用户授权的细粒度权限控制通用平台，并提供单点登录、会话管理和日志管理。接入的系统可自由定义组织、角色、权限、资源等。</p><br/>
+				<p><h4>系统功能概述：</h4></p>
+				<p><b>系统组织管理</b>：系统和组织增加、删除、修改、查询功能。</p>
+				<p><b>用户角色管理</b>：用户和角色增加、删除、修改、查询功能。</p>
+				<p><b>资源权限管理</b>：资源和权限增加、删除、修改、查询功能。</p>
+				<p><b>权限分配管理</b>：提供给角色和用户的权限增加、删除、修改、查询功能。</p>
+				<p><b>单点登录(SSO)</b>：提供统一用户单点登录认证、用户鉴权功能。</p>
+				<p><b>用户会话管理</b>：提供分布式用户会话管理</p>
+				<p><b>操作日志管理</b>：提供记录用户登录、操作等日志。</p><br/>
+				<p><h4>对外接口概述：</h4></p>
+				<p><b>系统组织数据接口</b>、<b>用户角色数据接口</b>、<b>资源权限数据接口</b>、<b>单点登录(SSO)接口</b>、<b>用户鉴权接口</b></p><br/>
+				<p><h4>关于作者</h4></p>
+				<p><b>姓　　名</b>：张恕征</p>
+				<p><b>电子邮箱</b>：469741414@qq.com</p>
+			</div>
 		</div>
 	</section>
 </section>
@@ -201,6 +214,7 @@
 <script src="plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="plugins/waves-0.7.5/waves.min.js"></script>
 <script src="plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="plugins/BootstrapMenu.min.js"></script>
 
 <script src="js/admin.js"></script>
 </body>
