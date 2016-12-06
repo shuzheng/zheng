@@ -47,7 +47,7 @@ zheng
 * Thymeleaf: 模板引擎
 * ZooKeeper: 协调服务
 * Dubbo: 远程服务调用
-* TBSchedule: 任务调度
+* TBSchedule|elastic-job: 分布式任务调度
 * Quartz: 定时任务
 * Ehcache: 二级缓存
 * Redis: 分布式缓存数据库
