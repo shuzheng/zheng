@@ -52,8 +52,21 @@ $(function() {
 		// 切换iframe
 		$('.iframe').removeClass('cur');
 		$('#iframe_' + $(this).data('index')).addClass('cur');
-		// 滚动到可视区域
-		$('.content_tab>ul').animate({scrollLeft: $(this).position().left}, 200);
+		var marginLeft = ($('#tabs').css('marginLeft').replace('px', ''));
+		// 滚动到可视区域:在左侧
+		if ($(this).position().left < marginLeft) {
+			var left = $('.content_tab>ul').scrollLeft() + $(this).position().left - marginLeft;
+			$('.content_tab>ul').animate({scrollLeft: left}, 200, function() {
+				initScrollState();
+			});
+		}
+		// 滚动到可视区域:在右侧
+		if(($('.content_tab>ul').scrollLeft() + document.getElementById('tabs').clientWidth) < ($(this).position().left + $(this).width())) {
+			var left = ($(this).position().left + $(this).width()) - document.getElementById('tabs').clientWidth;
+			$('.content_tab>ul').animate({scrollLeft: left}, 200, function() {
+				initScrollState();
+			});
+		}
 	});
 	// 控制选项卡滚动位置 
 	$('.tab_left>a').click(function() {
