@@ -52,6 +52,8 @@ $(function() {
 		// 切换iframe
 		$('.iframe').removeClass('cur');
 		$('#iframe_' + $(this).data('index')).addClass('cur');
+		// 滚动到可视区域
+		$('.content_tab>ul').animate({scrollLeft: $(this).position().left}, 200);
 	});
 	// 控制选项卡滚动位置 
 	$('.tab_left>a').click(function() {

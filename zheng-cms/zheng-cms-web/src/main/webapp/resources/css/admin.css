@@ -120,6 +120,7 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 .tab_right{float:right;margin-left:-40px;}
 .tab_left>a,.tab_right>a{display:block;width:100%;color:rgba(255, 255, 255, 0.5);font-size:22px;}
 .tab_left>.active,.tab_right>.active{color:#fff;}
+.content_tab{position:relative;}
 .content_tab>ul>li{display:inline-block; height: 48px; line-height: 48px; margin:0; font-size:14px;}
 .content_tab>ul>li>a{display:block; height: 48px; line-height: 48px;color:rgba(255, 255, 255, 0.9);padding:0 28px;transition:background-color .35s cubic-bezier(.35,0,.25,1);border-bottom:none;position: relative;}
 .content_tab>ul>li>a:active{background:rgba(255, 255, 255, 0.1);}
