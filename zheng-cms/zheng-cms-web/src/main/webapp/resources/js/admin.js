@@ -27,7 +27,24 @@ $(function() {
 			preventDefault: true
 		}
 	});
-	// 选项卡
+});
+// iframe高度自适应
+function changeFrameHeight(ifm) {
+	ifm.height = document.documentElement.clientHeight - 118;
+}
+function resizeFrameHeight() {
+	$('.tab_iframe').css('height', document.documentElement.clientHeight - 118);
+	$('md-tab-content').css('left', '0');
+}
+window.onresize = function() {
+	resizeFrameHeight();
+	initScrollShow();
+	initScrollState();
+}
+
+// ========== 选项卡操作 ==========
+$(function() {
+	// 选项卡点击
 	$(document).on('click', '.content_tab li', function() {
 		// 切换选项卡
 		$('.content_tab li').removeClass('cur');
@@ -38,20 +55,15 @@ $(function() {
 	});
 	// 控制选项卡滚动位置 
 	$('.tab_left>a').click(function() {
-		$('.content_tab>ul').animate({scrollLeft: $('.content_tab>ul').scrollLeft() - 300}, 200);
-		if ($('.content_tab>ul').scrollLeft() == 0) {
-			$('.tab_left>a').removeClass('active');
-		} else {
-			$('.tab_left>a').addClass('active');
-		}
+		$('.content_tab>ul').animate({scrollLeft: $('.content_tab>ul').scrollLeft() - 300}, 200, function() {
+			initScrollState();
+		});
 	});
+	// 向右箭头
 	$('.tab_right>a').click(function() {
-		$('.content_tab>ul').animate({scrollLeft: $('.content_tab>ul').scrollLeft() + 300}, 200);
-		if ($('.content_tab>ul').scrollLeft() == 0) {
-			$('.tab_left>a').removeClass('active');
-		} else {
-			$('.tab_left>a').addClass('active');
-		}
+		$('.content_tab>ul').animate({scrollLeft: $('.content_tab>ul').scrollLeft() + 300}, 200, function() {
+			initScrollState();
+		});
 	});
 	// 初始化箭头状态
 	
@@ -61,9 +73,9 @@ $(function() {
 			return item;
 		},
 		actionsGroups: [
-			['close', 'closeOther', 'closeAll'],
-			['closeRight', 'closeLeft'],
-			['refresh'],
+			['close', 'refresh'],
+			['closeOther', 'closeAll'],
+			['closeRight', 'closeLeft']
 		],
 		actions: {
 			close: {
@@ -97,15 +109,29 @@ $(function() {
 			closeRight: {
 				name: '关闭右侧所有',
 				iconClass: 'zmdi zmdi-arrow-right',
-				onClick: function() {
-					
+				onClick: function(item) {
+					var index = $(item).data('index');
+					$($('.content_tab li').toArray().reverse()).each(function() {
+						if ($(this).data('index') != index) {
+							Tab.closeTab($(this));
+						} else {
+							return false;
+						}
+					});
 				}
 			},
 			closeLeft: {
 				name: '关闭左侧所有',
 				iconClass: 'zmdi zmdi-arrow-left',
-				onClick: function() {
-					
+				onClick: function(item) {
+					var index = $(item).data('index');
+					$('.content_tab li').each(function() {
+						if ($(this).data('index') != index) {
+							Tab.closeTab($(this));
+						} else {
+							return false;
+						}
+					});
 				}
 			},
 			refresh: {
@@ -120,18 +146,7 @@ $(function() {
 		}
 	});
 });
-// iframe高度自适应
-function changeFrameHeight(ifm) {
-	ifm.height = document.documentElement.clientHeight - 118;
-}
-function resizeFrameHeight() {
-	$('.tab_iframe').css('height', document.documentElement.clientHeight - 118);
-	$('md-tab-content').css('left', '0');
-}
-window.onresize = function(){
-	resizeFrameHeight();
-}
-// 选项卡操作
+// 选项卡对象
 var Tab = {
 	addTab: function(title, url) {
 		var index = url.replace('.', '_');
@@ -145,6 +160,10 @@ var Tab = {
 			$('.iframe').removeClass('cur');
 			var iframe = '<div id="iframe_' + index + '" class="iframe cur"><iframe class="tab_iframe" src="' + url + '" width="100%" frameborder="0" scrolling="auto" onload="changeFrameHeight(this)"></iframe></div>';
 			$('.content_main').append(iframe);
+			initScrollShow();
+			$('.content_tab>ul').animate({scrollLeft: document.getElementById('tabs').scrollWidth - document.getElementById('tabs').clientWidth}, 200, function() {
+				initScrollState();
+			});
 		} else {
 			$('#tab_' + index).click();
 		}
@@ -161,5 +180,25 @@ var Tab = {
 			$('#iframe_' + index).remove();
 			$item.remove();
 		}
+		initScrollShow();
+	}
+}
+function initScrollShow() {
+	if (document.getElementById('tabs').scrollWidth > document.getElementById('tabs').clientWidth) {
+		$('.content_tab').addClass('scroll');
+	} else {
+		$('.content_tab').removeClass('scroll');
+	}
+}
+function initScrollState() {
+	if ($('.content_tab>ul').scrollLeft() == 0) {
+		$('.tab_left>a').removeClass('active');
+	} else {
+		$('.tab_left>a').addClass('active');
+	}
+	if (($('.content_tab>ul').scrollLeft() + document.getElementById('tabs').clientWidth) >= document.getElementById('tabs').scrollWidth) {
+		$('.tab_right>a').removeClass('active');
+	} else {
+		$('.tab_right>a').addClass('active');
 	}
 }
