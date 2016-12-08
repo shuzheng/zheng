@@ -40,6 +40,12 @@
             <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/tbschedule-3.2.8-SNAPSHOT.jar
             </systemPath>
         </dependency>
+        <!-- rocketmq -->
+        <dependency>
+            <groupId>com.alibaba.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>3.6.2.Final</version>
+        </dependency>
     </dependencies>
 
     <profiles>

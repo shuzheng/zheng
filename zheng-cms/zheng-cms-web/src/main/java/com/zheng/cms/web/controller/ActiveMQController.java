@@ -37,7 +37,7 @@ public class ActiveMQController extends BaseController {
 		User user = null;
 		for (int i = 1; i <= 1000; i ++) {
 			user = new User();
-			user.setUsername("用户" + i);
+			user.setUsername(i + "");
 			user.setPassword("123456");
 			user.setNickname("昵称");
 			user.setSex(1);
