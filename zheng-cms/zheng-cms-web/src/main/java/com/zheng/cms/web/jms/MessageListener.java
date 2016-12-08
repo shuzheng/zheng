@@ -12,6 +12,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import javax.jms.Message;
+import javax.jms.Session;
 import javax.jms.TextMessage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,8 +31,8 @@ public class MessageListener extends MessageListenerAdapter {
 	@Autowired
 	UserService userService;
 
-	@JmsListener(containerFactory = "connectionFactory", destination = "defaultQueueDestination")
-	public void processOrder(final Message message) {
+	@JmsListener(destination="defaultQueueDestination",concurrency="5-10")
+	public void processOrder(final Message message, Session session) {
 		// 使用线程池多线程处理
 		threadPoolTaskExecutor.execute(new Runnable() {
 			public void run() {

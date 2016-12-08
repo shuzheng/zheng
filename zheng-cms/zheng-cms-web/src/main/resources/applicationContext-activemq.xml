@@ -48,6 +48,10 @@
 		<!--<property name="messageListener" ref="defaultQueueMessageListener"/>-->
 		<!--&lt;!&ndash;<property name="concurrency" value="4-10"/>&ndash;&gt;-->
 	<!--</bean>-->
+
+	<bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
+		<property name="connectionFactory" ref="connectionFactory"/>
+	</bean>
 	<jms:annotation-driven/>
 
 </beans>
