@@ -61,8 +61,8 @@ $(function() {
 			});
 		}
 		// 滚动到可视区域:在右侧
-		if(($('.content_tab>ul').scrollLeft() + document.getElementById('tabs').clientWidth) < ($(this).position().left + $(this).width())) {
-			var left = ($(this).position().left + $(this).width()) - document.getElementById('tabs').clientWidth;
+		if(($(this).position().left + $(this).width() - marginLeft) > document.getElementById('tabs').clientWidth) {
+			var left = $('.content_tab>ul').scrollLeft() + (($(this).position().left + $(this).width() - marginLeft) - document.getElementById('tabs').clientWidth);
 			$('.content_tab>ul').animate({scrollLeft: left}, 200, function() {
 				initScrollState();
 			});
