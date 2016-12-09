@@ -87,7 +87,7 @@
                         <contextPath>/zheng-ucenter-home</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>8080</port>
+                        <port>4441</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>

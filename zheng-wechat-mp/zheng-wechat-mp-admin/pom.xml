@@ -87,7 +87,7 @@
                         <contextPath>/zheng-wechat-mp-admin</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>8080</port>
+                        <port>5551</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>

@@ -95,7 +95,7 @@
                         <contextPath>/zheng-oss-web</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>8080</port>
+                        <port>7771</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>

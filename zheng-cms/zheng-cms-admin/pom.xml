@@ -31,6 +31,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-upms-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -80,7 +85,7 @@
                         <contextPath>/zheng-cms-admin</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>8081</port>
+                        <port>2222</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>

@@ -8,34 +8,34 @@ zheng
 |    ├── zheng-upms-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-upms-service -- 业务逻辑
 |    ├── zheng-upms-client -- SSO登录客户端
-|    └── zheng-upms-server -- 系统及SSO服务端
+|    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-cms-service -- 业务逻辑
-|    ├── zheng-cms-search -- 搜索服务
-|    ├── zheng-cms-job -- 消息队列、任务调度等
-|    ├── zheng-cms-admin -- 后台管理
-|    └── zheng-cms-web -- 网站前台
+|    ├── zheng-cms-search -- 搜索服务[端口:2221]
+|    ├── zheng-cms-admin -- 后台管理[端口:2222]
+|    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
+|    └── zheng-cms-web -- 网站前台[端口:2224]
 ├── zheng-pay -- 支付系统
 |    ├── zheng-pay-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-pay-service -- 业务逻辑
 |    ├── zheng-pay-sdk -- 开发工具包
-|    ├── zheng-pay-admin -- 后台管理
-|    └── zheng-pay-web -- 演示示例
+|    ├── zheng-pay-admin -- 后台管理[端口:3331]
+|    └── zheng-pay-web -- 演示示例[端口:3332]
 ├── zheng-ucenter -- 用户系统
 |    ├── zheng-ucenter-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-ucenter-service -- 业务逻辑
-|    └── zheng-ucenter-home -- 网站前台
+|    └── zheng-ucenter-home -- 网站前台[端口:4441]
 |── zheng-wechat-mp -- 微信公众号管理系统
 |    ├── zheng-wechat-mp-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-wechat-mp-service -- 业务逻辑
-|    └── zheng-wechat-mp-admin -- 后台管理
+|    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 ├── zheng-api -- 接口系统
 |    ├── zheng-api-sdk -- 开发工具包
-|    └── zheng-api-example -- 演示示例
+|    └── zheng-api-example -- 演示示例[端口:6661]
 └── zheng-oss -- 对象存储系统
      ├── zheng-oss-sdk -- 开发工具包
-     └── zheng-oss-web -- 管理界面
+     └── zheng-oss-web -- 管理界面[端口:7771]
 ```
 
 # 后端技术:
@@ -86,6 +86,16 @@ zheng
 * Navicat for MySQL: 数据库客户端管理
 * IntelliJ IDEA: 开发IDE
 * PowerDesigner: 建模工具
+
+# 开发环境搭建:
+## 修改本地Host
+* 127.0.0.1	upms.zhangshuzheng.cn
+* 127.0.0.1	cms.zhangshuzheng.cn
+* 127.0.0.1	pay.zhangshuzheng.cn
+* 127.0.0.1	ucenter.zhangshuzheng.cn
+* 127.0.0.1	wechat.zhangshuzheng.cn
+* 127.0.0.1	api.zhangshuzheng.cn
+* 127.0.0.1	oss.zhangshuzheng.cn
 
 # 资源链接
 * Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")

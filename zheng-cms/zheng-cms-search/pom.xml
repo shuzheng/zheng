@@ -80,7 +80,7 @@
                         <contextPath>/zheng-cms-search</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>8083</port>
+                        <port>2221</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>

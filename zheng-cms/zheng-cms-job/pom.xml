@@ -80,7 +80,7 @@
                         <contextPath>/zheng-cms-job</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>8082</port>
+                        <port>2223</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>
