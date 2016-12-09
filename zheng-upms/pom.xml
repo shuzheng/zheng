@@ -21,7 +21,7 @@
     <modules>
         <module>zheng-upms-dao</module>
         <module>zheng-upms-service</module>
-        <module>zheng-upms-admin</module>
         <module>zheng-upms-client</module>
+        <module>zheng-upms-server</module>
     </modules>
 </project>
