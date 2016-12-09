@@ -4,10 +4,11 @@
 ``` lua
 zheng
 ├── zheng-common -- 公共模块
-├── zheng-upms -- 通用用户权限系统
+├── zheng-upms -- 用户权限管理系统
 |    ├── zheng-upms-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-upms-service -- 业务逻辑
-|    └── zheng-upms-admin -- 后台管理
+|    ├── zheng-upms-client -- SSO登录客户端
+|    └── zheng-upms-server -- 系统及SSO服务端
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-dao -- 数据库MyBatisGenerator操作
 |    ├── zheng-cms-service -- 业务逻辑
