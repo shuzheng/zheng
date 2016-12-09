@@ -94,4 +94,4 @@ zheng
 * Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
 
 # 数据模型
-![数据库模型](DataModelDiagram/zheng.png)
+![数据库模型](project-datamodel/zheng.png)
