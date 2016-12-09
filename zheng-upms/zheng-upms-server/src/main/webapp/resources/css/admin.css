@@ -125,8 +125,8 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 .content_tab>ul>li>a{display:block; height: 48px; line-height: 48px;color:rgba(255, 255, 255, 0.9);padding:0 28px;transition:background-color .35s cubic-bezier(.35,0,.25,1);border-bottom:none;position: relative;}
 .content_tab>ul>li>a:active{background:rgba(255, 255, 255, 0.1);}
 .content_tab>ul>.cur>a{/*border-bottom:3px solid #FFEB3B;*/color:#fff;}
-.content_tab>ul>li>a:after{content:"";position:absolute;bottom:0;left:50%;right:50%;width:0;border-bottom:3px solid #FFEB3B;transition:all linear .15s}
-.content_tab>ul>.cur>a:after{left:0;bottom:1px;width:100%;opacity:1;transition:all linear .15s}
+.content_tab>ul>li>a:after{content:"";position:absolute;bottom:0;left:50%;right:50%;width:0;border-bottom:3px solid #FFEB3B;transition:all linear .2s}
+.content_tab>ul>.cur>a:after{left:0;bottom:1px;width:100%;opacity:1;transition:all linear .2s}
 
 .content_main{height: calc(100% - 48px);}
 .content_main>.cur{display:block;}
