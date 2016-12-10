@@ -64,6 +64,24 @@
     </filter-mapping>
     -->
 
+    <!-- zhang-upms-client -->
+    <filter>
+        <filter-name>zheng-upms-client</filter-name>
+        <filter-class>com.zheng.upms.client.filter.SSOFilter</filter-class>
+        <init-param>
+            <param-name>system_name</param-name>
+            <param-value>zheng-cms-admin</param-value>
+        </init-param>
+        <init-param>
+            <param-name>sso_server_url</param-name>
+            <param-value>http://upms.zhangshuzheng.cn:1111</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>zheng-upms-client</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- Druid连接池监控页面 -->
     <servlet>
         <servlet-name>DruidStatView</servlet-name>

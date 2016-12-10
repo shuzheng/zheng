@@ -32,6 +32,7 @@ public class SSOFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
+        _log.info("浏览器sessionId：{}", session.getId());
 
         // 已登录
         if (null != session.getAttribute("isLogin")) {
@@ -40,20 +41,36 @@ public class SSOFilter implements Filter {
         }
         // 未登录
         else {
-            // 跳转sso-server认证中心，并带上回调地址和系统名称参数
-            // 认证中心地址
-            StringBuffer sso_server_url = new StringBuffer(filterConfig.getInitParameter(SSO_SERVER_URL));
-            // 参数system_name
-            sso_server_url.append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
-            // 参数backurl
-            StringBuffer backurl = request.getRequestURL();
-            String queryString = request.getQueryString();
-            if (!StringUtils.isEmpty(queryString)) {
-                backurl.append("?").append(queryString);
+            // 判断是否有是认证中心验证后回跳
+            String token = request.getParameter("token");
+            // 无token，跳到认证中心登录
+            if (StringUtils.isEmpty(token)) {
+                // 跳转sso-server认证中心，并带上回调地址和系统名称参数
+                // 认证中心地址
+                StringBuffer sso_server_url = new StringBuffer(filterConfig.getInitParameter(SSO_SERVER_URL));
+                sso_server_url.append("/sso");
+                // 参数system_name
+                sso_server_url.append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
+                // 参数backurl
+                StringBuffer backurl = request.getRequestURL();
+                String queryString = request.getQueryString();
+                if (!StringUtils.isEmpty(queryString)) {
+                    backurl.append("?").append(queryString);
+                }
+                sso_server_url.append("&").append("backurl").append("=").append(URLEncoder.encode(backurl.toString(), "utf-8"));
+                _log.info("未登录，跳转认证中心:{}", sso_server_url);
+                response.sendRedirect(sso_server_url.toString());
             }
-            sso_server_url.append("&").append("backurl").append("=").append(URLEncoder.encode(backurl.toString(), "utf-8"));
-            _log.info("未登录，跳转认证中心:{}", sso_server_url);
-            response.sendRedirect(sso_server_url.toString());
+            // 已拿到token
+            else {
+                // HttpPost去校验token
+                // ... 默认校验正确
+
+                // token校验正确，创建局部会话
+                session.setAttribute("isLogin", true);
+                filterChain.doFilter(request, response);
+                return;
+            }
         }
 
     }

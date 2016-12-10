@@ -1,15 +1,8 @@
 package com.zheng.cms.admin.controller;
 
 /**
- * 控制器基类
- * @author shuzheng
- * @date 2016年7月7日 上午10:08:47
+ * Created by shuzheng on 2016/12/10.
  */
 public class BaseController {
-	
-	public static final String RESULT = "result";
-	public static final String DATA = "data";
-	public static final String SUCCESS = "success";
-	public static final String FAILED = "failed";
 
 }
