@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-service</artifactId>
+            <artifactId>zheng-common</artifactId>
             <version>1.0.0</version>
             <type>jar</type>
         </dependency>

@@ -46,6 +46,12 @@
             <artifactId>rocketmq-client</artifactId>
             <version>3.6.2.Final</version>
         </dependency>
+        <!-- zheng-upms-client -->
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-upms-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>
