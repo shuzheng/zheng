@@ -13,7 +13,7 @@
         <persistence strategy="localTempSwap"/>
     </defaultCache>
     <cache
-            name="ehcache"
+            name="zheng-cms-ehcache"
             eternal="false"
             timeToIdleSeconds="120"
             timeToLiveSeconds="300"
