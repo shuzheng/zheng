@@ -31,6 +31,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        <!-- zheng-upms-client -->
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-upms-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>
