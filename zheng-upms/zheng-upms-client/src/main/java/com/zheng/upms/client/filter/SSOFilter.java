@@ -68,6 +68,8 @@ public class SSOFilter implements Filter {
 
                 // token校验正确，创建局部会话
                 session.setAttribute("isLogin", true);
+                // 移除url中的token参数
+                // ...
                 filterChain.doFilter(request, response);
                 return;
             }
