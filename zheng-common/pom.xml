@@ -191,6 +191,12 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
+        <!-- java mail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
         <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
