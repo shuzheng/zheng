@@ -1,6 +1,17 @@
 package com.zheng.upms.client.filter;
 
+import com.zheng.common.util.RedisUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shuzheng on 2016/12/10.
@@ -32,47 +45,60 @@ public class SSOFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
-        _log.info("浏览器sessionId：{}", session.getId());
 
         // 已登录
-        if (null != session.getAttribute("isLogin")) {
+        if (!StringUtils.isEmpty(RedisUtil.get(session.getId() + "_token"))) {
             filterChain.doFilter(request, response);
             return;
         }
         // 未登录
         else {
-            // 判断是否有是认证中心验证后回跳
+            // 认证中心地址
+            StringBuffer sso_server_url = new StringBuffer(filterConfig.getInitParameter(SSO_SERVER_URL));
+            sso_server_url.append("/sso");
+            // 判断是否有认证中心token
             String token = request.getParameter("token");
-            // 无token，跳到认证中心登录
-            if (StringUtils.isEmpty(token)) {
-                // 跳转sso-server认证中心，并带上回调地址和系统名称参数
-                // 认证中心地址
-                StringBuffer sso_server_url = new StringBuffer(filterConfig.getInitParameter(SSO_SERVER_URL));
-                sso_server_url.append("/sso");
-                // 参数system_name
-                sso_server_url.append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
-                // 参数backurl
-                StringBuffer backurl = request.getRequestURL();
-                String queryString = request.getQueryString();
-                if (!StringUtils.isEmpty(queryString)) {
-                    backurl.append("?").append(queryString);
-                }
-                sso_server_url.append("&").append("backurl").append("=").append(URLEncoder.encode(backurl.toString(), "utf-8"));
-                _log.info("未登录，跳转认证中心:{}", sso_server_url);
-                response.sendRedirect(sso_server_url.toString());
-            }
             // 已拿到token
-            else {
+            if (!StringUtils.isEmpty(token)) {
                 // HttpPost去校验token
-                // ... 默认校验正确
+                try {
+                    HttpClient httpclient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost(sso_server_url.toString() + "/token");
 
-                // token校验正确，创建局部会话
-                session.setAttribute("isLogin", true);
-                // 移除url中的token参数
-                // ...
-                filterChain.doFilter(request, response);
-                return;
+                    List<NameValuePair> nvps = new ArrayList<>();
+                    nvps.add(new BasicNameValuePair("token", token));
+                    httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+
+                    HttpResponse httpResponse = httpclient.execute(httpPost);
+                    if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                        HttpEntity httpEntity = httpResponse.getEntity();
+                        String result = EntityUtils.toString(httpEntity);
+                        if (result.equals("success")) {
+                            // token校验正确，创建局部会话
+                            RedisUtil.set(session.getId() + "_token", token);
+                            // 移除url中的token参数
+                            // TODO
+                            // 返回请求资源
+                            filterChain.doFilter(request, response);
+                            return;
+                        }
+                    }
+                } catch (IOException e) {
+                    _log.error("验证token失败：", e);
+                }
+                // 跳转认证中心登录页
             }
+            // 无token，跳转sso-server认证中心登录，并带上回调地址和系统名称参数
+            sso_server_url.append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
+            StringBuffer backurl = request.getRequestURL();
+            String queryString = request.getQueryString();
+            if (!StringUtils.isEmpty(queryString)) {
+                backurl.append("?").append(queryString);
+            }
+            sso_server_url.append("&").append("backurl").append("=").append(URLEncoder.encode(backurl.toString(), "utf-8"));
+
+            _log.info("未登录，跳转认证中心:{}", sso_server_url);
+            response.sendRedirect(sso_server_url.toString());
         }
 
     }
