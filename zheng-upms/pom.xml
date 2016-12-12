@@ -23,5 +23,7 @@
         <module>zheng-upms-service</module>
         <module>zheng-upms-client</module>
         <module>zheng-upms-server</module>
+        <module>zheng-upms-app1</module>
+        <module>zheng-upms-app2</module>
     </modules>
 </project>
