@@ -1,0 +1,9 @@
+<script type="text/javascript">
+var language = navigator.browserLanguage ? navigator.browserLanguage : navigator.language;
+if (language.indexOf('en') > -1)
+	document.location.href = 'i18n/en/index.html';
+else if (language.indexOf('zh') > -1)
+	document.location.href = 'i18n/zh-cn/index.html';
+else
+	document.location.href = 'english.htm';
+</script>

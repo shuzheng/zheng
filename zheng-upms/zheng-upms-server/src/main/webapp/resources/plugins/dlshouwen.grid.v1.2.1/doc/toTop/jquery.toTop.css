@@ -1,0 +1,13 @@
+.back-to-top {
+	position: fixed;
+	_position: absolute;
+	float: left;
+	display: none;
+	right: 15px;
+	bottom: 140px;
+	_bottom: 0px;
+	cursor: pointer;
+	z-index: 99;
+	font-size:40px;
+	color:#666;
+}

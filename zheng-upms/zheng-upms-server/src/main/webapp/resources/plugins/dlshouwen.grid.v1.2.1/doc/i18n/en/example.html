@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - Example</title>
+	<meta name="Keywords" content="DaLianShouWen Grid,DLShouWen Grid,Responsive Grid,jQuery Grid,Open Source Grid"/>
+	<meta name="Description" content="DaLian ShouWen Grid(DLShouWen Grid) is a responsive grid by DaLian ShouWen Technology Co., it's based on MIT open source licenses. It's with cross brower support, procedures clear, powerful, efficient load, and many other good qualities, it perhaps the best known reponstive grid controls."/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- DLShouWen Grid -->
+	<script type="text/javascript" src="../../../dlshouwen.grid.min.js"></script>
+	<script type="text/javascript" src="../../../i18n/en.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-cn.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-tw.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dlshouwen.grid.min.css" />
+	<!-- datePicker -->
+	<script type="text/javascript" src="../../../dependents/datePicker/WdatePicker.js" defer="defer"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/WdatePicker.css" />
+	<link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/default/datepicker.css" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- syntaxHighLighter -->
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushXml.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushJScript.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shCore.css" />
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shThemeDefault.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	//Code Table
+	var sex = {1:'Male', 2:'Female'};
+	var degree = {1:'Elementary School', 2:'Middle School', 3:'High School', 4:'College', 5:'Bachelor', 6:'Master', 7:'Doctor', 8:'Others'};
+	//Simulated Data (Salary Between $6000 on $12000, Date Between 1980-01-01 00::00:00 on 2014-10-01 00:00:00)
+	var datas = new Array();
+	for(var i=0; i<186; i++){
+		var user = new Object();
+		user.user_id = 'user_'+i;
+		user.user_code = 'user_'+i;
+		user.user_name = 'Fake User No. '+(Math.floor(Math.random()*1000)+10000);
+		user.sex = (Math.floor(Math.random()*2)+1);
+		user.salary = (Math.floor(Math.random()*6000)+6000);
+		user.degree = (Math.floor(Math.random()*8)+1);
+		user.time = new Date(Math.floor(Math.random()*1096588800000)+315504000000);
+		user.time_stamp_s = Math.floor((Math.floor(Math.random()*1096588800000)+315504000000)/1000);
+		user.time_stamp_ms = Math.floor(Math.random()*1096588800000)+315504000000;
+		user.string_date = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd');
+		user.string_time = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd hh:mm:ss');
+		datas.push(user);
+	}
+	$(function(){
+		//Put Color on Grammar
+		SyntaxHighlighter.config.clipboardSwf = '../../syntaxHighLighter/scripts/clipboard.swf';
+		SyntaxHighlighter.config.strings.expandSource = 'Show Source Code';
+		SyntaxHighlighter.config.strings.viewSource = 'View Source Code';
+		SyntaxHighlighter.config.strings.copyToClipboard = 'Copy To Clipboard';
+		SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'Copy To Clipboard Success!';
+		SyntaxHighlighter.config.strings.print = 'Print';
+		SyntaxHighlighter.all();
+		//Pin the Left Sider
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+		//Show or Hide the Left Sider's Sub Menu
+		$(".left-sider>ul>li>a").toggle(function(){
+			$(this).children('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+			$(this).next('ul').slideDown(200);
+		}, function(){
+			$(this).children('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+			$(this).next('ul').slideUp(200);
+		});
+		//All Close Except the First Menu
+		$(".left-sider>ul>li>ul:not(:first)").hide();
+		$(".left-sider>ul>li>a:first").click();
+	});
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Tools</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
+					</li>
+					<li id="nav_example" class="active">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;Example</a>
+					</li>
+					<li id="nav_reference">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Reference</a>
+					</li>
+					<li id="nav_download">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;Download</a>
+					</li>
+					<li id="nav_about">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;About</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;Language</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="javascript:;">English</a></li>
+							<li><a href="../zh-cn/example.html">Simple Chinese</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;Donate</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li>
+						<a href="#2.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Basic</a>
+						<ul>
+							<li><a href="#2.1.1">Normal Load Datas</a></li>
+							<li><a href="#2.1.2">Responsive</a></li>
+							<li><a href="#2.1.12">Fix Column Width<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#2.1.3">Custom Layout</a></li>
+							<li><a href="#2.1.4">Custom Style</a></li>
+							<li><a href="#2.1.5">Sort In Page</a></li>
+							<li><a href="#2.1.6">Code Table</a></li>
+							<li><a href="#2.1.7">Format Data</a></li>
+							<li><a href="#2.1.8">Checkbox<span class="label label-success label-doc">Update</span></a></li>
+							<li><a href="#2.1.9">Resolution</a></li>
+							<li><a href="#2.1.10">Internationalization</a></li>
+							<li><a href="#2.1.11">Event</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#2.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Advance</a>
+						<ul>
+							<li><a href="#2.2.1">Ajax Load All Data</a></li>
+							<li><a href="#2.2.2">Ajax Load Data by Page</a></li>
+							<li><a href="#2.2.3">Custom Parameters</a></li>
+							<li><a href="#2.2.4">Print</a></li>
+							<li><a href="#2.2.5">Export</a></li>
+							<li><a href="#2.2.6">Fast Query</a></li>
+							<li><a href="#2.2.7">Advance Query</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="2.1" class="title">Basic</div>
+				<hr />
+				<div id="2.1.1" class="sub-title">Normal Load Datas</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports <code>normal data loading mode</code>, put <code>JSON data</code> to the attribute <code>datas</code> of the initialization parameter, configured attributes (like display per page number) then <a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> will paging and loading those datas in automatically.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_1 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center'},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center'}
+];
+var gridOption_2_1_1 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_1,
+	gridContainer : 'gridContainer_2_1_1',
+	toolbarContainer : 'gridToolBarContainer_2_1_1',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_1);
+$(function(){
+	grid_2_1_1.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_1 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center'},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_1 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_1,
+			 		gridContainer : 'gridContainer_2_1_1',
+					toolbarContainer : 'gridToolBarContainer_2_1_1',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_1);
+			 	$(function(){
+			 		grid_2_1_1.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_1" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_1" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.2" class="sub-title">Responsive</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> trough the <code>hide</code>, <code>hideType</code>, <code>extra</code> three parameters to complete the response table of column configuration. <a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> based on the <code>Bootstrap</code> implementation, for each size of the terminal media objects display different columns, you can define the terminal display for each column, for example, you can make a column display in the Pad terminal, but in the Phone terminal, this column not display in columns but display in the expansion column. The expanded use of click prefix column in the "+" button to view.</p>
+				<p>If the definition needs to adjust the terminal size, please modify the corresponding media object in <code>Bootstrap</code> size parameters, <a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> through Bootstrap's <code>visible-lg</code>, <code>visible-md</code>, <code>visible-sm</code>, <code>visible-xs</code> parameters to achieve the response control table.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_2 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs'},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs'},
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs'},
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+];
+var gridOption_2_1_2 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_2,
+	gridContainer : 'gridContainer_2_1_2',
+	toolbarContainer : 'gridToolBarContainer_2_1_2',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_2);
+$(function(){
+	grid_2_1_2.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_2 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs'},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs'},
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs'},
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+			 	];
+			 	var gridOption_2_1_2 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_2,
+			 		gridContainer : 'gridContainer_2_1_2',
+					toolbarContainer : 'gridToolBarContainer_2_1_2',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_2);
+			 	$(function(){
+			 		grid_2_1_2.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_2" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_2" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.12" class="sub-title">Fix Column Width<span class="label label-danger label-doc">New</span></div>
+				<p>You can trough the <code>width</code> parameter to fix one more columns width, if the table width less than the sum of the columns, this parameter will be invalid. You also can though the <code>extraWidth</code> parameter to fix the extra column's width. </p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_12 = [
+	{id:'user_code', title:'User Code', width:80, type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'User Name', width:160, type:'string', columnClass:'text-center'},
+	{id:'sex', title:'Sex', width:50, type:'string', codeTable:sex, columnClass:'text-center'},
+	{id:'salary', title:'Salary', width:60, type:'number', format:'#,###.00', columnClass:'text-center'},
+	{id:'degree', title:'Degree', width:140, type:'string', codeTable:degree, columnClass:'text-center'},
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+];
+var gridOption_2_1_12 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	extraWidth : 40,
+	columns : gridColumns_2_1_12,
+	gridContainer : 'gridContainer_2_1_12',
+	toolbarContainer : 'gridToolBarContainer_2_1_12',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_12 = $.fn.dlshouwen.grid.init(gridOption_2_1_12);
+$(function(){
+	grid_2_1_12.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_12 = [
+					{id:'user_code', title:'User Code', width:80, type:'string', columnClass:'text-center'},
+					{id:'user_name', title:'User Name', width:160, type:'string', columnClass:'text-center'},
+					{id:'sex', title:'Sex', width:50, type:'string', codeTable:sex, columnClass:'text-center'},
+					{id:'salary', title:'Salary', width:60, type:'number', format:'#,###.00', columnClass:'text-center'},
+					{id:'degree', title:'Degree', width:140, type:'string', codeTable:degree, columnClass:'text-center'},
+					{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+					{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+				];
+				var gridOption_2_1_12 = {
+					lang : 'en',
+					ajaxLoad : false,
+					exportFileName : 'User List',
+					datas : datas,
+					extraWidth : 40,
+					columns : gridColumns_2_1_12,
+					gridContainer : 'gridContainer_2_1_12',
+					toolbarContainer : 'gridToolBarContainer_2_1_12',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_12 = $.fn.dlshouwen.grid.init(gridOption_2_1_12);
+				$(function(){
+					grid_2_1_12.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_12" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_12" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.3" class="sub-title">Custom Layout</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> toolbar container and table container is separate, and the need to separately control by means of <code>gridContainer</code> and <code>toolbarContainer</code> in the grid options, if you need to make the tool bar above of table, you only need to be tool bar container DOM above the table container DOM.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:xml;">&lt;div id="gridToolBarContainer_2_1_3" class="dlshouwen-grid-toolbar-container"&gt;&lt;/div&gt;
+&lt;div id="gridContainer_2_1_3" class="dlshouwen-grid-container"&gt;&lt;/div&gt;</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_3 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center'},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_3 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_3,
+			 		gridContainer : 'gridContainer_2_1_3',
+					toolbarContainer : 'gridToolBarContainer_2_1_3',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_3 = $.fn.dlshouwen.grid.init(gridOption_2_1_3);
+			 	$(function(){
+			 		grid_2_1_3.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridToolBarContainer_2_1_3" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="gridContainer_2_1_3" class="dlshouwen-grid-container"></div>
+				<div id="2.1.4" class="sub-title">Custom Style</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> style sheet in the <code>dlshouwen.grid.css</code> file, you can customize it, also can through the <code>tableStyle</code>, <code>tableClass</code>, <code>headerStyle</code>, <code>headerClass</code>, <code>columnStyle</code>, <code>columnClass</code> attributes separately to custom table style. </p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_4 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'}
+];
+var gridOption_2_1_4 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_4,
+	gridContainer : 'gridContainer_2_1_4',
+	toolbarContainer : 'gridToolBarContainer_2_1_4',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_4 = $.fn.dlshouwen.grid.init(gridOption_2_1_4);
+$(function(){
+	grid_2_1_4.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_4 = [
+					{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'}
+			 	];
+			 	var gridOption_2_1_4 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_4,
+			 		gridContainer : 'gridContainer_2_1_4',
+					toolbarContainer : 'gridToolBarContainer_2_1_4',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_4 = $.fn.dlshouwen.grid.init(gridOption_2_1_4);
+			 	$(function(){
+			 		grid_2_1_4.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_4" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_4" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.5" class="sub-title">Sort In Page</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> support sort in current page. When the data is loading completed, you can click on the header sorting current page datas, sorting only for current page datas. Sorting support date, numerical, and support switching between asc, desc, to restore the original order in three ways. </p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_5 = [
+	{id:'user_code', title:'User Code (Click Here To Sort)', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'User Name (Click Here To Sort)', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'Sex (Click Here To Sort)', type:'string', codeTable:sex, columnClass:'text-center'},
+	{id:'salary', title:'Salary (Click Here To Sort)', type:'number', format:'#,###.00', columnClass:'text-center'}
+];
+var gridOption_2_1_5 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_5,
+	gridContainer : 'gridContainer_2_1_5',
+	toolbarContainer : 'gridToolBarContainer_2_1_5',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_5 = $.fn.dlshouwen.grid.init(gridOption_2_1_5);
+$(function(){
+	grid_2_1_5.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_5 = [
+					{id:'user_code', title:'User Code (Click Here To Sort)', type:'string', columnClass:'text-center'},
+					{id:'user_name', title:'User Name (Click Here To Sort)', type:'string', columnClass:'text-center'},
+					{id:'sex', title:'Sex (Click Here To Sort)', type:'string', codeTable:sex, columnClass:'text-center'},
+					{id:'salary', title:'Salary (Click Here To Sort)', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_5 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_5,
+			 		gridContainer : 'gridContainer_2_1_5',
+					toolbarContainer : 'gridToolBarContainer_2_1_5',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_5 = $.fn.dlshouwen.grid.init(gridOption_2_1_5);
+			 	$(function(){
+			 		grid_2_1_5.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_5" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_5" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.6" class="sub-title">Code Table</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports code table solutions, such as there's a gender field, 1 represents male, 2 represents female, if you not though code table solutions, you need relative some tables to show male or female, or write code like this <code>return value==1?'male':'female'</code> to complete solution, so we include attribute <code>codeTable</code>, pass a JSON Object to this attribute, key represent code table key, value represent code table value, code like this <code>{1:'male', 2:'female'}</code>, then <a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> will display text by this JSON Object. </p>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> in the query for code table has analytic very outstanding, in the fast query or advanced query, if this field was code table field, then we will through the select element for users to select, it's convenient and quick for the user by enumerating the ways to complete the query operation. </p>
+				<p class="attention">Note: If the contents of the cell in the code table definition JSON object does not return a value, we will output the raw data, if you need analysis of customized higher, please refer to the <code>resolution</code> property. </p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_6 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', columnStyle:'background:#00a2ca;color:white;', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center'}
+];
+var gridOption_2_1_6 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_6,
+	gridContainer : 'gridContainer_2_1_6',
+	toolbarContainer : 'gridToolBarContainer_2_1_6',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_6 = $.fn.dlshouwen.grid.init(gridOption_2_1_6);
+$(function(){
+	grid_2_1_6.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_6 = [
+					{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+					{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+					{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', columnStyle:'background:#00a2ca;color:white;', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_6 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_6,
+			 		gridContainer : 'gridContainer_2_1_6',
+					toolbarContainer : 'gridToolBarContainer_2_1_6',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_6 = $.fn.dlshouwen.grid.init(gridOption_2_1_6);
+			 	$(function(){
+			 		grid_2_1_6.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_6" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_6" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.7" class="sub-title">Format Data</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> for some special data types can be completed automatically formatted. </p>
+				<p>Numeric fields through the <code>format</code> property can be completed numberic format, format the script by analytical <code>#</code> and <code>0</code> ways, such as formatting amount, then the analytical field content is: <code>#,###.00</code>, formatted content like this: <code>12,345,678.90</code>. </p>
+				<p>Date fields through the <code>format</code> property can be completed date format, the format requirements formatted script similar to <code>SimpleDateFormat</code> in <code>JAVA</code> language, complete date format is: <code>yyyy-MM-dd hh:mm:ss.S</code>, formatted content like this: <code>2014-10-20 16:41:16.188</code>. </p>
+				<p>For a variety of date format, we provide diversity formatting ways, it can almost cover all the formatting of the date format. Formatted way through <code>type</code>, <code>format</code>, <code>otype</code>, <code>oformat</code> four parameters to complete, please refer to the reference to view how those parameters work. </p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_7 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center'},
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center'},
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center'},
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center'},
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'}
+];
+var gridOption_2_1_7 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_7,
+	gridContainer : 'gridContainer_2_1_7',
+	toolbarContainer : 'gridToolBarContainer_2_1_7',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_7 = $.fn.dlshouwen.grid.init(gridOption_2_1_7);
+$(function(){
+	grid_2_1_7.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_7 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center'},
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center'},
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center'},
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center'},
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_7 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_7,
+			 		gridContainer : 'gridContainer_2_1_7',
+					toolbarContainer : 'gridToolBarContainer_2_1_7',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_7 = $.fn.dlshouwen.grid.init(gridOption_2_1_7);
+			 	$(function(){
+			 		grid_2_1_7.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_7" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_7" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.8" class="sub-title">Checkbox<span class="label label-success label-doc">Update</span></div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports checkbox, when the <code>check</code> property is <code>true</code>, <a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> will display checkbox in the first column, after user choice those checkbox you can use method <code>getCheckedRecords</code> to get checked records, you can iterat those checked records to complete any operations. You can trough the <code>checkWidth</code> parameter to set the checkbox cell width. </p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_8 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center'}
+];
+var gridOption_2_1_8 = {
+	lang : 'en',
+	ajaxLoad : false,
+	check : true,
+	checkWidth : 40,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_8,
+	gridContainer : 'gridContainer_2_1_8',
+	toolbarContainer : 'gridToolBarContainer_2_1_8',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_8 = $.fn.dlshouwen.grid.init(gridOption_2_1_8);
+$(function(){
+	grid_2_1_8.load();
+});
+function getGrid_2_1_8CheckedRecordsLength(){
+	var recordCount = grid_2_1_8.getCheckedRecords().length;
+	alert('You selected '+recordCount+' datas.');
+}</pre>
+				<pre class="brush:xml;">&lt;button class="btn btn-primary btn-xs" onclick="getGrid_2_1_8CheckedRecordsLength();"&gt;
+	&lt;i class="fa fa-table"&gt;&lt;/i&gt;&nbsp;&nbsp;Get The Checked Datas Count
+&lt;/button&gt;</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_8 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_8 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		check : true,
+			 		checkWidth : 40,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_8,
+			 		gridContainer : 'gridContainer_2_1_8',
+					toolbarContainer : 'gridToolBarContainer_2_1_8',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_8 = $.fn.dlshouwen.grid.init(gridOption_2_1_8);
+			 	$(function(){
+			 		grid_2_1_8.load();
+			 	});
+			 	function getGrid_2_1_8CheckedRecordsLength(){
+			 		var recordCount = grid_2_1_8.getCheckedRecords().length;
+			 		alert('You selected '+recordCount+' datas.');
+			 	}
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_8" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_8" class="dlshouwen-grid-toolbar-container"></div>
+				<p>
+					Click This Button To Get The Checked Datas Count:
+					<button class="btn btn-primary btn-xs" onclick="getGrid_2_1_8CheckedRecordsLength();">
+						<i class="fa fa-table"></i>&nbsp;&nbsp;Get The Checked Datas Count
+					</button>
+				</p>
+				<div id="2.1.9" class="sub-title">Resolution</div>
+				<p>If the above reference content is still unable to complete your need, you can by setting the <code>resolution</code> property to complete custom parsing of the data, the <code>resolution</code> attribute defines of a <code>JS function</code>, this function will transfer line data, cell data parameters, through these parameters you can write custom parse code in this function to make this column display content that you want. </p>
+				<p>Resolution parameter usually used to customize the display of content or generate some operating button in the current cell.</p>
+				<p class="attention">Note: Due to the custom analysis may appear HTML tag in cell content, so in the export, query may not be resolute. </p>
+				<p class="attention">Note: Numnber of Parameters and sequence in callback method are different of version 1.1.8.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_9 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'operation', title:'Operation', type:'string', columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		content += '&lt;button class="btn btn-xs btn-default" onclick="alert(\'Edit User: '+record.user_name+'\');"&gt;&lt;i class="fa fa-edit"&gt;&lt;/i&gt;&nbsp;&nbsp;Edit&lt;/button&gt;';
+		content += '&nbsp;&nbsp;';
+		content += '&lt;button class="btn btn-xs btn-danger" onclick="alert(\'Delete User: '+record.user_name+'\');"&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&nbsp;&nbsp;Delete&lt;/button&gt;';
+		return content;
+	}}
+];
+var gridOption_2_1_9 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_9,
+	gridContainer : 'gridContainer_2_1_9',
+	toolbarContainer : 'gridToolBarContainer_2_1_9',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_9 = $.fn.dlshouwen.grid.init(gridOption_2_1_9);
+$(function(){
+	grid_2_1_9.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_9 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'operation', title:'Operation', type:'string', columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			content += '<button class="btn btn-xs btn-default" onclick="alert(\'Edit User: '+record.user_name+'\');"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</button>';
+			 			content += '&nbsp;&nbsp;';
+			 			content += '<button class="btn btn-xs btn-danger" onclick="alert(\'Delete User: '+record.user_name+'\');"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete</button>';
+			 			return content;
+			 		}}
+			 	];
+			 	var gridOption_2_1_9 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_9,
+			 		gridContainer : 'gridContainer_2_1_9',
+					toolbarContainer : 'gridToolBarContainer_2_1_9',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_9 = $.fn.dlshouwen.grid.init(gridOption_2_1_9);
+			 	$(function(){
+			 		grid_2_1_9.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_9" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_9" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.10" class="sub-title">Internationalization</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> support internationalization, we have pre <code>English [en]</code>, <code>Simplified Chinese [zh-cn]</code>, <code>Traditional Chinese [zh-tw]</code> three languages, introducing the JS file in the <code>i18n folder</code> to current page, then configuration the <code>lang</code> property in grid option to complete. </p>
+				<p>If you need a custom language, you can copy a language file to modify a new language by you need. </p>
+				<p><code>Code - English</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_10_1 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_10_1 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_10_1,
+	gridContainer : 'gridContainer_2_1_10_1',
+	toolbarContainer : 'gridToolBarContainer_2_1_10_1',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_10_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_1);
+$(function(){
+	grid_2_1_10_1.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_10_1 = [
+					{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	           		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	           		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+	           			var content = '';
+	           			if(value==1){
+	           				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+	           			}else{
+	           				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+	           			}
+	           			return content;
+	           		}},
+	           		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	           		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	           		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+				];
+				var gridOption_2_1_10_1 = {
+					lang : 'en',
+					ajaxLoad : false,
+					exportFileName : 'User List',
+					datas : datas,
+					columns : gridColumns_2_1_10_1,
+					gridContainer : 'gridContainer_2_1_10_1',
+					toolbarContainer : 'gridToolBarContainer_2_1_10_1',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_10_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_1);
+				$(function(){
+					grid_2_1_10_1.load();
+				});
+				</script>
+				<p><code>Demo - English</code>:</p>
+				<div id="gridContainer_2_1_10_1" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_10_1" class="dlshouwen-grid-toolbar-container"></div>
+				<p><code>Code - Simple Chinese</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_10_2 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_10_2 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_10_2,
+	gridContainer : 'gridContainer_2_1_10_2',
+	toolbarContainer : 'gridToolBarContainer_2_1_10_2',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_10_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_2);
+$(function(){
+	grid_2_1_10_2.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_10_2 = [
+					{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	           		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	           		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+	           			var content = '';
+	           			if(value==1){
+	           				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+	           			}else{
+	           				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+	           			}
+	           			return content;
+	           		}},
+	           		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	           		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	           		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+				];
+				var gridOption_2_1_10_2 = {
+					lang : 'zh-cn',
+					ajaxLoad : false,
+					exportFileName : 'User List',
+					datas : datas,
+					columns : gridColumns_2_1_10_2,
+					gridContainer : 'gridContainer_2_1_10_2',
+					toolbarContainer : 'gridToolBarContainer_2_1_10_2',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_10_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_2);
+				$(function(){
+					grid_2_1_10_2.load();
+				});
+				</script>
+				<p><code>Demo - Simple Chinese</code>:</p>
+				<div id="gridContainer_2_1_10_2" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_10_2" class="dlshouwen-grid-toolbar-container"></div>
+				<p><code>Code - Traditional Chinese</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_10_3 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_10_3 = {
+	lang : 'zh-tw',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns_2_1_10_3,
+	gridContainer : 'gridContainer_2_1_10_3',
+	toolbarContainer : 'gridToolBarContainer_2_1_10_3',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_10_3 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_3);
+$(function(){
+	grid_2_1_10_3.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_10_3 = [
+					{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	           		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	           		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+	           			var content = '';
+	           			if(value==1){
+	           				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+	           			}else{
+	           				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+	           			}
+	           			return content;
+	           		}},
+	           		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	           		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	           		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+				];
+				var gridOption_2_1_10_3 = {
+					lang : 'zh-tw',
+					ajaxLoad : false,
+					exportFileName : 'User List',
+					datas : datas,
+					columns : gridColumns_2_1_10_3,
+					gridContainer : 'gridContainer_2_1_10_3',
+					toolbarContainer : 'gridToolBarContainer_2_1_10_3',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_10_3 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_3);
+				$(function(){
+					grid_2_1_10_3.load();
+				});
+				</script>
+				<p><code>Demo - Traditional Chinese</code>:</p>
+				<div id="gridContainer_2_1_10_3" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_10_3" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.11" class="sub-title">Event</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports the extension of the cell, row, header, grid, expanding line of events, you can through the grid options to customize these events, please refer to the reference for detail. </p>
+				<p>This example code will be the integration of all events, for ease of reference, we output only recently <code>200</code> monitoring records in log console. In order to facilitate the display, we removed all the MouseMove (mouse) event log, avoid log records too much. </p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_1_11 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_11 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	check : true,
+	columns : gridColumns_2_1_11,
+	gridContainer : 'gridContainer_2_1_11',
+	toolbarContainer : 'gridToolBarContainer_2_1_11',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50],
+	onCellClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'. &lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onCellMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'. &lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onRowMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderClick : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseOver : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseMove : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'. &lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onHeaderMouseOut : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseDown : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseUp : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridClick : function(grid, e){
+		var log = '&lt;p&gt;Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridDblClick : function(grid, e){
+		var log = '&lt;p&gt;Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseOver : function(grid, e){
+		var log = '&lt;p&gt;Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseMove : function(grid, e){
+		var log = '&lt;p&gt;Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'. &lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onGridMouseOut : function(grid, e){
+		var log = '&lt;p&gt;Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseDown : function(grid, e){
+		var log = '&lt;p&gt;Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseUp : function(grid, e){
+		var log = '&lt;p&gt;Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'. &lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridComplete : function(grid){
+		var log = '&lt;p&gt;Table load complete. Table id: '+grid.option.id+'.&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onExtraOpen : function(record, grid, dataNo, row, extraCell, e){
+		var log = '&lt;p&gt;Extra row open trigger. Event type: '+e.type+', trigger row coordinates: '+dataNo+'.&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onExtraClose : function(record, grid, dataNo, row, extraCell, e){
+		var log = '&lt;p&gt;Extra row close trigger. Event type: '+e.type+', trigger row coordinates: '+dataNo+'.&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCheck : function(isChecked, record, grid, dataNo, row, extraCell, e){
+		var log = '&lt;p&gt;Check event trigger. Checked: '+isChecked+', trigger row coordinates: '+dataNo+'.&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	}
+};
+var grid_2_1_11 = $.fn.dlshouwen.grid.init(gridOption_2_1_11);
+$(function(){
+	grid_2_1_11.load();
+});
+//Append Log
+function appendLog_2_1_11(log){
+	if($('#log_2_1_11 p').length>=200){
+		$('#log_2_1_11 p:last').remove();
+	}
+	$('#log_2_1_11').prepend(log);
+}</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_11 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+					{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+					{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+						var content = '';
+						if(value==1){
+							content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+						}else{
+							content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+						}
+						return content;
+					}},
+					{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+					{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+					{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_1_11 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		exportFileName : 'User List',
+			 		datas : datas,
+			 		check : true,
+			 		columns : gridColumns_2_1_11,
+			 		gridContainer : 'gridContainer_2_1_11',
+					toolbarContainer : 'gridToolBarContainer_2_1_11',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50],
+					onCellClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'.</p>';
+						//appendLog_2_1_11(log);
+					},
+					onCellMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Cell event trigger. Event type: '+e.type+', trigger cell coordinates: ('+columnNo+','+dataNo+'), cell content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'.</p>';
+						//appendLog_2_1_11(log);
+					},
+					onRowMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>Row event trigger. Event type: '+e.type+', trigger cell in row coordinates: ('+columnNo+','+dataNo+'), cell in row content: '+value+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderClick : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseOver : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseMove : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'.</p>';
+						//appendLog_2_1_11(log);
+					},
+					onHeaderMouseOut : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseDown : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseUp : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>Table header event trigger. Event type: '+e.type+', trigger column coordinates: '+columnNo+', column title: '+title+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridClick : function(grid, e){
+						var log = '<p>Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridDblClick : function(grid, e){
+						var log = '<p>Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseOver : function(grid, e){
+						var log = '<p>Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseMove : function(grid, e){
+						var log = '<p>Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'.</p>';
+						//appendLog_2_1_11(log);
+					},
+					onGridMouseOut : function(grid, e){
+						var log = '<p>Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseDown : function(grid, e){
+						var log = '<p>Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseUp : function(grid, e){
+						var log = '<p>Grid event trigger. Event type: '+e.type+', trigger table id: '+grid.option.id+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridComplete : function(grid){
+						var log = '<p>Table load complete. Table id: '+grid.option.id+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onExtraOpen : function(record, grid, dataNo, row, extraCell, e){
+						var log = '<p>Extra row open trigger. Event type: '+e.type+', trigger row coordinates: '+dataNo+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onExtraClose : function(record, grid, dataNo, row, extraCell, e){
+						var log = '<p>Extra row close trigger. Event type: '+e.type+', trigger row coordinates: '+dataNo+'.</p>';
+						appendLog_2_1_11(log);
+					},
+					onCheck : function(isChecked, record, grid, dataNo, row, extraCell, e){
+						var log = '<p>Check event trigger. Checked: '+isChecked+', trigger row coordinates: '+dataNo+'.</p>';
+						appendLog_2_1_11(log);
+					}
+			 	};
+			 	var grid_2_1_11 = $.fn.dlshouwen.grid.init(gridOption_2_1_11);
+			 	$(function(){
+			 		grid_2_1_11.load();
+			 	});
+			 	//Append Log
+			 	function appendLog_2_1_11(log){
+			 		if($('#log_2_1_11 p').length>=200){
+			 			$('#log_2_1_11 p:last').remove();
+			 		}
+			 		$('#log_2_1_11').prepend(log);
+			 	}
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_1_11" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_11" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="log_2_1_11" class="log"><p>Event Log.</p></div>
+				<div id="2.2" class="title">Advance</div>
+				<hr />
+				<div id="2.2.1" class="sub-title">Ajax Load All Data</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> through <code>loadAll</code> and <code>loadURL</code> parameters support load all data by ajax in server, in fact this mode and <code>normal load datas</code> mode was same pattern, only this pattern by ajax in <code>http server</code> to get datas. You can also get datas by manual then through the <code>normal load data mode</code> to complete loading.</p>
+				<p class="attention">Note: The HTTP service is only supported post mode, the return value must be a JSON array.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_2_1 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_1 = {
+	lang : 'en',
+	ajaxLoad : true,
+	loadAll : true,
+	loadURL : '/grid/demo/datas/load_all',
+	exportFileName : 'User List',
+	columns : gridColumns_2_2_1,
+	gridContainer : 'gridContainer_2_2_1',
+	toolbarContainer : 'gridToolBarContainer_2_2_1',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_1 = $.fn.dlshouwen.grid.init(gridOption_2_2_1);
+$(function(){
+	grid_2_2_1.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_1 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_1 = {
+			 		lang : 'en',
+			 		ajaxLoad : true,
+			 		loadAll : true,
+			 		loadURL : '/grid/demo/datas/load_all',
+			 		exportFileName : 'User List',
+			 		columns : gridColumns_2_2_1,
+			 		gridContainer : 'gridContainer_2_2_1',
+					toolbarContainer : 'gridToolBarContainer_2_2_1',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_1 = $.fn.dlshouwen.grid.init(gridOption_2_2_1);
+			 	$(function(){
+			 		grid_2_2_1.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_2_1" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_1" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.2" class="sub-title">Ajax Load Data by Page</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports dynamic load data, by setting the <code>ajaxLoad</code> and <code>loadURL</code> parameters to complete loading <code>Ajax data</code> by page dynamically, this will ease the pressure of the database.</p>
+				<p>For the <code>Ajax load data by Page</code> example, please download the Java project version or Php project version to see how it works.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_2_2 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_2 = {
+	lang : 'en',
+	ajaxLoad : true,
+	loadURL : '/grid/demo/datas/ajax',
+	exportFileName : 'User List',
+	columns : gridColumns_2_2_2,
+	gridContainer : 'gridContainer_2_2_2',
+	toolbarContainer : 'gridToolBarContainer_2_2_2',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_2 = $.fn.dlshouwen.grid.init(gridOption_2_2_2);
+$(function(){
+	grid_2_2_2.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_2 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_2 = {
+			 		lang : 'en',
+			 		ajaxLoad : true,
+			 		loadURL : '/grid/demo/datas/ajax',
+			 		exportFileName : 'User List',
+			 		columns : gridColumns_2_2_2,
+			 		gridContainer : 'gridContainer_2_2_2',
+					toolbarContainer : 'gridToolBarContainer_2_2_2',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_2 = $.fn.dlshouwen.grid.init(gridOption_2_2_2);
+			 	$(function(){
+			 		grid_2_2_2.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_2_2" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_2" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.3" class="sub-title">Custom Parameters</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports custom parameters, by setting the <code>parameters</code> parameter in the Javascript script to complete custom parameters, in the server <code>Pager</code> object can get those parameters, parameter type in Javascript language was <code>Javascript Object</code>, in the Java language was <code>Map</code>.</p>
+				<p class="attention">Custom parameters only support <code>Ajax load data by page</code> mode, by splicing SQL to complete a custom query, detail code in the example please download the project version to view how it works.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:xml">&lt;div&gt;
+	&lt;form class="form-horizontal" action=""&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label class="col-sm-4 control-label text-right"&gt;Fuzzy Search (User Code, User Name): &lt;/label&gt;
+			&lt;div class="col-sm-4"&gt;
+				&lt;input type="text" id="like_user_code_or_user_name" name="like_user_code_or_user_name" class="form-control" /&gt;
+			&lt;/div&gt;
+			&lt;div class="col-sm-4"&gt;
+				&lt;button type="button" class="btn btn-primary" id="custom_search_2_2_3" name="custom_search_2_2_3"&gt;
+					&lt;i class="fa fa-search"&gt;&lt;/i&gt;&nbsp;&nbsp;Custom Search
+				&lt;/button&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+&lt;div id="gridContainer_2_2_3" class="dlshouwen-grid-container"&gt;&lt;/div&gt;
+&lt;div id="gridToolBarContainer_2_2_3" class="dlshouwen-grid-toolbar-container"&gt;&lt;/div&gt;</pre>
+				<pre class="brush:js;">var gridColumns_2_2_3 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_3 = {
+	lang : 'en',
+	ajaxLoad : true,
+	loadURL : '/grid/demo/datas/ajax',
+	exportFileName : 'User List',
+	columns : gridColumns_2_2_3,
+	gridContainer : 'gridContainer_2_2_3',
+	toolbarContainer : 'gridToolBarContainer_2_2_3',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_3 = $.fn.dlshouwen.grid.init(gridOption_2_2_3);
+$(function(){
+	grid_2_2_3.load();
+	//Bingding Custom Search Function
+	$('#custom_search_2_2_3').click(customSearch_2_2_3);
+});
+//Custom Search
+function customSearch_2_2_3(){
+	var like_user_code_or_user_name = $('#like_user_code_or_user_name').val();
+	grid_2_2_3.parameters = new Object();
+	grid_2_2_3.parameters['like_user_code_or_user_name'] = like_user_code_or_user_name;
+	grid_2_2_3.refresh(true);
+}</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_3 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_3 = {
+			 		lang : 'en',
+			 		ajaxLoad : true,
+			 		loadURL : '/grid/demo/datas/ajax',
+			 		exportFileName : 'User List',
+			 		columns : gridColumns_2_2_3,
+			 		gridContainer : 'gridContainer_2_2_3',
+					toolbarContainer : 'gridToolBarContainer_2_2_3',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_3 = $.fn.dlshouwen.grid.init(gridOption_2_2_3);
+			 	$(function(){
+			 		grid_2_2_3.load();
+			 		//Bingding Custom Search Function
+			 		$('#custom_search_2_2_3').click(customSearch_2_2_3);
+			 	});
+			 	//Custom Search
+			 	function customSearch_2_2_3(){
+			 		var like_user_code_or_user_name = $('#like_user_code_or_user_name').val();
+			 		grid_2_2_3.parameters = new Object();
+			 		grid_2_2_3.parameters['like_user_code_or_user_name'] = like_user_code_or_user_name;
+			 		grid_2_2_3.refresh(true);
+			 	}
+				</script>
+				<p><code>Demo</code>:</p>
+				<div>
+					<form class="form-horizontal" action="">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">Fuzzy Search (User Code, User Name): </label>
+							<div class="col-sm-4">
+								<input type="text" id="like_user_code_or_user_name" name="like_user_code_or_user_name" class="form-control" />
+							</div>
+							<div class="col-sm-4">
+								<button type="button" class="btn btn-primary" id="custom_search_2_2_3" name="custom_search_2_2_3">
+									<i class="fa fa-search"></i>&nbsp;&nbsp;Custom Search
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="gridContainer_2_2_3" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_3" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.4" class="sub-title">Print</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports print with columns selected(Not support IE8).</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_2_4 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_4 = {
+	lang : 'en',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : 'User List',
+	columns : gridColumns_2_2_4,
+	gridContainer : 'gridContainer_2_2_4',
+	toolbarContainer : 'gridToolBarContainer_2_2_4',
+	tools : 'print',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_4 = $.fn.dlshouwen.grid.init(gridOption_2_2_4);
+$(function(){
+	grid_2_2_4.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_4 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_4 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : 'User List',
+			 		columns : gridColumns_2_2_4,
+			 		gridContainer : 'gridContainer_2_2_4',
+					toolbarContainer : 'gridToolBarContainer_2_2_4',
+					tools : 'print',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_4 = $.fn.dlshouwen.grid.init(gridOption_2_2_4);
+			 	$(function(){
+			 		grid_2_2_4.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_2_4" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_4" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.5" class="sub-title">Export</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports export file, export support select columns, and it supports export <code>CSV</code>, <code>EXCEL</code>, <code>PDF</code>, <code>TXT</code> file type. The export file is realized through the server program, please refer to download page to download project version to view how it works.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_2_5 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_5 = {
+	lang : 'en',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : 'User List',
+	columns : gridColumns_2_2_5,
+	gridContainer : 'gridContainer_2_2_5',
+	toolbarContainer : 'gridToolBarContainer_2_2_5',
+	tools : 'export[excel,csv,pdf,txt]',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_5 = $.fn.dlshouwen.grid.init(gridOption_2_2_5);
+$(function(){
+	grid_2_2_5.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_5 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_5 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : 'User List',
+			 		columns : gridColumns_2_2_5,
+			 		gridContainer : 'gridContainer_2_2_5',
+					toolbarContainer : 'gridToolBarContainer_2_2_5',
+					tools : 'export[excel,csv,pdf,txt]',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_5 = $.fn.dlshouwen.grid.init(gridOption_2_2_5);
+			 	$(function(){
+			 		grid_2_2_5.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_2_5" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_5" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.6" class="sub-title">Fast Query</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports fast query. For the <code>non Ajax load data by page mode</code>, <a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a> supports fast query filter by Javascript, for the <code>Ajax load data by page</code> mode, in order to ensure the efficiency of loading, we through splicing SQL in the server to complete query.</p>
+				<p>Fast query is a predefined query mode, the user will enter or select the query parameters. Fast query though <code>fastQuery</code> and <code>fastQueryType</code> attribute to complete configuration.</p>
+				<p>Fast query supports <code>equal</code>, <code>not equal</code>, <code>like</code>, <code>left like</code>, <code>right like</code>, <code>great than</code>, <code>great than or equal</code>, <code>less than </code>, <code>less than or equal</code> types.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_2_6 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_6 = {
+	lang : 'en',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : 'User List',
+	columns : gridColumns_2_2_6,
+	gridContainer : 'gridContainer_2_2_6',
+	toolbarContainer : 'gridToolBarContainer_2_2_6',
+	tools : 'fastQuery',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_6 = $.fn.dlshouwen.grid.init(gridOption_2_2_6);
+$(function(){
+	grid_2_2_6.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_6 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_6 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : 'User List',
+			 		columns : gridColumns_2_2_6,
+			 		gridContainer : 'gridContainer_2_2_6',
+					toolbarContainer : 'gridToolBarContainer_2_2_6',
+					tools : 'fastQuery',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_6 = $.fn.dlshouwen.grid.init(gridOption_2_2_6);
+			 	$(function(){
+			 		grid_2_2_6.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_2_6" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_6" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.7" class="sub-title">Advance Query</div>
+				<p>Advanced query for high customized query, advanced query supports all fields which <code>advanceQuery</code> attributes is <code>true</code>, make these fields complete complex query, and support custom sorting. This sort different of the <code>sort in page</code>, sort in page more like sort in current page, it's a fake sort, only whit datas in current page, and advanced query sort is sorting all datas.</p>
+				<p>For the <code>Ajax load data by page</code> mode, we also through splicing SQL in the server to implementation, this also by considering the query efficiency, please check the server program that we provided.</p>
+				<p><code>Code</code>:</p>
+				<pre class="brush:js;">var gridColumns_2_2_7 = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_7 = {
+	lang : 'en',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : 'User List',
+	columns : gridColumns_2_2_7,
+	gridContainer : 'gridContainer_2_2_7',
+	toolbarContainer : 'gridToolBarContainer_2_2_7',
+	tools : 'advanceQuery',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_7 = $.fn.dlshouwen.grid.init(gridOption_2_2_7);
+$(function(){
+	grid_2_2_7.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_7 = [
+			 		{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_7 = {
+			 		lang : 'en',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : 'User List',
+			 		columns : gridColumns_2_2_7,
+			 		gridContainer : 'gridContainer_2_2_7',
+					toolbarContainer : 'gridToolBarContainer_2_2_7',
+					tools : 'advanceQuery',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_7 = $.fn.dlshouwen.grid.init(gridOption_2_2_7);
+			 	$(function(){
+			 		grid_2_2_7.load();
+			 	});
+				</script>
+				<p><code>Demo</code>:</p>
+				<div id="gridContainer_2_2_7" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_7" class="dlshouwen-grid-toolbar-container"></div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>

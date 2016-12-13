@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - 示例</title>
+	<meta name="Keywords" content="DLShouWen Grid,大连首闻Grid,响应式表格,jQuery表格,开源表格"/>
+	<meta name="Description" content="大连首闻 Grid（DLShouWen Grid）是一款由 大连首闻科技有限公司自主研发的基于MIT开源协议的响应式表格控件，拥有跨浏览器支持、程序思路清晰、功能强大、高效加载等众多优秀素质，或许是目前已知的最好的响应式表格控件"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- DLShouWen Grid -->
+	<script type="text/javascript" src="../../../dlshouwen.grid.min.js"></script>
+	<script type="text/javascript" src="../../../i18n/en.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-cn.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-tw.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dlshouwen.grid.min.css" />
+	<!-- datePicker -->
+	<script type="text/javascript" src="../../../dependents/datePicker/WdatePicker.js" defer="defer"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/WdatePicker.css" />
+	<link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/default/datepicker.css" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- syntaxHighLighter -->
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushXml.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushJScript.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shCore.css" />
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shThemeDefault.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	//映射内容
+	var sex = {1:'男', 2:'女'};
+	var degree = {1:'小学', 2:'初中', 3:'高中', 4:'中专', 5:'大学', 6:'硕士', 7:'博士', 8:'其他'};
+	//模拟数据（薪水在6000-12000之间，日期在1980-01-01 00::00:00到2014-10-01 00:00:00之间）
+	var datas = new Array();
+	for(var i=0; i<186; i++){
+		var user = new Object();
+		user.user_id = 'user_'+i;
+		user.user_code = 'user_'+i;
+		user.user_name = '模拟用户'+(Math.floor(Math.random()*1000)+10000)+'号';
+		user.sex = (Math.floor(Math.random()*2)+1);
+		user.salary = (Math.floor(Math.random()*6000)+6000);
+		user.degree = (Math.floor(Math.random()*8)+1);
+		user.time = new Date(Math.floor(Math.random()*1096588800000)+315504000000);
+		user.time_stamp_s = Math.floor((Math.floor(Math.random()*1096588800000)+315504000000)/1000);
+		user.time_stamp_ms = Math.floor(Math.random()*1096588800000)+315504000000;
+		user.string_date = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd');
+		user.string_time = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd hh:mm:ss');
+		datas.push(user);
+	}
+	$(function(){
+		//语法着色
+		SyntaxHighlighter.config.clipboardSwf = '../../syntaxHighLighter/scripts/clipboard.swf';
+		SyntaxHighlighter.config.strings.expandSource = '显示源代码';
+		SyntaxHighlighter.config.strings.viewSource = '查看源代码';
+		SyntaxHighlighter.config.strings.copyToClipboard = '复制到粘贴板';
+		SyntaxHighlighter.config.strings.copyToClipboardConfirmation = '代码已经成功复制！';
+		SyntaxHighlighter.config.strings.print = '打印';
+		SyntaxHighlighter.all();
+		//钉住菜单
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+		//左侧菜单注册事件
+		$(".left-sider>ul>li>a").toggle(function(){
+			$(this).children('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+			$(this).next('ul').slideDown(200);
+		}, function(){
+			$(this).children('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+			$(this).next('ul').slideUp(200);
+		});
+		//左侧菜单除了第一个全部关闭
+		$(".left-sider>ul>li>ul:not(:first)").hide();
+		$(".left-sider>ul>li>a:first").click();
+	});
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">工具</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;首页</a>
+					</li>
+					<li id="nav_example" class="active">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;示例</a>
+					</li>
+					<li id="nav_reference">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;参考文档</a>
+					</li>
+					<li id="nav_download">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;下载</a>
+					</li>
+					<li id="nav_about">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;关于</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;切换语言</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../en/example.html">英文版</a></li>
+							<li><a href="javascript:;">简体中文版</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;捐助DLShouWen</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li>
+						<a href="#2.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;基础功能</a>
+						<ul>
+							<li><a href="#2.1.1">普通数据加载</a></li>
+							<li><a href="#2.1.2">响应式表格</a></li>
+							<li><a href="#2.1.12">固定列宽<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#2.1.3">自定义布局</a></li>
+							<li><a href="#2.1.4">自定义样式</a></li>
+							<li><a href="#2.1.5">页内数据排序</a></li>
+							<li><a href="#2.1.6">码表支持</a></li>
+							<li><a href="#2.1.7">数据格式化</a></li>
+							<li><a href="#2.1.8">复选内容<span class="label label-success label-doc">Update</span></a></li>
+							<li><a href="#2.1.9">自定义解析</a></li>
+							<li><a href="#2.1.10">国际化</a></li>
+							<li><a href="#2.1.11">事件</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#2.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;高级功能</a>
+						<ul>
+							<li><a href="#2.2.1">Ajax全部加载数据</a></li>
+							<li><a href="#2.2.2">Ajax分页加载数据</a></li>
+							<li><a href="#2.2.3">自定义传递参数</a></li>
+							<li><a href="#2.2.4">打印</a></li>
+							<li><a href="#2.2.5">导出</a></li>
+							<li><a href="#2.2.6">快速查询</a></li>
+							<li><a href="#2.2.7">高级查询</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="2.1" class="title">基础功能</div>
+				<hr />
+				<div id="2.1.1" class="sub-title">普通数据加载</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>支持<code>普通数据加载模式</code>，将<code>JSON格式数据</code>传入到初始化参数中的<code>datas</code>属性中，配置好相应属性（如每页显示条数等）后<a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>将自动对这些数据进行静态分页和加载。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_1 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center'},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center'}
+];
+var gridOption_2_1_1 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_1,
+	gridContainer : 'gridContainer_2_1_1',
+	toolbarContainer : 'gridToolBarContainer_2_1_1',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_1);
+$(function(){
+	grid_2_1_1.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_1 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center'},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_1 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_1,
+			 		gridContainer : 'gridContainer_2_1_1',
+					toolbarContainer : 'gridToolBarContainer_2_1_1',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_1);
+			 	$(function(){
+			 		grid_2_1_1.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_1" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_1" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.2" class="sub-title">响应式表格</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>通过使用<code>hide</code>、<code>hideType</code>、<code>extra</code>来完成响应式表格的列配置。<a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>的响应式支持是完全基于<code>Bootstrap</code>实现的，对于每一个尺寸的终端媒体对象显示不同的列内容，我们对于每一列可以进行终端显示的定义，如可以使某一列在Pad终端中显示，在Phone终端中不显示而是在扩展中显示，扩展的模式采用单击前缀列中的+按钮来完成查阅。</p>
+				<p>对于需要调整终端尺寸的特殊需要，请对应修改<code>Bootstrap</code>中的相应媒体对象参数，<a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>主要通过<code>visible-lg</code>、<code>visible-md</code>、<code>visible-sm</code>、<code>visible-xs</code>来实现响应式表格的控制，对应修改<code>Bootstrap</code>中的这些样式即可。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_2 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs'},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs'},
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs'},
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+];
+var gridOption_2_1_2 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_2,
+	gridContainer : 'gridContainer_2_1_2',
+	toolbarContainer : 'gridToolBarContainer_2_1_2',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_2);
+$(function(){
+	grid_2_1_2.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_2 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs'},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs'},
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs'},
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+			 	];
+			 	var gridOption_2_1_2 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_2,
+			 		gridContainer : 'gridContainer_2_1_2',
+					toolbarContainer : 'gridToolBarContainer_2_1_2',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_2);
+			 	$(function(){
+			 		grid_2_1_2.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_2" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_2" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.12" class="sub-title">固定列宽<span class="label label-danger label-doc">New</span></div>
+				<p>您可以通过列属性<code>width</code>来固定某一列或几列的列宽，响应式表格当表格容器总宽度不足以承载所有列时，本属性设置的宽度将会失效。您可以通过<code>extraWidth</code>来固定扩展列的列宽。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_12 = [
+	{id:'user_code', title:'用户编号', width:80, type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'用户名称', width:120, type:'string', columnClass:'text-center'},
+	{id:'sex', title:'性别', width:50, type:'string', codeTable:sex, columnClass:'text-center'},
+	{id:'salary', title:'薪水', width:60, type:'number', format:'#,###.00', columnClass:'text-center'},
+	{id:'degree', title:'学历', width:50, type:'string', codeTable:degree, columnClass:'text-center'},
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+];
+var gridOption_2_1_12 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	extraWidth : 40,
+	columns : gridColumns_2_1_12,
+	gridContainer : 'gridContainer_2_1_12',
+	toolbarContainer : 'gridToolBarContainer_2_1_12',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_12 = $.fn.dlshouwen.grid.init(gridOption_2_1_12);
+$(function(){
+	grid_2_1_12.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_12 = [
+					{id:'user_code', title:'用户编号', width:80, type:'string', columnClass:'text-center'},
+                   	{id:'user_name', title:'用户名称', width:120, type:'string', columnClass:'text-center'},
+                   	{id:'sex', title:'性别', width:50, type:'string', codeTable:sex, columnClass:'text-center'},
+                   	{id:'salary', title:'薪水', width:60, type:'number', format:'#,###.00', columnClass:'text-center'},
+                   	{id:'degree', title:'学历', width:50, type:'string', codeTable:degree, columnClass:'text-center'},
+                   	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+                   	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+                   	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+                   	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs'},
+                   	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs'}
+				];
+				var gridOption_2_1_12 = {
+					lang : 'zh-cn',
+					ajaxLoad : false,
+					exportFileName : '用户列表',
+					datas : datas,
+					extraWidth : 40,
+					columns : gridColumns_2_1_12,
+					gridContainer : 'gridContainer_2_1_12',
+					toolbarContainer : 'gridToolBarContainer_2_1_12',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_12 = $.fn.dlshouwen.grid.init(gridOption_2_1_12);
+				$(function(){
+					grid_2_1_12.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_12" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_12" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.3" class="sub-title">自定义布局</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>的工具条容器和表样展示容器是独立分开的，并需要在参数中通过<code>gridContainer</code>及<code>toolbarContainer</code>分别控制，如果您需要让工具条在表格的上方，那么只需要将工具条的html承载容器在表格的html承载容器上方即可。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:xml;">&lt;div id="gridToolBarContainer_2_1_3" class="dlshouwen-grid-toolbar-container"&gt;&lt;/div&gt;
+&lt;div id="gridContainer_2_1_3" class="dlshouwen-grid-container"&gt;&lt;/div&gt;</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_3 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center'},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_3 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_3,
+			 		gridContainer : 'gridContainer_2_1_3',
+					toolbarContainer : 'gridToolBarContainer_2_1_3',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_3 = $.fn.dlshouwen.grid.init(gridOption_2_1_3);
+			 	$(function(){
+			 		grid_2_1_3.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridToolBarContainer_2_1_3" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="gridContainer_2_1_3" class="dlshouwen-grid-container"></div>
+				<div id="2.1.4" class="sub-title">自定义样式</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>的样式表内容在<code>dlshouwen.grid.css</code>文件中，您可以对其进行定制，也可以通过<code>tableStyle</code>、<code>tableClass</code>、<code>headerStyle</code>、<code>headerClass</code>、<code>columnStyle</code>、<code>columnClass</code>属性对表格进行单独样式的定制。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_4 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'}
+];
+var gridOption_2_1_4 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_4,
+	gridContainer : 'gridContainer_2_1_4',
+	toolbarContainer : 'gridToolBarContainer_2_1_4',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_4 = $.fn.dlshouwen.grid.init(gridOption_2_1_4);
+$(function(){
+	grid_2_1_4.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_4 = [
+					{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', headerStyle:'background:#00a2ca;color:white;'}
+			 	];
+			 	var gridOption_2_1_4 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_4,
+			 		gridContainer : 'gridContainer_2_1_4',
+					toolbarContainer : 'gridToolBarContainer_2_1_4',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_4 = $.fn.dlshouwen.grid.init(gridOption_2_1_4);
+			 	$(function(){
+			 		grid_2_1_4.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_4" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_4" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.5" class="sub-title">页内数据排序</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>支持页内数据排序。当数据加载完成后，您可以点击表头来实现排序，排序仅针对当前页面中的数据进行排序。排序支持日期、数值的排序，并支持正序、倒序、还原原顺序三种方式相互切换。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_5 = [
+	{id:'user_code', title:'用户编号（点我排序）', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'用户名称（点我排序）', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'性别（点我排序）', type:'string', codeTable:sex, columnClass:'text-center'},
+	{id:'salary', title:'薪水（点我排序）', type:'number', format:'#,###.00', columnClass:'text-center'}
+];
+var gridOption_2_1_5 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_5,
+	gridContainer : 'gridContainer_2_1_5',
+	toolbarContainer : 'gridToolBarContainer_2_1_5',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_5 = $.fn.dlshouwen.grid.init(gridOption_2_1_5);
+$(function(){
+	grid_2_1_5.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_5 = [
+					{id:'user_code', title:'用户编号（点我排序）', type:'string', columnClass:'text-center'},
+					{id:'user_name', title:'用户名称（点我排序）', type:'string', columnClass:'text-center'},
+					{id:'sex', title:'性别（点我排序）', type:'string', codeTable:sex, columnClass:'text-center'},
+					{id:'salary', title:'薪水（点我排序）', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_5 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_5,
+			 		gridContainer : 'gridContainer_2_1_5',
+					toolbarContainer : 'gridToolBarContainer_2_1_5',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_5 = $.fn.dlshouwen.grid.init(gridOption_2_1_5);
+			 	$(function(){
+			 		grid_2_1_5.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_5" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_5" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.6" class="sub-title">码表支持</div>
+				<p>对于嵌入到有码表机制的业务系统<a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>也有较为便捷的解决方案，比如性别字段，1表示男，2表示女，在后台拼接数据的方式需要通过表关联的方式实现，如果此种类型字段过多会造成开发效率低下，所以我们引入<code>codeTable</code>参数，在<code>codeTable</code>参数中传入一个<code>JSON对象</code>，指明对应的<code>key</code>和<code>value</code>属性，我们将根据这个对象来决定需要显示的值。</p>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>在查询中对于码表有非常优秀的解析，在快速查询、高级查询中，如果查询码表字段，我们将通过下拉框的方式供用户选择，便于用户通过枚举的方式来完成操作，方便快捷。</p>
+				<p class="attention">注意：如果单元格内容在码表的定义对象中并没有返回值，我们会将数据原样输出，如果您有定制化更高的解析需要，请参照<code>resolution</code>属性。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_6 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', columnStyle:'background:#00a2ca;color:white;', headerStyle:'background:#00a2ca;color:white;'},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center'}
+];
+var gridOption_2_1_6 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_6,
+	gridContainer : 'gridContainer_2_1_6',
+	toolbarContainer : 'gridToolBarContainer_2_1_6',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_6 = $.fn.dlshouwen.grid.init(gridOption_2_1_6);
+$(function(){
+	grid_2_1_6.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_6 = [
+					{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+					{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+					{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', columnStyle:'background:#00a2ca;color:white;', headerStyle:'background:#00a2ca;color:white;'},
+					{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_6 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_6,
+			 		gridContainer : 'gridContainer_2_1_6',
+					toolbarContainer : 'gridToolBarContainer_2_1_6',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_6 = $.fn.dlshouwen.grid.init(gridOption_2_1_6);
+			 	$(function(){
+			 		grid_2_1_6.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_6" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_6" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.7" class="sub-title">数据格式化</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>针对某些特殊类型的数据可以完成自动格式化。</p>
+				<p>数值型字段通过<code>format</code>属性可以完成对数值的格式化，格式化脚本采用<code>#</code>和<code>0</code>的方式解析，如格式化金额，那么解析字段的内容即为：<code>#,###.00</code>，格式化后的内容为：<code>12,345,678.90</code>。</p>
+				<p>日期型字段通过<code>format</code>属性可以完成对日期的格式化，格式化脚本类似<code>JAVA</code>中的<code>SimpleDateFormat</code>中要求的格式，格式化完整日期为：<code>yyyy-MM-dd hh:mm:ss.S</code>，格式化后的内容为：<code>2014-10-20 16:41:16.188</code>。</p>
+				<p>针对多种多样的日期格式，我们提供了丰富多样的格式化体系，几乎可以涵盖所有日期格式的格式化。格式化的方式通过<code>type</code>、<code>format</code>、<code>otype</code>、<code>oformat</code>四个参数完成，详细使用方式请查阅参考文档。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_7 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center'},
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center'},
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center'},
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center'},
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'}
+];
+var gridOption_2_1_7 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_7,
+	gridContainer : 'gridContainer_2_1_7',
+	toolbarContainer : 'gridToolBarContainer_2_1_7',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_7 = $.fn.dlshouwen.grid.init(gridOption_2_1_7);
+$(function(){
+	grid_2_1_7.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_7 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center'},
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'},
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center'},
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center'},
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center'},
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_7 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_7,
+			 		gridContainer : 'gridContainer_2_1_7',
+					toolbarContainer : 'gridToolBarContainer_2_1_7',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_7 = $.fn.dlshouwen.grid.init(gridOption_2_1_7);
+			 	$(function(){
+			 		grid_2_1_7.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_7" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_7" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.8" class="sub-title">复选内容<span class="label label-success label-doc">Update</span></div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>支持原生复选框，当<code>check</code>属性为<code>true</code>时，<a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>将会在首列显示复选框，用户选择完成之后您可以使用<code>getCheckedRecords</code>方法获取用户所选择的数据行列表，您可以遍历该列表完成您需要的操作。您亦可以通过<code>checkWidth</code>属性配置复选框所在单元格的宽度。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_8 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center'}
+];
+var gridOption_2_1_8 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	check : true,
+	checkWidth : 40,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_8,
+	gridContainer : 'gridContainer_2_1_8',
+	toolbarContainer : 'gridToolBarContainer_2_1_8',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_8 = $.fn.dlshouwen.grid.init(gridOption_2_1_8);
+$(function(){
+	grid_2_1_8.load();
+});
+function getGrid_2_1_8CheckedRecordsLength(){
+	var recordCount = grid_2_1_8.getCheckedRecords().length;
+	alert('您一共选择了 '+recordCount+' 条。');
+}</pre>
+				<pre class="brush:xml;">&lt;button class="btn btn-primary btn-xs" onclick="getGrid_2_1_8CheckedRecordsLength();"&gt;
+	&lt;i class="fa fa-table"&gt;&lt;/i&gt;&nbsp;&nbsp;获取选中的数据条数
+&lt;/button&gt;</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_8 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center'}
+			 	];
+			 	var gridOption_2_1_8 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		check : true,
+			 		checkWidth : 40,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_8,
+			 		gridContainer : 'gridContainer_2_1_8',
+					toolbarContainer : 'gridToolBarContainer_2_1_8',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_8 = $.fn.dlshouwen.grid.init(gridOption_2_1_8);
+			 	$(function(){
+			 		grid_2_1_8.load();
+			 	});
+			 	function getGrid_2_1_8CheckedRecordsLength(){
+			 		var recordCount = grid_2_1_8.getCheckedRecords().length;
+			 		alert('您一共选择了 '+recordCount+' 条。');
+			 	}
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_8" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_8" class="dlshouwen-grid-toolbar-container"></div>
+				<p>
+					点击获取选中的条数：
+					<button class="btn btn-primary btn-xs" onclick="getGrid_2_1_8CheckedRecordsLength();">
+						<i class="fa fa-table"></i>&nbsp;&nbsp;获取选中的数据条数
+					</button>
+				</p>
+				<div id="2.1.9" class="sub-title">自定义解析</div>
+				<p>如果以上内容仍然无法完成您对于您数据的处理，那么您可以通过设置<code>resolution</code>属性来完成对数据的自定义解析，<code>resolution</code>属性定义一个<code>JS方法</code>，该方法中将会传递行数据、单元格数据，通过这些参数您可以完成对该数据的自定义解析。</p>
+				<p>自定义解析通常用于自定义显示的内容或在当前单元格中生成一些操作按钮。</p>
+				<p class="attention">注意：由于自定义解析可能会出现HTML标签内容，所以在导出、查询中将不会被解析。</p>
+				<p class="attention">注意：自定义解析参数的回调方法中的参数数量及顺序与1.1.8版本不同，请使用者注意。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_9 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'operation', title:'操作', type:'string', columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		content += '&lt;button class="btn btn-xs btn-default" onclick="alert(\'编辑用户：'+record.user_name+'\');"&gt;&lt;i class="fa fa-edit"&gt;&lt;/i&gt;&nbsp;&nbsp;编辑&lt;/button&gt;';
+		content += '&nbsp;&nbsp;';
+		content += '&lt;button class="btn btn-xs btn-danger" onclick="alert(\'删除用户：'+record.user_name+'\');"&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&nbsp;&nbsp;删除&lt;/button&gt;';
+		return content;
+	}}
+];
+var gridOption_2_1_9 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_9,
+	gridContainer : 'gridContainer_2_1_9',
+	toolbarContainer : 'gridToolBarContainer_2_1_9',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_9 = $.fn.dlshouwen.grid.init(gridOption_2_1_9);
+$(function(){
+	grid_2_1_9.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_9 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'operation', title:'操作', type:'string', columnClass:'text-center', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			content += '<button class="btn btn-xs btn-default" onclick="alert(\'编辑用户：'+record.user_name+'\');"><i class="fa fa-edit"></i>&nbsp;&nbsp;编辑</button>';
+			 			content += '&nbsp;&nbsp;';
+			 			content += '<button class="btn btn-xs btn-danger" onclick="alert(\'删除用户：'+record.user_name+'\');"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</button>';
+			 			return content;
+			 		}}
+			 	];
+			 	var gridOption_2_1_9 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		columns : gridColumns_2_1_9,
+			 		gridContainer : 'gridContainer_2_1_9',
+					toolbarContainer : 'gridToolBarContainer_2_1_9',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_1_9 = $.fn.dlshouwen.grid.init(gridOption_2_1_9);
+			 	$(function(){
+			 		grid_2_1_9.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_9" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_9" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.10" class="sub-title">国际化</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>原生支持国际化，我们已经预置了<code>英文[en]</code>、<code>简体中文[zh-cn]</code>、<code>繁体中文[zh-tw]</code>三个语言版本，引入JS文件时引入<code>i18n文件夹</code>中的对应语言文件后将<code>lang</code>属性设置为对应的语言参数即可。</p>
+				<p>对于需要定制的语言，您可以自己复制一份并修改语言文件内容。</p>
+				<p><code>关键代码 - 英文版</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_10_1 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_10_1 = {
+	lang : 'en',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_10_1,
+	gridContainer : 'gridContainer_2_1_10_1',
+	toolbarContainer : 'gridToolBarContainer_2_1_10_1',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_10_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_1);
+$(function(){
+	grid_2_1_10_1.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_10_1 = [
+					{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	           		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	           		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+	           			var content = '';
+	           			if(value==1){
+	           				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+	           			}else{
+	           				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+	           			}
+	           			return content;
+	           		}},
+	           		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	           		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	           		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+				];
+				var gridOption_2_1_10_1 = {
+					lang : 'en',
+					ajaxLoad : false,
+					exportFileName : '用户列表',
+					datas : datas,
+					columns : gridColumns_2_1_10_1,
+					gridContainer : 'gridContainer_2_1_10_1',
+					toolbarContainer : 'gridToolBarContainer_2_1_10_1',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_10_1 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_1);
+				$(function(){
+					grid_2_1_10_1.load();
+				});
+				</script>
+				<p><code>演示 - 英文版</code>：</p>
+				<div id="gridContainer_2_1_10_1" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_10_1" class="dlshouwen-grid-toolbar-container"></div>
+				<p><code>关键代码 - 简体中文版</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_10_2 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_10_2 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_10_2,
+	gridContainer : 'gridContainer_2_1_10_2',
+	toolbarContainer : 'gridToolBarContainer_2_1_10_2',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_10_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_2);
+$(function(){
+	grid_2_1_10_2.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_10_2 = [
+					{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	           		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	           		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+	           			var content = '';
+	           			if(value==1){
+	           				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+	           			}else{
+	           				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+	           			}
+	           			return content;
+	           		}},
+	           		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	           		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	           		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+				];
+				var gridOption_2_1_10_2 = {
+					lang : 'zh-cn',
+					ajaxLoad : false,
+					exportFileName : '用户列表',
+					datas : datas,
+					columns : gridColumns_2_1_10_2,
+					gridContainer : 'gridContainer_2_1_10_2',
+					toolbarContainer : 'gridToolBarContainer_2_1_10_2',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_10_2 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_2);
+				$(function(){
+					grid_2_1_10_2.load();
+				});
+				</script>
+				<p><code>演示 - 简体中文版</code>：</p>
+				<div id="gridContainer_2_1_10_2" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_10_2" class="dlshouwen-grid-toolbar-container"></div>
+				<p><code>关键代码 - 繁体中文版</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_10_3 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_10_3 = {
+	lang : 'zh-tw',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns_2_1_10_3,
+	gridContainer : 'gridContainer_2_1_10_3',
+	toolbarContainer : 'gridToolBarContainer_2_1_10_3',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_1_10_3 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_3);
+$(function(){
+	grid_2_1_10_3.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_10_3 = [
+					{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	           		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	           		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+	           			var content = '';
+	           			if(value==1){
+	           				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+	           			}else{
+	           				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+	           			}
+	           			return content;
+	           		}},
+	           		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	           		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	           		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	           		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+				];
+				var gridOption_2_1_10_3 = {
+					lang : 'zh-tw',
+					ajaxLoad : false,
+					exportFileName : '用户列表',
+					datas : datas,
+					columns : gridColumns_2_1_10_3,
+					gridContainer : 'gridContainer_2_1_10_3',
+					toolbarContainer : 'gridToolBarContainer_2_1_10_3',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+				};
+				var grid_2_1_10_3 = $.fn.dlshouwen.grid.init(gridOption_2_1_10_3);
+				$(function(){
+					grid_2_1_10_3.load();
+				});
+				</script>
+				<p><code>演示 - 繁体中文版</code>：</p>
+				<div id="gridContainer_2_1_10_3" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_10_3" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.1.11" class="sub-title">事件</div>
+				<p>DLShouWen GIRD支持对单元格、行、表头、表格、扩展行事件的扩展，您可以通过对应的表格属性回调来定制它们，具体调用参数请查阅参考文档。</p>
+				<p>本示例代码将整合所有的事件属性，为了便于查阅，我们只在日志中输出最近<code>200条</code>的时间监听记录。为了便于显示，我们去掉了所有的MouseMove（鼠标移动）事件，避免日志过多。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_1_11 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_1_11 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	check : true,
+	columns : gridColumns_2_1_11,
+	gridContainer : 'gridContainer_2_1_11',
+	toolbarContainer : 'gridToolBarContainer_2_1_11',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50],
+	onCellClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。&lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onCellMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCellMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。&lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onRowMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onRowMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+		var log = '&lt;p&gt;行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderClick : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseOver : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseMove : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。&lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onHeaderMouseOut : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseDown : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onHeaderMouseUp : function(title, column, grid, columnNo, header, headerRow, e){
+		var log = '&lt;p&gt;表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridClick : function(grid, e){
+		var log = '&lt;p&gt;表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridDblClick : function(grid, e){
+		var log = '&lt;p&gt;表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseOver : function(grid, e){
+		var log = '&lt;p&gt;表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseMove : function(grid, e){
+		var log = '&lt;p&gt;表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		//appendLog_2_1_11(log);
+	},
+	onGridMouseOut : function(grid, e){
+		var log = '&lt;p&gt;表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseDown : function(grid, e){
+		var log = '&lt;p&gt;表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridMouseUp : function(grid, e){
+		var log = '&lt;p&gt;表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onGridComplete : function(grid){
+		var log = '&lt;p&gt;表格加载完成。表格编号：'+grid.option.id+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onExtraOpen : function(record, grid, dataNo, row, extraCell, e){
+		var log = '&lt;p&gt;扩展列展开触发。事件类型：'+e.type+'；触发行坐标：'+dataNo+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onExtraClose : function(record, grid, dataNo, row, extraCell, e){
+		var log = '&lt;p&gt;扩展列关闭触发。事件类型：'+e.type+'；触发行坐标：'+dataNo+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	},
+	onCheck : function(isChecked, record, grid, dataNo, row, extraCell, e){
+		var log = '&lt;p&gt;复选事件触发。是否复选：'+isChecked+'；触发行坐标：'+dataNo+'。&lt;/p&gt;';
+		appendLog_2_1_11(log);
+	}
+};
+var grid_2_1_11 = $.fn.dlshouwen.grid.init(gridOption_2_1_11);
+$(function(){
+	grid_2_1_11.load();
+});
+//追加日志
+function appendLog_2_1_11(log){
+	if($('#log_2_1_11 p').length>=200){
+		$('#log_2_1_11 p:last').remove();
+	}
+	$('#log_2_1_11').prepend(log);
+}</pre>
+				<script type="text/javascript">
+				var gridColumns_2_1_11 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+					{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+					{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+						var content = '';
+						if(value==1){
+							content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+						}else{
+							content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+						}
+						return content;
+					}},
+					{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+					{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+					{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+					{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_1_11 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		exportFileName : '用户列表',
+			 		datas : datas,
+			 		check : true,
+			 		columns : gridColumns_2_1_11,
+			 		gridContainer : 'gridContainer_2_1_11',
+					toolbarContainer : 'gridToolBarContainer_2_1_11',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50],
+					onCellClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。</p>';
+						//appendLog_2_1_11(log);
+					},
+					onCellMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onCellMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>单元格事件触发。事件类型：'+e.type+'；触发单元格坐标：('+columnNo+','+dataNo+')；单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowDblClick : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseOver : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseMove : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。</p>';
+						//appendLog_2_1_11(log);
+					},
+					onRowMouseOut : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseDown : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onRowMouseUp : function(value, record, column, grid, dataNo, columnNo, cell, row, extraCell, e){
+						var log = '<p>行事件触发。事件类型：'+e.type+'；触发行内单元格坐标：('+columnNo+','+dataNo+')；行内单元格内容：'+value+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderClick : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseOver : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseMove : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。</p>';
+						//appendLog_2_1_11(log);
+					},
+					onHeaderMouseOut : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseDown : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onHeaderMouseUp : function(title, column, grid, columnNo, header, headerRow, e){
+						var log = '<p>表头事件触发。事件类型：'+e.type+'；触发列坐标：'+columnNo+'；列名称：'+title+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridClick : function(grid, e){
+						var log = '<p>表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridDblClick : function(grid, e){
+						var log = '<p>表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseOver : function(grid, e){
+						var log = '<p>表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseMove : function(grid, e){
+						var log = '<p>表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。</p>';
+						//appendLog_2_1_11(log);
+					},
+					onGridMouseOut : function(grid, e){
+						var log = '<p>表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseDown : function(grid, e){
+						var log = '<p>表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridMouseUp : function(grid, e){
+						var log = '<p>表格事件触发。事件类型：'+e.type+'；触发表格编号：'+grid.option.id+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onGridComplete : function(grid){
+						var log = '<p>表格加载完成。表格编号：'+grid.option.id+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onExtraOpen : function(record, grid, dataNo, row, extraCell, e){
+						var log = '<p>扩展列展开触发。事件类型：'+e.type+'；触发行坐标：'+dataNo+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onExtraClose : function(record, grid, dataNo, row, extraCell, e){
+						var log = '<p>扩展列关闭触发。事件类型：'+e.type+'；触发行坐标：'+dataNo+'。</p>';
+						appendLog_2_1_11(log);
+					},
+					onCheck : function(isChecked, record, grid, dataNo, row, extraCell, e){
+						var log = '<p>复选事件触发。是否复选：'+isChecked+'；触发行坐标：'+dataNo+'。</p>';
+						appendLog_2_1_11(log);
+					}
+			 	};
+			 	var grid_2_1_11 = $.fn.dlshouwen.grid.init(gridOption_2_1_11);
+			 	$(function(){
+			 		grid_2_1_11.load();
+			 	});
+			 	//追加日志
+			 	function appendLog_2_1_11(log){
+			 		if($('#log_2_1_11 p').length>=200){
+			 			$('#log_2_1_11 p:last').remove();
+			 		}
+			 		$('#log_2_1_11').prepend(log);
+			 	}
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_1_11" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_1_11" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="log_2_1_11" class="log"><p>这里将显示事件监听日志。</p></div>
+				<div id="2.2" class="title">高级功能</div>
+				<hr />
+				<div id="2.2.1" class="sub-title">Ajax全部加载数据</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>通过<code>loadAll</code>及<code>loadURL</code>参数支持将数据全部查询后完成加载，这其实同普通数据加载是同一个模式，只不过您定义取数的<code>http服务（即loadURL参数）</code>，我们通过<code>ajax</code>取得所有数据。您也可以自行获取数据后通过<code>普通数据加载模式</code>完成数据初始化。</p>
+				<p class="attention">注意：http服务只支持Post模式，返回值必须是一套符合JSON数组的文本。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_2_1 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_1 = {
+	lang : 'zh-cn',
+	ajaxLoad : true,
+	loadAll : true,
+	loadURL : '/grid/demo/datas/load_all',
+	exportFileName : '用户列表',
+	columns : gridColumns_2_2_1,
+	gridContainer : 'gridContainer_2_2_1',
+	toolbarContainer : 'gridToolBarContainer_2_2_1',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_1 = $.fn.dlshouwen.grid.init(gridOption_2_2_1);
+$(function(){
+	grid_2_2_1.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_1 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_1 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : true,
+			 		loadAll : true,
+			 		loadURL : '/grid/demo/datas/load_all',
+			 		exportFileName : '用户列表',
+			 		columns : gridColumns_2_2_1,
+			 		gridContainer : 'gridContainer_2_2_1',
+					toolbarContainer : 'gridToolBarContainer_2_2_1',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_1 = $.fn.dlshouwen.grid.init(gridOption_2_2_1);
+			 	$(function(){
+			 		grid_2_2_1.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_2_1" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_1" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.2" class="sub-title">Ajax分页加载数据</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>支持动态加载数据，通过设置<code>ajaxLoad</code>及<code>loadURL</code>参数来完成动态的<code>Ajax数据加载</code>分页，这样将会极大缓解数据库压力。</p>
+				<p>对于<code>Ajax分页加载</code>的示例请您下载我们为您提供的项目，查阅项目中服务器端源码的编写方式。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_2_2 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms S', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_2 = {
+	lang : 'zh-cn',
+	ajaxLoad : true,
+	loadURL : '/grid/demo/datas/ajax',
+	exportFileName : '用户列表',
+	columns : gridColumns_2_2_2,
+	gridContainer : 'gridContainer_2_2_2',
+	toolbarContainer : 'gridToolBarContainer_2_2_2',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_2 = $.fn.dlshouwen.grid.init(gridOption_2_2_2);
+$(function(){
+	grid_2_2_2.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_2 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_2 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : true,
+			 		loadURL : '/grid/demo/datas/ajax',
+			 		exportFileName : '用户列表',
+			 		columns : gridColumns_2_2_2,
+			 		gridContainer : 'gridContainer_2_2_2',
+					toolbarContainer : 'gridToolBarContainer_2_2_2',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_2 = $.fn.dlshouwen.grid.init(gridOption_2_2_2);
+			 	$(function(){
+			 		grid_2_2_2.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_2_2" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_2" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.3" class="sub-title">自定义传递参数</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>支持自定义传递参数，通过在Javascript脚本中设置<code>parameters</code>参数来完成自定义传参，后台映射的<code>Pager</code>对象中可以直接获取该参数，参数类型在Javascript语言中文Object，在Java语言中文Map。</p>
+				<p class="attention">自定义传递参数仅支持<code>Ajax分页加载</code>模式，通过拼接SQL的方式来完成自定义的查询调用，具体示例中的详细代码请您下载我们为您提供的项目，查阅项目中服务器端源码的编写方式。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:xml">&lt;div&gt;
+	&lt;form class="form-horizontal" action=""&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label class="col-sm-4 control-label text-right"&gt;模糊查询（用户编号、用户名称）：&lt;/label&gt;
+			&lt;div class="col-sm-4"&gt;
+				&lt;input type="text" id="like_user_code_or_user_name" name="like_user_code_or_user_name" class="form-control" /&gt;
+			&lt;/div&gt;
+			&lt;div class="col-sm-4"&gt;
+				&lt;button type="button" class="btn btn-primary" id="custom_search_2_2_3" name="custom_search_2_2_3"&gt;
+					&lt;i class="fa fa-search"&gt;&lt;/i&gt;&nbsp;&nbsp自定义查询
+				&lt;/button&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+&lt;div id="gridContainer_2_2_3" class="dlshouwen-grid-container"&gt;&lt;/div&gt;
+&lt;div id="gridToolBarContainer_2_2_3" class="dlshouwen-grid-toolbar-container"&gt;&lt;/div&gt;</pre>
+				<pre class="brush:js;">var gridColumns_2_2_3 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_3 = {
+	lang : 'zh-cn',
+	ajaxLoad : true,
+	loadURL : '/grid/demo/datas/ajax',
+	exportFileName : '用户列表',
+	columns : gridColumns_2_2_3,
+	gridContainer : 'gridContainer_2_2_3',
+	toolbarContainer : 'gridToolBarContainer_2_2_3',
+	tools : '',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_3 = $.fn.dlshouwen.grid.init(gridOption_2_2_3);
+$(function(){
+	grid_2_2_3.load();
+	//绑定方法
+	$('#custom_search_2_2_3').click(customSearch_2_2_3);
+});
+//自定义查询
+function customSearch_2_2_3(){
+	var like_user_code_or_user_name = $('#like_user_code_or_user_name').val();
+	grid_2_2_3.parameters = new Object();
+	grid_2_2_3.parameters['like_user_code_or_user_name'] = like_user_code_or_user_name;
+	grid_2_2_3.refresh(true);
+}</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_3 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_3 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : true,
+			 		loadURL : '/grid/demo/datas/ajax',
+			 		exportFileName : '用户列表',
+			 		columns : gridColumns_2_2_3,
+			 		gridContainer : 'gridContainer_2_2_3',
+					toolbarContainer : 'gridToolBarContainer_2_2_3',
+					tools : '',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_3 = $.fn.dlshouwen.grid.init(gridOption_2_2_3);
+			 	$(function(){
+			 		grid_2_2_3.load();
+			 		//绑定方法
+			 		$('#custom_search_2_2_3').click(customSearch_2_2_3);
+			 	});
+			 	//自定义查询
+			 	function customSearch_2_2_3(){
+			 		var like_user_code_or_user_name = $('#like_user_code_or_user_name').val();
+			 		grid_2_2_3.parameters = new Object();
+			 		grid_2_2_3.parameters['like_user_code_or_user_name'] = like_user_code_or_user_name;
+			 		grid_2_2_3.refresh(true);
+			 	}
+				</script>
+				<p><code>演示</code>：</p>
+				<div>
+					<form class="form-horizontal" action="">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">模糊查询（用户编号、用户名称）：</label>
+							<div class="col-sm-4">
+								<input type="text" id="like_user_code_or_user_name" name="like_user_code_or_user_name" class="form-control" />
+							</div>
+							<div class="col-sm-4">
+								<button type="button" class="btn btn-primary" id="custom_search_2_2_3" name="custom_search_2_2_3">
+									<i class="fa fa-search"></i>&nbsp;&nbsp自定义查询
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="gridContainer_2_2_3" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_3" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.4" class="sub-title">打印</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>支持选择列打印，但由于IE8本身对于打印接口支持的不完善，暂时对于IE8浏览器无法执行打印操作。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_2_4 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_4 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : '用户列表',
+	columns : gridColumns_2_2_4,
+	gridContainer : 'gridContainer_2_2_4',
+	toolbarContainer : 'gridToolBarContainer_2_2_4',
+	tools : 'print',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_4 = $.fn.dlshouwen.grid.init(gridOption_2_2_4);
+$(function(){
+	grid_2_2_4.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_4 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_4 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : '用户列表',
+			 		columns : gridColumns_2_2_4,
+			 		gridContainer : 'gridContainer_2_2_4',
+					toolbarContainer : 'gridToolBarContainer_2_2_4',
+					tools : 'print',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_4 = $.fn.dlshouwen.grid.init(gridOption_2_2_4);
+			 	$(function(){
+			 		grid_2_2_4.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_2_4" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_4" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.5" class="sub-title">导出</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>支持导出文件，导出的文件格式支持选择导出列，并支持导<code>出EXCEL</code>、<code>CSV</code>、<code>PDF</code>、<code>TXT</code>等文件格式。导出文件是通过服务器程序实现的，具体的实现内容请您查阅我们为您提供的项目中的源码。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_2_5 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_5 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : '用户列表',
+	columns : gridColumns_2_2_5,
+	gridContainer : 'gridContainer_2_2_5',
+	toolbarContainer : 'gridToolBarContainer_2_2_5',
+	tools : 'export[excel,csv,pdf,txt]',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_5 = $.fn.dlshouwen.grid.init(gridOption_2_2_5);
+$(function(){
+	grid_2_2_5.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_5 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_5 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : '用户列表',
+			 		columns : gridColumns_2_2_5,
+			 		gridContainer : 'gridContainer_2_2_5',
+					toolbarContainer : 'gridToolBarContainer_2_2_5',
+					tools : 'export[excel,csv,pdf,txt]',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_5 = $.fn.dlshouwen.grid.init(gridOption_2_2_5);
+			 	$(function(){
+			 		grid_2_2_5.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_2_5" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_5" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.6" class="sub-title">快速查询</div>
+				<p><a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>原生支持快速查询。对于<code>非Ajax分页加载数据模式</code>的表格，我们原生JS即支持快速查询过滤，对于<code>Ajax分页加载数据模式</code>的表格，为了实现更高的查询效率，我们是通过服务器拼接查询SQL的方式完成的。</p>
+				<p>快速查询为一套预定义的查询模式，用户将直观的输入或选择查询的内容。快速查询通过<a href="http://os.dlshouwen.com/grid">DLShouWen Grid</a>中的<code>fastQuery</code>及<code>fastQueryType</code>属性定义。</p>
+				<p>快速查询支持<code>等于</code>、<code>不等于</code>、<code>模糊匹配</code>、<code>左侧模糊匹配</code>、<code>右侧模糊匹配</code>、<code>大于</code>、<code>大于等于</code>、<code>小于</code>、<code>小于等于</code>等快速查询类型。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_2_6 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_6 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : '用户列表',
+	columns : gridColumns_2_2_6,
+	gridContainer : 'gridContainer_2_2_6',
+	toolbarContainer : 'gridToolBarContainer_2_2_6',
+	tools : 'fastQuery',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_6 = $.fn.dlshouwen.grid.init(gridOption_2_2_6);
+$(function(){
+	grid_2_2_6.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_6 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_6 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : '用户列表',
+			 		columns : gridColumns_2_2_6,
+			 		gridContainer : 'gridContainer_2_2_6',
+					toolbarContainer : 'gridToolBarContainer_2_2_6',
+					tools : 'fastQuery',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_6 = $.fn.dlshouwen.grid.init(gridOption_2_2_6);
+			 	$(function(){
+			 		grid_2_2_6.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_2_6" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_6" class="dlshouwen-grid-toolbar-container"></div>
+				<div id="2.2.7" class="sub-title">高级查询</div>
+				<p>高级查询为高定制化的查询而生，高级查询支持选择所有<code>advanceQuery</code>属性为<code>true</code>的字段，针对这些字段完成非常复杂的过滤条件，并支持自定义的排序功能。该排序同基础功能中的排序不同，基础功能的排序只对本页数据进行排序，而高级查询中的数据是所有数据排序后分页显示。</p>
+				<p>对于Ajax分页加载数据模式，我们也是通过服务器端拼接SQL的方式完成实现的，这样做也是出于查询效率的考虑，具体实现方式请您查阅我们提供的服务器端程序。</p>
+				<p><code>关键代码</code>：</p>
+				<pre class="brush:js;">var gridColumns_2_2_7 = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption_2_2_7 = {
+	lang : 'zh-cn',
+	ajaxLoad : false,
+	datas : datas,
+	exportFileName : '用户列表',
+	columns : gridColumns_2_2_7,
+	gridContainer : 'gridContainer_2_2_7',
+	toolbarContainer : 'gridToolBarContainer_2_2_7',
+	tools : 'advanceQuery',
+	pageSize : 10,
+	pageSizeLimit : [10, 20, 50]
+};
+var grid_2_2_7 = $.fn.dlshouwen.grid.init(gridOption_2_2_7);
+$(function(){
+	grid_2_2_7.load();
+});</pre>
+				<script type="text/javascript">
+				var gridColumns_2_2_7 = [
+			 		{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+			 		{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+			 		{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(value, record, column, grid, dataNo, columnNo){
+			 			var content = '';
+			 			if(value==1){
+			 				content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+			 			}else{
+			 				content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+			 			}
+			 			return content;
+			 		}},
+			 		{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+			 		{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+			 		{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss S', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+			 		{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+			 	];
+			 	var gridOption_2_2_7 = {
+			 		lang : 'zh-cn',
+			 		ajaxLoad : false,
+			 		datas : datas,
+			 		exportFileName : '用户列表',
+			 		columns : gridColumns_2_2_7,
+			 		gridContainer : 'gridContainer_2_2_7',
+					toolbarContainer : 'gridToolBarContainer_2_2_7',
+					tools : 'advanceQuery',
+					pageSize : 10,
+					pageSizeLimit : [10, 20, 50]
+			 	};
+			 	var grid_2_2_7 = $.fn.dlshouwen.grid.init(gridOption_2_2_7);
+			 	$(function(){
+			 		grid_2_2_7.load();
+			 	});
+				</script>
+				<p><code>演示</code>：</p>
+				<div id="gridContainer_2_2_7" class="dlshouwen-grid-container"></div>
+				<div id="gridToolBarContainer_2_2_7" class="dlshouwen-grid-toolbar-container"></div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>

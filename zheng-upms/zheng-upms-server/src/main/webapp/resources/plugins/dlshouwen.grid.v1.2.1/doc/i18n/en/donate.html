@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - Donate</title>
+	<meta name="Keywords" content="DaLianShouWen Grid,DLShouWen Grid,Responsive Grid,jQuery Grid,Open Source Grid"/>
+	<meta name="Description" content="DaLian ShouWen Grid(DLShouWen Grid) is a responsive grid by DaLian ShouWen Technology Co., it's based on MIT open source licenses. It's with cross brower support, procedures clear, powerful, efficient load, and many other good qualities, it perhaps the best known reponstive grid controls."/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- DLShouWen Grid -->
+	<script type="text/javascript" src="../../../dlshouwen.grid.min.js"></script>
+	<script type="text/javascript" src="../../../i18n/en.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-cn.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-tw.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dlshouwen.grid.min.css" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	//Define Donate Type
+	var donateType = 'paypal';
+	//Initialization
+	$(function(){
+		//Pin the Left Sider
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+		//Show or Hide the Left Sider's Sub Menu
+		$(".left-sider>ul>li>a").toggle(function(){
+			$(this).children('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+			$(this).next('ul').slideDown(200);
+		}, function(){
+			$(this).children('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+			$(this).next('ul').slideUp(200);
+		});
+		//All Close Except the First Menu
+		$(".left-sider>ul>li>ul:not(:first)").hide();
+		$(".left-sider>ul>li>a:first").click();
+		//Default the Donate Type
+		selectDonateType(donateType);
+	});
+	//Select the Donate Type
+	function selectDonateType(type){
+		$('#donate_type_alipay').removeClass('donate-type-select');
+		$('#donate_type_paypal').removeClass('donate-type-select');
+		if(type=='alipay'){
+			$('.donate-type-icon').removeClass('fa-usd');
+			$('.donate-type-icon').addClass('fa-cny');
+			$('#donate_type_alipay').addClass('donate-type-select');
+		}
+		if(type=='paypal'){
+			$('.donate-type-icon').removeClass('fa-cny');
+			$('.donate-type-icon').addClass('fa-usd');
+			$('#donate_type_paypal').addClass('donate-type-select');
+		}
+		donateType = type;
+	}
+	//Donate
+	function donate(amount){
+		if(!amount){
+			amount = $('#donate_amount').val();
+			if($.trim(amount)==''){
+				$.fn.dlshouwen.grid.tools.toast('Please input your donation amount.', 'error', 3000);
+				$('#donate_amount').focus();
+				return;
+			}
+			if(!$.trim(amount).match(/^\d+(\.\d+)?$/)){
+				$.fn.dlshouwen.grid.tools.toast('Please input the amount of format is incorrect, please confirm.', 'error', 3000);
+				$('#donate_amount').focus();
+				return;
+			}
+			amount = $.trim(amount);
+		}
+		if(donateType=='alipay'){
+			$('#alipay_donate_form #WIDtotal_fee').val(amount);
+			document.forms['alipay_donate_form'].submit();
+		}
+		if(donateType=='paypal'){
+			$('#paypal_donate_form input[name=amount]').val(amount);
+			document.forms['paypal_donate_form'].submit();
+		}
+	}
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Tools</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
+					</li>
+					<li id="nav_example">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;Example</a>
+					</li>
+					<li id="nav_reference">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Reference</a>
+					</li>
+					<li id="nav_download">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;Download</a>
+					</li>
+					<li id="nav_about">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;About</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;Language</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="javascript:;">English</a></li>
+							<li><a href="../zh-cn/donate.html">Simple Chinese</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate active">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;Donate</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li>
+						<a href="#6.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;DLShouWen Grid Donate</a>
+						<ul>
+							<li><a href="#6.1.1">DLShouWen Grid</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#6.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Other Donate</a>
+						<ul>
+							<li><a href="#6.2.1">jQuery</a></li>
+							<li><a href="#6.2.2">Bootstrap</a></li>
+							<li><a href="#6.2.3">Font Awesome</a></li>
+							<li><a href="#6.2.4">My97 DatePicker</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="6.1" class="title">DLShouWen Grid Donate</div>
+				<div id="6.1.1" class="sub-title">DLShouWen Grid</div>
+				<hr />
+				<p>Thanks for your support! You can contact us through the following content, we will according to your needs in your donation information displayed below, thanks again for your donation!</p>
+				<p class="attention">You can donate us by alipay scan: </p>
+				<p><img class="img-thumbnail" width="180" height="180" src="../../images/donate.jpg" /></p>
+				<p class="attention">or donate by those type: </p>
+				<div>
+					<form id="alipay_donate_form" action="http://pay.dlshouwen.com/alipay/pay/os" method="post">
+						<input type="hidden" id="WIDtotal_fee" name="WIDtotal_fee" />
+					</form>
+					<form id="paypal_donate_form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<input type="hidden" name="business" value="VHQ86BPCJWU6A">
+						<input type="hidden" name="item_name" value="Donate For DT Grid">
+						<input type="hidden" name="no_shipping" value="1">
+						<input type="hidden" name="lc" value="US">
+						<input type="hidden" name="cmd" value="_xclick">
+						<input type="hidden" name="currency_code" value="USD">
+						<input type="hidden" name="amount">
+					</form>
+					<div id="donate_type_paypal" class="donate-type" onclick="selectDonateType('paypal');">
+						<img src="../../images/paypal.png" height=48" data-toggle="modal" data-target="#alipayDonateModal" />
+					</div>
+					<div id="donate_type_alipay" class="donate-type" onclick="selectDonateType('alipay');">
+						<img src="../../images/alipay.png" height=48" data-toggle="modal" data-target="#alipayDonateModal" />
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<p class="attention">Please choose or fill in the donation amount: </p>
+				<div class="row donate-container">
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;20</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-default" role="button" onclick="donate(20);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;Donate</a>
+								</p>
+							</div>
+							<div class="info" style="background:#fff;">
+								<p style="color:#666;">
+									Thank you for your donation! We hope that you can help more people in your ability range.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;50</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-warning" role="button" onclick="donate(50);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;Donate</a>
+								</p>
+							</div>
+							<div class="info" style="background:#f0ad4e;">
+								<p style="color:white;">
+									Thank you for your donation! We hope that you can help more people in your ability range.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;120</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-danger" role="button" onclick="donate(120);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;Donate</a>
+								</p>
+							</div>
+							<div class="info" style="background:#d9534f;">
+								<p style="color:white;">
+									Thank you for your donation! If you have any intention of cooperation, please contact us.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;200</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-success" role="button" onclick="donate(200);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;Donate</a>
+								</p>
+							</div>
+							<div class="info" style="background:#5cb85c;">
+								<p style="color:white;">
+									Thank you for your donation! If you have any intention of cooperation, please contact us.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<form id="donate_form" class="form-inline" action="http://pay.dlshouwen.com/alipay/pay/os" method="post">
+						<div class="form-group">
+							<label class="sr-only">Enter the amount of contributions:</label>
+							<p class="form-control-static donate-alipay">Enter the amount of contributions:</p>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword2" class="sr-only">Password</label>
+							<input type="text" class="form-control" id="donate_amount" placeholder="Please enter a different amount of">
+						</div>
+						<button type="button" class="btn btn-success" onclick="donate();"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;Donate</button>
+					</form>
+				</div>
+				<p>Contact us: <a href="about.html#5.3">Click Here to Show the Contact Info</a></p>
+				<div id="6.2" class="title">Other Donate</div>
+				<hr />
+				<div id="6.2.1" class="sub-title">jQuery</div>
+				<p>jQuery is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML. Used by over 60% of the 10,000 most visited websites, jQuery is the most popular JavaScript library in use today. jQuery is free, open-source software licensed under the MIT License.</p>
+				<p>Official website: </p>
+				<p><a href="http://jquery.com" target="_blank">JQuery official website</a></p>
+				<div id="6.2.2" class="sub-title">Bootstrap</div>
+				<p>Bootstrap is a free collection of tools for creating websites and web applications. It contains HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components, as well as optional JavaScript extensions. In June 2014 it was the No.1 project on GitHub with over 73,000 stars and more than 27,000 forks, and a user base that includes MSNBC and NASA.</p>
+				<p>Official website: </p>
+				<p><a href="http://getbootstrap.com" target="_blank">Bootstrap Official website</a></p>
+				<p><a href="http://www.bootcss.com" target="_blank">Bootstrap Chinese website</a></p>
+				<div id="6.2.3" class="sub-title">Font Awesome</div>
+				<p>Official website: </p>
+				<p><a href="http://fontawesome.io" target="_blank">Font Awesome Official website</a></p>
+				<div id="6.2.4" class="sub-title">My97 DatePicker</div>
+				<p>Official website: </p>
+				<p><a href="http://www.my97.net" target="_blank">My97 Official website</a></p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>

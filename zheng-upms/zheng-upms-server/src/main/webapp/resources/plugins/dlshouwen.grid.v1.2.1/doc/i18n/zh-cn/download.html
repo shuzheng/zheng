@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - 下载</title>
+	<meta name="Keywords" content="DLShouWen Grid,大连首闻Grid,响应式表格,jQuery表格,开源表格"/>
+	<meta name="Description" content="大连首闻 Grid（DLShouWen Grid）是一款由 大连首闻科技有限公司自主研发的基于MIT开源协议的响应式表格控件，拥有跨浏览器支持、程序思路清晰、功能强大、高效加载等众多优秀素质，或许是目前已知的最好的响应式表格控件"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	$(function(){
+		//钉住菜单
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+		//左侧菜单注册事件
+		$(".left-sider>ul>li>a").toggle(function(){
+			$(this).children('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+			$(this).next('ul').slideDown(200);
+		}, function(){
+			$(this).children('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+			$(this).next('ul').slideUp(200);
+		});
+		//左侧菜单除了第一个全部关闭
+		$(".left-sider>ul>li>ul:not(:first)").hide();
+		$(".left-sider>ul>li>a:first").click();
+	});
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">工具</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;首页</a>
+					</li>
+					<li id="nav_example">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;示例</a>
+					</li>
+					<li id="nav_reference">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;参考文档</a>
+					</li>
+					<li id="nav_download" class="active">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;下载</a>
+					</li>
+					<li id="nav_about">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;关于</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;切换语言</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../en/download.html">英文版</a></li>
+							<li><a href="javascript:;">简体中文版</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;捐助DLShouWen Grid</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li>
+						<a href="#4.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;DLShouWen Grid下载</a>
+						<ul>
+							<li><a href="#4.1.1">Version 1.2.1<span class="label label-danger label-doc">新版本</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#4.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;项目下载</a>
+						<ul>
+							<li><a href="#4.2.1">Version 1.2.1 - Java<span class="label label-danger label-doc">新版本</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#4.3"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;历史版本</a>
+						<ul>
+							<li><a href="#4.3.1">Version 1.2.0</a></li>
+							<li><a href="#4.3.2">Version 1.1.9</a></li>
+							<li><a href="#4.3.3">Version 1.1.8</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="4.1" class="title">DLShouWen Grid下载</div>
+				<hr />
+				<div id="4.1.1" class="sub-title">Version 1.2.1<span class="label label-danger label-doc">新版本</span></div>
+				<p>欢迎您下载DLShouWen Grid表格控件，希望我们的产品能给您的项目带来帮助。如果您希望长期同我们合作，请您按如下方式联系我们：</p>
+				<p class="attr"><code>官方网站</code>：<a href="http://www.dlshouwen.com" target="_blank">http://www.dlshouwen.com</a></p>
+				<p class="attr"><code>邮箱</code>：<a href="mailto:service@dlshouwen.com" target="_blank">service@dlshouwen.com</a></p>
+				<p class="attr"><code>地址</code>：<a href="javascript:;">辽宁省大连市甘井子区辛康园13-3号4层2号</a></p>
+				<p class="attr"><code>合作洽谈QQ</code>：<a href="http://wpa.qq.com/msgrd?v=3&uin=1739881799&site=qq&menu=yes" target="_blank">1739881799</a></p>
+				<p class="attr"><code>新浪微博</code>：<a href="http://weibo.com/dlshouwen" target="_blank">@大连首闻科技有限公司</a></p>
+				<p class="attr"><code>技术交流QQ群</code>：<a href="http://jq.qq.com/?_wv=1027&k=XVXCyZ" target="_blank">152084937</a></p>
+				<p class="attr"><code>技术交流论坛</code>：<a href="http://bbs.dlshouwen.com" target="_blank">http://bbs.dlshouwen.com</a></p>
+				<p class="attention">更新日志：</p>
+				<p class="attr"><code>1</code>. 更新Ajax获取数据时更换每页显示条数出现数据显示范围错误的BUG。</p>
+				<p class="attr"><code>2</code>. 更新在引入高版本jQuery时全选反选功能第二次点击失效的BUG（感谢网友 @半夜不想鸣蝉 [ QQ:1057590631 周先生 ] 协助调试）。</p>
+				<p class="attr"><code>3</code>. 表格列属性追加width参数。</p>
+				<p class="attr"><code>4</code>. 表格属性追加extraWidth参数。</p>
+				<p class="attr"><code>5</code>. 表格属性追加checkWidth参数。</p>
+				<p class="attention">即将支持：</p>
+				<p class="attr"><code>1</code>. 表格在线编辑数据。</p>
+				<p class="attr"><code>2</code>. 自定义复杂表头。</p>
+				<p class="attr"><code>3</code>. 钉住表头。</p>
+				<p class="attr"><code>4</code>. 其他多国语言（日语、韩语）。</p>
+				<p>我们的产品完全由自主团队研发，如果您有一定的经济基础，欢迎您捐助我们，感谢您对我们的支持。</p>
+				<p>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.2.1/dlshouwen.grid.v1.2.1.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;DLShouWen Grid 下载
+					</a>
+					<a class="btn btn-xs btn-danger" href="donate.html">
+						<i class="fa fa-usd"></i>&nbsp;&nbsp;捐助 DLShouWen Grid 项目
+					</a>
+				</p>
+				<div id="4.2" class="title">项目下载</div>
+				<hr />
+				<div id="4.2.1" class="sub-title">Version 1.2.1 - Java<span class="label label-danger label-doc">新版本</span></div>
+				<p>本项目采用Spring + Spring MVC + JDBC Template的模式架构，如果您的框架中并未使用此套件，将对应内容修改为原生servlet方式，只需要保证返回值是原项目中规范的JSON对象或JSON数组格式即可。</p>
+				<p>本项目中的数据库采用MySQL进行演示，如果您需要移植到其他数据库，请修改对应的SQL封装即可，如分页函数等。</p>
+				<p>如果您无法独立完成移植，您可以直接与我们联系。</p>
+				<p>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.2.1/dlshouwen.grid.v1.2.1.java.web.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;DLShouWen Grid Java Web 版本下载
+					</a>
+					<a class="btn btn-xs btn-danger" href="donate.html">
+						<i class="fa fa-usd"></i>&nbsp;&nbsp;捐助 DLShouWen Grid 项目
+					</a>
+				</p>
+				<div id="4.3" class="title">历史版本</div>
+				<hr />
+				<div id="4.3.1" class="sub-title">Version 1.2.0</div>
+				<p class="attention">更新日志：</p>
+				<p class="attr"><code>1</code>. 修复程序中fastQuery写成faseQuery的错误（感谢网友 @elfits 提供反馈）。</p>
+				<p class="attr"><code>2</code>. 修复排序功能在某些情况下排序错误的BUG（感谢网友 @郑起 提供反馈）。</p>
+				<p>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.2.0/dlshouwen.grid.v1.2.0.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;下载
+					</a>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.2.0/dlshouwen.grid.v1.2.0.java.web.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;Java Web 版本下载
+					</a>
+					<a class="btn btn-xs btn-danger" href="donate.html">
+						<i class="fa fa-usd"></i>&nbsp;&nbsp;捐助
+					</a>
+				</p>
+				<div id="4.3.2" class="sub-title">Version 1.1.9</div>
+				<p class="attention">更新日志：</p>
+				<p class="attr"><code>1</code>. 更改了国际化处理的加载方式，修改为使用lang参数配置，同一页面多语言可以共存。</p>
+				<p class="attr"><code>2</code>. 完善大量事件，追加事件参数，详情请参阅示例及参考文档。</p>
+				<p class="attr"><code>3</code>. 自定义修改每页显示条数，配置参数支持下拉选择、输入、原样显示，请参阅表格属性中的pageSizeLimit参数。</p>
+				<p class="attr"><code>4</code>. 更新自定义解析参数resolution，完善回调方法传递的参数。</p>
+				<p class="attr"><code>5</code>. 修复IE8及以下浏览器点击页码不能跳转的问题。</p>
+				<p class="attr"><code>6</code>. 修复打印执行后自动跳转到页面顶端的问题。</p>
+				<p class="attr"><code>7</code>. 追加了单元格滑过背景颜色变更的样式。</p>
+				<p class="attr"><code>8</code>. 追加表头、扩展按钮单元格鼠标样式为pointer。</p>
+				<p class="attr"><code>9</code>. 文档加入英文版，通过首页判断浏览器加载文档语言，文档可以针对语言切换。</p>
+				<p class="attr"><code>10</code>. 解决进度条与数据加载完成不同步的问题，统一延时100毫秒。</p>
+				<p class="attr"><code>11</code>. 示例的高级功能中加入自定义参数传递的示例。</p>
+				<p class="attr"><code>12</code>. Java、Php服务器端代码采用Preparestatement模式防止SQL注入。</p>
+				<p class="attr"><code>13</code>. 文档加入交互参数、对象属性的说明。</p>
+				<p>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.1.9/dlshouwen.grid.v1.1.9.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;下载
+					</a>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.1.9/dlshouwen.grid.v1.1.9.java.web.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;Java Web 版本下载
+					</a>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.1.9/dlshouwen.grid.v1.1.9.php.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;Php 版本下载
+					</a>
+					<a class="btn btn-xs btn-danger" href="donate.html">
+						<i class="fa fa-usd"></i>&nbsp;&nbsp;捐助
+					</a>
+				</p>
+				<div id="4.3.3" class="sub-title">Version 1.1.8</div>
+				<p>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.1.8/dlshouwen.grid.v1.1.8.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;下载
+					</a>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.1.8/dlshouwen.grid.v1.1.8.java.web.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;Java Web 版本下载
+					</a>
+					<a class="btn btn-xs btn-success" href="http://mirror.dlshouwen.com/os/grid/v1.1.8/dlshouwen.grid.v1.1.8.php.zip" target="_blank">
+						<i class="fa fa-download"></i>&nbsp;&nbsp;Php 版本下载
+					</a>
+					<a class="btn btn-xs btn-danger" href="donate.html">
+						<i class="fa fa-usd"></i>&nbsp;&nbsp;捐助
+					</a>
+				</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+@font-face {
+	font-family: 'dlshouwen';
+	src:url('../fonts/dlshouwen.eot?43zkgx');
+	src:url('../fonts/dlshouwen.eot?#iefix43zkgx') format('embedded-opentype'),
+		url('../fonts/dlshouwen.woff?43zkgx') format('woff'),
+		url('../fonts/dlshouwen.ttf?43zkgx') format('truetype'),
+		url('../fonts/dlshouwen.svg?43zkgx#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'dlshouwen';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dlshouwen:before {
+	content: "\e601";
+}

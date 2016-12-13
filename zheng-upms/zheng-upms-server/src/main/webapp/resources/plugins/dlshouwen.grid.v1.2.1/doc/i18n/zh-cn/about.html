@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - 关于</title>
+	<meta name="Keywords" content="DLShouWen Grid,大连首闻Grid,响应式表格,jQuery表格,开源表格"/>
+	<meta name="Description" content="大连首闻 Grid（DLShouWen Grid）是一款由 大连首闻科技有限公司自主研发的基于MIT开源协议的响应式表格控件，拥有跨浏览器支持、程序思路清晰、功能强大、高效加载等众多优秀素质，或许是目前已知的最好的响应式表格控件"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	$(function(){
+		//钉住菜单
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">工具</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;首页</a>
+					</li>
+					<li id="nav_example">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;示例</a>
+					</li>
+					<li id="nav_reference">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;参考文档</a>
+					</li>
+					<li id="nav_download">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;下载</a>
+					</li>
+					<li id="nav_about" class="active">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;关于</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;切换语言</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../en/about.html">英文版</a></li>
+							<li><a href="javascript:;">简体中文版</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;捐助DLShouWen Grid</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li><a href="#5.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;大连首闻科技有限公司</a></li>
+					<li><a href="#5.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;旗下产品</a></li>
+					<li><a href="#5.3"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;联系方式</a></li>
+					<li><a href="#5.4"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;技术交流</a></li>
+					<li><a href="#5.5"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;授权协议</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="5.1" class="title">大连首闻科技有限公司</div>
+				<hr />
+				<p><a href="http://www.dlshouwen.com" target="_blank">大连首闻科技有限公司</a>（以下简称大连首闻）成立于2014年，是由众多拥有多年经验的IT从业者组成的实力强大的技术性IT网络服务企业，面向全国提供领先的软件技术产品、项目服务及行业信息化体系解决方案，在大连拥有众多的合作企业。</p>
+				<p>大连首闻是一个新兴的IT网络企业，在这个IT届鱼龙混杂、市场趋于饱和的时代，我们有实力、有能力也有信心发展壮大，目前大连首闻出于发展中解决，我们将通过我们过硬的技术实力，强力的底层支撑平台，不断的市场行为借鉴，不断的吸收国内外优秀产品、技术经验，促进技术和业务的双线房展，实现公司产业、技术的不断创新。目前我公司已经同多家优秀软件企业签订合作协议，并已经开放出多个技术开源产品，在发展壮大的同时也为国内的IT从业者贡献力量。</p>
+				<p>面向未来，大连首闻一直严格要求自己，通过产品、项目来完善壮大自己，我们将以成果的精致程度著称，将网络项目、产品做到极致优秀，达到并有信心超越国际优秀企业水平。</p>
+				<div id="5.2" class="title">旗下产品</div>
+				<hr />
+				<p>响应式表格组件 <code>[ MIT开源产品 ]</code>：<a href="http://os.dlshouwen.com/grid" target="_blank">http://os.dlshouwen.com/grid</a></p>
+				<p>表单验证组件 <code>[ MIT开源产品 ]</code>：<a href="http://os.dlshouwen.com/validator" target="_blank">http://os.dlshouwen.com/validator</a></p>
+				<p>核心系统 - 经典版 <code>[ CORE - CLASSIC ]</code>：<a href="http://core.dlshouwen.com/classic" target="_blank">http://core.dlshouwen.com/classic</a></p>
+				<p>核心系统 - 轻盈版 <code>[ CORE - LITE ]</code>：<a href="http://core.dlshouwen.com/lite" target="_blank">http://core.dlshouwen.com/lite</a></p>
+				<p>核心系统 - 响应式版 <code>[ CORE - RESPONSIVE ]</code>：<a href="http://core.dlshouwen.com/responsive" target="_blank">http://core.dlshouwen.com/responsive</a></p>
+				<div id="5.3" class="title">联系方式</div>
+				<hr />
+				<p>官方网站：<a href="http://www.dlshouwen.com" target="_blank">http://www.dlshouwen.com</a></p>
+				<p>邮箱：<a href="mailto:service@dlshouwen.com" target="_blank">service@dlshouwen.com</a></p>
+				<p>地址：<a href="javascript:;">辽宁省大连市甘井子区辛康园13-3号4层2号</a></p>
+				<p>合作洽谈QQ：<a href="http://wpa.qq.com/msgrd?v=3&uin=1739881799&site=qq&menu=yes" target="_blank">1739881799</a></p>
+				<p>新浪微博：<a href="http://weibo.com/dlshouwen" target="_blank">@大连首闻科技有限公司</a></p>
+				<div id="5.4" class="title">技术交流</div>
+				<hr />
+				<p>技术交流QQ群：<a href="http://jq.qq.com/?_wv=1027&k=XVXCyZ" target="_blank">152084937</a></p>
+				<p>技术交流论坛：<a href="http://bbs.dlshouwen.com" target="_blank">http://bbs.dlshouwen.com</a></p>
+				<div id="5.4" class="title">授权协议</div>
+				<hr />
+				<p>MIT开源协议，请您查阅 <a href="http://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89" target="_blank">维基百科MIT协议</a> 内容。</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>

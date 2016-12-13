@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - 捐助</title>
+	<meta name="Keywords" content="DLShouWen Grid,大连首闻Grid,响应式表格,jQuery表格,开源表格"/>
+	<meta name="Description" content="大连首闻 Grid（DLShouWen Grid）是一款由 大连首闻科技有限公司自主研发的基于MIT开源协议的响应式表格控件，拥有跨浏览器支持、程序思路清晰、功能强大、高效加载等众多优秀素质，或许是目前已知的最好的响应式表格控件"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- DLShouWen Grid -->
+	<script type="text/javascript" src="../../../dlshouwen.grid.min.js"></script>
+	<script type="text/javascript" src="../../../i18n/en.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-cn.js"></script>
+	<script type="text/javascript" src="../../../i18n/zh-tw.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dlshouwen.grid.min.css" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	//定义捐赠类别
+	var donateType = 'alipay';
+	//初始化操作
+	$(function(){
+		//钉住菜单
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+		//左侧菜单注册事件
+		$(".left-sider>ul>li>a").toggle(function(){
+			$(this).children('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+			$(this).next('ul').slideDown(200);
+		}, function(){
+			$(this).children('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+			$(this).next('ul').slideUp(200);
+		});
+		//左侧菜单除了第一个全部关闭
+		$(".left-sider>ul>li>ul:not(:first)").hide();
+		$(".left-sider>ul>li>a:first").click();
+		//默认捐赠类别
+		selectDonateType(donateType);
+	});
+	//选择捐赠类别
+	function selectDonateType(type){
+		$('#donate_type_alipay').removeClass('donate-type-select');
+		$('#donate_type_paypal').removeClass('donate-type-select');
+		if(type=='alipay'){
+			$('.donate-type-icon').removeClass('fa-usd');
+			$('.donate-type-icon').addClass('fa-cny');
+			$('#donate_type_alipay').addClass('donate-type-select');
+		}
+		if(type=='paypal'){
+			$('.donate-type-icon').removeClass('fa-cny');
+			$('.donate-type-icon').addClass('fa-usd');
+			$('#donate_type_paypal').addClass('donate-type-select');
+		}
+		donateType = type;
+	}
+	//捐赠
+	function donate(amount){
+		if(!amount){
+			amount = $('#donate_amount').val();
+			if($.trim(amount)==''){
+				$.fn.dlshouwen.grid.tools.toast('请您输入捐赠的金额。', 'error', 3000);
+				$('#donate_amount').focus();
+				return;
+			}
+			if(!$.trim(amount).match(/^\d+(\.\d+)?$/)){
+				$.fn.dlshouwen.grid.tools.toast('请您输入金额格式有误，请您确认。', 'error', 3000);
+				$('#donate_amount').focus();
+				return;
+			}
+			amount = $.trim(amount);
+		}
+		if(donateType=='alipay'){
+			$('#alipay_donate_form #WIDtotal_fee').val(amount);
+			document.forms['alipay_donate_form'].submit();
+		}
+		if(donateType=='paypal'){
+			$('#paypal_donate_form input[name=amount]').val(amount);
+			document.forms['paypal_donate_form'].submit();
+		}
+	}
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">工具</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;首页</a>
+					</li>
+					<li id="nav_example">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;示例</a>
+					</li>
+					<li id="nav_reference">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;参考文档</a>
+					</li>
+					<li id="nav_download">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;下载</a>
+					</li>
+					<li id="nav_about">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;关于</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;切换语言</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../en/donate.html">英文版</a></li>
+							<li><a href="javascript:;">简体中文版</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate active">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;捐助DLShouWen Grid</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li>
+						<a href="#6.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;DLShouWen Grid捐助</a>
+						<ul>
+							<li><a href="#6.1.1">DLShouWen Grid</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#6.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;其他捐助信息</a>
+						<ul>
+							<li><a href="#6.2.1">jQuery</a></li>
+							<li><a href="#6.2.2">Bootstrap</a></li>
+							<li><a href="#6.2.3">Font Awesome</a></li>
+							<li><a href="#6.2.4">My97 DatePicker</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="6.1" class="title">DLShouWen Grid捐助</div>
+				<hr />
+				<div id="6.1.1" class="sub-title">DLShouWen Grid</div>
+				<p>感谢您对DLShouWen Grid的支持！您在捐助后可以通过以下联系方式联系我们，我们将会按照您需要在下方显示您的捐赠信息，再次表示感谢！</p>
+				<p class="attention">您可以使用支付宝扫码方式对我们进行捐赠：</p>
+				<p><img class="img-thumbnail" width="180" height="180" src="../../images/donate.jpg" /></p>
+				<p class="attention">或采用以下其他捐赠模式：</p>
+				<div>
+					<form id="alipay_donate_form" action="http://pay.dlshouwen.com/alipay/pay/os" method="post">
+						<input type="hidden" id="WIDtotal_fee" name="WIDtotal_fee" />
+					</form>
+					<form id="paypal_donate_form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<input type="hidden" name="business" value="VHQ86BPCJWU6A">
+						<input type="hidden" name="item_name" value="Donate For DLShouWen Grid">
+						<input type="hidden" name="no_shipping" value="1">
+						<input type="hidden" name="lc" value="US">
+						<input type="hidden" name="cmd" value="_xclick">
+						<input type="hidden" name="currency_code" value="USD">
+						<input type="hidden" name="amount">
+					</form>
+					<div id="donate_type_alipay" class="donate-type" onclick="selectDonateType('alipay');">
+						<img src="../../images/alipay.png" height=48" data-toggle="modal" data-target="#alipayDonateModal" />
+					</div>
+					<div id="donate_type_paypal" class="donate-type" onclick="selectDonateType('paypal');">
+						<img src="../../images/paypal.png" height=48" data-toggle="modal" data-target="#alipayDonateModal" />
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<p class="attention">请选择或填写您的捐赠金额：</p>
+				<div class="row donate-container">
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;20</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-default" role="button" onclick="donate(20);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;捐助</a>
+								</p>
+							</div>
+							<div class="info" style="background:#fff;">
+								<p style="color:#666;">
+									感谢您的捐助！希望您能在您力所能及的情况下帮助更多人！
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;50</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-warning" role="button" onclick="donate(50);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;捐助</a>
+								</p>
+							</div>
+							<div class="info" style="background:#f0ad4e;">
+								<p style="color:white;">
+									感谢您的捐助！希望您能在您力所能及的情况下帮助更多人！
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;120</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-danger" role="button" onclick="donate(120);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;捐助</a>
+								</p>
+							</div>
+							<div class="info" style="background:#d9534f;">
+								<p style="color:white;">
+									感谢您的捐助！如果您有任何合作意向，请与我们联系。
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;200</h3>
+								<p>
+									<a href="javascript:void(0)" class="btn btn-success" role="button" onclick="donate(200);"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;捐助</a>
+								</p>
+							</div>
+							<div class="info" style="background:#5cb85c;">
+								<p style="color:white;">
+									感谢您的捐助！如果您有任何合作意向，请与我们联系。
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<form id="donate_form" class="form-inline" action="http://pay.dlshouwen.com/alipay/pay/os" method="post">
+						<div class="form-group">
+							<label class="sr-only">输入捐助金额：</label>
+							<p class="form-control-static">输入捐助金额：</p>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword2" class="sr-only">Password</label>
+							<input type="text" class="form-control" id="donate_amount" placeholder="请输入其他金额">
+						</div>
+						<button type="button" class="btn btn-success" onclick="donate();"><i class="fa fa-cny donate-type-icon"></i>&nbsp;&nbsp;捐助</button>
+					</form>
+				</div>
+				<p>联系我们：<a href="about.html#5.3">点击查阅联系方式</a></p>
+				<div id="6.2" class="title">其他捐助信息</div>
+				<hr />
+				<div id="6.2.1" class="sub-title">jQuery</div>
+				<p>jQuery是一套跨浏览器的JavaScript库，简化HTML与JavaScript之间的操作。由约翰·雷西格（John Resig）在2006年1月的BarCamp NYC上发布第一个版本。目前是由Dave Methvin领导的开发团队进行开发。全球前10000个访问最高的网站中，有65%使用了jQuery，是目前最受欢迎的JavaScript库。</p>
+				<p>官方网站：</p>
+				<p><a href="http://jquery.com" target="_blank">jQuery官方网站</a></p>
+				<div id="6.2.2" class="sub-title">Bootstrap</div>
+				<p>Bootstrap是一组用于制作网站及网络应用程序的工具，里面包含有HTML、层叠样式表（CSS）及JavaScript的框架，提供字体排印、表单、按钮、导航及其他各种元件，并提供了Javascript扩充套件。对于同时要供不同上网装置及浏览器，如一般电脑、手机及平板电脑等浏览的网站及网络应用程序，Bootstrap提供了CSS媒体查询（Media Query），节省网站制作者分别制作不同版本的时间及不便。</p>
+				<p>据2014年6月的统计，Bootstrap在GitHub里面排名第一，获得了7万3千颗星的评价。不少热门网站如MSNBC与美国航太总署（NASA）等均使用了Bootstrap。</p>
+				<p>官方网站：</p>
+				<p><a href="http://getbootstrap.com" target="_blank">Bootstrap官方网站</a></p>
+				<p><a href="http://www.bootcss.com" target="_blank">Bootstrap中文网</a></p>
+				<div id="6.2.3" class="sub-title">Font Awesome</div>
+				<p>官方网站：</p>
+				<p><a href="http://fontawesome.io" target="_blank">Font Awesome官方网站</a></p>
+				<div id="6.2.4" class="sub-title">My97 DatePicker</div>
+				<p>官方网站：</p>
+				<p><a href="http://www.my97.net" target="_blank">My97官方网站</a></p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>

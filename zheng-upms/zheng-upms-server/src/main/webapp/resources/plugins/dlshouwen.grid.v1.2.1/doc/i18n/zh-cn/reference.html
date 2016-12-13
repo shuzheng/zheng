@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - 文档</title>
+	<meta name="Keywords" content="DLShouWen Grid,大连首闻Grid,响应式表格,jQuery表格,开源表格"/>
+	<meta name="Description" content="大连首闻 Grid（DLShouWen Grid）是一款由 大连首闻科技有限公司自主研发的基于MIT开源协议的响应式表格控件，拥有跨浏览器支持、程序思路清晰、功能强大、高效加载等众多优秀素质，或许是目前已知的最好的响应式表格控件"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- syntaxHighLighter -->
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushXml.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushJScript.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shCore.css" />
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shThemeDefault.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	$(function(){
+		//语法着色
+		SyntaxHighlighter.config.clipboardSwf = '../../syntaxHighLighter/scripts/clipboard.swf';
+		SyntaxHighlighter.config.strings.expandSource = '显示源代码';
+		SyntaxHighlighter.config.strings.viewSource = '查看源代码';
+		SyntaxHighlighter.config.strings.copyToClipboard = '复制到粘贴板';
+		SyntaxHighlighter.config.strings.copyToClipboardConfirmation = '代码已经成功复制！';
+		SyntaxHighlighter.config.strings.print = '打印';
+		SyntaxHighlighter.all();
+		//钉住菜单
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+		//左侧菜单注册事件
+		$(".left-sider>ul>li>a").toggle(function(){
+			$(this).children('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+			$(this).next('ul').slideDown(200);
+		}, function(){
+			$(this).children('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+			$(this).next('ul').slideUp(200);
+		});
+		//左侧菜单除了第一个全部关闭
+		$(".left-sider>ul>li>ul:not(:first)").hide();
+		$(".left-sider>ul>li>a:first").click();
+	});
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">工具</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;首页</a>
+					</li>
+					<li id="nav_example">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;示例</a>
+					</li>
+					<li id="nav_reference" class="active">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;参考文档</a>
+					</li>
+					<li id="nav_download">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;下载</a>
+					</li>
+					<li id="nav_about">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;关于</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;切换语言</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../en/reference.html">英文版</a></li>
+							<li><a href="javascript:;">简体中文版</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;捐助DLShouWen Grid</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li>
+						<a href="#3.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;部署</a>
+						<ul>
+							<li><a href="#3.1.1">基础文件引入</a></li>
+							<li><a href="#3.1.2">语言文件引入</a></li>
+							<li><a href="#3.1.3">对象实例化</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;列属性</a>
+						<ul>
+							<li><a href="#3.2.1">id</a></li>
+							<li><a href="#3.2.2">title</a></li>
+							<li><a href="#3.2.19">width<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#3.2.3">type</a></li>
+							<li><a href="#3.2.4">format</a></li>
+							<li><a href="#3.2.19">otype</a></li>
+							<li><a href="#3.2.20">oformat</a></li>
+							<li><a href="#3.2.5">columnStyle</a></li>
+							<li><a href="#3.2.6">columnClass</a></li>
+							<li><a href="#3.2.7">headerStyle</a></li>
+							<li><a href="#3.2.8">headerClass</a></li>
+							<li><a href="#3.2.9">hide</a></li>
+							<li><a href="#3.2.10">hideType</a></li>
+							<li><a href="#3.2.11">extra</a></li>
+							<li><a href="#3.2.12">codeTable</a></li>
+							<li><a href="#3.2.13">fastQuery</a></li>
+							<li><a href="#3.2.14">fastQueryType</a></li>
+							<li><a href="#3.2.15">advanceQuery</a></li>
+							<li><a href="#3.2.16">export</a></li>
+							<li><a href="#3.2.17">print</a></li>
+							<li><a href="#3.2.18">resolution</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.3"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;表格属性</a>
+						<ul>
+							<li><a href="#3.3.1">id</a></li>
+							<li><a href="#3.3.2">lang</a></li>
+							<li><a href="#3.3.3">ajaxLoad</a></li>
+							<li><a href="#3.3.4">loadAll</a></li>
+							<li><a href="#3.3.5">loadURL</a></li>
+							<li><a href="#3.3.6">datas</a></li>
+							<li><a href="#3.3.7">tableStyle</a></li>
+							<li><a href="#3.3.8">tableClass</a></li>
+							<li><a href="#3.3.20">extraWidth<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#3.3.9">check</a></li>
+							<li><a href="#3.3.19">checkWidth<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#3.3.10">showHeader</a></li>
+							<li><a href="#3.3.11">girdContainer</a></li>
+							<li><a href="#3.3.12">toolbarContainer</a></li>
+							<li><a href="#3.3.13">tools</a></li>
+							<li><a href="#3.3.14">exportFileName</a></li>
+							<li><a href="#3.3.15">exportURL</a></li>
+							<li><a href="#3.3.16">pageSize</a></li>
+							<li><a href="#3.3.17">pageSizeLimit</a></li>
+							<li><a href="#3.3.18">columns</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.4"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;表格事件属性</a>
+						<ul>
+							<li><a href="#3.4.1">onCellClick</a></li>
+							<li><a href="#3.4.2">onCellDblClick</a></li>
+							<li><a href="#3.4.3">onCellMouseOver</a></li>
+							<li><a href="#3.4.4">onCellMouseMove</a></li>
+							<li><a href="#3.4.5">onCellMouseOut</a></li>
+							<li><a href="#3.4.6">onCellMouseDown</a></li>
+							<li><a href="#3.4.7">onCellMouseUp</a></li>
+							<li><a href="#3.4.8">onRowClick</a></li>
+							<li><a href="#3.4.9">onRowDblClick</a></li>
+							<li><a href="#3.4.10">onRowMouseOver</a></li>
+							<li><a href="#3.4.11">onRowMouseMove</a></li>
+							<li><a href="#3.4.12">onRowMouseOut</a></li>
+							<li><a href="#3.4.13">onRowMouseDown</a></li>
+							<li><a href="#3.4.14">onRowMouseUp</a></li>
+							<li><a href="#3.4.15">onHeaderClick</a></li>
+							<li><a href="#3.4.16">onHeaderDblClick<span class="label label-warning label-doc">已废弃</span></a></li>
+							<li><a href="#3.4.17">onHeaderMouseOver</a></li>
+							<li><a href="#3.4.18">onHeaderMouseMove</a></li>
+							<li><a href="#3.4.19">onHeaderMouseOut</a></li>
+							<li><a href="#3.4.20">onHeaderMouseDown</a></li>
+							<li><a href="#3.4.21">onHeaderMouseUp</a></li>
+							<li><a href="#3.4.22">onGridClick</a></li>
+							<li><a href="#3.4.23">onGridDblClick</a></li>
+							<li><a href="#3.4.24">onGridMouseOver</a></li>
+							<li><a href="#3.4.25">onGridMouseMove</a></li>
+							<li><a href="#3.4.26">onGridMouseOut</a></li>
+							<li><a href="#3.4.27">onGridMouseDown</a></li>
+							<li><a href="#3.4.28">onGridMouseUp</a></li>
+							<li><a href="#3.4.29">onGridComplete</a></li>
+							<li><a href="#3.4.30">onExtraOpen</a></li>
+							<li><a href="#3.4.31">onExtraClose</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.5"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;交互参数</a>
+						<ul>
+							<li><a href="#3.5.1">isSuccess</a></li>
+							<li><a href="#3.5.2">isExport</a></li>
+							<li><a href="#3.5.3">exportFileName</a></li>
+							<li><a href="#3.5.4">exportType</a></li>
+							<li><a href="#3.5.5">exportAllData</a></li>
+							<li><a href="#3.5.6">exportColumns</a></li>
+							<li><a href="#3.5.7">exportDataIsProcessed</a></li>
+							<li><a href="#3.5.8">exportDatas</a></li>
+							<li><a href="#3.5.9">pageSize</a></li>
+							<li><a href="#3.5.10">startRecord</a></li>
+							<li><a href="#3.5.11">nowPage</a></li>
+							<li><a href="#3.5.12">recordCount</a></li>
+							<li><a href="#3.5.13">pageCount</a></li>
+							<li><a href="#3.5.14">parameters</a></li>
+							<li><a href="#3.5.15">fastQueryParameters</a></li>
+							<li><a href="#3.5.16">advanceQueryConditions</a></li>
+							<li><a href="#3.5.17">advanceQuerySorts</a></li>
+							<li><a href="#3.5.18">exhibitDatas</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.6"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;对象属性</a>
+						<ul>
+							<li><a href="#3.6.1">init</a></li>
+							<li><a href="#3.6.2">pager</a></li>
+							<li><a href="#3.6.3">option</a></li>
+							<li><a href="#3.6.4">originalDatas</a></li>
+							<li><a href="#3.6.5">baseDatas</a></li>
+							<li><a href="#3.6.6">exhibitDatas</a></li>
+							<li><a href="#3.6.7">sortParameter</a></li>
+							<li><a href="#3.6.8">sortOriginalDatas</a></li>
+							<li><a href="#3.6.9">parameters</a></li>
+							<li><a href="#3.6.10">fastQueryParameters</a></li>
+							<li><a href="#3.6.11">fastQueryOriginalDatas</a></li>
+							<li><a href="#3.6.12">advanceQueryParameter</a></li>
+							<li><a href="#3.6.13">printColumns</a></li>
+							<li><a href="#3.6.14">exportColumns</a></li>
+							<li><a href="#3.6.15">exportDatas</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.7"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;对象方法</a>
+						<ul>
+							<li><a href="#3.7.1">load</a></li>
+							<li><a href="#3.7.2">reload</a></li>
+							<li><a href="#3.7.3">refresh</a></li>
+							<li><a href="#3.7.4">constructGrid</a></li>
+							<li><a href="#3.7.5">constructGirdPageBar</a></li>
+							<li><a href="#3.7.6">constructGridToolBar</a></li>
+							<li><a href="#3.7.7">showProcessBar</a></li>
+							<li><a href="#3.7.8">hideProcessBar</a></li>
+							<li><a href="#3.7.9">formatContent</a></li>
+							<li><a href="#3.7.10">goPage</a></li>
+							<li><a href="#3.7.11">fastQuery</a></li>
+							<li><a href="#3.7.12">advanceQuery</a></li>
+							<li><a href="#3.7.13">print</a></li>
+							<li><a href="#3.7.14">exportFile</a></li>
+							<li><a href="#3.7.15">getCheckedRecords</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.8"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;静态方法</a>
+						<ul>
+							<li><a href="#3.8.1">guid</a></li>
+							<li><a href="#3.8.2">addEvent<span class="label label-warning label-doc">已删除</span></a></li>
+							<li><a href="#3.8.3">getWindowStart</a></li>
+							<li><a href="#3.8.4">getWindowEnd</a></li>
+							<li><a href="#3.8.5">toast</a></li>
+							<li><a href="#3.8.6">toDate</a></li>
+							<li><a href="#3.8.7">dateFormat</a></li>
+							<li><a href="#3.8.8">replaceAll</a></li>
+							<li><a href="#3.8.9">startsWith</a></li>
+							<li><a href="#3.8.10">endsWith</a></li>
+							<li><a href="#3.8.11">equalsIgnoreCase</a></li>
+							<li><a href="#3.8.12">numberFormat</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.9"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;高级功能</a>
+						<ul>
+							<li><a href="#3.9.1">Ajax查询的封装</a></li>
+							<li><a href="#3.9.2">导出的服务器封装</a></li>
+							<li><a href="#3.9.3">快速查询的服务器封装</a></li>
+							<li><a href="#3.9.4">高级查询的服务器封装</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="3.1" class="title">部署</div>
+				<hr />
+				<div id="3.1.1" class="sub-title">基础文件引入</div>
+				<p>我们为您推荐的<code>javascript文件</code>和<code>css文件</code>的引用顺序如下：</p>
+				<pre class="brush:xml;">&lt;!-- jQuery --&gt;
+&lt;script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"&gt;&lt;/script&gt;
+&lt;!-- bootstrap --&gt;
+&lt;script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" /&gt;
+&lt;!--[if lt IE 9]&gt;
+	&lt;script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"&gt;&lt;/script&gt;
+	&lt;script src="../../../dependents/bootstrap/plugins/ie/respond.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+&lt;!--[if lt IE 8]&gt;
+	&lt;script src="../../../dependents/bootstrap/plugins/ie/json2.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+&lt;!-- font-awesome --&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" /&gt;
+&lt;!-- DLShouWen Grid --&gt;
+&lt;script type="text/javascript" src="../../../dlshouwen.grid.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../../i18n/en.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dlshouwen.grid.css" /&gt;
+&lt;!-- datePicker --&gt;
+&lt;script type="text/javascript" src="../../../dependents/datePicker/WdatePicker.js" defer="defer"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/WdatePicker.css" /&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/default/datepicker.css" /&gt;</pre>
+				<div id="3.1.2" class="sub-title">语言文件引入</div>
+				<p>将i18n文件夹中您所需要的语言文件引入到<code>dlshouwen.grid.js</code>文件下方即可。</p>
+				<pre class="brush:xml;">&lt;script type="text/javascript" src="../../../i18n/en.js"&gt;&lt;/script&gt;</pre>
+				<div id="3.1.3" class="sub-title">对象实例化</div>
+				<p>您可以使用如下代码对<code>DLShouWen Grid对象</code>进行对象实例化，实例化后的对象将支持众多方法，具体的实例化<code>参数</code>及相关方法请查阅后续参考文档。</p>
+				<pre class="brush:js;">//映射内容
+var sex = {1:'男', 2:'女'};
+var degree = {1:'小学', 2:'初中', 3:'高中', 4:'中专', 5:'大学', 6:'硕士', 7:'博士', 8:'其他'};
+//模拟数据（薪水在6000-12000之间，日期在1980-01-01 00::00:00到2014-10-01 00:00:00之间）
+var datas = new Array();
+for(var i=0; i<186; i++){
+	var user = new Object();
+	user.user_id = 'user_'+i;
+	user.user_code = 'user_'+i;
+	user.user_name = '模拟用户'+(Math.floor(Math.random()*1000)+10000)+'号';
+	user.sex = (Math.floor(Math.random()*2)+1);
+	user.salary = (Math.floor(Math.random()*6000)+6000);
+	user.degree = (Math.floor(Math.random()*8)+1);
+	user.time = new Date(Math.floor(Math.random()*1096588800000)+315504000000);
+	user.time_stamp_s = Math.floor((Math.floor(Math.random()*1096588800000)+315504000000)/1000);
+	user.time_stamp_ms = Math.floor(Math.random()*1096588800000)+315504000000;
+	user.string_date = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd');
+	user.string_time = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd hh:mm:ss');
+	datas.push(user);
+}
+//定义表格
+var gridColumns = [
+	{id:'user_code', title:'用户编号', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'用户名称', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'性别', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(record, value){
+		var content = '';
+		if(value==1){
+			content += '<span style="background:#00a2ca;padding:2px 10px;color:white;">Male</span>';
+		}else{
+			content += '<span style="background:#c447ae;padding:2px 10px;color:white;">Female</span>';
+		}
+		return content;
+	}},
+	{id:'salary', title:'薪水', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'学历', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'日期对象', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'毫秒级时间戳', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'日期格式字符串', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'时间格式字符串', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption = {
+	ajaxLoad : false,
+	exportFileName : '用户列表',
+	datas : datas,
+	columns : gridColumns,
+	pageSize : 10
+};
+var grid = $.fn.dlshouwen.grid.init(gridOption);
+$(function(){
+	grid.load();
+});</pre>
+				<div id="3.2" class="title">列属性</div>
+				<hr />
+				<p>DLShouWen Grid对于列是通过<code>JSON数组</code>的方式完成定义的，每一列都会有很多属性可以自由配置。</p>
+				<div id="3.2.1" class="sub-title">id</div>
+				<p>定义列编号，该编号将会对应数据中的字段名称，如果是自定义解析内容列，该属性可以随意填写，注意列与列之间该属性不能重复。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：field</p>
+				<div id="3.2.2" class="sub-title">title</div>
+				<p>列名，可以随意填写。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：field</p>
+				<div id="3.2.19" class="sub-title">width<span class="label label-danger label-doc">New</span></div>
+				<p>列宽度，该属性可以指定某列的宽度，响应式表格列宽更像<code>max-width</code>的属性作用，当容器总宽度无法承载所有列时，此宽度依然会被压缩。当所有列均指定宽度时，将按照列宽的比重划分百分比，计算方式同表格单元格<code>width</code>属性计算相同。</p>
+				<p>该参数的配置实例：<code>width:80</code>、<code>width:'80px'</code>、<code>width:'20%'</code></p>
+				<p><code>参数类型</code>：字符串（string）或数值型（number）</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.2.3" class="sub-title">type</div>
+				<p>列展示数据的类型，可选类型如下：</p>
+				<p class="attr">string：字符型数据</p>
+				<p class="attr">date：日期型数据</p>
+				<p class="attr">number：数值型数据</p>
+				<p><code>参数类型</code>：弱枚举类型，可选值：string，date，number</p>
+				<p><code>默认值</code>：string。</p>
+				<div id="3.2.4" class="sub-title">format</div>
+				<p>内容格式化属性，该属性仅当列类型为<code>date</code>或<code>number</code>时有效。</p>
+				<p>对于date类型数据来说，格式化脚本如下：</p>
+				<p class="attr">y：年</p>
+				<p class="attr">M：月</p>
+				<p class="attr">d：日</p>
+				<p class="attr">h：小时</p>
+				<p class="attr">m：分钟</p>
+				<p class="attr">s：秒</p>
+				<p class="attr">S：毫秒</p>
+				<p>典型的示例如下：<code>yyyy-MM-dd hh:mm:ss.S</code>，显示的内容为：<code>2014-10-21 09:50:33.386</code>。</p>
+				<p>对于number类型数据来说，格式化脚本如下：</p>
+				<p class="attr">#：如果顶位为0则不显示该内容</p>
+				<p class="attr">0：无论如何都会显示，没有数据的情况下补全0</p>
+				<p>典型的示例如下：<code>#,###.00</code>，显示的内容为：<code>12,345,678.90</code>。</p>
+				<p class="attention">注意：<code>format</code>属性是影响打印和导出功能的，使用了<code>format</code>参数格式的内容在打印和导出时也会按照此格式进行解析。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.2.19" class="sub-title">otype</div>
+				<p>列展示数据的原始类型，该参数主要用于格式化时判断原始数据的类型，目前仅当<code>type</code>参数为<code>date</code>时有效。当该属性不填写的时候，我们默认认为您传递的数据是JS的日期对象来进行格式化处理。可选类型如下：</p>
+				<p class="attr">time_stamp_s：秒级时间戳</p>
+				<p class="attr">time_stamp_ms：毫秒级时间戳</p>
+				<p class="attr">string：字符串类型</p>
+				<p><code>参数类型</code>：弱枚举类型，可选值：time_stamp_s，time_stamp_ms，string</p>
+				<p><code>默认值</code>：null。</p>
+				<div id="3.2.20" class="sub-title">oformat</div>
+				<p>配合<code>otype</code>参数使用，当<code>otype</code>参数为<code>string</code>时，我们需要您告知该日期字符串的格式，该格式就是在此标识的，脚本格式同format中日期的脚本格式相同。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.2.5" class="sub-title">columnStyle</div>
+				<p>定义列内容的样式，样式遵循标准css规范。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：空字符串</p>
+				<div id="3.2.6" class="sub-title">columnClass</div>
+				<p>定义列内容的样式表，使用自定义的class定义样式。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：空字符串</p>
+				<div id="3.2.7" class="sub-title">headerStyle</div>
+				<p>定义列标题的样式，样式遵循标准css规范。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：空字符串</p>
+				<div id="3.2.8" class="sub-title">headerClass</div>
+				<p>定义列标题的样式表，使用自定义的class定义样式。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：空字符串</p>
+				<div id="3.2.9" class="sub-title">hide</div>
+				<p>是否彻底隐藏，当<code>hide</code>设置为<code>true</code>时，将在表样解析时不会被显示，在dom中也不会被查找得到。该属性主要用于一些比如主键之类的编号型数据的处理，使用<code>hide</code>属性将其隐藏，调用的时候通过方法获取数据取得编号使用。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：false</p>
+				<div id="3.2.10" class="sub-title">hideType</div>
+				<p>该属性主要用于响应式表格的配置，用于配置在哪些终端下进行隐藏，提供的属性如下：</p>
+				<p class="attr">xs：在小屏幕下隐藏，主要用于手机终端，触发宽度：小于768像素</p>
+				<p class="attr">sm：在较小屏幕下隐藏，主要用于平板终端，触发宽度：介于768像素到992像素之间</p>
+				<p class="attr">md：在中等屏幕下隐藏，主要用于分辨率较低的电脑终端：介于992像素到1200像素之间</p>
+				<p class="attr">lg：在大屏幕下隐藏，主要用于大分辨率的电脑终端：大于1200像素</p>
+				<p>DLShouWen Grid的响应式是完全基于<code>Bootstrap</code>组件的，并且基于<code>visible-lg</code>、<code>visible-md</code>、<code>visible-sm</code>、<code>visible-xs</code>四个css样式完成响应式的解析，如果您需要调整各种触发终端的参数，您可以直接修改<code>Bootstrap</code>中这四个样式对应的<code>media</code>内容。</p>
+				<p>多个<code>参数</code>使用|方式分割，如：md|sm|xs，表示该列仅在大屏幕下显示。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：空字符串，即所有终端全部显示。</p>
+				<div id="3.2.11" class="sub-title">extra</div>
+				<p>是否在扩展列中显示该内容。由于我们的响应式是基于样式控制的，所以表样显示的数据内容和隐藏起来的内容是独立实现的，也就是说每一个单元格的内容实际上被展示了两份，只不过DLShouWen Grid会通过程序和配置来控制是在表样中显示还是在扩展中显示，这就导致有些自定义解析的内容会产生获取错误，比如一个自定义解析的单元格中显示的是复杂条件复选框，通过<code>check</code>属性无法直接完成，只能通过自定义解析器<code>resolution</code>属性来自定解析，这就导致每一个复选框会解析出两个复选框，以dom的方式获取选中内容会发生错误，所以我们提供了extra属性，当extra属性为false时，扩展中将不会显示该内容，避免获取数据时发生的错误。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：true</p>
+				<div id="3.2.12" class="sub-title">codeTable</div>
+				<p>用于码表信息的扩展。目前很多大型系统都提供码表机制，通过缓存（对于J2EE项目来说通常存储在application域中）来存储码表信息，调用时可以实时调用，避免频繁访问数据库，并且也能很好的规划码表信息，避免通用信息解析混乱。</p>
+				<p>DLShouWen Grid通过此<code>参数</code>可以实现码表的解析，如性别，1表示男，2表示女，那么获取数据时直接获取1或2即可，在此属性中设置一个JSON对象，以性别为例格式则为：<code>{1:'男', 2:'女'}</code>，则我们在显示表样是将会显示男或女。</p>
+				<p class="attention">注意：如果码表中并没有解析的内容，如上述示例，传递的内容为3，那么我们将原样显示3。</p>
+				<p class="attention">注意：码表信息是影响打印和导出的，在打印和导出过程中也会对码表信息进行解析。</p>
+				<p><code>参数类型</code>：对象（Object）</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.2.13" class="sub-title">fastQuery</div>
+				<p>是否启用快速查询，如果启用快速查询，在点击查询按钮显示的面板中将显示该列的快速查询表单内容。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：false</p>
+				<div id="3.2.14" class="sub-title">fastQueryType</div>
+				<p>启用快速查询的类型，类型可选<code>参数</code>为：</p>
+				<p class="attr">eq：equals，等于</p>
+				<p class="attr">ne：not equals，不等于</p>
+				<p class="attr">lk：like，模糊匹配</p>
+				<p class="attr">ll：left like，左侧模糊匹配</p>
+				<p class="attr">rl：right like，右侧模糊匹配</p>
+				<p class="attr">gt：great than，大于</p>
+				<p class="attr">ge：great than equals，大于等于</p>
+				<p class="attr">lt：less than，小于</p>
+				<p class="attr">le：less than equals，小于等于</p>
+				<p class="attr">range：range，范围，通常用于时间或数值</p>
+				<p><code>参数类型</code>：弱枚举类型，可选值：eq、ne、lk、ll、rl、gt、ge、lt、le、range</p>
+				<p><code>默认值</code>：空字符串</p>
+				<div id="3.2.15" class="sub-title">advanceQuery</div>
+				<p>是否启用高级查询，当该<code>参数</code>为false时，高级查询将不会作为可选项进行过滤或排序。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：true</p>
+				<div id="3.2.16" class="sub-title">export</div>
+				<p>是否可以执行导出，当该参数为false时，导出时将不会作为可选项进行导出。</p>
+				<p class="attention">注意：<code>export</code>为<code>javascript</code>的保留关键字，使用时请尽量按此方式定义：<code>'export':false</code>，不推荐直接写为：<code>export:false</code>。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：true</p>
+				<div id="3.2.17" class="sub-title">print</div>
+				<p>是否可以执行打印，当该参数为<code>false</code>时，打印时将不会作为可选项进行打印。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：true</p>
+				<div id="3.2.18" class="sub-title">resolution</div>
+				<p>自定义解析函数。通过匿名方法（或外层预置方法）的方式定义，示例代码如下：</p>
+				<pre class="brush:js;">resolution:function(value, record, column, grid, dataNo, columnNo){
+	var content = '';
+	if(value==1){
+		content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;">Male&lt;/span>';
+	}else{
+		content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;">Female&lt;/span>';
+	}
+	return content;
+}
+
+resolution:function(value, record, column, grid, dataNo, columnNo){
+	var content = '';
+	content += '&lt;button class="btn btn-xs btn-default" onclick="alert(\'Edit User: '+record.user_name+'\');"&gt;&lt;i class="fa fa-edit"&gt;&lt;/i&gt;&nbsp;&nbsp;Edit&lt;/button&gt;';
+	content += '&nbsp;&nbsp;';
+	content += '&lt;button class="btn btn-xs btn-danger" onclick="alert(\'Delete User: '+record.user_name+'\');"&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&nbsp;&nbsp;Delete&lt;/button&gt;';
+	return content;
+}</pre>
+				<p>自定义解析通常用于自定义显示的内容或在当前单元格中生成一些操作按钮。</p>
+				<p>方法中将传递以下参数：</p>
+				<p class="attr">value：当前单元格的值</p>
+				<p class="attr">record：记录集，可以直接获取该行的数据</p>
+				<p class="attr">column：列对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.3" class="title">表格属性</div>
+				<hr />
+				<p>表格属性主要用于对表格全局属性的配置。</p>
+				<div id="3.3.1" class="sub-title">id</div>
+				<p>用于设置表格的编号，如果没有特殊需要可以不设置该属性，表格构建过程中将会自动生成唯一的<code>GUID</code>来处理。</p>
+				<p class="attention">注意：同一页面中的多个表格中的该属性不能重复。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：GUID</p>
+				<div id="3.3.2" class="sub-title">lang</div>
+				<p>用于设置表格的语言，目前提供三种语言：<code>英文</code>、<code>简体中文</code>、<code>繁体中文</code>，默认为<code>英文</code>。
+				<p class="attention">注意：语言需要引入对应的i18n语言文件。</p>
+				<p><code>参数类型</code>：弱枚举类型，可选值：en，zh-cn，zh-tw，可扩展其他语言</p>
+				<p><code>默认值</code>：en</p>
+				<div id="3.3.3" class="sub-title">ajaxLoad</div>
+				<p>是否通过ajax的方式加载数据，如果设置为<code>true</code>，则将通过<code>loadURL</code>的地址获取数据，如果设置为<code>false</code>，则基础数据由<code>datas</code>属性传入。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：true</p>
+				<div id="3.3.4" class="sub-title">loadAll</div>
+				<p>是否一次全部加载数据。该参数仅在<code>ajaxLoad</code>属性为<code>true</code>时起作用，不过我们并不推荐这种方式，全部加载会影响第一次的执行效率，带来较差的用户体验，而且数据展现有可能并非是实时的。优势在于一次加载，后期的处理效率非常高。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：false</p>
+				<div id="3.3.5" class="sub-title">loadURL</div>
+				<p>ajax加载数据的地址，本属性只有在<code>ajaxLoad</code>参数设置为<code>true</code>时起作用。</p>
+				<p class="attention">注意：如果是一次全部数据加载模式（即<code>loadAll</code>属性为<code>true</code>），请保证<code>loadURL</code>返回值为<code>JSON数组</code>，如果<code>非全部数据加载模式</code>，则需要返回对应的<code>Pager对象</code>，<code>Pager对象</code>的格式在提供的下载项目中有具体实现。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：空字符串</p>
+				<div id="3.3.6" class="sub-title">datas</div>
+				<p>表格数据，数据格式为JSON数组。该参数仅在<code>ajaxLoad</code>参数设置为<code>false</code>时有效。</p>
+				<p><code>参数类型</code>：JSON数组</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.3.7" class="sub-title">tableStyle</div>
+				<p>定义表格的全局样式，样式遵循标准<code>css规范</code>。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：空字符串</p>
+				<div id="3.3.8" class="sub-title">tableClass</div>
+				<p>定义表格的全局样式表，使用自定义的<code>class</code>定义样式。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：table table-bordered table-hover table-responsive</p>
+				<div id="3.3.20" class="sub-title">extraWidth<span class="label label-danger label-doc">New</span></div>
+				<p>展开、缩放按钮所在列宽度，该属性可以指定展开、缩放按钮所在列的宽度。</p>
+				<p>该参数的配置实例：<code>extraWidth:80</code>、<code>extraWidth:'80px'</code>、<code>extraWidth:'20%'</code></p>
+				<p><code>参数类型</code>：字符串（string）或数值型（number）</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.3.9" class="sub-title">check</div>
+				<p>DLShouWen Grid提供复选功能，设置该属性为<code>true</code>则将会在所有列之前添加一个复选框的列，并在列标题提供全部选择、全部取消功能。该复选框可以使用<code>getCheckedRecords</code>方法来获取选中的内容。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：false</p>
+				<div id="3.3.19" class="sub-title">checkWidth<span class="label label-danger label-doc">New</span></div>
+				<p>复选框所在列宽度，该属性可以指定复选框所在列的宽度。</p>
+				<p>该参数的配置实例：<code>checkWidth:80</code>、<code>checkWidth:'80px'</code>、<code>checkWidth:'20%'</code></p>
+				<p><code>参数类型</code>：字符串（string）或数值型（number）</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.3.10" class="sub-title">showHeader</div>
+				<p>是否显示列标题。</p>
+				<p><code>参数类型</code>：布尔类型（boolean）</p>
+				<p><code>默认值</code>：true</p>
+				<div id="3.3.11" class="sub-title">girdContainer</div>
+				<p>表格承载容器对象的<code>id</code>，设置完成后表格将显示在此容器中。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：gridContainer</p>
+				<div id="3.3.12" class="sub-title">toolbarContainer</div>
+				<p>工具条承载容器对象的<code>id</code>，设置完成后表格的工具条将显示在此容器中。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：gridToolBarContainer</p>
+				<div id="3.3.13" class="sub-title">tools</div>
+				<p>工具条可选内容，可选参数如下：</p>
+				<p class="attr">refresh：刷新表格</p>
+				<p class="attr">fastQuery：快速查询</p>
+				<p class="attr">advanceQuery：高级查询</p>
+				<p class="attr">export：导出</p>
+				<p class="attr">excel：导出excel文件</p>
+				<p class="attr">csv：导出csv文件</p>
+				<p class="attr">pdf：导出pdf文件</p>
+				<p class="attr">txt：导出txt文件</p>
+				<p class="attr">print：打印</p>
+				<p>多参数采用<code>|</code>符号进行分割，<code>export</code>的典型格式为：<code>export[excel,csv,pdf,txt]</code>，全格式参考：<code>refresh|faseQuery|advanceQuery|export[excel,csv,pdf,txt]|print</code>。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：refresh|faseQuery|advanceQuery|export[excel,csv,pdf,txt]|print</p>
+				<div id="3.3.14" class="sub-title">exportFileName</div>
+				<p>导出文件的文件名。</p>
+				<p><code>参数类型</code>：字符串（stirng）</p>
+				<p><code>默认值</code>：datas</p>
+				<div id="3.3.15" class="sub-title">exportURL</div>
+				<p>导出文件的响应地址，该属性对<code>ajax动态加载分页模式</code>无效，<code>ajax动态分页加载模式</code>由于需要执行SQL拼接操作，所以是直接封装在<code>loadURL</code>参数中的，具体的实现方式请参考我们提供下载的项目实现。</p>
+				<p><code>参数类型</code>：字符串（string）</p>
+				<p><code>默认值</code>：/grid/export</p>
+				<div id="3.3.16" class="sub-title">pageSize</div>
+				<p>每页显示条数。</p>
+				<p><code>参数类型</code>：整数（integer）</p>
+				<p><code>默认值</code>：20</p>
+				<div id="3.3.17" class="sub-title">pageSizeLimit</div>
+				<p>每页显示条数的限制。如果该参数为数组，则按照数组中的内容生成下拉框供用户选择每页显示条数，如果该参数为整数，则提供输入框供用户自行输入每页显示条数，此参数中设置的值为限制输入的最大值，如果该参数设置为其他类型，则原样显示每页显示条数，不提供用户自行更改。</p>
+				<p><code>参数类型</code>：数组（array） 或 整数（integer） 或 其他</p>
+				<p><code>默认值</code>：[20, 50, 100]</p>
+				<div id="3.3.18" class="sub-title">columns</div>
+				<p>列对象定义，将上述定义列的<code>JSON数组</code>对象传递到此参数中。</p>
+				<p><code>参数类型</code>：JSON数组</p>
+				<p><code>默认值</code>：null</p>
+				<div id="3.4" class="title">表格事件属性</div>
+				<hr />
+				<p>主要针对表格各种事件的回调方法，所有方法均在<code>option</code>属性中进行配置，配置的回调方法中的参数在各方法中均有详细说明。</p>
+				<div id="3.4.1" class="sub-title">onCellClick</div>
+				<p>绑定单元格单击方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>cell</code>、<code>row</code>、<code>extraCell</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前单元格所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前单元格所处行的jQuery对象</p>
+				<p class="attr">extraCell：当前单元格所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.2" class="sub-title">onCellDblClick</div>
+				<p>绑定单元格双击方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>cell</code>、<code>row</code>、<code>extraCell</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前单元格所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前单元格所处行的jQuery对象</p>
+				<p class="attr">extraCell：当前单元格所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.3" class="sub-title">onCellMouseOver</div>
+				<p>绑定单元格鼠标移入方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>cell</code>、<code>row</code>、<code>extraCell</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前单元格所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前单元格所处行的jQuery对象</p>
+				<p class="attr">extraCell：当前单元格所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.4" class="sub-title">onCellMouseMove</div>
+				<p>绑定单元格鼠标移动方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>cell</code>、<code>row</code>、<code>extraCell</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前单元格所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前单元格所处行的jQuery对象</p>
+				<p class="attr">extraCell：当前单元格所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.5" class="sub-title">onCellMouseOut</div>
+				<p>绑定单元格鼠标移出方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>cell</code>、<code>row</code>、<code>extraCell</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前单元格所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前单元格所处行的jQuery对象</p>
+				<p class="attr">extraCell：当前单元格所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.6" class="sub-title">onCellMouseDown</div>
+				<p>绑定单元格鼠标摁下方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>cell</code>、<code>row</code>、<code>extraCell</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前单元格所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前单元格所处行的jQuery对象</p>
+				<p class="attr">extraCell：当前单元格所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.7" class="sub-title">onCellMouseUp</div>
+				<p>绑定单元格鼠标释放方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>cell</code>、<code>row</code>、<code>extraCell</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前单元格所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前单元格所处行的jQuery对象</p>
+				<p class="attr">extraCell：当前单元格所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.8" class="sub-title">onRowClick</div>
+				<p>绑定行单击方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>Row</code>、<code>row</code>、<code>extraRow</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前行所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.9" class="sub-title">onRowDblClick</div>
+				<p>绑定行双击方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>Row</code>、<code>row</code>、<code>extraRow</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前行所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.10" class="sub-title">onRowMouseOver</div>
+				<p>绑定行鼠标移入方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>Row</code>、<code>row</code>、<code>extraRow</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前行所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.11" class="sub-title">onRowMouseMove</div>
+				<p>绑定行鼠标移动方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>Row</code>、<code>row</code>、<code>extraRow</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前行所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.12" class="sub-title">onRowMouseOut</div>
+				<p>绑定行鼠标移出方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>Row</code>、<code>row</code>、<code>extraRow</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前行所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.13" class="sub-title">onRowMouseDown</div>
+				<p>绑定行鼠标摁下方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>Row</code>、<code>row</code>、<code>extraRow</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前行所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.14" class="sub-title">onRowMouseUp</div>
+				<p>绑定行鼠标释放方法，方法中将传递<code>value</code>、<code>record</code>、<code>column</code>、<code>grid</code>、<code>dataNo</code>、<code>columnNo</code>、<code>Row</code>、<code>row</code>、<code>extraRow</code>、<code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">value：当前单元格解析后的内容，如果该单元格通过resolution属性，则为解析后的resolution的Html代码</p>
+				<p class="attr">record：当前行所处行的数据对象</p>
+				<p class="attr">column：当前单元格所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">cell：当前单元格的jQuery对象</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.15" class="sub-title">onHeaderClick</div>
+				<p>绑定表头单击方法，方法中将传递<code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">title：当前表头标题</p>
+				<p class="attr">column：当前表头所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">header：当前表头的jQuery对象</p>
+				<p class="attr">headerRow：当前表头所处行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.16" class="sub-title">onHeaderDblClick<span class="label label-warning label-doc">已废弃</span></div>
+				<p class="attention">由于DLShouWen Grid表头包含排序功能，排序需要重新加载表头代码，所以暂时无法实现表头双击事件的绑定。</p>
+				<!-- 
+				<p>绑定表头双击方法，方法中将传递<code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">title：当前表头标题</p>
+				<p class="attr">column：当前表头所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">header：当前表头的jQuery对象</p>
+				<p class="attr">headerRow：当前表头所处行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				 -->
+				<div id="3.4.17" class="sub-title">onHeaderMouseOver</div>
+				<p>绑定表头鼠标移入方法，方法中将传递<code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">title：当前表头标题</p>
+				<p class="attr">column：当前表头所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">header：当前表头的jQuery对象</p>
+				<p class="attr">headerRow：当前表头所处行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.18" class="sub-title">onHeaderMouseMove</div>
+				<p>绑定表头鼠标移动方法，方法中将传递<code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">title：当前表头标题</p>
+				<p class="attr">column：当前表头所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">header：当前表头的jQuery对象</p>
+				<p class="attr">headerRow：当前表头所处行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.19" class="sub-title">onHeaderMouseOut</div>
+				<p>绑定表头鼠标移出方法，方法中将传递<code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">title：当前表头标题</p>
+				<p class="attr">column：当前表头所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">header：当前表头的jQuery对象</p>
+				<p class="attr">headerRow：当前表头所处行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.20" class="sub-title">onHeaderMouseDown</div>
+				<p>绑定表头鼠标摁下方法，方法中将传递<code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">title：当前表头标题</p>
+				<p class="attr">column：当前表头所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">header：当前表头的jQuery对象</p>
+				<p class="attr">headerRow：当前表头所处行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.21" class="sub-title">onHeaderMouseUp</div>
+				<p>绑定表头鼠标释放方法，方法中将传递<code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">title：当前表头标题</p>
+				<p class="attr">column：当前表头所处列的对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">columnNo：列编号，从0开始</p>
+				<p class="attr">header：当前表头的jQuery对象</p>
+				<p class="attr">headerRow：当前表头所处行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.22" class="sub-title">onGridClick</div>
+				<p>绑定表格单击方法，方法中将传递<code>grid</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.23" class="sub-title">onGridDblClick</div>
+				<p>绑定表格双击方法，方法中将传递<code>grid</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.24" class="sub-title">onGridMouseOver</div>
+				<p>绑定表格鼠标移入方法，方法中将传递<code>grid</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.25" class="sub-title">onGridMouseMove</div>
+				<p>绑定表格鼠标移动方法，方法中将传递<code>grid</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.26" class="sub-title">onGridMouseOut</div>
+				<p>绑定表格鼠标移出方法，方法中将传递<code>grid</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.27" class="sub-title">onGridMouseDown</div>
+				<p>绑定表格鼠标摁下方法，方法中将传递<code>grid</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.28" class="sub-title">onGridMouseUp</div>
+				<p>绑定表格鼠标释放方法，方法中将传递<code>grid</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.29" class="sub-title">onGridComplete</div>
+				<p>绑定表格加载完成方法，方法中将传递<code>grid</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">grid：表格对象</p>
+				<div id="3.4.30" class="sub-title">onExtraOpen</div>
+				<p>绑定展开扩展列方法，方法中将传递<code>record</code>, <code>grid</code>, <code>dataNo</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">record：当前行数据对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.4.31" class="sub-title">onExtraClose</div>
+				<p>绑定关闭扩展列方法，方法中将传递<code>record</code>, <code>grid</code>, <code>dataNo</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>参数。</p>
+				<p><code>参数类型</code>：方法（function）</p>
+				<p><code>默认值</code>：null</p>
+				<p><code>方法传递参数</code>：</p>
+				<p class="attr">record：当前行数据对象</p>
+				<p class="attr">grid：表格对象</p>
+				<p class="attr">dataNo：数据编号，从0开始</p>
+				<p class="attr">row：当前行的jQuery对象</p>
+				<p class="attr">extraRow：当前行所处扩展行的jQuery对象</p>
+				<p class="attr">e：事件对象</p>
+				<div id="3.5" class="title">交互参数</div>
+				<hr />
+				<p>交互参数是前端脚本同服务器端交互的参数信息，该内容仅用于表格属性中<code>ajaxLoad</code>为<code>true</code>的加载数据模式（Ajax全部加载数据、Ajax分页加载数据）。</p>
+				<p class="attention">注意：交互参数并不能直接通过实例化好的DLShouWen Grid对象调用，交互参数是在同服务器端交互时实例化完成并由服务器通过Pager对象接收的，并非DLShouWen Grid对象。</p>
+				<p class="attention">注意：交互参数中标明可以修改的属性，您可以通过修改对象参数来完成参数变更。</p>
+				<div id="3.5.1" class="sub-title">isSuccess</div>
+				<p><code>用途</code>：数据是否加载成功，若查询SQL出现错误或高级查询中配置错误，则该返回值为false，正确查询则为true。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.2" class="sub-title">isExport</div>
+				<p><code>用途</code>：用于判断前台的交互信息是否为导出的动作。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.3" class="sub-title">exportFileName</div>
+				<p><code>用途</code>：用于导出文件时的文件名，该文件名由<code>option</code>属性集中的<code>exportFileName</code>获得。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.4" class="sub-title">exportType</div>
+				<p><code>用途</code>：导出的文件类型，将由组件根据用户选择自行处理。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.5" class="sub-title">exportAllData</div>
+				<p><code>用途</code>：是否导出全部数据，将由组件根据用户选择自行处理。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.6" class="sub-title">exportColumns</div>
+				<p><code>用途</code>：导出的列集合，将由组件根据用户选择自行处理。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.7" class="sub-title">exportDataIsProcessed</div>
+				<p><code>用途</code>：导出的数据是否已经被处理。该属性为前后台的一个数据处理标识，经由resolution、数据格式化等操作完成处理的数据被视为已处理。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.8" class="sub-title">exportDatas</div>
+				<p><code>用途</code>：导出的数据集合，将由组件根据用户选择自行生成，生成的导出数据均为处理后的数据。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.9" class="sub-title">pageSize</div>
+				<p><code>用途</code>：每页的显示的记录条数。</p>
+				<p><code>特殊说明</code>：该参数可以手动修改。</p>
+				<div id="3.5.10" class="sub-title">startRecord</div>
+				<p><code>用途</code>：开始的记录号。</p>
+				<p><code>特殊说明</code>：该参数可以手动修改。</p>
+				<div id="3.5.11" class="sub-title">nowPage</div>
+				<p><code>用途</code>：当前页号。</p>
+				<p><code>特殊说明</code>：该参数可以手动修改。</p>
+				<div id="3.5.12" class="sub-title">recordCount</div>
+				<p><code>用途</code>：当前查询的纪录总数。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.13" class="sub-title">pageCount</div>
+				<p><code>用途</code>：当前查询的纪录总页数。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.14" class="sub-title">parameters</div>
+				<p><code>用途</code>：自定义参数集合。该参数可通过Javascript手动设置，属性类型为Object对象，可以通过Javascript设置参数，设置完成后通过服务器端封装的Pager对象访问对象中的parameters属性即可获得对应参数集合，该集合对应Java服务器为Map对象。</p>
+				<p><code>特殊说明</code>：该参数可以手动修改。</p>
+				<div id="3.5.15" class="sub-title">fastQueryParameters</div>
+				<p><code>用途</code>：快速查询的参数合集，将由组件根据用户选择自行生成。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.16" class="sub-title">advanceQueryConditions</div>
+				<p><code>用途</code>：高级查询的查询参数合集，将由组件根据用户选择自行生成。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.17" class="sub-title">advanceQuerySorts</div>
+				<p><code>用途</code>：高级查询的排序参数合集，将由组件根据用户选择自行生成。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.5.18" class="sub-title">exhibitDatas</div>
+				<p><code>用途</code>：展示的数据结果集。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.6" class="title">对象属性</div>
+				<hr />
+				<p>对象属性可以通过实例化好的<code>DLShouWen Grid对象</code>直接访问或修改。</p>
+				<div id="3.6.1" class="sub-title">init</div>
+				<p><code>用途</code>：初始化参数。</p>
+				<p><code>子参数</code>：</p>
+				<p class="attr">toolsIsInit [boolean 布尔型]：工具条是否初始化</p>
+				<p class="attr">printWindowIsInit [boolean 布尔型]：打印窗体是否初始化</p>
+				<p class="attr">exportWindowIsInit [Object&lt;string, boolean&gt; 对象]：导出窗体是否初始化（该参数包含多个子参数，每个子参数标识哪一个导出类型的窗体是否初始化）</p>
+				<p class="attr">fastQueryWindowIsInit [boolean 布尔型]：快速查询窗体是否初始化</p>
+				<p class="attr">advanceQueryWindowIsInit [boolean 布尔型]：高级查询窗体是否初始化</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.6.2" class="sub-title">pager</div>
+				<p><code>用途</code>：页面参数对象。</p>
+				<p><code>子参数</code>：</p>
+				<p class="attr">pageSize [int 数值型]：每页显示条数</p>
+				<p class="attr">startRecord [int 数值型]：开始记录编号</p>
+				<p class="attr">nowPage [int 数值型]：当前页号</p>
+				<p class="attr">recordCount [int 数值型]：总记录条数</p>
+				<p class="attr">pageCount [int 数值型]：总页数</p>
+				<p><code>特殊说明</code>：该参数内容均为组件自动计算生成，其中<code>pageSize</code>可通过程序修改。</p>
+				<div id="3.6.3" class="sub-title">option</div>
+				<p><code>用途</code>：表格参数对象。</p>
+				<p><code>特殊说明</code>：该参数内容由用户配置及默认属性整合而成，可通过程序修改。</p>
+				<div id="3.6.4" class="sub-title">originalDatas</div>
+				<p><code>用途</code>：原始数据集。</p>
+				<p><code>特殊说明</code>：该参数内容为表格的原始数据，不建议手动修改。</p>
+				<div id="3.6.5" class="sub-title">baseDatas</div>
+				<p><code>用途</code>：基础数据集，从原始数据集中经过分页参数计算得来的当前页的数据。</p>
+				<p><code>特殊说明</code>：该参数内容为表格的基础数据，不建议手动修改。</p>
+				<div id="3.6.6" class="sub-title">exhibitDatas</div>
+				<p><code>用途</code>：展现数据集，从基础数据集中经过处理（或服务器解析处理）后的展现数据。</p>
+				<p><code>特殊说明</code>：该参数内容为组件自动生成，不建议手动修改。</p>
+				<div id="3.6.7" class="sub-title">sortParameter</div>
+				<p><code>用途</code>：排序参数。</p>
+				<p><code>子参数</code>：</p>
+				<p class="attr">columnId [string 字符型]：排序列的名称，即配置列属性中的id</p>
+				<p class="attr">sortType [int 数值型]：排序类别 [0-不排序，1-正序，2-倒序]</p>
+				<p><code>特殊说明</code>：该参数内容为组件自动生成，不建议手动修改。</p>
+				<div id="3.6.8" class="sub-title">sortOriginalDatas</div>
+				<p><code>用途</code>：排序缓存数据集，由于排序过程将会造成显示数据重新排序，如果不做缓存将无法还原为不排序时的数据顺序，所以用此参数缓存未排序时的数据。</p>
+				<p><code>特殊说明</code>：该参数内容为组件自动处理，不建议手动修改。</p>
+				<div id="3.6.9" class="sub-title">parameters</div>
+				<p><code>用途</code>：自定义参数集合。该参数可通过Javascript手动设置，属性类型为Object对象，可以通过Javascript设置参数，设置完成后通过服务器端封装的Pager对象访问对象中的parameters属性即可获得对应参数集合，该集合对应Java服务器为Map对象。</p>
+				<p><code>特殊说明</code>：该参数可以手动修改。</p>
+				<div id="3.6.10" class="sub-title">fastQueryParameters</div>
+				<p><code>用途</code>：快速查询的参数合集，将由组件根据用户选择自行生成。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.6.11" class="sub-title">fastQueryOriginalDatas</div>
+				<p><code>用途</code>：快速查询缓存的原生数据，用于非Ajax分页数据加载模式时的缓存数据。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.6.12" class="sub-title">advanceQueryParameter</div>
+				<p><code>用途</code>：高级查询的参数对象。</p>
+				<p class="attr">advanceQueryConditions [array 数组]：高级查询中的查询列表</p>
+				<p class="attr">advanceQuerySorts [array 数组]：高级查询中的排序列表</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.6.13" class="sub-title">printColumns</div>
+				<p><code>用途</code>：打印列集合。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.6.14" class="sub-title">exportColumns</div>
+				<p><code>用途</code>：导出列集合。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.6.15" class="sub-title">exportDatas</div>
+				<p><code>用途</code>：导出数据。</p>
+				<p><code>特殊说明</code>：该参数不建议手动修改。</p>
+				<div id="3.7" class="title">对象方法</div>
+				<hr />
+				<p>对象方法可以通过实例化好的<code>DLShouWen Grid对象</code>直接调用。</p>
+				<div id="3.7.1" class="sub-title">load</div>
+				<p>重新加载方法。调用此参数将刷新所有参数，在<code>ajax动态分页加载模式</code>下将重新获取数据。不过我们并不推荐您使用此方法，如果需要进行刷新，请使用<code>reload</code>或<code>refresh</code>方法。</p>
+				<p><code>方法名</code>：load</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.2" class="sub-title">reload</div>
+				<p>表格刷新方法。</p>
+				<p><code>方法名</code>：reload</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">allReload：是否全部刷新，当allReload为true时，同load方法，当allReload为false时，将只做重新现有加载数据级别的刷新，并不会重新到服务器端获取数据。</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.3" class="sub-title">refresh</div>
+				<p>该方法为reload的重载方法，调用方式同上。</p>
+				<div id="3.7.4" class="sub-title">constructGrid</div>
+				<p>构建表格内容方法，内部方法，不建议调用。</p>
+				<p><code>方法名</code>：constructGrid</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.5" class="sub-title">constructGirdPageBar</div>
+				<p>构建表格分页工具条方法，内部方法，不建议调用。</p>
+				<p><code>方法名</code>：constructGridPageBar</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.6" class="sub-title">constructGridToolBar</div>
+				<p>构建表格工具条方法，内部方法，不建议调用。</p>
+				<p><code>方法名</code>：constructGridToolBar</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.7" class="sub-title">showProcessBar</div>
+				<p>显示进度条。</p>
+				<p><code>方法名</code>：showProcessBar</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.8" class="sub-title">hideProcessBar</div>
+				<p>隐藏进度条。</p>
+				<p><code>方法名</code>：hideProcessBar</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.9" class="sub-title">formatContent</div>
+				<p>格式化内容，将针对<code>format</code>属性和<code>codeTable</code>属性进行解析，内部方法，不建议调用。</p>
+				<p><code>方法名</code>：formatContent</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">column：列对象</p>
+				<p class="attr">value：需要被格式化的内容</p>
+				<p><code>返回值</code>：格式化后的内容</p>
+				<div id="3.7.10" class="sub-title">goPage</div>
+				<p>跳转页面。</p>
+				<p><code>方法名</code>：goPage</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">page：页码，整数类型（integer）</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.11" class="sub-title">fastQuery</div>
+				<p>调用快速查询面板。</p>
+				<p><code>方法名</code>：fastQuery</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.12" class="sub-title">advanceQuery</div>
+				<p>调用高级查询面板。</p>
+				<p><code>方法名</code>：advanceQuery</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.13" class="sub-title">print</div>
+				<p>调用打印面板。</p>
+				<p><code>方法名</code>：print</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.14" class="sub-title">exportFile</div>
+				<p>调用导出面板。</p>
+				<p><code>方法名</code>：exportFile</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">exportType：导出类型，弱枚举类型，可选类型为：excel、csv、pdf、txt</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.7.15" class="sub-title">getCheckedRecords</div>
+				<p>获取复选内容，该方法仅对<code>check</code>属性设置为<code>true</code>时起作用。返回的值为<code>JSON数组</code>格式的被选中的记录集。</p>
+				<p><code>方法名</code>：getCheckedRecords</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：JSON数组格式的被选中的记录集。</p>
+				<div id="3.8" class="title">静态方法</div>
+				<hr />
+				<p>静态方法为DLShouWen Grid制作过程中抽取出来的一些辅助方法，也可以公开使用，调用方式为：<code>$.fn.dlshouwen.grid.tools.方法</code>。</p>
+				<div id="3.8.1" class="sub-title">guid</div>
+				<p>生成<code>GUID</code>方法，将会生成唯一的<code>GUID</code>字符串。</p>
+				<p><code>方法名</code>：guid</p>
+				<p><code>参数</code>：无</p>
+				<p><code>返回值</code>：guid字符串</p>
+				<div id="3.8.2" class="sub-title">addEvent<span class="label label-warning label-doc">已删除</span></div>
+				<p class="attention">该方法已被删除。</p>
+				<div id="3.8.3" class="sub-title">getWindowStart</div>
+				<p>获取<code>Bootstrap</code>中的模态窗口的开始部分html代码。</p>
+				<p><code>方法名</code>：getWindowStart</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">id：窗口编号，不能重复</p>
+				<p class="attr">title：窗口标题内容</p>
+				<p><code>返回值</code>：模态窗口开始部分html代码</p>
+				<div id="3.8.4" class="sub-title">getWindowEnd</div>
+				<p>获取<code>Bootstrap</code>中的模态窗口的结束部分html代码</p>
+				<p><code>方法名</code>：getWindowEnd</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">closeButtonTitle：关闭按钮字样。</p>
+				<p class="attr">buttons：按钮列表html代码，将会被放置在关闭按钮之后。</p>
+				<p><code>返回值</code>：模态窗口结束部分html代码</p>
+				<div id="3.8.5" class="sub-title">toast</div>
+				<p>提示方法。</p>
+				<p><code>方法名</code>：toast</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">content：提示内容</p>
+				<p class="attr">level：提示级别，弱枚举类型，可选参数为：info、warning、error、success，默认值：info</p>
+				<p class="attr">time：提示显示时间，单位为毫秒，整数类型（integer），<code>默认值</code>：3000</p>
+				<p><code>返回值</code>：无</p>
+				<div id="3.8.6" class="sub-title">toDate</div>
+				<p>将字符串转换为JS日期对象，转换规范同<code>format</code>日期格式化规范。</p>
+				<p><code>方法名</code>：toDate</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">date：日期字符串</p>
+				<p class="attr">pattern：转换格式，<code>默认值</code>：yyyy-MM-dd hh:mm:ss</p>
+				<p><code>返回值</code>：JS日期对象</p>
+				<div id="3.8.7" class="sub-title">dateFormat</div>
+				<p>JS日期对象格式化为字符串，转换规范同<code>format</code>日期格式化规范。</p>
+				<p><code>方法名</code>：dateFormat</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">value：日期对象</p>
+				<p class="attr">format：格式化规则</p>
+				<p><code>返回值</code>：格式化后的日期字符串</p>
+				<div id="3.8.8" class="sub-title">replaceAll</div>
+				<p>替换所有内容。</p>
+				<p><code>方法名</code>：replaceAll</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">s：原字符串</p>
+				<p class="attr">s1：需要替换的字符</p>
+				<p class="attr">s2：替换后的字符</p>
+				<p><code>返回值</code>：经过替换后的字符串结果</p>
+				<div id="3.8.9" class="sub-title">startsWith</div>
+				<p>判断字符串是否由某字符串开始。</p>
+				<p><code>方法名</code>：startsWith</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">str：原字符串</p>
+				<p class="attr">prefix：前缀字符串</p>
+				<p><code>返回值</code>：布尔类型（boolean），如果str由prefix开始则返回true，否则返回false</p>
+				<div id="3.8.10" class="sub-title">endsWith</div>
+				<p>判断字符串是否由某字符串结束。</p>
+				<p><code>方法名</code>：endsWith</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">str：原字符串</p>
+				<p class="attr">suffix：后缀字符串</p>
+				<p><code>返回值</code>：布尔类型（boolean），如果str由suufix结束则返回true，否则返回false</p>
+				<div id="3.8.11" class="sub-title">equalsIgnoreCase</div>
+				<p>忽略大小写比较字符串是否相同。</p>
+				<p><code>方法名</code>：equalsIgnoreCase</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">str1：被比较的字符串</p>
+				<p class="attr">str2：被比较的字符串</p>
+				<p><code>返回值</code>：布尔类型（boolean），如果str1与str2忽略大小写相同则返回true，否则返回false</p>
+				<div id="3.8.12" class="sub-title">numberFormat</div>
+				<p>数值格式化，格式化规范同<code>format</code>参数中的数值格式化规范。</p>
+				<p><code>方法名</code>：numberFormat</p>
+				<p><code>参数</code>：</p>
+				<p class="attr">number：被格式化的数值</p>
+				<p class="attr">pattern：格式化规则</p>
+				<p><code>返回值</code>：格式化后的数值</p>
+				<div id="3.9" class="title">高级功能</div>
+				<hr />
+				<div id="3.9.1" class="sub-title">Ajax查询的封装</div>
+				<p>请参阅DLShouWen Grid提供的本地项目内容中的实现。</p>
+				<div id="3.9.2" class="sub-title">导出的服务器封装</div>
+				<p>请参阅DLShouWen Grid提供的本地项目内容中的实现。</p>
+				<div id="3.9.3" class="sub-title">快速查询的服务器封装</div>
+				<p>请参阅DLShouWen Grid提供的本地项目内容中的实现。</p>
+				<div id="3.9.4" class="sub-title">高级查询的服务器封装</div>
+				<p>请参阅DLShouWen Grid提供的本地项目内容中的实现。</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>

@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<head>
+	<title>DLShouWen Grid - Reference</title>
+	<meta name="Keywords" content="DaLianShouWen Grid,DLShouWen Grid,Responsive Grid,jQuery Grid,Open Source Grid"/>
+	<meta name="Description" content="DaLian ShouWen Grid(DLShouWen Grid) is a responsive grid by DaLian ShouWen Technology Co., it's based on MIT open source licenses. It's with cross brower support, procedures clear, powerful, efficient load, and many other good qualities, it perhaps the best known reponstive grid controls."/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<!-- favicon -->
+	<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+	<!-- jQuery -->
+	<script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" />
+	<!--[if lt IE 9]>
+		<script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"></script>
+		<script src="../../../dependents/bootstrap/plugins/ie/respond.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="../../../dependents/bootstrap/plugins/ie/json2.js"></script>
+	<![endif]-->
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" />
+	<!-- toTop -->
+	<script type="text/javascript" src="../../toTop/jquery.toTop.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../toTop/jquery.toTop.css" />
+	<!-- syntaxHighLighter -->
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushXml.js"></script>
+	<script type="text/javascript" src="../../syntaxHighLighter/scripts/shBrushJScript.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shCore.css" />
+	<link rel="stylesheet" type="text/css" href="../../syntaxHighLighter/styles/shThemeDefault.css" />
+	<!-- jquery pin -->
+	<script type="text/javascript" src="../../jquery.pin/jquery.pin.js"></script>
+	<!-- doc css -->
+	<link rel="stylesheet" type="text/css" href="../../css/doc.css" />
+	<!-- icon css -->
+	<link rel="stylesheet" type="text/css" href="../../css/icons.css" />
+	<script type="text/javascript">
+	$(function(){
+		//语法着色
+		SyntaxHighlighter.config.clipboardSwf = '../../syntaxHighLighter/scripts/clipboard.swf';
+		SyntaxHighlighter.config.strings.expandSource = 'Show Source Code';
+		SyntaxHighlighter.config.strings.viewSource = 'View Source Code';
+		SyntaxHighlighter.config.strings.copyToClipboard = 'Copy To Clipboard';
+		SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'Copy To Clipboard Success!';
+		SyntaxHighlighter.config.strings.print = 'Print';
+		SyntaxHighlighter.all();
+		//钉住菜单
+		$(".left-sider").pin({
+			minWidth: 992,
+			pinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			},
+			unpinCallback : function(){
+				$(".left-sider").css('max-height', $(window).height()-112);
+			}
+		});
+		//左侧菜单注册事件
+		$(".left-sider>ul>li>a").toggle(function(){
+			$(this).children('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+			$(this).next('ul').slideDown(200);
+		}, function(){
+			$(this).children('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+			$(this).next('ul').slideUp(200);
+		});
+		//左侧菜单除了第一个全部关闭
+		$(".left-sider>ul>li>ul:not(:first)").hide();
+		$(".left-sider>ul>li>a:first").click();
+	});
+	</script>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f21a6d67b641b8f405d3c2be6193bc53";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-absolute-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Tools</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://os.dlshouwen.com/grid" class="navbar-brand">
+					<i class="icon icon-dlshouwen"></i>&nbsp;&nbsp;DLShouWen Grid
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li id="nav_home">
+						<a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
+					</li>
+					<li id="nav_example">
+						<a href="example.html"><i class="fa fa-table"></i>&nbsp;&nbsp;Example</a>
+					</li>
+					<li id="nav_reference" class="active">
+						<a href="reference.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Reference</a>
+					</li>
+					<li id="nav_download">
+						<a href="download.html"><i class="fa fa-download"></i>&nbsp;&nbsp;Download</a>
+					</li>
+					<li id="nav_about">
+						<a href="about.html"><i class="fa fa-info"></i>&nbsp;&nbsp;About</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="nav_donate" class="language">
+						<a href="javascript:;" data-toggle="dropdown"><i class="fa fa-language"></i>&nbsp;&nbsp;Language</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="javascript:;">English</a></li>
+							<li><a href="../zh-cn/reference.html">Simple Chinese</a></li>
+						</ul>
+					</li>
+					<li id="nav_donate" class="donate">
+						<a href="donate.html"><i class="fa fa-usd"></i>&nbsp;&nbsp;Donate</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="col-md-3">
+			<div class="layout left-sider">
+				<ul>
+					<li>
+						<a href="#3.1"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Deploy</a>
+						<ul>
+							<li><a href="#3.1.1">Import Base Files</a></li>
+							<li><a href="#3.1.2">Import i18n Files</a></li>
+							<li><a href="#3.1.3">Instance DLShouWen Grid</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.2"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Column Options</a>
+						<ul>
+							<li><a href="#3.2.1">id</a></li>
+							<li><a href="#3.2.2">title</a></li>
+							<li><a href="#3.2.19">width<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#3.2.3">type</a></li>
+							<li><a href="#3.2.4">format</a></li>
+							<li><a href="#3.2.19">otype</a></li>
+							<li><a href="#3.2.20">oformat</a></li>
+							<li><a href="#3.2.5">columnStyle</a></li>
+							<li><a href="#3.2.6">columnClass</a></li>
+							<li><a href="#3.2.7">headerStyle</a></li>
+							<li><a href="#3.2.8">headerClass</a></li>
+							<li><a href="#3.2.9">hide</a></li>
+							<li><a href="#3.2.10">hideType</a></li>
+							<li><a href="#3.2.11">extra</a></li>
+							<li><a href="#3.2.12">codeTable</a></li>
+							<li><a href="#3.2.13">fastQuery</a></li>
+							<li><a href="#3.2.14">fastQueryType</a></li>
+							<li><a href="#3.2.15">advanceQuery</a></li>
+							<li><a href="#3.2.16">export</a></li>
+							<li><a href="#3.2.17">print</a></li>
+							<li><a href="#3.2.18">resolution</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.3"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Grid Options</a>
+						<ul>
+							<li><a href="#3.3.1">id</a></li>
+							<li><a href="#3.3.2">lang</a></li>
+							<li><a href="#3.3.3">ajaxLoad</a></li>
+							<li><a href="#3.3.4">loadAll</a></li>
+							<li><a href="#3.3.5">loadURL</a></li>
+							<li><a href="#3.3.6">datas</a></li>
+							<li><a href="#3.3.7">tableStyle</a></li>
+							<li><a href="#3.3.8">tableClass</a></li>
+							<li><a href="#3.3.20">extraWidth<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#3.3.9">check</a></li>
+							<li><a href="#3.3.19">checkWidth<span class="label label-danger label-doc">New</span></a></li>
+							<li><a href="#3.3.10">showHeader</a></li>
+							<li><a href="#3.3.11">girdContainer</a></li>
+							<li><a href="#3.3.12">toolbarContainer</a></li>
+							<li><a href="#3.3.13">tools</a></li>
+							<li><a href="#3.3.14">exportFileName</a></li>
+							<li><a href="#3.3.15">exportURL</a></li>
+							<li><a href="#3.3.16">pageSize</a></li>
+							<li><a href="#3.3.17">pageSizeLimit</a></li>
+							<li><a href="#3.3.18">columns</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.4"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Grid Event</a>
+						<ul>
+							<li><a href="#3.4.1">onCellClick</a></li>
+							<li><a href="#3.4.2">onCellDblClick</a></li>
+							<li><a href="#3.4.3">onCellMouseOver</a></li>
+							<li><a href="#3.4.4">onCellMouseMove</a></li>
+							<li><a href="#3.4.5">onCellMouseOut</a></li>
+							<li><a href="#3.4.6">onCellMouseDown</a></li>
+							<li><a href="#3.4.7">onCellMouseUp</a></li>
+							<li><a href="#3.4.8">onRowClick</a></li>
+							<li><a href="#3.4.9">onRowDblClick</a></li>
+							<li><a href="#3.4.10">onRowMouseOver</a></li>
+							<li><a href="#3.4.11">onRowMouseMove</a></li>
+							<li><a href="#3.4.12">onRowMouseOut</a></li>
+							<li><a href="#3.4.13">onRowMouseDown</a></li>
+							<li><a href="#3.4.14">onRowMouseUp</a></li>
+							<li><a href="#3.4.15">onHeaderClick</a></li>
+							<li><a href="#3.4.16">onHeaderDblClick<span class="label label-warning label-doc">Deprecated</span></a></li>
+							<li><a href="#3.4.17">onHeaderMouseOver</a></li>
+							<li><a href="#3.4.18">onHeaderMouseMove</a></li>
+							<li><a href="#3.4.19">onHeaderMouseOut</a></li>
+							<li><a href="#3.4.20">onHeaderMouseDown</a></li>
+							<li><a href="#3.4.21">onHeaderMouseUp</a></li>
+							<li><a href="#3.4.22">onGridClick</a></li>
+							<li><a href="#3.4.23">onGridDblClick</a></li>
+							<li><a href="#3.4.24">onGridMouseOver</a></li>
+							<li><a href="#3.4.25">onGridMouseMove</a></li>
+							<li><a href="#3.4.26">onGridMouseOut</a></li>
+							<li><a href="#3.4.27">onGridMouseDown</a></li>
+							<li><a href="#3.4.28">onGridMouseUp</a></li>
+							<li><a href="#3.4.29">onGridComplete</a></li>
+							<li><a href="#3.4.30">onExtraOpen</a></li>
+							<li><a href="#3.4.31">onExtraClose</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.5"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Interaction Attributes</a>
+						<ul>
+							<li><a href="#3.5.1">isSuccess</a></li>
+							<li><a href="#3.5.2">isExport</a></li>
+							<li><a href="#3.5.3">exportFileName</a></li>
+							<li><a href="#3.5.4">exportType</a></li>
+							<li><a href="#3.5.5">exportAllData</a></li>
+							<li><a href="#3.5.6">exportColumns</a></li>
+							<li><a href="#3.5.7">exportDataIsProcessed</a></li>
+							<li><a href="#3.5.8">exportDatas</a></li>
+							<li><a href="#3.5.9">pageSize</a></li>
+							<li><a href="#3.5.10">startRecord</a></li>
+							<li><a href="#3.5.11">nowPage</a></li>
+							<li><a href="#3.5.12">recordCount</a></li>
+							<li><a href="#3.5.13">pageCount</a></li>
+							<li><a href="#3.5.14">parameters</a></li>
+							<li><a href="#3.5.15">fastQueryParameters</a></li>
+							<li><a href="#3.5.16">advanceQueryConditions</a></li>
+							<li><a href="#3.5.17">advanceQuerySorts</a></li>
+							<li><a href="#3.5.18">exhibitDatas</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.6"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;DLShouWen Grid Attributes</a>
+						<ul>
+							<li><a href="#3.6.1">init</a></li>
+							<li><a href="#3.6.2">pager</a></li>
+							<li><a href="#3.6.3">option</a></li>
+							<li><a href="#3.6.4">originalDatas</a></li>
+							<li><a href="#3.6.5">baseDatas</a></li>
+							<li><a href="#3.6.6">exhibitDatas</a></li>
+							<li><a href="#3.6.7">sortParameter</a></li>
+							<li><a href="#3.6.8">sortOriginalDatas</a></li>
+							<li><a href="#3.6.9">parameters</a></li>
+							<li><a href="#3.6.10">fastQueryParameters</a></li>
+							<li><a href="#3.6.11">fastQueryOriginalDatas</a></li>
+							<li><a href="#3.6.12">advanceQueryParameter</a></li>
+							<li><a href="#3.6.13">printColumns</a></li>
+							<li><a href="#3.6.14">exportColumns</a></li>
+							<li><a href="#3.6.15">exportDatas</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.7"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;DLShouWen Grid Functions</a>
+						<ul>
+							<li><a href="#3.7.1">load</a></li>
+							<li><a href="#3.7.2">reload</a></li>
+							<li><a href="#3.7.3">refresh</a></li>
+							<li><a href="#3.7.4">constructGrid</a></li>
+							<li><a href="#3.7.5">constructGirdPageBar</a></li>
+							<li><a href="#3.7.6">constructGridToolBar</a></li>
+							<li><a href="#3.7.7">showProcessBar</a></li>
+							<li><a href="#3.7.8">hideProcessBar</a></li>
+							<li><a href="#3.7.9">formatContent</a></li>
+							<li><a href="#3.7.10">goPage</a></li>
+							<li><a href="#3.7.11">fastQuery</a></li>
+							<li><a href="#3.7.12">advanceQuery</a></li>
+							<li><a href="#3.7.13">print</a></li>
+							<li><a href="#3.7.14">exportFile</a></li>
+							<li><a href="#3.7.15">getCheckedRecords</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.8"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Static Functions</a>
+						<ul>
+							<li><a href="#3.8.1">guid</a></li>
+							<li><a href="#3.8.2">addEvent<span class="label label-warning label-doc">Deleted</span></a></li>
+							<li><a href="#3.8.3">getWindowStart</a></li>
+							<li><a href="#3.8.4">getWindowEnd</a></li>
+							<li><a href="#3.8.5">toast</a></li>
+							<li><a href="#3.8.6">toDate</a></li>
+							<li><a href="#3.8.7">dateFormat</a></li>
+							<li><a href="#3.8.8">replaceAll</a></li>
+							<li><a href="#3.8.9">startsWith</a></li>
+							<li><a href="#3.8.10">endsWith</a></li>
+							<li><a href="#3.8.11">equalsIgnoreCase</a></li>
+							<li><a href="#3.8.12">numberFormat</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#3.9"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Advance</a>
+						<ul>
+							<li><a href="#3.9.1">Ajax Query Package</a></li>
+							<li><a href="#3.9.2">Export Server Package</a></li>
+							<li><a href="#3.9.3">Fast Query Server Package</a></li>
+							<li><a href="#3.9.4">Advance Query Server Package</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="layout main-container">
+				<div id="3.1" class="title">Deploy</div>
+				<hr />
+				<div id="3.1.1" class="sub-title">Import Base Files</div>
+				<p>We recommend for your including <code>javascript files</code> and <code>css files</code> as follows: </p>
+				<pre class="brush:xml;">&lt;!-- jQuery --&gt;
+&lt;script type="text/javascript" src="../../../dependents/jquery/jquery.min.js"&gt;&lt;/script&gt;
+&lt;!-- bootstrap --&gt;
+&lt;script type="text/javascript" src="../../../dependents/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/bootstrap/css/bootstrap.min.css" /&gt;
+&lt;!--[if lt IE 9]&gt;
+	&lt;script src="../../../dependents/bootstrap/plugins/ie/html5shiv.js"&gt;&lt;/script&gt;
+	&lt;script src="../../../dependents/bootstrap/plugins/ie/respond.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+&lt;!--[if lt IE 8]&gt;
+	&lt;script src="../../../dependents/bootstrap/plugins/ie/json2.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+&lt;!-- font-awesome --&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/fontAwesome/css/font-awesome.min.css" media="all" /&gt;
+&lt;!-- DLShouWen Grid --&gt;
+&lt;script type="text/javascript" src="../../../dlshouwen.grid.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../../../i18n/en.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dlshouwen.grid.css" /&gt;
+&lt;!-- datePicker --&gt;
+&lt;script type="text/javascript" src="../../../dependents/datePicker/WdatePicker.js" defer="defer"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/WdatePicker.css" /&gt;
+&lt;link rel="stylesheet" type="text/css" href="../../../dependents/datePicker/skin/default/datepicker.css" /&gt;</pre>
+				<div id="3.1.2" class="sub-title">Import i18n Files</div>
+				<p>You need include the language files in the I18N folder below the <code>dlshouwen.grid.js</code> file. </p>
+				<pre class="brush:xml;">&lt;script type="text/javascript" src="../../../i18n/en.js"&gt;&lt;/script&gt;</pre>
+				<div id="3.1.3" class="sub-title">Instance DLShouWen Grid</div>
+				<p>You can instantiation the <code>DLShouWen Grid object</code> using the following code, DLShouWen Grid object will support some functions, please refer to this reference to know <code>parameters</code> or <code>functions</code>. </p>
+				<pre class="brush:js;">//Code Table
+var sex = {1:'Male', 2:'Female'};
+var degree = {1:'Elementary School', 2:'Middle School', 3:'High School', 4:'College', 5:'Bachelor', 6:'Master', 7:'Doctor', 8:'Others'};
+//Simulated Data (Salary Between $6000 on $12000, Date Between 1980-01-01 00::00:00 on 2014-10-01 00:00:00)
+var datas = new Array();
+for(var i=0; i<186; i++){
+	var user = new Object();
+	user.user_id = 'user_'+i;
+	user.user_code = 'user_'+i;
+	user.user_name = 'Fake User No. '+(Math.floor(Math.random()*1000)+10000);
+	user.sex = (Math.floor(Math.random()*2)+1);
+	user.salary = (Math.floor(Math.random()*6000)+6000);
+	user.degree = (Math.floor(Math.random()*8)+1);
+	user.time = new Date(Math.floor(Math.random()*1096588800000)+315504000000);
+	user.time_stamp_s = Math.floor((Math.floor(Math.random()*1096588800000)+315504000000)/1000);
+	user.time_stamp_ms = Math.floor(Math.random()*1096588800000)+315504000000;
+	user.string_date = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd');
+	user.string_time = $.fn.dlshouwen.grid.tools.dateFormat(new Date(Math.floor(Math.random()*1096588800000)+315504000000), 'yyyy-MM-dd hh:mm:ss');
+	datas.push(user);
+}
+//Definition DLShouWen Grid
+var gridColumns = [
+	{id:'user_code', title:'User Code', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'eq'},
+	{id:'user_name', title:'User Name', type:'string', columnClass:'text-center', fastQuery:true, fastQueryType:'lk'},
+	{id:'sex', title:'Sex', type:'string', codeTable:sex, columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'eq', resolution:function(record, value){
+		var content = '';
+		if(value==1){
+			content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;"&gt;Male&lt;/span&gt;';
+		}else{
+			content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;"&gt;Female&lt;/span&gt;';
+		}
+		return content;
+	}},
+	{id:'salary', title:'Salary', type:'number', format:'#,###.00', columnClass:'text-center', hideType:'xs', fastQuery:true, fastQueryType:'range'},
+	{id:'degree', title:'Degree', type:'string', codeTable:degree, columnClass:'text-center', hideType:'sm|xs', fastQuery:true, fastQueryType:'eq' },
+	{id:'time', title:'Date Time', type:'date', format:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_s', title:'Timestamp(s)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_s', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'time_stamp_ms', title:'Timestamp(ms)', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'time_stamp_ms', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_date', title:'Date String', type:'date', format:'yyyy-MM-dd', otype:'string', oformat:'yyyy-MM-dd', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' },
+	{id:'string_time', title:'Date Time String', type:'date', format:'yyyy-MM-dd hh:mm:ss', otype:'string', oformat:'yyyy-MM-dd hh:mm:ss', columnClass:'text-center', hideType:'lg|md|sm|xs', fastQuery:true, fastQueryType:'range' }
+];
+var gridOption = {
+	ajaxLoad : false,
+	exportFileName : 'User List',
+	datas : datas,
+	columns : gridColumns,
+	pageSize : 10
+};
+var grid = $.fn.dlshouwen.grid.init(gridOption);
+$(function(){
+	grid.load();
+});</pre>
+				<div id="3.2" class="title">Column Options</div>
+				<hr />
+				<p>DLShouWen Grid through <code>JSON array</code> to definition columns, each column will have many properties. </p>
+				<div id="3.2.1" class="sub-title">id</div>
+				<p>Defines the id of columns, this id will matching the data field name, if this column is a custom column, this property can be any code, pay attention to each column of this property can not be repeated. </p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: field</p>
+				<div id="3.2.2" class="sub-title">title</div>
+				<p>Column title, can fill in any code. </p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: field</p>
+				<div id="3.2.19" class="sub-title">width<span class="label label-danger label-doc">New</span></div>
+				<p>The column's width, this parameter more like <code>max-width</code>, when the table width less than the sum of the columns, this column still be pressed. when all columns have this parameter, it will be turn into percentage mode just like the cell parameter <code>width</code>. </p>
+				<p>Example: <code>width:80</code>\<code>width:'80px'</code>\<code>width:'20%'</code></p>
+				<p><code>Type</code>: string or number</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.2.3" class="sub-title">type</div>
+				<p>The column's data type, optional types are as follows: </p>
+				<p class="attr">string: Character</p>
+				<p class="attr">date: Data or time</p>
+				<p class="attr">number: Numerical</p>
+				<p><code>Type</code>: Weak enumeration, optional values: string, date, number</p>
+				<p><code>Default</code>: string</p>
+				<div id="3.2.4" class="sub-title">format</div>
+				<p>Content formatting attributes, this attribute only works when column's data type is <code>date</code> or <code>number</code>.</p>
+				<p>For the date type, formatted script are as follows: </p>
+				<p class="attr">y: Year</p>
+				<p class="attr">M: Month</p>
+				<p class="attr">d: Day</p>
+				<p class="attr">h: Hour</p>
+				<p class="attr">m: Minute</p>
+				<p class="attr">s: Seconds</p>
+				<p class="attr">S: Millisecond</p>
+				<p>Typical examples are as follows: <code>yyyy-MM-dd hh:mm:ss.S</code>, the display of the content is: <code>2014-10-21 09:50:33.386</code>.</p>
+				<p>For the number type, formatted script are as follows:</p>
+				<p class="attr">#: If the data first char by 0, then does not display in the content</p>
+				<p class="attr">0: In any case will display, no data in this code site also display 0</p>
+				<p>Typical examples are as follows: <code>#,###.00</code>, the display of the content is: <code>12,345,678.90</code> .</p>
+				<p class="attention">Note: The <code>format</code> attribute is affect print and export, use the <code>format</code> parameter formatting content in print and export will also analyze by this format.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.2.19" class="sub-title">otype</div>
+				<p>The original type of display column data, this parameter is used for formatting to judge the type of original data, at present only when the <code>type</code> parameter is <code>date</code> efficient. When the property is not configured, default that data is the date of JS objects to format. Optional types are as follows:</p>
+				<p class="attr">time_stamp_s: Second time stamp</p>
+				<p class="attr">time_stamp_ms: The millisecond time stamp</p>
+				<p class="attr">string: The string type</p>
+				<p><code>Type</code>: Weak enumeration type, optional values: time_stamp_s, time_stamp_ms, string</p>
+				<p><code>Default</code>: null。</p>
+				<div id="3.2.20" class="sub-title">oformat</div>
+				<p>With the use of the <code>otype</code> parameter, when the <code>otype</code> parameter is <code>string</code>, we need you to inform the date string format, the expression was same to <code>format</code> parameter.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.2.5" class="sub-title">columnStyle</div>
+				<p>Define the style for each cell in column, the expression was same to standard CSS.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: Empty string</p>
+				<div id="3.2.6" class="sub-title">columnClass</div>
+				<p>Define the custom style sheet for each cell in column.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: Empty string</p>
+				<div id="3.2.7" class="sub-title">headerStyle</div>
+				<p>Define the style for each header, the expression was same to standard CSS.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: Empty string</p>
+				<div id="3.2.8" class="sub-title">headerClass</div>
+				<p>Define the custom style sheet for each header.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: Empty string</p>
+				<div id="3.2.9" class="sub-title">hide</div>
+				<p>Is completely hidden, when <code>hide</code> is <code>true</code>, this column will not displayed, and also not output DOM codes. This property is used for some columns which is primary key column, it's displayed but also can be used.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: false</p>
+				<div id="3.2.10" class="sub-title">hideType</div>
+				<p>This property is used for response grid configuration, configuration which terminal for hidden or display, the property provided as follows:</p>
+				<p class="attr">xs: Hidden in the smallest screen, usually used in mobile phone terminal: less than 768 pixels</p>
+				<p class="attr">sm: Hidden in the smaller screen, usually used for pad terminal: from 768 pixels to 992 pixels</p>
+				<p class="attr">md: Hidden in the secondary screen, usually used for computer terminal: from 992 pixels to 1200 pixels</p>
+				<p class="attr">lg: Hidden in the big screen, usually used for high pixels computer terminal: greater than 1200 pixels</p>
+				<p>DLShouWen Grid supports response is based on <code>Bootstrap</code>, using <code>visible-lg</code>, <code>visible-md</code>, <code>visible-sm</code>, <code>visible-xs</code> four style sheet parameters to complete response analysis, if you need to adjust the various trigger terminal pixels, you can modify those four style sheet parameters in <code>Bootstrap</code>.</p>
+				<p>Multiple parameters using <code>|</code> to segmentation, such as: md|sm|xs, this column is only displayed in the large screen.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: Empty string, display in all the terminal.</p>
+				<div id="3.2.11" class="sub-title">extra</div>
+				<p>Whether to display the content in the extended column. The response type is based on control style sheets, so the content of the data table display and hidden content is independent, the contents of each cell is actually output in two copies, DLShouWen Grid through the procedures and configured to control this column display in normal table or display in the extra line. It will make some errors occur in some custom resolution columns, such as display a custom resolution cell is complicated check box, through the <code>check</code> property cannot be done this require, only through the custom <code>resolution</code> attribute can make it well, this leads to every check box will parse out the two check boxes, error occur when get those check boxes values by DOM, so we provide this extra attribute, when the extra property is false, the expansion will not display and output the content, it will avoid the error occur when you do somthing in this column.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: true</p>
+				<div id="3.2.12" class="sub-title">codeTable</div>
+				<p>This parameter for the expansion of the code table information. Many systems provide code table mechanism, through the cache (for J2EE projects this cache usually stored in the application domain) to store the code table information, it can avoid frequent access to the database, and also can planning code table information avoid confusion.</p>
+				<p>DLShouWen Grid, through this parameter to realize the code table, such as gender, 1 representation male, 2 representation female, data content is 1 or 2, put JSON object in this property, by gender for example format is: <code>{1:'male', 2:'female'}</code>, then it will display male or female.</p>
+				<p class="attention">Note: If the code table does not match the contents, such as the above example, the contents of the data is 3, then we will display 3.</p>
+				<p class="attention">Note: The code table analyze is works on print and export.</p>
+				<p><code>Type</code>: Object</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.2.13" class="sub-title">fastQuery</div>
+				<p>Whether to enable fast query, if you enable fast query at some columns, click the fast query button, it will display fast query form in fast query panel.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: false</p>
+				<div id="3.2.14" class="sub-title">fastQueryType</div>
+				<p>Fast query type, the optional <code> parameter </code> type: </p>
+				<p class="attr">eq: equals</p>
+				<p class="attr">ne: not equals</p>
+				<p class="attr">lk: like</p>
+				<p class="attr">ll: left like</p>
+				<p class="attr">rl: right like</p>
+				<p class="attr">gt: great than</p>
+				<p class="attr">ge: great than equals</p>
+				<p class="attr">lt: less than</p>
+				<p class="attr">le: less than equals</p>
+				<p class="attr">range: range, usually used for date or numberic</p>
+				<p><code>Type</code>: Weak enumeration type, optional values: eq、ne、lk、ll、rl、gt、ge、lt、le、range</p>
+				<p><code>Default</code>: Empty string</p>
+				<div id="3.2.15" class="sub-title">advanceQuery</div>
+				<p>Whether to enable the advanced search, when this parameter is false in some columns, those columns can not filter or sort in advance query panel.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: true</p>
+				<div id="3.2.16" class="sub-title">export</div>
+				<p>Whether to enable export, when the parameter is false in some columns, those columns will not be as an option for export.</p>
+				<p class="attention">Note: <code>Export</code> is a reserved keyword <code>javascript</code>, please use as much as possible in this way to define: <code>'export': false</code>, is not recommended to write directly for: <code>export:false</code>.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: true</p>
+				<div id="3.2.17" class="sub-title">print</div>
+				<p>Whether can execute the print, when the parameter is <code>false</code>, the print will not as an option to print.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: true</p>
+				<div id="3.2.18" class="sub-title">resolution</div>
+				<p>The custom of analytic function. It definited by anonymous function or outer preset function, the sample code is as follows: </p>
+				<pre class="brush:js;">resolution:function(record, value){
+	var content = '';
+	if(value==1){
+		content += '&lt;span style="background:#00a2ca;padding:2px 10px;color:white;">Male&lt;/span>';
+	}else{
+		content += '&lt;span style="background:#c447ae;padding:2px 10px;color:white;">Female&lt;/span>';
+	}
+	return content;
+}
+
+resolution:function(value, record, column, grid, dataNo, columnNo){
+	var content = '';
+	content += '&lt;button class="btn btn-xs btn-default" onclick="alert(\'Edit User: '+record.user_name+'\');"&gt;&lt;i class="fa fa-edit"&gt;&lt;/i&gt;&nbsp;&nbsp;Edit&lt;/button&gt;';
+	content += '&nbsp;&nbsp;';
+	content += '&lt;button class="btn btn-xs btn-danger" onclick="alert(\'Delete User: '+record.user_name+'\');"&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&nbsp;&nbsp;Delete&lt;/button&gt;';
+	return content;
+}</pre>
+				<p>Resolution parameter usually used to customize the display of content or generate some operating button in the current cell.</p>
+				<p>Function arguments:</p>
+				<p class="attr">value: The value of the current cell</p>
+				<p class="attr">record: The record object, you can get other columns data by this record object</p>
+				<p class="attr">column：Column Object</p>
+				<p class="attr">grid：Grid Object</p>
+				<p class="attr">dataNo：Data number, starting from 0</p>
+				<p class="attr">columnNo：Column number, starting from 0</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.3" class="title">Grid Options</div>
+				<hr />
+				<p>Grid options used to configuration the global grid attributes.</p>
+				<div id="3.3.1" class="sub-title">id</div>
+				<p>Used to set the table ID, you can not set this property without special needs, if you not set this property, DLShouWen Grid will generate a <code>GUID</code> to handle.</p>
+				<p class="attention">Note: This property cannot be repeated on tables which is in the same page.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: GUID</p>
+				<div id="3.3.2" class="sub-title">lang</div>
+				<p>Used to set the language of DLShouWen Gird, DLShouWen Grid already provided three languages: <code>English</code>, <code>Simplified Chinese</code>, <code>Traditional Chinese</code>, the default is <code>English</code>.</p>
+				<p class="attention">Note: Language need to include the corresponding i18N language file.</p>
+				<p><code>Type</code>: Weak enumeration type, optional values: en, zh-cn, zh-tw, you can extended to you own languages</p>
+				<p><code>Default</code>: en</p>
+				<div id="3.3.3" class="sub-title">ajaxLoad</div>
+				<p>Whether loading data by Ajax, if this parameter is <code>true</code>, it will through the <code>loadURL</code> address to load data, if it's <code>false</code>, it will get datas by parameter <code>datas</code>.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: true</p>
+				<div id="3.3.4" class="sub-title">loadAll</div>
+				<p>Whether load all datas. This parameter only works when the <code>ajaxLoad</code> property is <code>true</code>. But we do not recommend this way, load all data by once will affect the first execution efficiency, it's a poor user experience, and data display may not be real-time. The advantage is high efficiency after first load datas.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: false</p>
+				<div id="3.3.5" class="sub-title">loadURL</div>
+				<p>Ajax loading url address, this attribute only works when the <code>ajaxLoad</code> parameter is <code>true</code>.</p>
+				<p class="attention">Note: If there is a full load data mode (<code>loadAll</code> property is <code>true</code>), please ensure that the <code>loadURL</code> responses <code>JSON array</code>, if it's <code>not full loading data mode</code>, please ensure that the <code>loadURL</code> responses <code>Pager object</code>, please download project version to see <code>Pager object</code> implementation.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: Empty string</p>
+				<div id="3.3.6" class="sub-title">datas</div>
+				<p>Grid datas, is a JSON array. This parameter only works when <code>ajaxLoad</code> parameter is <code>false</code>.</p>
+				<p><code>Type</code>: The JSON array</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.3.7" class="sub-title">tableStyle</div>
+				<p>Global style for grid, the expression was same to standard CSS.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: Empty string</p>
+				<div id="3.3.8" class="sub-title">tableClass</div>
+				<p>Global custom style sheet for grid.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: table table-bordered table-hover table-responsive</p>
+				<div id="3.3.20" class="sub-title">extraWidth<span class="label label-danger label-doc">New</span></div>
+				<p>Extra column width.</p>
+				<p>Example: <code>extraWidth:80</code>\<code>extraWidth:'80px'</code>\<code>extraWidth:'20%'</code></p>
+				<p><code>Type</code>: string or number</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.3.9" class="sub-title">check</div>
+				<p>DLShouWen Grid provides the check function, set the property to <code>true</code> will add a checkbox column before all columns, and will provides select allcheckbox, cancel all checkbox on column head. You can use the <code>getCheckedRecords</code> method to get the checked records.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: false</p>
+				<div id="3.3.19" class="sub-title">checkWidth<span class="label label-danger label-doc">New</span></div>
+				<p>Checkbox column width.</p>
+				<p>Example: <code>checkWidth:80</code>\<code>checkWidth:'80px'</code>\<code>checkWidth:'20%'</code></p>
+				<p><code>Type</code>: string or number</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.3.10" class="sub-title">showHeader</div>
+				<p>Whether the column headers are displayed.</p>
+				<p><code>Type</code>: boolean</p>
+				<p><code>Default</code>: true</p>
+				<div id="3.3.11" class="sub-title">girdContainer</div>
+				<p>Grid container DOM <code>id</code>, table will be displayed in this container.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: gridContainer</p>
+				<div id="3.3.12" class="sub-title">toolbarContainer</div>
+				<p>Grid toolbar container DOM <code>id</code>, table toolbar will be displayed in this container.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: gridToolBarContainer</p>
+				<div id="3.3.13" class="sub-title">tools</div>
+				<p>Tools options, optional parameters are as follows:</p>
+				<p class="attr">refresh: Refresh tables</p>
+				<p class="attr">fastQuery: Show fast query panel</p>
+				<p class="attr">advanceQuery: Show advanced search panel</p>
+				<p class="attr">export: Export</p>
+				<p class="attr">excel: Export excel file</p>
+				<p class="attr">csv: Export csv file</p>
+				<p class="attr">pdf: Export pdf file</p>
+				<p class="attr">txt: Export txt file</p>
+				<p class="attr">print: Print</p>
+				<p>Multi parameter use symbol <code>|</code> to segmentation, the typical of a <code>export</code>: <code>export[excel,csv,pdf,txt]</code>, full format reference: <code>refresh|faseQuery|advanceQuery|export[excel,csv,pdf,txt]|print</code>.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: refresh|faseQuery|advanceQuery|export[excel,csv,pdf,txt]|print</p>
+				<div id="3.3.14" class="sub-title">exportFileName</div>
+				<p>Export file name.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: datas</p>
+				<div id="3.3.15" class="sub-title">exportURL</div>
+				<p>Export url address, this attribute is invalid for <code>Ajax Load Data By Page Mode</code>, <code>Ajax Load Data By Page Mode</code> need do some SQL splicing operation to loading export datas, so export operation is in the <code>loadURL</code> parameter, please download the project implementation to know how it works.</p>
+				<p><code>Type</code>: string</p>
+				<p><code>Default</code>: /grid/export</p>
+				<div id="3.3.16" class="sub-title">pageSize</div>
+				<p>The number of records per page.</p>
+				<p><code>Type</code>: integer</p>
+				<p><code>Default</code>: 20</p>
+				<div id="3.3.17" class="sub-title">pageSizeLimit</div>
+				<p>Limit the number of records per page. If this parameter is array, the array is in accordance with the contents of the select box for the user to choose the number of records per page, if this parameter is an integer, then provide a input element for the user to input a number of records per page, this parameter value set in for the maximum limit the input, if this parameter is set to the other type, then is displayed per page displays the number, do not provide a user to change.</p>
+				<p><code>Type</code>: array or integer or others</p>
+				<p><code>Default</code>: [20, 50, 100]</p>
+				<div id="3.3.18" class="sub-title">columns</div>
+				<p>Column object definitions, it's definited by a <code>column JSON array</code>.</p>
+				<p><code>Type</code>: JSON Array</p>
+				<p><code>Default</code>: null</p>
+				<div id="3.4" class="title">Grid Event</div>
+				<hr />
+				<p>For the DLShouWen Grid callback method form various events, all of the methods are configured in the <code>grid option</code> attribute, the callback method in parameter configuration in each method are described in detail.</p>
+				<div id="3.4.1" class="sub-title">onCellClick</div>
+				<p>Trigger when current cell clicked, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>cell</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at current line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current row jQuery object</p>
+				<p class="attr">extraCell: The current cell are extended for the jQuery object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.2" class="sub-title">onCellDblClick</div>
+				<p>Trigger when current cell double clicked, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>cell</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at current line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current row jQuery object</p>
+				<p class="attr">extraCell: The current cell are extended for the jQuery object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.3" class="sub-title">onCellMouseOver</div>
+				<p>Trigger when mouse over current cell, arguments: <code>value</code>, <code>record</code>, <code>column</code> transfer, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>cell</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at current line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current row jQuery object</p>
+				<p class="attr">extraCell: The current cell are extended for the jQuery object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.4" class="sub-title">onCellMouseMove</div>
+				<p>Trigger when mouse move on current cell, arguments: <code>value</code>, <code>record</code>, <code>column</code> transfer, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>cell</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at current line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current row jQuery object</p>
+				<p class="attr">extraCell: The current cell are extended for the jQuery object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.5" class="sub-title">onCellMouseOut</div>
+				<p>Trigger when mouse out current cell, arguments: <code>value</code>, <code>record</code>, <code>column</code> transfer, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>cell</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at current line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current row jQuery object</p>
+				<p class="attr">extraCell: The current cell are extended for the jQuery object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.6" class="sub-title">onCellMouseDown</div>
+				<p>Trigger when mouse down on current cell, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>cell</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at current line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current row jQuery object</p>
+				<p class="attr">extraCell: The current cell are extended for the jQuery object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.7" class="sub-title">onCellMouseUp</div>
+				<p>Trigger when mouse up on current cell, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>cell</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at current line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current row jQuery object</p>
+				<p class="attr">extraCell: The current cell are extended for the jQuery object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.8" class="sub-title">onRowClick</div>
+				<p>Trigger when current row clicked, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>Row</code>, <code>row</code>, <code>extraRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at the current line line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.9" class="sub-title">onRowDblClick</div>
+				<p>Trigger when current row double clicked, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>Row</code>, <code>row</code>, <code>extraRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at the current line line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.10" class="sub-title">onRowMouseOver</div>
+				<p>Trigger when mouse over current row, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>Row</code>, <code>row</code>, <code>extraRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at the current line line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.11" class="sub-title">onRowMouseMove</div>
+				<p>Trigger when mouse move on current row, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>Row</code>, <code>row</code>, <code>extraRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at the current line line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.12" class="sub-title">onRowMouseOut</div>
+				<p>Trigger when mouse out current row, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>Row</code>, <code>row</code>, <code>extraRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at the current line line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.13" class="sub-title">onRowMouseDown</div>
+				<p>Trigger when mouse down on current row, arguments: <code>value</code>, <code>record</code>, <code>column</code>, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>Row</code>, <code>row</code>, <code>extraRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at the current line line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.14" class="sub-title">onRowMouseUp</div>
+				<p>Trigger when mouse up current row, arguments: <code>value</code>, <code>record</code>, <code>column</code> transfer, <code>grid</code>, <code>dataNo</code>, <code>columnNo</code>, <code>Row</code>, <code>row</code>, <code>extraRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">value: Analysised current cell value</p>
+				<p class="attr">record: The data object at the current line line</p>
+				<p class="attr">column: The column object of current cell</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">cell: The current cell jQuery object</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.15" class="sub-title">onHeaderClick</div>
+				<p>Trigger when current header clicked, arguments: <code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">title: The header title</p>
+				<p class="attr">column: The current header column object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">header: The current head of jQuery objects</p>
+				<p class="attr">headerRow: The current meter for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.16" class="sub-title">onHeaderDblClick<span class="label label-warning label-doc">deprecated</span></div>
+				<p class="attention">DLShouWen Grid header has contains sort function, and this sort operation need to reload header code, so unable to bind the header double-click event.</p>
+				<!-- 
+				<p>Trigger when current header double clicked, arguments: <code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">title: The header title</p>
+				<p class="attr">column: The current header column object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">header: The current head of jQuery objects</p>
+				<p class="attr">headerRow: The current meter for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				 -->
+				<div id="3.4.17" class="sub-title">onHeaderMouseOver</div>
+				<p>Trigger when mouse over current header, arguments: <code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">title: The header title</p>
+				<p class="attr">column: The current header column object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">header: The current head of jQuery objects</p>
+				<p class="attr">headerRow: The current meter for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.18" class="sub-title">onHeaderMouseMove</div>
+				<p>Trigger when mouse move on current header, arguments: <code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">title: The header title</p>
+				<p class="attr">column: The current header column object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">header: The current head of jQuery objects</p>
+				<p class="attr">headerRow: The current meter for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.19" class="sub-title">onHeaderMouseOut</div>
+				<p>Trigger when mouse out current header, arguments: <code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">title: The header title</p>
+				<p class="attr">column: The current header column object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">header: The current head of jQuery objects</p>
+				<p class="attr">headerRow: The current meter for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.20" class="sub-title">onHeaderMouseDown</div>
+				<p>Trigger when mouse down current header, arguments: <code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">title: The header title</p>
+				<p class="attr">column: The current header column object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">header: The current head of jQuery objects</p>
+				<p class="attr">headerRow: The current meter for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.21" class="sub-title">onHeaderMouseUp</div>
+				<p>Trigger when mouse up current header, arguments: <code>title</code>, <code>column</code>, <code>grid</code>, <code>columnNo</code>, <code>header</code>, <code>headerRow</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">title: The header title</p>
+				<p class="attr">column: The current header column object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">columnNo: Column number, starting from 0</p>
+				<p class="attr">header: The current head of jQuery objects</p>
+				<p class="attr">headerRow: The current meter for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.22" class="sub-title">onGridClick</div>
+				<p>Trigger when current gird clicked, arguments: <code>grid</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.23" class="sub-title">onGridDblClick</div>
+				<p>Trigger when current grid double clicked, arguments: <code>grid</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.24" class="sub-title">onGridMouseOver</div>
+				<p>Trigger when mouse over current grid, arguments: <code>grid</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.25" class="sub-title">onGridMouseMove</div>
+				<p>Trigger when mouse move on current grid, arguments: <code>grid</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.26" class="sub-title">onGridMouseOut</div>
+				<p>Trigger when mouse out current grid, arguments: <code>grid</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.27" class="sub-title">onGridMouseDown</div>
+				<p>Trigger when mouse down current grid, arguments: <code>grid</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.28" class="sub-title">onGridMouseUp</div>
+				<p>Trigger when mouse up current grid, arguments: <code>grid</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.29" class="sub-title">onGridComplete</div>
+				<p>Trigger when grid load complete, arguments: <code>grid</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">grid: Grid object</p>
+				<div id="3.4.30" class="sub-title">onExtraOpen</div>
+				<p>Trigger when extra column opened, arguments: <code>record</code>, <code>grid</code>, <code>dataNo</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">record: The current row data object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.4.31" class="sub-title">onExtraClose</div>
+				<p>Trigger when extra column closed, arguments: <code>record</code>, <code>grid</code>, <code>dataNo</code>, <code>row</code>, <code>extraCell</code>, <code>e</code>.</p>
+				<p><code>Type</code>: function</p>
+				<p><code>Default</code>: null</p>
+				<p><code>Arguments</code>: </p>
+				<p class="attr">record: The current row data object</p>
+				<p class="attr">grid: Grid object</p>
+				<p class="attr">dataNo: Data number, starting from 0</p>
+				<p class="attr">row: The current line of jQuery objects</p>
+				<p class="attr">extraRow: The current line extension for jQuery objects</p>
+				<p class="attr">e: The event object</p>
+				<div id="3.5" class="title">Interaction Attributes</div>
+				<hr />
+				<p>Interaction parameters are information front-end script server interaction, those parameters is only for grid which <code>ajaxLoad</code> option was <code>true</code>(Ajax Load All Data Mode, Ajax Load Data By Page Mode).</p>
+				<p class="attention">Note: Those interaction parameter do not through the instanced DLShouWen Grid object to call, interaction parameters object is complete instantiation in the server interaction, in the server through the Pager object received, it's not DLShouWen Grid object.</p>
+				<p class="attention">Note: If some interaction parameters mark it can be modified, you can though modify grid object to modify those interaction parameters.</p>
+				<div id="3.5.1" class="sub-title">isSuccess</div>
+				<p><code>Application</code>: Whether the data is loaded successfully, if the query SQL has error or configure advanced query has error then return false, if the correct query then return true.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.2" class="sub-title">isExport</div>
+				<p><code>Application</code>: Used to determine the interactive information is export action or not.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.3" class="sub-title">exportFileName</div>
+				<p><code>Application</code>: For the export file name, the file name is got by the <code>grid option</code> <code>exportFileName</code>.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.4" class="sub-title">exportType</div>
+				<p><code>Application</code>: The exported file types, decide by user choose.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.5" class="sub-title">exportAllData</div>
+				<p><code>Application</code>: Whether to export all datas, decide by user choose.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.6" class="sub-title">exportColumns</div>
+				<p><code>Application</code>: The export columns, decide by user choose.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.7" class="sub-title">exportDataIsProcessed</div>
+				<p><code>Application</code>: Whether export data have been processed. If export data via the resolution, data format operation has finished processing then this data is deemed to already processed.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.8" class="sub-title">exportDatas</div>
+				<p><code>Application</code>: The export datas, decide by user choose, export datas are processed.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.9" class="sub-title">pageSize</div>
+				<p><code>Application</code>: The records displayed number per page.</p>
+				<p><code>Special Instructions</code>: This parameter can be modified manually.</p>
+				<div id="3.5.10" class="sub-title">startRecord</div>
+				<p><code>Application</code>: Record start number.</p>
+				<p><code>Special Instructions</code>: This parameter can be modified manually.</p>
+				<div id="3.5.11" class="sub-title">nowPage</div>
+				<p><code>Application</code>: The current page number.</p>
+				<p><code>Special Instructions</code>: This parameter can be modified manually.</p>
+				<div id="3.5.12" class="sub-title">recordCount</div>
+				<p><code>Application</code>: The total number of records in the current query.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.13" class="sub-title">pageCount</div>
+				<p><code>Application</code>: The total number of pages.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.14" class="sub-title">parameters</div>
+				<p><code>Application</code>: A custom parameters. This parameter can be set manually by javascript, attribute type is a JSON object, server through Pager parameters to get this JSON object, in Java we convert it to Map object.</p>
+				<p><code>Special Instructions</code>: This parameter can be modified manually.</p>
+				<div id="3.5.15" class="sub-title">fastQueryParameters</div>
+				<p><code>Application</code>: Fast query parameters, decide by user choose.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.16" class="sub-title">advanceQueryConditions</div>
+				<p><code>Application</code>: Advance query condition parameters, decide by user choose.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.17" class="sub-title">advanceQuerySorts</div>
+				<p><code>Application</code>: Advance query sort parameters, decide by user choose.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.5.18" class="sub-title">exhibitDatas</div>
+				<p><code>Application</code>: Exhibit datas in grid.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.6" class="title">DLShouWen Grid Attributes</div>
+				<hr />
+				<p>Those properties can visit or modify by instantiated <code>DLShouWen Grid object</code>.</p>
+				<div id="3.6.1" class="sub-title">init</div>
+				<p><code>Application</code>: The initialization parameter.</p>
+				<p><code>Sub Parameters</code>: </p>
+				<p class="attr">toolsIsInit [boolean]: Whether or not toobar initialized</p>
+				<p class="attr">printWindowIsInit [boolean]: Whether or not print window initialized</p>
+				<p class="attr">exportWindowIsInit [Object&lt;string, boolean&gt;]: Whether or not the export window initialized (this parameter contains multiple sub parameters, each sub parameter identifies a export type)</p>
+				<p class="attr">fastQueryWindowIsInit [boolean]: Whether or not the fast query window initialized</p>
+				<p class="attr">advanceQueryWindowIsInit [boolean]: Whether or not the advanced query window initialized</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.6.2" class="sub-title">pager</div>
+				<p><code>Application</code>: Page parameter object.</p>
+				<p><code>Sub Parameters</code>: </p>
+				<p class="attr">pageSize [integer]: The records displayed number per page</p>
+				<p class="attr">startRecord [integer]: Record start number</p>
+				<p class="attr">nowPage [integer]: The current page number</p>
+				<p class="attr">recordCount [integer]: The total number of records in the current query</p>
+				<p class="attr">pageCount [integer]: The total number of pages</p>
+				<p><code>Special Instructions</code>: The parameters are calculated automatically generated by DLShouWen Grid, in those parameters, <code>pageSize</code> is modification.</p>
+				<div id="3.6.3" class="sub-title">option</div>
+				<p><code>Application</code>: Grid option object.</p>
+				<p><code>Special Instructions</code>: The content of parameter is configured by user and the default property of integration, it's modification.</p>
+				<div id="3.6.4" class="sub-title">originalDatas</div>
+				<p><code>Application</code>: The original data set.</p>
+				<p><code>Special Instructions</code>: The content of parameter is the grid original data, it's not recommended to manually modify.</p>
+				<div id="3.6.5" class="sub-title">baseDatas</div>
+				<p><code>Application</code>: The basic data set, the current page from the original data by the paging parameters.</p>
+				<p><code>Special Instructions</code>: The parameters of content based on the original data, is not recommended to manually modify.</p>
+				<div id="3.6.6" class="sub-title">exhibitDatas</div>
+				<p><code>Application</code>: The display data set, concentrated from the underlying data processed (or server analytical processing).</p>
+				<p><code>Special Instructions</code>: The parameters of the content was autogeneration by DLShouWen Grid, is not recommended to manually modify.</p>
+				<div id="3.6.7" class="sub-title">sortParameter</div>
+				<p><code>Application</code>: Sorting parameters.</p>
+				<p><code>Sub Parameters</code>: </p>
+				<p class="attr">columnId [string]: The sort column name, namely the configuration column properties in ID</p>
+				<p class="attr">sortType [integer]: Sort types [0- don't sort, 1- positive, 2- desc]</p>
+				<p><code>Special Instructions</code>: The parameters of the content was autogeneration by DLShouWen Grid, is not recommended to manually modify.</p>
+				<div id="3.6.8" class="sub-title">sortOriginalDatas</div>
+				<p><code>Application</code>: Sort buffer data set, the sorting process will cause the display data reordering, if do not cache will not be reduced to not sort order of data, so use this parameter when sorting data cache.</p>
+				<p><code>Special Instructions</code>: The parameters for the automatic processing of content components, is not recommended to manually modify.</p>
+				<div id="3.6.9" class="sub-title">parameters</div>
+				<p><code>Application</code>: A custom parameter sets. This parameter can be set manually by Javascript, attribute type for the Object object, you can set the parameters through Javascript, after setting the server package through Pager parameters access object object properties can be obtained in the corresponding parameter set, the set corresponds to the Java server for the Map object.</p>
+				<p><code>Special Instructions</code>: This parameter can be modified manually.</p>
+				<div id="3.6.10" class="sub-title">fastQueryParameters</div>
+				<p><code>Application</code>: Fast query parameters, decide by user choose.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.6.11" class="sub-title">fastQueryOriginalDatas</div>
+				<p><code>Application</code>: Fast query original datas cache, this used by <code>Non Ajax Load Data By Page Mode</code>.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.6.12" class="sub-title">advanceQueryParameter</div>
+				<p><code>Application</code>: The advance query parameter object.</p>
+				<p class="attr">advanceQueryConditions [array]: The advance query condition array.</p>
+				<p class="attr">advanceQuerySorts [array]: The advance query sort array.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.6.13" class="sub-title">printColumns</div>
+				<p><code>Application</code>: The column objects which will be printed.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.6.14" class="sub-title">exportColumns</div>
+				<p><code>Application</code>: The column objects which will be exported.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.6.15" class="sub-title">exportDatas</div>
+				<p><code>Application</code>: The datas which will be Exported.</p>
+				<p><code>Special Instructions</code>: The parameter does not suggest that manual modification.</p>
+				<div id="3.7" class="title">DLShouWen Grid Functions</div>
+				<hr />
+				<p>DLShouWen Grid functions can calls from the instantiated <code>DLShouWen Grid </code> object.</p>
+				<div id="3.7.1" class="sub-title">load</div>
+				<p>Load DLShouWen Grid. It will refresh all parameters, the dynamic ajax load mode will be require data from server. But we do not recommend you to use this method, if you need to refresh, please call the <code>reload</code> or <code>refresh</code> method.</p>
+				<p><code>Function Name</code>: load</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.2" class="sub-title">reload</div>
+				<p>Reload DLShouWen Grid.</p>
+				<p><code>Function Name</code>: reload</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">allReload: When this attribute is true then just like call method <code>load</code>. when this attribute is false, it will only refresh existing data, it will not visit the server to require data.</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.3" class="sub-title">refresh</div>
+				<p>The method is overloaded of the reload method.</p>
+				<div id="3.7.4" class="sub-title">constructGrid</div>
+				<p>Construct grid body, internal method, not recommended to call.</p>
+				<p><code>Function Name</code>: constructGrid</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.5" class="sub-title">constructGirdPageBar</div>
+				<p>Construct the grid page toolbar, internal method, not recommended to call.</p>
+				<p><code>Function Name</code>: constructGridPageBar</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.6" class="sub-title">constructGridToolBar</div>
+				<p>Construct the grid toolbar, internal method, not recommended to call.</p>
+				<p><code>Function Name</code>: constructGridToolBar</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.7" class="sub-title">showProcessBar</div>
+				<p>Show the progress bar.</p>
+				<p><code>Function Name</code>: showProcessBar</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.8" class="sub-title">hideProcessBar</div>
+				<p>Hide the progress bar.</p>
+				<p><code>Function Name</code>: hideProcessBar</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.9" class="sub-title">formatContent</div>
+				<p>Formats content, analyzes by <code>format</code>, <code>codeTable</code> attributes.</p>
+				<p><code>Function Name</code>: formatContent</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">column: A column object</p>
+				<p class="attr">value: The content to format</p>
+				<p><code>Return</code>: The formatted content</p>
+				<div id="3.7.10" class="sub-title">goPage</div>
+				<p>Jump to one page.</p>
+				<p><code>Function Name</code>: goPage</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">page: The page number, integer</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.11" class="sub-title">fastQuery</div>
+				<p>Open fast query modal for execute fast query.</p>
+				<p><code>Function Name</code>: fastQuery</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.12" class="sub-title">advanceQuery</div>
+				<p>Open advance query modal for execute advance query.</p>
+				<p><code>Function Name</code>: advanceQuery</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.13" class="sub-title">print</div>
+				<p>Open print modal for execute print.</p>
+				<p><code>Function Name</code>: print</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.14" class="sub-title">exportFile</div>
+				<p>Open export modal for execute export.</p>
+				<p><code>Function Name</code>: exportFile</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">exportType: Export file type, weak enumeration, optional type: excel, csv, txt, pdf</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.7.15" class="sub-title">getCheckedRecords</div>
+				<p>Get checked records, the method only works when the <code>check</code> property is <code>true</code>. Return a selected record <code>JSON Array</code>.</p>
+				<p><code>Function Name</code>: getCheckedRecords</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: A selected record JSON Array.</p>
+				<div id="3.8" class="title">Static Functions</div>
+				<hr />
+				<p>Static methods are some auxiliary methods, those can called by: <code>$.fn.dlshouwen.grid.tools.*</code>.</p>
+				<div id="3.8.1" class="sub-title">guid</div>
+				<p>Generate unique <code>GUID</code> String.</p>
+				<p><code>Function Name</code>: guid</p>
+				<p><code>Attributes</code>: Nothing</p>
+				<p><code>Return</code>: The guid String</p>
+				<div id="3.8.2" class="sub-title">addEvent<span class="label label-warning label-doc">Deleted</span></div>
+				<p class="attention">This method was deleted in version 1.1.9.</p>
+				<div id="3.8.3" class="sub-title">getWindowStart</div>
+				<p>Output the start of <code>Bootstrap</code> modal HTML code.</p>
+				<p><code>Function Name</code>: getWindowStart</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">id: The modal ID, can't repeat in same page</p>
+				<p class="attr">title: The modal title</p>
+				<p><code>Return</code>: The start of modal HTML code</p>
+				<div id="3.8.4" class="sub-title">getWindowEnd</div>
+				<p>Output the end of <code>Bootstrap</code> modal HTML code.</p>
+				<p><code>Function Name</code>: getWindowEnd</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">closeButtonTitle: The close button title.</p>
+				<p class="attr">buttons: Other buttons html code after close button.</p>
+				<p><code>Return</code>: The end of modal HTML code</p>
+				<div id="3.8.5" class="sub-title">toast</div>
+				<p>Toast some message like android.</p>
+				<p><code>Function Name</code>: toast</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">content: Message content</p>
+				<p class="attr">level: Toast level, weak enumeration type, optional parameters: info, warning, error, success. <code>Default</code>: info</p>
+				<p class="attr">time: Toast duration, milliseconds, integer. <code>Default</code>: 3000</p>
+				<p><code>Return</code>: Nothing</p>
+				<div id="3.8.6" class="sub-title">toDate</div>
+				<p>Formats a String as a javascript date object, format pattern is the same as <code>format</code> parameters.</p>
+				<p><code>Function Name</code>: toDate</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">date: A date String</p>
+				<p class="attr">pattern: A pattern String. <code>Default</code>: yyyy-MM-dd hh:mm:ss</p>
+				<p><code>Return</code>: The date as a Javascript date object</p>
+				<div id="3.8.7" class="sub-title">dateFormat</div>
+				<p>Formats the Javascript data object as a String, format pattern is the same as <code>format</code> parameters.</p>
+				<p><code>Function Name</code>: dateFormat</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">value: The javascript date object to format</p>
+				<p class="attr">format: The way in which to format javascript date object</p>
+				<p><code>Return</code>: The date as a String</p>
+				<div id="3.8.8" class="sub-title">replaceAll</div>
+				<p>Replaces a String with another String inside a larger String.</p>
+				<p><code>Function Name</code>: replaceAll</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">s: Text to search and replace in</p>
+				<p class="attr">s1: The String to search for</p>
+				<p class="attr">s2: The String to replace it with</p>
+				<p><code>Return</code>: The text with any replacements processed</p>
+				<div id="3.8.9" class="sub-title">startsWith</div>
+				<p>Check if a String starts with a specified prefix.</p>
+				<p><code>Function Name</code>: startsWith</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">str: The String to check</p>
+				<p class="attr">prefix: The prefix to find</p>
+				<p><code>Return</code>: Boolean, if the String starts with the prefix, case sensitive</p>
+				<div id="3.8.10" class="sub-title">endsWith</div>
+				<p>Check if a String ends with a specified suffix.</p>
+				<p><code>Function Name</code>: endsWith</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">str: The String to check</p>
+				<p class="attr">suffix: The suffix to find</p>
+				<p><code>Return</code>: Boolean, true if the String ends with the suffix, case sensitive</p>
+				<div id="3.8.11" class="sub-title">equalsIgnoreCase</div>
+				<p>Compares two Strings, returning true if they are equal ignoring the case.</p>
+				<p><code>Function Name</code>: equalsIgnoreCase</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">str1: The first String</p>
+				<p class="attr">str2: The second String</p>
+				<p><code>Return</code>: Boolean, true if the Strings are equal, case insensitive</p>
+				<div id="3.8.12" class="sub-title">numberFormat</div>
+				<p>Formats a number to a String, format pattern is the same as <code>format</code> parameter.</p>
+				<p><code>Function Name</code>: numberFormat</p>
+				<p><code>Attributes</code>: </p>
+				<p class="attr">number: The number to format</p>
+				<p class="attr">pattern: A pattern String</p>
+				<p><code>Return</code>: The formatted number String</p>
+				<div id="3.9" class="title">Advance</div>
+				<hr />
+				<div id="3.9.1" class="sub-title">Ajax Query Package</div>
+				<p>Please refer to the DLShouWen Grid project implementation.</p>
+				<div id="3.9.2" class="sub-title">Export Server Package</div>
+				<p>Please refer to the DLShouWen Grid project implementation.</p>
+				<div id="3.9.3" class="sub-title">Fast Query Server Package</div>
+				<p>Please refer to the DLShouWen Grid project implementation.</p>
+				<div id="3.9.4" class="sub-title">Advance Query Server Package</div>
+				<p>Please refer to the DLShouWen Grid project implementation.</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="footer">
+		<div class="container copyright">
+			<a href="http://www.dlshouwen.com">大连首闻科技有限公司</a>旗下产品
+			&nbsp;&nbsp;
+			<a href="http://os.dlshouwen.com/grid">http://os.dlshouwen.com/grid</a>
+			&nbsp;&nbsp;
+			<a href="javascript:;">辽ICP备14014868号</a>
+			&nbsp;&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259182271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259182271%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		</div>
+	</div>
+	<div id="back-to-top" class="back-to-top" title="回到顶部"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="wechat"><img width="129" height="129" src="../../images/wechat.jpg" /></div>
+</body>
+</html>
