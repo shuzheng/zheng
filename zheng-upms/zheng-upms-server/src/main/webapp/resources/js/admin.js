@@ -1,16 +1,17 @@
+var click = device.mobile() ? 'touchstart' : 'click';
 $(function() {
 	// 侧边栏操作按钮
-	$('#guide').click(function() {
+	$(document).on(click, '#guide', function() {
 		$(this).toggleClass('toggled');
 		$('#sidebar').toggleClass('toggled');
 	});
 	// 侧边栏二级菜单
-	$('.sub-menu a').click(function() {
+	$(document).on('click', '.sub-menu a', function() {
 		$(this).next().slideToggle(200);
 		$(this).parent().toggleClass('toggled');
 	});
 	// 个人资料
-	$('.s-profile a').click(function() {
+	$(document).on('click', '.s-profile a', function() {
 		$(this).next().slideToggle(200);
 		$(this).parent().toggleClass('toggled');
 	});
@@ -69,13 +70,13 @@ $(function() {
 		}
 	});
 	// 控制选项卡滚动位置 
-	$('.tab_left>a').click(function() {
+	$(document).on('click', '.tab_left>a', function() {
 		$('.content_tab>ul').animate({scrollLeft: $('.content_tab>ul').scrollLeft() - 300}, 200, function() {
 			initScrollState();
 		});
 	});
 	// 向右箭头
-	$('.tab_right>a').click(function() {
+	$(document).on('click', '.tab_right>a', function() {
 		$('.content_tab>ul').animate({scrollLeft: $('.content_tab>ul').scrollLeft() + 300}, 200, function() {
 			initScrollState();
 		});
@@ -180,15 +181,17 @@ var Tab = {
 				initScrollState();
 			});
 		} else {
-			$('#tab_' + index).click();
+			$('#tab_' + index).trigger('click');
 		}
+		// 关闭侧边栏
+		$('#guide').trigger(click);
 	},
 	closeTab: function($item) {
 		var closeable = $item.data('closeable');
 		if (closeable != false) {
 			// 如果当前时激活状态则关闭后激活左边选项卡
 			if($item.hasClass('cur')) {
-				$item.prev().click();
+				$item.prev().trigger('click');
 			}
 			// 关闭当前选项卡
 			var index = $item.data('index');
