@@ -106,3 +106,6 @@ zheng
 
 # 数据模型
 ![数据库模型](project-datamodel/zheng.png)
+
+# License
+  MIT
