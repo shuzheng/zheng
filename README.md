@@ -67,13 +67,24 @@ zheng
 # 前端技术:
 * jQuery
 * Bootstrap
+* BootstrapMenu
+* Bootstrap-table
 * jQuery EasyUI
 * AngularJs
 * Webpack
 * Node.js
 * Electron
-* NW.js(Node-Webkit)
+* font-awesome
+* device
+* fastclick
+* malihu-custom-scrollbar-plugin
+* material-design-iconic-font
+* My97DatePicker
+* waves
 * zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
+* autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
+* zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
+* zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
 
 
 # 开发环境:
