@@ -54,11 +54,8 @@
 		<javaClientGenerator targetPackage="${generator.javaClientGenerator.targetPackage}" targetProject="src/main/java" type="XMLMAPPER" />
 
 		<!-- 需要映射的表 -->
-		<table tableName="user" domainObjectName="User">
-			<generatedKey column="id" sqlStatement="MySql" identity="true" />
-		</table>
-		<table tableName="book" domainObjectName="Book">
-			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		<table tableName="upms_system" domainObjectName="UpmsSystem">
+			<generatedKey column="system_id" sqlStatement="MySql" identity="true" />
 		</table>
 	</context>
 </generatorConfiguration>

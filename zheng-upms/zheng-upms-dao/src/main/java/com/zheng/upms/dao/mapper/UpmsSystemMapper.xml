@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zheng.upms.dao.mapper.UpmsSystemMapper" >
+  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsSystem" >
+    <id column="system_id" property="systemId" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="basepath" property="basepath" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="BIGINT" />
+    <result column="orders" property="orders" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    system_id, icon, basepath, status, name, ctime, orders
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zheng.upms.dao.model.UpmsSystemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from upms_system
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from upms_system
+    where system_id = #{systemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from upms_system
+    where system_id = #{systemId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.UpmsSystemExample" >
+    delete from upms_system
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsSystem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="systemId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into upms_system (icon, basepath, status, 
+      name, ctime, orders)
+    values (#{icon,jdbcType=VARCHAR}, #{basepath,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
+      #{name,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsSystem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="systemId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into upms_system
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="basepath != null" >
+        basepath,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="basepath != null" >
+        #{basepath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zheng.upms.dao.model.UpmsSystemExample" resultType="java.lang.Integer" >
+    select count(*) from upms_system
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update upms_system
+    <set >
+      <if test="record.systemId != null" >
+        system_id = #{record.systemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.basepath != null" >
+        basepath = #{record.basepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+      <if test="record.orders != null" >
+        orders = #{record.orders,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update upms_system
+    set system_id = #{record.systemId,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      basepath = #{record.basepath,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=SMALLINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=BIGINT},
+      orders = #{record.orders,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsSystem" >
+    update upms_system
+    <set >
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="basepath != null" >
+        basepath = #{basepath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+    </set>
+    where system_id = #{systemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsSystem" >
+    update upms_system
+    set icon = #{icon,jdbcType=VARCHAR},
+      basepath = #{basepath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      name = #{name,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=BIGINT},
+      orders = #{orders,jdbcType=BIGINT}
+    where system_id = #{systemId,jdbcType=INTEGER}
+  </update>
+  <cache />
+</mapper>
