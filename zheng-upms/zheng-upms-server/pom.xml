@@ -19,7 +19,11 @@
             <groupId>com.zheng</groupId>
             <artifactId>zheng-upms-service</artifactId>
             <version>1.0.0</version>
-            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.github.shuzheng</groupId>
+            <artifactId>zhengAdmin</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -80,8 +84,8 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.0.0.v20130308</version>
-                <!--<version>9.2.7.v20150116</version>-->
+                <!--<version>9.0.0.v20130308</version>-->
+                <version>9.2.7.v20150116</version>
                 <configuration>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                     <webApp>
