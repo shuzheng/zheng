@@ -115,6 +115,7 @@ zheng
 * ZooKeeper [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://www.apache.org/dyn/closer.cgi/zookeeper/ "ZooKeeper")
 * Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
 * Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
+* Dubbo [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://dubbo.io/Download-zh.htm "Dubbo")
 
 # 数据模型
 ![数据库模型](project-datamodel/zheng.png)
