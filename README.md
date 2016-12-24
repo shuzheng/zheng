@@ -5,29 +5,30 @@
 zheng
 ├── zheng-common -- 公共模块
 ├── zheng-upms -- 用户权限管理系统
-|    ├── zheng-upms-dao -- 数据库MyBatisGenerator操作
-|    ├── zheng-upms-service -- 业务逻辑
+|    ├── zheng-upms-dao -- 数据库操作，MyBatisGenerator生成
+|    ├── zheng-upms-rpc-api -- rpc接口包
+|    ├── zheng-upms-rpc-service -- rpc服务提供者
 |    ├── zheng-upms-client -- SSO登录客户端
 |    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
-|    ├── zheng-cms-dao -- 数据库MyBatisGenerator操作
+|    ├── zheng-cms-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-cms-service -- 业务逻辑
 |    ├── zheng-cms-search -- 搜索服务[端口:2221]
 |    ├── zheng-cms-admin -- 后台管理[端口:2222]
 |    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
 |    └── zheng-cms-web -- 网站前台[端口:2224]
 ├── zheng-pay -- 支付系统
-|    ├── zheng-pay-dao -- 数据库MyBatisGenerator操作
+|    ├── zheng-pay-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-pay-service -- 业务逻辑
 |    ├── zheng-pay-sdk -- 开发工具包
 |    ├── zheng-pay-admin -- 后台管理[端口:3331]
 |    └── zheng-pay-web -- 演示示例[端口:3332]
 ├── zheng-ucenter -- 用户系统
-|    ├── zheng-ucenter-dao -- 数据库MyBatisGenerator操作
+|    ├── zheng-ucenter-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-ucenter-service -- 业务逻辑
 |    └── zheng-ucenter-home -- 网站前台[端口:4441]
 |── zheng-wechat-mp -- 微信公众号管理系统
-|    ├── zheng-wechat-mp-dao -- 数据库MyBatisGenerator操作
+|    ├── zheng-wechat-mp-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 ├── zheng-api -- 接口系统
@@ -42,6 +43,7 @@ zheng
 * Spring Framework
 * SpringMVC: MVC框架
 * MyBatis: ORM框架
+* MyBatis-plus: Mybatis增强包
 * MyBatis Generator: 代码生成
 * Druid: 数据库连接池
 * Spring secutity|Shiro: 权限认证
@@ -62,6 +64,7 @@ zheng
 * Spring-boot
 * Swagger2: 接口文档
 * FastDFS: 分布式文件系统
+* sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
 
 
 # 前端技术:
@@ -115,7 +118,7 @@ zheng
 * ZooKeeper [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://www.apache.org/dyn/closer.cgi/zookeeper/ "ZooKeeper")
 * Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
 * Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
-* Dubbo [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://dubbo.io/Download-zh.htm "Dubbo")
+* dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/download/mappingsunlight/9489736](http://download.csdn.net/download/mappingsunlight/9489736 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
 
 # 数据模型
 ![数据库模型](project-datamodel/zheng.png)

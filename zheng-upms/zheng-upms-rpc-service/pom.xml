@@ -8,21 +8,16 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-upms-server</artifactId>
+    <artifactId>zheng-upms-rpc-service</artifactId>
     <packaging>war</packaging>
 
-    <name>zheng-upms-server Maven Webapp</name>
+    <name>zheng-upms-rpc-service Maven Webapp</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
             <artifactId>zheng-upms-rpc-api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.shuzheng</groupId>
-            <artifactId>zhengAdmin</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
@@ -69,7 +64,7 @@
     </profiles>
 
     <build>
-        <finalName>zheng-upms-server</finalName>
+        <finalName>zheng-upms-rpc-service</finalName>
         <filters>
             <filter>src/main/resources/profiles/${env}.properties</filter>
         </filters>
@@ -92,7 +87,7 @@
                         <contextPath>/</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>1111</port>
+                        <port>1112</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>
