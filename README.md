@@ -7,8 +7,9 @@ zheng
 ├── zheng-upms -- 用户权限管理系统
 |    ├── zheng-upms-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-upms-rpc-api -- rpc接口包
-|    ├── zheng-upms-rpc-service -- rpc服务提供者
-|    ├── zheng-upms-client -- SSO登录客户端
+|    ├── zheng-upms-rpc-service -- rpc服务提供者[端口:1112]
+|    ├── zheng-upms-app1 -- SSO登录客户端1[端口:1113]
+|    ├── zheng-upms-app2 -- SSO登录客户端2[端口:1114]
 |    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-dao -- 数据库操作，MyBatisGenerator生成
