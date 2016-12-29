@@ -49,7 +49,7 @@ zheng
 * MyBatis Generator: 代码生成
 * Druid: 数据库连接池
 * Spring secutity|Shiro: 权限认证
-* Thymeleaf: 模板引擎
+* Jsp|Velocity|Thymeleaf: 模板引擎
 * ZooKeeper: 协调服务
 * Dubbo: 远程服务调用
 * TBSchedule|elastic-job: 分布式任务调度
