@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/11/20 22:14:12                          */
+/* Created on:     2016/12/30 16:18:05                          */
 /*==============================================================*/
 
 
@@ -18,9 +18,21 @@ drop table if exists cms_comment;
 
 drop table if exists cms_tag;
 
+drop table if exists pay_mch;
+
+drop table if exists pay_pay;
+
+drop table if exists pay_type;
+
+drop table if exists pay_vendor;
+
+drop table if exists pay_vest;
+
 drop table if exists test_book;
 
 drop table if exists test_user;
+
+drop table if exists upms_system;
 
 /*==============================================================*/
 /* Table: cms_article                                           */
@@ -47,7 +59,7 @@ create table cms_article
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章表';
 
-alter table cms_article comment 'cms_article 文章表';
+alter table cms_article comment '文章表';
 
 /*==============================================================*/
 /* Table: cms_article_category                                  */
@@ -63,7 +75,7 @@ create table cms_article_category
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章类目表';
 
-alter table cms_article_category comment 'cms_article_category 文章类目关联表';
+alter table cms_article_category comment '文章类目关联表';
 
 /*==============================================================*/
 /* Table: cms_article_tag                                       */
@@ -79,7 +91,7 @@ create table cms_article_tag
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章标签表';
 
-alter table cms_article_tag comment 'cms_article_tag 文章标签关联表';
+alter table cms_article_tag comment '文章标签关联表';
 
 /*==============================================================*/
 /* Table: cms_category                                          */
@@ -104,7 +116,7 @@ create table cms_category
 )
 ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='类目表';
 
-alter table cms_category comment 'cms_category 类目表';
+alter table cms_category comment '类目表';
 
 /*==============================================================*/
 /* Table: cms_category_tag                                      */
@@ -120,7 +132,7 @@ create table cms_category_tag
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=' 分类标签表';
 
-alter table cms_category_tag comment 'cms_category_tag 类目标签关联表';
+alter table cms_category_tag comment '类目标签关联表';
 
 /*==============================================================*/
 /* Table: cms_comment                                           */
@@ -141,7 +153,7 @@ create table cms_comment
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-alter table cms_comment comment 'cms_comment 评论表';
+alter table cms_comment comment '评论表';
 
 /*==============================================================*/
 /* Table: cms_tag                                               */
@@ -162,7 +174,74 @@ create table cms_tag
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='标签表';
 
-alter table cms_tag comment 'cms_tag 标签表';
+alter table cms_tag comment '标签表';
+
+/*==============================================================*/
+/* Table: pay_mch                                               */
+/*==============================================================*/
+create table pay_mch
+(
+   pay_mch_id           int not null auto_increment,
+   mch_id               varchar(20),
+   name                 varchar(20),
+   reqKey               varchar(50),
+   resKey               varchar(50),
+   primary key (pay_mch_id)
+);
+
+alter table pay_mch comment '支付中心商户管理表';
+
+/*==============================================================*/
+/* Table: pay_pay                                               */
+/*==============================================================*/
+create table pay_pay
+(
+   pay_pay_id           int not null auto_increment,
+   pay_type_id          int,
+   param                varchar(1000),
+   primary key (pay_pay_id)
+);
+
+alter table pay_pay comment '支付参数配置表';
+
+/*==============================================================*/
+/* Table: pay_type                                              */
+/*==============================================================*/
+create table pay_type
+(
+   pay_type_id          int not null auto_increment,
+   pay_mch_id           int,
+   pay_vendor_id        int,
+   primary key (pay_type_id)
+);
+
+alter table pay_type comment '商户支持支付类型表';
+
+/*==============================================================*/
+/* Table: pay_vendor                                            */
+/*==============================================================*/
+create table pay_vendor
+(
+   pay_vendor_id        int not null auto_increment,
+   name                 varchar(20),
+   primary key (pay_vendor_id)
+);
+
+alter table pay_vendor comment '支付标识表';
+
+/*==============================================================*/
+/* Table: pay_vest                                              */
+/*==============================================================*/
+create table pay_vest
+(
+   pay_vest_id          int not null auto_increment,
+   pay_type_id          int,
+   prefix               varchar(20),
+   param                varchar(1000),
+   primary key (pay_vest_id)
+);
+
+alter table pay_vest comment '马甲支付参数配置表';
 
 /*==============================================================*/
 /* Table: test_book                                             */
@@ -177,7 +256,7 @@ create table test_book
 )
 ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COMMENT='用户书籍表';
 
-alter table test_book comment 'test_book 书';
+alter table test_book comment '书';
 
 /*==============================================================*/
 /* Table: test_user                                             */
@@ -195,7 +274,24 @@ create table test_user
 )
 ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-alter table test_user comment 'test_user 用户';
+alter table test_user comment '用户';
+
+/*==============================================================*/
+/* Table: upms_system                                           */
+/*==============================================================*/
+create table upms_system
+(
+   system_id            int unsigned not null auto_increment,
+   icon                 varchar(20),
+   basepath             varchar(100),
+   status               smallint,
+   name                 varchar(20),
+   ctime                bigint,
+   orders               bigint,
+   primary key (system_id)
+);
+
+alter table upms_system comment '系统';
 
 alter table cms_article_category add constraint FK_Reference_7 foreign key (category_id)
       references cms_category (category_id) on delete cascade on update cascade;
@@ -223,6 +319,18 @@ alter table cms_comment add constraint FK_Reference_1 foreign key (article_id)
 
 alter table cms_comment add constraint FK_Reference_2 foreign key (pid)
       references cms_comment (comment_id) on delete cascade on update cascade;
+
+alter table pay_pay add constraint FK_Reference_13 foreign key (pay_type_id)
+      references pay_type (pay_type_id) on delete restrict on update restrict;
+
+alter table pay_type add constraint FK_Reference_11 foreign key (pay_mch_id)
+      references pay_mch (pay_mch_id) on delete restrict on update restrict;
+
+alter table pay_type add constraint FK_Reference_12 foreign key (pay_vendor_id)
+      references pay_vendor (pay_vendor_id) on delete restrict on update restrict;
+
+alter table pay_vest add constraint FK_Reference_14 foreign key (pay_type_id)
+      references pay_type (pay_type_id) on delete restrict on update restrict;
 
 alter table test_book add constraint FK_Reference_9 foreign key (user_id)
       references test_user (user_id) on delete cascade on update cascade;
