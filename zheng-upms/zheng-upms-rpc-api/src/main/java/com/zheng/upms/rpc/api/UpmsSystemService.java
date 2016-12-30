@@ -1,16 +1,13 @@
 package com.zheng.upms.rpc.api;
 
-import com.zheng.upms.dao.mapper.UpmsSystemMapper;
+import com.zheng.upms.dao.model.UpmsSystem;
+import com.zheng.upms.dao.model.UpmsSystemExample;
 
 /**
  * 系统service接口
  * Created by shuzheng on 2016/12/18.
  */
-public interface UpmsSystemService extends BaseService<UpmsSystemMapper> {
+public interface UpmsSystemService extends BaseService<UpmsSystem, UpmsSystemExample> {
 
-    // 批量删除
-    int deleteByPrimaryKeys(String ids);
-
-    String test();
 
 }
