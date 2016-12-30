@@ -74,7 +74,6 @@
             <version>${spring-security.version}</version>
         </dependency>
         <!-- mybatis -->
-        <!--
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -85,12 +84,13 @@
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
         </dependency>
-        -->
+        <!--
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
             <version>2.0</version>
         </dependency>
+        -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>

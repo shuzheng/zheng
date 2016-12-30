@@ -43,50 +43,12 @@
 		<property name="filters" value="stat" />
 	</bean>
 	
-	<!-- 为Mybatis创建SqlSessionFactory，同时指定数据源 --><!-- org.mybatis.spring.SqlSessionFactoryBean -->
-	<!-- 注意：这里使用的是MP的MybatisSqlSessionFactoryBean，而不是Mybatis的，因为MP需要进行相应代理 -->
-	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+	<!-- 为Mybatis创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 		<property name="mapperLocations" value="classpath*:**/mapper/*Mapper.xml" />
-		<!-- 插件配置项 -->
-		<property name="plugins">
-			<array>
-				<!-- 分页插件配置 -->
-				<bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
-					<property name="dialectType" value="mysql" />
-				</bean>
-			</array>
-		</property>
-		<!-- 全局配置注入 -->
-		<property name="globalConfig" ref="globalConfig" />
 	</bean>
-	<bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
-		<!--
-			AUTO->`0`("数据库ID自增")
-			INPUT->`1`(用户输入ID")
-			ID_WORKER->`2`("全局唯一ID")
-			UUID->`3`("全局唯一ID")
-		-->
-		<!-- <property name="idType" value="0" /> -->
-		<!--
-            MYSQL->`mysql`
-            ORACLE->`oracle`
-            DB2->`db2`
-            H2->`h2`
-            HSQL->`hsql`
-            SQLITE->`sqlite`
-            POSTGRE->`postgresql`
-            SQLSERVER2005->`sqlserver2005`
-            SQLSERVER->`sqlserver`
-        -->
-		<!-- Oracle需要添加该项 -->
-		<!-- <property name="dbType" value="oracle" /> -->
-		<!-- 全局表为下划线命名设置 true -->
-		<!-- <property name="dbColumnUnderline" value="true" /> -->
-		<property name="sqlInjector" ref="autosqlinjector"/>
-	</bean>
-	<bean id="autosqlinjector" class="com.baomidou.mybatisplus.mapper.AutoSqlInjector"/>
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="**.mapper" />

@@ -22,6 +22,12 @@ public class SystemController {
 	@Autowired
 	private UpmsSystemService upmsSystemService;
 
+	@RequestMapping("/test")
+	@ResponseBody
+	public String test() {
+		return upmsSystemService.test();
+	}
+
 	@RequestMapping("/index")
 	public String index() {
 		return "/system/index";

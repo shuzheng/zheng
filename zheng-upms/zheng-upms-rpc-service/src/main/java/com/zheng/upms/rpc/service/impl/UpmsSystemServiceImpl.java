@@ -48,4 +48,10 @@ public class UpmsSystemServiceImpl implements UpmsSystemService {
         }
         return count;
     }
+
+    @Override
+    public String test() {
+        return "hello world!";
+    }
+
 }
