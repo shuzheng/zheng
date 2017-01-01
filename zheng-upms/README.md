@@ -24,3 +24,8 @@
 
 # 数据模型
 ![数据库模型](zheng-upms-server/src/main/webapp/resources/zheng-upms-datamodel.jpg)
+
+# 单点登录
+![sso-login.jpg](zheng-upms-server/src/main/webapp/resources/sso-login.jpg)
+![sso-logout.png](zheng-upms-server/src/main/webapp/resources/sso-logout.png)
+![sso-deploy.jpg](zheng-upms-server/src/main/webapp/resources/sso-deploy.jpg)
