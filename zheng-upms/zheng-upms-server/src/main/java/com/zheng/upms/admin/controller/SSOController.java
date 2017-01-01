@@ -2,9 +2,12 @@ package com.zheng.upms.admin.controller;
 
 import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
+import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.rpc.api.UpmsSystemService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,15 +32,9 @@ public class SSOController {
 
 	private final static Logger _log = LoggerFactory.getLogger(SSOController.class);
 	private final static String ZHENG_UPMS_SSO_SERVER_SESSION_ID = "zheng-upms-sso-server-session-id";
-	private final static List<String> apps = new ArrayList<>();
-	{
-		apps.add("zheng-cms-job");
-		apps.add("zheng-cms-web");
-		apps.add("zheng-cms-admin");
-		apps.add("zheng-upms-app1");
-		apps.add("zheng-upms-app2");
-		apps.add("zheng-upms-server");
-	}
+
+	@Autowired
+	UpmsSystemService upmsSystemService;
 
 	/**
 	 * 认证中心首页
@@ -51,7 +48,8 @@ public class SSOController {
 		String backurl = request.getParameter("backurl");
 
 		// 判断请求认证系统是否注册
-		if (StringUtils.isEmpty(system_name) || !apps.contains(system_name)) {
+		int count = upmsSystemService.countByExample(new UpmsSystemExample());
+		if (StringUtils.isEmpty(system_name) || 0 == count) {
 			_log.info("未注册的系统：{}", system_name);
 			return "/404";
 		}
