@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by shuzheng on 2016/12/10.
@@ -82,9 +83,21 @@ public class SSOFilter implements Filter {
                             RedisUtil.getJedis().sadd(token + "_subSessionIds", sessionId);
                             _log.info("当前token={}，对应的注册系统有：{}个", token, RedisUtil.getJedis().scard(token + "_subSessionIds"));
                             // 移除url中的token参数
-                            // TODO
+                            StringBuffer backUrl = request.getRequestURL();
+                            String params = "";
+                            Map<String, String[]> parameterMap = request.getParameterMap();
+                            for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+                                if (!entry.getKey().equals("token")) {
+                                    if (params.equals("")) {
+                                        params = entry.getKey() + "=" + entry.getValue()[0];
+                                    } else {
+                                        params += "&" + entry.getKey() + "=" + entry.getValue()[0];
+                                    }
+                                }
+                            }
+                            backUrl = backUrl.append("?").append(params);
                             // 返回请求资源
-                            filterChain.doFilter(request, response);
+                            response.sendRedirect(backUrl.toString());
                             return;
                         }
                     }

@@ -90,6 +90,22 @@ public class SSOController {
 	public String login(HttpServletRequest request) {
 		String sessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SSO_SERVER_SESSION_ID);
 		_log.info("认证中心sessionId={}", sessionId);
+		String backurl = request.getParameter("backurl");
+		if (!StringUtils.isEmpty(sessionId) && !StringUtils.isEmpty(backurl)) {
+			String token = RedisUtil.get(sessionId + "_token");
+			// token校验值
+			if (!StringUtils.isEmpty(token)) {
+				// 回调子系统
+				String redirectUrl = backurl;
+				if (backurl.contains("?")) {
+					redirectUrl += "&token=" + token;
+				} else {
+					redirectUrl += "?token=" + token;
+				}
+				_log.info("认证中心帐号通过，带token回跳：{}", redirectUrl);
+				return "redirect:" + redirectUrl;
+			}
+		}
 		return "/sso/login";
 	}
 
