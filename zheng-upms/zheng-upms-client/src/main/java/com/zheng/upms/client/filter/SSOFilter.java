@@ -31,7 +31,6 @@ import java.util.List;
 public class SSOFilter implements Filter {
 
     private final static Logger _log = LoggerFactory.getLogger(SSOFilter.class);
-    private final static String ZHENG_UPMS_SSO_CLIENT_SESSION_ID = "zheng-upms-sso-client-session-id";
 
     private String SYSTEM_NAME = "system_name";
     private String SSO_SERVER_URL = "sso_server_url";
@@ -47,11 +46,7 @@ public class SSOFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         // 分配单点登录sessionId，不使用session获取会话id，改为cookie，防止session丢失
-        String sessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SSO_CLIENT_SESSION_ID);
-        if (StringUtils.isEmpty(sessionId)) {
-            sessionId = request.getSession().getId();
-            CookieUtil.setCookie(response, ZHENG_UPMS_SSO_CLIENT_SESSION_ID, sessionId);
-        }
+        String sessionId = request.getSession().getId();
 
         // 已登录
         if (!StringUtils.isEmpty(RedisUtil.get(sessionId + "_token"))) {
@@ -83,6 +78,9 @@ public class SSOFilter implements Filter {
                         if (result.equals("success")) {
                             // token校验正确，创建局部会话
                             RedisUtil.set(sessionId + "_token", token);
+                            // 保存token对应的局部会话sessionId，方便退出登录操作
+                            RedisUtil.getJedis().sadd(token + "_subSessionIds", sessionId);
+                            _log.info("当前token={}，对应的注册系统有：{}个", token, RedisUtil.getJedis().scard(token + "_subSessionIds"));
                             // 移除url中的token参数
                             // TODO
                             // 返回请求资源

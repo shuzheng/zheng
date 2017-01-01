@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -31,6 +33,7 @@ import java.util.UUID;
 public class SSOController {
 
 	private final static Logger _log = LoggerFactory.getLogger(SSOController.class);
+	private final static int TIMEOUT = 2 * 60 * 60;
 	private final static String ZHENG_UPMS_SSO_SERVER_SESSION_ID = "zheng-upms-sso-server-session-id";
 
 	@Autowired
@@ -48,7 +51,10 @@ public class SSOController {
 		String backurl = request.getParameter("backurl");
 
 		// 判断请求认证系统是否注册
-		int count = upmsSystemService.countByExample(new UpmsSystemExample());
+		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
+		upmsSystemExample.createCriteria()
+				.andNameEqualTo(system_name);
+		int count = upmsSystemService.countByExample(upmsSystemExample);
 		if (StringUtils.isEmpty(system_name) || 0 == count) {
 			_log.info("未注册的系统：{}", system_name);
 			return "/404";
@@ -111,14 +117,12 @@ public class SSOController {
 			sessionId = request.getSession().getId();
 			CookieUtil.setCookie(response, ZHENG_UPMS_SSO_SERVER_SESSION_ID, sessionId);
 		}
-		if (StringUtils.isEmpty(sessionId)) {
-			sessionId = request.getSession().getId();
-			CookieUtil.setCookie(response, ZHENG_UPMS_SSO_SERVER_SESSION_ID, sessionId);
-		}
 		// 默认验证帐号密码正确，创建token
 		String token = UUID.randomUUID().toString();
-		RedisUtil.set(sessionId + "_token", token, 2 * 60 * 60);
-		RedisUtil.set(token, token, 2 * 60 * 60);
+		// 全局会话sessionId
+		RedisUtil.set(sessionId + "_token", token, TIMEOUT);
+		// token校验值
+		RedisUtil.set(token, token, TIMEOUT);
 		// 回调子系统
 		String redirectUrl = backurl;
 		if (backurl.contains("?")) {
@@ -153,15 +157,26 @@ public class SSOController {
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+		String sessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SSO_SERVER_SESSION_ID);
 
+		// 当前全局会话sessionId
+		String token = RedisUtil.get(sessionId + "_token");
 		// 清除全局会话
-		String token = RedisUtil.get(session.getId() + "_token");
-		RedisUtil.remove(session.getId() + "_token");
+		RedisUtil.remove(sessionId + "_token");
+		// 清除token校验值
 		RedisUtil.remove(token);
-		// 通知该token的子系统退出登录
-		// TODO
-		return "/sso/login";
+		// 清除所有局部会话
+		Jedis jedis = RedisUtil.getJedis();
+		Set<String> subSessionIds = jedis.smembers(token + "_subSessionIds");
+		for (String subSessionId : subSessionIds) {
+			jedis.del(subSessionId + "_token");
+			jedis.srem(token + "_subSessionIds", subSessionId);
+		}
+		_log.info("当前token={}，对应的注册系统还剩余：{}个", token, jedis.scard(token + "_subSessionIds"));
+		// 跳回原地址
+		String redirectUrl = request.getHeader("Referer");
+		_log.info("跳回退出登录请求地址：{}", redirectUrl);
+		return "redirect:" + redirectUrl;
 	}
 
 }
