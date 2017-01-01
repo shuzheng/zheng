@@ -20,7 +20,7 @@
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
 
 		<!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
-		<plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+		<plugin type="com.zheng.common.plugin.SerializablePlugin">
 			<property name="suppressJavaInterface" value="false"/>
 		</plugin>
 
