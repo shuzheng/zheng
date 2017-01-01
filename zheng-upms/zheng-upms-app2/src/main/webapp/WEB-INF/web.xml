@@ -80,7 +80,7 @@
         <filter-class>com.zheng.upms.client.filter.SSOFilter</filter-class>
         <init-param>
             <param-name>system_name</param-name>
-            <param-value>zheng-upms-app1</param-value>
+            <param-value>zheng-upms-app2</param-value>
         </init-param>
         <init-param>
             <param-name>sso_server_url</param-name>
