@@ -75,7 +75,6 @@ zheng
 * FastDFS: 分布式文件系统
 * sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
 
-
 # 前端技术:
 * jQuery
 * Bootstrap
@@ -97,7 +96,6 @@ zheng
 * autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
 * zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
 * zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
-
 
 # 开发环境:
 * MySql: 数据库
@@ -128,6 +126,9 @@ zheng
 * Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
 * Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
 * dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/download/mappingsunlight/9489736](http://download.csdn.net/download/mappingsunlight/9489736 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
+
+# 预览图
+![预览效果图](https://github.com/shuzheng/zhengAdmin/raw/master/src/images/zheng-upms-crud.png)
 
 # 数据模型
 ![数据库模型](project-datamodel/zheng.png)
