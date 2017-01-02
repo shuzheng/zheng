@@ -1,6 +1,6 @@
 ## zheng
 
-# 介绍
+# 项目介绍
 ``` lua
 zheng
 ├── zheng-common -- 公共模块
@@ -40,6 +40,9 @@ zheng
      ├── zheng-oss-sdk -- 开发工具包
      └── zheng-oss-web -- 管理界面[端口:7771]
 ```
+
+# 项目结构图
+![项目结构图](project-bootstrap/project.png)
 
 # 后端技术:
 * Spring Framework
@@ -124,6 +127,9 @@ zheng
 
 # 数据模型
 ![数据库模型](project-datamodel/zheng.png)
+
+# 拓扑图
+![拓扑图](project-bootstrap/distributedSystem.png)
 
 # License
   MIT
