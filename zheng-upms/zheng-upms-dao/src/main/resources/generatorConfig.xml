@@ -57,5 +57,21 @@
 		<table tableName="upms_system" domainObjectName="UpmsSystem">
 			<generatedKey column="system_id" sqlStatement="MySql" identity="true" />
 		</table>
+		<table tableName="upms_organization" domainObjectName="UpmsOrganization">
+			<generatedKey column="organization_id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table tableName="upms_role" domainObjectName="UpmsRole">
+			<generatedKey column="role_id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table tableName="upms_user" domainObjectName="UpmsUser">
+			<generatedKey column="user_id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table tableName="upms_permission" domainObjectName="UpmsPermission">
+			<generatedKey column="permission_id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table tableName="upms_user_organization" domainObjectName="UpmsPermission"></table>
+		<table tableName="upms_user_role" domainObjectName="UpmsUserRole"></table>
+		<table tableName="upms_user_permission" domainObjectName="UpmsUserPermission"></table>
+		<table tableName="upms_role_permission" domainObjectName="UpmsRolePermission"></table>
 	</context>
 </generatorConfiguration>
