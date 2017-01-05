@@ -8,7 +8,7 @@
 ``` lua
 zheng
 ├── zheng-common -- 公共模块
-├── zheng-upms -- 用户权限管理系统
+├── zheng-upms -- （网关）用户权限管理系统
 |    ├── zheng-upms-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-upms-rpc-api -- rpc接口包
 |    ├── zheng-upms-rpc-service -- rpc服务提供者[端口:1112]
