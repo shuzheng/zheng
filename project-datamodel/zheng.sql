@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/12/30 16:18:05                          */
+/* Created on:     2017/1/5 22:30:08                            */
 /*==============================================================*/
 
 
@@ -18,7 +18,15 @@ drop table if exists cms_comment;
 
 drop table if exists cms_tag;
 
+drop table if exists pay_in_order;
+
+drop table if exists pay_in_order_detail;
+
 drop table if exists pay_mch;
+
+drop table if exists pay_out_order;
+
+drop table if exists pay_out_order_detail;
 
 drop table if exists pay_pay;
 
@@ -32,7 +40,23 @@ drop table if exists test_book;
 
 drop table if exists test_user;
 
+drop table if exists upms_organization;
+
+drop table if exists upms_permission;
+
+drop table if exists upms_role;
+
+drop table if exists upms_role_permission;
+
 drop table if exists upms_system;
+
+drop table if exists upms_user;
+
+drop table if exists upms_user_organization;
+
+drop table if exists upms_user_permission;
+
+drop table if exists upms_user_role;
 
 /*==============================================================*/
 /* Table: cms_article                                           */
@@ -177,6 +201,39 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='标签表';
 alter table cms_tag comment '标签表';
 
 /*==============================================================*/
+/* Table: pay_in_order                                          */
+/*==============================================================*/
+create table pay_in_order
+(
+   pay_in_order_id      int unsigned not null auto_increment,
+   pay_mch_id           int unsigned not null,
+   pay_vendor_id        int unsigned not null,
+   amount               decimal not null,
+   status               tinyint not null,
+   ctime                bigint unsigned not null,
+   primary key (pay_in_order_id)
+);
+
+alter table pay_in_order comment '收入订单表';
+
+/*==============================================================*/
+/* Table: pay_in_order_detail                                   */
+/*==============================================================*/
+create table pay_in_order_detail
+(
+   pay_in_order_detail_id int unsigned not null auto_increment,
+   pay_in_order_id      int unsigned not null,
+   product_id           varchar(50),
+   product_name         varchar(100),
+   product_price        decimal,
+   product_count        int,
+   remark               varchar(500),
+   primary key (pay_in_order_detail_id)
+);
+
+alter table pay_in_order_detail comment '收入订单明细表';
+
+/*==============================================================*/
 /* Table: pay_mch                                               */
 /*==============================================================*/
 create table pay_mch
@@ -190,6 +247,35 @@ create table pay_mch
 );
 
 alter table pay_mch comment '支付中心商户管理表';
+
+/*==============================================================*/
+/* Table: pay_out_order                                         */
+/*==============================================================*/
+create table pay_out_order
+(
+   pay_out_order_id     int unsigned not null auto_increment,
+   pay_mch_id           int unsigned not null,
+   pay_vendor_id        int unsigned not null,
+   amount               decimal not null,
+   status               tinyint not null,
+   ctime                bigint unsigned not null,
+   primary key (pay_out_order_id)
+);
+
+alter table pay_out_order comment '支出订单表';
+
+/*==============================================================*/
+/* Table: pay_out_order_detail                                  */
+/*==============================================================*/
+create table pay_out_order_detail
+(
+   pay_out_order_detail_id int unsigned not null auto_increment,
+   pay_out_order_id     int unsigned not null,
+   remark               varchar(500),
+   primary key (pay_out_order_detail_id)
+);
+
+alter table pay_out_order_detail comment '支出订单明细表';
 
 /*==============================================================*/
 /* Table: pay_pay                                               */
@@ -224,10 +310,13 @@ create table pay_vendor
 (
    pay_vendor_id        int not null auto_increment,
    name                 varchar(20),
+   appid                varchar(50),
+   appsecret            varchar(150),
+   config               varchar(1000),
    primary key (pay_vendor_id)
 );
 
-alter table pay_vendor comment '支付标识表';
+alter table pay_vendor comment '第三方支付标识表';
 
 /*==============================================================*/
 /* Table: pay_vest                                              */
@@ -277,6 +366,62 @@ ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='用户表';
 alter table test_user comment '用户';
 
 /*==============================================================*/
+/* Table: upms_organization                                     */
+/*==============================================================*/
+create table upms_organization
+(
+   organization_id      int unsigned not null auto_increment,
+   system_id            int unsigned not null,
+   name                 varchar(20),
+   description          varchar(1000),
+   primary key (organization_id)
+);
+
+alter table upms_organization comment '组织';
+
+/*==============================================================*/
+/* Table: upms_permission                                       */
+/*==============================================================*/
+create table upms_permission
+(
+   permission_id        int unsigned not null auto_increment,
+   system_id            int unsigned not null,
+   primary key (permission_id)
+);
+
+alter table upms_permission comment '权限';
+
+/*==============================================================*/
+/* Table: upms_role                                             */
+/*==============================================================*/
+create table upms_role
+(
+   role_id              int unsigned not null auto_increment,
+   system_id            int unsigned not null,
+   name                 varchar(20),
+   description          varchar(1000),
+   status               tinyint not null,
+   ctime                bigint not null,
+   orders               bigint not null,
+   primary key (role_id)
+);
+
+alter table upms_role comment '角色';
+
+/*==============================================================*/
+/* Table: upms_role_permission                                  */
+/*==============================================================*/
+create table upms_role_permission
+(
+   role_permission_id   int unsigned not null auto_increment,
+   role_id              int unsigned not null,
+   permission_id        int unsigned not null,
+   primary key (role_permission_id)
+);
+
+alter table upms_role_permission comment '角色权限关联表';
+
+/*==============================================================*/
 /* Table: upms_system                                           */
 /*==============================================================*/
 create table upms_system
@@ -292,6 +437,58 @@ create table upms_system
 );
 
 alter table upms_system comment '系统';
+
+/*==============================================================*/
+/* Table: upms_user                                             */
+/*==============================================================*/
+create table upms_user
+(
+   user_id              int unsigned not null auto_increment,
+   system_id            int unsigned not null,
+   primary key (user_id)
+);
+
+alter table upms_user comment '用户';
+
+/*==============================================================*/
+/* Table: upms_user_organization                                */
+/*==============================================================*/
+create table upms_user_organization
+(
+   user_organization_id int unsigned not null auto_increment,
+   user_id              int unsigned not null,
+   organization_id      int unsigned not null,
+   primary key (user_organization_id)
+);
+
+alter table upms_user_organization comment '用户组织关联表';
+
+/*==============================================================*/
+/* Table: upms_user_permission                                  */
+/*==============================================================*/
+create table upms_user_permission
+(
+   user_permission_id   int unsigned not null auto_increment,
+   user_id              int unsigned not null,
+   permission_id        int unsigned not null,
+   primary key (user_permission_id)
+);
+
+alter table upms_user_permission comment '用户权限关联表';
+
+/*==============================================================*/
+/* Table: upms_user_role                                        */
+/*==============================================================*/
+create table upms_user_role
+(
+   user_role_id         int unsigned not null auto_increment,
+   user_id              int unsigned not null,
+   role_id              int,
+   role                 int unsigned not null,
+   primary key (user_role_id)
+);
+
+alter table upms_user_role comment '用户角色关联表';
 
 alter table cms_article_category add constraint FK_Reference_7 foreign key (category_id)
       references cms_category (category_id) on delete cascade on update cascade;
@@ -320,6 +517,24 @@ alter table cms_comment add constraint FK_Reference_1 foreign key (article_id)
 alter table cms_comment add constraint FK_Reference_2 foreign key (pid)
       references cms_comment (comment_id) on delete cascade on update cascade;
 
+alter table pay_in_order add constraint FK_Reference_26 foreign key (pay_vendor_id)
+      references pay_vendor (pay_vendor_id) on delete restrict on update restrict;
+
+alter table pay_in_order add constraint FK_Reference_27 foreign key (pay_mch_id)
+      references pay_mch (pay_mch_id) on delete restrict on update restrict;
+
+alter table pay_in_order_detail add constraint FK_Reference_30 foreign key (pay_in_order_id)
+      references pay_in_order (pay_in_order_id) on delete restrict on update restrict;
+
+alter table pay_out_order add constraint FK_Reference_28 foreign key (pay_vendor_id)
+      references pay_vendor (pay_vendor_id) on delete restrict on update restrict;
+
+alter table pay_out_order add constraint FK_Reference_29 foreign key (pay_mch_id)
+      references pay_mch (pay_mch_id) on delete restrict on update restrict;
+
+alter table pay_out_order_detail add constraint FK_Reference_31 foreign key (pay_out_order_id)
+      references pay_out_order (pay_out_order_id) on delete restrict on update restrict;
+
 alter table pay_pay add constraint FK_Reference_13 foreign key (pay_type_id)
       references pay_type (pay_type_id) on delete restrict on update restrict;
 
@@ -334,4 +549,37 @@ alter table pay_vest add constraint FK_Reference_14 foreign key (pay_type_id)
 
 alter table test_book add constraint FK_Reference_9 foreign key (user_id)
       references test_user (user_id) on delete cascade on update cascade;
+
+alter table upms_organization add constraint FK_Reference_15 foreign key (system_id)
+      references upms_system (system_id) on delete restrict on update restrict;
+
+alter table upms_role add constraint FK_Reference_17 foreign key (system_id)
+      references upms_system (system_id) on delete restrict on update restrict;
+
+alter table upms_role_permission add constraint FK_Reference_22 foreign key (permission_id)
+      references upms_permission (permission_id) on delete restrict on update restrict;
+
+alter table upms_role_permission add constraint FK_Reference_23 foreign key (role_id)
+      references upms_role (role_id) on delete restrict on update restrict;
+
+alter table upms_user add constraint FK_Reference_16 foreign key (system_id)
+      references upms_system (system_id) on delete restrict on update restrict;
+
+alter table upms_user_organization add constraint FK_Reference_18 foreign key (user_id)
+      references upms_user (user_id) on delete restrict on update restrict;
+
+alter table upms_user_organization add constraint FK_Reference_19 foreign key (organization_id)
+      references upms_organization (organization_id) on delete restrict on update restrict;
+
+alter table upms_user_permission add constraint FK_Reference_24 foreign key (user_id)
+      references upms_user (user_id) on delete restrict on update restrict;
+
+alter table upms_user_permission add constraint FK_Reference_25 foreign key (permission_id)
+      references upms_permission (permission_id) on delete restrict on update restrict;
+
+alter table upms_user_role add constraint FK_Reference_20 foreign key (user_id)
+      references upms_user (user_id) on delete restrict on update restrict;
+
+alter table upms_user_role add constraint FK_Reference_21 foreign key (role_id)
+      references upms_role (role_id) on delete restrict on update restrict;
 
