@@ -53,46 +53,33 @@ zheng
 * Spring Framework
 * SpringMVC: MVC框架
 * MyBatis: ORM框架
-* MyBatis-plus: Mybatis增强包
 * MyBatis Generator: 代码生成
 * Druid: 数据库连接池
-* Spring secutity|Shiro: 权限认证
+* Spring secutity|Shiro: 安全框架
 * Jsp|Velocity|Thymeleaf: 模板引擎
 * ZooKeeper: 协调服务
-* Dubbo: 远程服务调用
-* TBSchedule|elastic-job: 分布式任务调度
-* Quartz: 定时任务
-* Ehcache: 二级缓存
+* Dubbo: 分布式服务框架
+* TBSchedule|elastic-job: 分布式调度框架
 * Redis: 分布式缓存数据库
+* Quartz: 作业调度框架
+* Ehcache: 缓存框架
 * ActiveMQ: 消息队列
-* Solr|Elasticsearch: 检索
-* Maven: 项目管理(Gradle)
-* Qiniu|AliOSS: 云存储
-* Jenkins: 持续集成
+* Solr|Elasticsearch: 分布式全文搜索引擎
+* FastDFS: 分布式文件系统
 * Log4J: 日志管理
-* Protobuf|json: 数据传输 
 * Spring-boot
 * Swagger2: 接口文档
-* FastDFS: 分布式文件系统
 * sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
+* AliOSS|Qiniu: 云存储
+* Protobuf|json: 数据传输 
+* Jenkins: 持续集成工具
+* Maven|Gradle: 项目构建管理
 
 # 前端技术:
 * jQuery
 * Bootstrap
-* BootstrapMenu
-* Bootstrap-table
 * jQuery EasyUI
 * AngularJs
-* Webpack
-* Node.js
-* Electron
-* font-awesome
-* device
-* fastclick
-* malihu-custom-scrollbar-plugin
-* material-design-iconic-font
-* My97DatePicker
-* waves
 * zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
 * autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
 * zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
@@ -104,10 +91,10 @@ zheng
 * Tomcat: 应用服务器
 * SVN|Git: 版本管理
 * Nginx: 反向代理服务器
-* Varnish: 内存缓存
-* Navicat for MySQL: 数据库客户端管理
+* Varnish: HTTP加速器
 * IntelliJ IDEA: 开发IDE
 * PowerDesigner: 建模工具
+* Navicat for MySQL: 数据库客户端
 
 # 开发环境搭建:
 ## 修改本地Host
