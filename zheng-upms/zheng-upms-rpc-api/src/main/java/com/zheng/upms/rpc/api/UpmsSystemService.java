@@ -9,7 +9,7 @@ import com.zheng.upms.dao.model.UpmsSystemExample;
  * 系统service接口
  * Created by shuzheng on 2016/12/18.
  */
-public interface UpmsSystemService extends BaseService<UpmsSystemMapper, UpmsSystem, UpmsSystemExample> {
+public interface UpmsSystemService extends BaseService<UpmsSystem, UpmsSystemExample> {
 
 
 }

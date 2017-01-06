@@ -2,6 +2,9 @@ package com.zheng.upms.admin.controller;
 
 import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
+import com.zheng.common.util.SpringContextUtil;
+import com.zheng.upms.dao.mapper.UpmsSystemMapper;
+import com.zheng.upms.dao.model.UpmsSystem;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import org.apache.commons.lang.StringUtils;
@@ -18,11 +21,9 @@ import redis.clients.jedis.Jedis;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Method;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 单点登录管理
@@ -54,6 +55,7 @@ public class SSOController {
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.createCriteria()
 				.andNameEqualTo(system_name);
+		upmsSystemService.initMapper(UpmsSystemMapper.class);
 		int count = upmsSystemService.countByExample(upmsSystemExample);
 		if (StringUtils.isEmpty(system_name) || 0 == count) {
 			_log.info("未注册的系统：{}", system_name);
