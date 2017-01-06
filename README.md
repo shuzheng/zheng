@@ -10,11 +10,11 @@ zheng
 ├── zhengAdmin -- 后台管理系统模板(已提为独立项目：shuzheng/zhengAdmin)
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-dao -- 数据库操作，MyBatisGenerator生成
-|    ├── zheng-upms-sso-client -- 单点登录客户端
+|    ├── zheng-upms-sso-client -- SSO客户端依赖包
 |    ├── zheng-upms-rpc-api -- rpc接口包
 |    ├── zheng-upms-rpc-service -- rpc服务提供者[端口:1112]
-|    ├── zheng-upms-app1 -- SSO登录客户端1[端口:1113]
-|    ├── zheng-upms-app2 -- SSO登录客户端2[端口:1114]
+|    ├── zheng-upms-app1 -- SSO测试客户端1[端口:1113]
+|    ├── zheng-upms-app2 -- SSO测试客户端2[端口:1114]
 |    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-dao -- 数据库操作，MyBatisGenerator生成
