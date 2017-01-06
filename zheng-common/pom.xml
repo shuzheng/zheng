@@ -274,9 +274,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.18.1</version>
                 <configuration>
-                    <!--是否跳过单元测试-->
                     <skipTests>true</skipTests>
-                    <!--是否忽略单元测试错误-->
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
