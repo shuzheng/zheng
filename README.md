@@ -1,8 +1,8 @@
 ## zheng
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/shuzheng/zheng/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
-[![wiki-1.0.0](https://img.shields.io/badge/zheng-1.0.0-red.svg)](https://github.com/shuzheng/zheng/wiki)
+[![GitHub issues](https://img.shields.io/bitbucket/issues-raw/atlassian/python-bitbucket.svg)](https://github.com/shuzheng/zheng/issues)
+[![GitHub forks](https://img.shields.io/github/forks/badges/shields.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
 # 项目介绍
 ``` lua
@@ -52,10 +52,11 @@ zheng
 # 后端技术:
 * Spring Framework
 * SpringMVC: MVC框架
+* Spring secutity|Shiro: 安全框架
+* Spring session: 分布式Session管理
 * MyBatis: ORM框架
 * MyBatis Generator: 代码生成
 * Druid: 数据库连接池
-* Spring secutity|Shiro: 安全框架
 * Jsp|Velocity|Thymeleaf: 模板引擎
 * ZooKeeper: 协调服务
 * Dubbo: 分布式服务框架
@@ -67,7 +68,6 @@ zheng
 * Solr|Elasticsearch: 分布式全文搜索引擎
 * FastDFS: 分布式文件系统
 * Log4J: 日志管理
-* Spring-boot
 * Swagger2: 接口文档
 * sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
 * AliOSS|Qiniu: 云存储
