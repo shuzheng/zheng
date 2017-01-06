@@ -3,36 +3,26 @@ package com.zheng.upms.dao.model;
 import java.io.Serializable;
 
 public class UpmsPermission implements Serializable {
-    private Integer userOrganizationId;
+    private Integer permissionId;
 
-    private Integer userId;
-
-    private Integer organizationId;
+    private Integer systemId;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getUserOrganizationId() {
-        return userOrganizationId;
+    public Integer getPermissionId() {
+        return permissionId;
     }
 
-    public void setUserOrganizationId(Integer userOrganizationId) {
-        this.userOrganizationId = userOrganizationId;
+    public void setPermissionId(Integer permissionId) {
+        this.permissionId = permissionId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getSystemId() {
+        return systemId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(Integer organizationId) {
-        this.organizationId = organizationId;
+    public void setSystemId(Integer systemId) {
+        this.systemId = systemId;
     }
 
     @Override
@@ -41,9 +31,8 @@ public class UpmsPermission implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", userOrganizationId=").append(userOrganizationId);
-        sb.append(", userId=").append(userId);
-        sb.append(", organizationId=").append(organizationId);
+        sb.append(", permissionId=").append(permissionId);
+        sb.append(", systemId=").append(systemId);
         sb.append("]");
         return sb.toString();
     }
@@ -60,18 +49,16 @@ public class UpmsPermission implements Serializable {
             return false;
         }
         UpmsPermission other = (UpmsPermission) that;
-        return (this.getUserOrganizationId() == null ? other.getUserOrganizationId() == null : this.getUserOrganizationId().equals(other.getUserOrganizationId()))
-            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getOrganizationId() == null ? other.getOrganizationId() == null : this.getOrganizationId().equals(other.getOrganizationId()));
+        return (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
+            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()));
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getUserOrganizationId() == null) ? 0 : getUserOrganizationId().hashCode());
-        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
-        result = prime * result + ((getOrganizationId() == null) ? 0 : getOrganizationId().hashCode());
+        result = prime * result + ((getPermissionId() == null) ? 0 : getPermissionId().hashCode());
+        result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         return result;
     }
 }

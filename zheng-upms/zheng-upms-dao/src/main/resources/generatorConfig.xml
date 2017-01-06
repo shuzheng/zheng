@@ -69,7 +69,7 @@
 		<table tableName="upms_permission" domainObjectName="UpmsPermission">
 			<generatedKey column="permission_id" sqlStatement="MySql" identity="true" />
 		</table>
-		<table tableName="upms_user_organization" domainObjectName="UpmsPermission"></table>
+		<table tableName="upms_user_organization" domainObjectName="UpmsUserOrganization"></table>
 		<table tableName="upms_user_role" domainObjectName="UpmsUserRole"></table>
 		<table tableName="upms_user_permission" domainObjectName="UpmsUserPermission"></table>
 		<table tableName="upms_role_permission" domainObjectName="UpmsRolePermission"></table>
