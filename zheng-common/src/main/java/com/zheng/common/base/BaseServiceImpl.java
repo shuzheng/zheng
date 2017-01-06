@@ -1,8 +1,10 @@
 package com.zheng.common.base;
 
+import com.zheng.common.util.SpringContextUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.annotations.Param;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  * 实现BaseService抽象类
  * Created by ZhangShuzheng on 2017/01/07.
  */
-public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseService<Mapper, Record, Example> {
+public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseService<Record, Example> {
 
 	public Mapper mapper;
 
@@ -206,8 +208,8 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 	}
 
 	@Override
-	public void initMapper(Mapper mapper) {
-		this.mapper = mapper;
+	public void initMapper(Class clazz) {
+		this.mapper = (Mapper) SpringContextUtil.getBean(clazz);
 	}
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
  * BaseService接口
  * Created by ZhangShuzheng on 2017/01/07.
  */
-public interface BaseService<Mapper, Record, Example> {
+public interface BaseService<Record, Example> {
 
 	int countByExample(Example example);
 
@@ -40,6 +40,6 @@ public interface BaseService<Mapper, Record, Example> {
 
 	int deleteByPrimaryKeys(String ids);
 
-	void initMapper(Mapper mapper);
+	void initMapper(Class clazz);
 
 }
