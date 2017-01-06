@@ -1,4 +1,4 @@
-package com.zheng.upms.client.util;
+package com.zheng.upms.sso.client.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

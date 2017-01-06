@@ -31,15 +31,10 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-client</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <!-- zheng-upms-client -->
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-client</artifactId>
+            <artifactId>zheng-upms-sso-client</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
@@ -102,9 +97,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.18.1</version>
                 <configuration>
-                    <!--是否跳过单元测试-->
                     <skipTests>true</skipTests>
-                    <!--是否忽略单元测试错误-->
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>

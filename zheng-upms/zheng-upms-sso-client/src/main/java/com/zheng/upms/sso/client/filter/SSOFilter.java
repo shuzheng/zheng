@@ -1,6 +1,5 @@
-package com.zheng.upms.client.filter;
+package com.zheng.upms.sso.client.filter;
 
-import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
@@ -19,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;

@@ -8,10 +8,10 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-upms-client</artifactId>
+    <artifactId>zheng-upms-sso-client</artifactId>
     <packaging>jar</packaging>
 
-    <name>zheng-upms-client</name>
+    <name>zheng-upms-sso-client</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -41,7 +41,7 @@
     </dependencies>
 
     <build>
-        <finalName>zheng-upms-client</finalName>
+        <finalName>zheng-upms-sso-client</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -60,9 +60,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.18.1</version>
                 <configuration>
-                    <!--是否跳过单元测试-->
                     <skipTests>true</skipTests>
-                    <!--是否忽略单元测试错误-->
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>

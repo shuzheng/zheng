@@ -77,7 +77,7 @@
     <!-- zhang-upms-client -->
     <filter>
         <filter-name>zheng-upms-client</filter-name>
-        <filter-class>com.zheng.upms.client.filter.SSOFilter</filter-class>
+        <filter-class>com.zheng.upms.sso.client.filter.SSOFilter</filter-class>
         <init-param>
             <param-name>system_name</param-name>
             <param-value>zheng-upms-app1</param-value>
