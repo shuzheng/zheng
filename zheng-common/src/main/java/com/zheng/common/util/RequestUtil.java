@@ -1,12 +1,13 @@
-package com.zheng.upms.sso.client.util;
+package com.zheng.common.util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
+ * request工具类
  * Created by ZhangShuzheng on 2016/12/12.
  */
-public class RequestParameterUtil {
+public class RequestUtil {
 
 	/**
 	 * 移除request指定参数
