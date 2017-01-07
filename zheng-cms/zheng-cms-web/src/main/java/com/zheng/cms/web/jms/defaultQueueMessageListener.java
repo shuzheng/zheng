@@ -1,7 +1,7 @@
 package com.zheng.cms.web.jms;
 
 import com.zheng.cms.dao.model.User;
-import com.zheng.cms.service.UserService;
+import com.zheng.cms.rpc.api.UserService;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +43,7 @@ public class defaultQueueMessageListener implements MessageListener {
 					if (user.getUsername().equals("1000")) {
 						_log.info("消费结束时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis())));
 					}
-                    userService.getMapper().insertSelective(user);
+                    userService.insertSelective(user);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

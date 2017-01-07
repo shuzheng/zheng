@@ -1,11 +1,12 @@
 package com.zheng.cms.web.controller;
 
 import com.zheng.cms.dao.model.User;
-import com.zheng.cms.service.impl.UserServiceImpl;
+import com.zheng.cms.rpc.api.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,11 +32,8 @@ public class HelloController extends BaseController {
 
 	private static Logger _log = LoggerFactory.getLogger(HelloController.class);
 
-	private UserServiceImpl userService;
-
-	public void setUserServiceImpl(UserServiceImpl userService) {
-		this.userService = userService;
-	}
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/index")
 	public String index() {
@@ -54,7 +52,7 @@ public class HelloController extends BaseController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String viewCourse(@RequestParam("courseId") Integer courseId, Model model) {
 
-		User user = userService.getMapper().selectByPrimaryKey(courseId);
+		User user = userService.selectByPrimaryKey(courseId);
 		model.addAttribute(user);
 		return "course_overview";
 	}
@@ -63,7 +61,7 @@ public class HelloController extends BaseController {
 	@RequestMapping("/view2/{courseId}")
 	public String viewCourse2(@PathVariable("courseId") Integer courseId, Map<String, Object> map) {
 
-		User user = userService.getMapper().selectByPrimaryKey(courseId);
+		User user = userService.selectByPrimaryKey(courseId);
 		map.put("user", user);
 		return "course_overview";
 	}
@@ -73,7 +71,7 @@ public class HelloController extends BaseController {
 	public String viewCourse3(HttpServletRequest request) {
 
 		Integer courseId = Integer.valueOf(request.getParameter("courseId"));
-		User user = userService.getMapper().selectByPrimaryKey(courseId);
+		User user = userService.selectByPrimaryKey(courseId);
 		request.setAttribute("user", user);
 
 		return "course_overview";
@@ -132,12 +130,12 @@ public class HelloController extends BaseController {
 	@RequestMapping(value = "/{courseId}", method = RequestMethod.GET)
 	public @ResponseBody
 	User getCourseInJson(@PathVariable Integer courseId) {
-		return userService.getMapper().selectByPrimaryKey(courseId);
+		return userService.selectByPrimaryKey(courseId);
 	}
 
 	@RequestMapping(value = "/jsontype/{courseId}", method = RequestMethod.GET)
 	public ResponseEntity<User> getCourseInJson2(@PathVariable Integer courseId) {
-		User user = userService.getMapper().selectByPrimaryKey(courseId);
+		User user = userService.selectByPrimaryKey(courseId);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 }

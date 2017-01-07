@@ -3,7 +3,7 @@ package com.zheng.cms.web.controller.manage;
 import com.zheng.cms.web.controller.BaseController;
 import com.zheng.cms.dao.model.CmsComment;
 import com.zheng.cms.dao.model.CmsCommentExample;
-import com.zheng.cms.service.CmsCommentService;
+import com.zheng.cms.rpc.api.CmsCommentService;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,10 +52,10 @@ public class CmsCommentController extends BaseController {
 		cmsCommentExample.setOffset((page - 1) * rows);
 		cmsCommentExample.setLimit(rows);
 		cmsCommentExample.setOrderByClause(desc ? "comment_id desc" : "comment_id asc");
-		List<CmsComment> comments = cmsCommentService.getMapper().selectByExample(cmsCommentExample);
+		List<CmsComment> comments = cmsCommentService.selectByExample(cmsCommentExample);
 
 		// 分页对象
-		long total = cmsCommentService.getMapper().countByExample(cmsCommentExample);
+		long total = cmsCommentService.countByExample(cmsCommentExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
 		model.addAttribute("comments", comments);
@@ -81,7 +81,7 @@ public class CmsCommentController extends BaseController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(CmsComment cmsComment, Model model) {
 		cmsComment.setCtime(System.currentTimeMillis());
-		int count = cmsCommentService.getMapper().insertSelective(cmsComment);
+		int count = cmsCommentService.insertSelective(cmsComment);
 		model.addAttribute("count", count);
 		_log.info("新增记录id为：{}", cmsComment.getArticleId());
 		return "redirect:/manage/comment/list";
@@ -108,7 +108,7 @@ public class CmsCommentController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, Model model) {
-		CmsComment comment = cmsCommentService.getMapper().selectByPrimaryKey(id);
+		CmsComment comment = cmsCommentService.selectByPrimaryKey(id);
 		model.addAttribute("comment", comment);
 		return "/manage/comment/update";
 	}
@@ -122,7 +122,7 @@ public class CmsCommentController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsComment cmsComment, Model model) {
-		int count = cmsCommentService.getMapper().updateByPrimaryKeySelective(cmsComment);
+		int count = cmsCommentService.updateByPrimaryKeySelective(cmsComment);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);
 		return "redirect:/manage/comment/list";

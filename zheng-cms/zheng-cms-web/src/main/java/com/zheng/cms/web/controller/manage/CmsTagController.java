@@ -3,7 +3,7 @@ package com.zheng.cms.web.controller.manage;
 import com.zheng.cms.web.controller.BaseController;
 import com.zheng.cms.dao.model.CmsTag;
 import com.zheng.cms.dao.model.CmsTagExample;
-import com.zheng.cms.service.CmsTagService;
+import com.zheng.cms.rpc.api.CmsTagService;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,10 +52,10 @@ public class CmsTagController extends BaseController {
 		cmsTagExample.setOffset((page - 1) * rows);
 		cmsTagExample.setLimit(rows);
 		cmsTagExample.setOrderByClause(desc ? "orders desc" : "orders asc");
-		List<CmsTag> tags = cmsTagService.getMapper().selectByExample(cmsTagExample);
+		List<CmsTag> tags = cmsTagService.selectByExample(cmsTagExample);
 
 		// 分页对象
-		long total = cmsTagService.getMapper().countByExample(cmsTagExample);
+		long total = cmsTagService.countByExample(cmsTagExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
 		model.addAttribute("tags", tags);
@@ -83,7 +83,7 @@ public class CmsTagController extends BaseController {
 		long time = System.currentTimeMillis();
 		cmsTag.setCtime(time);
 		cmsTag.setOrders(time);
-		int count = cmsTagService.getMapper().insertSelective(cmsTag);
+		int count = cmsTagService.insertSelective(cmsTag);
 		model.addAttribute("count", count);
 		_log.info("新增记录id为：{}", cmsTag.getTagId());
 		return "redirect:/manage/tag/list";
@@ -110,7 +110,7 @@ public class CmsTagController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, Model model) {
-		CmsTag tag = cmsTagService.getMapper().selectByPrimaryKey(id);
+		CmsTag tag = cmsTagService.selectByPrimaryKey(id);
 		model.addAttribute("tag", tag);
 		return "/manage/tag/update";
 	}
@@ -124,7 +124,7 @@ public class CmsTagController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsTag cmsTag, Model model) {
-		int count = cmsTagService.getMapper().updateByPrimaryKeySelective(cmsTag);
+		int count = cmsTagService.updateByPrimaryKeySelective(cmsTag);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);
 		return "redirect:/manage/tag/list";

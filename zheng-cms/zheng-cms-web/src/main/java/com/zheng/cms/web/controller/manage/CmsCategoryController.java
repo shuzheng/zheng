@@ -3,7 +3,7 @@ package com.zheng.cms.web.controller.manage;
 import com.zheng.cms.web.controller.BaseController;
 import com.zheng.cms.dao.model.CmsCategory;
 import com.zheng.cms.dao.model.CmsCategoryExample;
-import com.zheng.cms.service.CmsCategoryService;
+import com.zheng.cms.rpc.api.CmsCategoryService;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,10 +52,10 @@ public class CmsCategoryController extends BaseController {
 		cmsCategoryExample.setOffset((page - 1) * rows);
 		cmsCategoryExample.setLimit(rows);
 		cmsCategoryExample.setOrderByClause(desc ? "orders desc" : "orders asc");
-		List<CmsCategory> categorys = cmsCategoryService.getMapper().selectByExample(cmsCategoryExample);
+		List<CmsCategory> categorys = cmsCategoryService.selectByExample(cmsCategoryExample);
 
 		// 分页对象
-		long total = cmsCategoryService.getMapper().countByExample(cmsCategoryExample);
+		long total = cmsCategoryService.countByExample(cmsCategoryExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
 		model.addAttribute("categorys", categorys);
@@ -83,7 +83,7 @@ public class CmsCategoryController extends BaseController {
 		long time = System.currentTimeMillis();
 		cmsCategory.setCtime(time);
 		cmsCategory.setOrders(time);
-		int count = cmsCategoryService.getMapper().insertSelective(cmsCategory);
+		int count = cmsCategoryService.insertSelective(cmsCategory);
 		model.addAttribute("count", count);
 		_log.info("新增记录id为：{}", cmsCategory.getCategoryId());
 		return "redirect:/manage/category/list";
@@ -110,7 +110,7 @@ public class CmsCategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, Model model) {
-		CmsCategory category = cmsCategoryService.getMapper().selectByPrimaryKey(id);
+		CmsCategory category = cmsCategoryService.selectByPrimaryKey(id);
 		model.addAttribute("category", category);
 		return "/manage/category/update";
 	}
@@ -124,7 +124,7 @@ public class CmsCategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsCategory cmsCategory, Model model) {
-		int count = cmsCategoryService.getMapper().updateByPrimaryKeySelective(cmsCategory);
+		int count = cmsCategoryService.updateByPrimaryKeySelective(cmsCategory);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);
 		return "redirect:/manage/category/list";

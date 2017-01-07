@@ -3,7 +3,7 @@ package com.zheng.cms.web.controller.manage;
 import com.zheng.cms.web.controller.BaseController;
 import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
-import com.zheng.cms.service.CmsArticleService;
+import com.zheng.cms.rpc.api.CmsArticleService;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,10 +52,10 @@ public class CmsArticleController extends BaseController {
 		cmsArticleExample.setOffset((page - 1) * rows);
 		cmsArticleExample.setLimit(rows);
 		cmsArticleExample.setOrderByClause(desc ? "orders desc" : "orders asc");
-		List<CmsArticle> articles = cmsArticleService.getMapper().selectByExample(cmsArticleExample);
+		List<CmsArticle> articles = cmsArticleService.selectByExample(cmsArticleExample);
 
 		// 分页对象
-		long total = cmsArticleService.getMapper().countByExample(cmsArticleExample);
+		long total = cmsArticleService.countByExample(cmsArticleExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
 		model.addAttribute("articles", articles);
@@ -83,7 +83,7 @@ public class CmsArticleController extends BaseController {
 		long time = System.currentTimeMillis();
 		cmsArticle.setCtime(time);
 		cmsArticle.setOrders(time);
-		int count = cmsArticleService.getMapper().insertSelective(cmsArticle);
+		int count = cmsArticleService.insertSelective(cmsArticle);
 		model.addAttribute("count", count);
 		_log.info("新增记录id为：{}", cmsArticle.getArticleId());
 		return "redirect:/manage/article/list";
@@ -110,7 +110,7 @@ public class CmsArticleController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, Model model) {
-		CmsArticle article = cmsArticleService.getMapper().selectByPrimaryKey(id);
+		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
 		model.addAttribute("article", article);
 		return "/manage/article/update";
 	}
@@ -124,7 +124,7 @@ public class CmsArticleController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsArticle cmsArticle, Model model) {
-		int count = cmsArticleService.getMapper().updateByPrimaryKeySelective(cmsArticle);
+		int count = cmsArticleService.updateByPrimaryKeySelective(cmsArticle);
 		model.addAttribute("count", count);
 		model.addAttribute("id", id);
 		return "redirect:/manage/article/list";

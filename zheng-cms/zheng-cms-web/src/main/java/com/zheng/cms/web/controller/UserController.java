@@ -2,7 +2,7 @@ package com.zheng.cms.web.controller;
 
 import com.zheng.cms.dao.model.User;
 import com.zheng.cms.dao.model.UserExample;
-import com.zheng.cms.service.UserService;
+import com.zheng.cms.rpc.api.UserService;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,11 +70,11 @@ public class UserController extends BaseController {
 		userExample.setLimit(rows);
 		userExample.setDistinct(false);
 		userExample.setOrderByClause(" user_id asc ");
-		List<User> users = userService.getMapper().selectByExample(userExample);
+		List<User> users = userService.selectByExample(userExample);
 		model.addAttribute("users", users);
 
 		// 创建分页对象
-		long total = userService.getMapper().countByExample(userExample);
+		long total = userService.countByExample(userExample);
 		Paginator paginator = new Paginator();
 		paginator.setTotal(total);
 		paginator.setPage(page);
@@ -112,7 +112,7 @@ public class UserController extends BaseController {
 		}
 		user.setCtime(System.currentTimeMillis());
 
-		userService.getMapper().insertSelective(user);
+		userService.insertSelective(user);
 
 		_log.info("新增记录id为：{}", user.getUserId());
 
@@ -126,7 +126,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
 	public String delete(@PathVariable("id") int id) {
-		userService.getMapper().deleteByPrimaryKey(id);
+		userService.deleteByPrimaryKey(id);
 		return "redirect:/user/list";
 	}
 	
@@ -138,7 +138,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, Model model) {
-		model.addAttribute("user", userService.getMapper().selectByPrimaryKey(id));
+		model.addAttribute("user", userService.selectByPrimaryKey(id));
 		return "/user/update";
 	}
 	
@@ -156,7 +156,7 @@ public class UserController extends BaseController {
 			model.addAttribute("errors", binding.getAllErrors());
 			return "user/update/" + id;
 		}
-		userService.getMapper().updateByPrimaryKeySelective(user);
+		userService.updateByPrimaryKeySelective(user);
 		return "redirect:/user/list";
 	}
 	
@@ -207,7 +207,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/ajax/{id}", method = RequestMethod.GET)
 	public Object ajax(@PathVariable int id) {
-		return userService.getMapper().selectByPrimaryKey(id);
+		return userService.selectByPrimaryKey(id);
 	}
 	
 }
