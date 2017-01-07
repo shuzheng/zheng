@@ -41,6 +41,14 @@ public class SpringContextUtil implements ApplicationContextAware {
 	}
 
 	/**
+	 * 根据bean名称获取指定类型bean
+	 * @param beanName bean名称
+	 * @param clazz 返回的bean类型,若类型不匹配,将抛出异常
+	 */
+	public static <T> T getBean(String beanName, Class<T> clazz) {
+		return context.getBean(beanName, clazz);
+	}
+	/**
 	 * 根据类型获取bean
 	 * @param clazz
 	 * @return
@@ -52,6 +60,33 @@ public class SpringContextUtil implements ApplicationContextAware {
 			t = entry.getValue();
 		}
 		return t;
+	}
+
+	/**
+	 * 是否包含bean
+	 * @param beanName
+	 * @return
+	 */
+	public static boolean containsBean(String beanName) {
+		return context.containsBean(beanName);
+	}
+
+	/**
+	 * 是否是单例
+	 * @param beanName
+	 * @return
+	 */
+	public static boolean isSingleton(String beanName) {
+		return context.isSingleton(beanName);
+	}
+
+	/**
+	 * bean的类型
+	 * @param beanName
+	 * @return
+	 */
+	public static Class getType(String beanName) {
+		return context.getType(beanName);
 	}
 
 }
