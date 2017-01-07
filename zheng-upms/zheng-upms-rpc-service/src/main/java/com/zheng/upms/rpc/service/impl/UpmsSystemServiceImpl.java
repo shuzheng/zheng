@@ -25,4 +25,9 @@ public class UpmsSystemServiceImpl extends BaseServiceImpl<UpmsSystemMapper, Upm
     UpmsSystemMapper upmsSystemMapper;
 
 
+    public static void main(String[] args) {
+        String s = null;
+        System.out.println(s.getClass());
+    }
+
 }

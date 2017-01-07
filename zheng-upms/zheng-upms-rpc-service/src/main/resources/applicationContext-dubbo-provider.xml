@@ -15,16 +15,4 @@
 
     <bean id="upmsSystemServiceImpl" class="com.zheng.upms.rpc.service.impl.UpmsSystemServiceImpl"/>
     <dubbo:service interface="com.zheng.upms.rpc.api.UpmsSystemService" ref="upmsSystemServiceImpl"/>
-</beans> 
-
-
-
-
-
-
-
-
-
-
-
-
+</beans>

@@ -55,7 +55,6 @@ public class SSOController {
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.createCriteria()
 				.andNameEqualTo(system_name);
-		upmsSystemService.initMapper(UpmsSystemMapper.class);
 		int count = upmsSystemService.countByExample(upmsSystemExample);
 		if (StringUtils.isEmpty(system_name) || 0 == count) {
 			_log.info("未注册的系统：{}", system_name);

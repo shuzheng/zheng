@@ -4,8 +4,8 @@ import com.zheng.common.util.SpringContextUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.annotations.Param;
 
-import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
@@ -207,9 +207,22 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return 0;
 	}
 
+//	@Override
+//	public void initMapper(Class clazz) {
+//		this.mapper = (Mapper) SpringContextUtil.getBean(clazz);
+//	}
+
 	@Override
-	public void initMapper(Class clazz) {
-		this.mapper = (Mapper) SpringContextUtil.getBean(clazz);
+	public void initMapper() {
+		this.mapper = SpringContextUtil.getBean(getMapperClass());
+	}
+
+	/**
+	 * 获取类泛型class
+	 * @return
+	 */
+	public Class<Mapper> getMapperClass() {
+		return (Class<Mapper>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
 }
