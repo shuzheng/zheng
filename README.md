@@ -3,7 +3,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-# 项目介绍
+# 项目组织结构
 ``` lua
 zheng
 ├── zheng-common -- 公共模块
@@ -48,8 +48,8 @@ zheng
      └── zheng-oss-web -- 管理界面[端口:7771]
 ```
 
-# 项目结构图
-![项目结构图](project-bootstrap/project.png)
+# 项目模块结构图
+![项目模块结构图](project-bootstrap/project.png)
 
 # 后端技术:
 * Spring Framework
