@@ -20,11 +20,11 @@
 
     <modules>
         <module>zheng-upms-dao</module>
+        <module>zheng-upms-rpc-api</module>
+        <module>zheng-upms-rpc-service</module>
         <module>zheng-upms-sso-client</module>
         <module>zheng-upms-server</module>
         <module>zheng-upms-app1</module>
         <module>zheng-upms-app2</module>
-        <module>zheng-upms-rpc-api</module>
-        <module>zheng-upms-rpc-service</module>
     </modules>
 </project>
