@@ -20,6 +20,8 @@
 
     <modules>
         <module>zheng-cms-dao</module>
+        <module>zheng-cms-rpc-api</module>
+        <module>zheng-cms-rpc-service</module>
         <module>zheng-cms-service</module>
         <module>zheng-cms-web</module>
         <module>zheng-cms-job</module>
