@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -50,10 +50,10 @@ public class HelloController extends BaseController {
 
 	// 本方法将处理 /hello/view?courseId=123 形式的URL
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String viewCourse(@RequestParam("courseId") Integer courseId, Model model) {
+	public String viewCourse(@RequestParam("courseId") Integer courseId, ModelMap modelMap) {
 
 		User user = userService.selectByPrimaryKey(courseId);
-		model.addAttribute(user);
+		modelMap.put("user", user);
 		return "course_overview";
 	}
 

@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +37,7 @@ public class CmsArticleController extends BaseController {
 	 * @param rows 每页条数
 	 * @param desc 降序排序
 	 * @param request
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping("/list")
@@ -45,7 +45,7 @@ public class CmsArticleController extends BaseController {
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
 			@RequestParam(required = false, defaultValue = "true", value = "desc") boolean desc,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request, ModelMap modelMap) {
 
 		// 数据列表
 		CmsArticleExample cmsArticleExample = new CmsArticleExample();
@@ -58,8 +58,8 @@ public class CmsArticleController extends BaseController {
 		long total = cmsArticleService.countByExample(cmsArticleExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
-		model.addAttribute("articles", articles);
-		model.addAttribute("paginator", paginator);
+		modelMap.put("articles", articles);
+		modelMap.put("paginator", paginator);
 		return "/manage/article/list";
 	}
 	
@@ -75,16 +75,16 @@ public class CmsArticleController extends BaseController {
 	/**
 	 * 新增post
 	 * @param cmsArticle
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(CmsArticle cmsArticle, Model model) {
+	public String add(CmsArticle cmsArticle, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
 		cmsArticle.setCtime(time);
 		cmsArticle.setOrders(time);
 		int count = cmsArticleService.insertSelective(cmsArticle);
-		model.addAttribute("count", count);
+		modelMap.put("count", count);
 		_log.info("新增记录id为：{}", cmsArticle.getArticleId());
 		return "redirect:/manage/article/list";
 	}
@@ -92,26 +92,26 @@ public class CmsArticleController extends BaseController {
 	/**
 	 * 删除
 	 * @param ids
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-	public String delete(@PathVariable("ids") String ids, Model model) {
+	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = cmsArticleService.deleteByPrimaryKeys(ids);
-		model.addAttribute("count", count);
+		modelMap.put("count", count);
 		return "redirect:/manage/article/list";
 	}
 	
 	/**
 	 * 修改get
 	 * @param id
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable("id") int id, Model model) {
+	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
-		model.addAttribute("article", article);
+		modelMap.put("article", article);
 		return "/manage/article/update";
 	}
 	
@@ -119,14 +119,14 @@ public class CmsArticleController extends BaseController {
 	 * 修改post
 	 * @param id
 	 * @param cmsArticle
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, CmsArticle cmsArticle, Model model) {
+	public String update(@PathVariable("id") int id, CmsArticle cmsArticle, ModelMap modelMap) {
 		int count = cmsArticleService.updateByPrimaryKeySelective(cmsArticle);
-		model.addAttribute("count", count);
-		model.addAttribute("id", id);
+		modelMap.put("count", count);
+		modelMap.put("id", id);
 		return "redirect:/manage/article/list";
 	}
 

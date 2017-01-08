@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +37,7 @@ public class CmsCommentController extends BaseController {
 	 * @param rows 每页条数
 	 * @param desc 降序排序
 	 * @param request
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping("/list")
@@ -45,7 +45,7 @@ public class CmsCommentController extends BaseController {
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
 			@RequestParam(required = false, defaultValue = "true", value = "desc") boolean desc,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request, ModelMap modelMap) {
 
 		// 数据列表
 		CmsCommentExample cmsCommentExample = new CmsCommentExample();
@@ -58,8 +58,8 @@ public class CmsCommentController extends BaseController {
 		long total = cmsCommentService.countByExample(cmsCommentExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
-		model.addAttribute("comments", comments);
-		model.addAttribute("paginator", paginator);
+		modelMap.put("comments", comments);
+		modelMap.put("paginator", paginator);
 		return "/manage/comment/list";
 	}
 	
@@ -75,14 +75,14 @@ public class CmsCommentController extends BaseController {
 	/**
 	 * 新增post
 	 * @param cmsComment
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(CmsComment cmsComment, Model model) {
+	public String add(CmsComment cmsComment, ModelMap modelMap) {
 		cmsComment.setCtime(System.currentTimeMillis());
 		int count = cmsCommentService.insertSelective(cmsComment);
-		model.addAttribute("count", count);
+		modelMap.put("count", count);
 		_log.info("新增记录id为：{}", cmsComment.getArticleId());
 		return "redirect:/manage/comment/list";
 	}
@@ -90,26 +90,26 @@ public class CmsCommentController extends BaseController {
 	/**
 	 * 删除
 	 * @param ids
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-	public String delete(@PathVariable("ids") String ids, Model model) {
+	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = cmsCommentService.deleteByPrimaryKeys(ids);
-		model.addAttribute("count", count);
+		modelMap.put("count", count);
 		return "redirect:/manage/comment/list";
 	}
 	
 	/**
 	 * 修改get
 	 * @param id
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable("id") int id, Model model) {
+	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsComment comment = cmsCommentService.selectByPrimaryKey(id);
-		model.addAttribute("comment", comment);
+		modelMap.put("comment", comment);
 		return "/manage/comment/update";
 	}
 	
@@ -117,14 +117,14 @@ public class CmsCommentController extends BaseController {
 	 * 修改post
 	 * @param id
 	 * @param cmsComment
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, CmsComment cmsComment, Model model) {
+	public String update(@PathVariable("id") int id, CmsComment cmsComment, ModelMap modelMap) {
 		int count = cmsCommentService.updateByPrimaryKeySelective(cmsComment);
-		model.addAttribute("count", count);
-		model.addAttribute("id", id);
+		modelMap.put("count", count);
+		modelMap.put("id", id);
 		return "redirect:/manage/comment/list";
 	}
 

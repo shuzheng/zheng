@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +61,7 @@ public class UserController extends BaseController {
 	public String list(
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request, ModelMap modelMap) {
 
 		UserExample userExample = new UserExample();
 		userExample.createCriteria()
@@ -71,7 +71,7 @@ public class UserController extends BaseController {
 		userExample.setDistinct(false);
 		userExample.setOrderByClause(" user_id asc ");
 		List<User> users = userService.selectByExample(userExample);
-		model.addAttribute("users", users);
+		modelMap.put("users", users);
 
 		// 创建分页对象
 		long total = userService.countByExample(userExample);
@@ -82,7 +82,7 @@ public class UserController extends BaseController {
 		paginator.setParam("page");
 		paginator.setUrl(request.getRequestURI());
 		paginator.setQuery(request.getQueryString());
-		model.addAttribute("paginator", paginator);
+		modelMap.put("paginator", paginator);
 
 		return "/user/list";
 	}
@@ -133,12 +133,12 @@ public class UserController extends BaseController {
 	/**
 	 * 修改get
 	 * @param id
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable("id") int id, Model model) {
-		model.addAttribute("user", userService.selectByPrimaryKey(id));
+	public String update(@PathVariable("id") int id, ModelMap modelMap) {
+		modelMap.put("user", userService.selectByPrimaryKey(id));
 		return "/user/update";
 	}
 	
@@ -147,13 +147,13 @@ public class UserController extends BaseController {
 	 * @param id
 	 * @param user
 	 * @param binding
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, @Valid User user, BindingResult binding, Model model) {
+	public String update(@PathVariable("id") int id, @Valid User user, BindingResult binding, ModelMap modelMap) {
 		if (binding.hasErrors()) {
-			model.addAttribute("errors", binding.getAllErrors());
+			modelMap.put("errors", binding.getAllErrors());
 			return "user/update/" + id;
 		}
 		userService.updateByPrimaryKeySelective(user);

@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +37,7 @@ public class CmsTagController extends BaseController {
 	 * @param rows 每页条数
 	 * @param desc 降序排序
 	 * @param request
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping("/list")
@@ -45,7 +45,7 @@ public class CmsTagController extends BaseController {
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
 			@RequestParam(required = false, defaultValue = "false", value = "desc") boolean desc,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request, ModelMap modelMap) {
 
 		// 数据列表
 		CmsTagExample cmsTagExample = new CmsTagExample();
@@ -58,8 +58,8 @@ public class CmsTagController extends BaseController {
 		long total = cmsTagService.countByExample(cmsTagExample);
 		Paginator paginator = new Paginator(total, page, rows, request);
 
-		model.addAttribute("tags", tags);
-		model.addAttribute("paginator", paginator);
+		modelMap.put("tags", tags);
+		modelMap.put("paginator", paginator);
 		return "/manage/tag/list";
 	}
 	
@@ -75,16 +75,16 @@ public class CmsTagController extends BaseController {
 	/**
 	 * 新增post
 	 * @param cmsTag
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(CmsTag cmsTag, Model model) {
+	public String add(CmsTag cmsTag, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
 		cmsTag.setCtime(time);
 		cmsTag.setOrders(time);
 		int count = cmsTagService.insertSelective(cmsTag);
-		model.addAttribute("count", count);
+		modelMap.put("count", count);
 		_log.info("新增记录id为：{}", cmsTag.getTagId());
 		return "redirect:/manage/tag/list";
 	}
@@ -92,26 +92,26 @@ public class CmsTagController extends BaseController {
 	/**
 	 * 删除
 	 * @param ids
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-	public String delete(@PathVariable("ids") String ids, Model model) {
+	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = cmsTagService.deleteByPrimaryKeys(ids);
-		model.addAttribute("count", count);
+		modelMap.put("count", count);
 		return "redirect:/manage/tag/list";
 	}
 	
 	/**
 	 * 修改get
 	 * @param id
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable("id") int id, Model model) {
+	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsTag tag = cmsTagService.selectByPrimaryKey(id);
-		model.addAttribute("tag", tag);
+		modelMap.put("tag", tag);
 		return "/manage/tag/update";
 	}
 	
@@ -119,14 +119,14 @@ public class CmsTagController extends BaseController {
 	 * 修改post
 	 * @param id
 	 * @param cmsTag
-	 * @param model
+	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, CmsTag cmsTag, Model model) {
+	public String update(@PathVariable("id") int id, CmsTag cmsTag, ModelMap modelMap) {
 		int count = cmsTagService.updateByPrimaryKeySelective(cmsTag);
-		model.addAttribute("count", count);
-		model.addAttribute("id", id);
+		modelMap.put("count", count);
+		modelMap.put("id", id);
 		return "redirect:/manage/tag/list";
 	}
 

@@ -192,10 +192,11 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 			}
 			String[] idArray = ids.split("-");
 			int count = 0;
-			for (String id : idArray) {
-				if (StringUtils.isBlank(id)) {
+			for (String idStr : idArray) {
+				if (StringUtils.isBlank(idStr)) {
 					continue;
 				}
+				Integer id = Integer.parseInt(idStr);
 				Method deleteByPrimaryKey = mapper.getClass().getDeclaredMethod("deleteByPrimaryKey", id.getClass());
 				Object result = deleteByPrimaryKey.invoke(mapper, id);
 				count += Integer.parseInt(String.valueOf(result));
