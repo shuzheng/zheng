@@ -85,5 +85,7 @@
 		<table tableName="cms_comment" domainObjectName="CmsComment">
 			<generatedKey column="case_id" sqlStatement="MySql" identity="true" />
 		</table>
+		<table tableName="cms_page" domainObjectName="CmsPage"></table>
+		<table tableName="cms_setting" domainObjectName="CmsSetting"></table>
 	</context>
 </generatorConfiguration>

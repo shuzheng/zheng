@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/1/5 22:30:08                            */
+/* Created on:     2017/1/8 22:41:06                            */
 /*==============================================================*/
 
 
@@ -15,6 +15,10 @@ drop table if exists cms_category;
 drop table if exists cms_category_tag;
 
 drop table if exists cms_comment;
+
+drop table if exists cms_page;
+
+drop table if exists cms_setting;
 
 drop table if exists cms_tag;
 
@@ -178,6 +182,37 @@ create table cms_comment
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 alter table cms_comment comment '评论表';
+
+/*==============================================================*/
+/* Table: cms_page                                              */
+/*==============================================================*/
+create table cms_page
+(
+   page_id              int unsigned not null auto_increment,
+   pid                  int,
+   alias                varchar(20),
+   content              mediumtext,
+   keywords             varchar(100),
+   description          varchar(300),
+   ctime                bigint,
+   orders               bigint,
+   primary key (page_id)
+);
+
+alter table cms_page comment '页面';
+
+/*==============================================================*/
+/* Table: cms_setting                                           */
+/*==============================================================*/
+create table cms_setting
+(
+   setting_id           int unsigned not null auto_increment,
+   setting_key          varchar(10),
+   setting_value        varchar(500),
+   primary key (setting_id)
+);
+
+alter table cms_setting comment '网站配置';
 
 /*==============================================================*/
 /* Table: cms_tag                                               */
