@@ -99,16 +99,9 @@ zheng
 * Navicat for MySQL: 数据库客户端
 
 # 开发环境搭建:
-## 修改本地Host
-* 127.0.0.1	upms.zhangshuzheng.cn
-* 127.0.0.1	cms.zhangshuzheng.cn
-* 127.0.0.1	pay.zhangshuzheng.cn
-* 127.0.0.1	ucenter.zhangshuzheng.cn
-* 127.0.0.1	wechat.zhangshuzheng.cn
-* 127.0.0.1	api.zhangshuzheng.cn
-* 127.0.0.1	oss.zhangshuzheng.cn
+Jdk7、Mysql、Redis、Zookeeper、ActiveMQ
 
-# 资源链接
+### 资源链接
 * Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")
 * Redis [https://redis.io/download](https://redis.io/download "Redis")
 * ActiveMQ [http://activemq.apache.org/download-archives.html](http://activemq.apache.org/download-archives.html "ActiveMQ")
@@ -116,6 +109,15 @@ zheng
 * Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
 * Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
 * dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/download/mappingsunlight/9489736](http://download.csdn.net/download/mappingsunlight/9489736 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
+
+### 修改本地Host
+* 127.0.0.1	upms.zhangshuzheng.cn
+* 127.0.0.1	cms.zhangshuzheng.cn
+* 127.0.0.1	pay.zhangshuzheng.cn
+* 127.0.0.1	ucenter.zhangshuzheng.cn
+* 127.0.0.1	wechat.zhangshuzheng.cn
+* 127.0.0.1	api.zhangshuzheng.cn
+* 127.0.0.1	oss.zhangshuzheng.cn
 
 # 预览图
 ![预览效果图](https://github.com/shuzheng/zhengAdmin/raw/master/src/images/zheng-upms-crud.png)
