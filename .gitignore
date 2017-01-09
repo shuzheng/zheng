@@ -2,4 +2,4 @@
 *.iml
 target
 .log
-zheng-admin
+zheng-upms/zheng-upms-server/src/main/webapp/resources/zheng-admin

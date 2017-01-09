@@ -1,0 +1,145 @@
+﻿<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>通用增删改查</title>
+
+	<link href="plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
+	<link href="plugins/bootstrap-table-1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
+	<link href="plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
+
+	<link href="css/common.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="main">
+	<div id="toolbar">
+		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-plus"></i> 新增用户</a>
+		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-edit"></i> 编辑用户</a>
+		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-close"></i> 删除用户</a>
+	</div>
+	<table id="table"></table>
+	<!--
+	<table data-toggle="table" 
+		data-url="data/data1.json"
+		data-classes="table table-hover table-condensed"
+		data-striped="true"
+		data-search="true"
+		data-show-refresh="true"
+		data-show-toggle="true"
+		data-show-columns="true"
+		data-click-to-select="true"
+		data-toolbar="#toolbar">
+		<thead>
+		<tr>
+			<th data-field="state" data-checkbox="true"></th>
+			<th data-field="id" data-sortable="true">编号</th>
+			<th data-field="username" data-sortable="true">账号</th>
+			<th data-field="password" data-sortable="true">密码</th>
+			<th data-field="name" data-sortable="true">姓名</th>
+			<th data-field="sex" data-sortable="true">性别</th>
+			<th data-field="age" data-sortable="true">年龄</th>
+			<th data-field="phone" data-sortable="true">电话</th>
+			<th data-field="email" data-sortable="true">邮箱</th>
+			<th data-field="address" data-sortable="true">地址</th>
+			<th data-field="remark" data-sortable="true">备注</th>
+			<th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">操作</th>
+		</tr>
+		</thead>
+	</table>
+	-->
+</div>
+<script src="plugins/jquery.1.12.4.min.js"></script>
+<script src="plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script src="plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
+<script src="plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="plugins/waves-0.7.5/waves.min.js"></script>
+
+<script src="js/common.js"></script>
+<script>
+$(function() {
+	// bootstrap table初始化
+	$('#table').bootstrapTable({
+		idField: 'id',
+		url: 'data/data1.json',
+		height: getHeight(),
+		striped: true,
+		search: true,
+		searchOnEnterKey: true,
+		showRefresh: true,
+		showToggle: true,
+		showColumns: true,
+		minimumCountColumns: 2,
+		showPaginationSwitch: true,
+		clickToSelect: true,
+		detailView: true,
+		detailFormatter: 'detailFormatter',
+		pagination: true,
+		paginationLoop: false,
+		classes: 'table table-hover table-no-bordered',
+		//sidePagination: 'server',
+		idField: 'id',
+		sortName: 'id',
+		sortOrder: 'desc',
+		toolbar: '#toolbar',
+		columns: [
+			{field: 'state', checkbox: true},
+			{field: 'id', title: '编号', sortable: true, halign: 'center'},
+			{field: 'username', title: '账号', sortable: true, halign: 'center'},
+			{field: 'password', title: '密码', sortable: true, halign: 'center'},
+			{field: 'name', title: '姓名', sortable: true, halign: 'center'},
+			{field: 'sex', title: '性别', sortable: true, halign: 'center'},
+			{field: 'age', title: '年龄', sortable: true, halign: 'center'},
+			{field: 'phone', title: '年龄', sortable: true, halign: 'center'},
+			{field: 'email', title: '邮箱', sortable: true, halign: 'center'},
+			{field: 'address', title: '地址', sortable: true, halign: 'center'},
+			{field: 'remark', title: '备注', sortable: true, halign: 'center'},
+			{field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents'}
+		]
+	}).on('all.bs.table', function (e, name, args) {
+		$('[data-toggle="tooltip"]').tooltip();
+		$('[data-toggle="popover"]').popover();  
+	});
+	$(window).resize(function () {
+		$('#table').bootstrapTable('resetView', {
+			height: getHeight()
+		});
+	});
+});
+function actionFormatter(value, row, index) {
+    return [
+        '<a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　',
+        '<a class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit"></i></a>　',
+        '<a class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="Remove"><i class="glyphicon glyphicon-remove"></i></a>'
+    ].join('');
+}
+
+window.actionEvents = {
+    'click .like': function (e, value, row, index) {
+        alert('You click like icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    },
+    'click .edit': function (e, value, row, index) {
+        alert('You click edit icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    },
+    'click .remove': function (e, value, row, index) {
+        alert('You click remove icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    }
+};
+function detailFormatter(index, row) {
+	var html = [];
+	$.each(row, function (key, value) {
+		html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+	});
+	return html.join('');
+}
+function getHeight() {
+	return $(window).height() - 20;
+}
+</script>
+</body>
+</html>
