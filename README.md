@@ -7,7 +7,7 @@
 ``` lua
 zheng
 ├── zheng-common -- 公共模块
-├── zhengAdmin -- 后台管理系统模板(已提为独立项目：shuzheng/zhengAdmin)
+├── zheng-admin -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-upms-sso-client -- SSO客户端依赖包
