@@ -2,7 +2,6 @@ package com.zheng.upms.admin.util;
 
 import com.zheng.common.util.JarUtil;
 import com.zheng.common.util.PropertiesFileUtil;
-import com.zheng.upms.admin.controller.SSOController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -25,15 +24,15 @@ public class ZhengAdminUtil implements InitializingBean, ServletContextAware {
 
     @Override
     public void setServletContext(ServletContext servletContext) {
-        _log.info("===== 开始解压zhengAdmin =====");
-        String version = PropertiesFileUtil.getInstance().get("zhengAdmin.version");
-        _log.info("zhengAdmin.jar 版本: {}", version);
-        String jarPath = servletContext.getRealPath("/WEB-INF/lib/zhengAdmin-" + version + ".jar");
-        _log.info("zhengAdmin.jar 包路径: {}", jarPath);
-        String resources = servletContext.getRealPath("/resources/zhengAdmin");
-        _log.info("zhengAdmin.jar 解压到: {}", resources);
+        _log.info("===== 开始解压zheng-admin =====");
+        String version = PropertiesFileUtil.getInstance().get("zheng-admin.version");
+        _log.info("zheng-admin.jar 版本: {}", version);
+        String jarPath = servletContext.getRealPath("/WEB-INF/lib/zheng-admin-" + version + ".jar");
+        _log.info("zheng-admin.jar 包路径: {}", jarPath);
+        String resources = servletContext.getRealPath("/resources/zheng-admin");
+        _log.info("zheng-admin.jar 解压到: {}", resources);
         JarUtil.decompress(jarPath, resources);
-        _log.info("===== 解压zhengAdmin完成 =====");
+        _log.info("===== 解压zheng-admin完成 =====");
     }
 
 }

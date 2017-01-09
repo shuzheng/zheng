@@ -21,8 +21,8 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.github.shuzheng</groupId>
-            <artifactId>zhengAdmin</artifactId>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-admin</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
