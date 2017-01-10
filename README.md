@@ -107,9 +107,9 @@ zheng
 
 ### 开发流程
 
-1、创建数据表（建议使用PowerDesigner）
+* 1、创建数据表（建议使用PowerDesigner）
 
-2、配置对应dao模块的generatorConfig.xml，只需底部追加指定表的代码生成，可生成单表的CRUD功能，如：
+* 2、配置对应dao模块的generatorConfig.xml，只需底部追加指定表的代码生成，可生成单表的CRUD功能，如：
 ```xml
 <table tableName="xxx" domainObjectName="xxx"></table>
 ```
@@ -124,7 +124,7 @@ cmsArticleExample.setLimit(rows);
 ```java
 public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, CmsArticle, CmsArticleExample>
 ```
-3、启动流程：优先rcp-service服务提供者，再启动其他webapp
+* 3、启动流程：优先rcp-service服务提供者，再启动其他webapp
 
 ### 资源下载链接
 * Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")
