@@ -31,7 +31,7 @@ public class MybatisGeneratorConfigUtil {
 			String jdbc_username,
 			String jdbc_password,
 			String module_prefix_name) {
-		String module_path = PROJECT_NAME + "-" + module_prefix_name + "/" + PROJECT_NAME + "-" + module_prefix_name + "-dao/src/main/resources/generatorConfig.xml";
+		String module_path = PROJECT_NAME + "-" + module_prefix_name + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll(".", "-") + "-dao/src/main/resources/generatorConfig.xml";
 		String sql = "SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE table_schema = '" + DATABASE_NAME + "' AND table_name LIKE '" + module_prefix_name + "_%';";
 		System.out.println("========== 开始生成代码 ==========");
 		try {
