@@ -102,29 +102,21 @@ zheng
 
 
 ### 开发环境搭建:
-1、前提：本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口，下面有资源下载链接（安装流程略）
-2、克隆源代码到本地并打开，推荐使用IntelliJ IDEA，本地编译并安装到本地maven仓
+
+* 前提：本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口，下面有资源下载链接（安装流程略）
+
+* 克隆源代码到本地并打开，推荐使用IntelliJ IDEA，本地编译并安装到本地maven仓
+
 
 ### 开发流程
 
-* 1、创建数据表（建议使用PowerDesigner）
+- 创建数据表（建议使用PowerDesigner）
 
-* 2、配置对应dao模块的generatorConfig.xml，只需底部追加指定表的代码生成，可生成单表的CRUD功能，如：
-```xml
-<table tableName="xxx" domainObjectName="xxx"></table>
-```
-* **生成的model和example均已实现Serializable接口，支持分布式**
-* **生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit，分页示例：**
-```java
-CmsArticleExample cmsArticleExample = new CmsArticleExample();
-cmsArticleExample.setOffset((page - 1) * rows);
-cmsArticleExample.setLimit(rows);
-```
-* **已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可**
-```java
-public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, CmsArticle, CmsArticleExample>
-```
-* 3、启动流程：优先rcp-service服务提供者，再启动其他webapp
+- 配置对应dao模块的generatorConfig.xml，只需底部追加指定表的代码生成，可生成单表的CRUD功能，如：
+    - 生成的model和example均已实现Serializable接口，支持分布式
+    - 生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit
+    - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
+- 启动流程：优先rcp-service服务提供者，再启动其他webapp
 
 ### 资源下载链接
 * Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")
