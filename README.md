@@ -110,18 +110,18 @@ zheng
 1、创建数据表（建议使用PowerDesigner）
 
 2、配置对应dao模块的generatorConfig.xml，只需底部追加指定表的代码生成，可生成单表的CRUD功能，如：
-```
+```xml
 <table tableName="xxx" domainObjectName="xxx"></table>
 ```
 * **生成的model和example均已实现Serializable接口，支持分布式**
 * **生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit，分页示例：**
-```
+```java
 CmsArticleExample cmsArticleExample = new CmsArticleExample();
 cmsArticleExample.setOffset((page - 1) * rows);
 cmsArticleExample.setLimit(rows);
 ```
 * **已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可**
-```
+```java
 public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, CmsArticle, CmsArticleExample>
 ```
 
