@@ -23,7 +23,6 @@ public class JdbcUtil {
 	public JdbcUtil(String driver, String url, String username, String password) {
 		try {
 			Class.forName(driver);
-			System.out.println("注册驱动成功!!");
 			conn = DriverManager.getConnection(url, username, password);
 			System.out.println("数据库连接成功");
 		} catch (Exception e) {
@@ -84,6 +83,7 @@ public class JdbcUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("释放数据库连接");
 	}
 
 }
