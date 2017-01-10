@@ -142,26 +142,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.dao.model.CmsArticle" >
-    <selectKey resultType="java.lang.Integer" keyProperty="articleId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into cms_article (title, author, fromurl, 
-      image, keywords, description, 
-      type, allowcomments, status, 
-      user_id, readnumber, ctime, 
-      orders, content)
-    values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{fromurl,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{type,jdbcType=TINYINT}, #{allowcomments,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
-      #{userId,jdbcType=INTEGER}, #{readnumber,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, 
-      #{orders,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR})
+    insert into cms_article (article_id, title, author, 
+      fromurl, image, keywords, 
+      description, type, allowcomments, 
+      status, user_id, readnumber, 
+      ctime, orders, content
+      )
+    values (#{articleId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{fromurl,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{allowcomments,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, #{readnumber,jdbcType=INTEGER}, 
+      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsArticle" >
-    <selectKey resultType="java.lang.Integer" keyProperty="articleId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into cms_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        article_id,
+      </if>
       <if test="title != null" >
         title,
       </if>
@@ -206,6 +205,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        #{articleId,jdbcType=INTEGER},
+      </if>
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
