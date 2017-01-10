@@ -113,7 +113,7 @@
             <artifactId>zkclient</artifactId>
             <version>0.1</version>
         </dependency>
-        <!-- 模板引擎 -->
+        <!-- velocity模板引擎 -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>

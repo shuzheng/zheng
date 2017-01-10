@@ -64,12 +64,8 @@
         <javaClientGenerator targetPackage="${generator.javaClientGenerator.targetPackage}" targetProject="src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
-                <table tableName="cms_article" domainObjectName="cms_article"></table>
-                <table tableName="cms_article_category" domainObjectName="cms_article_category"></table>
-                <table tableName="cms_article_tag" domainObjectName="cms_article_tag"></table>
-                <table tableName="cms_category" domainObjectName="cms_category"></table>
-                <table tableName="cms_category_tag" domainObjectName="cms_category_tag"></table>
-                <table tableName="cms_comment" domainObjectName="cms_comment"></table>
-                <table tableName="cms_tag" domainObjectName="cms_tag"></table>
-            </context>
+        #foreach($table in $tables)
+        <table tableName="$!table.table_name" domainObjectName="$!table.model_name"></table>
+        #end
+    </context>
 </generatorConfiguration>
