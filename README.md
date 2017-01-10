@@ -87,7 +87,7 @@ zheng
 * zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
 * zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
 
-# 开发环境:
+# 开发工具:
 * MySql: 数据库
 * jetty: 开发服务器
 * Tomcat: 应用服务器
@@ -98,10 +98,34 @@ zheng
 * PowerDesigner: 建模工具
 * Navicat for MySQL: 数据库客户端
 
-# 开发环境搭建:
-Jdk7、Mysql、Redis、Zookeeper、ActiveMQ
+# 项目使用方法
 
-### 资源链接
+
+### 开发环境搭建:
+1、前提：本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口，下面有资源下载链接（安装流程略）
+2、克隆源代码到本地并打开，推荐使用IntelliJ IDEA，本地编译并安装到本地maven仓
+
+### 开发流程
+
+1、创建数据表（建议使用PowerDesigner）
+
+2、配置对应dao模块的generatorConfig.xml，只需底部追加指定表的代码生成，可生成单表的CRUD功能，如：
+```
+<table tableName="xxx" domainObjectName="xxx"></table>
+```
+* ** 生成的model和example均已实现Serializable接口，支持分布式 **
+* ** 生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit，分页示例：**
+```
+CmsArticleExample cmsArticleExample = new CmsArticleExample();
+cmsArticleExample.setOffset((page - 1) * rows);
+cmsArticleExample.setLimit(rows);
+```
+* ** 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可 **
+```
+public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, CmsArticle, CmsArticleExample>
+```
+
+### 资源下载链接
 * Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")
 * Redis [https://redis.io/download](https://redis.io/download "Redis")
 * ActiveMQ [http://activemq.apache.org/download-archives.html](http://activemq.apache.org/download-archives.html "ActiveMQ")
