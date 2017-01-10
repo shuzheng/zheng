@@ -1,5 +1,5 @@
 .idea
 *.iml
 target
-.log
+*.log
 zheng-upms/zheng-upms-server/src/main/webapp/resources/zheng-admin
