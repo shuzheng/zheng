@@ -110,22 +110,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsRole" >
-    <selectKey resultType="java.lang.Integer" keyProperty="roleId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into upms_role (system_id, name, description, 
-      status, ctime, orders
-      )
-    values (#{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}
-      )
+    insert into upms_role (role_id, system_id, name, 
+      description, status, ctime, 
+      orders)
+    values (#{roleId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT}, 
+      #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsRole" >
-    <selectKey resultType="java.lang.Integer" keyProperty="roleId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into upms_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
       <if test="systemId != null" >
         system_id,
       </if>
@@ -146,6 +143,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
       <if test="systemId != null" >
         #{systemId,jdbcType=INTEGER},
       </if>
@@ -248,5 +248,5 @@
       orders = #{orders,jdbcType=BIGINT}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
-  <cache />
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

@@ -107,20 +107,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsOrganization" >
-    <selectKey resultType="java.lang.Integer" keyProperty="organizationId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into upms_organization (system_id, name, description
-      )
-    values (#{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
-      )
+    insert into upms_organization (organization_id, system_id, name, 
+      description)
+    values (#{organizationId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsOrganization" >
-    <selectKey resultType="java.lang.Integer" keyProperty="organizationId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into upms_organization
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
       <if test="systemId != null" >
         system_id,
       </if>
@@ -132,6 +129,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=INTEGER},
+      </if>
       <if test="systemId != null" >
         #{systemId,jdbcType=INTEGER},
       </if>
@@ -201,5 +201,5 @@
       description = #{description,jdbcType=VARCHAR}
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </update>
-  <cache />
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

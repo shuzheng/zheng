@@ -110,20 +110,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsSystem" >
-    <selectKey resultType="java.lang.Integer" keyProperty="systemId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into upms_system (icon, basepath, status, 
-      name, ctime, orders)
-    values (#{icon,jdbcType=VARCHAR}, #{basepath,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
-      #{name,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
+    insert into upms_system (system_id, icon, basepath, 
+      status, name, ctime, 
+      orders)
+    values (#{systemId,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{basepath,jdbcType=VARCHAR}, 
+      #{status,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, 
+      #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsSystem" >
-    <selectKey resultType="java.lang.Integer" keyProperty="systemId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into upms_system
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemId != null" >
+        system_id,
+      </if>
       <if test="icon != null" >
         icon,
       </if>
@@ -144,6 +143,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
       <if test="icon != null" >
         #{icon,jdbcType=VARCHAR},
       </if>
@@ -246,5 +248,5 @@
       orders = #{orders,jdbcType=BIGINT}
     where system_id = #{systemId,jdbcType=INTEGER}
   </update>
-  <cache />
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

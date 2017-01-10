@@ -186,5 +186,5 @@
       organization_id = #{organizationId,jdbcType=INTEGER}
     where user_organization_id = #{userOrganizationId,jdbcType=INTEGER}
   </update>
-  <cache />
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

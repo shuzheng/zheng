@@ -105,23 +105,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsPermission" >
-    <selectKey resultType="java.lang.Integer" keyProperty="permissionId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into upms_permission (system_id)
-    values (#{systemId,jdbcType=INTEGER})
+    insert into upms_permission (permission_id, system_id)
+    values (#{permissionId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsPermission" >
-    <selectKey resultType="java.lang.Integer" keyProperty="permissionId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into upms_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
       <if test="systemId != null" >
         system_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=INTEGER},
+      </if>
       <if test="systemId != null" >
         #{systemId,jdbcType=INTEGER},
       </if>
@@ -169,5 +169,5 @@
     set system_id = #{systemId,jdbcType=INTEGER}
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </update>
-  <cache />
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>
