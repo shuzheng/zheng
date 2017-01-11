@@ -6,21 +6,21 @@ public class CmsArticleTag implements Serializable {
     /**
      * 编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer articleTagId;
 
     /**
      * 文章编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer articleId;
 
     /**
      * 标签编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer tagId;
 

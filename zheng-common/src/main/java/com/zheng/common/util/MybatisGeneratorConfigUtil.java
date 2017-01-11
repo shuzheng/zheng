@@ -33,7 +33,7 @@ public class MybatisGeneratorConfigUtil {
 			String module_prefix_name) {
 		String module_path = PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-dao/src/main/resources/generatorConfig.xml";
 		String sql = "SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE table_schema = '" + DATABASE_NAME + "' AND table_name LIKE '" + module_prefix_name + "_%';";
-		System.out.println("========== 开始生成代码 ==========");
+		System.out.println("========== 开始生成generatorConfig.xml文件 ==========");
 		try {
 			VelocityContext context= new VelocityContext();
 			List<Map<String, Object>> tables = new ArrayList<>();
@@ -55,11 +55,12 @@ public class MybatisGeneratorConfigUtil {
 			context.put("generator_javaModelGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.model");
 			context.put("generator_sqlMapGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("generator_javaClientGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
+			context.put("targetProject", PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-dao");
 			VelocityUtil.generate(VM_PATH, module_path, context);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("========== 结束生成代码 ==========");
+		System.out.println("========== 结束生成generatorConfig.xml文件 ==========");
 	}
 
 }

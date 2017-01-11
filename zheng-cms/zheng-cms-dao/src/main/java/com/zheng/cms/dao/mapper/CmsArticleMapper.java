@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CmsArticleMapper {
-    int countByExample(CmsArticleExample example);
+    long countByExample(CmsArticleExample example);
 
     int deleteByExample(CmsArticleExample example);
 

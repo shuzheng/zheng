@@ -6,105 +6,105 @@ public class CmsArticle implements Serializable {
     /**
      * 文章编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer articleId;
 
     /**
      * 文章标题
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String title;
 
     /**
      * 文章原作者
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String author;
 
     /**
      * 转载来源网址
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String fromurl;
 
     /**
      * 封面图
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String image;
 
     /**
      * 关键字
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String keywords;
 
     /**
      * 简介
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String description;
 
     /**
      * 类型(1:普通,2:热门...)
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Byte type;
 
     /**
      * 是否允许评论(0:不允许,1:允许)
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Byte allowcomments;
 
     /**
      * 状态(-1:不通过,0未审核,1:通过)
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Byte status;
 
     /**
      * 发布人id
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer userId;
 
     /**
      * 阅读数量
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer readnumber;
 
     /**
      * 创建时间
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Long ctime;
 
     /**
      * 排序
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Long orders;
 
     /**
      * 内容
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String content;
 

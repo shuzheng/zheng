@@ -6,21 +6,21 @@ public class CmsCategoryTag implements Serializable {
     /**
      * 编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer categoryTagId;
 
     /**
      * 类目编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer categoryId;
 
     /**
      * 标签编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer tagId;
 

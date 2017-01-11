@@ -8,7 +8,7 @@
     <!-- mysql驱动包 -->
     <classPathEntry location="${classPathEntry}" />
 
-    <context id="MysqlContext" defaultModelType="flat">
+    <context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
 
         <property name="javaFileEncoding" value="UTF-8"/>
         <!-- 由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写，所以还要将这两个默认值改为`  -->
@@ -55,13 +55,13 @@
                         password="${jdbc.password}" />
 
         <!-- model生成 -->
-        <javaModelGenerator targetPackage="com.zheng.cms.dao.model" targetProject="src/main/java" />
+        <javaModelGenerator targetPackage="com.zheng.cms.dao.model" targetProject="zheng-cms/zheng-cms-dao/src/main/java" />
 
         <!-- MapperXML生成 -->
-        <sqlMapGenerator targetPackage="com.zheng.cms.dao.mapper" targetProject="src/main/java" />
+        <sqlMapGenerator targetPackage="com.zheng.cms.dao.mapper" targetProject="zheng-cms/zheng-cms-dao/src/main/java" />
 
         <!-- Mapper接口生成 -->
-        <javaClientGenerator targetPackage="com.zheng.cms.dao.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="com.zheng.cms.dao.mapper" targetProject="zheng-cms/zheng-cms-dao/src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
                 <table tableName="cms_article" domainObjectName="CmsArticle"></table>

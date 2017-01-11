@@ -6,70 +6,70 @@ public class CmsCategory implements Serializable {
     /**
      * 类目编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer categoryId;
 
     /**
      * 上级编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer pid;
 
     /**
      * 层级
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Byte level;
 
     /**
      * 名称
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String name;
 
     /**
      * 描述
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String description;
 
     /**
      * 图标
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String icon;
 
     /**
      * 类型(1:普通,2:热门...)
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Byte type;
 
     /**
      * 别名
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private String alias;
 
     /**
      * 创建时间
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Long ctime;
 
     /**
      * 排序
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Long orders;
 

@@ -6,21 +6,21 @@ public class CmsArticleCategory implements Serializable {
     /**
      * 编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer articleCategoryId;
 
     /**
      * 文章编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer articleId;
 
     /**
      * 类目编号
      *
-     * @mbggenerated
+     * @mbg.generated
      */
     private Integer categoryId;
 
