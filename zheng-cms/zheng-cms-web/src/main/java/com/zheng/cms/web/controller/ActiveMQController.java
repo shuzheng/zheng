@@ -1,6 +1,6 @@
 package com.zheng.cms.web.controller;
 
-import com.zheng.cms.dao.model.User;
+import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.common.util.JmsUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -34,9 +34,9 @@ public class ActiveMQController extends BaseController {
 	@ResponseBody
 	public Object send() {
 		long start = System.currentTimeMillis();
-		User user = null;
+		CmsUser user = null;
 		for (int i = 1; i <= 1000; i ++) {
-			user = new User();
+			user = new CmsUser();
 			user.setUsername(i + "");
 			user.setPassword("123456");
 			user.setNickname("昵称");
@@ -51,7 +51,7 @@ public class ActiveMQController extends BaseController {
 	}
 
 	public static void main(String[] args) {
-		User user = new User();
+		CmsUser user = new CmsUser();
 		user.setUsername("用户");
 		user.setPassword("123456");
 		user.setNickname("昵称");

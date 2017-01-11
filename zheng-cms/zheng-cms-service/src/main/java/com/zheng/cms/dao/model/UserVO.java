@@ -7,15 +7,15 @@ import java.util.List;
  * @author shuzheng
  * @date 2016年7月6日 下午6:06:36
  */
-public class UserVO extends User {
+public class UserVO extends CmsUser {
 
-	private List<Book> books;
+	private List<CmsBook> books;
 
-	public List<Book> getBooks() {
+	public List<CmsBook> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<CmsBook> books) {
 		this.books = books;
 	}
 }

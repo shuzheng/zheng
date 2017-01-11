@@ -60,12 +60,16 @@ public class MybatisGeneratorConfigUtil {
 			}
 			jdbcUtil.release();
 
+			String targetProject = PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-dao";
 			context.put("tables", tables);
 			context.put("generator_javaModelGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.model");
 			context.put("generator_sqlMapGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("generator_javaClientGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
-			context.put("targetProject", PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-dao");
+			context.put("targetProject", targetProject);
 			VelocityUtil.generate(VM_PATH, module_path, context);
+			// 删除旧代码
+			deleteDir(new File(targetProject + "/src/main/java/com/" + PROJECT_NAME + "/" + module_prefix_name.replaceAll("\\.", "/") + "/dao/model"));
+			deleteDir(new File(targetProject + "/src/main/java/com/" + PROJECT_NAME + "/" + module_prefix_name.replaceAll("\\.", "/") + "/dao/mapper"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -95,6 +99,17 @@ public class MybatisGeneratorConfigUtil {
 			e.printStackTrace();
 		}
 		System.out.println("========== 结束运行MybatisGenerator ==========");
+	}
+
+	// 递归删除非空文件夹
+	public static void deleteDir(File dir){
+		if(dir.isDirectory()){
+			File[] files = dir.listFiles();
+			for(int i=0; i<files.length; i++) {
+				deleteDir(files[i]);
+			}
+		}
+		dir.delete();
 	}
 
 }

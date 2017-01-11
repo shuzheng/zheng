@@ -1,6 +1,6 @@
 package com.zheng.cms.service;
 
-import com.zheng.cms.dao.model.User;
+import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.dao.model.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class UserServiceTest {
 		UserVO userVO = userService.selectUserWithBook(1);
 		System.out.println(null == userVO ? "null" : userVO.getBooks().size());
 		// 自动生成接口调用
-		User user = userService.getMapper().selectByPrimaryKey(1);
+		CmsUser user = userService.getMapper().selectByPrimaryKey(1);
 		System.out.println(null == user ? "null" :user.getNickname());
 	}
 	

@@ -67,9 +67,13 @@
                 <table tableName="cms_article" domainObjectName="CmsArticle"></table>
                 <table tableName="cms_article_category" domainObjectName="CmsArticleCategory"></table>
                 <table tableName="cms_article_tag" domainObjectName="CmsArticleTag"></table>
+                <table tableName="cms_book" domainObjectName="CmsBook"></table>
                 <table tableName="cms_category" domainObjectName="CmsCategory"></table>
                 <table tableName="cms_category_tag" domainObjectName="CmsCategoryTag"></table>
                 <table tableName="cms_comment" domainObjectName="CmsComment"></table>
+                <table tableName="cms_page" domainObjectName="CmsPage"></table>
+                <table tableName="cms_setting" domainObjectName="CmsSetting"></table>
                 <table tableName="cms_tag" domainObjectName="CmsTag"></table>
+                <table tableName="cms_user" domainObjectName="CmsUser"></table>
             </context>
 </generatorConfiguration>

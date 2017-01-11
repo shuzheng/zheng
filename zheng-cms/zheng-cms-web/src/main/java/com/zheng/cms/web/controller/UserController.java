@@ -1,7 +1,7 @@
 package com.zheng.cms.web.controller;
 
-import com.zheng.cms.dao.model.User;
-import com.zheng.cms.dao.model.UserExample;
+import com.zheng.cms.dao.model.CmsUser;
+import com.zheng.cms.dao.model.CmsUserExample;
 import com.zheng.cms.rpc.api.UserService;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
@@ -63,14 +63,14 @@ public class UserController extends BaseController {
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
 			HttpServletRequest request, ModelMap modelMap) {
 
-		UserExample userExample = new UserExample();
+		CmsUserExample userExample = new CmsUserExample();
 		userExample.createCriteria()
 				.andUserIdGreaterThan(0);
 		userExample.setOffset((page -1) * rows);
 		userExample.setLimit(rows);
 		userExample.setDistinct(false);
 		userExample.setOrderByClause(" user_id asc ");
-		List<User> users = userService.selectByExample(userExample);
+		List<CmsUser> users = userService.selectByExample(userExample);
 		modelMap.put("users", users);
 
 		// 创建分页对象
@@ -103,7 +103,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid User user, BindingResult binding) {
+	public String add(@Valid CmsUser user, BindingResult binding) {
 		if (binding.hasErrors()) {
 			for (ObjectError error : binding.getAllErrors()) {
 				_log.error(error.getDefaultMessage());
@@ -151,7 +151,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, @Valid User user, BindingResult binding, ModelMap modelMap) {
+	public String update(@PathVariable("id") int id, @Valid CmsUser user, BindingResult binding, ModelMap modelMap) {
 		if (binding.hasErrors()) {
 			modelMap.put("errors", binding.getAllErrors());
 			return "user/update/" + id;

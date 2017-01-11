@@ -1,6 +1,6 @@
 package com.zheng.cms.web.controller;
 
-import com.zheng.cms.dao.model.User;
+import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.rpc.api.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -52,7 +52,7 @@ public class HelloController extends BaseController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String viewCourse(@RequestParam("courseId") Integer courseId, ModelMap modelMap) {
 
-		User user = userService.selectByPrimaryKey(courseId);
+		CmsUser user = userService.selectByPrimaryKey(courseId);
 		modelMap.put("user", user);
 		return "course_overview";
 	}
@@ -61,7 +61,7 @@ public class HelloController extends BaseController {
 	@RequestMapping("/view2/{courseId}")
 	public String viewCourse2(@PathVariable("courseId") Integer courseId, Map<String, Object> map) {
 
-		User user = userService.selectByPrimaryKey(courseId);
+		CmsUser user = userService.selectByPrimaryKey(courseId);
 		map.put("user", user);
 		return "course_overview";
 	}
@@ -71,7 +71,7 @@ public class HelloController extends BaseController {
 	public String viewCourse3(HttpServletRequest request) {
 
 		Integer courseId = Integer.valueOf(request.getParameter("courseId"));
-		User user = userService.selectByPrimaryKey(courseId);
+		CmsUser user = userService.selectByPrimaryKey(courseId);
 		request.setAttribute("user", user);
 
 		return "course_overview";
@@ -83,7 +83,7 @@ public class HelloController extends BaseController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String doSave(@ModelAttribute User user) {
+	public String doSave(@ModelAttribute CmsUser user) {
 
 		_log.debug("Info of Course:");
 		_log.debug(ReflectionToStringBuilder.toString(user));
@@ -129,13 +129,13 @@ public class HelloController extends BaseController {
 
 	@RequestMapping(value = "/{courseId}", method = RequestMethod.GET)
 	public @ResponseBody
-	User getCourseInJson(@PathVariable Integer courseId) {
+	CmsUser getCourseInJson(@PathVariable Integer courseId) {
 		return userService.selectByPrimaryKey(courseId);
 	}
 
 	@RequestMapping(value = "/jsontype/{courseId}", method = RequestMethod.GET)
-	public ResponseEntity<User> getCourseInJson2(@PathVariable Integer courseId) {
-		User user = userService.selectByPrimaryKey(courseId);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+	public ResponseEntity<CmsUser> getCourseInJson2(@PathVariable Integer courseId) {
+		CmsUser user = userService.selectByPrimaryKey(courseId);
+		return new ResponseEntity<CmsUser>(user, HttpStatus.OK);
 	}
 }

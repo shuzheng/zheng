@@ -1,6 +1,6 @@
 package com.zheng.cms.job.jms;
 
-import com.zheng.cms.dao.model.User;
+import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.service.UserService;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -36,7 +36,7 @@ public class defaultQueueMessageListener implements MessageListener {
                 try {
                     String text = textMessage.getText();
                     JSONObject json = JSONObject.fromObject(text);
-                    User user = (User) JSONObject.toBean(json, User.class);
+                    CmsUser user = (CmsUser) JSONObject.toBean(json, CmsUser.class);
                     if (user.getUsername().equals("1")) {
                         _log.info("消费开始时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis())));
                     }

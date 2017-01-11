@@ -1,9 +1,9 @@
 package com.zheng.cms.rpc.service.impl;
 
-import com.zheng.cms.dao.mapper.UserMapper;
+import com.zheng.cms.dao.mapper.CmsUserMapper;
 import com.zheng.cms.dao.mapper.UserVOMapper;
-import com.zheng.cms.dao.model.User;
-import com.zheng.cms.dao.model.UserExample;
+import com.zheng.cms.dao.model.CmsUser;
+import com.zheng.cms.dao.model.CmsUserExample;
 import com.zheng.cms.dao.model.UserVO;
 import com.zheng.cms.rpc.api.UserService;
 import com.zheng.common.base.BaseServiceImpl;
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class UserServiceImpl extends BaseServiceImpl<UserMapper, User, UserExample> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<CmsUserMapper, CmsUser, CmsUserExample> implements UserService {
 
 	private static Logger _log = LoggerFactory.getLogger(UserServiceImpl.class);
 

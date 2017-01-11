@@ -1,6 +1,6 @@
 package com.zheng.cms.service.impl;
 
-import com.zheng.cms.dao.mapper.UserMapper;
+import com.zheng.cms.dao.mapper.CmsUserMapper;
 import com.zheng.cms.dao.mapper.UserVOMapper;
 import com.zheng.cms.dao.model.UserVO;
 import com.zheng.cms.service.UserService;
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	private static Logger _log = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
-	private UserMapper userMapper;
+	private CmsUserMapper userMapper;
 	
 	@Autowired
 	private UserVOMapper userVOMapper;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	 * @return
 	 */
 	@Override
-	public UserMapper getMapper() {
+	public CmsUserMapper getMapper() {
 		return userMapper;
 	}
 	

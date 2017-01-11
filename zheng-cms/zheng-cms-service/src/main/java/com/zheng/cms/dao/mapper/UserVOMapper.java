@@ -10,7 +10,7 @@ import com.zheng.cms.dao.model.UserVO;
  * @date 2016年7月6日 下午6:05:54
  */
 @Repository
-public interface UserVOMapper extends UserMapper {
+public interface UserVOMapper extends CmsUserMapper {
 
 	UserVO selectUserWithBook(int id);
 	
