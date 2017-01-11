@@ -3,24 +3,74 @@ package com.zheng.cms.dao.model;
 import java.io.Serializable;
 
 public class CmsCategory implements Serializable {
+    /**
+     * 类目编号
+     *
+     * @mbggenerated
+     */
     private Integer categoryId;
 
+    /**
+     * 上级编号
+     *
+     * @mbggenerated
+     */
     private Integer pid;
 
+    /**
+     * 层级
+     *
+     * @mbggenerated
+     */
     private Byte level;
 
+    /**
+     * 名称
+     *
+     * @mbggenerated
+     */
     private String name;
 
+    /**
+     * 描述
+     *
+     * @mbggenerated
+     */
     private String description;
 
+    /**
+     * 图标
+     *
+     * @mbggenerated
+     */
     private String icon;
 
+    /**
+     * 类型(1:普通,2:热门...)
+     *
+     * @mbggenerated
+     */
     private Byte type;
 
+    /**
+     * 别名
+     *
+     * @mbggenerated
+     */
     private String alias;
 
+    /**
+     * 创建时间
+     *
+     * @mbggenerated
+     */
     private Long ctime;
 
+    /**
+     * 排序
+     *
+     * @mbggenerated
+     */
     private Long orders;
 
     private static final long serialVersionUID = 1L;

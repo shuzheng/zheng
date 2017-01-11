@@ -3,22 +3,67 @@ package com.zheng.cms.dao.model;
 import java.io.Serializable;
 
 public class CmsComment implements Serializable {
+    /**
+     * 编号
+     *
+     * @mbggenerated
+     */
     private Integer commentId;
 
+    /**
+     * 回复楼中楼编号回复楼中楼编号
+     *
+     * @mbggenerated
+     */
     private Integer pid;
 
+    /**
+     * 文章编号
+     *
+     * @mbggenerated
+     */
     private Integer articleId;
 
+    /**
+     * 用户编号
+     *
+     * @mbggenerated
+     */
     private Integer userId;
 
+    /**
+     * 状态(-1:不通过,0:未审核,1:通过)
+     *
+     * @mbggenerated
+     */
     private Byte status;
 
+    /**
+     * 评论人ip地址
+     *
+     * @mbggenerated
+     */
     private String ip;
 
+    /**
+     * 评论人终端信息
+     *
+     * @mbggenerated
+     */
     private String agent;
 
+    /**
+     * 创建时间
+     *
+     * @mbggenerated
+     */
     private Long ctime;
 
+    /**
+     * 评论内容
+     *
+     * @mbggenerated
+     */
     private String content;
 
     private static final long serialVersionUID = 1L;

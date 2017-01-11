@@ -13,7 +13,7 @@ public class Generator {
 	private static String MODULE_PREFIX_NAME = "wechat.mp";
 	private static String JDBC_DRIVER = PropertiesFileUtil.getInstance("jdbc").get("jdbc.driver");
 	private static String JDBC_URL = PropertiesFileUtil.getInstance("jdbc").get("jdbc.url");
-	private static String JDBC_USERNAME= PropertiesFileUtil.getInstance("jdbc").get("jdbc.username");
+	private static String JDBC_USERNAME = PropertiesFileUtil.getInstance("jdbc").get("jdbc.username");
 	private static String JDBC_PASSWORD = PropertiesFileUtil.getInstance("jdbc").get("jdbc.password");
 
 	/**

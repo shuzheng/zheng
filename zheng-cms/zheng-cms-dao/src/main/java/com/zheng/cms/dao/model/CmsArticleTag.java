@@ -3,10 +3,25 @@ package com.zheng.cms.dao.model;
 import java.io.Serializable;
 
 public class CmsArticleTag implements Serializable {
+    /**
+     * 编号
+     *
+     * @mbggenerated
+     */
     private Integer articleTagId;
 
+    /**
+     * 文章编号
+     *
+     * @mbggenerated
+     */
     private Integer articleId;
 
+    /**
+     * 标签编号
+     *
+     * @mbggenerated
+     */
     private Integer tagId;
 
     private static final long serialVersionUID = 1L;
