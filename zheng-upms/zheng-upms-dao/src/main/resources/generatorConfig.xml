@@ -8,13 +8,12 @@
     <!-- mysql驱动包 -->
     <classPathEntry location="${classPathEntry}" />
 
-    <context id="context" targetRuntime="MyBatis3">
+    <context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
 
         <property name="javaFileEncoding" value="UTF-8"/>
-
-        <!-- 由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写，所以还要将这两个默认值改为**反单引号(`)**，配置如下：  -->
-        <property name="beginningDelimiter" value=""/>
-        <property name="endingDelimiter" value=""/>
+        <!-- 由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写，所以还要将这两个默认值改为`  -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
 
         <!-- 为生成的Java模型创建一个toString方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
@@ -24,7 +23,7 @@
             <property name="suppressJavaInterface" value="false"/>
         </plugin>
 
-        <!-- 生成一个新的selectByExample方法，这个方法可以接受一个RowBounds参数，主要用来实现分页 -->
+        <!-- 生成一个新的selectByExample方法，这个方法可以接收offset和limit参数，主要用来实现分页 -->
         <plugin type="com.zheng.common.plugin.PaginationPlugin"></plugin>
 
         <!-- 生成在XML中的<cache>元素 -->
@@ -44,8 +43,9 @@
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
 
         <!-- 生成的代码去掉注释 -->
-        <commentGenerator>
+        <commentGenerator type="com.zheng.common.plugin.CommentGenerator">
             <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true"/>
         </commentGenerator>
 
         <!-- 数据库连接 -->
@@ -55,13 +55,13 @@
                         password="${jdbc.password}" />
 
         <!-- model生成 -->
-        <javaModelGenerator targetPackage="com.zheng.upms.dao.model" targetProject="src/main/java" />
+        <javaModelGenerator targetPackage="com.zheng.upms.dao.model" targetProject="zheng-upms/zheng-upms-dao/src/main/java" />
 
         <!-- MapperXML生成 -->
-        <sqlMapGenerator targetPackage="com.zheng.upms.dao.mapper" targetProject="src/main/java" />
+        <sqlMapGenerator targetPackage="com.zheng.upms.dao.mapper" targetProject="zheng-upms/zheng-upms-dao/src/main/java" />
 
         <!-- Mapper接口生成 -->
-        <javaClientGenerator targetPackage="com.zheng.upms.dao.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="com.zheng.upms.dao.mapper" targetProject="zheng-upms/zheng-upms-dao/src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
                 <table tableName="upms_organization" domainObjectName="UpmsOrganization"></table>

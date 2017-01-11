@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UpmsRoleMapper {
-    int countByExample(UpmsRoleExample example);
+    long countByExample(UpmsRoleExample example);
 
     int deleteByExample(UpmsRoleExample example);
 

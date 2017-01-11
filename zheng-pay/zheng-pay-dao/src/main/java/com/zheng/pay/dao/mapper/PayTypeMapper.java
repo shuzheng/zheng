@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PayTypeMapper {
-    int countByExample(PayTypeExample example);
+    long countByExample(PayTypeExample example);
 
     int deleteByExample(PayTypeExample example);
 

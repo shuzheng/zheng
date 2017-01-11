@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zheng.pay.dao.mapper.PayInOrderDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.zheng.pay.dao.model.PayInOrderDetail" >
-    <id column="pay_in_order_detail_id" property="payInOrderDetailId" jdbcType="INTEGER" />
-    <result column="pay_in_order_id" property="payInOrderId" jdbcType="INTEGER" />
-    <result column="product_id" property="productId" jdbcType="VARCHAR" />
-    <result column="product_name" property="productName" jdbcType="VARCHAR" />
-    <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
-    <result column="product_count" property="productCount" jdbcType="INTEGER" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.pay.dao.mapper.PayInOrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.zheng.pay.dao.model.PayInOrderDetail">
+    <id column="pay_in_order_detail_id" jdbcType="INTEGER" property="payInOrderDetailId" />
+    <result column="pay_in_order_id" jdbcType="INTEGER" property="payInOrderId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
+    <result column="product_count" jdbcType="INTEGER" property="productCount" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -39,25 +39,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -68,49 +68,49 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     pay_in_order_detail_id, pay_in_order_id, product_id, product_name, product_price, 
     product_count, remark
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zheng.pay.dao.model.PayInOrderDetailExample" >
+  <select id="selectByExample" parameterType="com.zheng.pay.dao.model.PayInOrderDetailExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from pay_in_order_detail
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    <if test="limit != null" >
-      <if test="offset != null" >
+    <if test="limit != null">
+      <if test="offset != null">
         limit ${offset}, ${limit}
       </if>
-      <if test="offset == null" >
+      <if test="offset == null">
         limit ${limit}
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from pay_in_order_detail
     where pay_in_order_detail_id = #{payInOrderDetailId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pay_in_order_detail
     where pay_in_order_detail_id = #{payInOrderDetailId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.pay.dao.model.PayInOrderDetailExample" >
+  <delete id="deleteByExample" parameterType="com.zheng.pay.dao.model.PayInOrderDetailExample">
     delete from pay_in_order_detail
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.pay.dao.model.PayInOrderDetail" >
+  <insert id="insert" parameterType="com.zheng.pay.dao.model.PayInOrderDetail">
     insert into pay_in_order_detail (pay_in_order_detail_id, pay_in_order_id, 
       product_id, product_name, product_price, 
       product_count, remark)
@@ -118,91 +118,91 @@
       #{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productPrice,jdbcType=DECIMAL}, 
       #{productCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.pay.dao.model.PayInOrderDetail" >
+  <insert id="insertSelective" parameterType="com.zheng.pay.dao.model.PayInOrderDetail">
     insert into pay_in_order_detail
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="payInOrderDetailId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payInOrderDetailId != null">
         pay_in_order_detail_id,
       </if>
-      <if test="payInOrderId != null" >
+      <if test="payInOrderId != null">
         pay_in_order_id,
       </if>
-      <if test="productId != null" >
+      <if test="productId != null">
         product_id,
       </if>
-      <if test="productName != null" >
+      <if test="productName != null">
         product_name,
       </if>
-      <if test="productPrice != null" >
+      <if test="productPrice != null">
         product_price,
       </if>
-      <if test="productCount != null" >
+      <if test="productCount != null">
         product_count,
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="payInOrderDetailId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payInOrderDetailId != null">
         #{payInOrderDetailId,jdbcType=INTEGER},
       </if>
-      <if test="payInOrderId != null" >
+      <if test="payInOrderId != null">
         #{payInOrderId,jdbcType=INTEGER},
       </if>
-      <if test="productId != null" >
+      <if test="productId != null">
         #{productId,jdbcType=VARCHAR},
       </if>
-      <if test="productName != null" >
+      <if test="productName != null">
         #{productName,jdbcType=VARCHAR},
       </if>
-      <if test="productPrice != null" >
+      <if test="productPrice != null">
         #{productPrice,jdbcType=DECIMAL},
       </if>
-      <if test="productCount != null" >
+      <if test="productCount != null">
         #{productCount,jdbcType=INTEGER},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.pay.dao.model.PayInOrderDetailExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.zheng.pay.dao.model.PayInOrderDetailExample" resultType="java.lang.Long">
     select count(*) from pay_in_order_detail
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update pay_in_order_detail
-    <set >
-      <if test="record.payInOrderDetailId != null" >
+    <set>
+      <if test="record.payInOrderDetailId != null">
         pay_in_order_detail_id = #{record.payInOrderDetailId,jdbcType=INTEGER},
       </if>
-      <if test="record.payInOrderId != null" >
+      <if test="record.payInOrderId != null">
         pay_in_order_id = #{record.payInOrderId,jdbcType=INTEGER},
       </if>
-      <if test="record.productId != null" >
+      <if test="record.productId != null">
         product_id = #{record.productId,jdbcType=VARCHAR},
       </if>
-      <if test="record.productName != null" >
+      <if test="record.productName != null">
         product_name = #{record.productName,jdbcType=VARCHAR},
       </if>
-      <if test="record.productPrice != null" >
+      <if test="record.productPrice != null">
         product_price = #{record.productPrice,jdbcType=DECIMAL},
       </if>
-      <if test="record.productCount != null" >
+      <if test="record.productCount != null">
         product_count = #{record.productCount,jdbcType=INTEGER},
       </if>
-      <if test="record.remark != null" >
+      <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update pay_in_order_detail
     set pay_in_order_detail_id = #{record.payInOrderDetailId,jdbcType=INTEGER},
       pay_in_order_id = #{record.payInOrderId,jdbcType=INTEGER},
@@ -211,35 +211,35 @@
       product_price = #{record.productPrice,jdbcType=DECIMAL},
       product_count = #{record.productCount,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.pay.dao.model.PayInOrderDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.pay.dao.model.PayInOrderDetail">
     update pay_in_order_detail
-    <set >
-      <if test="payInOrderId != null" >
+    <set>
+      <if test="payInOrderId != null">
         pay_in_order_id = #{payInOrderId,jdbcType=INTEGER},
       </if>
-      <if test="productId != null" >
+      <if test="productId != null">
         product_id = #{productId,jdbcType=VARCHAR},
       </if>
-      <if test="productName != null" >
+      <if test="productName != null">
         product_name = #{productName,jdbcType=VARCHAR},
       </if>
-      <if test="productPrice != null" >
+      <if test="productPrice != null">
         product_price = #{productPrice,jdbcType=DECIMAL},
       </if>
-      <if test="productCount != null" >
+      <if test="productCount != null">
         product_count = #{productCount,jdbcType=INTEGER},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where pay_in_order_detail_id = #{payInOrderDetailId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.pay.dao.model.PayInOrderDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.zheng.pay.dao.model.PayInOrderDetail">
     update pay_in_order_detail
     set pay_in_order_id = #{payInOrderId,jdbcType=INTEGER},
       product_id = #{productId,jdbcType=VARCHAR},

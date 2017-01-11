@@ -17,7 +17,7 @@ public class Generator {
 	private static String JDBC_PASSWORD = PropertiesFileUtil.getInstance("jdbc").get("jdbc.password");
 
 	/**
-	 * 根据模板生成generatorConfig.xml文件
+	 * 自动代码生成
 	 * @param args
 	 */
 	public static void main(String[] args) {

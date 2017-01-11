@@ -1,4 +1,4 @@
-package com.zheng.wechat.mp.dao;
+package com.zheng.upms.dao;
 
 import com.zheng.common.util.MybatisGeneratorConfigUtil;
 import com.zheng.common.util.PropertiesFileUtil;
@@ -17,7 +17,7 @@ public class Generator {
 	private static String JDBC_PASSWORD = PropertiesFileUtil.getInstance("jdbc").get("jdbc.password");
 
 	/**
-	 * 根据模板生成generatorConfig.xml文件
+	 * 自动代码生成
 	 * @param args
 	 */
 	public static void main(String[] args) {

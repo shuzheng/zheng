@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zheng.pay.dao.mapper.PayTypeMapper" >
-  <resultMap id="BaseResultMap" type="com.zheng.pay.dao.model.PayType" >
-    <id column="pay_type_id" property="payTypeId" jdbcType="INTEGER" />
-    <result column="pay_mch_id" property="payMchId" jdbcType="INTEGER" />
-    <result column="pay_vendor_id" property="payVendorId" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.pay.dao.mapper.PayTypeMapper">
+  <resultMap id="BaseResultMap" type="com.zheng.pay.dao.model.PayType">
+    <id column="pay_type_id" jdbcType="INTEGER" property="payTypeId" />
+    <result column="pay_mch_id" jdbcType="INTEGER" property="payMchId" />
+    <result column="pay_vendor_id" jdbcType="INTEGER" property="payVendorId" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -35,25 +35,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -64,123 +64,123 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     pay_type_id, pay_mch_id, pay_vendor_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zheng.pay.dao.model.PayTypeExample" >
+  <select id="selectByExample" parameterType="com.zheng.pay.dao.model.PayTypeExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from pay_type
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    <if test="limit != null" >
-      <if test="offset != null" >
+    <if test="limit != null">
+      <if test="offset != null">
         limit ${offset}, ${limit}
       </if>
-      <if test="offset == null" >
+      <if test="offset == null">
         limit ${limit}
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from pay_type
     where pay_type_id = #{payTypeId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pay_type
     where pay_type_id = #{payTypeId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.pay.dao.model.PayTypeExample" >
+  <delete id="deleteByExample" parameterType="com.zheng.pay.dao.model.PayTypeExample">
     delete from pay_type
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.pay.dao.model.PayType" >
+  <insert id="insert" parameterType="com.zheng.pay.dao.model.PayType">
     insert into pay_type (pay_type_id, pay_mch_id, pay_vendor_id
       )
     values (#{payTypeId,jdbcType=INTEGER}, #{payMchId,jdbcType=INTEGER}, #{payVendorId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.pay.dao.model.PayType" >
+  <insert id="insertSelective" parameterType="com.zheng.pay.dao.model.PayType">
     insert into pay_type
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="payTypeId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payTypeId != null">
         pay_type_id,
       </if>
-      <if test="payMchId != null" >
+      <if test="payMchId != null">
         pay_mch_id,
       </if>
-      <if test="payVendorId != null" >
+      <if test="payVendorId != null">
         pay_vendor_id,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="payTypeId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payTypeId != null">
         #{payTypeId,jdbcType=INTEGER},
       </if>
-      <if test="payMchId != null" >
+      <if test="payMchId != null">
         #{payMchId,jdbcType=INTEGER},
       </if>
-      <if test="payVendorId != null" >
+      <if test="payVendorId != null">
         #{payVendorId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.pay.dao.model.PayTypeExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.zheng.pay.dao.model.PayTypeExample" resultType="java.lang.Long">
     select count(*) from pay_type
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update pay_type
-    <set >
-      <if test="record.payTypeId != null" >
+    <set>
+      <if test="record.payTypeId != null">
         pay_type_id = #{record.payTypeId,jdbcType=INTEGER},
       </if>
-      <if test="record.payMchId != null" >
+      <if test="record.payMchId != null">
         pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
       </if>
-      <if test="record.payVendorId != null" >
+      <if test="record.payVendorId != null">
         pay_vendor_id = #{record.payVendorId,jdbcType=INTEGER},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update pay_type
     set pay_type_id = #{record.payTypeId,jdbcType=INTEGER},
       pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
       pay_vendor_id = #{record.payVendorId,jdbcType=INTEGER}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.pay.dao.model.PayType" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.pay.dao.model.PayType">
     update pay_type
-    <set >
-      <if test="payMchId != null" >
+    <set>
+      <if test="payMchId != null">
         pay_mch_id = #{payMchId,jdbcType=INTEGER},
       </if>
-      <if test="payVendorId != null" >
+      <if test="payVendorId != null">
         pay_vendor_id = #{payVendorId,jdbcType=INTEGER},
       </if>
     </set>
     where pay_type_id = #{payTypeId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.pay.dao.model.PayType" >
+  <update id="updateByPrimaryKey" parameterType="com.zheng.pay.dao.model.PayType">
     update pay_type
     set pay_mch_id = #{payMchId,jdbcType=INTEGER},
       pay_vendor_id = #{payVendorId,jdbcType=INTEGER}
