@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class PayInOrder implements Serializable {
     private Integer payInOrderId;
 
-    private Integer payMchId;
-
     private Integer payVendorId;
+
+    private Integer payMchId;
 
     private Long amount;
 
@@ -25,20 +25,20 @@ public class PayInOrder implements Serializable {
         this.payInOrderId = payInOrderId;
     }
 
-    public Integer getPayMchId() {
-        return payMchId;
-    }
-
-    public void setPayMchId(Integer payMchId) {
-        this.payMchId = payMchId;
-    }
-
     public Integer getPayVendorId() {
         return payVendorId;
     }
 
     public void setPayVendorId(Integer payVendorId) {
         this.payVendorId = payVendorId;
+    }
+
+    public Integer getPayMchId() {
+        return payMchId;
+    }
+
+    public void setPayMchId(Integer payMchId) {
+        this.payMchId = payMchId;
     }
 
     public Long getAmount() {
@@ -72,8 +72,8 @@ public class PayInOrder implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", payInOrderId=").append(payInOrderId);
-        sb.append(", payMchId=").append(payMchId);
         sb.append(", payVendorId=").append(payVendorId);
+        sb.append(", payMchId=").append(payMchId);
         sb.append(", amount=").append(amount);
         sb.append(", status=").append(status);
         sb.append(", ctime=").append(ctime);
@@ -94,8 +94,8 @@ public class PayInOrder implements Serializable {
         }
         PayInOrder other = (PayInOrder) that;
         return (this.getPayInOrderId() == null ? other.getPayInOrderId() == null : this.getPayInOrderId().equals(other.getPayInOrderId()))
-            && (this.getPayMchId() == null ? other.getPayMchId() == null : this.getPayMchId().equals(other.getPayMchId()))
             && (this.getPayVendorId() == null ? other.getPayVendorId() == null : this.getPayVendorId().equals(other.getPayVendorId()))
+            && (this.getPayMchId() == null ? other.getPayMchId() == null : this.getPayMchId().equals(other.getPayMchId()))
             && (this.getAmount() == null ? other.getAmount() == null : this.getAmount().equals(other.getAmount()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()));
@@ -106,8 +106,8 @@ public class PayInOrder implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getPayInOrderId() == null) ? 0 : getPayInOrderId().hashCode());
-        result = prime * result + ((getPayMchId() == null) ? 0 : getPayMchId().hashCode());
         result = prime * result + ((getPayVendorId() == null) ? 0 : getPayVendorId().hashCode());
+        result = prime * result + ((getPayMchId() == null) ? 0 : getPayMchId().hashCode());
         result = prime * result + ((getAmount() == null) ? 0 : getAmount().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());

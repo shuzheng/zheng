@@ -3,8 +3,8 @@
 <mapper namespace="com.zheng.pay.dao.mapper.PayInOrderMapper">
   <resultMap id="BaseResultMap" type="com.zheng.pay.dao.model.PayInOrder">
     <id column="pay_in_order_id" jdbcType="INTEGER" property="payInOrderId" />
-    <result column="pay_mch_id" jdbcType="INTEGER" property="payMchId" />
     <result column="pay_vendor_id" jdbcType="INTEGER" property="payVendorId" />
+    <result column="pay_mch_id" jdbcType="INTEGER" property="payMchId" />
     <result column="amount" jdbcType="DECIMAL" property="amount" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    pay_in_order_id, pay_mch_id, pay_vendor_id, amount, status, ctime
+    pay_in_order_id, pay_vendor_id, pay_mch_id, amount, status, ctime
   </sql>
   <select id="selectByExample" parameterType="com.zheng.pay.dao.model.PayInOrderExample" resultMap="BaseResultMap">
     select
@@ -109,10 +109,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.pay.dao.model.PayInOrder">
-    insert into pay_in_order (pay_in_order_id, pay_mch_id, pay_vendor_id, 
+    insert into pay_in_order (pay_in_order_id, pay_vendor_id, pay_mch_id, 
       amount, status, ctime
       )
-    values (#{payInOrderId,jdbcType=INTEGER}, #{payMchId,jdbcType=INTEGER}, #{payVendorId,jdbcType=INTEGER}, 
+    values (#{payInOrderId,jdbcType=INTEGER}, #{payVendorId,jdbcType=INTEGER}, #{payMchId,jdbcType=INTEGER}, 
       #{amount,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT}
       )
   </insert>
@@ -122,11 +122,11 @@
       <if test="payInOrderId != null">
         pay_in_order_id,
       </if>
-      <if test="payMchId != null">
-        pay_mch_id,
-      </if>
       <if test="payVendorId != null">
         pay_vendor_id,
+      </if>
+      <if test="payMchId != null">
+        pay_mch_id,
       </if>
       <if test="amount != null">
         amount,
@@ -142,11 +142,11 @@
       <if test="payInOrderId != null">
         #{payInOrderId,jdbcType=INTEGER},
       </if>
-      <if test="payMchId != null">
-        #{payMchId,jdbcType=INTEGER},
-      </if>
       <if test="payVendorId != null">
         #{payVendorId,jdbcType=INTEGER},
+      </if>
+      <if test="payMchId != null">
+        #{payMchId,jdbcType=INTEGER},
       </if>
       <if test="amount != null">
         #{amount,jdbcType=DECIMAL},
@@ -171,11 +171,11 @@
       <if test="record.payInOrderId != null">
         pay_in_order_id = #{record.payInOrderId,jdbcType=INTEGER},
       </if>
-      <if test="record.payMchId != null">
-        pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
-      </if>
       <if test="record.payVendorId != null">
         pay_vendor_id = #{record.payVendorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payMchId != null">
+        pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
       </if>
       <if test="record.amount != null">
         amount = #{record.amount,jdbcType=DECIMAL},
@@ -194,8 +194,8 @@
   <update id="updateByExample" parameterType="map">
     update pay_in_order
     set pay_in_order_id = #{record.payInOrderId,jdbcType=INTEGER},
-      pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
       pay_vendor_id = #{record.payVendorId,jdbcType=INTEGER},
+      pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
       amount = #{record.amount,jdbcType=DECIMAL},
       status = #{record.status,jdbcType=TINYINT},
       ctime = #{record.ctime,jdbcType=BIGINT}
@@ -206,11 +206,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zheng.pay.dao.model.PayInOrder">
     update pay_in_order
     <set>
-      <if test="payMchId != null">
-        pay_mch_id = #{payMchId,jdbcType=INTEGER},
-      </if>
       <if test="payVendorId != null">
         pay_vendor_id = #{payVendorId,jdbcType=INTEGER},
+      </if>
+      <if test="payMchId != null">
+        pay_mch_id = #{payMchId,jdbcType=INTEGER},
       </if>
       <if test="amount != null">
         amount = #{amount,jdbcType=DECIMAL},
@@ -226,8 +226,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.pay.dao.model.PayInOrder">
     update pay_in_order
-    set pay_mch_id = #{payMchId,jdbcType=INTEGER},
-      pay_vendor_id = #{payVendorId,jdbcType=INTEGER},
+    set pay_vendor_id = #{payVendorId,jdbcType=INTEGER},
+      pay_mch_id = #{payMchId,jdbcType=INTEGER},
       amount = #{amount,jdbcType=DECIMAL},
       status = #{status,jdbcType=TINYINT},
       ctime = #{ctime,jdbcType=BIGINT}

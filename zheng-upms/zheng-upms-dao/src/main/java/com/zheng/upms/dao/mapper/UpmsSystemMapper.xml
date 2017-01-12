@@ -5,7 +5,7 @@
     <id column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="basepath" jdbcType="VARCHAR" property="basepath" />
-    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="status" jdbcType="TINYINT" property="status" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
     <result column="orders" jdbcType="BIGINT" property="orders" />
@@ -114,7 +114,7 @@
       status, name, ctime, 
       orders)
     values (#{systemId,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{basepath,jdbcType=VARCHAR}, 
-      #{status,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, 
       #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsSystem">
@@ -153,7 +153,7 @@
         #{basepath,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=SMALLINT},
+        #{status,jdbcType=TINYINT},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -185,7 +185,7 @@
         basepath = #{record.basepath,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=SMALLINT},
+        status = #{record.status,jdbcType=TINYINT},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -206,7 +206,7 @@
     set system_id = #{record.systemId,jdbcType=INTEGER},
       icon = #{record.icon,jdbcType=VARCHAR},
       basepath = #{record.basepath,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=SMALLINT},
+      status = #{record.status,jdbcType=TINYINT},
       name = #{record.name,jdbcType=VARCHAR},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT}
@@ -224,7 +224,7 @@
         basepath = #{basepath,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=SMALLINT},
+        status = #{status,jdbcType=TINYINT},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -242,7 +242,7 @@
     update upms_system
     set icon = #{icon,jdbcType=VARCHAR},
       basepath = #{basepath,jdbcType=VARCHAR},
-      status = #{status,jdbcType=SMALLINT},
+      status = #{status,jdbcType=TINYINT},
       name = #{name,jdbcType=VARCHAR},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT}

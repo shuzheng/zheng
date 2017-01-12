@@ -187,66 +187,6 @@ public class PayInOrderExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andPayMchIdIsNull() {
-            addCriterion("pay_mch_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdIsNotNull() {
-            addCriterion("pay_mch_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdEqualTo(Integer value) {
-            addCriterion("pay_mch_id =", value, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdNotEqualTo(Integer value) {
-            addCriterion("pay_mch_id <>", value, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdGreaterThan(Integer value) {
-            addCriterion("pay_mch_id >", value, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("pay_mch_id >=", value, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdLessThan(Integer value) {
-            addCriterion("pay_mch_id <", value, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdLessThanOrEqualTo(Integer value) {
-            addCriterion("pay_mch_id <=", value, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdIn(List<Integer> values) {
-            addCriterion("pay_mch_id in", values, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdNotIn(List<Integer> values) {
-            addCriterion("pay_mch_id not in", values, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdBetween(Integer value1, Integer value2) {
-            addCriterion("pay_mch_id between", value1, value2, "payMchId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayMchIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("pay_mch_id not between", value1, value2, "payMchId");
-            return (Criteria) this;
-        }
-
         public Criteria andPayVendorIdIsNull() {
             addCriterion("pay_vendor_id is null");
             return (Criteria) this;
@@ -304,6 +244,66 @@ public class PayInOrderExample implements Serializable {
 
         public Criteria andPayVendorIdNotBetween(Integer value1, Integer value2) {
             addCriterion("pay_vendor_id not between", value1, value2, "payVendorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdIsNull() {
+            addCriterion("pay_mch_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdIsNotNull() {
+            addCriterion("pay_mch_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdEqualTo(Integer value) {
+            addCriterion("pay_mch_id =", value, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdNotEqualTo(Integer value) {
+            addCriterion("pay_mch_id <>", value, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdGreaterThan(Integer value) {
+            addCriterion("pay_mch_id >", value, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pay_mch_id >=", value, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdLessThan(Integer value) {
+            addCriterion("pay_mch_id <", value, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdLessThanOrEqualTo(Integer value) {
+            addCriterion("pay_mch_id <=", value, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdIn(List<Integer> values) {
+            addCriterion("pay_mch_id in", values, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdNotIn(List<Integer> values) {
+            addCriterion("pay_mch_id not in", values, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdBetween(Integer value1, Integer value2) {
+            addCriterion("pay_mch_id between", value1, value2, "payMchId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMchIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("pay_mch_id not between", value1, value2, "payMchId");
             return (Criteria) this;
         }
 
