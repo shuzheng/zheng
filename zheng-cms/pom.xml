@@ -22,7 +22,6 @@
         <module>zheng-cms-dao</module>
         <module>zheng-cms-rpc-api</module>
         <module>zheng-cms-rpc-service</module>
-        <module>zheng-cms-service</module>
         <module>zheng-cms-web</module>
         <module>zheng-cms-job</module>
         <module>zheng-cms-search</module>
@@ -40,12 +39,6 @@
             <dependency>
                 <groupId>com.zheng</groupId>
                 <artifactId>zheng-cms-dao</artifactId>
-                <version>${project.version}</version>
-                <type>jar</type>
-            </dependency>
-            <dependency>
-                <groupId>com.zheng</groupId>
-                <artifactId>zheng-cms-service</artifactId>
                 <version>${project.version}</version>
                 <type>jar</type>
             </dependency>
