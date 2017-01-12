@@ -85,7 +85,6 @@ public class CmsArticleController extends BaseController {
 		cmsArticle.setOrders(time);
 		int count = cmsArticleService.insertSelective(cmsArticle);
 		modelMap.put("count", count);
-		_log.info("新增记录id为：{}", cmsArticle.getArticleId());
 		return "redirect:/manage/article/list";
 	}
 
