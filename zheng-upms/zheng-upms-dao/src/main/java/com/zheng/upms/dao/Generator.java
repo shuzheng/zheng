@@ -1,6 +1,6 @@
 package com.zheng.upms.dao;
 
-import com.zheng.common.util.MybatisGeneratorConfigUtil;
+import com.zheng.common.util.MybatisGeneratorUtil;
 import com.zheng.common.util.PropertiesFileUtil;
 
 /**
@@ -21,7 +21,7 @@ public class Generator {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MybatisGeneratorConfigUtil.generator(JDBC_DRIVER, JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD, MODULE_PREFIX_NAME);
+		MybatisGeneratorUtil.generator(JDBC_DRIVER, JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD, MODULE_PREFIX_NAME);
 	}
 
 }

@@ -32,7 +32,7 @@ public class JmsUtil {
      * @param destination
      * @param objectMessage
      */
-    public void sendMessage(JmsTemplate jmsTemplate, Destination destination, final Serializable objectMessage) {
+    public static void sendMessage(JmsTemplate jmsTemplate, Destination destination, final Serializable objectMessage) {
         jmsTemplate.send(destination, new MessageCreator() {
             public Message createMessage(Session session) throws JMSException {
                 return session.createObjectMessage(objectMessage);
@@ -47,7 +47,7 @@ public class JmsUtil {
      * @param objectMessage
      * @param delay
      */
-    public void sendMessageDelay(JmsTemplate jmsTemplate, Destination destination, final Serializable objectMessage, final long delay) {
+    public static void sendMessageDelay(JmsTemplate jmsTemplate, Destination destination, final Serializable objectMessage, final long delay) {
         jmsTemplate.send(destination, new MessageCreator() {
             public Message createMessage(Session session) throws JMSException {
                 ObjectMessage om = session.createObjectMessage(objectMessage);
