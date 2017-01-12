@@ -68,13 +68,20 @@
     <filter>
         <filter-name>zheng-upms-client</filter-name>
         <filter-class>com.zheng.upms.sso.client.filter.SSOFilter</filter-class>
+        <!-- 系统名称 -->
         <init-param>
             <param-name>system_name</param-name>
             <param-value>zheng-cms-admin</param-value>
         </init-param>
+        <!-- SSO认证中心 -->
         <init-param>
             <param-name>sso_server_url</param-name>
             <param-value>http://upms.zhangshuzheng.cn:1111</param-value>
+        </init-param>
+        <!-- 开发模式 -->
+        <init-param>
+            <param-name>sso_debug</param-name>
+            <param-value>true</param-value>
         </init-param>
     </filter>
     <filter-mapping>
