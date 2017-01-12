@@ -1,9 +1,9 @@
 package com.zheng.cms.admin.controller.manage;
 
+import com.zheng.cms.admin.controller.BaseController;
 import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
 import com.zheng.cms.rpc.api.CmsArticleService;
-import com.zheng.cms.web.controller.BaseController;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
