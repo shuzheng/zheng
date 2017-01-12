@@ -3,6 +3,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
+交流QQ群：133107819
+
 # 项目组织结构
 ``` lua
 zheng
@@ -148,6 +150,3 @@ zheng
 
 # 拓扑图
 ![拓扑图](project-bootstrap/distributedSystem.png)
-
-# 交流群
-QQ群：133107819
