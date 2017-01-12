@@ -18,7 +18,7 @@ public class ManageInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		_log.info("ManageInterceptor==>preHandle");
+
 		return true;
 	}
 

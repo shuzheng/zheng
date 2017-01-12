@@ -21,35 +21,6 @@
 		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-close"></i> 删除用户</a>
 	</div>
 	<table id="table"></table>
-	<!--
-	<table data-toggle="table" 
-		data-url="data/data1.json"
-		data-classes="table table-hover table-condensed"
-		data-striped="true"
-		data-search="true"
-		data-show-refresh="true"
-		data-show-toggle="true"
-		data-show-columns="true"
-		data-click-to-select="true"
-		data-toolbar="#toolbar">
-		<thead>
-		<tr>
-			<th data-field="state" data-checkbox="true"></th>
-			<th data-field="id" data-sortable="true">编号</th>
-			<th data-field="username" data-sortable="true">账号</th>
-			<th data-field="password" data-sortable="true">密码</th>
-			<th data-field="name" data-sortable="true">姓名</th>
-			<th data-field="sex" data-sortable="true">性别</th>
-			<th data-field="age" data-sortable="true">年龄</th>
-			<th data-field="phone" data-sortable="true">电话</th>
-			<th data-field="email" data-sortable="true">邮箱</th>
-			<th data-field="address" data-sortable="true">地址</th>
-			<th data-field="remark" data-sortable="true">备注</th>
-			<th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">操作</th>
-		</tr>
-		</thead>
-	</table>
-	-->
 </div>
 <script src="plugins/jquery.1.12.4.min.js"></script>
 <script src="plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
@@ -62,7 +33,6 @@
 $(function() {
 	// bootstrap table初始化
 	$('#table').bootstrapTable({
-		idField: 'id',
 		url: 'data/data1.json',
 		height: getHeight(),
 		striped: true,

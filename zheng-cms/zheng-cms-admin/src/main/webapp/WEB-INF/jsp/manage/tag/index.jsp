@@ -11,7 +11,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>通用增删改查</title>
+	<title>标签列表</title>
 
 	<link href="${basePath}/resources/zheng-admin/plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-admin/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
@@ -23,9 +23,9 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-plus"></i> 新增用户</a>
-		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-edit"></i> 编辑用户</a>
-		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-close"></i> 删除用户</a>
+		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-plus"></i> 新增标签</a>
+		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-edit"></i> 编辑标签</a>
+		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-close"></i> 删除标签</a>
 	</div>
 	<table id="table"></table>
 </div>
@@ -40,8 +40,7 @@
 	$(function() {
 		// bootstrap table初始化
 		$('#table').bootstrapTable({
-			idField: 'id',
-			url: '${basePath}/resources/zheng-admin/data/data1.json',
+			url: '${basePath}/manage/tag/list',
 			height: getHeight(),
 			striped: true,
 			search: true,
@@ -57,23 +56,20 @@
 			pagination: true,
 			paginationLoop: false,
 			classes: 'table table-hover table-no-bordered',
-			//sidePagination: 'server',
-			idField: 'id',
-			sortName: 'id',
+			sidePagination: 'server',
+			idField: 'tag_id',
+			sortName: 'tag_id',
 			sortOrder: 'desc',
 			toolbar: '#toolbar',
 			columns: [
 				{field: 'state', checkbox: true},
-				{field: 'id', title: '编号', sortable: true, halign: 'center'},
-				{field: 'username', title: '账号', sortable: true, halign: 'center'},
-				{field: 'password', title: '密码', sortable: true, halign: 'center'},
-				{field: 'name', title: '姓名', sortable: true, halign: 'center'},
-				{field: 'sex', title: '性别', sortable: true, halign: 'center'},
-				{field: 'age', title: '年龄', sortable: true, halign: 'center'},
-				{field: 'phone', title: '年龄', sortable: true, halign: 'center'},
-				{field: 'email', title: '邮箱', sortable: true, halign: 'center'},
-				{field: 'address', title: '地址', sortable: true, halign: 'center'},
-				{field: 'remark', title: '备注', sortable: true, halign: 'center'},
+				{field: 'tagId', title: '编号', sortable: true, halign: 'center'},
+				{field: 'name', title: '标签名称', sortable: true, halign: 'center'},
+				{field: 'description', title: '标签描述', sortable: true, halign: 'center'},
+				{field: 'icon', title: '图标', sortable: true, halign: 'center'},
+				{field: 'type', title: '类型', sortable: true, halign: 'center'},
+				{field: 'alias', title: '别名', sortable: true, halign: 'center'},
+				{field: 'ctime', title: '创建时间', sortable: true, halign: 'center'},
 				{field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents'}
 			]
 		}).on('all.bs.table', function (e, name, args) {
