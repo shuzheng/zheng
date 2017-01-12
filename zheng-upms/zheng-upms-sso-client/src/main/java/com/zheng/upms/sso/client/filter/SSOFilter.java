@@ -33,6 +33,7 @@ public class SSOFilter implements Filter {
 
     private String SYSTEM_NAME = "system_name";
     private String SSO_SERVER_URL = "sso_server_url";
+    private String SSO_DEBUG = "sso_debug";
     private FilterConfig filterConfig;
 
     @Override
@@ -44,6 +45,14 @@ public class SSOFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+        // 是否开发模式，为true则直接放行
+        String sso_debug = filterConfig.getInitParameter(SSO_DEBUG);
+        if (null != sso_debug && "true".equals(sso_debug)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // 分配单点登录sessionId，不使用session获取会话id，改为cookie，防止session丢失
         String sessionId = request.getSession().getId();
 
