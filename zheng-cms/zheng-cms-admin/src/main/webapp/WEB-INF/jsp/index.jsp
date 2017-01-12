@@ -12,6 +12,6 @@
     <title>首页</title>
 </head>
 <body>
-
+<a href="${basePath}/manage">后台首页</a>
 </body>
 </html>

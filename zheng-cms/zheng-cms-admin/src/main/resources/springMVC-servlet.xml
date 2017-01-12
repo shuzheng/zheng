@@ -8,6 +8,20 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	
+	<!-- 根目录'/'对应页面 -->
+	<mvc:view-controller path="/" view-name="/index"/>
+
+	<!-- 拦截器配置 -->
+	<mvc:interceptors>
+		<!-- 后台拦截器 -->
+		<mvc:interceptor>
+			<!-- 拦截路径 -->
+			<mvc:mapping path="/manage/**"/>
+			<!-- 非拦截路径 -->
+			<mvc:exclude-mapping path="/manage/login"/>
+			<!-- 拦截器对象 -->
+			<bean id="manageInterceptor" class="com.zheng.cms.admin.Interceptor.ManageInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>
