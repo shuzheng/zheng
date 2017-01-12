@@ -17,9 +17,8 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-service</artifactId>
+            <artifactId>zheng-upms-rpc-api</artifactId>
             <version>1.0.0</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

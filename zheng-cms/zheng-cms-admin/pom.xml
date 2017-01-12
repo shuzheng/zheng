@@ -17,7 +17,13 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-cms-service</artifactId>
+            <artifactId>zheng-cms-rpc-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-admin</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
