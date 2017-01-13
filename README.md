@@ -22,7 +22,6 @@ zheng
 |    ├── zheng-cms-dao -- 数据库操作，MyBatisGenerator生成
 |    ├── zheng-cms-rpc-api -- rpc接口包
 |    ├── zheng-cms-rpc-service -- rpc服务提供者[端口:2225]
-|    ├── zheng-cms-service -- 业务逻辑
 |    ├── zheng-cms-search -- 搜索服务[端口:2221]
 |    ├── zheng-cms-admin -- 后台管理[端口:2222]
 |    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
