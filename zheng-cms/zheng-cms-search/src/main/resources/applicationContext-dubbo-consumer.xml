@@ -7,7 +7,7 @@
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
 
-	<dubbo:application name="zheng-upms-server"/>
+	<dubbo:application name="zheng-cms-search"/>
 
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
 
