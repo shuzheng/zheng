@@ -103,15 +103,15 @@ zheng
 
 #### 模块介绍
 
-##### zheng-common
+> zheng-common
 
 Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisGenerator扩展插件、通用BaseService、工具类等。
 
-##### zheng-admin
+> zheng-admin
 
 基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有系统都是使用该模块界面作为前端展示。
 
-##### zheng-upms
+> zheng-upms
 
 本系统是基于RBAC授权和基于用户授权的细粒度权限控制通用平台，并提供单点登录、会话管理和日志管理。接入的系统可自由定义组织、角色、权限、资源等。
 
@@ -125,7 +125,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 用户会话管理：提供分布式用户会话管理
 - 操作日志管理：提供记录用户登录、操作等日志。
 
-##### zheng-oss
+> zheng-oss
 
 文件存储系统，提供三种方案：
 
@@ -133,15 +133,15 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - **腾讯云** 对象存储COS
 - **七牛云** 对象存储
 
-##### zheng-api
+> zheng-api
 
 接口系统，包括开发加密接口、接口文档等对外开放服务。
 
-##### zheng-cms
+> zheng-cms
 
 内容管理系统：支持多标签、多类目、强大评论的内容管理，有基本单页展示，菜单管理，系统设置等功能。
 
-##### zheng-pay
+> zheng-pay
 
 一站式支付解决方案，统一下单接口，支持支付宝、微信、网银等多种支付方式。不涉及业务的纯粹的支付平台。
 
@@ -149,11 +149,11 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 - 统一下单（统一下单接口、统一扫码）、订单管理、数据分析、财务报表、商户管理、渠道管理、对账系统、系统监控
 
-##### zheng-ucenter
+> zheng-ucenter
 
 通用用户管理系统， 实现最常用的用户注册、登录、资料管理、个人中心、第三方登录等基本需求，支持扩展二次开发。
 
-##### zheng-wechat-mp
+> zheng-wechat-mp
 
 微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等
 
@@ -194,10 +194,6 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 * Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
 * dubbo-admin-2.5.3 [http://download.csdn.net/detail/shuzheng5201314/9733652](http://download.csdn.net/detail/shuzheng5201314/9733652 "dubbo-admin-2.5.3")
 * dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/detail/shuzheng5201314/9733657](http://download.csdn.net/detail/shuzheng5201314/9733657 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
-
-
-# 项目使用方法
-
 
 ## 开发指南:
 
