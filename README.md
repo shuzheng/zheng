@@ -11,7 +11,7 @@ zheng
 ├── zheng-common -- 公共模块
 ├── zheng-admin -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
 ├── zheng-upms -- 用户权限管理系统（网关）
-|    ├── zheng-upms-dao -- 数据库操作，MyBatisGenerator生成
+|    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-upms-sso-client -- SSO客户端依赖包
 |    ├── zheng-upms-rpc-api -- rpc接口包
 |    ├── zheng-upms-rpc-service -- rpc服务提供者[端口:1112]
@@ -19,7 +19,7 @@ zheng
 |    ├── zheng-upms-app2 -- SSO测试客户端2[端口:1114]
 |    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
-|    ├── zheng-cms-dao -- 数据库操作，MyBatisGenerator生成
+|    ├── zheng-cms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-cms-rpc-api -- rpc接口包
 |    ├── zheng-cms-rpc-service -- rpc服务提供者[端口:2225]
 |    ├── zheng-cms-search -- 搜索服务[端口:2221]
@@ -27,17 +27,17 @@ zheng
 |    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
 |    └── zheng-cms-web -- 网站前台[端口:2224]
 ├── zheng-pay -- 支付系统
-|    ├── zheng-pay-dao -- 数据库操作，MyBatisGenerator生成
+|    ├── zheng-pay-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-pay-service -- 业务逻辑
 |    ├── zheng-pay-sdk -- 开发工具包
 |    ├── zheng-pay-admin -- 后台管理[端口:3331]
 |    └── zheng-pay-web -- 演示示例[端口:3332]
 ├── zheng-ucenter -- 用户系统
-|    ├── zheng-ucenter-dao -- 数据库操作，MyBatisGenerator生成
+|    ├── zheng-ucenter-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-ucenter-service -- 业务逻辑
 |    └── zheng-ucenter-home -- 网站前台[端口:4441]
 |── zheng-wechat-mp -- 微信公众号管理系统
-|    ├── zheng-wechat-mp-dao -- 数据库操作，MyBatisGenerator生成
+|    ├── zheng-wechat-mp-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 ├── zheng-api -- 接口系统
@@ -123,6 +123,8 @@ zheng
     - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
 
 - 启动流程：优先rcp-service服务提供者，再启动其他webapp
+
+- 扩展流程：可扩展和拆分rpc-api和rpc-service模块，可按微服务拆分或场景拆分
 
 ### 资源下载链接
 * JDK7 [http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR "JDK7")
