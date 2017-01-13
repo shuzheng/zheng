@@ -109,6 +109,9 @@ zheng
 
 * 克隆源代码到本地并打开，推荐使用IntelliJ IDEA，本地编译并安装到本地maven仓
 
+### 编译流程
+
+* zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 ### 开发流程
 
