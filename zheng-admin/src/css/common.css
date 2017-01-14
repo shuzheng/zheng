@@ -1,12 +1,12 @@
 body, html {height: 100%; position: relative; font-family: 'Microsoft yahei'; font-size: 13px; font-weight: 400;}
 img {vertical-align: middle;}
-a, a:hover, a:active, a:focus {color: #29a176; text-decoration: none; -webkit-user-drag: none;}
+a, a:hover, a:active, a:focus {/*color: #29a176;*/ text-decoration: none; -webkit-user-drag: none;}
 a i{font-size: 13px;}
 
 #main{padding: 10px 20px;}
 
 
-.pagination>.active>a,
+/*.pagination>.active>a,
 .pagination>.active>span,
 .pagination>.active>a:hover,
 .pagination>.active>span:hover,
@@ -14,6 +14,6 @@ a i{font-size: 13px;}
 .pagination>.active>span:focus{background-color: #29a176; border-color: #29a176;}
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{color: #29a176;}
 .pagination>li>a, .pagination>li>span{color: #29a176;}
-.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{background-color: #29a176;}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{background-color: #29a176;}*/
 
 .bootstrap-table .table:not(.table-condensed), .bootstrap-table .table:not(.table-condensed)>tbody>tr>td, .bootstrap-table .table:not(.table-condensed)>tbody>tr>th, .bootstrap-table .table:not(.table-condensed)>tfoot>tr>td, .bootstrap-table .table:not(.table-condensed)>tfoot>tr>th, .bootstrap-table .table:not(.table-condensed)>thead>tr>td{padding: 12px 8px;}
