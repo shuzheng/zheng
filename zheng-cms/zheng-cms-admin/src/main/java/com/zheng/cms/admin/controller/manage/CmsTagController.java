@@ -4,15 +4,14 @@ import com.zheng.cms.admin.controller.BaseController;
 import com.zheng.cms.dao.model.CmsTag;
 import com.zheng.cms.dao.model.CmsTagExample;
 import com.zheng.cms.rpc.api.CmsTagService;
-import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -53,7 +52,9 @@ public class CmsTagController extends BaseController {
 		CmsTagExample cmsTagExample = new CmsTagExample();
 		cmsTagExample.setOffset(offset);
 		cmsTagExample.setLimit(limit);
-		cmsTagExample.setOrderByClause(sort + " " + order);
+		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+			cmsTagExample.setOrderByClause(sort + " " + order);
+		}
 		List<CmsTag> tags = cmsTagService.selectByExample(cmsTagExample);
 
 		// long total = cmsTagService.countByExample(cmsTagExample);
