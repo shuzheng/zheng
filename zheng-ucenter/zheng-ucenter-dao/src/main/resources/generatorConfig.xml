@@ -46,10 +46,10 @@
         </commentGenerator>
 
         <!-- 数据库连接 -->
-        <jdbcConnection driverClass="${jdbc.driver}"
-                        connectionURL="${jdbc.url}"
-                        userId="${jdbc.username}"
-                        password="${jdbc.password}" />
+        <jdbcConnection driverClass="${master.jdbc.driver}"
+                        connectionURL="${master.jdbc.url}"
+                        userId="${master.jdbc.username}"
+                        password="${master.jdbc.password}" />
 
         <!-- model生成 -->
         <javaModelGenerator targetPackage="com.zheng.ucenter.dao.model" targetProject="zheng-ucenter/zheng-ucenter-dao/src/main/java" />
