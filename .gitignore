@@ -3,4 +3,4 @@
 target
 *.log
 *.log.*
-zheng-admin
+**/resources/zheng-admin
