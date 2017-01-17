@@ -16,5 +16,6 @@
     <li><a href="${basePath}/manage/article/list">文章管理</a></li>
     <li><a href="${basePath}/manage/comment/list">评论管理</a></li>
 </ul>
+<p>以后菜单会移到zheng-upms中，并加以权限控制。以后统一通过zheng-upms登录并访问。</p>
 </body>
 </html>
