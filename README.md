@@ -19,7 +19,7 @@
 
 ``` lua
 zheng
-├── zheng-common -- 公共模块
+├── zheng-common -- SSM框架公共模块
 ├── zheng-admin -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
