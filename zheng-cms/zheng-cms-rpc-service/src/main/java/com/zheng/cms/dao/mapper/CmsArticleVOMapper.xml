@@ -8,9 +8,9 @@
 			u.id u_id,u.username,u.password,u.nickname,u.sex,u.ctime,u.content,
 			b.id b_id,b.userid,b.name
 		from
-			user u
+			cms_user u
 		left join
-			book b
+			cms_book b
 		on
 			u.id=b.userid
 		where
