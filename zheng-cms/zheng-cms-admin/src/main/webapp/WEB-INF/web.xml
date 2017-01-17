@@ -81,7 +81,7 @@
         <!-- 开发模式 -->
         <init-param>
             <param-name>sso_debug</param-name>
-            <param-value>true</param-value>
+            <param-value>false</param-value>
         </init-param>
     </filter>
     <filter-mapping>
