@@ -43,7 +43,7 @@ zheng
 |    ├── zheng-pay-sdk -- 开发工具包
 |    ├── zheng-pay-admin -- 后台管理[端口:3331]
 |    └── zheng-pay-web -- 演示示例[端口:3332]
-├── zheng-ucenter -- 用户系统
+├── zheng-ucenter -- 用户系统(包括第三方登录)
 |    ├── zheng-ucenter-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-ucenter-service -- 业务逻辑
 |    └── zheng-ucenter-home -- 网站前台[端口:4441]
