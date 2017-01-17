@@ -73,6 +73,12 @@
             <artifactId>spring-security-config</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
+        <!-- shiro -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.3.2</version>
+        </dependency>
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
