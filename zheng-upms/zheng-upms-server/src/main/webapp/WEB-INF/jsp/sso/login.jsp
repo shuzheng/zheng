@@ -20,17 +20,16 @@
 </head>
 <body>
 <div id="login-window">
-    <form id="login_form" method="post">
     <div class="input-group m-b-20">
         <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
         <div class="fg-line">
-            <input type="text" class="form-control" name="username" placeholder="帐号">
+            <input id="username" type="text" class="form-control" name="username" placeholder="帐号" required>
         </div>
     </div>
     <div class="input-group m-b-20">
         <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
         <div class="fg-line">
-            <input type="password" class="form-control" name="password" placeholder="密码">
+            <input id="password" type="password" class="form-control" name="password" placeholder="密码" required>
         </div>
     </div>
     <div class="clearfix">
@@ -42,13 +41,37 @@
             自动登录
         </label>
     </div>
-    <a id="login-bt" href="javascript:;" class="waves-effect waves-button waves-float" onclick="document.getElementById('login_form').submit();"><i class="zmdi zmdi-arrow-forward"></i></a>
-    </form>
+    <a id="login-bt" href="javascript:;" class="waves-effect waves-button waves-float"><i class="zmdi zmdi-arrow-forward"></i></a>
 </div>
 <script src="${basePath}/resources/zheng-admin/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/waves-0.7.5/waves.min.js"></script>
 
 <script src="${basePath}/resources/zheng-admin/js/login.js"></script>
+<script>
+    $(function() {
+        $('#login-bt').click(function() {
+            $.ajax({
+                url: '${basePath}/sso/login',
+                type: 'POST',
+                data: {
+                    username: $('#username').val(),
+                    password: $('#password').val(),
+                    backurl: '${param.backurl}'
+                },
+                success: function(json){
+                    if (json.result) {
+                        location.href = json.data;
+                    } else {
+                        alert(json.data);
+                    }
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

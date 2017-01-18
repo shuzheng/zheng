@@ -102,7 +102,9 @@ public class SSOFilter implements Filter {
                                     }
                                 }
                             }
-                            backUrl = backUrl.append("?").append(params);
+                            if (!StringUtils.isEmpty(params)) {
+                                backUrl = backUrl.append("?").append(params);
+                            }
                             // 返回请求资源
                             response.sendRedirect(backUrl.toString());
                             return;
