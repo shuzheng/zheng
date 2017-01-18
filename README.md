@@ -215,6 +215,10 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
+### 启动顺序
+
+zheng-upms-rpc-service => zheng-upms-server => zheng-`xxx`-rpc-service => zheng-`xxx`-`yyy`
+
 ### 开发演示
 
 - 创建数据表（建议使用PowerDesigner）
