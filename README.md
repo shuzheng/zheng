@@ -261,8 +261,6 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - [Spring整合JMS](http://elim.iteye.com/blog/1893038 "Spring整合JMS")
 
-- [Spring Cloud教程](http://blog.didispace.com/ "Spring Cloud教程")
-
 - [Redis中文网](http://www.redis.net.cn/ "Redis中文网")
 
 - [读懂Redis并配置主从集群及高可用部署](http://mp.weixin.qq.com/s?__biz=MzIxNTYzOTQ0Ng==&mid=2247483668&idx=1&sn=cd31574877d38cf7ff9c047b86c9bf23&chksm=979475eda0e3fcfb6b5006bcd19c5a838eca9e369252847dbdf97820bf418201dd75c1dadda3&mpshare=1&scene=23&srcid=0117KUiiITwi2ETRan16xRVg#rd "读懂Redis并配置主从集群及高可用部署")
@@ -274,8 +272,6 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 - [Elasticsearch权威指南（中文版）](https://es.xiaoleilu.com/510_Deployment/20_hardware.html "Elasticsearch权威指南（中文版）")
 
 - [springMVC对简单对象、Set、List、Map的数据绑定和常见问题.](http://blog.csdn.net/z_dendy/article/details/12648641 "springMVC对简单对象、Set、List、Map的数据绑定和常见问题.")
-
-- [Spring Boot 揭秘与实战](http://blog.720ui.com/2016/springboot_01_quickstart/ "Spring Boot 揭秘与实战")
 
 - [做个男人，做个成熟的男人，做个有城府的男人](http://shuzheng5201314.iteye.com/blog/1387820 "做个男人，做个成熟的男人，做个有城府的男人")
 
