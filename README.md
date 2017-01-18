@@ -244,3 +244,46 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 ## 许可证
 
 [MIT](http://opensource.org/licenses/MIT "MIT")
+
+## 附件
+
+### 优秀文章和博客
+
+- [创业互联网公司如何搭建自己的技术框架](http://shuzheng5201314.iteye.com/blog/2330151 "创业互联网公司如何搭建自己的技术框架")
+
+- [单点登录原理与简单实现](http://shuzheng5201314.iteye.com/blog/2343910 "单点登录原理与简单实现")
+
+- [支付系统架构](http://blog.lixf.cn/essay/2016/08/08/payment-arch/ "支付系统架构")
+
+- [ITeye论坛关于权限控制的讨论](http://www.iteye.com/magazines/82 "ITeye论坛关于权限控制的讨论")
+
+- [RBAC新解：基于资源的权限管理(Resource-Based Access Control)](http://globeeip.iteye.com/blog/1236167 "RBAC新解：基于资源的权限管理(Resource-Based Access Control)")
+
+- [Spring整合JMS](http://elim.iteye.com/blog/1893038 "Spring整合JMS")
+
+- [Spring Cloud教程](http://blog.didispace.com/ "Spring Cloud教程")
+
+- [Redis中文网](http://www.redis.net.cn/ "Redis中文网")
+
+- [读懂Redis并配置主从集群及高可用部署](http://mp.weixin.qq.com/s?__biz=MzIxNTYzOTQ0Ng==&mid=2247483668&idx=1&sn=cd31574877d38cf7ff9c047b86c9bf23&chksm=979475eda0e3fcfb6b5006bcd19c5a838eca9e369252847dbdf97820bf418201dd75c1dadda3&mpshare=1&scene=23&srcid=0117KUiiITwi2ETRan16xRVg#rd "读懂Redis并配置主从集群及高可用部署")
+
+- [Nginx基本功能极速入门](http://xxgblog.com/2015/05/17/nginx-start/ "Nginx基本功能极速入门")
+
+- [mybatis-genarator 自定义插件](https://my.oschina.net/alexgaoyh/blog/702791 "mybatis-genarator 自定义插件")
+
+- [Elasticsearch权威指南（中文版）](https://es.xiaoleilu.com/510_Deployment/20_hardware.html "Elasticsearch权威指南（中文版）")
+
+- [springMVC对简单对象、Set、List、Map的数据绑定和常见问题.](http://blog.csdn.net/z_dendy/article/details/12648641 "springMVC对简单对象、Set、List、Map的数据绑定和常见问题.")
+
+- [Spring Boot 揭秘与实战](http://blog.720ui.com/2016/springboot_01_quickstart/ "Spring Boot 揭秘与实战")
+
+- [做个男人，做个成熟的男人，做个有城府的男人](http://shuzheng5201314.iteye.com/blog/1387820 "做个男人，做个成熟的男人，做个有城府的男人")
+
+- [中国所有神仙列表](http://shuzheng5201314.iteye.com/blog/1358307 "中国所有神仙列表")
+
+
+### 常用在线小工具
+
+- [在线Cron表达式生成器](http://cron.qqe2.com/ "在线Cron表达式生成器")
+
+- [在线工具 - 程序员的工具箱](http://tool.lu/ "在线工具 - 程序员的工具箱")
