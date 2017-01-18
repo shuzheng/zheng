@@ -243,10 +243,6 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 ### 拓扑图
 ![拓扑图](https://github.com/shuzheng/zheng/raw/master/project-bootstrap/distributedSystem.png)
 
-## 许可证
-
-[MIT](http://opensource.org/licenses/MIT "MIT")
-
 ## 附件
 
 ### 优秀文章和博客
@@ -287,3 +283,7 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 - [在线Cron表达式生成器](http://cron.qqe2.com/ "在线Cron表达式生成器")
 
 - [在线工具 - 程序员的工具箱](http://tool.lu/ "在线工具 - 程序员的工具箱")
+
+## 许可证
+
+[MIT](http://opensource.org/licenses/MIT "MIT")
