@@ -11,7 +11,7 @@
 
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
 
-    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:protocol name="dubbo" port="20881"/>
 
     <bean id="upmsSystemServiceImpl" class="com.zheng.upms.rpc.service.impl.UpmsSystemServiceImpl"/>
     <dubbo:service interface="com.zheng.upms.rpc.api.UpmsSystemService" ref="upmsSystemServiceImpl"/>
