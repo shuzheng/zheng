@@ -240,6 +240,7 @@ zheng-upms-rpc-service => zheng-upms-server => zheng-`xxx`-rpc-service => zheng-
 ### 预览图
 ![login](zheng-admin/src/images/zheng-upms-login.png)
 ![crud](zheng-admin/src/images/zheng-upms-crud.png)
+![swagger](project-bootstrap/api.png)
 
 ### 数据模型
 ![数据库模型](https://github.com/shuzheng/zheng/raw/master/project-datamodel/zheng.png)
