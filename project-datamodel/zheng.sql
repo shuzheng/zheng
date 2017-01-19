@@ -525,6 +525,12 @@ create table upms_user_role
 
 alter table upms_user_role comment '用户角色关联表';
 
+
+INSERT INTO `upms_system` VALUES ('1', null, 'http://upms.zhangshuzheng.cn:1113', '1', 'zheng-upms-app1', '1', '1');
+INSERT INTO `upms_system` VALUES ('2', null, 'http://upms.zhangshuzheng.cn:1114', '1', 'zheng-upms-app2', '2', '2');
+INSERT INTO `upms_system` VALUES ('3', null, 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '3', '3');
+
+
 alter table cms_article_category add constraint FK_Reference_7 foreign key (category_id)
       references cms_category (category_id) on delete cascade on update cascade;
 
@@ -617,4 +623,3 @@ alter table upms_user_role add constraint FK_Reference_20 foreign key (user_id)
 
 alter table upms_user_role add constraint FK_Reference_21 foreign key (role_id)
       references upms_role (role_id) on delete restrict on update restrict;
-
