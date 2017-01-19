@@ -1,7 +1,9 @@
 package com.zheng.upms.admin.controller;
 
 import com.zheng.common.util.CookieUtil;
+import com.zheng.common.util.MD5Util;
 import com.zheng.common.util.RedisUtil;
+import com.zheng.upms.admin.controller.util.SystemConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.dao.model.UpmsUserExample;
@@ -129,27 +131,29 @@ public class SSOController {
 		Map result = new HashMap<>();
 		String data = "";
 		if (StringUtils.isEmpty(username)) {
-			data = "帐号不能为空！";
-			_log.info("{}", data);
 			result.put("result", false);
-			result.put("data", data);
+			result.put("data", SystemConstant.NO_USERNAME);
 			return result;
 		}
 		if (StringUtils.isEmpty(password)) {
-			data = "密码不能为空！";
-			_log.info("{}", data);
 			result.put("result", false);
-			result.put("data", data);
+			result.put("data", SystemConstant.NO_PASSWORD);
 			return result;
 		}
 		// 校验帐号密码
 		UpmsUserExample upmsUserExample = new UpmsUserExample();
 		upmsUserExample.createCriteria()
-				.andUsernameEqualTo(username)
-				.andPasswordEqualTo(password);
-		int count = upmsUserService.countByExample(upmsUserExample);
-		if (count > 0) {
-
+				.andUsernameEqualTo(username);
+		UpmsUser upmsUser = upmsUserService.selectFirstByExample(upmsUserExample);
+		if (null == upmsUser) {
+			result.put("result", false);
+			result.put("data", SystemConstant.ERROR_USERNAME);
+			return result;
+		}
+		if (!upmsUser.getPassword().equals(MD5Util.MD5(password + upmsUser.getSalt()))) {
+			result.put("result", false);
+			result.put("data", SystemConstant.ERROR_PASSWORD);
+			return result;
 		}
 		// 分配单点登录sessionId，不使用session获取会话id，改为cookie，防止session丢失
 		String sessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SSO_SERVER_SESSION_ID);

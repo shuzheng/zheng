@@ -50,28 +50,52 @@
 <script src="${basePath}/resources/zheng-admin/js/login.js"></script>
 <script>
     $(function() {
+        // 点击登录按钮
         $('#login-bt').click(function() {
-            $.ajax({
-                url: '${basePath}/sso/login',
-                type: 'POST',
-                data: {
-                    username: $('#username').val(),
-                    password: $('#password').val(),
-                    backurl: '${param.backurl}'
-                },
-                success: function(json){
-                    if (json.result) {
-                        location.href = json.data;
-                    } else {
-                        alert(json.data);
-                    }
-                },
-                error: function(error){
-                    console.log(error);
-                }
-            });
+            login();
+        });
+        // 回车事件
+        $('#username, #password').keypress(function (event) {
+            if (13 == event.keyCode) {
+                login();
+            }
         });
     });
+    // 登录
+    function login() {
+        $.ajax({
+            url: '${basePath}/sso/login',
+            type: 'POST',
+            data: {
+                username: $('#username').val(),
+                password: $('#password').val(),
+                backurl: '${param.backurl}'
+            },
+            success: function(json){
+                if (json.result) {
+                    location.href = json.data;
+                } else {
+                    if (10001 == json.data) {
+                        alert("帐号不能为空！");
+                        $('#username').focus();
+                    }
+                    if (10002 == json.data) {
+                        alert("密码不能为空！");
+                        $('#password').focus();
+                    }
+                    if (10004 == json.data) {
+                        alert("该帐号不存在！");
+                    }
+                    if (10005 == json.data) {
+                        alert("密码错误！");
+                    }
+                }
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
 </script>
 </body>
 </html>
