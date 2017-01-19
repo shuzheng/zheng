@@ -217,7 +217,13 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 ### 启动顺序
 
-zheng-upms-rpc-service => zheng-upms-server => zheng-`xxx`-rpc-service => zheng-`xxx`-`webapp`
+- 新建`zheng`数据库，导入`zheng.sql`、`upms_system.sql`、`upms_user.sql`
+
+- 启动 zheng-upms-rpc-service => zheng-upms-server => zheng-`xxx`-rpc-service => zheng-`xxx`-`webapp`
+
+- 访问 [统一后台地址](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，默认帐号密码：`admin/123456`
+
+- 登录成功后，可在右上角切换已注册系统访问
 
 ### 开发演示
 
