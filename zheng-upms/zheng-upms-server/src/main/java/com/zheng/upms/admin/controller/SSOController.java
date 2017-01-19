@@ -3,7 +3,10 @@ package com.zheng.upms.admin.controller;
 import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.dao.model.UpmsUser;
+import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
+import com.zheng.upms.rpc.api.UpmsUserService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +40,9 @@ public class SSOController {
 
 	@Autowired
 	UpmsSystemService upmsSystemService;
+
+	@Autowired
+	UpmsUserService upmsUserService;
 
 	/**
 	 * 认证中心首页
@@ -135,6 +141,15 @@ public class SSOController {
 			result.put("result", false);
 			result.put("data", data);
 			return result;
+		}
+		// 校验帐号密码
+		UpmsUserExample upmsUserExample = new UpmsUserExample();
+		upmsUserExample.createCriteria()
+				.andUsernameEqualTo(username)
+				.andPasswordEqualTo(password);
+		int count = upmsUserService.countByExample(upmsUserExample);
+		if (count > 0) {
+
 		}
 		// 分配单点登录sessionId，不使用session获取会话id，改为cookie，防止session丢失
 		String sessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SSO_SERVER_SESSION_ID);

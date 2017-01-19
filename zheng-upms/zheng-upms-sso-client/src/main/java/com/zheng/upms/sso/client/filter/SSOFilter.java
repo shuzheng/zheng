@@ -1,6 +1,7 @@
 package com.zheng.upms.sso.client.filter;
 
 import com.zheng.common.util.RedisUtil;
+import com.zheng.upms.sso.client.filter.util.RequestParameterUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -58,7 +59,13 @@ public class SSOFilter implements Filter {
 
         // 已登录
         if (!StringUtils.isEmpty(RedisUtil.get(sessionId + "_token"))) {
-            filterChain.doFilter(request, response);
+            // 移除url中的token参数
+            if (null != request.getParameter("token")) {
+                String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
+                response.sendRedirect(backUrl.toString());
+            } else {
+                filterChain.doFilter(request, response);
+            }
             return;
         }
         // 未登录
@@ -90,21 +97,7 @@ public class SSOFilter implements Filter {
                             RedisUtil.getJedis().sadd(token + "_subSessionIds", sessionId);
                             _log.info("当前token={}，对应的注册系统有：{}个", token, RedisUtil.getJedis().scard(token + "_subSessionIds"));
                             // 移除url中的token参数
-                            StringBuffer backUrl = request.getRequestURL();
-                            String params = "";
-                            Map<String, String[]> parameterMap = request.getParameterMap();
-                            for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
-                                if (!entry.getKey().equals("token")) {
-                                    if (params.equals("")) {
-                                        params = entry.getKey() + "=" + entry.getValue()[0];
-                                    } else {
-                                        params += "&" + entry.getKey() + "=" + entry.getValue()[0];
-                                    }
-                                }
-                            }
-                            if (!StringUtils.isEmpty(params)) {
-                                backUrl = backUrl.append("?").append(params);
-                            }
+                            String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
                             // 返回请求资源
                             response.sendRedirect(backUrl.toString());
                             return;
