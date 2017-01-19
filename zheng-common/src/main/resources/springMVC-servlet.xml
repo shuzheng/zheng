@@ -14,6 +14,7 @@
 	<!-- 扫描controller -->
 	<context:component-scan base-package="**.*controller" />
 	<context:annotation-config />
+	<bean id="swagger2Config" class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration"/>
 
 	<!-- 返回ResponseBody响应类型 -->
 	<mvc:annotation-driven>
@@ -53,6 +54,8 @@
 
 	<!-- 配置静态资源，不被DispatcherServlet处理，增加缓存时间 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="10" />
+	<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
 	
 	<!-- 上传文件配置 20*1024*1024即20M resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
