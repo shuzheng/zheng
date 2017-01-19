@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by shuzheng on 2016/12/18.
  */
 @Controller
-@RequestMapping("/system")
+@RequestMapping("/manage/system")
 public class SystemController {
 
 	private static Logger _log = LoggerFactory.getLogger(SystemController.class);
@@ -25,7 +25,7 @@ public class SystemController {
 
 	@RequestMapping("/index")
 	public String index() {
-		return "/system/index";
+		return "/manage/system/index";
 	}
 
 	@RequestMapping("/list")
