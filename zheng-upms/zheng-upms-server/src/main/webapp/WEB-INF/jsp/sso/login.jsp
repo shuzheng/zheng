@@ -23,20 +23,20 @@
     <div class="input-group m-b-20">
         <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
         <div class="fg-line">
-            <input id="username" type="text" class="form-control" name="username" placeholder="帐号" required>
+            <input id="username" type="text" class="form-control" name="username" placeholder="帐号" required autofocus value="admin">
         </div>
     </div>
     <div class="input-group m-b-20">
         <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
         <div class="fg-line">
-            <input id="password" type="password" class="form-control" name="password" placeholder="密码" required>
+            <input id="password" type="password" class="form-control" name="password" placeholder="密码" required value="123456">
         </div>
     </div>
     <div class="clearfix">
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" value="">
+            <input id="rememberme" type="checkbox" name="rememberme">
             <i class="input-helper"></i>
             自动登录
         </label>
@@ -69,6 +69,7 @@
             data: {
                 username: $('#username').val(),
                 password: $('#password').val(),
+                rememberme: $('#rememberme').val(),
                 backurl: '${param.backurl}'
             },
             success: function(json){
