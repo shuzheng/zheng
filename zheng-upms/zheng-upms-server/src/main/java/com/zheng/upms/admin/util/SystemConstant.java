@@ -12,5 +12,6 @@ public class SystemConstant {
     public static final int ERROR_ACCOUNT = 10003;      // 帐号或密码错误
     public static final int ERROR_USERNAME = 10004;     // 帐号不存在
     public static final int ERROR_PASSWORD = 10005;     // 密码错误
+    public static final int INVALID_ACCOUNT = 10006;     // 帐号被封
 
 }
