@@ -3,13 +3,40 @@ package com.zheng.upms.dao.model;
 import java.io.Serializable;
 
 public class UpmsOrganization implements Serializable {
+    /**
+     * 编号
+     *
+     * @mbg.generated
+     */
     private Integer organizationId;
 
+    /**
+     * 所属系统
+     *
+     * @mbg.generated
+     */
     private Integer systemId;
 
+    /**
+     * 组织名称
+     *
+     * @mbg.generated
+     */
     private String name;
 
+    /**
+     * 组织描述
+     *
+     * @mbg.generated
+     */
     private String description;
+
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
+    private Long ctime;
 
     private static final long serialVersionUID = 1L;
 
@@ -45,6 +72,14 @@ public class UpmsOrganization implements Serializable {
         this.description = description;
     }
 
+    public Long getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(Long ctime) {
+        this.ctime = ctime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -55,6 +90,7 @@ public class UpmsOrganization implements Serializable {
         sb.append(", systemId=").append(systemId);
         sb.append(", name=").append(name);
         sb.append(", description=").append(description);
+        sb.append(", ctime=").append(ctime);
         sb.append("]");
         return sb.toString();
     }
@@ -74,7 +110,8 @@ public class UpmsOrganization implements Serializable {
         return (this.getOrganizationId() == null ? other.getOrganizationId() == null : this.getOrganizationId().equals(other.getOrganizationId()))
             && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()));
+            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
+            && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()));
     }
 
     @Override
@@ -85,6 +122,7 @@ public class UpmsOrganization implements Serializable {
         result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         return result;
     }
 }

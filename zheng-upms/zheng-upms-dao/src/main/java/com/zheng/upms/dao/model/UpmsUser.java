@@ -3,26 +3,88 @@ package com.zheng.upms.dao.model;
 import java.io.Serializable;
 
 public class UpmsUser implements Serializable {
+    /**
+     * 编号
+     *
+     * @mbg.generated
+     */
     private Integer userId;
 
+    /**
+     * 所属系统
+     *
+     * @mbg.generated
+     */
     private Integer systemId;
 
+    /**
+     * 帐号
+     *
+     * @mbg.generated
+     */
     private String username;
 
+    /**
+     * 密码MD5(密码+盐)
+     *
+     * @mbg.generated
+     */
     private String password;
 
+    /**
+     * 盐
+     *
+     * @mbg.generated
+     */
     private String salt;
 
+    /**
+     * 姓名
+     *
+     * @mbg.generated
+     */
     private String realname;
 
+    /**
+     * 头像
+     *
+     * @mbg.generated
+     */
     private String avatar;
 
+    /**
+     * 电话
+     *
+     * @mbg.generated
+     */
     private String phone;
 
+    /**
+     * 邮箱
+     *
+     * @mbg.generated
+     */
     private String email;
 
+    /**
+     * 性别
+     *
+     * @mbg.generated
+     */
     private Byte sex;
 
+    /**
+     * 状态(-1:封,0:未审核,1:正常)
+     *
+     * @mbg.generated
+     */
+    private Byte status;
+
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
     private Long ctime;
 
     private static final long serialVersionUID = 1L;
@@ -107,6 +169,14 @@ public class UpmsUser implements Serializable {
         this.sex = sex;
     }
 
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
     public Long getCtime() {
         return ctime;
     }
@@ -131,6 +201,7 @@ public class UpmsUser implements Serializable {
         sb.append(", phone=").append(phone);
         sb.append(", email=").append(email);
         sb.append(", sex=").append(sex);
+        sb.append(", status=").append(status);
         sb.append(", ctime=").append(ctime);
         sb.append("]");
         return sb.toString();
@@ -158,6 +229,7 @@ public class UpmsUser implements Serializable {
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
             && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()));
     }
 
@@ -175,6 +247,7 @@ public class UpmsUser implements Serializable {
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         return result;
     }

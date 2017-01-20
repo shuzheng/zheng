@@ -3,9 +3,26 @@ package com.zheng.upms.dao.model;
 import java.io.Serializable;
 
 public class UpmsPermission implements Serializable {
+    /**
+     * 编号
+     *
+     * @mbg.generated
+     */
     private Integer permissionId;
 
+    /**
+     * 所属系统
+     *
+     * @mbg.generated
+     */
     private Integer systemId;
+
+    /**
+     * 权限值
+     *
+     * @mbg.generated
+     */
+    private String permissionValue;
 
     private static final long serialVersionUID = 1L;
 
@@ -25,6 +42,14 @@ public class UpmsPermission implements Serializable {
         this.systemId = systemId;
     }
 
+    public String getPermissionValue() {
+        return permissionValue;
+    }
+
+    public void setPermissionValue(String permissionValue) {
+        this.permissionValue = permissionValue;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -33,6 +58,7 @@ public class UpmsPermission implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", permissionId=").append(permissionId);
         sb.append(", systemId=").append(systemId);
+        sb.append(", permissionValue=").append(permissionValue);
         sb.append("]");
         return sb.toString();
     }
@@ -50,7 +76,8 @@ public class UpmsPermission implements Serializable {
         }
         UpmsPermission other = (UpmsPermission) that;
         return (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
-            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()));
+            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
+            && (this.getPermissionValue() == null ? other.getPermissionValue() == null : this.getPermissionValue().equals(other.getPermissionValue()));
     }
 
     @Override
@@ -59,6 +86,7 @@ public class UpmsPermission implements Serializable {
         int result = 1;
         result = prime * result + ((getPermissionId() == null) ? 0 : getPermissionId().hashCode());
         result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
+        result = prime * result + ((getPermissionValue() == null) ? 0 : getPermissionValue().hashCode());
         return result;
     }
 }

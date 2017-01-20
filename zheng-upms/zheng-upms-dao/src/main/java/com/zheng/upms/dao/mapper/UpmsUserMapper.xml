@@ -12,6 +12,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="status" jdbcType="TINYINT" property="status" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     user_id, system_id, username, password, salt, realname, avatar, phone, email, sex, 
-    ctime
+    status, ctime
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsUserExample" resultMap="BaseResultMap">
     select
@@ -118,11 +119,11 @@
     insert into upms_user (user_id, system_id, username, 
       password, salt, realname, 
       avatar, phone, email, 
-      sex, ctime)
+      sex, status, ctime)
     values (#{userId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
       #{avatar,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT})
+      #{sex,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsUser">
     insert into upms_user
@@ -156,6 +157,9 @@
       </if>
       <if test="sex != null">
         sex,
+      </if>
+      <if test="status != null">
+        status,
       </if>
       <if test="ctime != null">
         ctime,
@@ -191,6 +195,9 @@
       </if>
       <if test="sex != null">
         #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
       </if>
       <if test="ctime != null">
         #{ctime,jdbcType=BIGINT},
@@ -236,6 +243,9 @@
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=TINYINT},
       </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
       <if test="record.ctime != null">
         ctime = #{record.ctime,jdbcType=BIGINT},
       </if>
@@ -256,6 +266,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
       ctime = #{record.ctime,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -291,6 +302,9 @@
       <if test="sex != null">
         sex = #{sex,jdbcType=TINYINT},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
       <if test="ctime != null">
         ctime = #{ctime,jdbcType=BIGINT},
       </if>
@@ -308,6 +322,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
       ctime = #{ctime,jdbcType=BIGINT}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>

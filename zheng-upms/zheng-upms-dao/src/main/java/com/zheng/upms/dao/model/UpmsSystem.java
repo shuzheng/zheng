@@ -9,7 +9,7 @@ public class UpmsSystem implements Serializable {
 
     private String basepath;
 
-    private Byte status;
+    private Short status;
 
     private String name;
 
@@ -43,11 +43,11 @@ public class UpmsSystem implements Serializable {
         this.basepath = basepath;
     }
 
-    public Byte getStatus() {
+    public Short getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Short status) {
         this.status = status;
     }
 
