@@ -3,7 +3,7 @@ package com.zheng.upms.admin.controller;
 import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.MD5Util;
 import com.zheng.common.util.RedisUtil;
-import com.zheng.upms.admin.controller.util.SystemConstant;
+import com.zheng.upms.admin.util.SystemConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.dao.model.UpmsUserExample;

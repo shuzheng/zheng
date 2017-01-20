@@ -1,4 +1,4 @@
-package com.zheng.upms.admin.controller.util;
+package com.zheng.upms.admin.util;
 
 /**
  * Created by shuzheng on 2017/1/19.
