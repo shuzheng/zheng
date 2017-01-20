@@ -10,6 +10,12 @@ import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +33,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
+import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
 
 /**
  * 单点登录管理
@@ -140,19 +148,37 @@ public class SSOController {
 			result.put("data", SystemConstant.NO_PASSWORD);
 			return result;
 		}
-		// 校验帐号密码
-		UpmsUserExample upmsUserExample = new UpmsUserExample();
-		upmsUserExample.createCriteria()
-				.andUsernameEqualTo(username);
-		UpmsUser upmsUser = upmsUserService.selectFirstByExample(upmsUserExample);
-		if (null == upmsUser) {
+//		// 校验帐号密码
+//		UpmsUserExample upmsUserExample = new UpmsUserExample();
+//		upmsUserExample.createCriteria()
+//				.andUsernameEqualTo(username);
+//		UpmsUser upmsUser = upmsUserService.selectFirstByExample(upmsUserExample);
+//		if (null == upmsUser) {
+//			result.put("result", false);
+//			result.put("data", SystemConstant.ERROR_USERNAME);
+//			return result;
+//		}
+//		if (!upmsUser.getPassword().equals(MD5Util.MD5(password + upmsUser.getSalt()))) {
+//			result.put("result", false);
+//			result.put("data", SystemConstant.ERROR_PASSWORD);
+//			return result;
+//		}
+		// 使用shiro认证
+		Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
+		try {
+			subject.login(usernamePasswordToken);
+		} catch (UnknownAccountException e) {
 			result.put("result", false);
 			result.put("data", SystemConstant.ERROR_USERNAME);
 			return result;
-		}
-		if (!upmsUser.getPassword().equals(MD5Util.MD5(password + upmsUser.getSalt()))) {
+		} catch (IncorrectCredentialsException e) {
 			result.put("result", false);
 			result.put("data", SystemConstant.ERROR_PASSWORD);
+			return result;
+		} catch (LockedAccountException e) {
+			result.put("result", false);
+			result.put("data", SystemConstant.INVALID_ACCOUNT);
 			return result;
 		}
 		// 分配单点登录sessionId，不使用session获取会话id，改为cookie，防止session丢失

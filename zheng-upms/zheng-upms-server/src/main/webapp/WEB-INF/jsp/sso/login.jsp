@@ -90,6 +90,9 @@
                     if (10005 == json.data) {
                         alert("密码错误！");
                     }
+                    if (10006 == json.data) {
+                        alert("帐号被封！");
+                    }
                 }
             },
             error: function(error){
