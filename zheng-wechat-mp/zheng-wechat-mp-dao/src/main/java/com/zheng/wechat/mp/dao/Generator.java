@@ -1,4 +1,4 @@
-package com.zheng.upms.dao;
+package com.zheng.wechat.mp.dao;
 
 import com.zheng.common.util.MybatisGeneratorUtil;
 import com.zheng.common.util.PropertiesFileUtil;
