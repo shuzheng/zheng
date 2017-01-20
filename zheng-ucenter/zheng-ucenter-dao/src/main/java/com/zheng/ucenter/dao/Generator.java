@@ -1,4 +1,4 @@
-package com.zheng.cms.dao;
+package com.zheng.ucenter.dao;
 
 import com.zheng.common.util.MybatisGeneratorUtil;
 import com.zheng.common.util.PropertiesFileUtil;
