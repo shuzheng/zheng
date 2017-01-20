@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="Maven: aopalliance:aopalliance:1.0">
+    <archive path="C:/Users/admin/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
+  </library>
+  <library name="Maven: classworlds:classworlds:1.1-alpha-2">
+    <archive path="C:/Users/admin/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar" />
+  </library>
+  <library name="Maven: com.alibaba:druid:1.0.14">
+    <archive path="C:/Users/admin/.m2/repository/com/alibaba/druid/1.0.14/druid-1.0.14.jar" />
+  </library>
+  <library name="Maven: com.alibaba:dubbo:2.5.3">
+    <archive path="C:/Users/admin/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar" />
+  </library>
+  <library name="Maven: com.alibaba:fastjson:1.2.22">
+    <archive path="C:/Users/admin/.m2/repository/com/alibaba/fastjson/1.2.22/fastjson-1.2.22.jar" />
+  </library>
+  <library name="Maven: com.alibaba.rocketmq:rocketmq-client:3.6.2.Final">
+    <archive path="C:/Users/admin/.m2/repository/com/alibaba/rocketmq/rocketmq-client/3.6.2.Final/rocketmq-client-3.6.2.Final.jar" />
+  </library>
+  <library name="Maven: com.fasterxml:classmate:1.1.0">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/classmate/1.1.0/classmate-1.1.0.jar" />
+  </library>
+  <library name="Maven: com.fasterxml:classmate:1.3.1">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/classmate/1.3.1/classmate-1.3.1.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.0">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.6.5">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.6.5/jackson-annotations-2.6.5.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.4">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.5.4/jackson-core-2.5.4.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-core:2.6.5">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.6.5/jackson-core-2.6.5.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.4">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.5.4/jackson-databind-2.5.4.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-databind:2.6.5">
+    <archive path="C:/Users/admin/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.6.5/jackson-databind-2.6.5.jar" />
+  </library>
+  <library name="Maven: com.github.sgroschupf:zkclient:0.1">
+    <archive path="C:/Users/admin/.m2/repository/com/github/sgroschupf/zkclient/0.1/zkclient-0.1.jar" />
+  </library>
+  <library name="Maven: com.google.code.gson:gson:2.6.2">
+    <archive path="C:/Users/admin/.m2/repository/com/google/code/gson/gson/2.6.2/gson-2.6.2.jar" />
+  </library>
+  <library name="Maven: com.google.guava:guava:18.0">
+    <archive path="C:/Users/admin/.m2/repository/com/google/guava/guava/18.0/guava-18.0.jar" />
+  </library>
+  <library name="Maven: com.qiniu:happy-dns-java:0.1.4">
+    <archive path="C:/Users/admin/.m2/repository/com/qiniu/happy-dns-java/0.1.4/happy-dns-java-0.1.4.jar" />
+  </library>
+  <library name="Maven: com.qiniu:qiniu-java-sdk:7.1.3">
+    <archive path="C:/Users/admin/.m2/repository/com/qiniu/qiniu-java-sdk/7.1.3/qiniu-java-sdk-7.1.3.jar" />
+  </library>
+  <library name="Maven: com.squareup.okhttp3:okhttp:3.3.1">
+    <archive path="C:/Users/admin/.m2/repository/com/squareup/okhttp3/okhttp/3.3.1/okhttp-3.3.1.jar" />
+  </library>
+  <library name="Maven: com.squareup.okio:okio:1.8.0">
+    <archive path="C:/Users/admin/.m2/repository/com/squareup/okio/okio/1.8.0/okio-1.8.0.jar" />
+  </library>
+  <library name="Maven: commons-beanutils:commons-beanutils:1.9.3">
+    <archive path="C:/Users/admin/.m2/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar" />
+  </library>
+  <library name="Maven: commons-codec:commons-codec:1.10">
+    <archive path="C:/Users/admin/.m2/repository/commons-codec/commons-codec/1.10/commons-codec-1.10.jar" />
+  </library>
+  <library name="Maven: commons-collections:commons-collections:3.2.1">
+    <archive path="C:/Users/admin/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar" />
+  </library>
+  <library name="Maven: commons-fileupload:commons-fileupload:1.3.1">
+    <archive path="C:/Users/admin/.m2/repository/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.jar" />
+  </library>
+  <library name="Maven: commons-io:commons-io:2.2">
+    <archive path="C:/Users/admin/.m2/repository/commons-io/commons-io/2.2/commons-io-2.2.jar" />
+  </library>
+  <library name="Maven: commons-lang:commons-lang:2.6">
+    <archive path="C:/Users/admin/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" />
+  </library>
+  <library name="Maven: commons-logging:commons-logging:1.2">
+    <archive path="C:/Users/admin/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" />
+  </library>
+  <library name="Maven: commons-net:commons-net:3.1">
+    <archive path="C:/Users/admin/.m2/repository/commons-net/commons-net/3.1/commons-net-3.1.jar" />
+  </library>
+  <library name="Maven: io.springfox:springfox-core:2.4.0">
+    <archive path="C:/Users/admin/.m2/repository/io/springfox/springfox-core/2.4.0/springfox-core-2.4.0.jar" />
+  </library>
+  <library name="Maven: io.springfox:springfox-schema:2.4.0">
+    <archive path="C:/Users/admin/.m2/repository/io/springfox/springfox-schema/2.4.0/springfox-schema-2.4.0.jar" />
+  </library>
+  <library name="Maven: io.springfox:springfox-spi:2.4.0">
+    <archive path="C:/Users/admin/.m2/repository/io/springfox/springfox-spi/2.4.0/springfox-spi-2.4.0.jar" />
+  </library>
+  <library name="Maven: io.springfox:springfox-spring-web:2.4.0">
+    <archive path="C:/Users/admin/.m2/repository/io/springfox/springfox-spring-web/2.4.0/springfox-spring-web-2.4.0.jar" />
+  </library>
+  <library name="Maven: io.springfox:springfox-swagger2:2.4.0">
+    <archive path="C:/Users/admin/.m2/repository/io/springfox/springfox-swagger2/2.4.0/springfox-swagger2-2.4.0.jar" />
+  </library>
+  <library name="Maven: io.springfox:springfox-swagger-common:2.4.0">
+    <archive path="C:/Users/admin/.m2/repository/io/springfox/springfox-swagger-common/2.4.0/springfox-swagger-common-2.4.0.jar" />
+  </library>
+  <library name="Maven: io.springfox:springfox-swagger-ui:2.4.0">
+    <archive path="C:/Users/admin/.m2/repository/io/springfox/springfox-swagger-ui/2.4.0/springfox-swagger-ui-2.4.0.jar" />
+  </library>
+  <library name="Maven: io.swagger:swagger-annotations:1.5.6">
+    <archive path="C:/Users/admin/.m2/repository/io/swagger/swagger-annotations/1.5.6/swagger-annotations-1.5.6.jar" />
+  </library>
+  <library name="Maven: io.swagger:swagger-models:1.5.6">
+    <archive path="C:/Users/admin/.m2/repository/io/swagger/swagger-models/1.5.6/swagger-models-1.5.6.jar" />
+  </library>
+  <library name="Maven: javax.activation:activation:1.1">
+    <archive path="C:/Users/admin/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar" />
+  </library>
+  <library name="Maven: javax.mail:mail:1.4.7">
+    <archive path="C:/Users/admin/.m2/repository/javax/mail/mail/1.4.7/mail-1.4.7.jar" />
+  </library>
+  <library name="Maven: javax.persistence:persistence-api:1.0.2">
+    <archive path="C:/Users/admin/.m2/repository/javax/persistence/persistence-api/1.0.2/persistence-api-1.0.2.jar" />
+  </library>
+  <library name="Maven: javax.servlet:jstl:1.2">
+    <archive path="C:/Users/admin/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar" />
+  </library>
+  <library name="Maven: javax.servlet:servlet-api:2.5">
+    <archive path="C:/Users/admin/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar" />
+  </library>
+  <library name="Maven: javax.validation:validation-api:1.1.0.Final">
+    <archive path="C:/Users/admin/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar" />
+  </library>
+  <library name="Maven: jline:jline:0.9.94">
+    <archive path="C:/Users/admin/.m2/repository/jline/jline/0.9.94/jline-0.9.94.jar" />
+  </library>
+  <library name="Maven: junit:junit:3.8.1">
+    <archive path="C:/Users/admin/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar" />
+  </library>
+  <library name="Maven: junit:junit:4.12">
+    <archive path="C:/Users/admin/.m2/repository/junit/junit/4.12/junit-4.12.jar" />
+  </library>
+  <library name="Maven: log4j:log4j:1.2.14">
+    <archive path="C:/Users/admin/.m2/repository/log4j/log4j/1.2.14/log4j-1.2.14.jar" />
+  </library>
+  <library name="Maven: mysql:mysql-connector-java:5.1.34">
+    <archive path="C:/Users/admin/.m2/repository/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar" />
+  </library>
+  <library name="Maven: net.sf.ehcache:ehcache:2.10.0">
+    <archive path="C:/Users/admin/.m2/repository/net/sf/ehcache/ehcache/2.10.0/ehcache-2.10.0.jar" />
+  </library>
+  <library name="Maven: net.sf.ehcache:ehcache-core:2.0.0">
+    <archive path="C:/Users/admin/.m2/repository/net/sf/ehcache/ehcache-core/2.0.0/ehcache-core-2.0.0.jar" />
+  </library>
+  <library name="Maven: net.sf.ezmorph:ezmorph:1.0.6">
+    <archive path="C:/Users/admin/.m2/repository/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6.jar" />
+  </library>
+  <library name="Maven: net.sf.json-lib:json-lib:jdk15:2.4">
+    <archive path="C:/Users/admin/.m2/repository/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar" />
+  </library>
+  <library name="Maven: net.sf.jtidy:jtidy:r938">
+    <archive path="C:/Users/admin/.m2/repository/net/sf/jtidy/jtidy/r938/jtidy-r938.jar" />
+  </library>
+  <library name="Maven: ognl:ognl:3.1.10">
+    <archive path="C:/Users/admin/.m2/repository/ognl/ognl/3.1.10/ognl-3.1.10.jar" />
+  </library>
+  <library name="Maven: org.apache.activemq:activemq-core:5.7.0">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/activemq/activemq-core/5.7.0/activemq-core-5.7.0.jar" />
+  </library>
+  <library name="Maven: org.apache.activemq:kahadb:5.7.0">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/activemq/kahadb/5.7.0/kahadb-5.7.0.jar" />
+  </library>
+  <library name="Maven: org.apache.activemq.protobuf:activemq-protobuf:1.1">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/activemq/protobuf/activemq-protobuf/1.1/activemq-protobuf-1.1.jar" />
+  </library>
+  <library name="Maven: org.apache.commons:commons-compress:1.12">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/commons/commons-compress/1.12/commons-compress-1.12.jar" />
+  </library>
+  <library name="Maven: org.apache.commons:commons-pool2:2.4.2">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar" />
+  </library>
+  <library name="Maven: org.apache.geronimo.specs:geronimo-j2ee-management_1.1_spec:1.0.1">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/geronimo/specs/geronimo-j2ee-management_1.1_spec/1.0.1/geronimo-j2ee-management_1.1_spec-1.0.1.jar" />
+  </library>
+  <library name="Maven: org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1.1">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/geronimo/specs/geronimo-jms_1.1_spec/1.1.1/geronimo-jms_1.1_spec-1.1.1.jar" />
+  </library>
+  <library name="Maven: org.apache.httpcomponents:httpclient:4.5.2">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/httpcomponents/httpclient/4.5.2/httpclient-4.5.2.jar" />
+  </library>
+  <library name="Maven: org.apache.httpcomponents:httpcore:4.4.4">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/httpcomponents/httpcore/4.4.4/httpcore-4.4.4.jar" />
+  </library>
+  <library name="Maven: org.apache.maven.doxia:doxia-sink-api:1.0-alpha-7">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-aether-provider:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-aether-provider/3.0.3/maven-aether-provider-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-artifact:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-artifact/3.0.3/maven-artifact-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-artifact-manager:2.0.6">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-core:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-core/3.0.3/maven-core-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-model:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-model/3.0.3/maven-model-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-model-builder:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-model-builder/3.0.3/maven-model-builder-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-plugin-api:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-plugin-api/3.0.3/maven-plugin-api-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-plugin-descriptor:2.0.6">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-plugin-registry:2.0.6">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-profile:2.0.6">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-project:2.0.6">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-repository-metadata:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-repository-metadata/3.0.3/maven-repository-metadata-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-settings:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-settings/3.0.3/maven-settings-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven:maven-settings-builder:3.0.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/maven-settings-builder/3.0.3/maven-settings-builder-3.0.3.jar" />
+  </library>
+  <library name="Maven: org.apache.maven.plugin-tools:maven-plugin-tools-api:2.9">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/plugin-tools/maven-plugin-tools-api/2.9/maven-plugin-tools-api-2.9.jar" />
+  </library>
+  <library name="Maven: org.apache.maven.reporting:maven-reporting-api:2.0.6">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.jar" />
+  </library>
+  <library name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-beta-2">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-beta-2/wagon-provider-api-1.0-beta-2.jar" />
+  </library>
+  <library name="Maven: org.apache.shiro:shiro-core:1.3.2">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar" />
+  </library>
+  <library name="Maven: org.apache.velocity:velocity:1.7">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar" />
+  </library>
+  <library name="Maven: org.apache.zookeeper:zookeeper:3.3.3">
+    <archive path="C:/Users/admin/.m2/repository/org/apache/zookeeper/zookeeper/3.3.3/zookeeper-3.3.3.jar" />
+  </library>
+  <library name="Maven: org.attoparser:attoparser:2.0.1.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/attoparser/attoparser/2.0.1.RELEASE/attoparser-2.0.1.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.codehaus.plexus:plexus-classworlds:2.4">
+    <archive path="C:/Users/admin/.m2/repository/org/codehaus/plexus/plexus-classworlds/2.4/plexus-classworlds-2.4.jar" />
+  </library>
+  <library name="Maven: org.codehaus.plexus:plexus-component-annotations:1.5.5">
+    <archive path="C:/Users/admin/.m2/repository/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar" />
+  </library>
+  <library name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1">
+    <archive path="C:/Users/admin/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar" />
+  </library>
+  <library name="Maven: org.codehaus.plexus:plexus-interpolation:1.14">
+    <archive path="C:/Users/admin/.m2/repository/org/codehaus/plexus/plexus-interpolation/1.14/plexus-interpolation-1.14.jar" />
+  </library>
+  <library name="Maven: org.codehaus.plexus:plexus-utils:2.0.6">
+    <archive path="C:/Users/admin/.m2/repository/org/codehaus/plexus/plexus-utils/2.0.6/plexus-utils-2.0.6.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-annotations:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-annotations/8.1.16.v20140903/jetty-annotations-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-continuation:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-continuation/8.1.16.v20140903/jetty-continuation-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-http:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-http/8.1.16.v20140903/jetty-http-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-io:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-io/8.1.16.v20140903/jetty-io-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-jmx:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-jmx/8.1.16.v20140903/jetty-jmx-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-jndi:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-jndi/8.1.16.v20140903/jetty-jndi-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-jsp:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-jsp/8.1.16.v20140903/jetty-jsp-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-plus:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-plus/8.1.16.v20140903/jetty-plus-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-security:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-security/8.1.16.v20140903/jetty-security-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-server:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-server/8.1.16.v20140903/jetty-server-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-servlet:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-servlet/8.1.16.v20140903/jetty-servlet-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-util:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-util/8.1.16.v20140903/jetty-util-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-webapp:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-webapp/8.1.16.v20140903/jetty-webapp-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-websocket:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-websocket/8.1.16.v20140903/jetty-websocket-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty:jetty-xml:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/jetty-xml/8.1.16.v20140903/jetty-xml-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:com.sun.el:2.2.0.v201108011116">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/com.sun.el/2.2.0.v201108011116/com.sun.el-2.2.0.v201108011116.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.activation:1.1.0.v201105071233">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.activation/1.1.0.v201105071233/javax.activation-1.1.0.v201105071233.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.annotation:1.1.0.v201108011116">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.annotation/1.1.0.v201108011116/javax.annotation-1.1.0.v201108011116.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.el:2.2.0.v201108011116">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.el/2.2.0.v201108011116/javax.el-2.2.0.v201108011116.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.mail.glassfish:1.4.1.v201005082020">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.mail.glassfish/1.4.1.v201005082020/javax.mail.glassfish-1.4.1.v201005082020.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.servlet/3.0.0.v201112011016/javax.servlet-3.0.0.v201112011016.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.servlet.jsp:2.2.0.v201112011158">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.servlet.jsp/2.2.0.v201112011158/javax.servlet.jsp-2.2.0.v201112011158.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.servlet.jsp.jstl:1.2.0.v201105211821">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.servlet.jsp.jstl/1.2.0.v201105211821/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:javax.transaction:1.1.1.v201105210645">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/javax.transaction/1.1.1.v201105210645/javax.transaction-1.1.1.v201105210645.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:org.apache.jasper.glassfish:2.2.2.v201112011158">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/org.apache.jasper.glassfish/2.2.2.v201112011158/org.apache.jasper.glassfish-2.2.2.v201112011158.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:org.apache.taglibs.standard.glassfish:1.2.0.v201112081803">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/org.apache.taglibs.standard.glassfish/1.2.0.v201112081803/org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:org.eclipse.jdt.core:3.7.1">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/org.eclipse.jdt.core/3.7.1/org.eclipse.jdt.core-3.7.1.jar" />
+  </library>
+  <library name="Maven: org.eclipse.jetty.orbit:org.objectweb.asm:3.1.0.v200803061910">
+    <archive path="C:/Users/admin/.m2/repository/org/eclipse/jetty/orbit/org.objectweb.asm/3.1.0.v200803061910/org.objectweb.asm-3.1.0.v200803061910.jar" />
+  </library>
+  <library name="Maven: org.fusesource.hawtbuf:hawtbuf:1.9">
+    <archive path="C:/Users/admin/.m2/repository/org/fusesource/hawtbuf/hawtbuf/1.9/hawtbuf-1.9.jar" />
+  </library>
+  <library name="Maven: org.fusesource.hawtdispatch:hawtdispatch:1.11">
+    <archive path="C:/Users/admin/.m2/repository/org/fusesource/hawtdispatch/hawtdispatch/1.11/hawtdispatch-1.11.jar" />
+  </library>
+  <library name="Maven: org.fusesource.hawtdispatch:hawtdispatch-transport:1.11">
+    <archive path="C:/Users/admin/.m2/repository/org/fusesource/hawtdispatch/hawtdispatch-transport/1.11/hawtdispatch-transport-1.11.jar" />
+  </library>
+  <library name="Maven: org.fusesource.mqtt-client:mqtt-client:1.3">
+    <archive path="C:/Users/admin/.m2/repository/org/fusesource/mqtt-client/mqtt-client/1.3/mqtt-client-1.3.jar" />
+  </library>
+  <library name="Maven: org.hamcrest:hamcrest-core:1.3">
+    <archive path="C:/Users/admin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" />
+  </library>
+  <library name="Maven: org.hibernate:hibernate-validator:5.2.2.Final">
+    <archive path="C:/Users/admin/.m2/repository/org/hibernate/hibernate-validator/5.2.2.Final/hibernate-validator-5.2.2.Final.jar" />
+  </library>
+  <library name="Maven: org.jasypt:jasypt:1.9.0">
+    <archive path="C:/Users/admin/.m2/repository/org/jasypt/jasypt/1.9.0/jasypt-1.9.0.jar" />
+  </library>
+  <library name="Maven: org.javassist:javassist:3.15.0-GA">
+    <archive path="C:/Users/admin/.m2/repository/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA.jar" />
+  </library>
+  <library name="Maven: org.jboss.logging:jboss-logging:3.2.1.Final">
+    <archive path="C:/Users/admin/.m2/repository/org/jboss/logging/jboss-logging/3.2.1.Final/jboss-logging-3.2.1.Final.jar" />
+  </library>
+  <library name="Maven: org.jboss.netty:netty:3.2.5.Final">
+    <archive path="C:/Users/admin/.m2/repository/org/jboss/netty/netty/3.2.5.Final/netty-3.2.5.Final.jar" />
+  </library>
+  <library name="Maven: org.mortbay.jetty:jetty-maven-plugin:8.1.16.v20140903">
+    <archive path="C:/Users/admin/.m2/repository/org/mortbay/jetty/jetty-maven-plugin/8.1.16.v20140903/jetty-maven-plugin-8.1.16.v20140903.jar" />
+  </library>
+  <library name="Maven: org.mybatis.generator:mybatis-generator-core:1.3.5">
+    <archive path="C:/Users/admin/.m2/repository/org/mybatis/generator/mybatis-generator-core/1.3.5/mybatis-generator-core-1.3.5.jar" />
+  </library>
+  <library name="Maven: org.mybatis:mybatis:3.4.1">
+    <archive path="C:/Users/admin/.m2/repository/org/mybatis/mybatis/3.4.1/mybatis-3.4.1.jar" />
+  </library>
+  <library name="Maven: org.mybatis:mybatis-ehcache:1.0.0">
+    <archive path="C:/Users/admin/.m2/repository/org/mybatis/mybatis-ehcache/1.0.0/mybatis-ehcache-1.0.0.jar" />
+  </library>
+  <library name="Maven: org.mybatis:mybatis-spring:1.3.0">
+    <archive path="C:/Users/admin/.m2/repository/org/mybatis/mybatis-spring/1.3.0/mybatis-spring-1.3.0.jar" />
+  </library>
+  <library name="Maven: org.slf4j:jcl-over-slf4j:1.7.21">
+    <archive path="C:/Users/admin/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.21/jcl-over-slf4j-1.7.21.jar" />
+  </library>
+  <library name="Maven: org.slf4j:slf4j-api:1.7.12">
+    <archive path="C:/Users/admin/.m2/repository/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar" />
+  </library>
+  <library name="Maven: org.slf4j:slf4j-api:1.7.5">
+    <archive path="C:/Users/admin/.m2/repository/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar" />
+  </library>
+  <library name="Maven: org.slf4j:slf4j-log4j12:1.7.12">
+    <archive path="C:/Users/admin/.m2/repository/org/slf4j/slf4j-log4j12/1.7.12/slf4j-log4j12-1.7.12.jar" />
+  </library>
+  <library name="Maven: org.sonatype.aether:aether-api:1.11">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/aether/aether-api/1.11/aether-api-1.11.jar" />
+  </library>
+  <library name="Maven: org.sonatype.aether:aether-impl:1.11">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/aether/aether-impl/1.11/aether-impl-1.11.jar" />
+  </library>
+  <library name="Maven: org.sonatype.aether:aether-spi:1.11">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/aether/aether-spi/1.11/aether-spi-1.11.jar" />
+  </library>
+  <library name="Maven: org.sonatype.aether:aether-util:1.11">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/aether/aether-util/1.11/aether-util-1.11.jar" />
+  </library>
+  <library name="Maven: org.sonatype.plexus:plexus-cipher:1.4">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar" />
+  </library>
+  <library name="Maven: org.sonatype.plexus:plexus-sec-dispatcher:1.3">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3.jar" />
+  </library>
+  <library name="Maven: org.sonatype.sisu:sisu-guice:no_aop:2.9.4">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/sisu/sisu-guice/2.9.4/sisu-guice-2.9.4-no_aop.jar" />
+  </library>
+  <library name="Maven: org.sonatype.sisu:sisu-inject-bean:2.1.1">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/sisu/sisu-inject-bean/2.1.1/sisu-inject-bean-2.1.1.jar" />
+  </library>
+  <library name="Maven: org.sonatype.sisu:sisu-inject-plexus:2.1.1">
+    <archive path="C:/Users/admin/.m2/repository/org/sonatype/sisu/sisu-inject-plexus/2.1.1/sisu-inject-plexus-2.1.1.jar" />
+  </library>
+  <library name="Maven: org.springframework.data:spring-data-commons:1.12.5.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/data/spring-data-commons/1.12.5.RELEASE/spring-data-commons-1.12.5.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework.data:spring-data-keyvalue:1.1.5.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/data/spring-data-keyvalue/1.1.5.RELEASE/spring-data-keyvalue-1.1.5.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework.data:spring-data-redis:1.7.5.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/data/spring-data-redis/1.7.5.RELEASE/spring-data-redis-1.7.5.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/plugin/spring-plugin-core/1.2.0.RELEASE/spring-plugin-core-1.2.0.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/plugin/spring-plugin-metadata/1.2.0.RELEASE/spring-plugin-metadata-1.2.0.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework.security:spring-security-config:4.1.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/security/spring-security-config/4.1.3.RELEASE/spring-security-config-4.1.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework.security:spring-security-core:4.1.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/security/spring-security-core/4.1.3.RELEASE/spring-security-core-4.1.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework.security:spring-security-web:4.1.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/security/spring-security-web/4.1.3.RELEASE/spring-security-web-4.1.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-aop:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-aop/4.3.3.RELEASE/spring-aop-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-beans:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-beans/4.3.3.RELEASE/spring-beans-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-context:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-context/4.3.3.RELEASE/spring-context-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-context-support:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-context-support/4.3.3.RELEASE/spring-context-support-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-core:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-core/4.3.3.RELEASE/spring-core-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-expression:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-expression/4.3.3.RELEASE/spring-expression-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-jdbc:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-jdbc/4.3.3.RELEASE/spring-jdbc-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-jms:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-jms/4.3.3.RELEASE/spring-jms-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-messaging:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-messaging/4.3.3.RELEASE/spring-messaging-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-oxm:4.2.8.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-oxm/4.2.8.RELEASE/spring-oxm-4.2.8.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-test:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-test/4.3.3.RELEASE/spring-test-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-tx:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-tx/4.3.3.RELEASE/spring-tx-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-web:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-web/4.3.3.RELEASE/spring-web-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.springframework:spring-webmvc:4.3.3.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/springframework/spring-webmvc/4.3.3.RELEASE/spring-webmvc-4.3.3.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.thymeleaf:thymeleaf:3.0.2.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/thymeleaf/thymeleaf/3.0.2.RELEASE/thymeleaf-3.0.2.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.thymeleaf:thymeleaf-spring4:3.0.2.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/thymeleaf/thymeleaf-spring4/3.0.2.RELEASE/thymeleaf-spring4-3.0.2.RELEASE.jar" />
+  </library>
+  <library name="Maven: org.unbescape:unbescape:1.1.4.RELEASE">
+    <archive path="C:/Users/admin/.m2/repository/org/unbescape/unbescape/1.1.4.RELEASE/unbescape-1.1.4.RELEASE.jar" />
+  </library>
+  <library name="Maven: redis.clients:jedis:2.9.0">
+    <archive path="C:/Users/admin/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar" />
+  </library>
+</eclipse-userlibraries>
+
