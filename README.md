@@ -3,6 +3,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
+**春节期间停止更新，祝大家新年快乐！**
+
 交流QQ群：133107819 (群内含各种工具和文档下载)
 
 文档：[https://shuzheng.gitbooks.io/zheng/content/](https://shuzheng.gitbooks.io/zheng/content/ "文档")
