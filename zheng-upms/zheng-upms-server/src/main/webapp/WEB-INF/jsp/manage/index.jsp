@@ -17,6 +17,7 @@
 	<link href="${basePath}/resources/zheng-admin/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-admin/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-admin/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+	<link href="${basePath}/resources/zheng-admin/plugins/fullPage/jquery.fullPage.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-admin/css/admin.css" rel="stylesheet"/>
 </head>
 <body>
@@ -81,7 +82,7 @@
 					</a>
 					<ul class="dropdown-menu dm-icon pull-right">
 						<li class="hidden-xs">
-							<a class="waves-effect" data-ma-action="fullscreen" href="javascript:;"><i class="zmdi zmdi-fullscreen"></i> 全屏模式</a>
+							<a class="waves-effect" data-ma-action="fullscreen" href="javascript:fullPage();"><i class="zmdi zmdi-fullscreen"></i> 全屏模式</a>
 						</li>
 						<li>
 							<a class="waves-effect" data-ma-action="clear-localstorage" href="javascript:;"><i class="zmdi zmdi-delete"></i> 清除缓存</a>
@@ -223,7 +224,8 @@
 <script src="${basePath}/resources/zheng-admin/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/BootstrapMenu.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/device.min.js"></script>
-
+<script src="${basePath}/resources/zheng-admin/plugins/fullPage/jquery.fullPage.js"></script>
+<script src="${basePath}/resources/zheng-admin/plugins/fullPage/jquery.jdirk.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/js/admin.js"></script>
 </body>
 </html>
