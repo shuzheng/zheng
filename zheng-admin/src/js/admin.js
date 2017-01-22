@@ -220,7 +220,9 @@ function initScrollState() {
 		$('.tab_right>a').addClass('active');
 	}
 }
+
 function fullPage() {
+
 	if ($.util.supportsFullScreen) {
 		if ($.util.isFullScreen()) {
 			$.util.cancelFullScreen();
