@@ -5,6 +5,8 @@ import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
 import com.zheng.cms.rpc.api.CmsArticleService;
 import com.zheng.common.util.Paginator;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manage/article")
+@Api(value = "文章控制器")
 public class CmsArticleController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(CmsArticleController.class);
@@ -40,7 +43,8 @@ public class CmsArticleController extends BaseController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@ApiOperation(value = "文章列表", notes = "获取文章列表并分页")
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
@@ -67,6 +71,7 @@ public class CmsArticleController extends BaseController {
 	 * 新增get
 	 * @return
 	 */
+	@ApiOperation(value = "新增文章", notes = "新增文章页")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
 		return "/manage/article/add";
@@ -78,6 +83,7 @@ public class CmsArticleController extends BaseController {
 	 * @param modelMap
 	 * @return
 	 */
+	@ApiOperation(value = "新增文章", notes = "新增文章提交接口")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(CmsArticle cmsArticle, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
@@ -95,6 +101,7 @@ public class CmsArticleController extends BaseController {
 	 * @param modelMap
 	 * @return
 	 */
+	@ApiOperation(value = "删除文章", notes = "批量删除文章")
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
 	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = cmsArticleService.deleteByPrimaryKeys(ids);
@@ -108,6 +115,7 @@ public class CmsArticleController extends BaseController {
 	 * @param modelMap
 	 * @return
 	 */
+	@ApiOperation(value = "修改文章", notes = "根据id修改文章页")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
@@ -122,6 +130,7 @@ public class CmsArticleController extends BaseController {
 	 * @param modelMap
 	 * @return
 	 */
+	@ApiOperation(value = "修改文章", notes = "根据id修改文章提交接口")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsArticle cmsArticle, ModelMap modelMap) {
 		int count = cmsArticleService.updateByPrimaryKeySelective(cmsArticle);
