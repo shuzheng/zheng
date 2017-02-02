@@ -3,15 +3,13 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-**春节期间停止更新，祝大家新年快乐！**
-
 交流QQ群：133107819 (群内含各种工具和文档下载)
 
 文档：[https://shuzheng.gitbooks.io/zheng/content/](https://shuzheng.gitbooks.io/zheng/content/ "文档")
 
 ## 前言
 
-　　`zheng`项目于2016年10月4日创建于Github，之初目的是为自己建立一个“小工具”，后因github网速慢的原因同步到oschina上，迅速得到国内广大同仁关注、支持和肯定，所以我也愿意分享给大家使用。最近经常收到一些提问，由于缺乏文档，虽然耐心解答，但杯水车薪，特开始篡写文档并建立交流群等。
+　　`zheng`项目创建于2016年10月4日。
 
 ## 项目介绍
 
