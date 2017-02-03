@@ -64,7 +64,7 @@
 	
 	<!-- session配置 -->
 	<session-config>
-		<session-timeout>120</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>
 
 	<!-- 欢迎页面 -->
