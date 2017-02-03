@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>500</title>
+<title><spring:message code="500"/></title>
 </head>
 <body>
 <center style="margin:50px auto">
