@@ -119,15 +119,4 @@ public class StringUtil {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(getString(null));
-        System.out.println(getString(null, "hello"));
-
-        System.out.println(getInt("1"));
-        System.out.println(getInt("xx"));
-        System.out.println(getInt("xx", 4));
-
-        System.out.println(lineToHump("cms_article_test"));
-    }
-
 }

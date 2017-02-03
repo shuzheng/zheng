@@ -43,10 +43,4 @@ public class MD5Util {
         }
     }
 
-    public static void main(String[] args) {
-        String salt = UUID.randomUUID().toString().replaceAll("-", "");
-        System.out.println(salt);
-        System.out.println(MD5Util.MD5("123456" + salt));
-    }
-
 }

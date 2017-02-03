@@ -143,21 +143,6 @@ public class SSOController {
 			result.put("data", SystemConstant.NO_PASSWORD);
 			return result;
 		}
-//		// 校验帐号密码
-//		UpmsUserExample upmsUserExample = new UpmsUserExample();
-//		upmsUserExample.createCriteria()
-//				.andUsernameEqualTo(username);
-//		UpmsUser upmsUser = upmsUserService.selectFirstByExample(upmsUserExample);
-//		if (null == upmsUser) {
-//			result.put("result", false);
-//			result.put("data", SystemConstant.ERROR_USERNAME);
-//			return result;
-//		}
-//		if (!upmsUser.getPassword().equals(MD5Util.MD5(password + upmsUser.getSalt()))) {
-//			result.put("result", false);
-//			result.put("data", SystemConstant.ERROR_PASSWORD);
-//			return result;
-//		}
 		// 使用shiro认证
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
