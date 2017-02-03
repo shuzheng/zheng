@@ -132,7 +132,7 @@ public class Paginator {
 				if (querys[i].startsWith(param))
 					continue;
 				if (params.equals(""))
-					params += querys[i];
+					params = querys[i];
 				else
 					params += "&" + querys[i];
 			}
@@ -161,8 +161,8 @@ public class Paginator {
 				pages = pages.concat("<a class=\"prev\" href=\"" + url + "?" + param + "=" + (page - 1) + "\">上一页</a>\n");
 			}
 		} else {
-			// pages =
-			// pages.concat("<a class=\"prev\" href=\"javascript:;\" style=\"color:#ccc\">上一页</a>\n");
+			// 特定需求可隐藏
+			pages = pages.concat("<a class=\"prev\" href=\"javascript:;\" style=\"color:#ccc\">上一页</a>\n");
 		}
 		// 如果总页数大于要显示的个数，则拼接显示
 		if (pageCount > step) {
@@ -234,8 +234,8 @@ public class Paginator {
 				pages = pages.concat("<a class=\"next\" href=\"" + url + "?" + param + "=" + (page + 1) + "\">下一页</a>\n");
 			}
 		} else {
-			// pages =
-			// pages.concat("<a class=\"next\" href=\"javascript:;\" style=\"color:#ccc\">下一页</a>\n");
+			// 特定需求可隐藏
+			pages = pages.concat("<a class=\"next\" href=\"javascript:;\" style=\"color:#ccc\">下一页</a>\n");
 		}
 		return pages;
 	}
