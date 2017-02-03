@@ -29,14 +29,4 @@ public class ManageController extends BaseController {
 		return "/manage/index";
 	}
 
-	/**
-	 * 后台登录页
-	 * @return
-	 */
-	@ApiOperation(value = "后台登录页")
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "/manage/login";
-	}
-
 }
