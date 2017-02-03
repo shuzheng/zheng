@@ -25,14 +25,12 @@ zheng
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-upms-sso-client -- SSO客户端依赖包
 |    ├── zheng-upms-rpc-api -- rpc接口包
-|    ├── zheng-upms-rpc-service -- rpc服务提供者[端口:1112]
-|    ├── zheng-upms-app1 -- SSO测试客户端1[端口:1113]
-|    ├── zheng-upms-app2 -- SSO测试客户端2[端口:1114]
+|    ├── zheng-upms-rpc-service -- rpc服务提供者
 |    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-cms-rpc-api -- rpc接口包
-|    ├── zheng-cms-rpc-service -- rpc服务提供者[端口:2225]
+|    ├── zheng-cms-rpc-service -- rpc服务提供者
 |    ├── zheng-cms-search -- 搜索服务[端口:2221]
 |    ├── zheng-cms-admin -- 后台管理[端口:2222]
 |    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]

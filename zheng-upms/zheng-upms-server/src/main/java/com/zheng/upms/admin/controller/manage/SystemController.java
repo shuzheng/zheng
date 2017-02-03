@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import static com.sun.xml.internal.ws.api.message.Packet.Status.Request;
-
 /**
  * 系统controller
  * Created by shuzheng on 2016/12/18.

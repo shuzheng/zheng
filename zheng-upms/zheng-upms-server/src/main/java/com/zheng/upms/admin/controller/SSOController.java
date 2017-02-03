@@ -1,12 +1,9 @@
 package com.zheng.upms.admin.controller;
 
 import com.zheng.common.util.CookieUtil;
-import com.zheng.common.util.MD5Util;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.admin.util.SystemConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
-import com.zheng.upms.dao.model.UpmsUser;
-import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
 import org.apache.commons.lang.StringUtils;
@@ -33,8 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-
-import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
 
 /**
  * 单点登录管理
@@ -167,6 +162,7 @@ public class SSOController {
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
 		try {
+			usernamePasswordToken.setRememberMe(false);
 			subject.login(usernamePasswordToken);
 		} catch (UnknownAccountException e) {
 			result.put("result", false);
