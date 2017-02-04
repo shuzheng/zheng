@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manage/tag")
-@Api(value = "标签控制器")
+@Api(value = "标签控制器", description = "标签管理")
 public class CmsTagController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(CmsTagController.class);

@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manage/comment")
-@Api(value = "评论控制器")
+@Api(value = "评论控制器", description = "评论管理")
 public class CmsCommentController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);

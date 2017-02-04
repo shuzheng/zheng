@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manage/category")
-@Api(value = "类目控制器")
+@Api(value = "类目控制器", description = "类目管理")
 public class CmsCategoryController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(CmsCategoryController.class);

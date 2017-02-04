@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manage/article")
-@Api(value = "文章控制器")
+@Api(value = "文章控制器", description = "文章管理")
 public class CmsArticleController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(CmsArticleController.class);
