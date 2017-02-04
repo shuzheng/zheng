@@ -61,40 +61,40 @@ zheng
 ### 技术选型
 
 #### 后端技术:
-* Spring Framework
-* SpringMVC: MVC框架
-* Spring secutity|Shiro: 安全框架
-* Spring session: 分布式Session管理
-* MyBatis: ORM框架
-* MyBatis Generator: 代码生成
-* Druid: 数据库连接池
-* Jsp|Velocity|Thymeleaf: 模板引擎
-* ZooKeeper: 协调服务
-* Dubbo: 分布式服务框架
-* TBSchedule|elastic-job: 分布式调度框架
-* Redis: 分布式缓存数据库
-* Quartz: 作业调度框架
-* Ehcache: 缓存框架
-* ActiveMQ: 消息队列
-* Solr|Elasticsearch: 分布式全文搜索引擎
-* FastDFS: 分布式文件系统
-* Log4J: 日志管理
-* Swagger2: 接口文档
-* sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
-* AliOSS|Qiniu: 云存储
-* Protobuf|json: 数据传输 
-* Jenkins: 持续集成工具
-* Maven|Gradle: 项目构建管理
+- Spring Framework
+- SpringMVC: MVC框架
+- Spring secutity|Shiro: 安全框架
+- Spring session: 分布式Session管理
+- MyBatis: ORM框架
+- MyBatis Generator: 代码生成
+- Druid: 数据库连接池
+- Jsp|Velocity|Thymeleaf: 模板引擎
+- ZooKeeper: 协调服务
+- Dubbo: 分布式服务框架
+- TBSchedule|elastic-job: 分布式调度框架
+- Redis: 分布式缓存数据库
+- Quartz: 作业调度框架
+- Ehcache: 缓存框架
+- ActiveMQ: 消息队列
+- Solr|Elasticsearch: 分布式全文搜索引擎
+- FastDFS: 分布式文件系统
+- Log4J: 日志管理
+- Swagger2: 接口文档
+- sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
+- AliOSS|Qiniu: 云存储
+- Protobuf|json: 数据传输 
+- Jenkins: 持续集成工具
+- Maven|Gradle: 项目构建管理
 
 #### 前端技术:
-* jQuery
-* Bootstrap
-* jQuery EasyUI
-* AngularJs
-* zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
-* autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
-* zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
-* zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
+- jQuery
+- Bootstrap
+- jQuery EasyUI
+- AngularJs
+- zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
+- autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
+- zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
+- zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
 
 #### 模块依赖
 ![模块依赖](project-bootstrap/project.png)
@@ -158,15 +158,15 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 ## 环境搭建
 
 #### 开发工具:
-* MySql: 数据库
-* jetty: 开发服务器
-* Tomcat: 应用服务器
-* SVN|Git: 版本管理
-* Nginx: 反向代理服务器
-* Varnish: HTTP加速器
-* IntelliJ IDEA: 开发IDE
-* PowerDesigner: 建模工具
-* Navicat for MySQL: 数据库客户端
+- MySql: 数据库
+- jetty: 开发服务器
+- Tomcat: 应用服务器
+- SVN|Git: 版本管理
+- Nginx: 反向代理服务器
+- Varnish: HTTP加速器
+- IntelliJ IDEA: 开发IDE
+- PowerDesigner: 建模工具
+- Navicat for MySQL: 数据库客户端
 
 #### 开发环境：
 
@@ -183,31 +183,31 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 资源下载
 
-* JDK7 [http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR "JDK7")
-* Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")
-* Redis [https://redis.io/download](https://redis.io/download "Redis")
-* ActiveMQ [http://activemq.apache.org/download-archives.html](http://activemq.apache.org/download-archives.html "ActiveMQ")
-* ZooKeeper [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://www.apache.org/dyn/closer.cgi/zookeeper/ "ZooKeeper")
-* Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
-* Elastic Stack [https://www.elastic.co/downloads](https://www.elastic.co/downloads "Elastic Stack")
-* Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
-* dubbo-admin-2.5.3 [http://download.csdn.net/detail/shuzheng5201314/9733652](http://download.csdn.net/detail/shuzheng5201314/9733652 "dubbo-admin-2.5.3")
-* dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/detail/shuzheng5201314/9733657](http://download.csdn.net/detail/shuzheng5201314/9733657 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
+- JDK7 [http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR "JDK7")
+- Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")
+- Redis [https://redis.io/download](https://redis.io/download "Redis")
+- ActiveMQ [http://activemq.apache.org/download-archives.html](http://activemq.apache.org/download-archives.html "ActiveMQ")
+- ZooKeeper [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://www.apache.org/dyn/closer.cgi/zookeeper/ "ZooKeeper")
+- Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
+- Elastic Stack [https://www.elastic.co/downloads](https://www.elastic.co/downloads "Elastic Stack")
+- Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
+- dubbo-admin-2.5.3 [http://download.csdn.net/detail/shuzheng5201314/9733652](http://download.csdn.net/detail/shuzheng5201314/9733652 "dubbo-admin-2.5.3")
+- dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/detail/shuzheng5201314/9733657](http://download.csdn.net/detail/shuzheng5201314/9733657 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
 
 ## 开发指南:
 
-* 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口，下面有资源下载链接（安装流程略）
-
-* 2、克隆源代码到本地并打开，**推荐使用IntelliJ IDEA**，本地编译并安装到本地maven仓
+- 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口，下面有资源下载链接（安装流程略）
+- 2、克隆源代码到本地并打开，**推荐使用IntelliJ IDEA**，本地编译并安装到本地maven仓
 
 ### 修改本地Host
-* 127.0.0.1	upms.zhangshuzheng.cn
-* 127.0.0.1	cms.zhangshuzheng.cn
-* 127.0.0.1	pay.zhangshuzheng.cn
-* 127.0.0.1	ucenter.zhangshuzheng.cn
-* 127.0.0.1	wechat.zhangshuzheng.cn
-* 127.0.0.1	api.zhangshuzheng.cn
-* 127.0.0.1	oss.zhangshuzheng.cn
+
+- 127.0.0.1	upms.zhangshuzheng.cn
+- 127.0.0.1	cms.zhangshuzheng.cn
+- 127.0.0.1	pay.zhangshuzheng.cn
+- 127.0.0.1	ucenter.zhangshuzheng.cn
+- 127.0.0.1	wechat.zhangshuzheng.cn
+- 127.0.0.1	api.zhangshuzheng.cn
+- 127.0.0.1	oss.zhangshuzheng.cn
 
 ### 编译流程
 
