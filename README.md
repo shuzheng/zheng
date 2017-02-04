@@ -264,11 +264,19 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - [RBAC新解：基于资源的权限管理(Resource-Based Access Control)](http://globeeip.iteye.com/blog/1236167 "RBAC新解：基于资源的权限管理(Resource-Based Access Control)")
 
+- [网站架构经验随笔](http://jinnianshilongnian.iteye.com/blog/2289904 "网站架构经验随笔")
+
 - [支付系统架构](http://shuzheng5201314.iteye.com/blog/2355431 "支付系统架构")
 
 - [Spring整合JMS](http://elim.iteye.com/blog/1893038 "Spring整合JMS")
 
 - [跟我学Shiro目录贴](http://jinnianshilongnian.iteye.com/blog/2018398 "跟我学Shiro目录贴")
+
+- [跟我学SpringMVC目录汇总贴](http://jinnianshilongnian.iteye.com/blog/1752171 "跟我学SpringMVC目录汇总贴")
+
+- [跟我学spring3 目录贴](http://jinnianshilongnian.iteye.com/blog/1482071 "跟我学spring3 目录贴")
+
+- [跟我学OpenResty(Nginx+Lua)开发目录贴](http://jinnianshilongnian.iteye.com/blog/2190344 "跟我学OpenResty(Nginx+Lua)开发目录贴")
 
 - [Redis中文网](http://www.redis.net.cn/ "Redis中文网")
 
