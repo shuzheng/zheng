@@ -49,7 +49,7 @@
         <jdbcConnection driverClass="${master.jdbc.driver}"
                         connectionURL="${master.jdbc.url}"
                         userId="${master.jdbc.username}"
-                        password="${master.jdbc.password}" />
+                        password="${master_jdbc_password}" />
 
         <!-- model生成 -->
         <javaModelGenerator targetPackage="${generator_javaModelGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" />

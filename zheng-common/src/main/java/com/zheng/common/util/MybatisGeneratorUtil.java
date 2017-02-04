@@ -45,7 +45,7 @@ public class MybatisGeneratorUtil {
 			Map<String, Object> table = null;
 
 			// 查询定制前缀项目的所有表
-			JdbcUtil jdbcUtil = new JdbcUtil(jdbc_driver, jdbc_url, jdbc_username, jdbc_password);
+			JdbcUtil jdbcUtil = new JdbcUtil(jdbc_driver, jdbc_url, jdbc_username, DESUtil.getDecryptString(jdbc_password));
 			List<Map> result = jdbcUtil.selectByParams(sql, null);
 			for (Map map : result) {
 				System.out.println(map.get("TABLE_NAME"));
@@ -62,6 +62,7 @@ public class MybatisGeneratorUtil {
 			context.put("generator_sqlMapGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("generator_javaClientGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("targetProject", targetProject);
+			context.put("master_jdbc_password", DESUtil.getDecryptString(jdbc_password));
 			VelocityUtil.generate(VM_PATH, module_path, context);
 			// 删除旧代码
 			deleteDir(new File(targetProject + "/src/main/java/com/" + PROJECT_NAME + "/" + module_prefix_name.replaceAll("\\.", "/") + "/dao/model"));
