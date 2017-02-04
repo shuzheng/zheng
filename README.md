@@ -196,8 +196,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ## 开发指南:
 
-- 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口，下面有资源下载链接（安装流程略）
-- 2、克隆源代码到本地并打开，**推荐使用IntelliJ IDEA**，本地编译并安装到本地maven仓
+- 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口即可
+- 2、克隆源代码到本地并打开，**推荐使用IntelliJ IDEA**，本地编译并安装到本地maven仓库
 
 ### 修改本地Host
 
@@ -215,11 +215,11 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 ### 启动顺序
 
-- 新建`zheng`数据库，导入`zheng.sql`、`upms_system.sql`、`upms_user.sql`
+- 新建`zheng`数据库，导入`zheng.sql`
 
 - 启动 zheng-upms-rpc-service => zheng-upms-server => zheng-`xxx`-rpc-service => zheng-`xxx`-`webapp`
 
-- 访问 [统一后台地址](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，默认帐号密码：`admin/123456`
+- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，默认帐号密码：`admin / 123456`
 
 - 登录成功后，可在右上角切换已注册系统访问
 
@@ -260,13 +260,15 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - [单点登录原理与简单实现](http://shuzheng5201314.iteye.com/blog/2343910 "单点登录原理与简单实现")
 
-- [支付系统架构](http://blog.lixf.cn/essay/2016/08/08/payment-arch/ "支付系统架构")
-
 - [ITeye论坛关于权限控制的讨论](http://www.iteye.com/magazines/82 "ITeye论坛关于权限控制的讨论")
 
 - [RBAC新解：基于资源的权限管理(Resource-Based Access Control)](http://globeeip.iteye.com/blog/1236167 "RBAC新解：基于资源的权限管理(Resource-Based Access Control)")
 
+- [支付系统架构](http://shuzheng5201314.iteye.com/blog/2355431 "支付系统架构")
+
 - [Spring整合JMS](http://elim.iteye.com/blog/1893038 "Spring整合JMS")
+
+- [跟我学Shiro目录贴](http://jinnianshilongnian.iteye.com/blog/2018398 "跟我学Shiro目录贴")
 
 - [Redis中文网](http://www.redis.net.cn/ "Redis中文网")
 
@@ -283,8 +285,6 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 - [springMVC对简单对象、Set、List、Map的数据绑定和常见问题.](http://blog.csdn.net/z_dendy/article/details/12648641 "springMVC对简单对象、Set、List、Map的数据绑定和常见问题.")
 
 - [做个男人，做个成熟的男人，做个有城府的男人](http://shuzheng5201314.iteye.com/blog/1387820 "做个男人，做个成熟的男人，做个有城府的男人")
-
-- [中国所有神仙列表](http://shuzheng5201314.iteye.com/blog/1358307 "中国所有神仙列表")
 
 
 ### 常用在线小工具
