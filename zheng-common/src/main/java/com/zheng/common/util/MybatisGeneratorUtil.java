@@ -20,7 +20,7 @@ import java.util.Map;
 public class MybatisGeneratorUtil {
 
 	// 模板路径
-	private static String VM_PATH = "zheng-common/src/main/resources/generatorConfig.vm";
+	private static String VM_PATH = "zheng-common/src/main/resources/template/generatorConfig.vm";
 	// 项目名称
 	private static String PROJECT_NAME = "zheng";
 	// 数据库名称

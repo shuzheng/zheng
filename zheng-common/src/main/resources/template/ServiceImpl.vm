@@ -1,0 +1,23 @@
+package ${groupId}.${module}.rpc.service.impl;
+
+import ${groupId}.${module}.dao.mapper.${model}Mapper;
+import ${groupId}.${module}.dao.model.${model};
+import ${groupId}.${module}.dao.model.${model}Example;
+import ${groupId}.${module}.rpc.api.${model}Service;
+import ${groupId}.common.base.BaseServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+* ${modelname}service实现
+* Created by shuzheng on ${ctime}.
+*/
+@Service
+@Transactional
+public class ${model}ServiceImpl extends BaseServiceImpl<${model}Mapper, ${model}, ${model}Example> implements ${model}Service {
+
+private static Logger _log = LoggerFactory.getLogger(${model}ServiceImpl.class);
+
+}

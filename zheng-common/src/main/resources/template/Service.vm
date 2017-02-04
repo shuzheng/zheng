@@ -1,0 +1,13 @@
+package ${groupId}.${module}.rpc.api;
+
+import ${groupId}.${module}.dao.model.${model};
+import ${groupId}.${module}.dao.model.${model}Example;
+import ${groupId}.common.base.BaseService;
+
+/**
+* ${modelname}service接口
+* Created by shuzheng on ${ctime}.
+*/
+public interface ${model}Service extends BaseService<${model}, ${model}Example> {
+
+}
