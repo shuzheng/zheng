@@ -20,10 +20,11 @@
         <property name="unauthorizedUrl" value="/403"/>
         <property name="filterChainDefinitions">
             <value>
-                swagger-ui.html = anon
-                /webjars/** = anon
-                /resources/** = anon
-                /sso/login = anon
+                <!--/swagger-ui.html = anon-->
+                <!--/webjars/** = anon-->
+                <!--/resources/** = anon-->
+                <!--/sso/login = anon-->
+                /druid/**=authc
                 /manage/**=authc
             </value>
         </property>

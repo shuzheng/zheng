@@ -8,6 +8,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	
+	<!-- 根目录'/'对应页面 -->
+	<mvc:view-controller path="/" view-name="/index"/>
 
 </beans>

@@ -52,18 +52,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- Spring Security -->
-    <!--
-    <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    -->
-
     <!-- zhang-upms-client -->
     <filter>
         <filter-name>zheng-upms-client</filter-name>
@@ -90,6 +78,7 @@
     </filter-mapping>
 
     <!-- shiro -->
+    <!-- DelegatingFilterProxy作用是自动到spring容器查找名字为shiroFilter（filter-name）的bean并把所有Filter的操作委托给它。然后将shiroFilter配置到spring容器即可 -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

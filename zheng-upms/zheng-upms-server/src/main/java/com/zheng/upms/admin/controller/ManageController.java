@@ -20,9 +20,4 @@ public class ManageController {
 		return "/manage/index";
 	}
 
-	@RequestMapping("/login")
-	public String login() {
-		return "/manage/login";
-	}
-
 }
