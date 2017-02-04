@@ -1,6 +1,7 @@
 package com.zheng.cms.web.controller;
 
 import com.zheng.cms.dao.model.CmsUser;
+import com.zheng.common.base.BaseController;
 import com.zheng.common.util.JmsUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;

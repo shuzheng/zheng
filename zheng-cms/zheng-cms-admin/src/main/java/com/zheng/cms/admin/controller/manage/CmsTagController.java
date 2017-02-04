@@ -1,9 +1,9 @@
 package com.zheng.cms.admin.controller.manage;
 
-import com.zheng.cms.admin.controller.BaseController;
 import com.zheng.cms.dao.model.CmsTag;
 import com.zheng.cms.dao.model.CmsTagExample;
 import com.zheng.cms.rpc.api.CmsTagService;
+import com.zheng.common.base.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

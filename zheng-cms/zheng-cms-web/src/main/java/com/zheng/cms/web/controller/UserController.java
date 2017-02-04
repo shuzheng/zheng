@@ -3,6 +3,7 @@ package com.zheng.cms.web.controller;
 import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.dao.model.CmsUserExample;
 import com.zheng.cms.rpc.api.UserService;
+import com.zheng.common.base.BaseController;
 import com.zheng.common.util.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

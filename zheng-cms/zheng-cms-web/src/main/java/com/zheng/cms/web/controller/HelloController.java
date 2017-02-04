@@ -2,6 +2,7 @@ package com.zheng.cms.web.controller;
 
 import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.rpc.api.UserService;
+import com.zheng.common.base.BaseController;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.slf4j.Logger;

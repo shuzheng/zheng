@@ -12,6 +12,14 @@
 <title><spring:message code="error"/></title>
 </head>
 <body>
-error
+<% Exception e = (Exception)request.getAttribute("ex"); %>
+<h2>错误: <%= e.getClass().getSimpleName()%></h2>
+<hr />
+<h5>错误描述：</h5>
+<%= e.getMessage()%>
+<h5>错误信息：</h5>
+<pre>
+<% e.printStackTrace(new java.io.PrintWriter(out)); %>
+</pre>
 </body>
 </html>

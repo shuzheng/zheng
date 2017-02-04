@@ -1,6 +1,7 @@
 package com.zheng.cms.web.controller;
 
 import com.zheng.cms.rpc.api.UserService;
+import com.zheng.common.base.BaseController;
 import com.zheng.common.util.EhCacheUtil;
 import com.zheng.common.util.PropertiesFileUtil;
 import net.sf.ehcache.Cache;

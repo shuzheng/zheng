@@ -1,5 +1,6 @@
 package com.zheng.cms.web.controller;
 
+import com.zheng.common.base.BaseController;
 import com.zheng.common.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

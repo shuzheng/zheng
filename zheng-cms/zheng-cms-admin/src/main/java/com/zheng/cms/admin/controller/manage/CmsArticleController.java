@@ -1,9 +1,9 @@
 package com.zheng.cms.admin.controller.manage;
 
-import com.zheng.cms.admin.controller.BaseController;
 import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
 import com.zheng.cms.rpc.api.CmsArticleService;
+import com.zheng.common.base.BaseController;
 import com.zheng.common.util.Paginator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
