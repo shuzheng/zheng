@@ -175,15 +175,20 @@ public class SSOController {
 		// token校验值
 		RedisUtil.set(token, token, TIMEOUT);
 		// 回调子系统
-		String redirectUrl = backurl;
-		if (backurl.contains("?")) {
-			redirectUrl += "&token=" + token;
+		if (StringUtils.isEmpty(backurl)) {
+			result.put("result", true);
+			result.put("data", "/");
 		} else {
-			redirectUrl += "?token=" + token;
+			String redirectUrl = backurl;
+			if (backurl.contains("?")) {
+				redirectUrl += "&token=" + token;
+			} else {
+				redirectUrl += "?token=" + token;
+			}
+			_log.info("认证中心帐号通过，带token回跳：{}", redirectUrl);
+			result.put("result", true);
+			result.put("data", redirectUrl);
 		}
-		_log.info("认证中心帐号通过，带token回跳：{}", redirectUrl);
-		result.put("result", true);
-		result.put("data", redirectUrl);
 		return result;
 	}
 
