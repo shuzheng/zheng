@@ -6,6 +6,7 @@ import com.zheng.cms.rpc.api.CmsTagService;
 import com.zheng.common.base.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class CmsTagController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "评论首页", notes = "获取评论列表首页")
+	@RequiresPermissions("cms:tag:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
 		return "/manage/tag/index";
@@ -49,6 +51,7 @@ public class CmsTagController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "评论列表", notes = "获取评论列表并分页")
+	@RequiresPermissions("cms:tag:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Object list(
@@ -76,6 +79,7 @@ public class CmsTagController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "新增标签", notes = "新增标签页")
+	@RequiresPermissions("cms:tag:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
 		return "/manage/tag/add";
@@ -88,6 +92,7 @@ public class CmsTagController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "新增标签", notes = "新增标签提交接口")
+	@RequiresPermissions("cms:tag:create")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(CmsTag cmsTag, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
@@ -106,6 +111,7 @@ public class CmsTagController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "删除标签", notes = "批量删除标签")
+	@RequiresPermissions("cms:tag:delete")
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
 	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = cmsTagService.deleteByPrimaryKeys(ids);
@@ -120,6 +126,7 @@ public class CmsTagController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改标签", notes = "根据id修改标签页")
+	@RequiresPermissions("cms:tag:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsTag tag = cmsTagService.selectByPrimaryKey(id);
@@ -135,6 +142,7 @@ public class CmsTagController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改标签", notes = "根据id修改标签提交接口")
+	@RequiresPermissions("cms:tag:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsTag cmsTag, ModelMap modelMap) {
 		int count = cmsTagService.updateByPrimaryKeySelective(cmsTag);

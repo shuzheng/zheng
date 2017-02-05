@@ -7,6 +7,7 @@ import com.zheng.common.base.BaseController;
 import com.zheng.common.util.Paginator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "文章列表", notes = "获取文章列表并分页")
+	@RequiresPermissions("cms:article:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
@@ -72,6 +74,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "新增文章", notes = "新增文章页")
+	@RequiresPermissions("cms:article:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
 		return "/manage/article/add";
@@ -84,6 +87,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "新增文章", notes = "新增文章提交接口")
+	@RequiresPermissions("cms:article:create")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(CmsArticle cmsArticle, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
@@ -102,6 +106,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "删除文章", notes = "批量删除文章")
+	@RequiresPermissions("cms:article:delete")
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
 	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = cmsArticleService.deleteByPrimaryKeys(ids);
@@ -116,6 +121,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改文章", notes = "根据id修改文章页")
+	@RequiresPermissions("cms:article:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
@@ -131,6 +137,7 @@ public class CmsArticleController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改文章", notes = "根据id修改文章提交接口")
+	@RequiresPermissions("cms:article:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsArticle cmsArticle, ModelMap modelMap) {
 		int count = cmsArticleService.updateByPrimaryKeySelective(cmsArticle);

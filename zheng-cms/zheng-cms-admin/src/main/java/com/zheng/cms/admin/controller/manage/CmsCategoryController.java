@@ -8,6 +8,7 @@ import com.zheng.common.util.Paginator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "类目列表", notes = "获取类目列表并分页")
+	@RequiresPermissions("cms:category:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(
 			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
@@ -73,6 +75,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "新增类目", notes = "新增类目页")
+	@RequiresPermissions("cms:category:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
 		return "/manage/category/add";
@@ -85,6 +88,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "新增类目", notes = "新增类目提交接口")
+	@RequiresPermissions("cms:category:create")
 	@ApiImplicitParam(name = "cmsCategory", value = "类目实体cmsCategory", required = true, dataType = "CmsCategory")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(CmsCategory cmsCategory, ModelMap modelMap) {
@@ -104,6 +108,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "删除类目", notes = "批量删除类目")
+	@RequiresPermissions("cms:category:delete")
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
 	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = cmsCategoryService.deleteByPrimaryKeys(ids);
@@ -118,6 +123,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改类目", notes = "根据id修改类目页")
+	@RequiresPermissions("cms:category:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsCategory category = cmsCategoryService.selectByPrimaryKey(id);
@@ -133,6 +139,7 @@ public class CmsCategoryController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改类目", notes = "根据id修改类目提交接口")
+	@RequiresPermissions("cms:category:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, CmsCategory cmsCategory, ModelMap modelMap) {
 		int count = cmsCategoryService.updateByPrimaryKeySelective(cmsCategory);
