@@ -1,5 +1,6 @@
 package com.zheng.upms.admin.controller.manage;
 
+import com.zheng.common.base.BaseController;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Api(value = "系统管理", description = "注册系统管理")
 @RequestMapping("/manage/system")
-public class SystemController {
+public class SystemController extends BaseController {
 
 	private static Logger _log = LoggerFactory.getLogger(SystemController.class);
 
@@ -28,7 +29,7 @@ public class SystemController {
 	private UpmsSystemService upmsSystemService;
 
 	@ApiOperation(value = "系统首页")
-	@RequiresPermissions("upms.system.read")
+	@RequiresPermissions("upms:system:read")
     //@RequiresUser
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
@@ -36,7 +37,7 @@ public class SystemController {
 	}
 
 	@ApiOperation(value = "系统列表")
-	@RequiresPermissions("upms.system.read")
+	@RequiresPermissions("upms:system:read")
     //@RequiresUser
 	@RequestMapping("/list")
 	@ResponseBody
