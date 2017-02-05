@@ -27,7 +27,7 @@ public class RedisUtil {
 	private static int PORT = PropertiesFileUtil.getInstance("redis").getInt("master.redis.port");
 
 	// 访问密码
-	private static String PASSWORD = DESUtil.getDecryptString(PropertiesFileUtil.getInstance("redis").get("master.redis.password"));
+	private static String PASSWORD = AESUtil.AESDecode(PropertiesFileUtil.getInstance("redis").get("master.redis.password"));
 	// 可用连接实例的最大数目，默认值为8；
 	// 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。
 	private static int MAX_ACTIVE = PropertiesFileUtil.getInstance("redis").getInt("master.redis.max_active");

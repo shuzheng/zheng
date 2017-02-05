@@ -217,6 +217,8 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - 新建`zheng`数据库，导入`zheng.sql`
 
+- 修改各dao模块的`redis.properties`和`jdbc.properties`数据库连接等配置信息，其中`master.redis.password`、`master.jdbc.password`、`slave.jdbc.password`密码值使用了AES加密，请使用`com.zheng.common.util.AESUtil`工具类修改这些值
+
 - 启动 zheng-upms-rpc-service => zheng-upms-server => zheng-`xxx`-rpc-service => zheng-`xxx`-`webapp`
 
 - 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，默认帐号密码：`admin / 123456`
