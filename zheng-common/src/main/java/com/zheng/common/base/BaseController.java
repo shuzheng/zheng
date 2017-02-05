@@ -1,5 +1,6 @@
 package com.zheng.common.base;
 
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,6 +31,10 @@ public abstract class BaseController {
 	public String exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) {
 		_log.error("统一异常处理：", exception);
 		request.setAttribute("ex", exception);
+		// shiro没有权限异常
+		if (exception instanceof UnauthorizedException) {
+			return "/403";
+		}
 		return "/error";
 	}
 
