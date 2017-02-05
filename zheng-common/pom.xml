@@ -284,6 +284,12 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.2</version>
         </dependency>
+        <!-- aspectj -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.8</version>
+        </dependency>
         <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
