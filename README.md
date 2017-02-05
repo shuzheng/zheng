@@ -23,7 +23,7 @@ zheng
 ├── zheng-admin -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
-|    ├── zheng-upms-sso-client -- SSO客户端依赖包
+|    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、会话管理
 |    ├── zheng-upms-rpc-api -- rpc接口包
 |    ├── zheng-upms-rpc-service -- rpc服务提供者
 |    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]

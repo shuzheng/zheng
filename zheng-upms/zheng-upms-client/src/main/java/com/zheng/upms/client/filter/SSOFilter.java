@@ -1,7 +1,7 @@
-package com.zheng.upms.sso.client.filter;
+package com.zheng.upms.client.filter;
 
 import com.zheng.common.util.RedisUtil;
-import com.zheng.upms.sso.client.filter.util.RequestParameterUtil;
+import com.zheng.upms.client.filter.util.RequestParameterUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by shuzheng on 2016/12/10.

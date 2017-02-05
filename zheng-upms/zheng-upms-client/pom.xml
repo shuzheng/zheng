@@ -8,10 +8,10 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-upms-sso-client</artifactId>
+    <artifactId>zheng-upms-client</artifactId>
     <packaging>jar</packaging>
 
-    <name>zheng-upms-sso-client</name>
+    <name>zheng-upms-client</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -41,7 +41,7 @@
     </dependencies>
 
     <build>
-        <finalName>zheng-upms-sso-client</finalName>
+        <finalName>zheng-upms-client</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>

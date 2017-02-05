@@ -40,7 +40,7 @@
         <!-- zheng-upms-client -->
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-sso-client</artifactId>
+            <artifactId>zheng-upms-client</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
