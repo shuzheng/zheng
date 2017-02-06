@@ -211,14 +211,15 @@ public class SSOController {
 	/**
 	 * 退出登录
 	 * @param request
+	 * @param response
 	 * @return
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request) {
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		// shiro退出登录
 		SecurityUtils.getSubject().logout();
 		// 清除单点sessionId
-		CookieUtil.getCookie(response, ZHENG_UPMS_SERVER_SESSION_ID);
+		CookieUtil.removeCookie(response, ZHENG_UPMS_SERVER_SESSION_ID);
 
 		String sessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SERVER_SESSION_ID);
 		// 当前全局会话sessionId
