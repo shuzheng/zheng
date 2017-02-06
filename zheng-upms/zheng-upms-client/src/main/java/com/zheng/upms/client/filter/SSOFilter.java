@@ -71,7 +71,7 @@ public class SSOFilter implements Filter {
         else {
             // 认证中心地址
             StringBuffer sso_server_url = new StringBuffer(filterConfig.getInitParameter(SSO_SERVER_URL));
-            sso_server_url.append("/sso");
+            sso_server_url.append("/sso/index");
             // 判断是否有认证中心token
             String token = request.getParameter("token");
             // 已拿到token

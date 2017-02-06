@@ -24,7 +24,8 @@
                 /swagger-ui.html = anon
                 /webjars/** = anon
                 /resources/** = anon
-                /sso/login = anon
+                /sso/** = anon
+				/403 = anon
                 /druid/**=authc
                 /manage/**=authc
             </value>
