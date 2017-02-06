@@ -237,6 +237,43 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - 扩展流程：可扩展和拆分rpc-api和rpc-service模块，可按微服务拆分或场景拆分
 
+### 框架规范约定
+
+`约定优于配置(convention over configuration)`，此框架约定了很多编程规范，下面一一列举：
+
+- service类，需要在叫名`service`的包下，并以`Service`结尾，如`CmsArticleServiceImpl`
+
+- controller类，需要在以`controller`结尾的包下，类名以Controller结尾，如`CmsArticleController.java`，并继承`BaseController`
+
+- spring task类，需要在叫名`task`的包下，并以`Task`结尾，如`TestTask.java`
+
+- mapper.xml，需要在名叫`mapper`的包下，并以`Mapper.xml`结尾，如`CmsArticleMapper.xml`
+
+- mapper接口，需要在名叫`mapper`的包下，并以`Mapper`结尾，如`CmsArticleMapper.java`
+
+- model实体类，需要在名叫`model`的包下，命名规则为数据表转驼峰规则，如`CmsArticle.java`
+
+- spring配置文件，命名规则为`applicationContext-*.xml`
+
+- 类名：首字母大写驼峰规则；方法名：首字母小写驼峰规则；常量：全大写；变量：首字母小写驼峰规则，尽量非缩写
+
+- springmvc配置加到对应模块的`springMVC-servlet.xml`文件里
+
+- 配置文件放到`src/main/resources`目录下
+
+- 静态资源文件放到`src/main/webapp/resources`目录下
+
+- jsp文件，需要在`/WEB-INF/jsp`目录下
+
+- `RequestMapping`和返回物理试图路径的url尽量写全路径，如：`@RequestMapping("/manage")`、`return "/manage/index"`
+
+- `RequestMapping`指定method
+
+- 模块命名为`项目`-`子项目`-`业务`，如`zheng-cms-admin`
+
+- 数据表命名为：`子系统`_`表`，如`cms_article`
+
+
 ## 演示地址
 
 演示地址： [http://www.zhangshuzheng.cn/zhengAdmin](http://www.zhangshuzheng.cn/zhengAdmin "演示地址")
