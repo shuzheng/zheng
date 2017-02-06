@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-06 21:09:06
+Date: 2017-02-06 23:59:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -485,10 +485,8 @@ CREATE TABLE `upms_system` (
 -- ----------------------------
 -- Records of upms_system
 -- ----------------------------
-INSERT INTO `upms_system` VALUES ('1', '', 'http://upms.zhangshuzheng.cn:1113', '1', 'zheng-upms-app1', '1', '1');
-INSERT INTO `upms_system` VALUES ('2', '', 'http://upms.zhangshuzheng.cn:1114', '1', 'zheng-upms-app2', '2', '2');
-INSERT INTO `upms_system` VALUES ('3', '', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '3', '3');
-INSERT INTO `upms_system` VALUES ('4', '', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '4', '4');
+INSERT INTO `upms_system` VALUES ('3', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '3', '3');
+INSERT INTO `upms_system` VALUES ('4', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '4', '4');
 
 -- ----------------------------
 -- Table structure for upms_user
