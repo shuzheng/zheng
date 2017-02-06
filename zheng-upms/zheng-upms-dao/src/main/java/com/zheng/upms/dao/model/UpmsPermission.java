@@ -18,11 +18,46 @@ public class UpmsPermission implements Serializable {
     private Integer systemId;
 
     /**
+     * 所属上级
+     *
+     * @mbg.generated
+     */
+    private Integer pid;
+
+    /**
+     * 类型(1:菜单,2:按钮)
+     *
+     * @mbg.generated
+     */
+    private Byte type;
+
+    /**
      * 权限值
      *
      * @mbg.generated
      */
     private String permissionValue;
+
+    /**
+     * 图标
+     *
+     * @mbg.generated
+     */
+    private String icon;
+
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
+    private Long ctime;
+
+    /**
+     * 排序
+     *
+     * @mbg.generated
+     */
+    private Long orders;
 
     private static final long serialVersionUID = 1L;
 
@@ -42,12 +77,52 @@ public class UpmsPermission implements Serializable {
         this.systemId = systemId;
     }
 
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
+    }
+
     public String getPermissionValue() {
         return permissionValue;
     }
 
     public void setPermissionValue(String permissionValue) {
         this.permissionValue = permissionValue;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public Long getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(Long ctime) {
+        this.ctime = ctime;
+    }
+
+    public Long getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Long orders) {
+        this.orders = orders;
     }
 
     @Override
@@ -58,7 +133,12 @@ public class UpmsPermission implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", permissionId=").append(permissionId);
         sb.append(", systemId=").append(systemId);
+        sb.append(", pid=").append(pid);
+        sb.append(", type=").append(type);
         sb.append(", permissionValue=").append(permissionValue);
+        sb.append(", icon=").append(icon);
+        sb.append(", ctime=").append(ctime);
+        sb.append(", orders=").append(orders);
         sb.append("]");
         return sb.toString();
     }
@@ -77,7 +157,12 @@ public class UpmsPermission implements Serializable {
         UpmsPermission other = (UpmsPermission) that;
         return (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
             && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
-            && (this.getPermissionValue() == null ? other.getPermissionValue() == null : this.getPermissionValue().equals(other.getPermissionValue()));
+            && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getPermissionValue() == null ? other.getPermissionValue() == null : this.getPermissionValue().equals(other.getPermissionValue()))
+            && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
+            && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
+            && (this.getOrders() == null ? other.getOrders() == null : this.getOrders().equals(other.getOrders()));
     }
 
     @Override
@@ -86,7 +171,12 @@ public class UpmsPermission implements Serializable {
         int result = 1;
         result = prime * result + ((getPermissionId() == null) ? 0 : getPermissionId().hashCode());
         result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
+        result = prime * result + ((getPid() == null) ? 0 : getPid().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getPermissionValue() == null) ? 0 : getPermissionValue().hashCode());
+        result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
+        result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
+        result = prime * result + ((getOrders() == null) ? 0 : getOrders().hashCode());
         return result;
     }
 }

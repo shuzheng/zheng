@@ -70,7 +70,7 @@ public class UpmsRealm extends AuthorizingRealm {
         if (!upmsUser.getPassword().equals(MD5Util.MD5(password + upmsUser.getSalt()))) {
             throw new IncorrectCredentialsException("密码错误！");
         }
-        if (upmsUser.getStatus() == -1) {
+        if (upmsUser.getLocked() == 1) {
             throw new LockedAccountException("账号已被锁定！");
         }
 

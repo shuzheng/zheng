@@ -3,10 +3,8 @@
 <mapper namespace="com.zheng.upms.dao.mapper.UpmsRoleMapper">
   <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsRole">
     <id column="role_id" jdbcType="INTEGER" property="roleId" />
-    <result column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="status" jdbcType="TINYINT" property="status" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
     <result column="orders" jdbcType="BIGINT" property="orders" />
   </resultMap>
@@ -69,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    role_id, system_id, name, description, status, ctime, orders
+    role_id, name, description, ctime, orders
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsRoleExample" resultMap="BaseResultMap">
     select
@@ -110,12 +108,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsRole">
-    insert into upms_role (role_id, system_id, name, 
-      description, status, ctime, 
-      orders)
-    values (#{roleId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT}, 
-      #{orders,jdbcType=BIGINT})
+    insert into upms_role (role_id, name, description, 
+      ctime, orders)
+    values (#{roleId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsRole">
     insert into upms_role
@@ -123,17 +119,11 @@
       <if test="roleId != null">
         role_id,
       </if>
-      <if test="systemId != null">
-        system_id,
-      </if>
       <if test="name != null">
         name,
       </if>
       <if test="description != null">
         description,
-      </if>
-      <if test="status != null">
-        status,
       </if>
       <if test="ctime != null">
         ctime,
@@ -146,17 +136,11 @@
       <if test="roleId != null">
         #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="systemId != null">
-        #{systemId,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
       </if>
       <if test="ctime != null">
         #{ctime,jdbcType=BIGINT},
@@ -178,17 +162,11 @@
       <if test="record.roleId != null">
         role_id = #{record.roleId,jdbcType=INTEGER},
       </if>
-      <if test="record.systemId != null">
-        system_id = #{record.systemId,jdbcType=INTEGER},
-      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=TINYINT},
       </if>
       <if test="record.ctime != null">
         ctime = #{record.ctime,jdbcType=BIGINT},
@@ -204,10 +182,8 @@
   <update id="updateByExample" parameterType="map">
     update upms_role
     set role_id = #{record.roleId,jdbcType=INTEGER},
-      system_id = #{record.systemId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=TINYINT},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null">
@@ -217,17 +193,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsRole">
     update upms_role
     <set>
-      <if test="systemId != null">
-        system_id = #{systemId,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
       </if>
       <if test="ctime != null">
         ctime = #{ctime,jdbcType=BIGINT},
@@ -240,10 +210,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsRole">
     update upms_role
-    set system_id = #{systemId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
+    set name = #{name,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT}
     where role_id = #{roleId,jdbcType=INTEGER}

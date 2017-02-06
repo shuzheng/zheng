@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-01-20 23:33:25
+Date: 2017-02-06 21:09:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -400,73 +400,15 @@ CREATE TABLE `pay_vest` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tmp_upms_organization
--- ----------------------------
-DROP TABLE IF EXISTS `tmp_upms_organization`;
-CREATE TABLE `tmp_upms_organization` (
-  `organization_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `system_id` int(10) unsigned NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`organization_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='组织';
-
--- ----------------------------
--- Records of tmp_upms_organization
--- ----------------------------
-
--- ----------------------------
--- Table structure for tmp_upms_permission
--- ----------------------------
-DROP TABLE IF EXISTS `tmp_upms_permission`;
-CREATE TABLE `tmp_upms_permission` (
-  `permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `system_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='权限';
-
--- ----------------------------
--- Records of tmp_upms_permission
--- ----------------------------
-INSERT INTO `tmp_upms_permission` VALUES ('1', '1');
-
--- ----------------------------
--- Table structure for tmp_upms_user
--- ----------------------------
-DROP TABLE IF EXISTS `tmp_upms_user`;
-CREATE TABLE `tmp_upms_user` (
-  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `system_id` int(10) unsigned NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `salt` varchar(32) DEFAULT NULL,
-  `realname` varchar(20) DEFAULT NULL,
-  `avatar` varchar(50) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `sex` tinyint(4) DEFAULT NULL,
-  `ctime` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户';
-
--- ----------------------------
--- Records of tmp_upms_user
--- ----------------------------
-INSERT INTO `tmp_upms_user` VALUES ('1', '1', 'admin', 'C1F3459C3869B0D28DA59A966D33810E', '2e1dba52a94d4c30ba27999d823c82ac', '管理员', null, null, null, '1', '1');
-
--- ----------------------------
 -- Table structure for upms_organization
 -- ----------------------------
 DROP TABLE IF EXISTS `upms_organization`;
 CREATE TABLE `upms_organization` (
   `organization_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `system_id` int(10) unsigned NOT NULL COMMENT '所属系统',
   `name` varchar(20) DEFAULT NULL COMMENT '组织名称',
   `description` varchar(1000) DEFAULT NULL COMMENT '组织描述',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`organization_id`),
-  KEY `FK_Reference_15` (`system_id`),
-  CONSTRAINT `FK_Reference_15` FOREIGN KEY (`system_id`) REFERENCES `upms_system` (`system_id`)
+  PRIMARY KEY (`organization_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='组织';
 
 -- ----------------------------
@@ -480,14 +422,18 @@ DROP TABLE IF EXISTS `upms_permission`;
 CREATE TABLE `upms_permission` (
   `permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `system_id` int(10) unsigned NOT NULL COMMENT '所属系统',
+  `pid` int(10) DEFAULT NULL COMMENT '所属上级',
+  `type` tinyint(4) DEFAULT NULL COMMENT '类型(1:菜单,2:按钮)',
   `permission_value` varchar(20) DEFAULT NULL COMMENT '权限值',
+  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
+  `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
+  `orders` bigint(20) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='权限';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限';
 
 -- ----------------------------
 -- Records of upms_permission
 -- ----------------------------
-INSERT INTO `upms_permission` VALUES ('1', '1', '*:*:*');
 
 -- ----------------------------
 -- Table structure for upms_role
@@ -495,19 +441,16 @@ INSERT INTO `upms_permission` VALUES ('1', '1', '*:*:*');
 DROP TABLE IF EXISTS `upms_role`;
 CREATE TABLE `upms_role` (
   `role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `system_id` int(10) unsigned NOT NULL,
   `name` varchar(20) DEFAULT NULL,
   `description` varchar(1000) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL,
   `ctime` bigint(20) NOT NULL,
   `orders` bigint(20) NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='角色';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色';
 
 -- ----------------------------
 -- Records of upms_role
 -- ----------------------------
-INSERT INTO `upms_role` VALUES ('1', '1', '超级管理员', '拥有系统所有权限', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for upms_role_permission
@@ -517,9 +460,7 @@ CREATE TABLE `upms_role_permission` (
   `role_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `role_id` int(10) unsigned NOT NULL,
   `permission_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`role_permission_id`),
-  KEY `FK_Reference_22` (`permission_id`),
-  CONSTRAINT `FK_Reference_22` FOREIGN KEY (`permission_id`) REFERENCES `upms_permission` (`permission_id`)
+  PRIMARY KEY (`role_permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色权限关联表';
 
 -- ----------------------------
@@ -531,23 +472,23 @@ CREATE TABLE `upms_role_permission` (
 -- ----------------------------
 DROP TABLE IF EXISTS `upms_system`;
 CREATE TABLE `upms_system` (
-  `system_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `icon` varchar(20) DEFAULT NULL,
-  `basepath` varchar(100) DEFAULT NULL,
-  `status` smallint(6) DEFAULT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `ctime` bigint(20) DEFAULT NULL,
-  `orders` bigint(20) DEFAULT NULL,
+  `system_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
+  `basepath` varchar(100) DEFAULT NULL COMMENT '根目录',
+  `status` tinyint(4) DEFAULT NULL COMMENT '状态(-1:黑名单,1:正常)',
+  `name` varchar(20) DEFAULT NULL COMMENT '系统名称',
+  `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
+  `orders` bigint(20) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`system_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='系统';
 
 -- ----------------------------
 -- Records of upms_system
 -- ----------------------------
-INSERT INTO `upms_system` VALUES ('1', null, 'http://upms.zhangshuzheng.cn:1113', '1', 'zheng-upms-app1', '1', '1');
-INSERT INTO `upms_system` VALUES ('2', null, 'http://upms.zhangshuzheng.cn:1114', '1', 'zheng-upms-app2', '2', '2');
-INSERT INTO `upms_system` VALUES ('3', null, 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '3', '3');
-INSERT INTO `upms_system` VALUES ('4', null, 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '4', '4');
+INSERT INTO `upms_system` VALUES ('1', '', 'http://upms.zhangshuzheng.cn:1113', '1', 'zheng-upms-app1', '1', '1');
+INSERT INTO `upms_system` VALUES ('2', '', 'http://upms.zhangshuzheng.cn:1114', '1', 'zheng-upms-app2', '2', '2');
+INSERT INTO `upms_system` VALUES ('3', '', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '3', '3');
+INSERT INTO `upms_system` VALUES ('4', '', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '4', '4');
 
 -- ----------------------------
 -- Table structure for upms_user
@@ -555,7 +496,6 @@ INSERT INTO `upms_system` VALUES ('4', null, 'http://upms.zhangshuzheng.cn:1111'
 DROP TABLE IF EXISTS `upms_user`;
 CREATE TABLE `upms_user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `system_id` int(10) unsigned NOT NULL COMMENT '所属系统',
   `username` varchar(20) NOT NULL COMMENT '帐号',
   `password` varchar(32) NOT NULL COMMENT '密码MD5(密码+盐)',
   `salt` varchar(32) DEFAULT NULL COMMENT '盐',
@@ -564,15 +504,15 @@ CREATE TABLE `upms_user` (
   `phone` varchar(20) DEFAULT NULL COMMENT '电话',
   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
   `sex` tinyint(4) DEFAULT NULL COMMENT '性别',
-  `status` tinyint(4) DEFAULT NULL COMMENT '状态(-1:封,0:未审核,1:正常)',
+  `locked` tinyint(4) DEFAULT NULL COMMENT '状态(0:正常,1:锁定)',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户';
 
 -- ----------------------------
 -- Records of upms_user
 -- ----------------------------
-INSERT INTO `upms_user` VALUES ('1', '1', 'admin', '3038D9CB63B3152A79B8153FB06C02F7', '66f1b370c660445a8657bf8bf1794486', '管理员', null, null, null, null, '1', '1');
+INSERT INTO `upms_user` VALUES ('1', 'admin', '3038D9CB63B3152A79B8153FB06C02F7', '66f1b370c660445a8657bf8bf1794486', '管理员', null, null, null, null, '0', '1');
 
 -- ----------------------------
 -- Table structure for upms_user_organization
@@ -582,9 +522,7 @@ CREATE TABLE `upms_user_organization` (
   `user_organization_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `organization_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`user_organization_id`),
-  KEY `FK_Reference_19` (`organization_id`),
-  CONSTRAINT `FK_Reference_19` FOREIGN KEY (`organization_id`) REFERENCES `upms_organization` (`organization_id`)
+  PRIMARY KEY (`user_organization_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户组织关联表';
 
 -- ----------------------------
@@ -599,9 +537,7 @@ CREATE TABLE `upms_user_permission` (
   `user_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `permission_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`user_permission_id`),
-  KEY `FK_Reference_25` (`permission_id`),
-  CONSTRAINT `FK_Reference_25` FOREIGN KEY (`permission_id`) REFERENCES `upms_permission` (`permission_id`)
+  PRIMARY KEY (`user_permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户权限关联表';
 
 -- ----------------------------
@@ -616,7 +552,6 @@ CREATE TABLE `upms_user_role` (
   `user_role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `role_id` int(10) DEFAULT NULL,
-  `role` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户角色关联表';
 

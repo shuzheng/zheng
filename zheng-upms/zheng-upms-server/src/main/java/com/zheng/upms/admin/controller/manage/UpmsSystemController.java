@@ -22,11 +22,11 @@ import java.util.List;
  * Created by shuzheng on 2016/12/18.
  */
 @Controller
-@Api(value = "系统管理", description = "注册系统管理")
+@Api(value = "系统管理", description = "系统管理")
 @RequestMapping("/manage/system")
-public class SystemController extends BaseController {
+public class UpmsSystemController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(SystemController.class);
+	private static Logger _log = LoggerFactory.getLogger(UpmsSystemController.class);
 
 	@Autowired
 	private UpmsSystemService upmsSystemService;

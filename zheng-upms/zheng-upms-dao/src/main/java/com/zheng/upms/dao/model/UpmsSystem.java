@@ -3,18 +3,53 @@ package com.zheng.upms.dao.model;
 import java.io.Serializable;
 
 public class UpmsSystem implements Serializable {
+    /**
+     * 编号
+     *
+     * @mbg.generated
+     */
     private Integer systemId;
 
+    /**
+     * 图标
+     *
+     * @mbg.generated
+     */
     private String icon;
 
+    /**
+     * 根目录
+     *
+     * @mbg.generated
+     */
     private String basepath;
 
-    private Short status;
+    /**
+     * 状态(-1:黑名单,1:正常)
+     *
+     * @mbg.generated
+     */
+    private Byte status;
 
+    /**
+     * 系统名称
+     *
+     * @mbg.generated
+     */
     private String name;
 
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
     private Long ctime;
 
+    /**
+     * 排序
+     *
+     * @mbg.generated
+     */
     private Long orders;
 
     private static final long serialVersionUID = 1L;
@@ -43,11 +78,11 @@ public class UpmsSystem implements Serializable {
         this.basepath = basepath;
     }
 
-    public Short getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Short status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

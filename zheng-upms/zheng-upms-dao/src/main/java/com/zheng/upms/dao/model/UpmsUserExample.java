@@ -187,66 +187,6 @@ public class UpmsUserExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andSystemIdIsNull() {
-            addCriterion("system_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdIsNotNull() {
-            addCriterion("system_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdEqualTo(Integer value) {
-            addCriterion("system_id =", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdNotEqualTo(Integer value) {
-            addCriterion("system_id <>", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdGreaterThan(Integer value) {
-            addCriterion("system_id >", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("system_id >=", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdLessThan(Integer value) {
-            addCriterion("system_id <", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdLessThanOrEqualTo(Integer value) {
-            addCriterion("system_id <=", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdIn(List<Integer> values) {
-            addCriterion("system_id in", values, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdNotIn(List<Integer> values) {
-            addCriterion("system_id not in", values, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdBetween(Integer value1, Integer value2) {
-            addCriterion("system_id between", value1, value2, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("system_id not between", value1, value2, "systemId");
-            return (Criteria) this;
-        }
-
         public Criteria andUsernameIsNull() {
             addCriterion("username is null");
             return (Criteria) this;
@@ -797,63 +737,63 @@ public class UpmsUserExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNull() {
-            addCriterion("status is null");
+        public Criteria andLockedIsNull() {
+            addCriterion("locked is null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
+        public Criteria andLockedIsNotNull() {
+            addCriterion("locked is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Byte value) {
-            addCriterion("status =", value, "status");
+        public Criteria andLockedEqualTo(Byte value) {
+            addCriterion("locked =", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Byte value) {
-            addCriterion("status <>", value, "status");
+        public Criteria andLockedNotEqualTo(Byte value) {
+            addCriterion("locked <>", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Byte value) {
-            addCriterion("status >", value, "status");
+        public Criteria andLockedGreaterThan(Byte value) {
+            addCriterion("locked >", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
-            addCriterion("status >=", value, "status");
+        public Criteria andLockedGreaterThanOrEqualTo(Byte value) {
+            addCriterion("locked >=", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Byte value) {
-            addCriterion("status <", value, "status");
+        public Criteria andLockedLessThan(Byte value) {
+            addCriterion("locked <", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Byte value) {
-            addCriterion("status <=", value, "status");
+        public Criteria andLockedLessThanOrEqualTo(Byte value) {
+            addCriterion("locked <=", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Byte> values) {
-            addCriterion("status in", values, "status");
+        public Criteria andLockedIn(List<Byte> values) {
+            addCriterion("locked in", values, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Byte> values) {
-            addCriterion("status not in", values, "status");
+        public Criteria andLockedNotIn(List<Byte> values) {
+            addCriterion("locked not in", values, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Byte value1, Byte value2) {
-            addCriterion("status between", value1, value2, "status");
+        public Criteria andLockedBetween(Byte value1, Byte value2) {
+            addCriterion("locked between", value1, value2, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
-            addCriterion("status not between", value1, value2, "status");
+        public Criteria andLockedNotBetween(Byte value1, Byte value2) {
+            addCriterion("locked not between", value1, value2, "locked");
             return (Criteria) this;
         }
 

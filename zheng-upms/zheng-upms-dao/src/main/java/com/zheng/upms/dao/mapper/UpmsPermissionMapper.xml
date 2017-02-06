@@ -4,7 +4,12 @@
   <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsPermission">
     <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
     <result column="system_id" jdbcType="INTEGER" property="systemId" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="type" jdbcType="TINYINT" property="type" />
     <result column="permission_value" jdbcType="VARCHAR" property="permissionValue" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="ctime" jdbcType="BIGINT" property="ctime" />
+    <result column="orders" jdbcType="BIGINT" property="orders" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    permission_id, system_id, permission_value
+    permission_id, system_id, pid, type, permission_value, icon, ctime, orders
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsPermissionExample" resultMap="BaseResultMap">
     select
@@ -106,10 +111,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsPermission">
-    insert into upms_permission (permission_id, system_id, permission_value
-      )
-    values (#{permissionId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, #{permissionValue,jdbcType=VARCHAR}
-      )
+    insert into upms_permission (permission_id, system_id, pid, 
+      type, permission_value, icon, 
+      ctime, orders)
+    values (#{permissionId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
+      #{type,jdbcType=TINYINT}, #{permissionValue,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsPermission">
     insert into upms_permission
@@ -120,8 +127,23 @@
       <if test="systemId != null">
         system_id,
       </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
       <if test="permissionValue != null">
         permission_value,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+      <if test="orders != null">
+        orders,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -131,8 +153,23 @@
       <if test="systemId != null">
         #{systemId,jdbcType=INTEGER},
       </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
       <if test="permissionValue != null">
         #{permissionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -151,8 +188,23 @@
       <if test="record.systemId != null">
         system_id = #{record.systemId,jdbcType=INTEGER},
       </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
       <if test="record.permissionValue != null">
         permission_value = #{record.permissionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+      <if test="record.orders != null">
+        orders = #{record.orders,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -163,7 +215,12 @@
     update upms_permission
     set permission_id = #{record.permissionId,jdbcType=INTEGER},
       system_id = #{record.systemId,jdbcType=INTEGER},
-      permission_value = #{record.permissionValue,jdbcType=VARCHAR}
+      pid = #{record.pid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=TINYINT},
+      permission_value = #{record.permissionValue,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=BIGINT},
+      orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,8 +231,23 @@
       <if test="systemId != null">
         system_id = #{systemId,jdbcType=INTEGER},
       </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
       <if test="permissionValue != null">
         permission_value = #{permissionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=BIGINT},
       </if>
     </set>
     where permission_id = #{permissionId,jdbcType=INTEGER}
@@ -183,7 +255,12 @@
   <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsPermission">
     update upms_permission
     set system_id = #{systemId,jdbcType=INTEGER},
-      permission_value = #{permissionValue,jdbcType=VARCHAR}
+      pid = #{pid,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      permission_value = #{permissionValue,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=BIGINT},
+      orders = #{orders,jdbcType=BIGINT}
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />

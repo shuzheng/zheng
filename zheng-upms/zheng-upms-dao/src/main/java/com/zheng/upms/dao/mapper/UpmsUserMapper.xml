@@ -3,7 +3,6 @@
 <mapper namespace="com.zheng.upms.dao.mapper.UpmsUserMapper">
   <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsUser">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="salt" jdbcType="VARCHAR" property="salt" />
@@ -12,7 +11,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="sex" jdbcType="TINYINT" property="sex" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="locked" jdbcType="TINYINT" property="locked" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,8 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, system_id, username, password, salt, realname, avatar, phone, email, sex, 
-    status, ctime
+    user_id, username, password, salt, realname, avatar, phone, email, sex, locked, ctime
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsUserExample" resultMap="BaseResultMap">
     select
@@ -116,23 +114,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsUser">
-    insert into upms_user (user_id, system_id, username, 
-      password, salt, realname, 
-      avatar, phone, email, 
-      sex, status, ctime)
-    values (#{userId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
-      #{avatar,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT})
+    insert into upms_user (user_id, username, password, 
+      salt, realname, avatar, 
+      phone, email, sex, 
+      locked, ctime)
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, 
+      #{locked,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsUser">
     insert into upms_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         user_id,
-      </if>
-      <if test="systemId != null">
-        system_id,
       </if>
       <if test="username != null">
         username,
@@ -158,8 +153,8 @@
       <if test="sex != null">
         sex,
       </if>
-      <if test="status != null">
-        status,
+      <if test="locked != null">
+        locked,
       </if>
       <if test="ctime != null">
         ctime,
@@ -168,9 +163,6 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="systemId != null">
-        #{systemId,jdbcType=INTEGER},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -196,8 +188,8 @@
       <if test="sex != null">
         #{sex,jdbcType=TINYINT},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
+      <if test="locked != null">
+        #{locked,jdbcType=TINYINT},
       </if>
       <if test="ctime != null">
         #{ctime,jdbcType=BIGINT},
@@ -215,9 +207,6 @@
     <set>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.systemId != null">
-        system_id = #{record.systemId,jdbcType=INTEGER},
       </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
@@ -243,8 +232,8 @@
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=TINYINT},
       </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=TINYINT},
+      <if test="record.locked != null">
+        locked = #{record.locked,jdbcType=TINYINT},
       </if>
       <if test="record.ctime != null">
         ctime = #{record.ctime,jdbcType=BIGINT},
@@ -257,7 +246,6 @@
   <update id="updateByExample" parameterType="map">
     update upms_user
     set user_id = #{record.userId,jdbcType=INTEGER},
-      system_id = #{record.systemId,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       salt = #{record.salt,jdbcType=VARCHAR},
@@ -266,7 +254,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=TINYINT},
-      status = #{record.status,jdbcType=TINYINT},
+      locked = #{record.locked,jdbcType=TINYINT},
       ctime = #{record.ctime,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -275,9 +263,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsUser">
     update upms_user
     <set>
-      <if test="systemId != null">
-        system_id = #{systemId,jdbcType=INTEGER},
-      </if>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
       </if>
@@ -302,8 +287,8 @@
       <if test="sex != null">
         sex = #{sex,jdbcType=TINYINT},
       </if>
-      <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+      <if test="locked != null">
+        locked = #{locked,jdbcType=TINYINT},
       </if>
       <if test="ctime != null">
         ctime = #{ctime,jdbcType=BIGINT},
@@ -313,8 +298,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsUser">
     update upms_user
-    set system_id = #{systemId,jdbcType=INTEGER},
-      username = #{username,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       salt = #{salt,jdbcType=VARCHAR},
       realname = #{realname,jdbcType=VARCHAR},
@@ -322,7 +306,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=TINYINT},
-      status = #{status,jdbcType=TINYINT},
+      locked = #{locked,jdbcType=TINYINT},
       ctime = #{ctime,jdbcType=BIGINT}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
