@@ -5,8 +5,6 @@
 
 交流QQ群：133107819 (群内含各种工具和文档下载)
 
-文档：[https://shuzheng.gitbooks.io/zheng/content/](https://shuzheng.gitbooks.io/zheng/content/ "文档")
-
 ## 前言
 
 　　`zheng`项目创建于2016年10月4日。
