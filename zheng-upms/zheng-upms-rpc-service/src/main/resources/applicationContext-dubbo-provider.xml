@@ -17,8 +17,20 @@
     <bean id="upmsSystemService" class="com.zheng.upms.rpc.service.impl.UpmsSystemServiceImpl"/>
     <dubbo:service interface="com.zheng.upms.rpc.api.UpmsSystemService" ref="upmsSystemService"/>
 
+    <!-- 组织 -->
+    <bean id="upmsOrganizationService" class="com.zheng.upms.rpc.service.impl.UpmsOrganizationServiceImpl"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsOrganizationService" ref="upmsOrganizationService"/>
+
     <!-- 用户 -->
     <bean id="upmsUserService" class="com.zheng.upms.rpc.service.impl.UpmsUserServiceImpl"/>
     <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserService" ref="upmsUserService"/>
+
+    <!-- 角色 -->
+    <bean id="upmsRoleService" class="com.zheng.upms.rpc.service.impl.UpmsRoleServiceImpl"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsRoleService" ref="upmsRoleService"/>
+
+    <!-- 权限 -->
+    <bean id="upmsPermissionService" class="com.zheng.upms.rpc.service.impl.UpmsPermissionServiceImpl"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsPermissionService" ref="upmsPermissionService"/>
 
 </beans>

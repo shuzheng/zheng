@@ -1,7 +1,6 @@
 package com.zheng.upms.rpc.api;
 
 import com.zheng.common.base.BaseService;
-import com.zheng.upms.dao.mapper.UpmsSystemMapper;
 import com.zheng.upms.dao.model.UpmsSystem;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 
