@@ -100,8 +100,8 @@ public class UpmsSystemController extends BaseController {
 	@ApiOperation(value = "修改系统")
 	@RequiresPermissions("cms:system:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, UpmsSystem system, ModelMap modelMap) {
-		int count = upmsSystemService.updateByPrimaryKeySelective(system);
+	public String update(@PathVariable("id") int id, UpmsSystem upmsSystem, ModelMap modelMap) {
+		int count = upmsSystemService.updateByPrimaryKeySelective(upmsSystem);
 		modelMap.put("count", count);
 		modelMap.put("id", id);
 		return "redirect:/manage/system/list";
