@@ -18,9 +18,9 @@ import java.util.Date;
  * MQ消费者
  * Created by ZhangShuzheng on 2016/11/24.
  */
-public class DefaultQueueMessageListener implements MessageListener {
+public class DefaultMessageQueueListener implements MessageListener {
 
-	private static Logger _log = LoggerFactory.getLogger(DefaultQueueMessageListener.class);
+	private static Logger _log = LoggerFactory.getLogger(DefaultMessageQueueListener.class);
 
 	@Autowired
 	ThreadPoolTaskExecutor threadPoolTaskExecutor;
