@@ -63,6 +63,9 @@
 							请选择系统切换
 						</li>
 						<li class="divider hidden-xs"></li>
+						<li>
+							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> zheng-upms-server</a>
+						</li>
 						<c:forEach var="upmsSystem" items="${upmsSystems}">
 						<li>
 							<a class="waves-effect" href="javascript:;"><i class="${upmsSystem.icon}"></i> ${upmsSystem.name}</a>
