@@ -71,7 +71,7 @@ public class SSOFilter implements Filter {
         else {
             // 认证中心地址
             StringBuffer sso_server_url = new StringBuffer(filterConfig.getInitParameter(SSO_SERVER_URL));
-            sso_server_url.append("/sso/index");
+            sso_server_url.append("/sso");
             // 判断是否有认证中心token
             String token = request.getParameter("token");
             // 已拿到token
@@ -108,7 +108,7 @@ public class SSOFilter implements Filter {
                 // 跳转认证中心登录页
             }
             // 无token，跳转sso-server认证中心登录，并带上回调地址和系统名称参数
-            sso_server_url.append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
+            sso_server_url.append("/index").append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
             StringBuffer backurl = request.getRequestURL();
             String queryString = request.getQueryString();
             if (!StringUtils.isEmpty(queryString)) {
