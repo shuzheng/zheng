@@ -273,6 +273,8 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - 数据表命名为：`子系统`_`表`，如`cms_article`
 
+- 更多规范，参考[[Alibaba Java Development Manual.pdf](http://git.oschina.net/shuzheng/zheng/attach_files "Alibaba Java Development Manual.pdf")]
+
 
 ## 演示地址
 
