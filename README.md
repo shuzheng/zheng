@@ -15,7 +15,7 @@
 
 ### 组织结构
 
-``` lua
+``` sql
 zheng
 ├── zheng-common -- SSM框架公共模块
 ├── zheng-admin -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
