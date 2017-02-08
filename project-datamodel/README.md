@@ -1,5 +1,7 @@
 # project-datamodel
 
+本目录包含数据模型、数据库脚本等
+
 ## 文件说明
 
 - zheng.apm： 上次修改数据模型快照（file-->save as保存格式为Archived PDM(XML)得到）
