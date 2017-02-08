@@ -49,6 +49,7 @@ zheng
 |    |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 |    └── zheng-ucenter-app -- 微信小程序后台
+├── zheng-im -- 即时通讯系统
 ├── zheng-api -- 接口系统
 |    ├── zheng-api-sdk -- 开发工具包
 |    ├── zheng-api-doc -- 接口文档项目
