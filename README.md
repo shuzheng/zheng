@@ -49,8 +49,11 @@ zheng
 |    |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 |    └── zheng-ucenter-app -- 微信小程序后台
-├── zheng-im -- 即时通讯系统
 ├── zheng-api -- 接口系统
+├── zheng-shop -- 电子商务系统
+├── zheng-im -- 即时通讯系统
+├── zheng-oa -- 办公自动化系统
+├── zheng-eoms -- 运维系统
 |    ├── zheng-api-sdk -- 开发工具包
 |    ├── zheng-api-doc -- 接口文档项目
 |    └── zheng-api-example -- 演示示例[端口:6661]
@@ -155,6 +158,26 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 > zheng-wechat-mp
 
 微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等
+
+> zheng-ucenter-app 
+
+微信小程序后台
+
+> zheng-shop
+
+电子商务系统
+
+> zheng-im
+
+即时通讯系统
+
+> zheng-oa
+
+办公自动化系统
+
+> zheng-eoms
+
+运维系统
 
 ## 环境搭建
 
