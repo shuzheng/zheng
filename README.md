@@ -7,7 +7,7 @@
 
 ## 前言
 
-　　`zheng`项目创建于2016年10月4日，正在慢慢成长中，目的不仅仅是一个开发架构，而是努力打造一套从`前端UI`-`基础框架`-`分布式架构`-`开源项目`-`持续集成`-`自动化部署`-`系统监测`-`无缝升级`的全方位J2EE企业级开发解决方案。
+　　`zheng`项目创建于2016年10月4日，正在慢慢成长中，目的不仅仅是一个开发架构，而是努力打造一套从 **前端UI** - **基础框架** - **分布式架构** - **开源项目** - **持续集成** - **自动化部署** - **系统监测** - **无缝升级** 的全方位J2EE企业级开发解决方案。
 
 ## 项目介绍
 
@@ -15,7 +15,7 @@
 
 ### 组织结构
 
-``` 
+``` AppleScript
 zheng
 ├── zheng-common -- SSM框架公共模块
 ├── zheng-admin -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
@@ -213,13 +213,13 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 ### 启动顺序
 
-- 新建`zheng`数据库，导入`zheng.sql`
+- 新建**zheng**数据库，导入**zheng.sql**
 
-- 修改各dao模块的`redis.properties`和`jdbc.properties`数据库连接等配置信息，其中`master.redis.password`、`master.jdbc.password`、`slave.jdbc.password`密码值使用了AES加密，请使用`com.zheng.common.util.AESUtil`工具类修改这些值
+- 修改各dao模块的**redis.properties**和**jdbc.properties**数据库连接等配置信息，其中**master.redis.password**、**master.jdbc.password**、**slave.jdbc.password**密码值使用了AES加密，请使用**com.zheng.common.util.AESUtil**工具类修改这些值
 
-- 启动 zheng-upms-rpc-service => zheng-upms-server => zheng-`xxx`-rpc-service => zheng-`xxx`-`webapp`
+- 启动 zheng-upms-rpc-service => zheng-upms-server => zheng-**xxx**-rpc-service => zheng-**xxx**-**webapp**
 
-- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，默认帐号密码：`admin / 123456`
+- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，默认帐号密码：**admin / 123456**
 
 - 登录成功后，可在右上角切换已注册系统访问
 
