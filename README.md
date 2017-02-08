@@ -43,10 +43,12 @@ zheng
 |    ├── zheng-ucenter-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-ucenter-service -- 业务逻辑
 |    └── zheng-ucenter-home -- 网站前台[端口:4441]
-|── zheng-wechat-mp -- 微信公众号管理系统
-|    ├── zheng-wechat-mp-dao -- MyBatisGenerator代码生成模块，无需开发
-|    ├── zheng-wechat-mp-service -- 业务逻辑
-|    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
+├── zheng-wechat -- 微信系统
+|    ├── zheng-wechat-mp -- 微信公众号管理系统
+|    |    ├── zheng-wechat-mp-dao -- MyBatisGenerator代码生成模块，无需开发
+|    |    ├── zheng-wechat-mp-service -- 业务逻辑
+|    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
+|    └── zheng-ucenter-app -- 微信小程序后台
 ├── zheng-api -- 接口系统
 |    ├── zheng-api-sdk -- 开发工具包
 |    ├── zheng-api-doc -- 接口文档项目
