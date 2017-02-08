@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zheng</groupId>
-    <artifactId>zheng-wechat-mp</artifactId>
+    <artifactId>zheng-wechat</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>zheng-wechat-mp</name>
+    <name>zheng-wechat</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -19,9 +19,7 @@
     </properties>
 
     <modules>
-        <module>zheng-wechat-mp-dao</module>
-        <module>zheng-wechat-mp-service</module>
-        <module>zheng-wechat-mp-admin</module>
+        <module>zheng-wechat-mp</module>
+        <module>zheng-wechat-app</module>
     </modules>
-
 </project>
