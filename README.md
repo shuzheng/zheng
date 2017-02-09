@@ -50,13 +50,13 @@ zheng
 |    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 |    └── zheng-ucenter-app -- 微信小程序后台
 ├── zheng-api -- 接口系统
+|    ├── zheng-api-sdk -- 开发工具包
+|    ├── zheng-api-doc -- 接口文档项目
+|    └── zheng-api-example -- 演示示例[端口:6661]
 ├── zheng-shop -- 电子商务系统
 ├── zheng-im -- 即时通讯系统
 ├── zheng-oa -- 办公自动化系统
 ├── zheng-eoms -- 运维系统
-|    ├── zheng-api-sdk -- 开发工具包
-|    ├── zheng-api-doc -- 接口文档项目
-|    └── zheng-api-example -- 演示示例[端口:6661]
 └── zheng-oss -- 对象存储系统
      ├── zheng-oss-sdk -- 开发工具包
      └── zheng-oss-web -- 管理界面[端口:7771]
@@ -107,11 +107,11 @@ zheng
 
 > zheng-common
 
-Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisGenerator扩展插件、通用BaseService、工具类等。
+Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisGenerator扩展插件、通用BaseService、工具类等。[更多](zheng-common/README.md "更多")
 
 > zheng-admin
 
-基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有系统都是使用该模块界面作为前端展示。
+基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有系统都是使用该模块界面作为前端展示。[更多](zheng-admin/README.md "更多")
 
 > zheng-upms
 
@@ -127,6 +127,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 用户会话管理：提供分布式用户会话管理
 - 操作日志管理：提供记录用户登录、操作等日志。
 
+[更多](zheng-upms/README.md "更多")
+
 > zheng-oss
 
 文件存储系统，提供三种方案：
@@ -135,13 +137,15 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - **腾讯云** 对象存储COS
 - **七牛云** 对象存储
 
+[更多](zheng-oss/README.md "更多")
+
 > zheng-api
 
-接口系统，包括开发加密接口、接口文档等对外开放服务。
+接口系统，包括开发加密接口、接口文档等对外开放服务。[更多](zheng-api/README.md "更多")
 
 > zheng-cms
 
-内容管理系统：支持多标签、多类目、强大评论的内容管理，有基本单页展示，菜单管理，系统设置等功能。
+内容管理系统：支持多标签、多类目、强大评论的内容管理，有基本单页展示，菜单管理，系统设置等功能。[更多](zheng-cms/README.md "更多")
 
 > zheng-pay
 
@@ -151,33 +155,35 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 - 统一下单（统一下单接口、统一扫码）、订单管理、数据分析、财务报表、商户管理、渠道管理、对账系统、系统监控
 
+- [更多](zheng-pay/README.md "更多")
+
 > zheng-ucenter
 
-通用用户管理系统， 实现最常用的用户注册、登录、资料管理、个人中心、第三方登录等基本需求，支持扩展二次开发。
+通用用户管理系统， 实现最常用的用户注册、登录、资料管理、个人中心、第三方登录等基本需求，支持扩展二次开发。[更多](zheng-ucenter/README.md "更多")
 
 > zheng-wechat-mp
 
-微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等
+微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等。[更多](zheng-wechat/zheng-wechat-mp/README.md "更多")
 
 > zheng-ucenter-app 
 
-微信小程序后台
+微信小程序后台[更多](zheng-wechat/zheng-wechat-app/README.md "更多")
 
 > zheng-shop
 
-电子商务系统
+电子商务系统[更多](zheng-shop/README.md "更多")
 
 > zheng-im
 
-即时通讯系统
+即时通讯系统[更多](zheng-im/README.md "更多")
 
 > zheng-oa
 
-办公自动化系统
+办公自动化系统[更多](zheng-oa/README.md "更多")
 
 > zheng-eoms
 
-运维系统
+运维系统[更多](zheng-eoms/README.md "更多")
 
 ## 环境搭建
 
