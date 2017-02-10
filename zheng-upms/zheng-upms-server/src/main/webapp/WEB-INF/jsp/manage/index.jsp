@@ -164,8 +164,8 @@
 			<li class="sub-menu">
 				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 权限分配管理</a>
 				<ul>
-					<shiro:hasPermission name="upms:role_permission:read"><li><a class="waves-effect" href="javascript:Tab.addTab('角色权限', '${basePath}/role_permission/index');">角色权限</a></li></shiro:hasPermission>
-					<shiro:hasPermission name="upms:user_permission:read"><li><a class="waves-effect" href="javascript:Tab.addTab('用户权限', '${basePath}/user_permission/index');">用户权限</a></li></shiro:hasPermission>
+					<shiro:hasPermission name="upms:role_permission:read"><li><a class="waves-effect" href="javascript:Tab.addTab('角色权限', '${basePath}/role_permission/index');">角色授权</a></li></shiro:hasPermission>
+					<shiro:hasPermission name="upms:user_permission:read"><li><a class="waves-effect" href="javascript:Tab.addTab('用户权限', '${basePath}/user_permission/index');">用户授权</a></li></shiro:hasPermission>
 				</ul>
 			</li>
 			</shiro:hasPermission>
