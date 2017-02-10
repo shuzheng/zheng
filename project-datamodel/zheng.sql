@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50528
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : zheng
 
 Target Server Type    : MYSQL
-Target Server Version : 50528
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-10 14:17:39
+Date: 2017-02-10 20:53:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -494,8 +494,8 @@ CREATE TABLE `upms_system` (
 -- ----------------------------
 -- Records of upms_system
 -- ----------------------------
-INSERT INTO `upms_system` VALUES ('3', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '内容管理系统后台', null, '3', '3');
-INSERT INTO `upms_system` VALUES ('4', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '权限管理系统', null, '4', '4');
+INSERT INTO `upms_system` VALUES ('3', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '权限管理系统', null, '4', '4');
+INSERT INTO `upms_system` VALUES ('4', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '内容管理系统', null, '3', '3');
 
 -- ----------------------------
 -- Table structure for upms_user
