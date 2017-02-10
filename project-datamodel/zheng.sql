@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-02-10 13:47:41
+Date: 2017-02-10 14:17:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -400,26 +400,6 @@ CREATE TABLE `pay_vest` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tmp_upms_permission
--- ----------------------------
-DROP TABLE IF EXISTS `tmp_upms_permission`;
-CREATE TABLE `tmp_upms_permission` (
-  `permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `system_id` int(10) unsigned NOT NULL COMMENT '所属系统',
-  `pid` int(10) DEFAULT NULL COMMENT '所属上级',
-  `type` tinyint(4) DEFAULT NULL COMMENT '类型(1:菜单,2:按钮)',
-  `permission_value` varchar(20) DEFAULT NULL COMMENT '权限值',
-  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
-  `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
-  `orders` bigint(20) DEFAULT NULL COMMENT '排序',
-  PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限';
-
--- ----------------------------
--- Records of tmp_upms_permission
--- ----------------------------
-
--- ----------------------------
 -- Table structure for upms_organization
 -- ----------------------------
 DROP TABLE IF EXISTS `upms_organization`;
@@ -504,6 +484,8 @@ CREATE TABLE `upms_system` (
   `basepath` varchar(100) DEFAULT NULL COMMENT '根目录',
   `status` tinyint(4) DEFAULT NULL COMMENT '状态(-1:黑名单,1:正常)',
   `name` varchar(20) DEFAULT NULL COMMENT '系统名称',
+  `title` varchar(20) DEFAULT NULL COMMENT '系统标题',
+  `description` varchar(300) DEFAULT NULL COMMENT '系统描述',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   `orders` bigint(20) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`system_id`)
@@ -512,8 +494,8 @@ CREATE TABLE `upms_system` (
 -- ----------------------------
 -- Records of upms_system
 -- ----------------------------
-INSERT INTO `upms_system` VALUES ('3', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '3', '3');
-INSERT INTO `upms_system` VALUES ('4', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '4', '4');
+INSERT INTO `upms_system` VALUES ('3', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '内容管理系统后台', null, '3', '3');
+INSERT INTO `upms_system` VALUES ('4', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '权限管理系统', null, '4', '4');
 
 -- ----------------------------
 -- Table structure for upms_user

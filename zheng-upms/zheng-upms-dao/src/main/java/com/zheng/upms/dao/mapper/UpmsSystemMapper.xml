@@ -7,6 +7,8 @@
     <result column="basepath" jdbcType="VARCHAR" property="basepath" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
     <result column="orders" jdbcType="BIGINT" property="orders" />
   </resultMap>
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    system_id, icon, basepath, status, name, ctime, orders
+    system_id, icon, basepath, status, name, title, description, ctime, orders
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsSystemExample" resultMap="BaseResultMap">
     select
@@ -111,11 +113,13 @@
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsSystem">
     insert into upms_system (system_id, icon, basepath, 
-      status, name, ctime, 
-      orders)
+      status, name, title, 
+      description, ctime, orders
+      )
     values (#{systemId,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{basepath,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, 
-      #{orders,jdbcType=BIGINT})
+      #{status,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsSystem">
     insert into upms_system
@@ -134,6 +138,12 @@
       </if>
       <if test="name != null">
         name,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="description != null">
+        description,
       </if>
       <if test="ctime != null">
         ctime,
@@ -157,6 +167,12 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="ctime != null">
         #{ctime,jdbcType=BIGINT},
@@ -190,6 +206,12 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
       <if test="record.ctime != null">
         ctime = #{record.ctime,jdbcType=BIGINT},
       </if>
@@ -208,6 +230,8 @@
       basepath = #{record.basepath,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
       name = #{record.name,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null">
@@ -229,6 +253,12 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
       <if test="ctime != null">
         ctime = #{ctime,jdbcType=BIGINT},
       </if>
@@ -244,6 +274,8 @@
       basepath = #{basepath,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
       name = #{name,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT}
     where system_id = #{systemId,jdbcType=INTEGER}

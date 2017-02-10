@@ -39,6 +39,20 @@ public class UpmsSystem implements Serializable {
     private String name;
 
     /**
+     * 系统标题
+     *
+     * @mbg.generated
+     */
+    private String title;
+
+    /**
+     * 系统描述
+     *
+     * @mbg.generated
+     */
+    private String description;
+
+    /**
      * 创建时间
      *
      * @mbg.generated
@@ -94,6 +108,22 @@ public class UpmsSystem implements Serializable {
         this.name = name;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Long getCtime() {
         return ctime;
     }
@@ -121,6 +151,8 @@ public class UpmsSystem implements Serializable {
         sb.append(", basepath=").append(basepath);
         sb.append(", status=").append(status);
         sb.append(", name=").append(name);
+        sb.append(", title=").append(title);
+        sb.append(", description=").append(description);
         sb.append(", ctime=").append(ctime);
         sb.append(", orders=").append(orders);
         sb.append("]");
@@ -144,6 +176,8 @@ public class UpmsSystem implements Serializable {
             && (this.getBasepath() == null ? other.getBasepath() == null : this.getBasepath().equals(other.getBasepath()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
             && (this.getOrders() == null ? other.getOrders() == null : this.getOrders().equals(other.getOrders()));
     }
@@ -157,6 +191,8 @@ public class UpmsSystem implements Serializable {
         result = prime * result + ((getBasepath() == null) ? 0 : getBasepath().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         result = prime * result + ((getOrders() == null) ? 0 : getOrders().hashCode());
         return result;
