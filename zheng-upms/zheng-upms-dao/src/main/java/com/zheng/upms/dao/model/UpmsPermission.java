@@ -25,6 +25,13 @@ public class UpmsPermission implements Serializable {
     private Integer pid;
 
     /**
+     * 名称
+     *
+     * @mbg.generated
+     */
+    private String name;
+
+    /**
      * 类型(1:菜单,2:按钮)
      *
      * @mbg.generated
@@ -39,11 +46,25 @@ public class UpmsPermission implements Serializable {
     private String permissionValue;
 
     /**
+     * 路径
+     *
+     * @mbg.generated
+     */
+    private String uri;
+
+    /**
      * 图标
      *
      * @mbg.generated
      */
     private String icon;
+
+    /**
+     * 状态(0:禁止,1:正常)
+     *
+     * @mbg.generated
+     */
+    private Byte status;
 
     /**
      * 创建时间
@@ -85,6 +106,14 @@ public class UpmsPermission implements Serializable {
         this.pid = pid;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Byte getType() {
         return type;
     }
@@ -101,12 +130,28 @@ public class UpmsPermission implements Serializable {
         this.permissionValue = permissionValue;
     }
 
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     public String getIcon() {
         return icon;
     }
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 
     public Long getCtime() {
@@ -134,9 +179,12 @@ public class UpmsPermission implements Serializable {
         sb.append(", permissionId=").append(permissionId);
         sb.append(", systemId=").append(systemId);
         sb.append(", pid=").append(pid);
+        sb.append(", name=").append(name);
         sb.append(", type=").append(type);
         sb.append(", permissionValue=").append(permissionValue);
+        sb.append(", uri=").append(uri);
         sb.append(", icon=").append(icon);
+        sb.append(", status=").append(status);
         sb.append(", ctime=").append(ctime);
         sb.append(", orders=").append(orders);
         sb.append("]");
@@ -158,9 +206,12 @@ public class UpmsPermission implements Serializable {
         return (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
             && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
             && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getPermissionValue() == null ? other.getPermissionValue() == null : this.getPermissionValue().equals(other.getPermissionValue()))
+            && (this.getUri() == null ? other.getUri() == null : this.getUri().equals(other.getUri()))
             && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
             && (this.getOrders() == null ? other.getOrders() == null : this.getOrders().equals(other.getOrders()));
     }
@@ -172,9 +223,12 @@ public class UpmsPermission implements Serializable {
         result = prime * result + ((getPermissionId() == null) ? 0 : getPermissionId().hashCode());
         result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         result = prime * result + ((getPid() == null) ? 0 : getPid().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getPermissionValue() == null) ? 0 : getPermissionValue().hashCode());
+        result = prime * result + ((getUri() == null) ? 0 : getUri().hashCode());
         result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         result = prime * result + ((getOrders() == null) ? 0 : getOrders().hashCode());
         return result;

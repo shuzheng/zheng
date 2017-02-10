@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50621
+Source Server Version : 50528
 Source Host           : localhost:3306
 Source Database       : zheng
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-02-06 23:59:40
+Date: 2017-02-10 13:47:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -400,6 +400,26 @@ CREATE TABLE `pay_vest` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for tmp_upms_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `tmp_upms_permission`;
+CREATE TABLE `tmp_upms_permission` (
+  `permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `system_id` int(10) unsigned NOT NULL COMMENT '所属系统',
+  `pid` int(10) DEFAULT NULL COMMENT '所属上级',
+  `type` tinyint(4) DEFAULT NULL COMMENT '类型(1:菜单,2:按钮)',
+  `permission_value` varchar(20) DEFAULT NULL COMMENT '权限值',
+  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
+  `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
+  `orders` bigint(20) DEFAULT NULL COMMENT '排序',
+  PRIMARY KEY (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限';
+
+-- ----------------------------
+-- Records of tmp_upms_permission
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for upms_organization
 -- ----------------------------
 DROP TABLE IF EXISTS `upms_organization`;
@@ -423,12 +443,17 @@ CREATE TABLE `upms_permission` (
   `permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `system_id` int(10) unsigned NOT NULL COMMENT '所属系统',
   `pid` int(10) DEFAULT NULL COMMENT '所属上级',
+  `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `type` tinyint(4) DEFAULT NULL COMMENT '类型(1:菜单,2:按钮)',
   `permission_value` varchar(20) DEFAULT NULL COMMENT '权限值',
+  `uri` varchar(100) DEFAULT NULL COMMENT '路径',
   `icon` varchar(20) DEFAULT NULL COMMENT '图标',
+  `status` tinyint(4) DEFAULT NULL COMMENT '状态(0:禁止,1:正常)',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   `orders` bigint(20) DEFAULT NULL COMMENT '排序',
-  PRIMARY KEY (`permission_id`)
+  PRIMARY KEY (`permission_id`),
+  KEY `FK_Reference_29` (`system_id`),
+  CONSTRAINT `FK_Reference_29` FOREIGN KEY (`system_id`) REFERENCES `upms_system` (`system_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限';
 
 -- ----------------------------
@@ -460,7 +485,9 @@ CREATE TABLE `upms_role_permission` (
   `role_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `role_id` int(10) unsigned NOT NULL,
   `permission_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`role_permission_id`)
+  PRIMARY KEY (`role_permission_id`),
+  KEY `FK_Reference_22` (`permission_id`),
+  CONSTRAINT `FK_Reference_22` FOREIGN KEY (`permission_id`) REFERENCES `upms_permission` (`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色权限关联表';
 
 -- ----------------------------
@@ -535,7 +562,9 @@ CREATE TABLE `upms_user_permission` (
   `user_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `permission_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`user_permission_id`)
+  PRIMARY KEY (`user_permission_id`),
+  KEY `FK_Reference_25` (`permission_id`),
+  CONSTRAINT `FK_Reference_25` FOREIGN KEY (`permission_id`) REFERENCES `upms_permission` (`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户权限关联表';
 
 -- ----------------------------
