@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-11 12:32:23
+Date: 2017-02-11 23:54:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -92,7 +92,7 @@ CREATE TABLE `cms_book` (
   PRIMARY KEY (`book_id`),
   KEY `FK_book_1` (`user_id`),
   CONSTRAINT `FK_Reference_9` FOREIGN KEY (`user_id`) REFERENCES `cms_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COMMENT='书';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='书';
 
 -- ----------------------------
 -- Records of cms_book
@@ -119,11 +119,13 @@ CREATE TABLE `cms_category` (
   KEY `cms_category_alias` (`alias`),
   KEY `cms_category_level` (`level`),
   CONSTRAINT `FK_Reference_10` FOREIGN KEY (`pid`) REFERENCES `cms_category` (`category_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='类目表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='类目表';
 
 -- ----------------------------
 -- Records of cms_category
 -- ----------------------------
+INSERT INTO `cms_category` VALUES ('1', null, '1', '1', '1', '1', '1', '1', '1486817307355', '1486817307355');
+INSERT INTO `cms_category` VALUES ('2', '1', '2', '2', '2', '2', '1', '2', '1486817333962', '1486817333962');
 
 -- ----------------------------
 -- Table structure for cms_category_tag
@@ -239,7 +241,7 @@ CREATE TABLE `cms_user` (
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   `content` text COMMENT '备注',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='用户';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
 
 -- ----------------------------
 -- Records of cms_user
@@ -425,7 +427,7 @@ CREATE TABLE `upms_permission` (
   `pid` int(10) DEFAULT NULL COMMENT '所属上级',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `type` tinyint(4) DEFAULT NULL COMMENT '类型(1:菜单,2:按钮)',
-  `permission_value` varchar(20) DEFAULT NULL COMMENT '权限值',
+  `permission_value` varchar(50) DEFAULT NULL COMMENT '权限值',
   `uri` varchar(100) DEFAULT NULL COMMENT '路径',
   `icon` varchar(20) DEFAULT NULL COMMENT '图标',
   `status` tinyint(4) DEFAULT NULL COMMENT '状态(0:禁止,1:正常)',
@@ -434,11 +436,27 @@ CREATE TABLE `upms_permission` (
   PRIMARY KEY (`permission_id`),
   KEY `FK_Reference_29` (`system_id`),
   CONSTRAINT `FK_Reference_29` FOREIGN KEY (`system_id`) REFERENCES `upms_system` (`system_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COMMENT='权限';
 
 -- ----------------------------
 -- Records of upms_permission
 -- ----------------------------
+INSERT INTO `upms_permission` VALUES ('1', '1', null, '系统组织管理', '1', '', '', '', '1', '1', '1');
+INSERT INTO `upms_permission` VALUES ('2', '1', '1', '系统管理', '1', 'upms:system:read', '/system/index', '', '1', '2', '2');
+INSERT INTO `upms_permission` VALUES ('3', '1', '1', '组织管理', '1', 'upms:organization:read', '/organization/index', '', '1', '3', '3');
+INSERT INTO `upms_permission` VALUES ('4', '1', null, '用户角色管理', '1', '', '', '', '1', '4', '4');
+INSERT INTO `upms_permission` VALUES ('5', '1', '4', '用户管理', '1', 'upms:user:read', '/user/index', '', '1', '5', '5');
+INSERT INTO `upms_permission` VALUES ('6', '1', '4', '角色管理', '1', 'upms:role:read', '/role/index', '', '1', '6', '6');
+INSERT INTO `upms_permission` VALUES ('7', '1', null, '权限资源管理', '1', '', '', '', '1', '7', '7');
+INSERT INTO `upms_permission` VALUES ('8', '1', '7', '权限管理', '1', 'upms:permission:read', '/permission/index', '', '1', '8', '8');
+INSERT INTO `upms_permission` VALUES ('9', '1', null, '权限分配管理', '1', '', '', '', '1', '9', '9');
+INSERT INTO `upms_permission` VALUES ('10', '1', '9', '角色授权', '1', 'upms:role_permission:read', '/role_permission/index', '', '1', '10', '10');
+INSERT INTO `upms_permission` VALUES ('11', '1', '9', '用户授权', '1', 'upms:user_permission:read', '/user_permission/index', '', '1', '11', '11');
+INSERT INTO `upms_permission` VALUES ('12', '1', null, '其他数据管理', '1', '', '', '', '1', '12', '12');
+INSERT INTO `upms_permission` VALUES ('13', '1', '12', '公共码表', '1', 'upms:coder:read', '/coder/index', '', '1', '13', '13');
+INSERT INTO `upms_permission` VALUES ('14', '1', '12', '会话管理', '1', 'upms:session:read', '/session/index', '', '1', '14', '14');
+INSERT INTO `upms_permission` VALUES ('15', '1', '12', '日志记录', '1', 'upms:log:read', '/log/index', '', '1', '15', '15');
+INSERT INTO `upms_permission` VALUES ('16', '1', '12', '键值设置', '1', 'upms:map:read', '/map/index', '', '1', '16', '16');
 
 -- ----------------------------
 -- Table structure for upms_role
@@ -451,11 +469,12 @@ CREATE TABLE `upms_role` (
   `ctime` bigint(20) NOT NULL,
   `orders` bigint(20) NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='角色';
 
 -- ----------------------------
 -- Records of upms_role
 -- ----------------------------
+INSERT INTO `upms_role` VALUES ('1', '超级管理员', '拥有所有权限', '1', '1');
 
 -- ----------------------------
 -- Table structure for upms_role_permission
@@ -468,11 +487,27 @@ CREATE TABLE `upms_role_permission` (
   PRIMARY KEY (`role_permission_id`),
   KEY `FK_Reference_22` (`permission_id`),
   CONSTRAINT `FK_Reference_22` FOREIGN KEY (`permission_id`) REFERENCES `upms_permission` (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色权限关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COMMENT='角色权限关联表';
 
 -- ----------------------------
 -- Records of upms_role_permission
 -- ----------------------------
+INSERT INTO `upms_role_permission` VALUES ('1', '1', '1');
+INSERT INTO `upms_role_permission` VALUES ('2', '1', '2');
+INSERT INTO `upms_role_permission` VALUES ('3', '1', '3');
+INSERT INTO `upms_role_permission` VALUES ('4', '1', '4');
+INSERT INTO `upms_role_permission` VALUES ('5', '1', '5');
+INSERT INTO `upms_role_permission` VALUES ('6', '1', '6');
+INSERT INTO `upms_role_permission` VALUES ('7', '1', '7');
+INSERT INTO `upms_role_permission` VALUES ('8', '1', '8');
+INSERT INTO `upms_role_permission` VALUES ('9', '1', '9');
+INSERT INTO `upms_role_permission` VALUES ('10', '1', '10');
+INSERT INTO `upms_role_permission` VALUES ('11', '1', '11');
+INSERT INTO `upms_role_permission` VALUES ('12', '1', '12');
+INSERT INTO `upms_role_permission` VALUES ('13', '1', '13');
+INSERT INTO `upms_role_permission` VALUES ('14', '1', '14');
+INSERT INTO `upms_role_permission` VALUES ('15', '1', '15');
+INSERT INTO `upms_role_permission` VALUES ('16', '1', '16');
 
 -- ----------------------------
 -- Table structure for upms_system
@@ -489,13 +524,13 @@ CREATE TABLE `upms_system` (
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   `orders` bigint(20) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`system_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='系统';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='系统';
 
 -- ----------------------------
 -- Records of upms_system
 -- ----------------------------
-INSERT INTO `upms_system` VALUES ('3', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '权限管理系统', null, '4', '4');
-INSERT INTO `upms_system` VALUES ('4', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '内容管理系统', null, '3', '3');
+INSERT INTO `upms_system` VALUES ('1', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '权限管理系统', '用户权限管理系统（RBAC细粒度用户权限、统一后台、单点登录、会话管理）', '1', '1');
+INSERT INTO `upms_system` VALUES ('2', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '内容管理系统', '内容管理系统（门户、博客、论坛、问答等）', '2', '2');
 
 -- ----------------------------
 -- Table structure for upms_user
@@ -519,7 +554,7 @@ CREATE TABLE `upms_user` (
 -- ----------------------------
 -- Records of upms_user
 -- ----------------------------
-INSERT INTO `upms_user` VALUES ('1', 'admin', '3038D9CB63B3152A79B8153FB06C02F7', '66f1b370c660445a8657bf8bf1794486', '管理员', '/resources/zheng-admin/images/avatar.jpg', null, null, null, '0', '1');
+INSERT INTO `upms_user` VALUES ('1', 'admin', '3038D9CB63B3152A79B8153FB06C02F7', '66f1b370c660445a8657bf8bf1794486', '张恕征', '/resources/zheng-admin/images/avatar.jpg', null, '469741414@qq.com', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for upms_user_organization
@@ -547,11 +582,12 @@ CREATE TABLE `upms_user_permission` (
   PRIMARY KEY (`user_permission_id`),
   KEY `FK_Reference_25` (`permission_id`),
   CONSTRAINT `FK_Reference_25` FOREIGN KEY (`permission_id`) REFERENCES `upms_permission` (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户权限关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户权限关联表';
 
 -- ----------------------------
 -- Records of upms_user_permission
 -- ----------------------------
+INSERT INTO `upms_user_permission` VALUES ('1', '1', '16');
 
 -- ----------------------------
 -- Table structure for upms_user_role
@@ -562,8 +598,9 @@ CREATE TABLE `upms_user_role` (
   `user_id` int(10) unsigned NOT NULL,
   `role_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`user_role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户角色关联表';
 
 -- ----------------------------
 -- Records of upms_user_role
 -- ----------------------------
+INSERT INTO `upms_user_role` VALUES ('1', '1', '1');
