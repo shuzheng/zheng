@@ -94,7 +94,7 @@ public class RedisUtil {
 				try {
 					jedis.auth(PASSWORD);
 				} catch (Exception e) {
-					_log.error("jedis password error : " + e);
+
 				}
 			}
 		} catch (Exception e) {
