@@ -1,5 +1,7 @@
 package com.zheng.upms.rpc.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -8,8 +10,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ZhengUpmsRpcServiceApplication {
 
+	private static Logger _log = LoggerFactory.getLogger(ZhengUpmsRpcServiceApplication.class);
+
 	public static void main(String[] args) {
+		_log.info(">>>>> zheng-upms-rpc-service 正在启动 <<<<<");
 		new ClassPathXmlApplicationContext("classpath*:applicationContext*.xml");
+		_log.info(">>>>> zheng-upms-rpc-service 启动完成 <<<<<");
 		System.out.println(">>>>> zheng-upms-rpc-service 启动完成 <<<<<");
 	}
 
