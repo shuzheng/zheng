@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-	<a href="${basePath}/manage">首页</a> &gt; <a href="${basePath}/manage/comment/list">标签列表</a> &gt; 编辑
+	<a href="${basePath}/manage/index">首页</a> &gt; <a href="${basePath}/manage/comment/list">标签列表</a> &gt; 编辑
 </div>
 <div>
 	<form method="post">

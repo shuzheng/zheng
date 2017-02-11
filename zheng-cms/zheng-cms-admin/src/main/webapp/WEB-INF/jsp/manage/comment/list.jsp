@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-	<a href="${basePath}/manage">首页</a> &gt; 评论列表
+	<a href="${basePath}/manage/index">首页</a> &gt; 评论列表
 </div>
 <div>
 	<table border="1">
