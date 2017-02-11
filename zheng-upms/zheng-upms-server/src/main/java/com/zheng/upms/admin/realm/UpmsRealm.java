@@ -35,7 +35,6 @@ public class UpmsRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         // 当前用户
         UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
-        _log.info("授权：upmsUser={}", upmsUser);
 
         // 全部权限 TODO
         Set<String> permissions = new HashSet<>();
@@ -56,7 +55,6 @@ public class UpmsRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();
         String password = new String((char[]) authenticationToken.getCredentials());
-        _log.info("认证：username={}, password={}", username, password);
 
         // 查询用户信息
         UpmsUserExample upmsUserExample = new UpmsUserExample();
