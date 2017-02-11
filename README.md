@@ -103,9 +103,6 @@ zheng
 #### 模块依赖
 ![模块依赖](project-bootstrap/project.png)
 
-#### 开发进度
-![开发进度](project-bootstrap/progress.png)
-
 #### 模块介绍
 
 > zheng-common
@@ -325,6 +322,9 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 ### 拓扑图
 ![拓扑图](https://github.com/shuzheng/zheng/raw/master/project-bootstrap/distributedSystem.png)
+
+### 开发进度
+![开发进度](project-bootstrap/progress.png)
 
 ## 附件
 
