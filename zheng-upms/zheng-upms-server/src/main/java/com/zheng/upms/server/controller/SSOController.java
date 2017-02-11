@@ -142,7 +142,7 @@ public class SSOController extends BaseController {
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
 		try {
-			usernamePasswordToken.setRememberMe(true);
+			//usernamePasswordToken.setRememberMe(false);
 			subject.login(usernamePasswordToken);
 		} catch (UnknownAccountException e) {
 			result.put("result", false);

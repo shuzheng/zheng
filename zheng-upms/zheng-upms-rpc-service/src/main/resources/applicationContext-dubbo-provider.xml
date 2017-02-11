@@ -33,4 +33,8 @@
     <bean id="upmsPermissionService" class="com.zheng.upms.rpc.service.impl.UpmsPermissionServiceImpl"/>
     <dubbo:service interface="com.zheng.upms.rpc.api.UpmsPermissionService" ref="upmsPermissionService"/>
 
+    <!-- 接口服务 -->
+    <bean id="upmsApiService" class="com.zheng.upms.rpc.service.impl.UpmsApiServiceImpl"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsApiService" ref="upmsApiService"/>
+
 </beans>

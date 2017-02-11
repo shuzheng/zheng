@@ -24,5 +24,7 @@
 	<dubbo:reference id="upmsRoleService" interface="com.zheng.upms.rpc.api.UpmsRoleService" />
 	<!-- 权限 -->
 	<dubbo:reference id="upmsPermissionService" interface="com.zheng.upms.rpc.api.UpmsPermissionService" />
+	<!-- 接口服务 -->
+	<dubbo:reference id="upmsApiService" interface="com.zheng.upms.rpc.api.UpmsApiService" />
 
 </beans>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.upms.dao.mapper.UpmsApiMapper">
+
+	<!-- 结果映射关系 -->
+	<resultMap id="UpmsPermissionResultMap" type="com.zheng.upms.dao.model.UpmsPermission">
+		<id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+		<result column="system_id" jdbcType="INTEGER" property="systemId" />
+		<result column="pid" jdbcType="INTEGER" property="pid" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="type" jdbcType="TINYINT" property="type" />
+		<result column="permission_value" jdbcType="VARCHAR" property="permissionValue" />
+		<result column="uri" jdbcType="VARCHAR" property="uri" />
+		<result column="icon" jdbcType="VARCHAR" property="icon" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="ctime" jdbcType="BIGINT" property="ctime" />
+		<result column="orders" jdbcType="BIGINT" property="orders" />
+	</resultMap>
+
+	<!-- 字段 -->
+	<sql id="Base_Column_List">
+		permission_id, system_id, pid, name, type, permission_value, uri, icon, status, ctime, orders
+	</sql>
+
+	<!-- 根据用户获取所拥有的权限 -->
+	<select id="selectUpmsPermissionByUpmsUserId" parameterType="java.lang.Integer" resultMap="UpmsPermissionResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from upms_permission up where up.permission_id in (
+			select permission_id from upms_role_permission urp where urp.role_id in (
+				select uur.role_id role_id from upms_user_role uur where uur.user_id=#{upmsUserId,jdbcType=INTEGER}
+			)
+			union
+			select permission_id from upms_user_permission uup where uup.user_id=#{upmsUserId,jdbcType=INTEGER}
+		)
+	</select>
+
+	<!-- 缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
+</mapper>
