@@ -11,4 +11,13 @@
 	<!-- 根目录'/'对应页面 -->
 	<mvc:view-controller path="/" view-name="/index"/>
 
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 获取登录信息 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/manage/**" />
+			<bean class="com.zheng.upms.interceptor.UpmsLoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 </beans>

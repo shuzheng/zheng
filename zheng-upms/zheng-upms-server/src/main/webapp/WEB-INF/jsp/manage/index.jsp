@@ -103,10 +103,10 @@
 		<div class="s-profile">
 			<a class="waves-effect waves-light" href="javascript:;">
 				<div class="sp-pic">
-					<img src="${basePath}/resources/zheng-admin/images/avatar.jpg"/>
+					<img src="${basePath}${upmsUser.avatar}"/>
 				</div>
 				<div class="sp-info">
-					张恕征，您好！
+					${upmsUser.realname}，您好！
 					<i class="zmdi zmdi-caret-down"></i>
 				</div>
 			</a>
