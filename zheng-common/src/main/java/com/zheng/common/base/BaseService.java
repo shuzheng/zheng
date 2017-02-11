@@ -42,8 +42,6 @@ public interface BaseService<Record, Example> {
 
 	int deleteByPrimaryKeys(String ids);
 
-	//void initMapper(Class clazz);
-
 	void initMapper();
 
 }

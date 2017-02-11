@@ -1,5 +1,6 @@
 package com.zheng.upms.rpc.service.impl;
 
+import com.zheng.common.annotation.BaseService;
 import com.zheng.common.base.BaseServiceImpl;
 import com.zheng.upms.dao.mapper.UpmsPermissionMapper;
 import com.zheng.upms.dao.model.UpmsPermission;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
+@BaseService
 public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMapper, UpmsPermission, UpmsPermissionExample> implements UpmsPermissionService {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsPermissionServiceImpl.class);

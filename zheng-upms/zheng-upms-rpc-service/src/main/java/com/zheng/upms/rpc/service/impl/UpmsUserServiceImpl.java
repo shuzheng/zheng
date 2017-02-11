@@ -1,5 +1,6 @@
 package com.zheng.upms.rpc.service.impl;
 
+import com.zheng.common.annotation.BaseService;
 import com.zheng.common.base.BaseServiceImpl;
 import com.zheng.upms.dao.mapper.UpmsUserMapper;
 import com.zheng.upms.dao.model.UpmsUser;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
+@BaseService
 public class UpmsUserServiceImpl extends BaseServiceImpl<UpmsUserMapper, UpmsUser, UpmsUserExample> implements UpmsUserService {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsUserServiceImpl.class);

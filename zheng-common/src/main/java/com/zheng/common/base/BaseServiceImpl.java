@@ -240,11 +240,6 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return 0;
 	}
 
-//	@Override
-//	public void initMapper(Class clazz) {
-//		this.mapper = (Mapper) SpringContextUtil.getBean(clazz);
-//	}
-
 	@Override
 	public void initMapper() {
 		this.mapper = SpringContextUtil.getBean(getMapperClass());

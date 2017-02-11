@@ -6,6 +6,7 @@ import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.dao.model.CmsUserExample;
 import com.zheng.cms.dao.model.UserVO;
 import com.zheng.cms.rpc.api.UserService;
+import com.zheng.common.annotation.BaseService;
 import com.zheng.common.base.BaseServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
+@BaseService
 public class UserServiceImpl extends BaseServiceImpl<CmsUserMapper, CmsUser, CmsUserExample> implements UserService {
 
 	private static Logger _log = LoggerFactory.getLogger(UserServiceImpl.class);

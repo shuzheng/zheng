@@ -1,10 +1,10 @@
-package com.zheng.upms.rpc.service.listener;
+package com.zheng.common.listener;
 
+import com.zheng.common.annotation.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -23,8 +23,7 @@ public class ApplicationContextListener implements ApplicationListener<ContextRe
         if(null == contextRefreshedEvent.getApplicationContext().getParent()) {
             _log.info(">>>>> spring初始化完毕 <<<<<");
             // spring初始化完毕后，通过反射调用所有service的initMapper方法
-            Map<String, Object> services = contextRefreshedEvent.getApplicationContext().getBeansWithAnnotation(Service.class);
-            _log.info("===== 开始初始化service的initMapper方法 =====");
+            Map<String, Object> services = contextRefreshedEvent.getApplicationContext().getBeansWithAnnotation(BaseService.class);
             for(Object service : services.values()) {
                 _log.info(">>>>> {}.initMapper()", service.getClass().getName());
                 try {
@@ -35,7 +34,6 @@ public class ApplicationContextListener implements ApplicationListener<ContextRe
                     e.printStackTrace();
                 }
             }
-            _log.info("===== 完成初始化service的initMapper方法 =====");
         }
     }
 
