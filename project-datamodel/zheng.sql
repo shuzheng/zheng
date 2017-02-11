@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-11 23:54:13
+Date: 2017-02-12 01:56:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -429,7 +429,7 @@ CREATE TABLE `upms_permission` (
   `type` tinyint(4) DEFAULT NULL COMMENT '类型(1:菜单,2:按钮)',
   `permission_value` varchar(50) DEFAULT NULL COMMENT '权限值',
   `uri` varchar(100) DEFAULT NULL COMMENT '路径',
-  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
+  `icon` varchar(50) DEFAULT NULL COMMENT '图标',
   `status` tinyint(4) DEFAULT NULL COMMENT '状态(0:禁止,1:正常)',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   `orders` bigint(20) DEFAULT NULL COMMENT '排序',
@@ -441,18 +441,18 @@ CREATE TABLE `upms_permission` (
 -- ----------------------------
 -- Records of upms_permission
 -- ----------------------------
-INSERT INTO `upms_permission` VALUES ('1', '1', null, '系统组织管理', '1', '', '', '', '1', '1', '1');
+INSERT INTO `upms_permission` VALUES ('1', '1', null, '系统组织管理', '1', '', '', 'zmdi zmdi-accounts-list', '1', '1', '1');
 INSERT INTO `upms_permission` VALUES ('2', '1', '1', '系统管理', '1', 'upms:system:read', '/system/index', '', '1', '2', '2');
 INSERT INTO `upms_permission` VALUES ('3', '1', '1', '组织管理', '1', 'upms:organization:read', '/organization/index', '', '1', '3', '3');
-INSERT INTO `upms_permission` VALUES ('4', '1', null, '用户角色管理', '1', '', '', '', '1', '4', '4');
+INSERT INTO `upms_permission` VALUES ('4', '1', null, '用户角色管理', '1', '', '', 'zmdi zmdi-accounts', '1', '4', '4');
 INSERT INTO `upms_permission` VALUES ('5', '1', '4', '用户管理', '1', 'upms:user:read', '/user/index', '', '1', '5', '5');
 INSERT INTO `upms_permission` VALUES ('6', '1', '4', '角色管理', '1', 'upms:role:read', '/role/index', '', '1', '6', '6');
-INSERT INTO `upms_permission` VALUES ('7', '1', null, '权限资源管理', '1', '', '', '', '1', '7', '7');
+INSERT INTO `upms_permission` VALUES ('7', '1', null, '权限资源管理', '1', '', '', 'zmdi zmdi-lock-outline', '1', '7', '7');
 INSERT INTO `upms_permission` VALUES ('8', '1', '7', '权限管理', '1', 'upms:permission:read', '/permission/index', '', '1', '8', '8');
-INSERT INTO `upms_permission` VALUES ('9', '1', null, '权限分配管理', '1', '', '', '', '1', '9', '9');
+INSERT INTO `upms_permission` VALUES ('9', '1', null, '权限分配管理', '1', '', '', 'zmdi zmdi-key', '1', '9', '9');
 INSERT INTO `upms_permission` VALUES ('10', '1', '9', '角色授权', '1', 'upms:role_permission:read', '/role_permission/index', '', '1', '10', '10');
 INSERT INTO `upms_permission` VALUES ('11', '1', '9', '用户授权', '1', 'upms:user_permission:read', '/user_permission/index', '', '1', '11', '11');
-INSERT INTO `upms_permission` VALUES ('12', '1', null, '其他数据管理', '1', '', '', '', '1', '12', '12');
+INSERT INTO `upms_permission` VALUES ('12', '1', null, '其他数据管理', '1', '', '', 'zmdi zmdi-settings', '1', '12', '12');
 INSERT INTO `upms_permission` VALUES ('13', '1', '12', '公共码表', '1', 'upms:coder:read', '/coder/index', '', '1', '13', '13');
 INSERT INTO `upms_permission` VALUES ('14', '1', '12', '会话管理', '1', 'upms:session:read', '/session/index', '', '1', '14', '14');
 INSERT INTO `upms_permission` VALUES ('15', '1', '12', '日志记录', '1', 'upms:log:read', '/log/index', '', '1', '15', '15');
@@ -515,7 +515,7 @@ INSERT INTO `upms_role_permission` VALUES ('16', '1', '16');
 DROP TABLE IF EXISTS `upms_system`;
 CREATE TABLE `upms_system` (
   `system_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
+  `icon` varchar(50) DEFAULT NULL COMMENT '图标',
   `basepath` varchar(100) DEFAULT NULL COMMENT '根目录',
   `status` tinyint(4) DEFAULT NULL COMMENT '状态(-1:黑名单,1:正常)',
   `name` varchar(20) DEFAULT NULL COMMENT '系统名称',
@@ -529,8 +529,8 @@ CREATE TABLE `upms_system` (
 -- ----------------------------
 -- Records of upms_system
 -- ----------------------------
-INSERT INTO `upms_system` VALUES ('1', 'zmdi zmdi-widgets', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '权限管理系统', '用户权限管理系统（RBAC细粒度用户权限、统一后台、单点登录、会话管理）', '1', '1');
-INSERT INTO `upms_system` VALUES ('2', 'zmdi zmdi-widgets', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '内容管理系统', '内容管理系统（门户、博客、论坛、问答等）', '2', '2');
+INSERT INTO `upms_system` VALUES ('1', 'zmdi zmdi-shield-check', 'http://upms.zhangshuzheng.cn:1111', '1', 'zheng-upms-server', '权限管理系统', '用户权限管理系统（RBAC细粒度用户权限、统一后台、单点登录、会话管理）', '1', '1');
+INSERT INTO `upms_system` VALUES ('2', 'zmdi zmdi-wikipedia', 'http://cms.zhangshuzheng.cn:2222', '1', 'zheng-cms-admin', '内容管理系统', '内容管理系统（门户、博客、论坛、问答等）', '2', '2');
 
 -- ----------------------------
 -- Table structure for upms_user
@@ -587,7 +587,6 @@ CREATE TABLE `upms_user_permission` (
 -- ----------------------------
 -- Records of upms_user_permission
 -- ----------------------------
-INSERT INTO `upms_user_permission` VALUES ('1', '1', '16');
 
 -- ----------------------------
 -- Table structure for upms_user_role
