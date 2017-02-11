@@ -1,5 +1,6 @@
 package com.zheng.upms.admin.controller;
 
+import com.zheng.common.base.BaseController;
 import com.zheng.upms.dao.model.UpmsSystem;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manage")
-public class ManageController {
+public class ManageController extends BaseController {
 
 	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
 

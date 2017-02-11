@@ -1,5 +1,6 @@
 package com.zheng.upms.admin.controller;
 
+import com.zheng.common.base.BaseController;
 import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.admin.util.SystemConstant;
@@ -37,7 +38,7 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/sso")
-public class SSOController {
+public class SSOController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(SSOController.class);
 	private final static int TIMEOUT = 2 * 60 * 60;
