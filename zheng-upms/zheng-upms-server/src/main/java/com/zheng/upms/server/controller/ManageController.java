@@ -1,9 +1,11 @@
 package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
-import com.zheng.upms.dao.model.UpmsSystem;
-import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.dao.model.*;
+import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.api.UpmsSystemService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +29,22 @@ public class ManageController extends BaseController {
 	@Autowired
 	private UpmsSystemService upmsSystemService;
 
+	@Autowired
+	private UpmsApiService upmsApiService;
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
+		// 已注册系统
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.createCriteria()
 				.andStatusEqualTo((byte) 1);
 		List<UpmsSystem> upmsSystems = upmsSystemService.selectByExample(upmsSystemExample);
 		modelMap.put("upmsSystems", upmsSystems);
+		// 当前登录用户权限
+		Subject subject = SecurityUtils.getSubject();
+		UpmsUser upmsUser = (UpmsUser) subject.getPrincipal();
+		List<UpmsPermission> upmsPermissions = upmsApiService.selectUpmsPermissionByUpmsUserId(upmsUser.getUserId());
+		modelMap.put("upmsPermissions", upmsPermissions);
 		return "/manage/index";
 	}
 

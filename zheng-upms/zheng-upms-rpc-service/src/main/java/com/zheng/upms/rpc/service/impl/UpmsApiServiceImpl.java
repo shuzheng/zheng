@@ -2,7 +2,6 @@ package com.zheng.upms.rpc.service.impl;
 
 import com.zheng.upms.dao.mapper.UpmsApiMapper;
 import com.zheng.upms.dao.mapper.UpmsUserMapper;
-import com.zheng.upms.dao.mapper.UserVOMapper;
 import com.zheng.upms.dao.model.UpmsPermission;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.rpc.api.UpmsApiService;
@@ -29,9 +28,6 @@ public class UpmsApiServiceImpl implements UpmsApiService {
 
     @Autowired
     UpmsApiMapper upmsApiMapper;
-
-    @Autowired
-    UserVOMapper userVOMapper;
 
     /**
      * 根据用户id获取所拥有的权限
