@@ -28,6 +28,13 @@ $(function() {
 			preventDefault: true
 		}
 	});
+	// 切换系统
+	$('.switch-systems').click(function () {
+		var systemid = $(this).attr('systemid');
+		$('.system_menus').hide(0, function () {
+			$('.system_' + systemid).show();
+		});
+	});
 });
 // iframe高度自适应
 function changeFrameHeight(ifm) {
