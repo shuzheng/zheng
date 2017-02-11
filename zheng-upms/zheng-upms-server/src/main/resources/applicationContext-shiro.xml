@@ -6,13 +6,15 @@
 
     <description>zheng-upms</description>
 
-    <!--设置自定义realm，继承自AuthorizingRealm -->
-    <bean id="upmsRealm" class="com.zheng.upms.admin.realm.UpmsRealm"></bean>
+    <!-- realm实现，继承自AuthorizingRealm -->
+    <bean id="upmsRealm" class="com.zheng.upms.server.realm.UpmsRealm"></bean>
 
+    <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="upmsRealm"/>
     </bean>
 
+    <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/sso/login"/>
@@ -38,9 +40,10 @@
         <property name="arguments" ref="securityManager"/>
     </bean>
 
-    <!-- @RequiresPermissions注解支持 -->
-    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- @RequiresPermissions注解支持 -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>

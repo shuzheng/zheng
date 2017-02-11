@@ -1,5 +1,6 @@
 package com.zheng.upms.client.filter;
 
+import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.filter.util.RequestParameterUtil;
 import org.apache.commons.lang.StringUtils;
@@ -31,6 +32,10 @@ public class SSOFilter implements Filter {
 
     private final static Logger _log = LoggerFactory.getLogger(SSOFilter.class);
 
+    // 局部会话key
+    private final static String ZHENG_UPMS_CLIENT_SESSION_ID = "zheng-upms-client-session-id";
+    // 单点同一个token所有局部会话key
+    private final static String ZHENG_UPMS_CLIENT_SESSION_IDS = "zheng-upms-client-session-ids";
     private String SYSTEM_NAME = "system_name";
     private String SSO_SERVER_URL = "sso_server_url";
     private String SSO_DEBUG = "sso_debug";
@@ -53,11 +58,15 @@ public class SSOFilter implements Filter {
             return;
         }
 
-        // 分配单点登录sessionId，不使用session获取会话id，改为cookie，防止session丢失
-        String sessionId = request.getSession().getId();
+        // 分配子系统登录sessionId，首次获取后缓存到cookie，防止session丢失
+        String clientSessionId = CookieUtil.getCookie(request, ZHENG_UPMS_CLIENT_SESSION_ID);
+        if (StringUtils.isEmpty(clientSessionId)) {
+            clientSessionId = request.getSession().getId();
+            CookieUtil.setCookie(response, ZHENG_UPMS_CLIENT_SESSION_ID, clientSessionId);
+        }
 
-        // 已登录
-        if (!StringUtils.isEmpty(RedisUtil.get(sessionId + "_token"))) {
+        // 判断局部会话是否登录
+        if (null != clientSessionId && !StringUtils.isEmpty(RedisUtil.get(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId))) {
             // 移除url中的token参数
             if (null != request.getParameter("token")) {
                 String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
@@ -71,7 +80,6 @@ public class SSOFilter implements Filter {
         else {
             // 认证中心地址
             StringBuffer sso_server_url = new StringBuffer(filterConfig.getInitParameter(SSO_SERVER_URL));
-            sso_server_url.append("/sso");
             // 判断是否有认证中心token
             String token = request.getParameter("token");
             // 已拿到token
@@ -79,7 +87,7 @@ public class SSOFilter implements Filter {
                 // HttpPost去校验token
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost(sso_server_url.toString() + "/token");
+                    HttpPost httpPost = new HttpPost(sso_server_url.toString() + "/sso/token");
 
                     List<NameValuePair> nvps = new ArrayList<>();
                     nvps.add(new BasicNameValuePair("token", token));
@@ -91,10 +99,10 @@ public class SSOFilter implements Filter {
                         String result = EntityUtils.toString(httpEntity);
                         if (result.equals("success")) {
                             // token校验正确，创建局部会话
-                            RedisUtil.set(sessionId + "_token", token);
+                            RedisUtil.set(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId, token);
                             // 保存token对应的局部会话sessionId，方便退出登录操作
-                            RedisUtil.getJedis().sadd(token + "_subSessionIds", sessionId);
-                            _log.info("当前token={}，对应的注册系统有：{}个", token, RedisUtil.getJedis().scard(token + "_subSessionIds"));
+                            RedisUtil.getJedis().sadd(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token, clientSessionId);
+                            _log.info("当前token={}，对应的注册系统个数：{}个", token, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
                             // 移除url中的token参数
                             String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
                             // 返回请求资源
@@ -108,7 +116,7 @@ public class SSOFilter implements Filter {
                 // 跳转认证中心登录页
             }
             // 无token，跳转sso-server认证中心登录，并带上回调地址和系统名称参数
-            sso_server_url.append("/index").append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
+            sso_server_url.append("/sso/index").append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
             StringBuffer backurl = request.getRequestURL();
             String queryString = request.getQueryString();
             if (!StringUtils.isEmpty(queryString)) {

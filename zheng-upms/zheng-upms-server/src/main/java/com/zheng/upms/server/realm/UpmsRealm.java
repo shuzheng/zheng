@@ -1,4 +1,4 @@
-package com.zheng.upms.admin.realm;
+package com.zheng.upms.server.realm;
 
 import com.zheng.common.util.MD5Util;
 import com.zheng.upms.dao.model.UpmsUser;

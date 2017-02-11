@@ -1,4 +1,4 @@
-package com.zheng.upms.admin.controller;
+package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
 import com.zheng.upms.dao.model.UpmsSystem;
