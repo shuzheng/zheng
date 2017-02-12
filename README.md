@@ -313,8 +313,8 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 演示地址： [http://www.zhangshuzheng.cn/zhengAdmin](http://www.zhangshuzheng.cn/zhengAdmin "演示地址")
 
 ### 预览图
-![login](zheng-admin/src/images/zheng-upms-login.png)
-![crud](zheng-admin/src/images/zheng-upms-crud.png)
+![login](project-bootstrap/zheng-upms-login.png)
+![crud](project-bootstrap/zheng-upms-index.png)
 ![swagger](project-bootstrap/api.png)
 
 ### 数据模型
