@@ -10,7 +10,7 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
 
 	private String[] propertyNames = {
-			"master.jdbc.password", "slave.jdbc.password", "generator.jdbc.password", "master.redis.password"
+		"master.jdbc.password", "slave.jdbc.password", "generator.jdbc.password", "master.redis.password"
 	};
 
 	/**
