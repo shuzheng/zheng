@@ -16,7 +16,6 @@ public class ZhengUpmsRpcServiceApplication {
 		_log.info(">>>>> zheng-upms-rpc-service 正在启动 <<<<<");
 		new ClassPathXmlApplicationContext("classpath*:applicationContext*.xml");
 		_log.info(">>>>> zheng-upms-rpc-service 启动完成 <<<<<");
-		System.out.println(">>>>> zheng-upms-rpc-service 启动完成 <<<<<");
 	}
 
 }

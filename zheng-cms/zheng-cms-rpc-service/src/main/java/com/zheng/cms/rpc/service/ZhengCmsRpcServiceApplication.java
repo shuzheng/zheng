@@ -16,7 +16,6 @@ public class ZhengCmsRpcServiceApplication {
 		_log.info(">>>>> zheng-cms-rpc-service 正在启动 <<<<<");
 		new ClassPathXmlApplicationContext("classpath*:applicationContext*.xml");
 		_log.info(">>>>> zheng-cms-rpc-service 启动完成 <<<<<");
-		System.out.println(">>>>> zheng-cms-rpc-service 启动完成 <<<<<");
 	}
 
 }
