@@ -31,8 +31,10 @@ $(function() {
 	// 切换系统
 	$('.switch-systems').click(function () {
 		var systemid = $(this).attr('systemid');
+		var systemtitle = $(this).attr('systemtitle');
 		$('.system_menus').hide(0, function () {
 			$('.system_' + systemid).show();
+			$('#system_title').text(systemtitle);
 		});
 	});
 });
