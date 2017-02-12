@@ -74,6 +74,7 @@ public class MybatisGeneratorUtil {
 		System.out.println("========== 开始运行MybatisGenerator ==========");
 		// 生成代码
 		try {
+			Thread.sleep(2000);
 			List<String> warnings = new ArrayList<>();
 			File configFile = new File(MybatisGeneratorUtil.class.getResource("/generatorConfig.xml").getFile());
 			ConfigurationParser cp = new ConfigurationParser(warnings);
