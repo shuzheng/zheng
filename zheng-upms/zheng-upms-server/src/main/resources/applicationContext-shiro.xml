@@ -6,12 +6,37 @@
 
     <description>zheng-upms</description>
 
+    <!-- 会话ID生成器 -->
+    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+    <!-- 会话DAO -->
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO">
+        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+    </bean>
+
+    <!-- 会话监听器 -->
+    <bean id="sessionListener" class="com.zheng.upms.server.listener.ShiroSessionListener"/>
+
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager">
+        <property name="globalSessionTimeout" value="1800000"/>
+        <property name="deleteInvalidSessions" value="true"/>
+        <property name="sessionDAO" ref="sessionDAO"/>
+        <property name="sessionListeners">
+            <list><ref bean="sessionListener"/></list>
+        </property>
+    </bean>
+
     <!-- realm实现，继承自AuthorizingRealm -->
     <bean id="upmsRealm" class="com.zheng.upms.server.realm.UpmsRealm"></bean>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="upmsRealm"/>
+        <property name="realms">
+            <list><ref bean="upmsRealm"/></list>
+        </property>
+        <!--<property name="sessionManager" ref="sessionManager"/>-->
+        <!--<property name="cacheManager" ref="cacheManager"/>-->
     </bean>
 
     <!-- Shiro的Web过滤器 -->

@@ -51,9 +51,6 @@ public class UpmsSystemController extends BaseController {
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.setOffset(offset);
 		upmsSystemExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
-			upmsSystemExample.setOrderByClause(sort + " " + order);
-		}
 		List<UpmsSystem> systems = upmsSystemService.selectByExample(upmsSystemExample);
 //		long total = upmsSystemService.countByExample(upmsSystemExample);
 		return systems;

@@ -1,9 +1,12 @@
 package com.zheng.upms.server.realm;
 
 import com.zheng.common.util.MD5Util;
+import com.zheng.upms.dao.model.UpmsPermission;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.dao.model.UpmsUserExample;
+import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.api.UpmsUserService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -14,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,6 +30,9 @@ public class UpmsRealm extends AuthorizingRealm {
     @Autowired
     private UpmsUserService upmsUserService;
 
+    @Autowired
+    private UpmsApiService upmsApiService;
+
     /**
      * 授权：验证权限时调用
      * @param principalCollection
@@ -36,9 +43,14 @@ public class UpmsRealm extends AuthorizingRealm {
         // 当前用户
         UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
 
-        // 全部权限 TODO
+        // 当前用户所有权限
+        List<UpmsPermission> upmsPermissions = upmsApiService.selectUpmsPermissionByUpmsUserId(upmsUser.getUserId());
         Set<String> permissions = new HashSet<>();
-        permissions.add("*:*:*");
+        for (UpmsPermission upmsPermission : upmsPermissions) {
+            if (StringUtils.isNotEmpty(upmsPermission.getPermissionValue())) {
+                permissions.add(upmsPermission.getPermissionValue());
+            }
+        }
 
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.setStringPermissions(permissions);

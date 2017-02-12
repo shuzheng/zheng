@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zheng.upms.dao.mapper.UpmsApiMapper">
 
-	<!-- 结果映射关系 -->
+	<!-- 权限 -->
 	<resultMap id="UpmsPermissionResultMap" type="com.zheng.upms.dao.model.UpmsPermission">
 		<id column="permission_id" jdbcType="INTEGER" property="permissionId" />
 		<result column="system_id" jdbcType="INTEGER" property="systemId" />
@@ -17,21 +17,44 @@
 		<result column="orders" jdbcType="BIGINT" property="orders" />
 	</resultMap>
 
-	<!-- 字段 -->
-	<sql id="Base_Column_List">
+	<!-- 角色 -->
+	<resultMap id="UpmsRoleResultMap" type="com.zheng.upms.dao.model.UpmsRole">
+		<id column="role_id" jdbcType="INTEGER" property="roleId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="ctime" jdbcType="BIGINT" property="ctime" />
+		<result column="orders" jdbcType="BIGINT" property="orders" />
+	</resultMap>
+
+	<!-- 权限字段 -->
+	<sql id="UpmsPermission_Column_List">
 		permission_id, system_id, pid, name, type, permission_value, uri, icon, status, ctime, orders
+	</sql>
+
+	<!-- 角色字段 -->
+	<sql id="UpmsRole_Column_List">
+		role_id, name, description, ctime, orders
 	</sql>
 
 	<!-- 根据用户获取所拥有的权限 -->
 	<select id="selectUpmsPermissionByUpmsUserId" parameterType="java.lang.Integer" resultMap="UpmsPermissionResultMap">
 		select
-			<include refid="Base_Column_List" />
+			<include refid="UpmsPermission_Column_List" />
 		from upms_permission up where up.permission_id in (
 			select permission_id from upms_role_permission urp where urp.role_id in (
 				select uur.role_id role_id from upms_user_role uur where uur.user_id=#{upmsUserId,jdbcType=INTEGER}
 			)
 			union
 			select permission_id from upms_user_permission uup where uup.user_id=#{upmsUserId,jdbcType=INTEGER}
+		)
+	</select>
+
+	<!-- 根据用户id获取所属的角色 -->
+	<select id="selectUpmsRoleByUpmsUserId" parameterType="java.lang.Integer" resultMap="UpmsRoleResultMap">
+		select
+			<include refid="UpmsRole_Column_List" />
+		from upms_role ur where ur.role_id in (
+			select uur.role_id from upms_user_role uur where uur.user_id=#{upmsUserId,jdbcType=INTEGER}
 		)
 	</select>
 
