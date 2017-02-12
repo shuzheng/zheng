@@ -314,7 +314,8 @@ zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 ### 预览图
 ![login](project-bootstrap/zheng-upms-login.png)
-![crud](project-bootstrap/zheng-upms-index.png)
+![index](project-bootstrap/zheng-upms-index.png)
+![crud](project-bootstrap/zheng-upms-crud.png)
 ![swagger](project-bootstrap/api.png)
 
 ### 数据模型
