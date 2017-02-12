@@ -20,6 +20,8 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 
 /* 头部左侧logo */
 #logo a {margin-left: 10px!important;}
+#logo a img{vertical-align: top;}
+#system_name{color: #fff; height:33px; line-height: 33px; font-size: 16px;}
 
 /* 头部右侧工具按钮 */
 .pull-right {float: right!important;}
