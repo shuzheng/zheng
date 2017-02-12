@@ -128,7 +128,7 @@
 		<!-- 菜单区 -->
 		<ul class="main-menu">
 			<li>
-				<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页2</a>
+				<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页</a>
 			</li>
 			<c:forEach var="upmsPermission" items="${upmsPermissions}" varStatus="status">
 				<c:if test="${upmsPermission.pid == null}">
