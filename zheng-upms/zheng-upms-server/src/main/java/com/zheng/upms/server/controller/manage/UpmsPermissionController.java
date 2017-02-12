@@ -38,6 +38,20 @@ public class UpmsPermissionController extends BaseController {
         return "/manage/permission/index";
     }
 
+    @ApiOperation(value = "菜单权限首页")
+    @RequiresPermissions("upms:permission:read")
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    public String menu() {
+        return "/manage/permission/menu";
+    }
+
+    @ApiOperation(value = "按钮权限首页")
+    @RequiresPermissions("upms:permission:read")
+    @RequestMapping(value = "/button", method = RequestMethod.GET)
+    public String button() {
+        return "/manage/permission/button";
+    }
+
     @ApiOperation(value = "权限列表")
     @RequiresPermissions("upms:permission:read")
     @RequestMapping("/list")
@@ -45,10 +59,15 @@ public class UpmsPermissionController extends BaseController {
     public Object list(
             @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
             @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
+            @RequestParam(required = false, defaultValue = "0", value = "type") int type,
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         // 数据列表
         UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
+        if (0 != type) {
+            upmsPermissionExample.createCriteria()
+                .andTypeEqualTo((byte) type);
+        }
         upmsPermissionExample.setOffset(offset);
         upmsPermissionExample.setLimit(limit);
         if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
