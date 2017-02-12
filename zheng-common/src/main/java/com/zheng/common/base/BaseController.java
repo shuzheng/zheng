@@ -1,6 +1,7 @@
 package com.zheng.common.base;
 
 import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.session.InvalidSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,6 +35,10 @@ public abstract class BaseController {
 		// shiro没有权限异常
 		if (exception instanceof UnauthorizedException) {
 			return "/403";
+		}
+		// shiro会话已过期异常
+		if (exception instanceof InvalidSessionException) {
+			return "/error";
 		}
 		return "/error";
 	}
