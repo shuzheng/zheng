@@ -34,6 +34,7 @@
 			<a href="${basePath}/manage/index">
 				<img src="${basePath}/resources/zheng-admin/images/logo.png"/>
 			</a>
+			<span id="system_title">权限管理系统</span>
 		</li>
 		<li class="pull-right">
 			<ul class="hi-menu">
@@ -64,7 +65,7 @@
 						<li class="divider hidden-xs"></li>
 						<c:forEach var="upmsSystem" items="${upmsSystems}">
 						<li>
-							<a class="waves-effect switch-systems" href="javascript:;" systemid="${upmsSystem.systemId}"><i class="${upmsSystem.icon}"></i> ${upmsSystem.title}</a>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="${upmsSystem.systemId}" systemtitle="${upmsSystem.title}"><i class="${upmsSystem.icon}"></i> ${upmsSystem.title}</a>
 						</li>
 						</c:forEach>
 					</ul>
@@ -173,7 +174,7 @@
 				<p><h4>系统功能概述：</h4></p>
 				<p><b>系统组织管理</b>：系统和组织增加、删除、修改、查询功能。</p>
 				<p><b>用户角色管理</b>：用户和角色增加、删除、修改、查询功能。</p>
-				<p><b>资源权限管理</b>：资源和权限增加、删除、修改、查询功能。</p>
+				<p><b>资源权限管理</b>：菜单和按钮增加、删除、修改、查询功能。</p>
 				<p><b>权限分配管理</b>：提供给角色和用户的权限增加、删除、修改、查询功能。</p>
 				<p><b>单点登录(SSO)</b>：提供统一用户单点登录认证、用户鉴权功能。</p>
 				<p><b>用户会话管理</b>：提供分布式用户会话管理</p>
