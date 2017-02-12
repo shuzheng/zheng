@@ -27,7 +27,7 @@
                 /webjars/** = anon
                 /resources/** = anon
                 /sso/** = anon
-				/403 = anon
+                /403 = anon
                 /druid/**=authc
                 /manage/**=authc
             </value>
@@ -44,7 +44,8 @@
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
     <!-- @RequiresPermissions注解支持 -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
