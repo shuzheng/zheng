@@ -18,7 +18,7 @@
 ``` lua
 zheng
 ├── zheng-common -- SSM框架公共模块
-├── zheng-ui -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
+├── zheng-ui -- 后台管理系统UI模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、会话管理
@@ -107,11 +107,11 @@ zheng
 
 > zheng-common
 
-Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisGenerator扩展插件、通用BaseService、工具类等。[更多](zheng-common/README.md "更多")
+Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisGenerator扩展插件、通用BaseService、工具类等。
 
 > zheng-ui
 
-基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有系统都是使用该模块界面作为前端展示。[更多](zheng-ui/README.md "更多")
+基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有系统都是使用该模块界面作为前端展示。
 
 > zheng-upms
 
@@ -127,63 +127,56 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 用户会话管理：提供分布式用户会话管理
 - 操作日志管理：提供记录用户登录、操作等日志。
 
-[更多](zheng-upms/README.md "更多")
-
 > zheng-oss
 
-文件存储系统，提供三种方案：
+文件存储系统，提供四种方案：
 
-- **阿里云** 对象存储OSS
-- **腾讯云** 对象存储COS
-- **七牛云** 对象存储
-
-[更多](zheng-oss/README.md "更多")
+- **阿里云** OSS
+- **腾讯云** COS
+- **七牛云**
+- 本地分布式存储
 
 > zheng-api
 
-接口系统，包括开发加密接口、接口文档等对外开放服务。[更多](zheng-api/README.md "更多")
+接口系统，包括开发加密接口、接口文档等对外开放服务。
 
 > zheng-cms
 
-内容管理系统：支持多标签、多类目、强大评论的内容管理，有基本单页展示，菜单管理，系统设置等功能。[更多](zheng-cms/README.md "更多")
+内容管理系统：支持多标签、多类目、强大评论的内容管理，有基本单页展示，菜单管理，系统设置等功能。
 
 > zheng-pay
 
-一站式支付解决方案，统一下单接口，支持支付宝、微信、网银等多种支付方式。不涉及业务的纯粹的支付平台。
+- 一站式支付解决方案，统一下单接口，支持支付宝、微信、网银等多种支付方式。不涉及业务的纯粹的支付平台。
 
-**功能介绍：**
-
-- 统一下单（统一下单接口、统一扫码）、订单管理、数据分析、财务报表、商户管理、渠道管理、对账系统、系统监控
-
-- [更多](zheng-pay/README.md "更多")
+- 统一下单（统一下单接口、统一扫码）、订单管理、数据分析、财务报表、商户管理、渠道管理、对账系统、系统监控。
 
 > zheng-ucenter
 
-通用用户管理系统， 实现最常用的用户注册、登录、资料管理、个人中心、第三方登录等基本需求，支持扩展二次开发。[更多](zheng-ucenter/README.md "更多")
+通用用户管理系统， 实现最常用的用户注册、登录、资料管理、个人中心、第三方登录等基本需求，支持扩展二次开发。
 
 > zheng-wechat-mp
 
-微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等。[更多](zheng-wechat/zheng-wechat-mp/README.md "更多")
+微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等。
 
 > zheng-ucenter-app 
 
-微信小程序后台[更多](zheng-wechat/zheng-wechat-app/README.md "更多")
+微信小程序后台
 
 > zheng-shop
 
-电子商务系统[更多](zheng-shop/README.md "更多")
+电子商务系统
 
 > zheng-im
 
-即时通讯系统[更多](zheng-im/README.md "更多")
+即时通讯系统
 
 > zheng-oa
 
-办公自动化系统[更多](zheng-oa/README.md "更多")
+办公自动化系统
 
 > zheng-eoms
 
-运维系统[更多](zheng-eoms/README.md "更多")
+运维系统
 
 ## 环境搭建
 
@@ -247,7 +240,7 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - 新建zheng数据库，导入zheng.sql
 
-- 修改各dao模块的redis.properties和jdbc.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
+- 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
 
 - 启动 zheng-upms-rpc-service => zheng-upms-server => zheng-xxx-rpc-service => zheng-xxx-webapp
 
