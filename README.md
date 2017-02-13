@@ -138,7 +138,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 > zheng-api
 
-接口系统，包括开发加密接口、接口文档等对外开放服务。
+接口系统，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务。
 
 > zheng-cms
 
