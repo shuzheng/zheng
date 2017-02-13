@@ -16,4 +16,7 @@ a i{font-size: 13px;}
 .pagination>li>a, .pagination>li>span{color: #29a176;}
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{background-color: #29a176;}*/
 
+body{font-size: 12px;}
+.table i{font-size: 12px; color: #000;}
+.bootstrap-table .table>thead>tr>th{border-bottom: none;}
 .bootstrap-table .table:not(.table-condensed), .bootstrap-table .table:not(.table-condensed)>tbody>tr>td, .bootstrap-table .table:not(.table-condensed)>tbody>tr>th, .bootstrap-table .table:not(.table-condensed)>tfoot>tr>td, .bootstrap-table .table:not(.table-condensed)>tfoot>tr>th, .bootstrap-table .table:not(.table-condensed)>thead>tr>td{padding: 12px 8px;}

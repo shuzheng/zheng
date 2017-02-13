@@ -13,12 +13,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>组织管理</title>
-
 	<link href="${basePath}/resources/zheng-admin/plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-admin/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-admin/plugins/bootstrap-table-1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-admin/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
-
 	<link href="${basePath}/resources/zheng-admin/css/common.css" rel="stylesheet"/>
 </head>
 <body>
@@ -35,13 +33,7 @@
 <script src="${basePath}/resources/zheng-admin/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/waves-0.7.5/waves.min.js"></script>
-
 <script src="${basePath}/resources/zheng-admin/js/common.js"></script>
-<style>
-    body{font-size: 12px;}
-    .table i{font-size: 12px; color: #000;}
-    .bootstrap-table .table>thead>tr>th{border-bottom: none;}
-</style>
 <script>
 $(function() {
 	// bootstrap table初始化
@@ -69,11 +61,6 @@ $(function() {
 		$('[data-toggle="tooltip"]').tooltip();
 		$('[data-toggle="popover"]').popover();
 	});
-	$(window).resize(function () {
-		$('#table').bootstrapTable('resetView', {
-			height: getHeight()
-		});
-	});
 });
 // 格式化操作按钮
 function actionFormatter(value, row, index) {
@@ -93,18 +80,6 @@ window.actionEvents = {
         console.log(value, row, index);
     }
 };
-// 展开内容
-function detailFormatter(index, row) {
-	var html = [];
-	$.each(row, function (key, value) {
-		html.push('<p><b>' + key + ':</b> ' + value + '</p>');
-	});
-	return html.join('');
-}
-//　动态高度
-function getHeight() {
-	return $(window).height() - 20;
-}
 </script>
 </body>
 </html>
