@@ -206,7 +206,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 资源下载
 
-- JDK7 [http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u80-oth-JPR "JDK7")
+- JDK7 [http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html "JDK7")
 - Maven [http://maven.apache.org/download.cgi](http://maven.apache.org/download.cgi "Maven")
 - Redis [https://redis.io/download](https://redis.io/download "Redis")
 - ActiveMQ [http://activemq.apache.org/download-archives.html](http://activemq.apache.org/download-archives.html "ActiveMQ")
@@ -216,6 +216,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
 - dubbo-admin-2.5.3 [http://download.csdn.net/detail/shuzheng5201314/9733652](http://download.csdn.net/detail/shuzheng5201314/9733652 "dubbo-admin-2.5.3")
 - dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/detail/shuzheng5201314/9733657](http://download.csdn.net/detail/shuzheng5201314/9733657 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
+- 更多资源请加QQ群
 
 ## 开发指南:
 
@@ -363,11 +364,29 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 - [做个男人，做个成熟的男人，做个有城府的男人](http://shuzheng5201314.iteye.com/blog/1387820 "做个男人，做个成熟的男人，做个有城府的男人")
 
 
-### 常用在线小工具
+### 在线小工具
 
 - [在线Cron表达式生成器](http://cron.qqe2.com/ "在线Cron表达式生成器")
 
 - [在线工具 - 程序员的工具箱](http://tool.lu/ "在线工具 - 程序员的工具箱")
+
+### 在线文档
+
+- [JDK7英文文档](http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4 "JDK7英文文档")
+
+- [Spring4.x文档](http://spring.oschina.mopaas.com/ "Spring4.x文档")
+
+- [Mybatis3官网](http://www.mybatis.org/mybatis-3/zh/index.html "Mybatis3官网")
+
+- [Dubbo官网](http://dubbo.io/ "Dubbo官网")
+
+- [Nginx中文文档](http://tool.oschina.net/apidocs/apidoc?api=nginx-zh "Nginx中文文档")
+
+- [Freemarker在线手册](http://freemarker.foofun.cn/ "Freemarker在线中文手册")
+
+- [Velocity在线手册](http://velocity.apache.org/engine/devel/developer-guide.html "Velocity在线手册")
+
+- [Bootstrap在线手册](http://www.bootcss.com/ "Bootstrap在线手册")
 
 ## 许可证
 
