@@ -6,5 +6,5 @@
 target
 *.log
 *.log.*
-**/resources/zheng-admin
+**/resources/zheng-ui
 generatorConfig.xml

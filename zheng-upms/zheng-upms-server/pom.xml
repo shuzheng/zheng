@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-admin</artifactId>
+            <artifactId>zheng-ui</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

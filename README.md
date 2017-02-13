@@ -18,7 +18,7 @@
 ``` lua
 zheng
 ├── zheng-common -- SSM框架公共模块
-├── zheng-admin -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
+├── zheng-ui -- 后台管理系统模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、会话管理
@@ -109,9 +109,9 @@ zheng
 
 Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisGenerator扩展插件、通用BaseService、工具类等。[更多](zheng-common/README.md "更多")
 
-> zheng-admin
+> zheng-ui
 
-基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有系统都是使用该模块界面作为前端展示。[更多](zheng-admin/README.md "更多")
+基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有系统都是使用该模块界面作为前端展示。[更多](zheng-ui/README.md "更多")
 
 > zheng-upms
 
@@ -241,7 +241,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 编译流程
 
-zheng-admin、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
+zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 ### 启动顺序
 
