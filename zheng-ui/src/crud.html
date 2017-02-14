@@ -32,6 +32,7 @@
 <script>
 $(function() {
 	// bootstrap table初始化
+	// http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
 	$('#table').bootstrapTable({
 		url: 'data/data1.json',
 		height: getHeight(),
@@ -50,9 +51,15 @@ $(function() {
 		paginationLoop: false,
 		classes: 'table table-hover table-no-bordered',
 		//sidePagination: 'server',
+		//silentSort: false,
+		smartDisplay: false,
 		idField: 'id',
 		sortName: 'id',
 		sortOrder: 'desc',
+		escape: true,
+		searchOnEnterKey: true,
+		idField: 'systemId',
+		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
 			{field: 'state', checkbox: true},
@@ -66,7 +73,7 @@ $(function() {
 			{field: 'email', title: '邮箱', sortable: true, halign: 'center'},
 			{field: 'address', title: '地址', sortable: true, halign: 'center'},
 			{field: 'remark', title: '备注', sortable: true, halign: 'center'},
-			{field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents'}
+			{field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
 	}).on('all.bs.table', function (e, name, args) {
 		$('[data-toggle="tooltip"]').tooltip();
