@@ -1,0 +1,21 @@
+package ${groupId}.${module}.rpc.service.impl;
+
+import ${groupId}.${module}.dao.mapper.${model}Mapper;
+import ${groupId}.${module}.dao.model.${model};
+import ${groupId}.${module}.dao.model.${model}Example;
+import ${groupId}.${module}.rpc.api.${model}Service;
+import ${groupId}.common.base.BaseServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+* 降级实现${modelname}Service
+* Created by shuzheng on ${ctime}.
+*/
+@Service
+@Transactional
+public class ${model}ServiceMock extends BaseServiceMock<${model}Mapper, ${model}, ${model}Example> implements ${model}Service {
+
+}
