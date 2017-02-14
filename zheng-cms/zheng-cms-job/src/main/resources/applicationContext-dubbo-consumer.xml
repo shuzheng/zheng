@@ -9,19 +9,19 @@
 
     <dubbo:application name="zheng-cms-job"/>
 
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 订阅服务 -->
     <dubbo:consumer check="false"/>
 
-    <dubbo:reference id="cmsArticleService" interface="com.zheng.cms.rpc.api.CmsArticleService"/>
+    <dubbo:reference id="cmsArticleService" interface="com.zheng.cms.rpc.api.CmsArticleService" mock="true"/>
 
-    <dubbo:reference id="cmsCategoryService" interface="com.zheng.cms.rpc.api.CmsCategoryService"/>
+    <dubbo:reference id="cmsCategoryService" interface="com.zheng.cms.rpc.api.CmsCategoryService" mock="true"/>
 
-    <dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService"/>
+    <dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService" mock="true"/>
 
-    <dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService"/>
+    <dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService" mock="true"/>
 
-    <dubbo:reference id="userService" interface="com.zheng.cms.rpc.api.UserService"/>
+    <dubbo:reference id="userService" interface="com.zheng.cms.rpc.api.UserService" mock="true"/>
 
 </beans>

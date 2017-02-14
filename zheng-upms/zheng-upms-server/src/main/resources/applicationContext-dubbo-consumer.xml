@@ -9,22 +9,22 @@
 
     <dubbo:application name="zheng-upms-server"/>
 
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 订阅服务 -->
     <dubbo:consumer check="false"/>
 
     <!-- 系统 -->
-    <dubbo:reference id="upmsSystemService" interface="com.zheng.upms.rpc.api.UpmsSystemService"/>
+    <dubbo:reference id="upmsSystemService" interface="com.zheng.upms.rpc.api.UpmsSystemService" mock="true"/>
     <!-- 组织 -->
-    <dubbo:reference id="upmsOrganizationService" interface="com.zheng.upms.rpc.api.UpmsOrganizationService"/>
+    <dubbo:reference id="upmsOrganizationService" interface="com.zheng.upms.rpc.api.UpmsOrganizationService" mock="true"/>
     <!-- 用户 -->
-    <dubbo:reference id="upmsUserService" interface="com.zheng.upms.rpc.api.UpmsUserService"/>
+    <dubbo:reference id="upmsUserService" interface="com.zheng.upms.rpc.api.UpmsUserService" mock="true"/>
     <!-- 角色 -->
-    <dubbo:reference id="upmsRoleService" interface="com.zheng.upms.rpc.api.UpmsRoleService"/>
+    <dubbo:reference id="upmsRoleService" interface="com.zheng.upms.rpc.api.UpmsRoleService" mock="true"/>
     <!-- 权限 -->
-    <dubbo:reference id="upmsPermissionService" interface="com.zheng.upms.rpc.api.UpmsPermissionService"/>
+    <dubbo:reference id="upmsPermissionService" interface="com.zheng.upms.rpc.api.UpmsPermissionService" mock="true"/>
     <!-- 接口服务 -->
-    <dubbo:reference id="upmsApiService" interface="com.zheng.upms.rpc.api.UpmsApiService"/>
+    <dubbo:reference id="upmsApiService" interface="com.zheng.upms.rpc.api.UpmsApiService" mock="true"/>
 
 </beans>
