@@ -16,11 +16,31 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-plus"></i> 新增用户</a>
+		<a class="waves-effect waves-button" href="javascript:;" data-toggle="modal" data-target=".create-modal"><i class="zmdi zmdi-plus"></i> 新增用户</a>
 		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-edit"></i> 编辑用户</a>
 		<a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-close"></i> 删除用户</a>
 	</div>
 	<table id="table"></table>
+</div>
+<!-- 新增 -->
+<div class="modal fade create-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+			<!--
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">新增系统</h4>
+            </div>
+			-->
+            <div class="modal-body">
+                内容
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="plugins/jquery.1.12.4.min.js"></script>
 <script src="plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>

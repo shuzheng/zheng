@@ -22,11 +22,25 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<shiro:hasPermission name="upms:system:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增系统</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:system:create"><a class="waves-effect waves-button" href="javascript:;" data-toggle="modal" data-target=".create-modal"><i class="zmdi zmdi-plus"></i> 新增系统</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:system:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑系统</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:system:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除系统</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
+</div>
+<!-- 新增 -->
+<div class="modal fade create-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                内容
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="createAction()">保存</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
