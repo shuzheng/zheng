@@ -9,32 +9,32 @@
 
     <dubbo:application name="zheng-upms-rpc-service"/>
 
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <dubbo:protocol name="dubbo" port="20881"/>
 
     <!-- 系统 -->
     <bean id="upmsSystemService" class="com.zheng.upms.rpc.service.impl.UpmsSystemServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsSystemService" ref="upmsSystemService"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsSystemService" ref="upmsSystemService" timeout="10000"/>
 
     <!-- 组织 -->
     <bean id="upmsOrganizationService" class="com.zheng.upms.rpc.service.impl.UpmsOrganizationServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsOrganizationService" ref="upmsOrganizationService"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsOrganizationService" ref="upmsOrganizationService" timeout="10000"/>
 
     <!-- 用户 -->
     <bean id="upmsUserService" class="com.zheng.upms.rpc.service.impl.UpmsUserServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserService" ref="upmsUserService"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserService" ref="upmsUserService" timeout="10000"/>
 
     <!-- 角色 -->
     <bean id="upmsRoleService" class="com.zheng.upms.rpc.service.impl.UpmsRoleServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsRoleService" ref="upmsRoleService"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsRoleService" ref="upmsRoleService" timeout="10000"/>
 
     <!-- 权限 -->
     <bean id="upmsPermissionService" class="com.zheng.upms.rpc.service.impl.UpmsPermissionServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsPermissionService" ref="upmsPermissionService"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsPermissionService" ref="upmsPermissionService" timeout="10000"/>
 
     <!-- 接口服务 -->
     <bean id="upmsApiService" class="com.zheng.upms.rpc.service.impl.UpmsApiServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsApiService" ref="upmsApiService"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsApiService" ref="upmsApiService" timeout="10000"/>
 
 </beans>
