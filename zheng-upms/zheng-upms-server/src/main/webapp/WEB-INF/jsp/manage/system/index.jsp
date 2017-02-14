@@ -22,9 +22,9 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<shiro:hasPermission name="upms:system:create"><a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-plus"></i> 新增系统</a></shiro:hasPermission>
-		<shiro:hasPermission name="upms:system:update"><a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-edit"></i> 编辑系统</a></shiro:hasPermission>
-		<shiro:hasPermission name="upms:system:delete"><a class="waves-effect waves-button" href="javascript:;"><i class="zmdi zmdi-close"></i> 删除系统</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:system:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增系统</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:system:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑系统</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:system:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除系统</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
@@ -35,9 +35,10 @@
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/js/common.js"></script>
 <script>
+var $table = $('#table');
 $(function() {
 	// bootstrap table初始化
-	$('#table').bootstrapTable({
+	$table.bootstrapTable({
 		url: '${basePath}/manage/system/list',
 		height: getHeight(),
 		striped: true,
@@ -76,8 +77,8 @@ $(function() {
 // 格式化操作按钮
 function actionFormatter(value, row, index) {
     return [
-        '<a class="update" href="javascript:void(0)" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit"></i></a>　',
-        '<a class="delete" href="javascript:void(0)" data-toggle="tooltip" title="Remove"><i class="glyphicon glyphicon-remove"></i></a>'
+        '<a class="update" href="javascript:;" onclick="updateAction()" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit"></i></a>　',
+        '<a class="delete" href="javascript:;" onclick="deleteAction()" data-toggle="tooltip" title="Remove"><i class="glyphicon glyphicon-remove"></i></a>'
     ].join('');
 }
 // 格式化图标
@@ -92,17 +93,18 @@ function statusFormatter(value, row, index) {
 		return '<span class="label label-danger">锁定</span>';
 	}
 }
-// 操作按钮事件
-window.actionEvents = {
-    'click .update': function (e, value, row, index) {
-        alert('You click update icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    },
-    'click .delete': function (e, value, row, index) {
-        alert('You click delete icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    }
-};
+// 新增
+function createAction() {
+
+}
+// 编辑
+function updateAction() {
+	var rows = $table.bootstrapTable('getSelections');
+}
+// 删除
+function deleteAction() {
+	var rows = $table.bootstrapTable('getSelections');
+}
 </script>
 </body>
 </html>
