@@ -49,7 +49,7 @@ zheng
 |    |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 |    └── zheng-ucenter-app -- 微信小程序后台
-├── zheng-api -- 接口系统
+├── zheng-api -- 暴露API网关系统
 |    ├── zheng-api-sdk -- 开发工具包
 |    ├── zheng-api-doc -- 接口文档项目
 |    └── zheng-api-example -- 演示示例[端口:6661]
@@ -101,6 +101,7 @@ zheng
 - zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
 
 #### 模块依赖
+
 ![模块依赖](project-bootstrap/project.png)
 
 #### 模块介绍
@@ -138,7 +139,10 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 > zheng-api
 
-接口系统，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务。
+暴露API网关系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
+
+![API网关](project-bootstrap/zheng-api.png)
+
 
 > zheng-cms
 
@@ -326,6 +330,8 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 ### 优秀文章和博客
 
 - [创业互联网公司如何搭建自己的技术框架](http://shuzheng5201314.iteye.com/blog/2330151 "创业互联网公司如何搭建自己的技术框架")
+
+- [微服务实战](https://segmentfault.com/a/1190000004634172 "微服务实战")
 
 - [单点登录原理与简单实现](http://shuzheng5201314.iteye.com/blog/2343910 "单点登录原理与简单实现")
 
