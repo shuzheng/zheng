@@ -49,6 +49,14 @@ $(function() {
 		detailView: true,
 		detailFormatter: 'detailFormatter',
 		pagination: true,
+		paginationLoop: false,
+		sidePagination: 'server',
+		silentSort: false,
+		smartDisplay: false,
+		escape: true,
+		searchOnEnterKey: true,
+		idField: 'permissionId',
+		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
 			{field: 'state', checkbox: true},
@@ -61,7 +69,7 @@ $(function() {
 			{field: 'uri', title: '路径'},
 			{field: 'icon', title: '图标', align: 'center', formatter: 'iconFormatter'},
 			{field: 'status', title: '状态', sortable: true, align: 'center', formatter: 'statusFormatter'},
-			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents'}
+			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
 	}).on('all.bs.table', function (e, name, args) {
 		$('[data-toggle="tooltip"]').tooltip();

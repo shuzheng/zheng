@@ -15,7 +15,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 角色controller
@@ -54,8 +56,12 @@ public class UpmsRoleController extends BaseController {
         if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
             upmsRoleExample.setOrderByClause(sort + " " + order);
         }
-        List<UpmsRole> roles = upmsRoleService.selectByExample(upmsRoleExample);
-        return roles;
+        List<UpmsRole> rows = upmsRoleService.selectByExample(upmsRoleExample);
+        long total = upmsRoleService.countByExample(upmsRoleExample);
+        Map<String, Object> result = new HashMap<>();
+        result.put("rows", rows);
+        result.put("total", total);
+        return result;
     }
 
     @ApiOperation(value = "新增角色")

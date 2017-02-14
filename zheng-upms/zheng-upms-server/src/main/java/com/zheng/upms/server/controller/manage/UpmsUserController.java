@@ -15,7 +15,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户controller
@@ -54,8 +56,12 @@ public class UpmsUserController extends BaseController {
         if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
             upmsUserExample.setOrderByClause(sort + " " + order);
         }
-        List<UpmsUser> users = upmsUserService.selectByExample(upmsUserExample);
-        return users;
+        List<UpmsUser> rows = upmsUserService.selectByExample(upmsUserExample);
+        long total = upmsUserService.countByExample(upmsUserExample);
+        Map<String, Object> result = new HashMap<>();
+        result.put("rows", rows);
+        result.put("total", total);
+        return result;
     }
 
     @ApiOperation(value = "新增用户")

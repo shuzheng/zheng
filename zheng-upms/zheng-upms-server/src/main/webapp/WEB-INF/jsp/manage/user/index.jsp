@@ -49,6 +49,14 @@ $(function() {
 		detailView: true,
 		detailFormatter: 'detailFormatter',
 		pagination: true,
+		paginationLoop: false,
+		sidePagination: 'server',
+		silentSort: false,
+		smartDisplay: false,
+		escape: true,
+		searchOnEnterKey: true,
+		idField: 'userId',
+		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
 			{field: 'state', checkbox: true},
@@ -60,7 +68,7 @@ $(function() {
 			{field: 'email', title: '邮箱'},
 			{field: 'sex', title: '性别', formatter: 'sexFormatter'},
 			{field: 'locked', title: '状态', sortable: true, align: 'center', formatter: 'statusFormatter'},
-			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents'}
+			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
 	}).on('all.bs.table', function (e, name, args) {
 		$('[data-toggle="tooltip"]').tooltip();

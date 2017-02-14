@@ -16,7 +16,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 组织controller
@@ -49,14 +51,18 @@ public class UpmsOrganizationController extends BaseController {
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         // 数据列表
-        UpmsOrganizationExample upmsupmsOrganizationExample = new UpmsOrganizationExample();
-        upmsupmsOrganizationExample.setOffset(offset);
-        upmsupmsOrganizationExample.setLimit(limit);
+        UpmsOrganizationExample upmsOrganizationExample = new UpmsOrganizationExample();
+        upmsOrganizationExample.setOffset(offset);
+        upmsOrganizationExample.setLimit(limit);
         if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
-            upmsupmsOrganizationExample.setOrderByClause(sort + " " + order);
+            upmsOrganizationExample.setOrderByClause(sort + " " + order);
         }
-        List<UpmsOrganization> organizations = upmsOrganizationService.selectByExample(upmsupmsOrganizationExample);
-        return organizations;
+        List<UpmsOrganization> rows = upmsOrganizationService.selectByExample(upmsOrganizationExample);
+        long total = upmsOrganizationService.countByExample(upmsOrganizationExample);
+        Map<String, Object> result = new HashMap<>();
+        result.put("rows", rows);
+        result.put("total", total);
+        return result;
     }
 
     @ApiOperation(value = "新增组织")

@@ -15,7 +15,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 系统controller
@@ -51,9 +53,15 @@ public class UpmsSystemController extends BaseController {
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.setOffset(offset);
 		upmsSystemExample.setLimit(limit);
-		List<UpmsSystem> systems = upmsSystemService.selectByExample(upmsSystemExample);
-//		long total = upmsSystemService.countByExample(upmsSystemExample);
-		return systems;
+		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+			upmsSystemExample.setOrderByClause(sort + " " + order);
+		}
+		List<UpmsSystem> rows = upmsSystemService.selectByExample(upmsSystemExample);
+		long total = upmsSystemService.countByExample(upmsSystemExample);
+		Map<String, Object> result = new HashMap<>();
+		result.put("rows", rows);
+		result.put("total", total);
+		return result;
 	}
 
 	@ApiOperation(value = "新增系统")

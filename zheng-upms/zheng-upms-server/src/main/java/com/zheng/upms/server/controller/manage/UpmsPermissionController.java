@@ -15,7 +15,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 权限controller
@@ -73,8 +75,12 @@ public class UpmsPermissionController extends BaseController {
         if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
             upmsPermissionExample.setOrderByClause(sort + " " + order);
         }
-        List<UpmsPermission> permissions = upmsPermissionService.selectByExample(upmsPermissionExample);
-        return permissions;
+        List<UpmsPermission> rows = upmsPermissionService.selectByExample(upmsPermissionExample);
+        long total = upmsPermissionService.countByExample(upmsPermissionExample);
+        Map<String, Object> result = new HashMap<>();
+        result.put("rows", rows);
+        result.put("total", total);
+        return result;
     }
 
     @ApiOperation(value = "新增权限")

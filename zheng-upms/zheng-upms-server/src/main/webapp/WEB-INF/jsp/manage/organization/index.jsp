@@ -49,13 +49,21 @@ $(function() {
 		detailView: true,
 		detailFormatter: 'detailFormatter',
 		pagination: true,
+		paginationLoop: false,
+		sidePagination: 'server',
+		silentSort: false,
+		smartDisplay: false,
+		escape: true,
+		searchOnEnterKey: true,
+		idField: 'organizationId',
+		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
 			{field: 'state', checkbox: true},
 			{field: 'organizationId', title: '编号', sortable: true, align: 'center'},
 			{field: 'name', title: '组织名称'},
             {field: 'description', title: '组织描述'},
-			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents'}
+			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
 	}).on('all.bs.table', function (e, name, args) {
 		$('[data-toggle="tooltip"]').tooltip();

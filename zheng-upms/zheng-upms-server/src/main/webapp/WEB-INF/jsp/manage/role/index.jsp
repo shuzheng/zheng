@@ -49,13 +49,21 @@ $(function() {
 		detailView: true,
 		detailFormatter: 'detailFormatter',
 		pagination: true,
+		paginationLoop: false,
+		sidePagination: 'server',
+		silentSort: false,
+		smartDisplay: false,
+		escape: true,
+		searchOnEnterKey: true,
+		idField: 'roleId',
+		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
 			{field: 'state', checkbox: true},
 			{field: 'roleId', title: '编号', sortable: true, align: 'center'},
 			{field: 'name', title: '角色名称'},
             {field: 'description', title: '角色描述'},
-			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents'}
+			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
 	}).on('all.bs.table', function (e, name, args) {
 		$('[data-toggle="tooltip"]').tooltip();
