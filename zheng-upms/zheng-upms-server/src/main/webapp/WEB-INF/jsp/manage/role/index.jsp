@@ -17,41 +17,50 @@
 	<link href="${basePath}/resources/zheng-ui/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
+	<link href="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/css/common.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="main">
 	<div id="toolbar">
-		<shiro:hasPermission name="upms:role:create"><a class="waves-effect waves-button" href="javascript:;" data-toggle="modal" data-target=".create-modal"><i class="zmdi zmdi-plus"></i> 新增角色</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:role:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增角色</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:role:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑角色</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:role:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除角色</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
 <!-- 新增 -->
-<div class="modal fade create-modal" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
-				内容
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn btn-primary" onclick="createAction()">保存</button>
-			</div>
+<div id="createDialog" class="crudDialog" hidden>
+	<form>
+		<div class="form-group">
+			<label for="input1">名称</label>
+			<input id="input1" type="text" class="form-control">
 		</div>
-	</div>
+		<div class="form-group">
+			<label for="input2">描述</label>
+			<input id="input2" type="text" class="form-control">
+		</div>
+	</form>
 </div>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/js/common.js"></script>
 <script>
+var $table = $('#table');
 $(function() {
+	$(document).on('focus', 'input[type="text"]', function() {
+		$(this).parent().find('label').addClass('active');
+	}).on('blur', 'input[type="text"]', function() {
+		if ($(this).val() == '') {
+			$(this).parent().find('label').removeClass('active');
+		}
+	});
 	// bootstrap table初始化
-	$('#table').bootstrapTable({
+	$table.bootstrapTable({
 		url: '${basePath}/manage/role/list',
 		height: getHeight(),
 		striped: true,
@@ -93,15 +102,105 @@ function actionFormatter(value, row, index) {
 }
 // 新增
 function createAction() {
-
+	$.confirm({
+		type: 'dark',
+		animationSpeed: 300,
+		title: '新增角色',
+		content: $('#createDialog').html(),
+		buttons: {
+			confirm: {
+				text: '确认',
+				btnClass: 'waves-effect waves-button',
+				action: function () {
+					$.alert('确认');
+				}
+			},
+			cancel: {
+				text: '取消',
+				btnClass: 'waves-effect waves-button'
+			}
+		}
+	});
 }
 // 编辑
 function updateAction() {
 	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length == 0) {
+		$.confirm({
+			title: false,
+			content: '请至少选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		$.confirm({
+			type: 'blue',
+			animationSpeed: 300,
+			title: '编辑角色',
+			content: $('#createDialog').html(),
+			buttons: {
+				confirm: {
+					text: '确认',
+					btnClass: 'waves-effect waves-button',
+					action: function () {
+						$.alert('确认');
+					}
+				},
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	}
 }
 // 删除
 function deleteAction() {
 	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length == 0) {
+		$.confirm({
+			title: false,
+			content: '请至少选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		$.confirm({
+			type: 'red',
+			animationSpeed: 300,
+			title: false,
+			content: '确认删除该角色吗？',
+			buttons: {
+				confirm: {
+					text: '确认',
+					btnClass: 'waves-effect waves-button',
+					action: function () {
+						var ids = new Array();
+						for (var i in rows) {
+							ids.push(rows[i].roleId);
+						}
+						$.alert('删除：id=' + ids.join("-"));
+					}
+				},
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	}
 }
 </script>
 </body>
