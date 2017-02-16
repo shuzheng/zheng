@@ -49,7 +49,6 @@ public class UpmsUserController extends BaseController {
             @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
-        // 数据列表
         UpmsUserExample upmsUserExample = new UpmsUserExample();
         upmsUserExample.setOffset(offset);
         upmsUserExample.setLimit(limit);
@@ -66,20 +65,19 @@ public class UpmsUserController extends BaseController {
 
     @ApiOperation(value = "新增用户")
     @RequiresPermissions("upms:user:create")
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String add() {
-        return "/manage/user/add";
+        return "/manage/user/create";
     }
 
     @ApiOperation(value = "新增用户")
     @RequiresPermissions("cms:user:create")
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String add(UpmsUser upmsUser, ModelMap modelMap) {
         long time = System.currentTimeMillis();
         upmsUser.setCtime(time);
         int count = upmsUserService.insertSelective(upmsUser);
         modelMap.put("count", count);
-        _log.info("新增记录id为：{}", upmsUser.getUserId());
         return "redirect:/manage/user/list";
     }
 

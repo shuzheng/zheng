@@ -76,9 +76,9 @@ public class CmsCategoryController extends BaseController {
 	 */
 	@ApiOperation(value = "新增类目", notes = "新增类目页")
 	@RequiresPermissions("cms:category:create")
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String add() {
-		return "/manage/category/add";
+		return "/manage/category/create";
 	}
 	
 	/**
@@ -90,14 +90,13 @@ public class CmsCategoryController extends BaseController {
 	@ApiOperation(value = "新增类目", notes = "新增类目提交接口")
 	@RequiresPermissions("cms:category:create")
 	@ApiImplicitParam(name = "cmsCategory", value = "类目实体cmsCategory", required = true, dataType = "CmsCategory")
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String add(CmsCategory cmsCategory, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
 		cmsCategory.setCtime(time);
 		cmsCategory.setOrders(time);
 		int count = cmsCategoryService.insertSelective(cmsCategory);
 		modelMap.put("count", count);
-		_log.info("新增记录id为：{}", cmsCategory.getCategoryId());
 		return "redirect:/manage/category/list";
 	}
 

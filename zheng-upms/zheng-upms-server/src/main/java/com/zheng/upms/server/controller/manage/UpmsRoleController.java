@@ -49,7 +49,6 @@ public class UpmsRoleController extends BaseController {
             @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
-        // 数据列表
         UpmsRoleExample upmsRoleExample = new UpmsRoleExample();
         upmsRoleExample.setOffset(offset);
         upmsRoleExample.setLimit(limit);
@@ -66,21 +65,20 @@ public class UpmsRoleController extends BaseController {
 
     @ApiOperation(value = "新增角色")
     @RequiresPermissions("upms:role:create")
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String add() {
-        return "/manage/role/add";
+        return "/manage/role/create";
     }
 
     @ApiOperation(value = "新增角色")
     @RequiresPermissions("cms:role:create")
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String add(UpmsRole upmsRole, ModelMap modelMap) {
         long time = System.currentTimeMillis();
         upmsRole.setCtime(time);
         upmsRole.setOrders(time);
         int count = upmsRoleService.insertSelective(upmsRole);
         modelMap.put("count", count);
-        _log.info("新增记录id为：{}", upmsRole.getRoleId());
         return "redirect:/manage/role/list";
     }
 

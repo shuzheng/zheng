@@ -50,7 +50,6 @@ public class UpmsOrganizationController extends BaseController {
             @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
-        // 数据列表
         UpmsOrganizationExample upmsOrganizationExample = new UpmsOrganizationExample();
         upmsOrganizationExample.setOffset(offset);
         upmsOrganizationExample.setLimit(limit);
@@ -67,20 +66,19 @@ public class UpmsOrganizationController extends BaseController {
 
     @ApiOperation(value = "新增组织")
     @RequiresPermissions("upms:organization:create")
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String add() {
-        return "/manage/organization/add";
+        return "/manage/organization/create";
     }
 
     @ApiOperation(value = "新增组织")
     @RequiresPermissions("cms:organization:create")
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String add(UpmsOrganization upmsOrganization, ModelMap modelMap) {
         long time = System.currentTimeMillis();
         upmsOrganization.setCtime(time);
         int count = upmsOrganizationService.insertSelective(upmsOrganization);
         modelMap.put("count", count);
-        _log.info("新增记录id为：{}", upmsOrganization.getOrganizationId());
         return "redirect:/manage/organization/list";
     }
 

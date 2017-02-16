@@ -80,9 +80,9 @@ public class CmsTagController extends BaseController {
 	 */
 	@ApiOperation(value = "新增标签", notes = "新增标签页")
 	@RequiresPermissions("cms:tag:create")
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String add() {
-		return "/manage/tag/add";
+		return "/manage/tag/create";
 	}
 	
 	/**
@@ -93,14 +93,13 @@ public class CmsTagController extends BaseController {
 	 */
 	@ApiOperation(value = "新增标签", notes = "新增标签提交接口")
 	@RequiresPermissions("cms:tag:create")
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String add(CmsTag cmsTag, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
 		cmsTag.setCtime(time);
 		cmsTag.setOrders(time);
 		int count = cmsTagService.insertSelective(cmsTag);
 		modelMap.put("count", count);
-		_log.info("新增记录id为：{}", cmsTag.getTagId());
 		return "redirect:/manage/tag/list";
 	}
 

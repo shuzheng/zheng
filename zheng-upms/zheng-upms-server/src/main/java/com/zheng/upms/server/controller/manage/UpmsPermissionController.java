@@ -64,7 +64,6 @@ public class UpmsPermissionController extends BaseController {
             @RequestParam(required = false, defaultValue = "0", value = "type") int type,
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
-        // 数据列表
         UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
         if (0 != type) {
             upmsPermissionExample.createCriteria()
@@ -85,21 +84,20 @@ public class UpmsPermissionController extends BaseController {
 
     @ApiOperation(value = "新增权限")
     @RequiresPermissions("upms:permission:create")
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String add() {
-        return "/manage/permission/add";
+        return "/manage/permission/create";
     }
 
     @ApiOperation(value = "新增权限")
     @RequiresPermissions("cms:permission:create")
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String add(UpmsPermission upmsPermission, ModelMap modelMap) {
         long time = System.currentTimeMillis();
         upmsPermission.setCtime(time);
         upmsPermission.setOrders(time);
         int count = upmsPermissionService.insertSelective(upmsPermission);
         modelMap.put("count", count);
-        _log.info("新增记录id为：{}", upmsPermission.getPermissionId());
         return "redirect:/manage/permission/list";
     }
 

@@ -75,9 +75,9 @@ public class CmsCommentController extends BaseController {
 	 */
 	@ApiOperation(value = "新增评论", notes = "新增评论页")
 	@RequiresPermissions("cms:comment:create")
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String add() {
-		return "/manage/comment/add";
+		return "/manage/comment/create";
 	}
 	
 	/**
@@ -88,12 +88,11 @@ public class CmsCommentController extends BaseController {
 	 */
 	@ApiOperation(value = "新增评论", notes = "新增评论提交接口")
 	@RequiresPermissions("cms:comment:create")
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String add(CmsComment cmsComment, ModelMap modelMap) {
 		cmsComment.setCtime(System.currentTimeMillis());
 		int count = cmsCommentService.insertSelective(cmsComment);
 		modelMap.put("count", count);
-		_log.info("新增记录id为：{}", cmsComment.getArticleId());
 		return "redirect:/manage/comment/list";
 	}
 

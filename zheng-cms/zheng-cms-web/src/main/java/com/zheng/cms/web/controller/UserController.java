@@ -92,9 +92,9 @@ public class UserController extends BaseController {
 	 * 新增get
 	 * @return
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String add() {
-		return "/user/add";
+		return "/user/create";
 	}
 	
 	/**
@@ -103,13 +103,13 @@ public class UserController extends BaseController {
 	 * @param binding
 	 * @return
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String add(@Valid CmsUser user, BindingResult binding) {
 		if (binding.hasErrors()) {
 			for (ObjectError error : binding.getAllErrors()) {
 				_log.error(error.getDefaultMessage());
 			}
-			return "/user/add";
+			return "/user/create";
 		}
 		user.setCtime(System.currentTimeMillis());
 

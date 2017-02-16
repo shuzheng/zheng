@@ -49,7 +49,6 @@ public class UpmsSystemController extends BaseController {
 			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
-		// 数据列表
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.setOffset(offset);
 		upmsSystemExample.setLimit(limit);
@@ -66,21 +65,20 @@ public class UpmsSystemController extends BaseController {
 
 	@ApiOperation(value = "新增系统")
 	@RequiresPermissions("upms:system:create")
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String add() {
-		return "/manage/system/add";
+		return "/manage/system/create";
 	}
 
 	@ApiOperation(value = "新增系统")
 	@RequiresPermissions("cms:system:create")
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String add(UpmsSystem upmsSystem, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
 		upmsSystem.setCtime(time);
 		upmsSystem.setOrders(time);
 		int count = upmsSystemService.insertSelective(upmsSystem);
 		modelMap.put("count", count);
-		_log.info("新增记录id为：{}", upmsSystem.getSystemId());
 		return "redirect:/manage/system/list";
 	}
 
