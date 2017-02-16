@@ -58,8 +58,9 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-	<!-- 配置静态资源，不被DispatcherServlet处理，增加缓存时间 -->
-	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="10" />
+	<!-- 配置静态资源，不被DispatcherServlet处理，增加缓存时间10秒 -->
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico"/>
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="10"/>
 	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
 	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 	
