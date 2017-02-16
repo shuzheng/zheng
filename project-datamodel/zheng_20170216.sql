@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
+Source Server         : 127.0.0.1
 Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : zheng
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-12 22:58:12
+Date: 2017-02-16 23:23:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -465,19 +465,19 @@ INSERT INTO `upms_permission` VALUES ('20', '2', null, '文章内容管理', '1'
 INSERT INTO `upms_permission` VALUES ('21', '2', '20', '文章管理', '1', 'cms:article:read', '/manage/article/index', null, '1', '21', '21');
 INSERT INTO `upms_permission` VALUES ('22', '2', '20', '回收管理', '1', 'cms:article:read', '/manage/article/recycle', null, '1', '22', '22');
 INSERT INTO `upms_permission` VALUES ('23', '1', '7', '按钮管理', '1', 'upms:permission:read', '/manage/permission/button', null, '1', '23', '23');
-INSERT INTO `upms_permission` VALUES ('24', '1', '2', '新增', '2', 'upms:system:create', '/manage/system/add', null, '1', '24', '24');
+INSERT INTO `upms_permission` VALUES ('24', '1', '2', '新增', '2', 'upms:system:create', '/manage/system/create', null, '1', '24', '24');
 INSERT INTO `upms_permission` VALUES ('25', '1', '2', '编辑', '2', 'upms:system:update', '/manage/system/update', null, '1', '25', '25');
 INSERT INTO `upms_permission` VALUES ('26', '1', '2', '删除', '2', 'upms:system:delete', '/manage/system/delete', null, '1', '26', '26');
-INSERT INTO `upms_permission` VALUES ('27', '1', '3', '新增', '2', 'upms:organization:create', '/manage/organization/add', null, '1', '27', '27');
+INSERT INTO `upms_permission` VALUES ('27', '1', '3', '新增', '2', 'upms:organization:create', '/manage/organization/create', null, '1', '27', '27');
 INSERT INTO `upms_permission` VALUES ('28', '1', '3', '编辑', '2', 'upms:organization:update', '/manage/organization/update', '', '1', '28', '28');
 INSERT INTO `upms_permission` VALUES ('29', '1', '3', '删除', '2', 'upms:organization:delete', '/manage/organization/delete', '', '1', '29', '29');
-INSERT INTO `upms_permission` VALUES ('30', '1', '5', '新增', '2', 'upms:user:create', '/manage/user/add', null, '1', '30', '30');
+INSERT INTO `upms_permission` VALUES ('30', '1', '5', '新增', '2', 'upms:user:create', '/manage/user/create', null, '1', '30', '30');
 INSERT INTO `upms_permission` VALUES ('31', '1', '5', '编辑', '2', 'upms:user:update', '/manage/user/update', null, '1', '31', '31');
 INSERT INTO `upms_permission` VALUES ('32', '1', '5', '删除', '2', 'upms:user:delete', '/manage/user/delete', null, '1', '32', '32');
-INSERT INTO `upms_permission` VALUES ('33', '1', '5', '新增', '2', 'upms:role:create', '/manage/role/add', null, '1', '33', '33');
+INSERT INTO `upms_permission` VALUES ('33', '1', '5', '新增', '2', 'upms:role:create', '/manage/role/create', null, '1', '33', '33');
 INSERT INTO `upms_permission` VALUES ('34', '1', '5', '编辑', '2', 'upms:role:update', '/manage/role/update', null, '1', '34', '34');
 INSERT INTO `upms_permission` VALUES ('35', '1', '5', '删除', '2', 'upms:role:delete', '/manage/role/delete', null, '1', '35', '35');
-INSERT INTO `upms_permission` VALUES ('36', '1', '8', '新增', '2', 'upms:permission:create', '/manage/permission/add', null, '1', '36', '36');
+INSERT INTO `upms_permission` VALUES ('36', '1', '8', '新增', '2', 'upms:permission:create', '/manage/permission/create', null, '1', '36', '36');
 INSERT INTO `upms_permission` VALUES ('37', '1', '8', '编辑', '2', 'upms:permission:update', '/manage/permission/update', null, '1', '37', '37');
 INSERT INTO `upms_permission` VALUES ('38', '1', '8', '删除', '2', 'upms:permission:delete', '/manage/permission/delete', null, '1', '38', '38');
 
