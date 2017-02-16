@@ -29,27 +29,6 @@
 	</div>
 	<table id="table"></table>
 </div>
-<!-- 新增 -->
-<div id="createDialog" class="crudDialog" hidden>
-	<form>
-		<div class="form-group">
-			<label for="input1">标题</label>
-			<input id="input1" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input2">名称</label>
-			<input id="input2" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input3">根目录</label>
-			<input id="input3" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input4">图标</label>
-			<input id="input4" type="text" class="form-control">
-		</div>
-	</form>
-</div>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
@@ -126,16 +105,15 @@ function statusFormatter(value, row, index) {
 // 新增
 function createAction() {
 	$.confirm({
-		type: 'dark',
 		animationSpeed: 300,
 		title: '新增系统',
-		content: $('#createDialog').html(),
+		content: 'url:${basePath}/manage/system/create',
 		buttons: {
 			confirm: {
 				text: '确认',
 				btnClass: 'waves-effect waves-button',
 				action: function () {
-					$.alert('确认');
+					console.log(this.find('form').html());
 				}
 			},
 			cancel: {
@@ -148,10 +126,10 @@ function createAction() {
 // 编辑
 function updateAction() {
 	var rows = $table.bootstrapTable('getSelections');
-	if (rows.length == 0) {
+	if (rows.length != 1) {
 		$.confirm({
 			title: false,
-			content: '请至少选择一条记录！',
+			content: '请选择一条记录！',
 			autoClose: 'cancel|3000',
 			backgroundDismiss: true,
 			buttons: {
@@ -163,10 +141,9 @@ function updateAction() {
 		});
 	} else {
 		$.confirm({
-			type: 'blue',
 			animationSpeed: 300,
 			title: '编辑系统',
-			content: $('#createDialog').html(),
+			content: 'url:${basePath}/manage/system/update/' + rows[0].systemId,
 			buttons: {
 				confirm: {
 					text: '确认',
