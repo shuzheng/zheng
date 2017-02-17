@@ -262,6 +262,7 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
     - 生成的model和example均已实现Serializable接口，支持分布式
     - 生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit
     - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
+    - BaseServiceImpl方法根据读写操作自动切换主从数据源，继承的扩展接口，可手动通过`DynamicDataSource.setDataSource(DataSourceEnum.XXX.getName())`指定数据源
 
 - 启动流程：优先rcp-service服务提供者，再启动其他webapp
 
