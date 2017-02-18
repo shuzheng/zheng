@@ -29,35 +29,6 @@
 	</div>
 	<table id="table"></table>
 </div>
-<!-- 新增 -->
-<div id="createDialog" class="crudDialog" hidden>
-	<form>
-		<div class="form-group">
-			<label for="input1">帐号</label>
-			<input id="input1" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input2">姓名</label>
-			<input id="input2" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input3">头像</label>
-			<input id="input3" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input4">电话</label>
-			<input id="input4" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input5">邮箱</label>
-			<input id="input5" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input6">性别</label>
-			<input id="input6" type="text" class="form-control">
-		</div>
-	</form>
-</div>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
@@ -98,7 +69,7 @@ $(function() {
 		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
-			{field: 'state', checkbox: true},
+			{field: 'ck', checkbox: true},
 			{field: 'userId', title: '编号', sortable: true, align: 'center'},
             {field: 'username', title: '帐号'},
 			{field: 'realname', title: '姓名'},
@@ -106,12 +77,9 @@ $(function() {
 			{field: 'phone', title: '电话'},
 			{field: 'email', title: '邮箱'},
 			{field: 'sex', title: '性别', formatter: 'sexFormatter'},
-			{field: 'locked', title: '状态', sortable: true, align: 'center', formatter: 'statusFormatter'},
+			{field: 'locked', title: '状态', sortable: true, align: 'center', formatter: 'lockedFormatter'},
 			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
-	}).on('all.bs.table', function (e, name, args) {
-		$('[data-toggle="tooltip"]').tooltip();
-		$('[data-toggle="popover"]').popover();
 	});
 });
 // 格式化操作按钮
@@ -136,7 +104,7 @@ function sexFormatter(value, row, index) {
 	return '-';
 }
 // 格式化状态
-function statusFormatter(value, row, index) {
+function lockedFormatter(value, row, index) {
 	if (value == 1) {
 		return '<span class="label label-danger">锁定</span>';
 	} else {
@@ -144,34 +112,22 @@ function statusFormatter(value, row, index) {
 	}
 }
 // 新增
+var createDialog;
 function createAction() {
-	$.confirm({
-		type: 'dark',
+	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增用户',
-		content: $('#createDialog').html(),
-		buttons: {
-			confirm: {
-				text: '确认',
-				btnClass: 'waves-effect waves-button',
-				action: function () {
-					$.alert('确认');
-				}
-			},
-			cancel: {
-				text: '取消',
-				btnClass: 'waves-effect waves-button'
-			}
-		}
+		content: 'url:${basePath}/manage/user/create'
 	});
 }
 // 编辑
+var updateDialog;
 function updateAction() {
 	var rows = $table.bootstrapTable('getSelections');
-	if (rows.length == 0) {
+	if (rows.length != 1) {
 		$.confirm({
 			title: false,
-			content: '请至少选择一条记录！',
+			content: '请选择一条记录！',
 			autoClose: 'cancel|3000',
 			backgroundDismiss: true,
 			buttons: {
@@ -182,28 +138,15 @@ function updateAction() {
 			}
 		});
 	} else {
-		$.confirm({
-			type: 'blue',
+		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑用户',
-			content: $('#createDialog').html(),
-			buttons: {
-				confirm: {
-					text: '确认',
-					btnClass: 'waves-effect waves-button',
-					action: function () {
-						$.alert('确认');
-					}
-				},
-				cancel: {
-					text: '取消',
-					btnClass: 'waves-effect waves-button'
-				}
-			}
+			content: 'url:${basePath}/manage/user/update/' + rows[0].userId
 		});
 	}
 }
 // 删除
+var deleteDialog;
 function deleteAction() {
 	var rows = $table.bootstrapTable('getSelections');
 	if (rows.length == 0) {
@@ -220,7 +163,7 @@ function deleteAction() {
 			}
 		});
 	} else {
-		$.confirm({
+		deleteDialog = $.confirm({
 			type: 'red',
 			animationSpeed: 300,
 			title: false,
@@ -234,7 +177,63 @@ function deleteAction() {
 						for (var i in rows) {
 							ids.push(rows[i].userId);
 						}
-						$.alert('删除：id=' + ids.join("-"));
+						$.ajax({
+							type: 'get',
+							url: '${basePath}/manage/user/delete/' + ids.join("-"),
+							success: function(result) {
+								if (result.code != 1) {
+									if (result.data instanceof Array) {
+										$.each(result.data, function(index, value) {
+											$.confirm({
+												theme: 'dark',
+												animation: 'rotateX',
+												closeAnimation: 'rotateX',
+												title: false,
+												content: value.errorMsg,
+												buttons: {
+													confirm: {
+														text: '确认',
+														btnClass: 'waves-effect waves-button waves-light'
+													}
+												}
+											});
+										});
+									} else {
+										$.confirm({
+											theme: 'dark',
+											animation: 'rotateX',
+											closeAnimation: 'rotateX',
+											title: false,
+											content: result.data.errorMsg,
+											buttons: {
+												confirm: {
+													text: '确认',
+													btnClass: 'waves-effect waves-button waves-light'
+												}
+											}
+										});
+									}
+								} else {
+									deleteDialog.close();
+									$table.bootstrapTable('refresh');
+								}
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								$.confirm({
+									theme: 'dark',
+									animation: 'rotateX',
+									closeAnimation: 'rotateX',
+									title: false,
+									content: textStatus,
+									buttons: {
+										confirm: {
+											text: '确认',
+											btnClass: 'waves-effect waves-button waves-light'
+										}
+									}
+								});
+							}
+						});
 					}
 				},
 				cancel: {
