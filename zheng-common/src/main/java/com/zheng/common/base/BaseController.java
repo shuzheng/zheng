@@ -17,11 +17,6 @@ public abstract class BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(BaseController.class);
 
-	public static final String RESULT = "result";
-	public static final String DATA = "data";
-	public static final String SUCCESS = "success";
-	public static final String FAILED = "failed";
-
 	/**
 	 * 统一异常处理
 	 * @param request
