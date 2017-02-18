@@ -224,6 +224,12 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.2.Final</version>
         </dependency>
+        <!-- fluent-validator -->
+        <dependency>
+            <groupId>com.baidu.unbiz</groupId>
+            <artifactId>fluent-validator</artifactId>
+            <version>1.0.6</version>
+        </dependency>
         <!-- Thymeleaf -->
         <dependency>
             <groupId>org.thymeleaf</groupId>
