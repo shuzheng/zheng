@@ -1,6 +1,12 @@
 package com.zheng.upms.server.controller.manage;
 
+import com.baidu.unbiz.fluentvalidator.ComplexResult;
+import com.baidu.unbiz.fluentvalidator.FluentValidator;
+import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.zheng.common.base.BaseController;
+import com.zheng.common.validator.LengthValidator;
+import com.zheng.upms.common.constant.UpmsResult;
+import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsPermission;
 import com.zheng.upms.dao.model.UpmsPermissionExample;
 import com.zheng.upms.rpc.api.UpmsPermissionService;
@@ -56,7 +62,7 @@ public class UpmsPermissionController extends BaseController {
 
     @ApiOperation(value = "权限列表")
     @RequiresPermissions("upms:permission:read")
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public Object list(
             @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
@@ -91,23 +97,30 @@ public class UpmsPermissionController extends BaseController {
 
     @ApiOperation(value = "新增权限")
     @RequiresPermissions("upms:permission:create")
+    @ResponseBody
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(UpmsPermission upmsPermission, ModelMap modelMap) {
+    public Object create(UpmsPermission upmsPermission) {
+        ComplexResult result = FluentValidator.checkAll()
+                .on(upmsPermission.getName(), new LengthValidator(1, 20, "名称"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+        }
         long time = System.currentTimeMillis();
         upmsPermission.setCtime(time);
         upmsPermission.setOrders(time);
         int count = upmsPermissionService.insertSelective(upmsPermission);
-        modelMap.put("count", count);
-        return "redirect:/manage/permission/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
     @ApiOperation(value = "删除权限")
     @RequiresPermissions("upms:permission:delete")
     @RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-    public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
+    @ResponseBody
+    public Object delete(@PathVariable("ids") String ids) {
         int count = upmsPermissionService.deleteByPrimaryKeys(ids);
-        modelMap.put("count", count);
-        return "redirect:/manage/permission/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
     @ApiOperation(value = "修改权限")
@@ -122,11 +135,18 @@ public class UpmsPermissionController extends BaseController {
     @ApiOperation(value = "修改权限")
     @RequiresPermissions("upms:permission:update")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String update(@PathVariable("id") int id, UpmsPermission upmsPermission, ModelMap modelMap) {
+    @ResponseBody
+    public Object update(@PathVariable("id") int id, UpmsPermission upmsPermission) {
+        ComplexResult result = FluentValidator.checkAll()
+                .on(upmsPermission.getName(), new LengthValidator(1, 20, "名称"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+        }
+        upmsPermission.setPermissionId(id);
         int count = upmsPermissionService.updateByPrimaryKeySelective(upmsPermission);
-        modelMap.put("count", count);
-        modelMap.put("id", id);
-        return "redirect:/manage/permission/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
 }

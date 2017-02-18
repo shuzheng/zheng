@@ -1,6 +1,12 @@
 package com.zheng.upms.server.controller.manage;
 
+import com.baidu.unbiz.fluentvalidator.ComplexResult;
+import com.baidu.unbiz.fluentvalidator.FluentValidator;
+import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.zheng.common.base.BaseController;
+import com.zheng.common.validator.LengthValidator;
+import com.zheng.upms.common.constant.UpmsResult;
+import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsSystem;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
@@ -42,7 +48,7 @@ public class UpmsSystemController extends BaseController {
 
 	@ApiOperation(value = "系统列表")
 	@RequiresPermissions("upms:system:read")
-	@RequestMapping("/list")
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Object list(
 			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
@@ -66,29 +72,37 @@ public class UpmsSystemController extends BaseController {
 	@ApiOperation(value = "新增系统")
 	@RequiresPermissions("upms:system:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String add() {
+	public String create() {
 		return "/manage/system/create";
 	}
 
 	@ApiOperation(value = "新增系统")
 	@RequiresPermissions("upms:system:create")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String add(UpmsSystem upmsSystem, ModelMap modelMap) {
+	@ResponseBody
+	public Object create(UpmsSystem upmsSystem) {
+		ComplexResult result = FluentValidator.checkAll()
+				.on(upmsSystem.getTitle(), new LengthValidator(1, 20, "标题"))
+				.on(upmsSystem.getName(), new LengthValidator(1, 20, "名称"))
+				.doValidate()
+				.result(ResultCollectors.toComplex());
+		if (!result.isSuccess()) {
+			return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+		}
 		long time = System.currentTimeMillis();
 		upmsSystem.setCtime(time);
 		upmsSystem.setOrders(time);
 		int count = upmsSystemService.insertSelective(upmsSystem);
-		modelMap.put("count", count);
-		return "redirect:/manage/system/list";
+		return new UpmsResult(UpmsResultConstant.SUCCESS, count);
 	}
 
 	@ApiOperation(value = "删除系统")
 	@RequiresPermissions("upms:system:delete")
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
+	@ResponseBody
+	public Object delete(@PathVariable("ids") String ids) {
 		int count = upmsSystemService.deleteByPrimaryKeys(ids);
-		modelMap.put("count", count);
-		return "redirect:/manage/system/list";
+		return new UpmsResult(UpmsResultConstant.SUCCESS, count);
 	}
 
 	@ApiOperation(value = "修改系统")
@@ -103,11 +117,19 @@ public class UpmsSystemController extends BaseController {
 	@ApiOperation(value = "修改系统")
 	@RequiresPermissions("upms:system:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, UpmsSystem upmsSystem, ModelMap modelMap) {
+	@ResponseBody
+	public Object update(@PathVariable("id") int id, UpmsSystem upmsSystem) {
+		ComplexResult result = FluentValidator.checkAll()
+				.on(upmsSystem.getTitle(), new LengthValidator(1, 20, "标题"))
+				.on(upmsSystem.getName(), new LengthValidator(1, 20, "名称"))
+				.doValidate()
+				.result(ResultCollectors.toComplex());
+		if (!result.isSuccess()) {
+			return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+		}
+		upmsSystem.setSystemId(id);
 		int count = upmsSystemService.updateByPrimaryKeySelective(upmsSystem);
-		modelMap.put("count", count);
-		modelMap.put("id", id);
-		return "redirect:/manage/system/list";
+		return new UpmsResult(UpmsResultConstant.SUCCESS, count);
 	}
 
 }

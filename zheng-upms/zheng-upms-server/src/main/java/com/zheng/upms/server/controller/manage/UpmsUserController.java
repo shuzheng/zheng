@@ -1,6 +1,14 @@
 package com.zheng.upms.server.controller.manage;
 
+import com.baidu.unbiz.fluentvalidator.ComplexResult;
+import com.baidu.unbiz.fluentvalidator.FluentValidator;
+import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.zheng.common.base.BaseController;
+import com.zheng.common.validator.LengthValidator;
+import com.zheng.common.validator.NotNullValidator;
+import com.zheng.common.validator.SizeValidator;
+import com.zheng.upms.common.constant.UpmsResult;
+import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsUserService;
@@ -42,7 +50,7 @@ public class UpmsUserController extends BaseController {
 
     @ApiOperation(value = "用户列表")
     @RequiresPermissions("upms:user:read")
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public Object list(
             @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
@@ -72,22 +80,31 @@ public class UpmsUserController extends BaseController {
 
     @ApiOperation(value = "新增用户")
     @RequiresPermissions("upms:user:create")
+    @ResponseBody
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(UpmsUser upmsUser, ModelMap modelMap) {
+    public Object create(UpmsUser upmsUser) {
+        ComplexResult result = FluentValidator.checkAll()
+                .on(upmsUser.getUsername(), new LengthValidator(1, 20, "帐号"))
+                .on(upmsUser.getPassword(), new LengthValidator(5, 32, "密码"))
+                .on(upmsUser.getRealname(), new NotNullValidator("姓名"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+        }
         long time = System.currentTimeMillis();
         upmsUser.setCtime(time);
         int count = upmsUserService.insertSelective(upmsUser);
-        modelMap.put("count", count);
-        return "redirect:/manage/user/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
     @ApiOperation(value = "删除用户")
     @RequiresPermissions("upms:user:delete")
     @RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-    public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
+    @ResponseBody
+    public Object delete(@PathVariable("ids") String ids) {
         int count = upmsUserService.deleteByPrimaryKeys(ids);
-        modelMap.put("count", count);
-        return "redirect:/manage/user/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
     @ApiOperation(value = "修改用户")
@@ -102,11 +119,20 @@ public class UpmsUserController extends BaseController {
     @ApiOperation(value = "修改用户")
     @RequiresPermissions("upms:user:update")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String update(@PathVariable("id") int id, UpmsUser upmsUser, ModelMap modelMap) {
+    @ResponseBody
+    public Object update(@PathVariable("id") int id, UpmsUser upmsUser) {
+        ComplexResult result = FluentValidator.checkAll()
+                .on(upmsUser.getUsername(), new LengthValidator(1, 20, "帐号"))
+                .on(upmsUser.getPassword(), new LengthValidator(5, 32, "密码"))
+                .on(upmsUser.getRealname(), new NotNullValidator("姓名"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+        }
+        upmsUser.setUserId(id);
         int count = upmsUserService.updateByPrimaryKeySelective(upmsUser);
-        modelMap.put("count", count);
-        modelMap.put("id", id);
-        return "redirect:/manage/user/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
 }

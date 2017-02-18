@@ -1,6 +1,12 @@
 package com.zheng.upms.server.controller.manage;
 
+import com.baidu.unbiz.fluentvalidator.ComplexResult;
+import com.baidu.unbiz.fluentvalidator.FluentValidator;
+import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.zheng.common.base.BaseController;
+import com.zheng.common.validator.LengthValidator;
+import com.zheng.upms.common.constant.UpmsResult;
+import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsOrganization;
 import com.zheng.upms.dao.model.UpmsOrganizationExample;
 import com.zheng.upms.dao.model.UpmsSystem;
@@ -43,7 +49,7 @@ public class UpmsOrganizationController extends BaseController {
 
     @ApiOperation(value = "组织列表")
     @RequiresPermissions("upms:organization:read")
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public Object list(
             @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
@@ -73,22 +79,29 @@ public class UpmsOrganizationController extends BaseController {
 
     @ApiOperation(value = "新增组织")
     @RequiresPermissions("upms:organization:create")
+    @ResponseBody
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(UpmsOrganization upmsOrganization, ModelMap modelMap) {
+    public Object create(UpmsOrganization upmsOrganization) {
+        ComplexResult result = FluentValidator.checkAll()
+                .on(upmsOrganization.getName(), new LengthValidator(1, 20, "名称"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+        }
         long time = System.currentTimeMillis();
         upmsOrganization.setCtime(time);
         int count = upmsOrganizationService.insertSelective(upmsOrganization);
-        modelMap.put("count", count);
-        return "redirect:/manage/organization/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
     @ApiOperation(value = "删除组织")
     @RequiresPermissions("upms:organization:delete")
     @RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-    public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
+    @ResponseBody
+    public Object delete(@PathVariable("ids") String ids) {
         int count = upmsOrganizationService.deleteByPrimaryKeys(ids);
-        modelMap.put("count", count);
-        return "redirect:/manage/organization/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
     @ApiOperation(value = "修改组织")
@@ -103,11 +116,18 @@ public class UpmsOrganizationController extends BaseController {
     @ApiOperation(value = "修改组织")
     @RequiresPermissions("upms:organization:update")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String update(@PathVariable("id") int id, UpmsOrganization upmsOrganization, ModelMap modelMap) {
+    @ResponseBody
+    public Object update(@PathVariable("id") int id, UpmsOrganization upmsOrganization) {
+        ComplexResult result = FluentValidator.checkAll()
+                .on(upmsOrganization.getName(), new LengthValidator(1, 20, "名称"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
+        }
+        upmsOrganization.setOrganizationId(id);
         int count = upmsOrganizationService.updateByPrimaryKeySelective(upmsOrganization);
-        modelMap.put("count", count);
-        modelMap.put("id", id);
-        return "redirect:/manage/organization/list";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
 }
