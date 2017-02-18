@@ -71,7 +71,7 @@ public class UpmsSystemController extends BaseController {
 	}
 
 	@ApiOperation(value = "新增系统")
-	@RequiresPermissions("cms:system:create")
+	@RequiresPermissions("upms:system:create")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String add(UpmsSystem upmsSystem, ModelMap modelMap) {
 		long time = System.currentTimeMillis();
@@ -83,7 +83,7 @@ public class UpmsSystemController extends BaseController {
 	}
 
 	@ApiOperation(value = "删除系统")
-	@RequiresPermissions("cms:system:delete")
+	@RequiresPermissions("upms:system:delete")
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
 	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
 		int count = upmsSystemService.deleteByPrimaryKeys(ids);
@@ -92,7 +92,7 @@ public class UpmsSystemController extends BaseController {
 	}
 
 	@ApiOperation(value = "修改系统")
-	@RequiresPermissions("cms:system:update")
+	@RequiresPermissions("upms:system:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		UpmsSystem system = upmsSystemService.selectByPrimaryKey(id);
@@ -101,7 +101,7 @@ public class UpmsSystemController extends BaseController {
 	}
 
 	@ApiOperation(value = "修改系统")
-	@RequiresPermissions("cms:system:update")
+	@RequiresPermissions("upms:system:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String update(@PathVariable("id") int id, UpmsSystem upmsSystem, ModelMap modelMap) {
 		int count = upmsSystemService.updateByPrimaryKeySelective(upmsSystem);

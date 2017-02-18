@@ -90,7 +90,7 @@ public class UpmsPermissionController extends BaseController {
     }
 
     @ApiOperation(value = "新增权限")
-    @RequiresPermissions("cms:permission:create")
+    @RequiresPermissions("upms:permission:create")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String add(UpmsPermission upmsPermission, ModelMap modelMap) {
         long time = System.currentTimeMillis();
@@ -102,7 +102,7 @@ public class UpmsPermissionController extends BaseController {
     }
 
     @ApiOperation(value = "删除权限")
-    @RequiresPermissions("cms:permission:delete")
+    @RequiresPermissions("upms:permission:delete")
     @RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
     public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
         int count = upmsPermissionService.deleteByPrimaryKeys(ids);
@@ -111,7 +111,7 @@ public class UpmsPermissionController extends BaseController {
     }
 
     @ApiOperation(value = "修改权限")
-    @RequiresPermissions("cms:permission:update")
+    @RequiresPermissions("upms:permission:update")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update(@PathVariable("id") int id, ModelMap modelMap) {
         UpmsPermission permission = upmsPermissionService.selectByPrimaryKey(id);
@@ -120,7 +120,7 @@ public class UpmsPermissionController extends BaseController {
     }
 
     @ApiOperation(value = "修改权限")
-    @RequiresPermissions("cms:permission:update")
+    @RequiresPermissions("upms:permission:update")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public String update(@PathVariable("id") int id, UpmsPermission upmsPermission, ModelMap modelMap) {
         int count = upmsPermissionService.updateByPrimaryKeySelective(upmsPermission);
