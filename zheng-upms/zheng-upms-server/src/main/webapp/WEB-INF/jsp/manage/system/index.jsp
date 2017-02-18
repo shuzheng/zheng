@@ -69,7 +69,7 @@ $(function() {
 		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
-			{field: 'state', checkbox: true},
+			{field: 'ck', checkbox: true},
 			{field: 'systemId', title: '编号', sortable: true, align: 'center'},
 			{field: 'icon', title: '图标', sortable: true, align: 'center', formatter: 'iconFormatter'},
             {field: 'title', title: '系统标题'},
@@ -78,9 +78,6 @@ $(function() {
 			{field: 'status', title: '状态', sortable: true, align: 'center', formatter: 'statusFormatter'},
 			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
-	}).on('all.bs.table', function (e, name, args) {
-		$('[data-toggle="tooltip"]').tooltip();
-		$('[data-toggle="popover"]').popover();
 	});
 });
 // 格式化操作按钮
@@ -103,27 +100,16 @@ function statusFormatter(value, row, index) {
 	}
 }
 // 新增
+var createDialog;
 function createAction() {
-	$.confirm({
+	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增系统',
-		content: 'url:${basePath}/manage/system/create',
-		buttons: {
-			confirm: {
-				text: '确认',
-				btnClass: 'waves-effect waves-button',
-				action: function () {
-					console.log(this.find('form').html());
-				}
-			},
-			cancel: {
-				text: '取消',
-				btnClass: 'waves-effect waves-button'
-			}
-		}
+		content: 'url:${basePath}/manage/system/create'
 	});
 }
 // 编辑
+var updateDialog;
 function updateAction() {
 	var rows = $table.bootstrapTable('getSelections');
 	if (rows.length != 1) {
@@ -140,27 +126,15 @@ function updateAction() {
 			}
 		});
 	} else {
-		$.confirm({
+		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑系统',
-			content: 'url:${basePath}/manage/system/update/' + rows[0].systemId,
-			buttons: {
-				confirm: {
-					text: '确认',
-					btnClass: 'waves-effect waves-button',
-					action: function () {
-						$.alert('确认');
-					}
-				},
-				cancel: {
-					text: '取消',
-					btnClass: 'waves-effect waves-button'
-				}
-			}
+			content: 'url:${basePath}/manage/system/update/' + rows[0].systemId
 		});
 	}
 }
 // 删除
+var deleteDialog;
 function deleteAction() {
 	var rows = $table.bootstrapTable('getSelections');
 	if (rows.length == 0) {
@@ -177,7 +151,7 @@ function deleteAction() {
 			}
 		});
 	} else {
-		$.confirm({
+		deleteDialog = $.confirm({
 			type: 'red',
 			animationSpeed: 300,
 			title: false,
@@ -191,7 +165,63 @@ function deleteAction() {
 						for (var i in rows) {
 							ids.push(rows[i].systemId);
 						}
-						$.alert('删除：id=' + ids.join("-"));
+						$.ajax({
+							type: 'get',
+							url: '${basePath}/manage/system/delete/' + ids.join("-"),
+							success: function(result) {
+								if (result.code != 1) {
+									if (result.data instanceof Array) {
+										$.each(result.data, function(index, value) {
+											$.confirm({
+												theme: 'dark',
+												animation: 'rotateX',
+												closeAnimation: 'rotateX',
+												title: false,
+												content: value.errorMsg,
+												buttons: {
+													confirm: {
+														text: '确认',
+														btnClass: 'waves-effect waves-button waves-light'
+													}
+												}
+											});
+										});
+									} else {
+										$.confirm({
+											theme: 'dark',
+											animation: 'rotateX',
+											closeAnimation: 'rotateX',
+											title: false,
+											content: result.data.errorMsg,
+											buttons: {
+												confirm: {
+													text: '确认',
+													btnClass: 'waves-effect waves-button waves-light'
+												}
+											}
+										});
+									}
+								} else {
+									deleteDialog.close();
+									$table.bootstrapTable('refresh');
+								}
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								$.confirm({
+									theme: 'dark',
+									animation: 'rotateX',
+									closeAnimation: 'rotateX',
+									title: false,
+									content: textStatus,
+									buttons: {
+										confirm: {
+											text: '确认',
+											btnClass: 'waves-effect waves-button waves-light'
+										}
+									}
+								});
+							}
+						});
 					}
 				},
 				cancel: {
