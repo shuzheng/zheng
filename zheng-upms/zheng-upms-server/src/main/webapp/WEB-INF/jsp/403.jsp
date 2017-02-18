@@ -12,10 +12,15 @@
 <title><spring:message code="403"/></title>
 </head>
 <body>
+<c:if test="${requestHeader == 'ajax'}">
+    <h5 style="padding-bottom: 10px;">没有权限！</h5>
+</c:if>
+<c:if test="${requestHeader != 'ajax'}">
 <% Exception e = (Exception)request.getAttribute("ex"); %>
 <h2>错误: <%= e.getClass().getSimpleName()%></h2>
 <hr />
 <h5>错误描述：</h5>
-<%= e.getMessage()%>
+<p><%= e.getMessage()%></p>
+</c:if>
 </body>
 </html>
