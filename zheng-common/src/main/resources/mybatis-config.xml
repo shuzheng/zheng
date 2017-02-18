@@ -6,7 +6,7 @@
 
 	<!-- 全局配置 -->
 	<settings>
-		<setting name="cacheEnabled" value="true"/>
+		<setting name="cacheEnabled" value="false"/>
 	</settings>
 
 </configuration>
