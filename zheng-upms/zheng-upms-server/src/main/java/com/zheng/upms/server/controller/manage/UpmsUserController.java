@@ -66,14 +66,14 @@ public class UpmsUserController extends BaseController {
     @ApiOperation(value = "新增用户")
     @RequiresPermissions("upms:user:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String add() {
+    public String create() {
         return "/manage/user/create";
     }
 
     @ApiOperation(value = "新增用户")
     @RequiresPermissions("upms:user:create")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String add(UpmsUser upmsUser, ModelMap modelMap) {
+    public String create(UpmsUser upmsUser, ModelMap modelMap) {
         long time = System.currentTimeMillis();
         upmsUser.setCtime(time);
         int count = upmsUserService.insertSelective(upmsUser);
