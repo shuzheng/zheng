@@ -2,7 +2,7 @@
 
 ## 介绍
 
-**演示地址**：[http://upms.zhangshuzheng.cn](http://upms.zhangshuzheng.cn)
+**演示地址**：[http://www.zhangshuzheng.cn/zhengAdmin](http://www.zhangshuzheng.cn/zhengAdmin)
 
 **系统简介**：本系统是基于RBAC授权和基于用户授权的细粒度权限控制通用平台，并提供单点登录、会话管理和日志管理。接入的系统可自由定义组织、角色、权限、资源等。
 
