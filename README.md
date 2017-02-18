@@ -20,6 +20,7 @@ zheng
 ├── zheng-common -- SSM框架公共模块
 ├── zheng-ui -- 后台管理系统UI模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
 ├── zheng-upms -- 用户权限管理系统（网关）
+|    ├── zheng-upms-common -- upms系统公共模块
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、会话管理
 |    ├── zheng-upms-rpc-api -- rpc接口包
@@ -67,25 +68,27 @@ zheng
 #### 后端技术:
 - Spring Framework
 - SpringMVC: MVC框架
-- Spring secutity|Shiro: 安全框架
+- Spring secutity|Apache Shiro: 安全框架
 - Spring session: 分布式Session管理
 - MyBatis: ORM框架
 - MyBatis Generator: 代码生成
 - Druid: 数据库连接池
+- FluentValidator： 校验框架 [https://github.com/neoremind/fluent-validator](https://github.com/neoremind/fluent-validator "FluentValidator")
 - Jsp|Velocity|Thymeleaf: 模板引擎
-- ZooKeeper: 协调服务
+- ZooKeeper: 分布式协调服务
 - Dubbo: 分布式服务框架
 - TBSchedule|elastic-job: 分布式调度框架
 - Redis: 分布式缓存数据库
-- Quartz: 作业调度框架
-- Ehcache: 缓存框架
-- ActiveMQ: 消息队列
 - Solr|Elasticsearch: 分布式全文搜索引擎
+- Quartz: 作业调度框架
+- Ehcache: 进程内缓存框架
+- ActiveMQ: 消息队列
+- JStorm: 实时流式计算框架
 - FastDFS: 分布式文件系统
 - Log4J: 日志管理
-- Swagger2: 接口文档
+- Swagger2: 接口测试框架
 - sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
-- AliOSS|Qiniu: 云存储
+- AliOSS|Qiniu|QcloudCOS: 云存储
 - Protobuf|json: 数据传输 
 - Jenkins: 持续集成工具
 - Maven|Gradle: 项目构建管理

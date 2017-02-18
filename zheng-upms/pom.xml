@@ -19,6 +19,7 @@
     </properties>
 
     <modules>
+        <module>zheng-upms-common</module>
         <module>zheng-upms-dao</module>
         <module>zheng-upms-rpc-api</module>
         <module>zheng-upms-rpc-service</module>
