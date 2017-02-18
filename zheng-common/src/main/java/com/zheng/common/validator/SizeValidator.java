@@ -26,7 +26,7 @@ public class SizeValidator extends ValidatorHandler<Integer> implements Validato
     @Override
     public boolean validate(ValidatorContext context, Integer integer) {
         if (null == integer || integer.intValue() > max || integer.intValue() < min) {
-            context.addError(ValidationError.create(String.format("SizeValidator => invalid : min=%s, max=%s", min, max))
+            context.addError(ValidationError.create(String.format("%s必须大于%s，小于%s", fieldName, max, min))
                     .setErrorCode(-1)
                     .setField(fieldName)
                     .setInvalidValue(integer));

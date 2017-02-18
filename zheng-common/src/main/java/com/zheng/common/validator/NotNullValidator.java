@@ -20,7 +20,7 @@ public class NotNullValidator extends ValidatorHandler<String> implements Valida
     @Override
     public boolean validate(ValidatorContext context, String s) {
         if (null == s) {
-            context.addError(ValidationError.create(String.format("NotNullValidator => invalid"))
+            context.addError(ValidationError.create(String.format("%s不能为空！", fieldName))
                     .setErrorCode(-1)
                     .setField(fieldName)
                     .setInvalidValue(s));

@@ -7,7 +7,7 @@ package com.zheng.upms.common.constant;
 public enum UpmsResultConstant {
 
     SUCCESS(1, "success"),
-    INVALID_LENGTH(10001, "success");
+    INVALID_LENGTH(10001, "Invalid length");
 
     public int code;
 
