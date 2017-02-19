@@ -6,8 +6,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="basePath" value="${pageContext.request.contextPath}"/>
-<div id="createDialog" class="crudDialog">
-	<form id="createForm" method="post">
+<div id="updateDialog" class="crudDialog">
+	<form id="updateForm" method="post">
 		<div class="form-group">
 			<label for="icon">图标</label>
 			<input id="icon" type="text" class="form-control" name="icon" maxlength="20" value="${system.icon}">
@@ -47,7 +47,7 @@ function createSubmit() {
     $.ajax({
         type: 'post',
         url: '${basePath}/manage/system/update/${system.systemId}',
-        data: $('#createForm').serialize(),
+        data: $('#updateForm').serialize(),
         beforeSend: function() {
             if ($('#title').val() == '') {
                 $('#title').focus();
