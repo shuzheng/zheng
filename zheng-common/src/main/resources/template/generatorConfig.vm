@@ -3,7 +3,7 @@
 <generatorConfiguration>
 
     <!-- 配置文件 -->
-    <properties resource="jdbc.properties"></properties>
+    <properties resource="generator.properties"></properties>
 
     <context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
 
@@ -46,10 +46,10 @@
         </commentGenerator>
 
         <!-- 数据库连接 -->
-        <jdbcConnection driverClass="${master.jdbc.driver}"
-                        connectionURL="${master.jdbc.url}"
-                        userId="${master.jdbc.username}"
-                        password="${master_jdbc_password}" />
+        <jdbcConnection driverClass="${generator.jdbc.driver}"
+                        connectionURL="${generator.jdbc.url}"
+                        userId="${generator.jdbc.username}"
+                        password="${generator_jdbc_password}" />
 
         <!-- model生成 -->
         <javaModelGenerator targetPackage="${generator_javaModelGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" />
