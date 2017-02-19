@@ -14,14 +14,15 @@
     <!-- 订阅服务 -->
     <dubbo:consumer check="false"/>
 
+    <!-- 文章 -->
     <dubbo:reference id="cmsArticleService" interface="com.zheng.cms.rpc.api.CmsArticleService" mock="true"/>
-
+    <!-- 类目 -->
     <dubbo:reference id="cmsCategoryService" interface="com.zheng.cms.rpc.api.CmsCategoryService" mock="true"/>
-
+    <!-- 评论 -->
     <dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService" mock="true"/>
-
+    <!-- 标签 -->
     <dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService" mock="true"/>
-
+    <!-- 用户 -->
     <dubbo:reference id="userService" interface="com.zheng.cms.rpc.api.UserService" mock="true"/>
 
 </beans>

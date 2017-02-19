@@ -26,13 +26,14 @@
         <module>zheng-cms-job</module>
         <module>zheng-cms-search</module>
         <module>zheng-cms-admin</module>
+        <module>zheng-cms-common</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.zheng</groupId>
-                <artifactId>zheng-common</artifactId>
+                <artifactId>zheng-cms-common</artifactId>
                 <version>1.0.0</version>
                 <type>jar</type>
             </dependency>
