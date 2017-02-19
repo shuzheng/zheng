@@ -29,39 +29,6 @@
 	</div>
 	<table id="table"></table>
 </div>
-<!-- 新增 -->
-<div id="createDialog" class="crudDialog" hidden>
-	<form>
-		<div class="form-group">
-			<label for="input1">所属系统</label>
-			<input id="input1" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input2">所属上级</label>
-			<input id="input2" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input3">权限名称</label>
-			<input id="input3" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input4">类型</label>
-			<input id="input4" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input5">权限值</label>
-			<input id="input5" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input6">路径</label>
-			<input id="input6" type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="input7">图标</label>
-			<input id="input7" type="text" class="form-control">
-		</div>
-	</form>
-</div>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
@@ -102,7 +69,7 @@ $(function() {
 		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
-			{field: 'state', checkbox: true},
+			{field: 'ck', checkbox: true},
 			{field: 'permissionId', title: '编号', sortable: true, align: 'center'},
             {field: 'systemId', title: '所属系统'},
 			{field: 'pid', title: '所属上级'},
@@ -114,9 +81,6 @@ $(function() {
 			{field: 'status', title: '状态', sortable: true, align: 'center', formatter: 'statusFormatter'},
 			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
-	}).on('all.bs.table', function (e, name, args) {
-		$('[data-toggle="tooltip"]').tooltip();
-		$('[data-toggle="popover"]').popover();
 	});
 });
 // 格式化操作按钮
@@ -149,34 +113,22 @@ function statusFormatter(value, row, index) {
 	}
 }
 // 新增
+var createDialog;
 function createAction() {
-	$.confirm({
-		type: 'dark',
+	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增权限',
-		content: $('#createDialog').html(),
-		buttons: {
-			confirm: {
-				text: '确认',
-				btnClass: 'waves-effect waves-button',
-				action: function () {
-					$.alert('确认');
-				}
-			},
-			cancel: {
-				text: '取消',
-				btnClass: 'waves-effect waves-button'
-			}
-		}
+		content: 'url:${basePath}/manage/permission/create'
 	});
 }
 // 编辑
+var updateDialog;
 function updateAction() {
 	var rows = $table.bootstrapTable('getSelections');
-	if (rows.length == 0) {
+	if (rows.length != 1) {
 		$.confirm({
 			title: false,
-			content: '请至少选择一条记录！',
+			content: '请选择一条记录！',
 			autoClose: 'cancel|3000',
 			backgroundDismiss: true,
 			buttons: {
@@ -187,28 +139,15 @@ function updateAction() {
 			}
 		});
 	} else {
-		$.confirm({
-			type: 'blue',
+		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑权限',
-			content: $('#createDialog').html(),
-			buttons: {
-				confirm: {
-					text: '确认',
-					btnClass: 'waves-effect waves-button',
-					action: function () {
-						$.alert('确认');
-					}
-				},
-				cancel: {
-					text: '取消',
-					btnClass: 'waves-effect waves-button'
-				}
-			}
+			content: 'url:${basePath}/manage/permission/update/' + rows[0].permissionId
 		});
 	}
 }
 // 删除
+var deleteDialog;
 function deleteAction() {
 	var rows = $table.bootstrapTable('getSelections');
 	if (rows.length == 0) {
@@ -225,7 +164,7 @@ function deleteAction() {
 			}
 		});
 	} else {
-		$.confirm({
+		deleteDialog = $.confirm({
 			type: 'red',
 			animationSpeed: 300,
 			title: false,
@@ -237,9 +176,65 @@ function deleteAction() {
 					action: function () {
 						var ids = new Array();
 						for (var i in rows) {
-							ids.push(rows[i].systemId);
+							ids.push(rows[i].permissionId);
 						}
-						$.alert('删除：id=' + ids.join("-"));
+						$.ajax({
+							type: 'get',
+							url: '${basePath}/manage/permission/delete/' + ids.join("-"),
+							success: function(result) {
+								if (result.code != 1) {
+									if (result.data instanceof Array) {
+										$.each(result.data, function(index, value) {
+											$.confirm({
+												theme: 'dark',
+												animation: 'rotateX',
+												closeAnimation: 'rotateX',
+												title: false,
+												content: value.errorMsg,
+												buttons: {
+													confirm: {
+														text: '确认',
+														btnClass: 'waves-effect waves-button waves-light'
+													}
+												}
+											});
+										});
+									} else {
+										$.confirm({
+											theme: 'dark',
+											animation: 'rotateX',
+											closeAnimation: 'rotateX',
+											title: false,
+											content: result.data.errorMsg,
+											buttons: {
+												confirm: {
+													text: '确认',
+													btnClass: 'waves-effect waves-button waves-light'
+												}
+											}
+										});
+									}
+								} else {
+									deleteDialog.close();
+									$table.bootstrapTable('refresh');
+								}
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								$.confirm({
+									theme: 'dark',
+									animation: 'rotateX',
+									closeAnimation: 'rotateX',
+									title: false,
+									content: textStatus,
+									buttons: {
+										confirm: {
+											text: '确认',
+											btnClass: 'waves-effect waves-button waves-light'
+										}
+									}
+								});
+							}
+						});
 					}
 				},
 				cancel: {
