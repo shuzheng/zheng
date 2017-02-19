@@ -5,6 +5,12 @@
     <groupId>com.zheng</groupId>
     <artifactId>zheng-api</artifactId>
     <version>1.0.0</version>
+    <modules>
+        <module>zheng-api-common</module>
+        <module>zheng-api-rpc-api</module>
+        <module>zheng-api-rpc-service</module>
+        <module>zheng-api-server</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>zheng-api</name>
