@@ -51,7 +51,7 @@ zheng
 |    |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 |    └── zheng-ucenter-app -- 微信小程序后台
-├── zheng-api -- API整合网关系统
+├── zheng-api -- API接口总线系统
 |    ├── zheng-api-common -- api系统公共模块
 |    ├── zheng-api-rpc-api -- rpc接口包
 |    ├── zheng-api-rpc-service -- rpc服务提供者
@@ -144,7 +144,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 > zheng-api
 
-暴露API网关系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
+接口总线系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
 
 ![API网关](project-bootstrap/zheng-api.png)
 
