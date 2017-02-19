@@ -27,6 +27,7 @@ zheng
 |    ├── zheng-upms-rpc-service -- rpc服务提供者
 |    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
+|    ├── zheng-cms-common -- cms系统公共模块
 |    ├── zheng-cms-dao -- MyBatisGenerator代码生成模块，无需开发
 |    ├── zheng-cms-rpc-api -- rpc接口包
 |    ├── zheng-cms-rpc-service -- rpc服务提供者
@@ -50,10 +51,11 @@ zheng
 |    |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 |    └── zheng-ucenter-app -- 微信小程序后台
-├── zheng-api -- 暴露API网关系统
-|    ├── zheng-api-sdk -- 开发工具包
-|    ├── zheng-api-doc -- 接口文档项目
-|    └── zheng-api-example -- 演示示例[端口:6661]
+├── zheng-api -- API整合网关系统
+|    ├── zheng-api-common -- api系统公共模块
+|    ├── zheng-api-rpc-api -- rpc接口包
+|    ├── zheng-api-rpc-service -- rpc服务提供者
+|    └── zheng-api-server -- api系统服务端[端口:6666]
 ├── zheng-shop -- 电子商务系统
 ├── zheng-im -- 即时通讯系统
 ├── zheng-oa -- 办公自动化系统
