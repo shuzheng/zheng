@@ -1,5 +1,7 @@
 package com.zheng.cms.web.controller;
 
+import com.zheng.cms.common.constant.CmsResult;
+import com.zheng.cms.common.constant.CmsResultConstant;
 import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.dao.model.CmsUserExample;
 import com.zheng.cms.rpc.api.UserService;
@@ -181,9 +183,8 @@ public class UserController extends BaseController {
 				(!contentType.equals("image/x-png")) && 
 				(!contentType.equals("image/bmp")) && 
 				(!contentType.equals("image/gif"))) {
-			map.put(RESULT, FAILED);
-			map.put(DATA, "不支持该类型的文件！");
-			return map;
+			return new CmsResult(CmsResultConstant.FILE_TYPE_ERROR, "不支持该类型的文件！");
+
 		}
 		// 创建图片目录
 		String basePath = request.getSession().getServletContext().getRealPath("/attached");
@@ -195,9 +196,7 @@ public class UserController extends BaseController {
 		}
 		// 保存图片
 		file.transferTo(targetFile);
-		map.put(RESULT, SUCCESS);
-		map.put(DATA, targetFile.getAbsoluteFile());
-		return map;
+		return new CmsResult(CmsResultConstant.SUCCESS, targetFile.getAbsoluteFile());
 	}
 	
 	/**

@@ -1,10 +1,11 @@
 package com.zheng.cms.admin.controller.manage;
 
+import com.zheng.cms.common.constant.CmsResult;
+import com.zheng.cms.common.constant.CmsResultConstant;
 import com.zheng.cms.dao.model.CmsComment;
 import com.zheng.cms.dao.model.CmsCommentExample;
 import com.zheng.cms.rpc.api.CmsCommentService;
 import com.zheng.common.base.BaseController;
-import com.zheng.common.util.Paginator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -13,13 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 评论控制器
@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manage/comment")
-@Api(value = "评论控制器", description = "评论管理")
+@Api(value = "评论管理", description = "评论管理")
 public class CmsCommentController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
@@ -35,89 +35,64 @@ public class CmsCommentController extends BaseController {
 	@Autowired
 	private CmsCommentService cmsCommentService;
 
-	/**
-	 * 列表
-	 * @param page 当前页码
-	 * @param rows 每页条数
-	 * @param desc 降序排序
-	 * @param request
-	 * @param modelMap
-	 * @return
-	 */
-	@ApiOperation(value = "评论列表", notes = "获取评论列表并分页")
+	@ApiOperation(value = "评论首页")
+	@RequiresPermissions("cms:comment:read")
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index() {
+		return "/manage/commentcomment/index";
+	}
+
+	@ApiOperation(value = "评论列表")
 	@RequiresPermissions("cms:comment:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(
-			@RequestParam(required = false, defaultValue = "1", value = "page") int page,
-			@RequestParam(required = false, defaultValue = "20", value = "rows") int rows,
-			@RequestParam(required = false, defaultValue = "true", value = "desc") boolean desc,
-			HttpServletRequest request, ModelMap modelMap) {
-
-		// 数据列表
+	@ResponseBody
+	public Object list(
+			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
+			@RequestParam(required = false, value = "sort") String sort,
+			@RequestParam(required = false, value = "order") String order) {
 		CmsCommentExample cmsCommentExample = new CmsCommentExample();
-		cmsCommentExample.setOffset((page - 1) * rows);
-		cmsCommentExample.setLimit(rows);
-		cmsCommentExample.setOrderByClause(desc ? "comment_id desc" : "comment_id asc");
-		List<CmsComment> comments = cmsCommentService.selectByExample(cmsCommentExample);
-
-		// 分页对象
+		cmsCommentExample.setOffset(offset);
+		cmsCommentExample.setLimit(limit);
+		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+			cmsCommentExample.setOrderByClause(sort + " " + order);
+		}
+		List<CmsComment> rows = cmsCommentService.selectByExample(cmsCommentExample);
 		long total = cmsCommentService.countByExample(cmsCommentExample);
-		Paginator paginator = new Paginator(total, page, rows, request);
-
-		modelMap.put("comments", comments);
-		modelMap.put("paginator", paginator);
-		return "/manage/comment/list";
+		Map<String, Object> result = new HashMap<>();
+		result.put("rows", rows);
+		result.put("total", total);
+		return result;
 	}
-	
-	/**
-	 * 新增get
-	 * @return
-	 */
-	@ApiOperation(value = "新增评论", notes = "新增评论页")
+
+	@ApiOperation(value = "新增评论")
 	@RequiresPermissions("cms:comment:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String add() {
+	public String create() {
 		return "/manage/comment/create";
 	}
-	
-	/**
-	 * 新增post
-	 * @param cmsComment
-	 * @param modelMap
-	 * @return
-	 */
-	@ApiOperation(value = "新增评论", notes = "新增评论提交接口")
+
+	@ApiOperation(value = "新增评论")
 	@RequiresPermissions("cms:comment:create")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String add(CmsComment cmsComment, ModelMap modelMap) {
-		cmsComment.setCtime(System.currentTimeMillis());
+	@ResponseBody
+	public Object create(CmsComment cmsComment) {
+		long time = System.currentTimeMillis();
+		cmsComment.setCtime(time);
 		int count = cmsCommentService.insertSelective(cmsComment);
-		modelMap.put("count", count);
-		return "redirect:/manage/comment/list";
+		return new CmsResult(CmsResultConstant.SUCCESS, count);
 	}
 
-	/**
-	 * 删除
-	 * @param ids
-	 * @param modelMap
-	 * @return
-	 */
-	@ApiOperation(value = "删除评论", notes = "批量删除评论")
+	@ApiOperation(value = "删除评论")
 	@RequiresPermissions("cms:comment:delete")
 	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
-	public String delete(@PathVariable("ids") String ids, ModelMap modelMap) {
+	@ResponseBody
+	public Object delete(@PathVariable("ids") String ids) {
 		int count = cmsCommentService.deleteByPrimaryKeys(ids);
-		modelMap.put("count", count);
-		return "redirect:/manage/comment/list";
+		return new CmsResult(CmsResultConstant.SUCCESS, count);
 	}
-	
-	/**
-	 * 修改get
-	 * @param id
-	 * @param modelMap
-	 * @return
-	 */
-	@ApiOperation(value = "修改评论", notes = "根据id修改评论页")
+
+	@ApiOperation(value = "修改评论")
 	@RequiresPermissions("cms:comment:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
@@ -125,22 +100,15 @@ public class CmsCommentController extends BaseController {
 		modelMap.put("comment", comment);
 		return "/manage/comment/update";
 	}
-	
-	/**
-	 * 修改post
-	 * @param id
-	 * @param cmsComment
-	 * @param modelMap
-	 * @return
-	 */
-	@ApiOperation(value = "修改评论", notes = "根据id修改评论提交接口")
+
+	@ApiOperation(value = "修改评论")
 	@RequiresPermissions("cms:comment:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable("id") int id, CmsComment cmsComment, ModelMap modelMap) {
+	@ResponseBody
+	public Object update(@PathVariable("id") int id, CmsComment cmsComment) {
+		cmsComment.setCommentId(id);
 		int count = cmsCommentService.updateByPrimaryKeySelective(cmsComment);
-		modelMap.put("count", count);
-		modelMap.put("id", id);
-		return "redirect:/manage/comment/list";
+		return new CmsResult(CmsResultConstant.SUCCESS, count);
 	}
 
 }
