@@ -19,18 +19,19 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                <!-- 不需要认证 -->
+                <!-- isAuthenticated -->
+                /manage/**=authc
+                <!-- isAuthenticated或RememberMe -->
+                /druid/**=user
+                <!-- logout -->
+                /sso/logout = logout
+                <!-- anon -->
                 / = anon
                 /swagger-ui.html = anon
                 /webjars/** = anon
                 /resources/** = anon
                 /sso/** = anon
                 /403 = anon
-                /sso/logout = logout
-                <!-- isAuthenticated或RememberMe -->
-                /druid/**=user
-                <!-- isAuthenticated -->
-                /manage/**=authc
             </value>
         </property>
     </bean>
