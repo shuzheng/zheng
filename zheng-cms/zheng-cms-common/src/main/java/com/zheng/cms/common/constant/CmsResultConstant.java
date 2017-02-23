@@ -7,6 +7,7 @@ package com.zheng.cms.common.constant;
 public enum CmsResultConstant {
 
     SUCCESS(1, "success"),
+
     FILE_TYPE_ERROR(20001, "File type not supported!");
 
     public int code;
