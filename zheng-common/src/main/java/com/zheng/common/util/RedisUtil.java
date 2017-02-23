@@ -73,7 +73,7 @@ public class RedisUtil {
 	 * 在多线程环境同步初始化
 	 */
 	private static synchronized void poolInit() {
-		if (jedisPool == null) {
+		if (null == jedisPool) {
 			initialPool();
 		}
 	}
@@ -84,12 +84,10 @@ public class RedisUtil {
 	 * @return Jedis
 	 */
 	public synchronized static Jedis getJedis() {
-		if (jedisPool == null) {
-			poolInit();
-		}
+		poolInit();
 		Jedis jedis = null;
 		try {
-			if (jedisPool != null) {
+			if (null != jedisPool) {
 				jedis = jedisPool.getResource();
 				try {
 					jedis.auth(PASSWORD);
@@ -99,20 +97,8 @@ public class RedisUtil {
 			}
 		} catch (Exception e) {
 			_log.error("Get jedis error : " + e);
-		} finally {
-			returnResource(jedis);
 		}
 		return jedis;
-	}
-
-	/**
-	 * 释放jedis资源
-	 * @param jedis
-	 */
-	public static void returnResource(final Jedis jedis) {
-		if (jedis != null && jedisPool != null) {
-			jedisPool.returnResource(jedis);
-		}
 	}
 
 	/**
@@ -123,7 +109,24 @@ public class RedisUtil {
 	public synchronized static void set(String key, String value) {
 		try {
 			value = StringUtils.isEmpty(value) ? "" : value;
-			getJedis().set(key, value);
+			Jedis jedis = getJedis();
+			jedis.set(key, value);
+			jedis.close();
+		} catch (Exception e) {
+			_log.error("Set key error : " + e);
+		}
+	}
+
+	/**
+	 * 设置 byte[]
+	 * @param key
+	 * @param value
+	 */
+	public synchronized static void set(byte[] key, byte[] value) {
+		try {
+			Jedis jedis = getJedis();
+			jedis.set(key, value);
+			jedis.close();
 		} catch (Exception e) {
 			_log.error("Set key error : " + e);
 		}
@@ -138,7 +141,9 @@ public class RedisUtil {
 	public synchronized static void set(String key, String value, int seconds) {
 		try {
 			value = StringUtils.isEmpty(value) ? "" : value;
-			getJedis().setex(key, seconds, value);
+			Jedis jedis = getJedis();
+			jedis.setex(key, seconds, value);
+			jedis.close();
 		} catch (Exception e) {
 			_log.error("Set keyex error : " + e);
 		}
@@ -150,10 +155,28 @@ public class RedisUtil {
 	 * @return value
 	 */
 	public synchronized static String get(String key) {
-		if (getJedis() == null || !getJedis().exists(key)) {
+		Jedis jedis = getJedis();
+		if (null == jedis) {
 			return null;
 		}
-		return getJedis().get(key);
+		String value = jedis.get(key);
+		jedis.close();
+		return value;
+	}
+
+	/**
+	 * 获取byte[]值
+	 * @param key
+	 * @return value
+	 */
+	public synchronized static byte[] get(byte[] key) {
+		Jedis jedis = getJedis();
+		if (null == jedis) {
+			return null;
+		}
+		byte[] value = jedis.get(key);
+		jedis.close();
+		return value;
 	}
 
 	/**
@@ -162,7 +185,22 @@ public class RedisUtil {
 	 */
 	public synchronized static void remove(String key) {
 		try {
-			getJedis().del(key);
+			Jedis jedis = getJedis();
+			jedis.del(key);
+			jedis.close();
+		} catch (Exception e) {
+			_log.error("Remove keyex error : " + e);
+		}
+	}
+	/**
+	 * 删除值
+	 * @param key
+	 */
+	public synchronized static void remove(byte[] key) {
+		try {
+			Jedis jedis = getJedis();
+			jedis.del(key);
+			jedis.close();
 		} catch (Exception e) {
 			_log.error("Remove keyex error : " + e);
 		}
