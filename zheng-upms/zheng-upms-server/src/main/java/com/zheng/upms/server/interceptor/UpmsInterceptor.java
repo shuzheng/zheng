@@ -1,8 +1,11 @@
 package com.zheng.upms.server.interceptor;
 
 import com.zheng.upms.dao.model.UpmsUser;
+import com.zheng.upms.server.controller.manage.UpmsOrganizationController;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
  * 登录信息拦截器
  * Created by shuzheng on 2017/2/11.
  */
-public class UpmsLoginInterceptor extends HandlerInterceptorAdapter {
+public class UpmsInterceptor extends HandlerInterceptorAdapter {
+
+    private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

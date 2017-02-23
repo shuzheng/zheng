@@ -1,4 +1,4 @@
-package com.zheng.upms.server.realm;
+package com.zheng.upms.server.shiro.realm;
 
 import com.zheng.common.util.MD5Util;
 import com.zheng.upms.dao.model.UpmsPermission;
@@ -40,7 +40,6 @@ public class UpmsRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        // 当前用户
         UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
 
         // 当前用户所有权限
@@ -75,13 +74,13 @@ public class UpmsRealm extends AuthorizingRealm {
         UpmsUser upmsUser = upmsUserService.selectFirstByExample(upmsUserExample);
 
         if (null == upmsUser) {
-            throw new UnknownAccountException("帐号不存在！");
+            throw new UnknownAccountException();
         }
         if (!upmsUser.getPassword().equals(MD5Util.MD5(password + upmsUser.getSalt()))) {
-            throw new IncorrectCredentialsException("密码错误！");
+            throw new IncorrectCredentialsException();
         }
         if (upmsUser.getLocked() == 1) {
-            throw new LockedAccountException("账号已被锁定！");
+            throw new LockedAccountException();
         }
 
         return new SimpleAuthenticationInfo(upmsUser, password, getName());
