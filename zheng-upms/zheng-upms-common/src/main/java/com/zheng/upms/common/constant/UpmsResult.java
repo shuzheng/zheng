@@ -8,10 +8,6 @@ import com.zheng.common.base.BaseResult;
  */
 public class UpmsResult extends BaseResult {
 
-    public UpmsResult(int code, String message, Object data) {
-        super(code, message, data);
-    }
-
     public UpmsResult(UpmsResultConstant upmsResultConstant, Object data) {
         super(upmsResultConstant.getCode(), upmsResultConstant.getMessage(), data);
     }

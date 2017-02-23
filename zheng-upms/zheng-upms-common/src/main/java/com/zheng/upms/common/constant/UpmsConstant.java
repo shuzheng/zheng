@@ -8,6 +8,4 @@ import com.zheng.common.base.BaseConstants;
  */
 public class UpmsConstant extends BaseConstants {
 
-
-
 }
