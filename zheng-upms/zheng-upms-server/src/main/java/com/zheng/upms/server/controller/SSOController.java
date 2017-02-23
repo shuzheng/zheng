@@ -3,12 +3,15 @@ package com.zheng.upms.server.controller;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
-import com.zheng.upms.server.util.SystemConstant;
+import com.zheng.upms.common.constant.UpmsResult;
+import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -16,6 +19,8 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.SavedRequest;
+import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +34,10 @@ import redis.clients.jedis.Jedis;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
+import static org.apache.shiro.web.util.WebUtils.getSavedRequest;
 
 /**
  * 单点登录管理
@@ -65,36 +70,38 @@ public class SSOController extends BaseController {
 	public String index(HttpServletRequest request) throws Exception {
 		String system_name = request.getParameter("system_name");
 		String backurl = request.getParameter("backurl");
+		if (StringUtils.isBlank(system_name)) {
+			throw new RuntimeException("无效访问！");
+		}
 
 		// 判断请求认证系统是否注册
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.createCriteria()
 				.andNameEqualTo(system_name);
 		int count = upmsSystemService.countByExample(upmsSystemExample);
-		if (StringUtils.isEmpty(system_name) || 0 == count) {
-			_log.info("未注册的系统：{}", system_name);
-			return "/500";
+		if (0 == count) {
+			throw new RuntimeException(String.format("未注册的系统:%s", system_name));
 		}
 		return "redirect:/sso/login?backurl=" + URLEncoder.encode(backurl, "utf-8");
 	}
 
 	@ApiOperation(value = "登录")
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(HttpServletRequest request, HttpServletResponse response) {
+	public String login(HttpServletRequest request) {
 		// 分配单点登录sessionId，首次获取后缓存到cookie，防止session丢失
 		String serverSessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SERVER_SESSION_ID);
-		if (StringUtils.isEmpty(serverSessionId)) {
-			serverSessionId = request.getSession().getId();
-			CookieUtil.setCookie(response, ZHENG_UPMS_SERVER_SESSION_ID, serverSessionId);
+		if (StringUtils.isBlank(serverSessionId)) {
+			Subject subject = SecurityUtils.getSubject();
+			serverSessionId = subject.getSession().getId().toString();
 		}
 		// 有回跳路径的访问判断是否已登录，如果已登录，则回跳
 		String backurl = request.getParameter("backurl");
 		String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
 		// token校验值
-		if (!StringUtils.isEmpty(token)) {
+		if (!StringUtils.isBlank(token)) {
 			// 回跳
 			String redirectUrl = backurl;
-			if (StringUtils.isEmpty(backurl)) {
+			if (StringUtils.isBlank(backurl)) {
 				redirectUrl = "/";
 			} else {
 				if (backurl.contains("?")) {
@@ -103,7 +110,7 @@ public class SSOController extends BaseController {
 					redirectUrl += "?token=" + token;
 				}
 			}
-			_log.info("认证中心帐号通过，带token回跳：{}", redirectUrl);
+			_log.debug("认证中心帐号通过，带token回跳：{}", redirectUrl);
 			return "redirect:" + redirectUrl;
 		}
 		return "/sso/login";
@@ -116,54 +123,44 @@ public class SSOController extends BaseController {
 		String backurl = request.getParameter("backurl");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String rememberMe = request.getParameter("rememberMe");
 
-		Map result = new HashMap<>();
-		String data = "";
-		if (StringUtils.isEmpty(username)) {
-			result.put("result", false);
-			result.put("data", SystemConstant.NO_USERNAME);
-			return result;
+		if (StringUtils.isBlank(username)) {
+			return new UpmsResult(UpmsResultConstant.EMPTY_USERNAME, "帐号不能为空！");
 		}
-		if (StringUtils.isEmpty(password)) {
-			result.put("result", false);
-			result.put("data", SystemConstant.NO_PASSWORD);
-			return result;
+		if (StringUtils.isBlank(password)) {
+			return new UpmsResult(UpmsResultConstant.EMPTY_PASSWORD, "密码不能为空！");
 		}
 		// 使用shiro认证
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
 		try {
-			//usernamePasswordToken.setRememberMe(false);
+			if (BooleanUtils.toBoolean(rememberMe)) {
+				usernamePasswordToken.setRememberMe(true);
+			} else {
+				usernamePasswordToken.setRememberMe(false);
+			}
 			subject.login(usernamePasswordToken);
 		} catch (UnknownAccountException e) {
-			result.put("result", false);
-			result.put("data", SystemConstant.ERROR_USERNAME);
-			return result;
+			return new UpmsResult(UpmsResultConstant.INVALID_USERNAME, "帐号不存在！");
 		} catch (IncorrectCredentialsException e) {
-			result.put("result", false);
-			result.put("data", SystemConstant.ERROR_PASSWORD);
-			return result;
+			return new UpmsResult(UpmsResultConstant.INVALID_PASSWORD, "密码错误！");
 		} catch (LockedAccountException e) {
-			result.put("result", false);
-			result.put("data", SystemConstant.INVALID_ACCOUNT);
-			return result;
+			return new UpmsResult(UpmsResultConstant.INVALID_ACCOUNT, "帐号已锁定！");
 		}
-		// 分配单点登录sessionId，首次获取后缓存到cookie，防止session丢失
-		String serverSessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SERVER_SESSION_ID);
-		if (StringUtils.isEmpty(serverSessionId)) {
-			serverSessionId = request.getSession().getId();
-			CookieUtil.setCookie(response, ZHENG_UPMS_SERVER_SESSION_ID, serverSessionId);
-		}
+		// serverSessionId
+		String serverSessionId = subject.getSession().getId().toString();
 		// 默认验证帐号密码正确，创建token
 		String token = UUID.randomUUID().toString();
 		// 全局会话sessionId
 		RedisUtil.set(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId, token, TIMEOUT);
 		// token校验值
 		RedisUtil.set(ZHENG_UPMS_SERVER_TOKEN + "_" + token, token, TIMEOUT);
-		// 回调子系统
-		if (StringUtils.isEmpty(backurl)) {
-			result.put("result", true);
-			result.put("data", "/");
+		// 回跳登录前地址
+		if (StringUtils.isBlank(backurl)) {
+			SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+			backurl = null == savedRequest ? "/" : savedRequest.getRequestURI();
+			return new UpmsResult(UpmsResultConstant.SUCCESS, backurl);
 		} else {
 			String redirectUrl = backurl;
 			if (backurl.contains("?")) {
@@ -171,11 +168,9 @@ public class SSOController extends BaseController {
 			} else {
 				redirectUrl += "?token=" + token;
 			}
-			_log.info("认证中心帐号通过，带token回跳：{}", redirectUrl);
-			result.put("result", true);
-			result.put("data", redirectUrl);
+			_log.debug("认证中心帐号通过，带token回跳：{}", redirectUrl);
+			return new UpmsResult(UpmsResultConstant.SUCCESS, redirectUrl);
 		}
-		return result;
 	}
 
 	@ApiOperation(value = "校验token")
@@ -184,7 +179,7 @@ public class SSOController extends BaseController {
 	public String token(HttpServletRequest request) {
 		String tokenParam = request.getParameter("token");
 		String token = RedisUtil.get(ZHENG_UPMS_SERVER_TOKEN + "_" + tokenParam);
-		if (StringUtils.isEmpty(tokenParam) || !tokenParam.equals(token)) {
+		if (StringUtils.isBlank(tokenParam) || !tokenParam.equals(token)) {
 			return "failed";
 		}
 		return "success";
@@ -212,10 +207,14 @@ public class SSOController extends BaseController {
 		}
 		// 清除全局会话sessionId
 		CookieUtil.removeCookie(response, ZHENG_UPMS_SERVER_SESSION_ID);
-		_log.info("当前token={}，对应的注册系统个数：{}个", token, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
+		_log.debug("当前token={}，对应的注册系统个数：{}个", token, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
+        jedis.close();
 		// 跳回原地址
 		String redirectUrl = request.getHeader("Referer");
-		_log.info("跳回退出登录请求地址：{}", redirectUrl);
+		if (null == redirectUrl) {
+			redirectUrl = "/";
+		}
+		_log.debug("跳回退出登录请求地址：{}", redirectUrl);
 		return "redirect:" + redirectUrl;
 	}
 

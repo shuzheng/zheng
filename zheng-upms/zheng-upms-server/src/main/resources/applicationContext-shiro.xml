@@ -19,19 +19,11 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                <!-- isAuthenticated -->
-                /manage/**=authc
-                <!-- isAuthenticated或RememberMe -->
-                /druid/**=user
-                <!-- logout -->
-                /sso/logout = logout
-                <!-- anon -->
-                / = anon
-                /swagger-ui.html = anon
-                /webjars/** = anon
-                /resources/** = anon
-                /sso/** = anon
-                /403 = anon
+                /swagger-ui.html = user
+                /druid/** = user
+                /manage/index = user
+                /manage/** = authc
+                /** = anon
             </value>
         </property>
     </bean>
@@ -47,7 +39,7 @@
     </bean>
 
     <!-- realm实现，继承自AuthorizingRealm -->
-    <bean id="upmsRealm" class="com.zheng.upms.server.realm.UpmsRealm"></bean>
+    <bean id="upmsRealm" class="com.zheng.upms.server.shiro.realm.UpmsRealm"></bean>
 
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
@@ -76,13 +68,7 @@
     </bean>
 
     <!-- 会话DAO，可重写，持久化session -->
-    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO">
-        <!--<property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>-->
-        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
-    </bean>
-
-    <!-- 会话ID生成器 -->
-    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+    <bean id="sessionDAO" class="com.zheng.upms.server.shiro.SessionRedisDao"/>
 
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -91,11 +77,11 @@
         <!-- 设置Cookie的过期时间，秒为单位，默认-1表示关闭浏览器时过期Cookie -->
         <property name="maxAge" value="-1"/>
         <!-- Cookie名称 -->
-        <property name="name" value="zheng-upms-shiro-sessionId"/>
+        <property name="name" value="zheng-upms-server-session-id"/>
     </bean>
 
     <!-- 会话监听器 -->
-    <bean id="sessionListener" class="com.zheng.upms.server.listener.ShiroSessionListener"/>
+    <bean id="sessionListener" class="com.zheng.upms.server.shiro.listener.ShiroSessionListener"/>
 
     <!-- rememberMe管理器 -->
     <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
@@ -123,8 +109,6 @@
         <property name="rememberMeParam" value="rememberMe"/>
         <property name="loginUrl" value="/sso/login"/>
     </bean>
-
-
 
     <!-- 设置SecurityUtils，相当于调用SecurityUtils.setSecurityManager(securityManager) -->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
