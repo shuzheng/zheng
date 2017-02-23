@@ -37,7 +37,7 @@
     </div>
     <div class="checkbox">
         <label>
-            <input id="rememberme" type="checkbox" name="rememberme">
+            <input id="rememberMe" type="checkbox" name="rememberMe">
             <i class="input-helper"></i>
             自动登录
         </label>
@@ -70,29 +70,22 @@
             data: {
                 username: $('#username').val(),
                 password: $('#password').val(),
-                rememberme: $('#rememberme').val(),
+                rememberMe: $('#rememberMe').is(':checked'),
                 backurl: '${param.backurl}'
             },
+            beforeSend: function() {
+
+            },
             success: function(json){
-                if (json.result) {
+                if (json.code == 1) {
                     location.href = json.data;
                 } else {
-                    if (10001 == json.data) {
-                        alert("帐号不能为空！");
+                    alert(json.data);
+                    if (10101 == json.code) {
                         $('#username').focus();
                     }
-                    if (10002 == json.data) {
-                        alert("密码不能为空！");
+                    if (10102 == json.code) {
                         $('#password').focus();
-                    }
-                    if (10004 == json.data) {
-                        alert("该帐号不存在！");
-                    }
-                    if (10005 == json.data) {
-                        alert("密码错误！");
-                    }
-                    if (10006 == json.data) {
-                        alert("帐号被封！");
                     }
                 }
             },
