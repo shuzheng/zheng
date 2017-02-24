@@ -39,13 +39,6 @@
 <script>
 var $table = $('#table');
 $(function() {
-	$(document).on('focus', 'input[type="text"]', function() {
-		$(this).parent().find('label').addClass('active');
-	}).on('blur', 'input[type="text"]', function() {
-		if ($(this).val() == '') {
-			$(this).parent().find('label').removeClass('active');
-		}
-	});
 	// bootstrap table初始化
 	$table.bootstrapTable({
 		url: '${basePath}/manage/role/list',
@@ -91,7 +84,10 @@ function createAction() {
 	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增角色',
-		content: 'url:${basePath}/manage/role/create'
+		content: 'url:${basePath}/manage/role/create',
+		onContentReady: function () {
+			initMaterialInput();
+		}
 	});
 }
 // 编辑
@@ -115,7 +111,10 @@ function updateAction() {
 		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑角色',
-			content: 'url:${basePath}/manage/role/update/' + rows[0].roleId
+			content: 'url:${basePath}/manage/role/update/' + rows[0].roleId,
+			onContentReady: function () {
+				initMaterialInput();
+			}
 		});
 	}
 }

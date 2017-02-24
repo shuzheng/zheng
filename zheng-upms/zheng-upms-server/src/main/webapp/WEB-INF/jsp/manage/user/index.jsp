@@ -39,13 +39,6 @@
 <script>
 var $table = $('#table');
 $(function() {
-	$(document).on('focus', 'input[type="text"]', function() {
-		$(this).parent().find('label').addClass('active');
-	}).on('blur', 'input[type="text"]', function() {
-		if ($(this).val() == '') {
-			$(this).parent().find('label').removeClass('active');
-		}
-	});
 	// bootstrap table初始化
 	$table.bootstrapTable({
 		url: '${basePath}/manage/user/list',
@@ -117,7 +110,10 @@ function createAction() {
 	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增用户',
-		content: 'url:${basePath}/manage/user/create'
+		content: 'url:${basePath}/manage/user/create',
+		onContentReady: function () {
+			initMaterialInput();
+		}
 	});
 }
 // 编辑
@@ -141,7 +137,10 @@ function updateAction() {
 		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑用户',
-			content: 'url:${basePath}/manage/user/update/' + rows[0].userId
+			content: 'url:${basePath}/manage/user/update/' + rows[0].userId,
+			onContentReady: function () {
+				initMaterialInput();
+			}
 		});
 	}
 }
