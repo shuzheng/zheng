@@ -3,7 +3,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819 (群内含各种工具和文档下载)
+交流QQ群：133107819、284280411(群内含各种工具和文档下载)
 
 ## 前言
 
@@ -98,6 +98,11 @@ zheng
 #### 前端技术:
 - jQuery
 - Bootstrap
+- Bootstrap-table
+- Font-awesome
+- Waves
+- zTree
+- jquery-confirm
 - jQuery EasyUI
 - AngularJs
 - zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
@@ -244,7 +249,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 编译流程
 
-zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
+zheng-ui、zheng-common => zheng-upms => 其他
 
 ### 启动顺序
 
