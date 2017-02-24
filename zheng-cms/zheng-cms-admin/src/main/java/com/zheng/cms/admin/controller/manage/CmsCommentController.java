@@ -54,7 +54,7 @@ public class CmsCommentController extends BaseController {
 		CmsCommentExample cmsCommentExample = new CmsCommentExample();
 		cmsCommentExample.setOffset(offset);
 		cmsCommentExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsCommentExample.setOrderByClause(sort + " " + order);
 		}
 		List<CmsComment> rows = cmsCommentService.selectByExample(cmsCommentExample);

@@ -14,9 +14,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,13 +60,13 @@ public class SSOFilter implements Filter {
 
         // 分配子系统登录sessionId，首次获取后缓存到cookie，防止session丢失
         String clientSessionId = CookieUtil.getCookie(request, ZHENG_UPMS_CLIENT_SESSION_ID);
-        if (StringUtils.isEmpty(clientSessionId)) {
+        if (StringUtils.isBlank(clientSessionId)) {
             clientSessionId = request.getSession().getId();
             CookieUtil.setCookie(response, ZHENG_UPMS_CLIENT_SESSION_ID, clientSessionId);
         }
 
         // 判断局部会话是否登录
-        if (null != clientSessionId && !StringUtils.isEmpty(RedisUtil.get(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId))) {
+        if (null != clientSessionId && !StringUtils.isBlank(RedisUtil.get(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId))) {
             // 移除url中的token参数
             if (null != request.getParameter("token")) {
                 String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
@@ -86,7 +83,7 @@ public class SSOFilter implements Filter {
             // 判断是否有认证中心token
             String token = request.getParameter("token");
             // 已拿到token
-            if (!StringUtils.isEmpty(token)) {
+            if (!StringUtils.isBlank(token)) {
                 // HttpPost去校验token
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
@@ -122,7 +119,7 @@ public class SSOFilter implements Filter {
             sso_server_url.append("/sso/index").append("?").append(SYSTEM_NAME).append("=").append(filterConfig.getInitParameter(SYSTEM_NAME));
             StringBuffer backurl = request.getRequestURL();
             String queryString = request.getQueryString();
-            if (!StringUtils.isEmpty(queryString)) {
+            if (!StringUtils.isBlank(queryString)) {
                 backurl.append("?").append(queryString);
             }
             sso_server_url.append("&").append("backurl").append("=").append(URLEncoder.encode(backurl.toString(), "utf-8"));

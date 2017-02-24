@@ -108,7 +108,7 @@ public class RedisUtil {
 	 */
 	public synchronized static void set(String key, String value) {
 		try {
-			value = StringUtils.isEmpty(value) ? "" : value;
+			value = StringUtils.isBlank(value) ? "" : value;
 			Jedis jedis = getJedis();
 			jedis.set(key, value);
 			jedis.close();
@@ -140,7 +140,7 @@ public class RedisUtil {
 	 */
 	public synchronized static void set(String key, String value, int seconds) {
 		try {
-			value = StringUtils.isEmpty(value) ? "" : value;
+			value = StringUtils.isBlank(value) ? "" : value;
 			Jedis jedis = getJedis();
 			jedis.setex(key, seconds, value);
 			jedis.close();

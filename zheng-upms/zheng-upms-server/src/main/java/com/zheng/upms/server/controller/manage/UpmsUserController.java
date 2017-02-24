@@ -6,7 +6,6 @@ import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.validator.LengthValidator;
 import com.zheng.common.validator.NotNullValidator;
-import com.zheng.common.validator.SizeValidator;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsUser;
@@ -14,13 +13,13 @@ import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -60,7 +59,7 @@ public class UpmsUserController extends BaseController {
         UpmsUserExample upmsUserExample = new UpmsUserExample();
         upmsUserExample.setOffset(offset);
         upmsUserExample.setLimit(limit);
-        if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+        if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsUserExample.setOrderByClause(sort + " " + order);
         }
         List<UpmsUser> rows = upmsUserService.selectByExample(upmsUserExample);

@@ -8,13 +8,13 @@ import com.zheng.cms.rpc.api.CmsTagService;
 import com.zheng.common.base.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class CmsTagController extends BaseController {
 		CmsTagExample cmsTagExample = new CmsTagExample();
 		cmsTagExample.setOffset(offset);
 		cmsTagExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsTagExample.setOrderByClause(sort + " " + order);
 		}
 		List<CmsTag> rows = cmsTagService.selectByExample(cmsTagExample);

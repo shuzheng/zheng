@@ -29,7 +29,7 @@ public class RequestParameterUtil {
                 }
             }
         }
-        if (!StringUtils.isEmpty(params)) {
+        if (!StringUtils.isBlank(params)) {
             backUrl = backUrl.append("?").append(params);
         }
         return backUrl.toString();

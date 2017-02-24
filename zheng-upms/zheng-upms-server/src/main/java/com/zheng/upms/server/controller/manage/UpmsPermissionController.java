@@ -12,13 +12,13 @@ import com.zheng.upms.dao.model.UpmsPermissionExample;
 import com.zheng.upms.rpc.api.UpmsPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -77,7 +77,7 @@ public class UpmsPermissionController extends BaseController {
         }
         upmsPermissionExample.setOffset(offset);
         upmsPermissionExample.setLimit(limit);
-        if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+        if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsPermissionExample.setOrderByClause(sort + " " + order);
         }
         List<UpmsPermission> rows = upmsPermissionService.selectByExample(upmsPermissionExample);

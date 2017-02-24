@@ -54,7 +54,7 @@ public class CmsArticleController extends BaseController {
 		CmsArticleExample cmsArticleExample = new CmsArticleExample();
 		cmsArticleExample.setOffset(offset);
 		cmsArticleExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsArticleExample.setOrderByClause(sort + " " + order);
 		}
 		List<CmsArticle> rows = cmsArticleService.selectByExample(cmsArticleExample);

@@ -54,7 +54,7 @@ public class CmsCategoryController extends BaseController {
 		CmsCategoryExample cmsCategoryExample = new CmsCategoryExample();
 		cmsCategoryExample.setOffset(offset);
 		cmsCategoryExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsCategoryExample.setOrderByClause(sort + " " + order);
 		}
 		List<CmsCategory> rows = cmsCategoryService.selectByExample(cmsCategoryExample);
