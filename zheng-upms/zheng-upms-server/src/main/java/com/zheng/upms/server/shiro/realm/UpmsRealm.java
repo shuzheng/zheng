@@ -2,6 +2,7 @@ package com.zheng.upms.server.shiro.realm;
 
 import com.zheng.common.util.MD5Util;
 import com.zheng.upms.dao.model.UpmsPermission;
+import com.zheng.upms.dao.model.UpmsRole;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsApiService;
@@ -42,17 +43,27 @@ public class UpmsRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
 
+        // 当前用户所有角色
+        List<UpmsRole> upmsRoles = upmsApiService.selectUpmsRoleByUpmsUserId(upmsUser.getUserId());
+        Set<String> roles = new HashSet<>();
+        for (UpmsRole upmsRole : upmsRoles) {
+            if (StringUtils.isNotBlank(upmsRole.getName())) {
+                roles.add(upmsRole.getName());
+            }
+        }
+
         // 当前用户所有权限
         List<UpmsPermission> upmsPermissions = upmsApiService.selectUpmsPermissionByUpmsUserId(upmsUser.getUserId());
         Set<String> permissions = new HashSet<>();
         for (UpmsPermission upmsPermission : upmsPermissions) {
-            if (StringUtils.isNotEmpty(upmsPermission.getPermissionValue())) {
+            if (StringUtils.isNotBlank(upmsPermission.getPermissionValue())) {
                 permissions.add(upmsPermission.getPermissionValue());
             }
         }
 
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.setStringPermissions(permissions);
+        simpleAuthorizationInfo.setRoles(roles);
         return simpleAuthorizationInfo;
     }
 
