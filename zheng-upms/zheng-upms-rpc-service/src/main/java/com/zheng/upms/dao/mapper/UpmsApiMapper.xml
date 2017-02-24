@@ -21,6 +21,7 @@
 	<resultMap id="UpmsRoleResultMap" type="com.zheng.upms.dao.model.UpmsRole">
 		<id column="role_id" jdbcType="INTEGER" property="roleId" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
 		<result column="description" jdbcType="VARCHAR" property="description" />
 		<result column="ctime" jdbcType="BIGINT" property="ctime" />
 		<result column="orders" jdbcType="BIGINT" property="orders" />
@@ -33,7 +34,7 @@
 
 	<!-- 角色字段 -->
 	<sql id="UpmsRole_Column_List">
-		role_id, name, description, ctime, orders
+		role_id, name, title, description, ctime, orders
 	</sql>
 
 	<!-- 根据用户获取所拥有的权限 -->

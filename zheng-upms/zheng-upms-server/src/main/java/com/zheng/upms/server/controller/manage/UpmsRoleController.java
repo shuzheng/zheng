@@ -83,6 +83,7 @@ public class UpmsRoleController extends BaseController {
     public Object create(UpmsRole upmsRole) {
         ComplexResult result = FluentValidator.checkAll()
                 .on(upmsRole.getName(), new LengthValidator(1, 20, "名称"))
+                .on(upmsRole.getTitle(), new LengthValidator(1, 20, "标题"))
                 .doValidate()
                 .result(ResultCollectors.toComplex());
         if (!result.isSuccess()) {
@@ -120,6 +121,7 @@ public class UpmsRoleController extends BaseController {
     public Object update(@PathVariable("id") int id, UpmsRole upmsRole) {
         ComplexResult result = FluentValidator.checkAll()
                 .on(upmsRole.getName(), new LengthValidator(1, 20, "名称"))
+                .on(upmsRole.getTitle(), new LengthValidator(1, 20, "标题"))
                 .doValidate()
                 .result(ResultCollectors.toComplex());
         if (!result.isSuccess()) {
