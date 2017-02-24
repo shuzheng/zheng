@@ -3,7 +3,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819、284280411(群内含各种工具和文档下载)
+交流QQ群：133107819、284280411(群内含各种工具和文档下载)![](project-bootstrap/face.png)
 
 ## 前言
 
