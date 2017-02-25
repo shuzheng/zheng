@@ -19,6 +19,7 @@ body{font-size: 12px;}
 /* input */
 .jconfirm-content form{margin-top: 10px;}
 .crudDialog{padding: 0 0 2px;}
+.dialog-buttons a{font-weight: bold;}
 .form-group{margin-bottom: 20px;}
 .form-group label{position: absolute; line-height: 2; font-size: 16px; font-weight: normal; transition: all .2s; pointer-events: none; color: #999;}
 .form-group .active{transform: translateY(-65%); font-size: 12px; color: #337ab7;}
