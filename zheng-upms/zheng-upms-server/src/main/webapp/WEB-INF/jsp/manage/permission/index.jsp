@@ -90,9 +90,12 @@ function iconFormatter(value, row, index) {
 // 格式化类型
 function typeFormatter(value, row, index) {
 	if (value == 1) {
-		return '菜单';
+		return '目录';
 	}
 	if (value == 2) {
+		return '菜单';
+	}
+	if (value == 3) {
 		return '按钮';
 	}
 	return '-';
