@@ -20,7 +20,7 @@
 			<label for="description">描述</label>
 			<input id="description" type="text" class="form-control" name="description" maxlength="300">
 		</div>
-		<div class="form-group text-right">
+		<div class="form-group text-right dialog-buttons">
 			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
 			<a class="waves-effect waves-button" href="javascript:;" onclick="createDialog.close();">取消</a>
 		</div>

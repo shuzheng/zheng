@@ -28,15 +28,17 @@
 			<label for="basepath">根目录</label>
 			<input id="basepath" type="text" class="form-control" name="basepath" maxlength="100" value="${system.basepath}">
 		</div>
-		<div>
-			<label class="checkbox-inline">
-				<label for="status_1"><input id="status_1" type="radio" name="status" value="1" <c:if test="${system.status==1}">checked</c:if>> 正常</label>
-			</label>
-			<label class="checkbox-inline">
-				<label for="status_0"><input id="status_0" type="radio" name="status" value="-1" <c:if test="${system.status!=1}">checked</c:if>> 锁定</label>
-			</label>
+		<div class="radio">
+			<div class="radio radio-inline radio-success">
+				<input id="status_1" type="radio" name="status" value="1" <c:if test="${system.status==1}">checked</c:if>>
+				<label for="status_1"> 正常 </label>
+			</div>
+			<div class="radio radio-inline">
+				<input id="status_0" type="radio" name="status" value="-1" <c:if test="${system.status!=1}">checked</c:if>>
+				<label for="status_0"> 锁定 </label>
+			</div>
 		</div>
-		<div class="form-group text-right">
+		<div class="form-group text-right dialog-buttons">
 			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
 			<a class="waves-effect waves-button" href="javascript:;" onclick="updateDialog.close();">取消</a>
 		</div>

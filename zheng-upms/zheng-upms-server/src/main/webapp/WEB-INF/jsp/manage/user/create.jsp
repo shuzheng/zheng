@@ -32,23 +32,25 @@
 			<label for="email">邮箱</label>
 			<input id="email" type="text" class="form-control" name="email" maxlength="50">
 		</div>
-		<div>
-			<label class="checkbox-inline">
-				<label for="sex_1"><input id="sex_1" type="radio" name="sex" value="1" checked> 男</label>
-			</label>
-			<label class="checkbox-inline">
-				<label for="sex_0"><input id="sex_0" type="radio" name="sex" value="0"> 女</label>
-			</label>
+		<div class="radio">
+			<div class="radio radio-inline radio-info">
+				<input id="sex_1" type="radio" name="sex" value="1" checked>
+				<label for="sex_1"> 男 </label>
+			</div>
+			<div class="radio radio-inline radio-danger">
+				<input id="sex_0" type="radio" name="sex" value="0">
+				<label for="sex_0"> 女 </label>
+			</div>
+			<div class="radio radio-inline radio-success">
+				<input id="locked_0" type="radio" name="locked" value="0" checked>
+				<label for="locked_0"> 正常 </label>
+			</div>
+			<div class="radio radio-inline">
+				<input id="locked_1" type="radio" name="locked" value="1">
+				<label for="locked_1"> 锁定 </label>
+			</div>
 		</div>
-		<div>
-			<label class="checkbox-inline">
-				<label for="locked_0"><input id="locked_0" type="radio" name="locked" value="0" checked> 正常</label>
-			</label>
-			<label class="checkbox-inline">
-				<label for="locked_1"><input id="locked_1" type="radio" name="locked" value="1"> 锁定</label>
-			</label>
-		</div>
-		<div class="form-group text-right">
+		<div class="form-group text-right dialog-buttons">
 			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
 			<a class="waves-effect waves-button" href="javascript:;" onclick="createDialog.close();">取消</a>
 		</div>
