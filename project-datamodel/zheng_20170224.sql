@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-25 23:49:50
+Date: 2017-02-26 01:13:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -599,7 +599,7 @@ CREATE TABLE `upms_user` (
 -- ----------------------------
 -- Records of upms_user
 -- ----------------------------
-INSERT INTO `upms_user` VALUES ('1', 'admin', '3038D9CB63B3152A79B8153FB06C02F7', '66f1b370c660445a8657bf8bf1794486', '张恕征', '/resources/zheng-ui/images/avatar.jpg', null, '469741414@qq.com', '1', '0', '1');
+INSERT INTO `upms_user` VALUES ('1', 'admin', '3038D9CB63B3152A79B8153FB06C02F7', '66f1b370c660445a8657bf8bf1794486', '张恕征', '/resources/zheng-ui/images/avatar.jpg', '', '469741414@qq.com', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for upms_user_organization
