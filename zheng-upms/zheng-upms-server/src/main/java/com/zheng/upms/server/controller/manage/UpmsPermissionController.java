@@ -9,7 +9,10 @@ import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsPermission;
 import com.zheng.upms.dao.model.UpmsPermissionExample;
+import com.zheng.upms.dao.model.UpmsSystem;
+import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsPermissionService;
+import com.zheng.upms.rpc.api.UpmsSystemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
@@ -39,25 +42,14 @@ public class UpmsPermissionController extends BaseController {
     @Autowired
     private UpmsPermissionService upmsPermissionService;
 
+    @Autowired
+    private UpmsSystemService upmsSystemService;
+
     @ApiOperation(value = "权限首页")
     @RequiresPermissions("upms:permission:read")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         return "/manage/permission/index";
-    }
-
-    @ApiOperation(value = "菜单权限首页")
-    @RequiresPermissions("upms:permission:read")
-    @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    public String menu() {
-        return "/manage/permission/menu";
-    }
-
-    @ApiOperation(value = "按钮权限首页")
-    @RequiresPermissions("upms:permission:read")
-    @RequestMapping(value = "/button", method = RequestMethod.GET)
-    public String button() {
-        return "/manage/permission/button";
     }
 
     @ApiOperation(value = "权限列表")
@@ -91,7 +83,12 @@ public class UpmsPermissionController extends BaseController {
     @ApiOperation(value = "新增权限")
     @RequiresPermissions("upms:permission:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create() {
+    public String create(ModelMap modelMap) {
+        UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
+        upmsSystemExample.createCriteria()
+                .andStatusEqualTo((byte) 1);
+        List<UpmsSystem> upmsSystems = upmsSystemService.selectByExample(upmsSystemExample);
+        modelMap.put("upmsSystems", upmsSystems);
         return "/manage/permission/create";
     }
 
