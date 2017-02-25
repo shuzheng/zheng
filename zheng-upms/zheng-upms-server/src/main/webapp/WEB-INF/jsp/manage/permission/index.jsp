@@ -39,13 +39,6 @@
 <script>
 var $table = $('#table');
 $(function() {
-	$(document).on('focus', 'input[type="text"]', function() {
-		$(this).parent().find('label').addClass('active');
-	}).on('blur', 'input[type="text"]', function() {
-		if ($(this).val() == '') {
-			$(this).parent().find('label').removeClass('active');
-		}
-	});
 	// bootstrap table初始化
 	$table.bootstrapTable({
 		url: '${basePath}/manage/permission/list',
@@ -118,7 +111,10 @@ function createAction() {
 	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增权限',
-		content: 'url:${basePath}/manage/permission/create'
+		content: 'url:${basePath}/manage/permission/create',
+		onContentReady: function () {
+			initMaterialInput();
+		}
 	});
 }
 // 编辑
@@ -142,7 +138,10 @@ function updateAction() {
 		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑权限',
-			content: 'url:${basePath}/manage/permission/update/' + rows[0].permissionId
+			content: 'url:${basePath}/manage/permission/update/' + rows[0].permissionId,
+			onContentReady: function () {
+				initMaterialInput();
+			}
 		});
 	}
 }
