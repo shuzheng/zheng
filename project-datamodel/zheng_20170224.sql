@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-26 17:36:29
+Date: 2017-02-26 23:52:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -411,12 +411,16 @@ CREATE TABLE `upms_organization` (
   `description` varchar(1000) DEFAULT NULL COMMENT '组织描述',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`organization_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='组织';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='组织';
 
 -- ----------------------------
 -- Records of upms_organization
 -- ----------------------------
 INSERT INTO `upms_organization` VALUES ('1', '总部', '北京总部', '1');
+INSERT INTO `upms_organization` VALUES ('4', '河北分部', '河北石家庄', '1488122466236');
+INSERT INTO `upms_organization` VALUES ('5', '河南分部', '河南郑州', '1488122480265');
+INSERT INTO `upms_organization` VALUES ('6', '湖北分部', '湖北武汉', '1488122493265');
+INSERT INTO `upms_organization` VALUES ('7', '湖南分部', '湖南长沙', '1488122502752');
 
 -- ----------------------------
 -- Table structure for upms_permission
@@ -437,7 +441,7 @@ CREATE TABLE `upms_permission` (
   PRIMARY KEY (`permission_id`),
   KEY `FK_Reference_29` (`system_id`),
   CONSTRAINT `FK_Reference_29` FOREIGN KEY (`system_id`) REFERENCES `upms_system` (`system_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COMMENT='权限';
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COMMENT='权限';
 
 -- ----------------------------
 -- Records of upms_permission
@@ -466,9 +470,9 @@ INSERT INTO `upms_permission` VALUES ('26', '1', '2', '删除系统', '3', 'upms
 INSERT INTO `upms_permission` VALUES ('27', '1', '3', '新增组织', '3', 'upms:organization:create', '/manage/organization/create', 'zmdi zmdi-plus', '1', '27', '27');
 INSERT INTO `upms_permission` VALUES ('28', '1', '3', '编辑组织', '3', 'upms:organization:update', '/manage/organization/update', 'zmdi zmdi-edit', '1', '28', '28');
 INSERT INTO `upms_permission` VALUES ('29', '1', '3', '删除组织', '3', 'upms:organization:delete', '/manage/organization/delete', 'zmdi zmdi-close', '1', '29', '29');
-INSERT INTO `upms_permission` VALUES ('30', '1', '5', '新增用户', '3', 'upms:user:create', '/manage/user/create', 'zmdi zmdi-plus', '1', '30', '30');
-INSERT INTO `upms_permission` VALUES ('31', '1', '5', '编辑用户', '3', 'upms:user:update', '/manage/user/update', 'zmdi zmdi-edit', '1', '31', '31');
-INSERT INTO `upms_permission` VALUES ('32', '1', '5', '删除用户', '3', 'upms:user:delete', '/manage/user/delete', 'zmdi zmdi-close', '1', '32', '32');
+INSERT INTO `upms_permission` VALUES ('30', '1', '6', '新增用户', '3', 'upms:user:create', '/manage/user/create', 'zmdi zmdi-plus', '1', '30', '30');
+INSERT INTO `upms_permission` VALUES ('31', '1', '6', '编辑用户', '3', 'upms:user:update', '/manage/user/update', 'zmdi zmdi-edit', '1', '31', '31');
+INSERT INTO `upms_permission` VALUES ('32', '1', '6', '删除用户', '3', 'upms:user:delete', '/manage/user/delete', 'zmdi zmdi-close', '1', '32', '32');
 INSERT INTO `upms_permission` VALUES ('33', '1', '5', '新增角色', '3', 'upms:role:create', '/manage/role/create', 'zmdi zmdi-plus', '1', '33', '33');
 INSERT INTO `upms_permission` VALUES ('34', '1', '5', '编辑角色', '3', 'upms:role:update', '/manage/role/update', 'zmdi zmdi-edit', '1', '34', '34');
 INSERT INTO `upms_permission` VALUES ('35', '1', '5', '删除角色', '3', 'upms:role:delete', '/manage/role/delete', 'zmdi zmdi-close', '1', '35', '35');
@@ -476,8 +480,10 @@ INSERT INTO `upms_permission` VALUES ('36', '1', '39', '新增权限', '3', 'upm
 INSERT INTO `upms_permission` VALUES ('37', '1', '39', '编辑权限', '3', 'upms:permission:update', '/manage/permission/update', 'zmdi zmdi-edit', '1', '37', '37');
 INSERT INTO `upms_permission` VALUES ('38', '1', '39', '删除权限', '3', 'upms:permission:delete', '/manage/permission/delete', 'zmdi zmdi-close', '1', '38', '38');
 INSERT INTO `upms_permission` VALUES ('39', '1', '7', '权限管理', '2', 'upms:permission:read', '/manage/permission/index', null, '1', '39', '39');
-INSERT INTO `upms_permission` VALUES ('46', '1', '5', '角色授权', '3', 'upms:role:permission', '/manage/role/permission', 'zmdi zmdi-key', '1', '1488091928257', '1488091928257');
-INSERT INTO `upms_permission` VALUES ('47', '1', '6', '用户授权', '3', 'upms:user:permission', '/manage/user/permission', 'zmdi zmdi-key', '1', '1488092013302', '1488092013302');
+INSERT INTO `upms_permission` VALUES ('46', '1', '5', '角色权限', '3', 'upms:role:permission', '/manage/role/permission', 'zmdi zmdi-key', '1', '1488091928257', '1488091928257');
+INSERT INTO `upms_permission` VALUES ('48', '1', '6', '用户组织', '3', 'upms:user:organization', '/manage/user/organization', 'zmdi zmdi-accounts-list', '1', '1488120011165', '1488120011165');
+INSERT INTO `upms_permission` VALUES ('50', '1', '6', '用户角色', '3', 'upms:user:role', '/manage/user/role', 'zmdi zmdi-accounts', '1', '1488120554175', '1488120554175');
+INSERT INTO `upms_permission` VALUES ('51', '1', '6', '用户权限', '3', 'upms:user:permission', '/manage/user/permission', 'zmdi zmdi-key', '1', '1488092013302', '1488092013302');
 
 -- ----------------------------
 -- Table structure for upms_role
@@ -510,7 +516,7 @@ CREATE TABLE `upms_role_permission` (
   PRIMARY KEY (`role_permission_id`),
   KEY `FK_Reference_23` (`role_id`),
   CONSTRAINT `FK_Reference_23` FOREIGN KEY (`role_id`) REFERENCES `upms_role` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COMMENT='角色权限关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COMMENT='角色权限关联表';
 
 -- ----------------------------
 -- Records of upms_role_permission
@@ -535,8 +541,6 @@ INSERT INTO `upms_role_permission` VALUES ('20', '1', '20');
 INSERT INTO `upms_role_permission` VALUES ('21', '1', '21');
 INSERT INTO `upms_role_permission` VALUES ('22', '1', '22');
 INSERT INTO `upms_role_permission` VALUES ('24', '1', '24');
-INSERT INTO `upms_role_permission` VALUES ('25', '1', '25');
-INSERT INTO `upms_role_permission` VALUES ('26', '1', '26');
 INSERT INTO `upms_role_permission` VALUES ('27', '1', '27');
 INSERT INTO `upms_role_permission` VALUES ('28', '1', '28');
 INSERT INTO `upms_role_permission` VALUES ('29', '1', '29');
@@ -550,7 +554,12 @@ INSERT INTO `upms_role_permission` VALUES ('36', '1', '36');
 INSERT INTO `upms_role_permission` VALUES ('37', '1', '37');
 INSERT INTO `upms_role_permission` VALUES ('38', '1', '38');
 INSERT INTO `upms_role_permission` VALUES ('39', '1', '46');
-INSERT INTO `upms_role_permission` VALUES ('40', '1', '47');
+INSERT INTO `upms_role_permission` VALUES ('40', '1', '51');
+INSERT INTO `upms_role_permission` VALUES ('41', '1', '26');
+INSERT INTO `upms_role_permission` VALUES ('42', '1', '26');
+INSERT INTO `upms_role_permission` VALUES ('43', '1', '25');
+INSERT INTO `upms_role_permission` VALUES ('44', '1', '48');
+INSERT INTO `upms_role_permission` VALUES ('45', '1', '50');
 
 -- ----------------------------
 -- Table structure for upms_system
@@ -608,12 +617,14 @@ CREATE TABLE `upms_user_organization` (
   `user_id` int(10) unsigned NOT NULL COMMENT '用户编号',
   `organization_id` int(10) unsigned NOT NULL COMMENT '组织编号',
   PRIMARY KEY (`user_organization_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户组织关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COMMENT='用户组织关联表';
 
 -- ----------------------------
 -- Records of upms_user_organization
 -- ----------------------------
-INSERT INTO `upms_user_organization` VALUES ('1', '1', '1');
+INSERT INTO `upms_user_organization` VALUES ('16', '1', '1');
+INSERT INTO `upms_user_organization` VALUES ('17', '1', '4');
+INSERT INTO `upms_user_organization` VALUES ('18', '1', '7');
 
 -- ----------------------------
 -- Table structure for upms_user_permission
@@ -639,9 +650,10 @@ CREATE TABLE `upms_user_role` (
   `user_id` int(10) unsigned NOT NULL COMMENT '用户编号',
   `role_id` int(10) DEFAULT NULL COMMENT '角色编号',
   PRIMARY KEY (`user_role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='用户角色关联表';
 
 -- ----------------------------
 -- Records of upms_user_role
 -- ----------------------------
 INSERT INTO `upms_user_role` VALUES ('1', '1', '1');
+INSERT INTO `upms_user_role` VALUES ('2', '1', '2');
