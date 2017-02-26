@@ -102,6 +102,7 @@ zheng
 - Font-awesome
 - Waves
 - zTree
+- Select2
 - jquery-confirm
 - jQuery EasyUI
 - AngularJs
