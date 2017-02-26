@@ -1,5 +1,7 @@
 package com.zheng.upms.server.controller.manage;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
@@ -9,6 +11,9 @@ import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsRole;
 import com.zheng.upms.dao.model.UpmsRoleExample;
+import com.zheng.upms.dao.model.UpmsRolePermission;
+import com.zheng.upms.dao.model.UpmsRolePermissionExample;
+import com.zheng.upms.rpc.api.UpmsRolePermissionService;
 import com.zheng.upms.rpc.api.UpmsRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +26,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +46,9 @@ public class UpmsRoleController extends BaseController {
     @Autowired
     private UpmsRoleService upmsRoleService;
 
+    @Autowired
+    private UpmsRolePermissionService upmsRolePermissionService;
+
     @ApiOperation(value = "角色首页")
     @RequiresPermissions("upms:role:read")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -53,6 +63,33 @@ public class UpmsRoleController extends BaseController {
         UpmsRole role = upmsRoleService.selectByPrimaryKey(id);
         modelMap.put("role", role);
         return "/manage/role/permission";
+    }
+
+    @ApiOperation(value = "角色授权")
+    @RequiresPermissions("upms:role:permission")
+    @RequestMapping(value = "/permission/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object permission(@PathVariable("id") int id, HttpServletRequest request) {
+        JSONArray datas = JSONArray.parseArray(request.getParameter("datas"));
+        List<Integer> deleteIds = new ArrayList<>();
+        for (int i = 0; i < datas.size(); i ++) {
+            JSONObject json = datas.getJSONObject(i);
+            if (!json.getBoolean("checked")) {
+                deleteIds.add(json.getIntValue("id"));
+            } else {
+                // 加权限
+                UpmsRolePermission upmsRolePermission = new UpmsRolePermission();
+                upmsRolePermission.setRoleId(id);
+                upmsRolePermission.setPermissionId(json.getIntValue("id"));
+                upmsRolePermissionService.insertSelective(upmsRolePermission);
+            }
+        }
+        // 减权限
+        UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
+        upmsRolePermissionExample.createCriteria()
+            .andPermissionIdIn(deleteIds);
+        upmsRolePermissionService.deleteByExample(upmsRolePermissionExample);
+        return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
     }
 
     @ApiOperation(value = "角色列表")

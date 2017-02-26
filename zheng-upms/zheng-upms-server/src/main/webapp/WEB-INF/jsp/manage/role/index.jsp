@@ -209,6 +209,7 @@ function deleteAction() {
 }
 // 授权
 var permissionDialog;
+var roleId;
 function permissionAction() {
 	var rows = $table.bootstrapTable('getSelections');
 	if (rows.length != 1) {
@@ -225,16 +226,19 @@ function permissionAction() {
 			}
 		});
 	} else {
+		roleId = rows[0].roleId;
 		permissionDialog = $.dialog({
 			animationSpeed: 300,
 			title: '角色授权',
-			content: 'url:${basePath}/manage/role/permission/' + rows[0].roleId,
+			content: 'url:${basePath}/manage/role/permission/' + roleId,
 			onContentReady: function () {
 				initMaterialInput();
+				initTree();
 			}
 		});
 	}
 }
+
 </script>
 </body>
 </html>

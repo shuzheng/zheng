@@ -7,10 +7,8 @@ import com.zheng.common.base.BaseController;
 import com.zheng.common.validator.LengthValidator;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
-import com.zheng.upms.dao.model.UpmsPermission;
-import com.zheng.upms.dao.model.UpmsPermissionExample;
-import com.zheng.upms.dao.model.UpmsSystem;
-import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.dao.model.*;
+import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.api.UpmsPermissionService;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import io.swagger.annotations.Api;
@@ -44,6 +42,9 @@ public class UpmsPermissionController extends BaseController {
 
     @Autowired
     private UpmsSystemService upmsSystemService;
+
+    @Autowired
+    private UpmsApiService upmsApiService;
 
     @ApiOperation(value = "权限首页")
     @RequiresPermissions("upms:permission:read")
@@ -81,6 +82,59 @@ public class UpmsPermissionController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);
         result.put("total", total);
+        return result;
+    }
+
+    @ApiOperation(value = "角色权限列表")
+    @RequiresPermissions("upms:permission:read")
+    @RequestMapping(value = "/role/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object role(@PathVariable("id") int id) {
+        // 所有正常系统
+        UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
+        upmsSystemExample.createCriteria()
+                .andStatusEqualTo((byte) 1);
+        List<UpmsSystem> systems = upmsSystemService.selectByExample(upmsSystemExample);
+        // 所有正常权限
+        UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
+        upmsPermissionExample.createCriteria()
+            .andStatusEqualTo((byte) 1);
+        List<UpmsPermission> permissions = upmsPermissionService.selectByExample(upmsPermissionExample);
+        // 角色已有权限
+        List<UpmsRolePermission> rolePermissions = upmsApiService.selectUpmsRolePermisstionByUpmsRoleId(id);
+        // 返回结果集
+        Map result = new HashMap();
+        result.put("systems", systems);
+        result.put("permissions", permissions);
+        result.put("rolePermissions", rolePermissions);
+        return result;
+    }
+
+    @ApiOperation(value = "用户权限列表")
+    @RequiresPermissions("upms:permission:read")
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object user(@PathVariable("id") int id) {
+        // 所有正常系统
+        UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
+        upmsSystemExample.createCriteria()
+                .andStatusEqualTo((byte) 1);
+        List<UpmsSystem> systems = upmsSystemService.selectByExample(upmsSystemExample);
+        // 所有正常权限
+        UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
+        upmsPermissionExample.createCriteria()
+                .andStatusEqualTo((byte) 1);
+        List<UpmsPermission> permissions = upmsPermissionService.selectByExample(upmsPermissionExample);
+        // 用户已有权限
+        List<UpmsUserPermission> rolePermissions = upmsApiService.selectUpmsUserPermissionByUpmsUserId(id);
+        // 用户已有角色
+        List<UpmsRole> roles = upmsApiService.selectUpmsRoleByUpmsUserId(id);
+        // 返回结果集
+        Map result = new HashMap();
+        result.put("systems", systems);
+        result.put("permissions", permissions);
+        result.put("rolePermissions", rolePermissions);
+        result.put("roles", roles);
         return result;
     }
 
