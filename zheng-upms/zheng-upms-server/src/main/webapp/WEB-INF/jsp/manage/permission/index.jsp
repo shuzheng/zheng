@@ -94,7 +94,7 @@ function statusFormatter(value, row, index) {
 	if (value == 1) {
 		return '<span class="label label-success">正常</span>';
 	} else {
-		return '<span class="label label-danger">锁定</span>';
+		return '<span class="label label-default">锁定</span>';
 	}
 }
 // 新增
@@ -106,7 +106,7 @@ function createAction() {
 		content: 'url:${basePath}/manage/permission/create',
 		onContentReady: function () {
 			initMaterialInput();
-			$('select').select2();
+			$('select').select2({placeholder: "Select a state"});
 		}
 	});
 }
@@ -135,6 +135,8 @@ function updateAction() {
 			onContentReady: function () {
 				initMaterialInput();
 				$('select').select2();
+				initType();
+				initSelect2();
 			}
 		});
 	}

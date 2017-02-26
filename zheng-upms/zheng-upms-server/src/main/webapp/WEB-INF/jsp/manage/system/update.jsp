@@ -31,11 +31,11 @@
 		<div class="radio">
 			<div class="radio radio-inline radio-success">
 				<input id="status_1" type="radio" name="status" value="1" <c:if test="${system.status==1}">checked</c:if>>
-				<label for="status_1"> 正常 </label>
+				<label for="status_1">正常 </label>
 			</div>
 			<div class="radio radio-inline">
 				<input id="status_0" type="radio" name="status" value="-1" <c:if test="${system.status!=1}">checked</c:if>>
-				<label for="status_0"> 锁定 </label>
+				<label for="status_0">锁定 </label>
 			</div>
 		</div>
 		<div class="form-group text-right dialog-buttons">

@@ -60,12 +60,16 @@ public class UpmsPermissionController extends BaseController {
             @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
             @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
             @RequestParam(required = false, defaultValue = "0", value = "type") int type,
+            @RequestParam(required = false, defaultValue = "0", value = "systemId") int systemId,
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
+        UpmsPermissionExample.Criteria criteria = upmsPermissionExample.createCriteria();
         if (0 != type) {
-            upmsPermissionExample.createCriteria()
-                .andTypeEqualTo((byte) type);
+            criteria.andTypeEqualTo((byte) type);
+        }
+        if (0 != systemId) {
+            criteria.andSystemIdEqualTo(systemId);
         }
         upmsPermissionExample.setOffset(offset);
         upmsPermissionExample.setLimit(limit);
@@ -124,8 +128,13 @@ public class UpmsPermissionController extends BaseController {
     @RequiresPermissions("upms:permission:update")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update(@PathVariable("id") int id, ModelMap modelMap) {
+        UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
+        upmsSystemExample.createCriteria()
+                .andStatusEqualTo((byte) 1);
+        List<UpmsSystem> upmsSystems = upmsSystemService.selectByExample(upmsSystemExample);
         UpmsPermission permission = upmsPermissionService.selectByPrimaryKey(id);
         modelMap.put("permission", permission);
+        modelMap.put("upmsSystems", upmsSystems);
         return "/manage/permission/update";
     }
 

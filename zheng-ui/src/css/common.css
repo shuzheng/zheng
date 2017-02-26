@@ -17,6 +17,7 @@ body{font-size: 12px;}
 .jconfirm .jconfirm-box .jconfirm-buttons button{-webkit-border-radius: 0; border-radius: 0;}
 .btn:active{-webkit-box-shadow: none; box-shadow: none;}
 /* input */
+body .jconfirm{z-index: 999;}
 .jconfirm-content form{margin-top: 10px;}
 .crudDialog{padding: 0 0 2px;}
 .dialog-buttons a{font-weight: bold;}

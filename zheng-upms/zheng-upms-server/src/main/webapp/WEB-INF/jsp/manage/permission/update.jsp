@@ -6,19 +6,19 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="basePath" value="${pageContext.request.contextPath}"/>
-<div id="createDialog" class="crudDialog">
-	<form id="createForm" method="post">
+<div id="updateDialog" class="crudDialog">
+	<form id="updateForm" method="post">
 		<div class="radio">
 			<div class="radio radio-inline radio-success">
-				<input id="type_1" type="radio" name="type" value="1" checked>
+				<input id="type_1" type="radio" name="type" value="1" <c:if test="${permission.type==1}">checked</c:if>>
 				<label for="type_1">目录 </label>
 			</div>
 			<div class="radio radio-inline radio-info">
-				<input id="type_2" type="radio" name="type" value="2">
+				<input id="type_2" type="radio" name="type" value="2" <c:if test="${permission.type==2}">checked</c:if>>
 				<label for="type_2">菜单 </label>
 			</div>
 			<div class="radio radio-inline radio-warning">
-				<input id="type_3" type="radio" name="type" value="3">
+				<input id="type_3" type="radio" name="type" value="3" <c:if test="${permission.type==3}">checked</c:if>>
 				<label for="type_3">按钮 </label>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 				<select id="systemId" name="systemId">
 					<option value="0">请选择系统</option>
 					<c:forEach var="upmsSystem" items="${upmsSystems}">
-					<option value="${upmsSystem.systemId}">${upmsSystem.title}</option>
+					<option value="${upmsSystem.systemId}" <c:if test="${permission.systemId==upmsSystem.systemId}">selected="selected"</c:if>>${upmsSystem.title}</option>
 					</c:forEach>
 				</select>
 			</span>
@@ -39,40 +39,40 @@
 		</div>
 		<div class="form-group">
 			<label for="name">名称</label>
-			<input id="name" type="text" class="form-control" name="name" maxlength="20">
+			<input id="name" type="text" class="form-control" name="name" maxlength="20" value="${permission.name}">
 		</div>
 		<div class="form-group type2 type3" hidden>
 			<label for="permissionValue">权限值</label>
-			<input id="permissionValue" type="text" class="form-control" name="permissionValue" maxlength="50">
+			<input id="permissionValue" type="text" class="form-control" name="permissionValue" maxlength="50" value="${permission.permissionValue}">
 		</div>
 		<div class="form-group type2 type3" hidden>
 			<label for="uri">路径</label>
-			<input id="uri" type="text" class="form-control" name="uri" maxlength="100">
+			<input id="uri" type="text" class="form-control" name="uri" maxlength="100" value="${permission.uri}">
 		</div>
 		<div class="form-group type1 type3">
 			<label for="icon">图标</label>
-			<input id="icon" type="text" class="form-control" name="icon" maxlength="50" value="zmdi zmdi-widgets">
+			<input id="icon" type="text" class="form-control" name="icon" maxlength="50" value="${permission.icon}">
 		</div>
 		<div class="radio">
 			<div class="radio radio-inline radio-success">
-				<input id="status_1" type="radio" name="status" value="1" checked>
+				<input id="status_1" type="radio" name="status" value="1" <c:if test="${permission.status==1}">checked</c:if>>
 				<label for="status_1">正常 </label>
 			</div>
 			<div class="radio radio-inline">
-				<input id="status_0" type="radio" name="status" value="0">
+				<input id="status_0" type="radio" name="status" value="0" <c:if test="${permission.status==0}">checked</c:if>>
 				<label for="status_0">锁定 </label>
 			</div>
 		</div>
 		<div class="form-group text-right dialog-buttons">
-			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
-			<a class="waves-effect waves-button" href="javascript:;" onclick="createDialog.close();">取消</a>
+			<a class="waves-effect waves-button" href="javascript:;" onclick="updateSubmit();">保存</a>
+			<a class="waves-effect waves-button" href="javascript:;" onclick="updateDialog.close();">取消</a>
 		</div>
 	</form>
 </div>
 <script>
 var pidType = 0;
-var systemId = 0;
-var type = 1;
+var systemId = ${permission.systemId};
+var type = ${permission.type};
 $(function() {
 	// 选择分类
 	$('input:radio[name="type"]').change(function() {
@@ -100,7 +100,7 @@ function initType() {
 		initPid();
 	}
 }
-function initPid() {
+function initPid(val) {
 	if (systemId != 0) {
 		$.getJSON('${basePath}/manage/permission/list', {systemId: systemId, type: pidType, limit: 10000}, function(json) {
 			var datas = [{id: 0, text: '请选择上级'}];
@@ -114,6 +114,11 @@ function initPid() {
 			$('#pid').select2({
 				data : datas
 			});
+			if (!!val) {
+				console.log(val);
+				//$('#pid').select2('val', val);
+				$('#pid').select2().val(val).trigger('change');
+			}
 		});
 	} else {
 		$('#pid').empty();
@@ -122,11 +127,20 @@ function initPid() {
 		});
 	}
 }
-function createSubmit() {
+function initSelect2() {
+	if (type == 2) {
+		pidType = 1;
+	}
+	if (type == 3) {
+		pidType = 2
+	}
+	initPid(${permission.pid});
+}
+function updateSubmit() {
     $.ajax({
         type: 'post',
-        url: '${basePath}/manage/permission/create',
-        data: $('#createForm').serialize(),
+        url: '${basePath}/manage/permission/update/${permission.permissionId}',
+        data: $('#updateForm').serialize(),
         beforeSend: function() {
 			if ($('#systemId').val() == 0) {
 				$.confirm({
@@ -213,7 +227,7 @@ function createSubmit() {
 						});
 				}
 			} else {
-				createDialog.close();
+				updateDialog.close();
 				$table.bootstrapTable('refresh');
 			}
         },
