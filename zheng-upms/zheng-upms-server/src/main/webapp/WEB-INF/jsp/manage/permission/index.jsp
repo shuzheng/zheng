@@ -106,7 +106,7 @@ function createAction() {
 		content: 'url:${basePath}/manage/permission/create',
 		onContentReady: function () {
 			initMaterialInput();
-			$('select').select2({placeholder: "Select a state"});
+			$('select').select2();
 		}
 	});
 }

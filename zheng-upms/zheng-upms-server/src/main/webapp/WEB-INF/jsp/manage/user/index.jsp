@@ -21,7 +21,9 @@
 		<shiro:hasPermission name="upms:user:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增用户</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:user:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑用户</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:user:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除用户</a></shiro:hasPermission>
-		<shiro:hasPermission name="upms:user:permission"><a class="waves-effect waves-button" href="javascript:;" onclick="permissionAction()"><i class="zmdi zmdi-key"></i> 用户授权</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:user:organization"><a class="waves-effect waves-button" href="javascript:;" onclick="organizationAction()"><i class="zmdi zmdi-accounts-list"></i> 用户组织</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:user:role"><a class="waves-effect waves-button" href="javascript:;" onclick="roleAction()"><i class="zmdi zmdi-accounts"></i> 用户角色</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:user:permission"><a class="waves-effect waves-button" href="javascript:;" onclick="permissionAction()"><i class="zmdi zmdi-key"></i> 用户权限</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
@@ -233,8 +235,77 @@ function deleteAction() {
 		});
 	}
 }
-// 授权
+// 用户组织
+var organizationDialog;
+var organizationUserId;
+function organizationAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		organizationUserId = rows[0].userId;
+		organizationDialog = $.dialog({
+			animationSpeed: 300,
+			title: '用户组织',
+			content: 'url:${basePath}/manage/user/organization/' + organizationUserId,
+			onContentReady: function () {
+				initMaterialInput();
+				$('select').select2({
+					placeholder: '请选择用户组织',
+					allowClear: true
+				});
+			}
+		});
+	}
+}
+// 用户角色
+var roleDialog;
+var roleUserId;
+function roleAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		roleUserId = rows[0].userId;
+		roleDialog = $.dialog({
+			animationSpeed: 300,
+			title: '用户角色',
+			content: 'url:${basePath}/manage/user/role/' + roleUserId,
+			onContentReady: function () {
+				initMaterialInput();
+				$('select').select2({
+					placeholder: '请选择用户角色',
+					allowClear: true
+				});
+			}
+		});
+	}
+}
+// 用户权限
 var permissionDialog;
+var permissionUserId;
 function permissionAction() {
 	var rows = $table.bootstrapTable('getSelections');
 	if (rows.length != 1) {
@@ -251,10 +322,11 @@ function permissionAction() {
 			}
 		});
 	} else {
+		permissionUserId = rows[0].userId;
 		permissionDialog = $.dialog({
 			animationSpeed: 300,
 			title: '用户授权',
-			content: 'url:${basePath}/manage/user/permission/' + rows[0].userId,
+			content: 'url:${basePath}/manage/user/permission/' + permissionUserId,
 			onContentReady: function () {
 				initMaterialInput();
 			}
