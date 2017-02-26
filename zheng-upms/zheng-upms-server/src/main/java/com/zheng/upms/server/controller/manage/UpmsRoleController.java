@@ -46,6 +46,15 @@ public class UpmsRoleController extends BaseController {
         return "/manage/role/index";
     }
 
+    @ApiOperation(value = "角色授权")
+    @RequiresPermissions("upms:role:permission")
+    @RequestMapping(value = "/permission/{id}", method = RequestMethod.GET)
+    public String permission(@PathVariable("id") int id, ModelMap modelMap) {
+        UpmsRole role = upmsRoleService.selectByPrimaryKey(id);
+        modelMap.put("role", role);
+        return "/manage/role/permission";
+    }
+
     @ApiOperation(value = "角色列表")
     @RequiresPermissions("upms:role:read")
     @RequestMapping(value = "/list", method = RequestMethod.GET)

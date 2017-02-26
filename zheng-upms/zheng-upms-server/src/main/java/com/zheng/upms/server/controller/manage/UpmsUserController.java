@@ -47,6 +47,15 @@ public class UpmsUserController extends BaseController {
         return "/manage/user/index";
     }
 
+    @ApiOperation(value = "用户授权")
+    @RequiresPermissions("upms:user:permission")
+    @RequestMapping(value = "/permission/{id}", method = RequestMethod.GET)
+    public String permission(@PathVariable("id") int id, ModelMap modelMap) {
+        UpmsUser user = upmsUserService.selectByPrimaryKey(id);
+        modelMap.put("user", user);
+        return "/manage/user/permission";
+    }
+
     @ApiOperation(value = "用户列表")
     @RequiresPermissions("upms:user:read")
     @RequestMapping(value = "/list", method = RequestMethod.GET)

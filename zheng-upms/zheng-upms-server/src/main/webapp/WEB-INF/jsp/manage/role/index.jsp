@@ -21,6 +21,7 @@
 		<shiro:hasPermission name="upms:role:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增角色</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:role:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑角色</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:role:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除角色</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:role:permission"><a class="waves-effect waves-button" href="javascript:;" onclick="permissionAction()"><i class="zmdi zmdi-key"></i> 角色授权</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
@@ -202,6 +203,34 @@ function deleteAction() {
 					text: '取消',
 					btnClass: 'waves-effect waves-button'
 				}
+			}
+		});
+	}
+}
+// 授权
+var permissionDialog;
+function permissionAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		permissionDialog = $.dialog({
+			animationSpeed: 300,
+			title: '角色授权',
+			content: 'url:${basePath}/manage/role/permission/' + rows[0].roleId,
+			onContentReady: function () {
+				initMaterialInput();
 			}
 		});
 	}
