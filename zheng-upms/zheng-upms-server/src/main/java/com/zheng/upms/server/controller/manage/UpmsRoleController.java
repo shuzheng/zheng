@@ -56,7 +56,7 @@ public class UpmsRoleController extends BaseController {
         return "/manage/role/index";
     }
 
-    @ApiOperation(value = "角色授权")
+    @ApiOperation(value = "角色权限")
     @RequiresPermissions("upms:role:permission")
     @RequestMapping(value = "/permission/{id}", method = RequestMethod.GET)
     public String permission(@PathVariable("id") int id, ModelMap modelMap) {
@@ -65,7 +65,7 @@ public class UpmsRoleController extends BaseController {
         return "/manage/role/permission";
     }
 
-    @ApiOperation(value = "角色授权")
+    @ApiOperation(value = "角色权限")
     @RequiresPermissions("upms:role:permission")
     @RequestMapping(value = "/permission/{id}", method = RequestMethod.POST)
     @ResponseBody
