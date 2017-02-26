@@ -18,6 +18,8 @@
     <dubbo:reference id="upmsSystemService" interface="com.zheng.upms.rpc.api.UpmsSystemService" mock="true"/>
     <!-- 组织 -->
     <dubbo:reference id="upmsOrganizationService" interface="com.zheng.upms.rpc.api.UpmsOrganizationService" mock="true"/>
+    <!-- 用户组织 -->
+    <dubbo:reference id="upmsUserOrganizationService" interface="com.zheng.upms.rpc.api.UpmsUserOrganizationService" mock="true"/>
     <!-- 用户 -->
     <dubbo:reference id="upmsUserService" interface="com.zheng.upms.rpc.api.UpmsUserService" mock="true"/>
     <!-- 角色 -->
