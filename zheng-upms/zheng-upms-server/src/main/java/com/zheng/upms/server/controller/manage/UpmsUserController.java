@@ -10,6 +10,9 @@ import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.dao.model.UpmsUserExample;
+import com.zheng.upms.rpc.api.UpmsUserOrganizationService;
+import com.zheng.upms.rpc.api.UpmsUserPermissionService;
+import com.zheng.upms.rpc.api.UpmsUserRoleService;
 import com.zheng.upms.rpc.api.UpmsUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,6 +42,15 @@ public class UpmsUserController extends BaseController {
 
     @Autowired
     private UpmsUserService upmsUserService;
+
+    @Autowired
+    private UpmsUserRoleService upmsUserRoleService;
+
+    @Autowired
+    private UpmsUserPermissionService upmsUserPermissionService;
+
+    @Autowired
+    private UpmsUserOrganizationService upmsUserOrganizationService;
 
     @ApiOperation(value = "用户首页")
     @RequiresPermissions("upms:user:read")
@@ -131,7 +143,6 @@ public class UpmsUserController extends BaseController {
     public Object update(@PathVariable("id") int id, UpmsUser upmsUser) {
         ComplexResult result = FluentValidator.checkAll()
                 .on(upmsUser.getUsername(), new LengthValidator(1, 20, "帐号"))
-                .on(upmsUser.getPassword(), new LengthValidator(5, 32, "密码"))
                 .on(upmsUser.getRealname(), new NotNullValidator("姓名"))
                 .doValidate()
                 .result(ResultCollectors.toComplex());

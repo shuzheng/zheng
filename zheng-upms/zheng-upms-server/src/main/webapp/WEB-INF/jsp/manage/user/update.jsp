@@ -13,10 +13,6 @@
 			<input id="username" type="text" class="form-control" name="username" maxlength="20" value="${user.username}">
 		</div>
 		<div class="form-group">
-			<label for="password">密码</label>
-			<input id="password" type="text" class="form-control" name="password" maxlength="32" value="${user.password}">
-		</div>
-		<div class="form-group">
 			<label for="realname">姓名</label>
 			<input id="realname" type="text" class="form-control" name="realname" maxlength="20" value="${user.realname}">
 		</div>
@@ -65,10 +61,6 @@ function createSubmit() {
         beforeSend: function() {
             if ($('#username').val() == '') {
                 $('#username').focus();
-                return false;
-            }
-            if ($('#password').val() == '' || $('#password').val().length < 5) {
-                $('#password').focus();
                 return false;
             }
         },
