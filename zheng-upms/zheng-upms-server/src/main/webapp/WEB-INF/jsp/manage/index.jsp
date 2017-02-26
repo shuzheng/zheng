@@ -132,7 +132,7 @@
 				<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页</a>
 			</li>
 			<c:forEach var="upmsPermission" items="${upmsPermissions}" varStatus="status">
-				<c:if test="${upmsPermission.pid == null}">
+				<c:if test="${upmsPermission.pid == 0}">
 				<li class="sub-menu system_menus system_${upmsPermission.systemId} ${status.index}" <c:if test="${upmsPermission.systemId != 1}">style="display:none;"</c:if>>
 					<a class="waves-effect" href="javascript:;"><i class="${upmsPermission.icon}"></i> ${upmsPermission.name}</a>
 					<ul>
