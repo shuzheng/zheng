@@ -15,4 +15,5 @@
 <link href="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.css" rel="stylesheet"/>
 <link href="${basePath}/resources/zheng-ui/plugins/select2/css/select2.min.css" rel="stylesheet"/>
 <link href="${basePath}/resources/zheng-ui/plugins/select2/theme/select2-bootstrap.min.css" rel="stylesheet"/>
+<link href="${basePath}/resources/zheng-ui/plugins/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
 <link href="${basePath}/resources/zheng-ui/css/common.css" rel="stylesheet"/>

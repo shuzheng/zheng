@@ -13,4 +13,5 @@
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/select2/js/select2.min.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/zTree_v3/js/jquery.ztree.all.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/js/common.js"></script>
