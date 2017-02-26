@@ -1,7 +1,6 @@
 package com.zheng.upms.rpc.api;
 
-import com.zheng.upms.dao.model.UpmsPermission;
-import com.zheng.upms.dao.model.UpmsRole;
+import com.zheng.upms.dao.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +23,30 @@ public class UpmsApiServiceMock implements UpmsApiService {
     @Override
     public List<UpmsRole> selectUpmsRoleByUpmsUserId(Integer upmsUserId) {
         _log.info("UpmsApiServiceMock => selectUpmsRoleByUpmsUserId");
+        return null;
+    }
+
+    @Override
+    public List<UpmsRolePermission> selectUpmsRolePermisstionByUpmsRoleId(Integer upmsRoleId) {
+        _log.info("UpmsApiServiceMock => selectUpmsRolePermisstionByUpmsRoleId");
+        return null;
+    }
+
+    @Override
+    public List<UpmsUserPermission> selectUpmsUserPermissionByUpmsUserId(Integer upmsUserId) {
+        _log.info("UpmsApiServiceMock => selectUpmsUserPermissionByUpmsUserId");
+        return null;
+    }
+
+    @Override
+    public List<UpmsSystem> selectUpmsSystemByExample(UpmsSystemExample upmsSystemExample) {
+        _log.info("UpmsApiServiceMock => selectUpmsSystemByExample");
+        return null;
+    }
+
+    @Override
+    public List<UpmsOrganization> selectUpmsOrganizationByExample(UpmsOrganizationExample upmsOrganizationExample) {
+        _log.info("UpmsApiServiceMock => selectUpmsOrganizationByExample");
         return null;
     }
 

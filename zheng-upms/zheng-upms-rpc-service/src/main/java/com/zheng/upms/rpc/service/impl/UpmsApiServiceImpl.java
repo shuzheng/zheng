@@ -1,10 +1,7 @@
 package com.zheng.upms.rpc.service.impl;
 
-import com.zheng.upms.dao.mapper.UpmsApiMapper;
-import com.zheng.upms.dao.mapper.UpmsUserMapper;
-import com.zheng.upms.dao.model.UpmsPermission;
-import com.zheng.upms.dao.model.UpmsRole;
-import com.zheng.upms.dao.model.UpmsUser;
+import com.zheng.upms.dao.mapper.*;
+import com.zheng.upms.dao.model.*;
 import com.zheng.upms.rpc.api.UpmsApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +26,18 @@ public class UpmsApiServiceImpl implements UpmsApiService {
 
     @Autowired
     UpmsApiMapper upmsApiMapper;
+
+    @Autowired
+    UpmsRolePermissionMapper upmsRolePermissionMapper;
+
+    @Autowired
+    UpmsUserPermissionMapper upmsUserPermissionMapper;
+
+    @Autowired
+    UpmsSystemMapper upmsSystemMapper;
+
+    @Autowired
+    UpmsOrganizationMapper upmsOrganizationMapper;
 
     /**
      * 根据用户id获取所拥有的权限
@@ -62,6 +71,54 @@ public class UpmsApiServiceImpl implements UpmsApiService {
         }
         List<UpmsRole> upmsRoles = upmsApiMapper.selectUpmsRoleByUpmsUserId(upmsUserId);
         return upmsRoles;
+    }
+
+    /**
+     * 根据角色id获取所拥有的权限
+     * @param upmsRoleId
+     * @return
+     */
+    @Override
+    public List<UpmsRolePermission> selectUpmsRolePermisstionByUpmsRoleId(Integer upmsRoleId) {
+        UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
+        upmsRolePermissionExample.createCriteria()
+                .andRoleIdEqualTo(upmsRoleId);
+        List<UpmsRolePermission> upmsRolePermissions = upmsRolePermissionMapper.selectByExample(upmsRolePermissionExample);
+        return upmsRolePermissions;
+    }
+
+    /**
+     * 根据用户id获取所拥有的权限
+     * @param upmsUserId
+     * @return
+     */
+    @Override
+    public List<UpmsUserPermission> selectUpmsUserPermissionByUpmsUserId(Integer upmsUserId) {
+        UpmsUserPermissionExample upmsUserPermissionExample = new UpmsUserPermissionExample();
+        upmsUserPermissionExample.createCriteria()
+                .andUserIdEqualTo(upmsUserId);
+        List<UpmsUserPermission> upmsUserPermissions = upmsUserPermissionMapper.selectByExample(upmsUserPermissionExample);
+        return upmsUserPermissions;
+    }
+
+    /**
+     * 根据条件获取系统数据
+     * @param upmsSystemExample
+     * @return
+     */
+    @Override
+    public List<UpmsSystem> selectUpmsSystemByExample(UpmsSystemExample upmsSystemExample) {
+        return upmsSystemMapper.selectByExample(upmsSystemExample);
+    }
+
+    /**
+     * 根据条件获取组织数据
+     * @param upmsOrganizationExample
+     * @return
+     */
+    @Override
+    public List<UpmsOrganization> selectUpmsOrganizationByExample(UpmsOrganizationExample upmsOrganizationExample) {
+        return upmsOrganizationMapper.selectByExample(upmsOrganizationExample);
     }
 
 }

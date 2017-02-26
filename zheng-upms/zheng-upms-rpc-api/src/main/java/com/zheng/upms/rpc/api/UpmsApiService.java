@@ -1,7 +1,6 @@
 package com.zheng.upms.rpc.api;
 
-import com.zheng.upms.dao.model.UpmsPermission;
-import com.zheng.upms.dao.model.UpmsRole;
+import com.zheng.upms.dao.model.*;
 
 import java.util.List;
 
@@ -24,5 +23,33 @@ public interface UpmsApiService {
      * @return
      */
     List<UpmsRole> selectUpmsRoleByUpmsUserId(Integer upmsUserId);
+
+    /**
+     * 根据角色id获取所拥有的权限
+     * @param upmsRoleId
+     * @return
+     */
+    List<UpmsRolePermission> selectUpmsRolePermisstionByUpmsRoleId(Integer upmsRoleId);
+
+    /**
+     * 根据用户id获取所拥有的权限
+     * @param upmsUserId
+     * @return
+     */
+    List<UpmsUserPermission> selectUpmsUserPermissionByUpmsUserId(Integer upmsUserId);
+
+    /**
+     * 根据条件获取系统数据
+     * @param upmsSystemExample
+     * @return
+     */
+    List<UpmsSystem> selectUpmsSystemByExample(UpmsSystemExample upmsSystemExample);
+
+    /**
+     * 根据条件获取组织数据
+     * @param upmsOrganizationExample
+     * @return
+     */
+    List<UpmsOrganization> selectUpmsOrganizationByExample(UpmsOrganizationExample upmsOrganizationExample);
 
 }
