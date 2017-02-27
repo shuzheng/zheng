@@ -1,6 +1,5 @@
-package com.zheng.upms.server.shiro.listener;
+package com.zheng.upms.server.shiro;
 
-import com.zheng.upms.server.controller.manage.UpmsOrganizationController;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
 import org.slf4j.Logger;
@@ -9,9 +8,9 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by shuzheng on 2017/2/12.
  */
-public class ShiroSessionListener implements SessionListener {
+public class UpmsSessionListener implements SessionListener {
 
-    private static Logger _log = LoggerFactory.getLogger(ShiroSessionListener.class);
+    private static Logger _log = LoggerFactory.getLogger(UpmsSessionListener.class);
 
     @Override
     public void onStart(Session session) {

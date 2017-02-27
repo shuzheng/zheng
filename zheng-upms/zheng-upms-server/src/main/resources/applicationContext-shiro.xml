@@ -58,6 +58,7 @@
         <property name="sessionListeners">
             <list><ref bean="sessionListener"/></list>
         </property>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!-- 会话验证调度器 -->
@@ -68,7 +69,7 @@
     </bean>
 
     <!-- 会话DAO，可重写，持久化session -->
-    <bean id="sessionDAO" class="com.zheng.upms.server.shiro.SessionRedisDao"/>
+    <bean id="sessionDAO" class="com.zheng.upms.server.shiro.UpmsSessionDao"/>
 
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -81,7 +82,10 @@
     </bean>
 
     <!-- 会话监听器 -->
-    <bean id="sessionListener" class="com.zheng.upms.server.shiro.listener.ShiroSessionListener"/>
+    <bean id="sessionListener" class="com.zheng.upms.server.shiro.UpmsSessionListener"/>
+
+    <!-- session工厂 -->
+    <bean id="sessionFactory" class="com.zheng.upms.server.shiro.UpmsSessionFactory"/>
 
     <!-- rememberMe管理器 -->
     <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
