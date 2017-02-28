@@ -22,7 +22,6 @@ public class UpmsSessionFactory implements SessionFactory {
             if (request != null) {
                 session.setHost(request.getRemoteAddr());
                 session.setUserAgent(request.getHeader("User-Agent"));
-                session.setSystemHost(request.getLocalAddr() + ":" + request.getLocalPort());
             }
         }
         return session;

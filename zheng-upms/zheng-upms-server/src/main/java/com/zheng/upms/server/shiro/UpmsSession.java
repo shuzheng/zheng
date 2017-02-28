@@ -9,7 +9,7 @@ import org.apache.shiro.session.mgt.SimpleSession;
 public class UpmsSession extends SimpleSession {
 
     public static enum OnlineStatus {
-        on_line("在线"), hidden("隐身"), force_logout("强制退出");
+        on_line("在线"), off_line("离线"), force_logout("强制退出");
         private final String info;
 
         private OnlineStatus(String info) {
@@ -27,9 +27,6 @@ public class UpmsSession extends SimpleSession {
     // 在线状态
     private OnlineStatus status = OnlineStatus.on_line;
 
-    // 用户登录时系统IP
-    private String systemHost;
-
     public String getUserAgent() {
         return userAgent;
     }
@@ -44,14 +41,6 @@ public class UpmsSession extends SimpleSession {
 
     public void setStatus(OnlineStatus status) {
         this.status = status;
-    }
-
-    public String getSystemHost() {
-        return systemHost;
-    }
-
-    public void setSystemHost(String systemHost) {
-        this.systemHost = systemHost;
     }
 
 }
