@@ -133,7 +133,7 @@ public class RedisUtil {
 	}
 
 	/**
-	 * 设置 过期时间
+	 * 设置 String 过期时间
 	 * @param key
 	 * @param value
 	 * @param seconds 以秒为单位
@@ -146,6 +146,23 @@ public class RedisUtil {
 			jedis.close();
 		} catch (Exception e) {
 			_log.error("Set keyex error : " + e);
+		}
+	}
+
+	/**
+	 * 设置 byte[] 过期时间
+	 * @param key
+	 * @param value
+	 * @param seconds 以秒为单位
+	 */
+	public synchronized static void set(byte[] key, byte[] value, int seconds) {
+		try {
+			Jedis jedis = getJedis();
+			jedis.set(key, value);
+			jedis.expire(key, seconds);
+			jedis.close();
+		} catch (Exception e) {
+			_log.error("Set key error : " + e);
 		}
 	}
 

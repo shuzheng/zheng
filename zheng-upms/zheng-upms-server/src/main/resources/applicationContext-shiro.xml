@@ -22,11 +22,14 @@
                 /swagger-ui.html = user
                 /druid/** = user
                 /manage/index = user
-                /manage/** = authc
+                /manage/** = upmsSessionForceLogout,authc
                 /** = anon
             </value>
         </property>
     </bean>
+
+    <!-- 强制退出会话过滤器 -->
+    <bean id="upmsSessionForceLogout" class="com.zheng.upms.server.shiro.UpmsSessionForceLogoutFilter"/>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">

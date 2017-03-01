@@ -18,7 +18,7 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<shiro:hasPermission name="upms:session:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-comment-alt-text"></i> 删除会话</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:session:forceout"><a class="waves-effect waves-button" href="javascript:;" onclick="forceoutAction()"><i class="zmdi zmdi-run"></i> 强制退出</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
@@ -60,9 +60,9 @@ $(function() {
 		]
 	});
 });
-// 删除
-var deleteDialog;
-function deleteAction() {
+// 强制退出
+var forceoutDialog;
+function forceoutAction() {
 	var rows = $table.bootstrapTable('getSelections');
 	if (rows.length == 0) {
 		$.confirm({
@@ -78,11 +78,11 @@ function deleteAction() {
 			}
 		});
 	} else {
-		deleteDialog = $.confirm({
+		forceoutDialog = $.confirm({
 			type: 'red',
 			animationSpeed: 300,
 			title: false,
-			content: '确认删除该会话吗？',
+			content: '确认强制退出该会话吗？',
 			buttons: {
 				confirm: {
 					text: '确认',
@@ -94,7 +94,7 @@ function deleteAction() {
 						}
 						$.ajax({
 							type: 'get',
-							url: '${basePath}/manage/session/delete/' + ids.join(","),
+							url: '${basePath}/manage/session/forceout/' + ids.join(","),
 							success: function(result) {
 								if (result.code != 1) {
 									if (result.data instanceof Array) {
@@ -129,7 +129,7 @@ function deleteAction() {
 										});
 									}
 								} else {
-									deleteDialog.close();
+									forceoutDialog.close();
 									$table.bootstrapTable('refresh');
 								}
 							},

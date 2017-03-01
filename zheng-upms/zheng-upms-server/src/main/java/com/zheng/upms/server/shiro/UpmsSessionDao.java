@@ -35,7 +35,7 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
     @Override
     protected Serializable doCreate(Session session) {
         Serializable sessionId = super.doCreate(session);
-        RedisUtil.set(sessionToByte(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId), sessionToByte(session));
+        RedisUtil.set((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId).getBytes(), sessionToByte(session), (int) session.getTimeout() / 1000);
         _log.debug("[UpmsSessionDao]创建session: sessionId={}", session.getId());
         // 维护会话id列表，提供会话分页管理
         Jedis jedis = RedisUtil.getJedis();
@@ -49,7 +49,7 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
         // 先从缓存中获取session，如果没有再去redis中获取
         Session session = super.doReadSession(sessionId);
         if(session == null){
-            byte[] bytes = RedisUtil.get(sessionId.toString().getBytes());
+            byte[] bytes = RedisUtil.get((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId).getBytes());
             if(null != bytes && bytes.length > 0){
                 session = (Session) byteToSession(bytes);
                 _log.debug("[UpmsSessionDao]redis中获取session: sessionId={}", session.getId());
@@ -62,8 +62,8 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
     protected void doUpdate(Session session) {
         // 更新session的最后一次访问时间
         super.doUpdate(session);
-        RedisUtil.set(session.getId().toString().getBytes(), sessionToByte(session));
-        _log.debug("[UpmsSessionDao]redis中更新session: sessionId={}", session.getId());
+        RedisUtil.set((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + session.getId()).getBytes(), sessionToByte(session), (int) session.getTimeout() / 1000);
+        _log.debug("[UpmsSessionDao]redis中更新session: sessionId={}, seconds={}", session.getId(), (int) session.getTimeout() / 1000);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
 
         // 删除session
         super.doDelete(session);
-        RedisUtil.remove(sessionToByte(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + serverSessionId));
+        RedisUtil.remove((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + serverSessionId).getBytes());
         _log.debug("[UpmsSessionDao]redis中删除session: sessionId={}", session.getId());
 
         // 维护会话id列表，提供会话分页管理
@@ -105,7 +105,6 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
      */
     public Map getActiveSessions(int offset, int limit) {
         Map sessions = new HashMap();
-
         Jedis jedis = RedisUtil.getJedis();
         // 获取在线会话总数
         long total = jedis.llen(ZHENG_UPMS_SHIRO_SESSION_IDS);
@@ -113,7 +112,7 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
         List<String> ids = jedis.lrange(ZHENG_UPMS_SHIRO_SESSION_IDS, offset, (offset + limit - 1));
         List<Session> rows = new ArrayList<>();
         for (String id : ids) {
-            byte[] bytes = RedisUtil.get(id.getBytes());
+            byte[] bytes = RedisUtil.get((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + id).getBytes());
             if(null != bytes && bytes.length > 0){
                 Session session = (Session) byteToSession(bytes);
                 rows.add(session);
@@ -126,13 +125,19 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
     }
 
     /**
-     * 删除会话
+     * 强制退出
      * @param ids
      * @return
      */
-    public int deleteByPrimaryKeys(String ids) {
+    public int forceout(String ids) {
         String[] sessionIds = ids.split(",");
         for (String serverSessionId : sessionIds) {
+//            byte[] bytes = RedisUtil.get((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + serverSessionId).getBytes());
+//            if(null != bytes && bytes.length > 0) {
+//                Session session = (Session) byteToSession(bytes);
+//                doDelete(session);
+//            }
+
             // 清空所有注册的局部会话和token
             // 当前全局会话token
             String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
@@ -150,22 +155,14 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
             _log.debug("当前token={}，对应的注册系统个数：{}个", token, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
             jedis.close();
 
-            byte[] bytes = RedisUtil.get(serverSessionId.getBytes());
+            // 会话增加强制退出属性标识，当此会话访问系统时，判断有该标识，则退出登录
+            byte[] bytes = RedisUtil.get((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + serverSessionId).getBytes());
             if(null != bytes && bytes.length > 0){
                 UpmsSession session = (UpmsSession) byteToSession(bytes);
-//                session.setStatus(UpmsSession.OnlineStatus.force_logout);
-//                super.doUpdate(session);
-//                RedisUtil.set(session.getId().toString().getBytes(), sessionToByte(session));
-                // 删除session
-                super.doDelete(session);
-                RedisUtil.remove(sessionToByte(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + serverSessionId));
-                _log.debug("[UpmsSessionDao]redis中删除session: sessionId={}", session.getId());
-
-                // 维护会话id列表，提供会话分页管理
-                jedis = RedisUtil.getJedis();
-                jedis.lrem(ZHENG_UPMS_SHIRO_SESSION_IDS, 1, serverSessionId);
-                jedis.close();
-                // TODO logout
+                session.setStatus(UpmsSession.OnlineStatus.force_logout);
+                session.setAttribute("FORCE_LOGOUT", "FORCE_LOGOUT");
+                super.doUpdate(session);
+                RedisUtil.set((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + session.getId()).getBytes(), sessionToByte(session), (int) session.getTimeout() / 1000);
             }
         }
         return sessionIds.length;
