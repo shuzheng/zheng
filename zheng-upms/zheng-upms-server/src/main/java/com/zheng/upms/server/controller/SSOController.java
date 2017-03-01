@@ -1,7 +1,6 @@
 package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
-import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
@@ -11,7 +10,6 @@ import com.zheng.upms.rpc.api.UpmsUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -37,8 +35,6 @@ import java.net.URLEncoder;
 import java.util.Set;
 import java.util.UUID;
 
-import static org.apache.shiro.web.util.WebUtils.getSavedRequest;
-
 /**
  * 单点登录管理
  * Created by shuzheng on 2016/12/10.
@@ -49,7 +45,6 @@ import static org.apache.shiro.web.util.WebUtils.getSavedRequest;
 public class SSOController extends BaseController {
 
 	private final static Logger _log = LoggerFactory.getLogger(SSOController.class);
-	private final static int TIMEOUT = 2 * 60 * 60;
 	// 全局会话key
 	private final static String ZHENG_UPMS_SERVER_SESSION_ID = "zheng-upms-server-session-id";
 	// token key
@@ -73,11 +68,10 @@ public class SSOController extends BaseController {
 		if (StringUtils.isBlank(system_name)) {
 			throw new RuntimeException("无效访问！");
 		}
-
 		// 判断请求认证系统是否注册
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.createCriteria()
-				.andNameEqualTo(system_name);
+			.andNameEqualTo(system_name);
 		int count = upmsSystemService.countByExample(upmsSystemExample);
 		if (0 == count) {
 			throw new RuntimeException(String.format("未注册的系统:%s", system_name));
@@ -88,14 +82,10 @@ public class SSOController extends BaseController {
 	@ApiOperation(value = "登录")
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
-		// 分配单点登录sessionId，首次获取后缓存到cookie，防止session丢失
-		String serverSessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SERVER_SESSION_ID);
-		if (StringUtils.isBlank(serverSessionId)) {
-			Subject subject = SecurityUtils.getSubject();
-			serverSessionId = subject.getSession().getId().toString();
-		}
-		// 有回跳路径的访问判断是否已登录，如果已登录，则回跳
 		String backurl = request.getParameter("backurl");
+		Subject subject = SecurityUtils.getSubject();
+		String serverSessionId = subject.getSession().getId().toString();
+		// 有回跳路径的访问判断是否已登录，如果已登录，则回跳
 		String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
 		// token校验值
 		if (!StringUtils.isBlank(token)) {
@@ -112,6 +102,8 @@ public class SSOController extends BaseController {
 			}
 			_log.debug("认证中心帐号通过，带token回跳：{}", redirectUrl);
 			return "redirect:" + redirectUrl;
+		} else {
+			subject.logout();
 		}
 		return "/sso/login";
 	}
@@ -153,9 +145,9 @@ public class SSOController extends BaseController {
 		// 默认验证帐号密码正确，创建token
 		String token = UUID.randomUUID().toString();
 		// 全局会话sessionId
-		RedisUtil.set(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId, token, TIMEOUT);
+		RedisUtil.set(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId, token, (int) subject.getSession().getTimeout() / 1000);
 		// token校验值
-		RedisUtil.set(ZHENG_UPMS_SERVER_TOKEN + "_" + token, token, TIMEOUT);
+		RedisUtil.set(ZHENG_UPMS_SERVER_TOKEN + "_" + token, token, (int) subject.getSession().getTimeout() / 1000);
 		// 回跳登录前地址
 		if (StringUtils.isBlank(backurl)) {
 			SavedRequest savedRequest = WebUtils.getSavedRequest(request);
@@ -191,7 +183,8 @@ public class SSOController extends BaseController {
 		// shiro退出登录
 		SecurityUtils.getSubject().logout();
 
-		String serverSessionId = CookieUtil.getCookie(request, ZHENG_UPMS_SERVER_SESSION_ID);
+		Subject subject = SecurityUtils.getSubject();
+		String serverSessionId = subject.getSession().getId().toString();
 		// 当前全局会话token
 		String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
 		// 清除全局会话
@@ -205,8 +198,6 @@ public class SSOController extends BaseController {
 			jedis.del(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId);
 			jedis.srem(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token, clientSessionId);
 		}
-		// 清除全局会话sessionId
-		CookieUtil.removeCookie(response, ZHENG_UPMS_SERVER_SESSION_ID);
 		_log.debug("当前token={}，对应的注册系统个数：{}个", token, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
         jedis.close();
 		// 跳回原地址
@@ -214,7 +205,6 @@ public class SSOController extends BaseController {
 		if (null == redirectUrl) {
 			redirectUrl = "/";
 		}
-		_log.debug("跳回退出登录请求地址：{}", redirectUrl);
 		return "redirect:" + redirectUrl;
 	}
 

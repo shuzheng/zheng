@@ -16,6 +16,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,8 @@ public class SSOFilter implements Filter {
     private final static String ZHENG_UPMS_CLIENT_SESSION_ID = "zheng-upms-client-session-id";
     // 单点同一个token所有局部会话key
     private final static String ZHENG_UPMS_CLIENT_SESSION_IDS = "zheng-upms-client-session-ids";
+    // 局部会话过期时间
+    private final static int TIME_OUT = 30 * 60;
     private String SYSTEM_NAME = "system_name";
     private String SSO_SERVER_URL = "sso_server_url";
     private String SSO_DEBUG = "sso_debug";
@@ -66,7 +69,8 @@ public class SSOFilter implements Filter {
         }
 
         // 判断局部会话是否登录
-        if (null != clientSessionId && !StringUtils.isBlank(RedisUtil.get(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId))) {
+        String cacheToken = RedisUtil.get(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId);
+        if (null != clientSessionId && !StringUtils.isBlank(cacheToken)) {
             // 移除url中的token参数
             if (null != request.getParameter("token")) {
                 String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
@@ -74,6 +78,11 @@ public class SSOFilter implements Filter {
             } else {
                 filterChain.doFilter(request, response);
             }
+            // 更新token有效期
+            RedisUtil.set(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId, cacheToken, TIME_OUT);
+            Jedis jedis = RedisUtil.getJedis();
+            jedis.expire(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + cacheToken, TIME_OUT);
+            jedis.close();
             return;
         }
         // 未登录
@@ -99,9 +108,12 @@ public class SSOFilter implements Filter {
                         String result = EntityUtils.toString(httpEntity);
                         if (result.equals("success")) {
                             // token校验正确，创建局部会话
-                            RedisUtil.set(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId, token);
-                            // 保存token对应的局部会话sessionId，方便退出登录操作
-                            RedisUtil.getJedis().sadd(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token, clientSessionId);
+                            RedisUtil.set(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId, token, TIME_OUT);
+                            // 保存token对应的局部会话sessionId，方便退出操作
+                            Jedis jedis = RedisUtil.getJedis();
+                            jedis.sadd(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token, clientSessionId);
+                            jedis.expire(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token, TIME_OUT);
+                            jedis.close();
                             _log.debug("当前token={}，对应的注册系统个数：{}个", token, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
                             // 移除url中的token参数
                             String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
