@@ -197,5 +197,8 @@
 <script src="${basePath}/resources/zheng-ui/plugins/BootstrapMenu.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/device.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/js/admin.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.fullPage.min.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.jdirk.min.js"></script>
+
 </body>
 </html>
