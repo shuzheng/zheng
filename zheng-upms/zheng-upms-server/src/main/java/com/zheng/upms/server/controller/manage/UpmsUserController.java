@@ -4,6 +4,7 @@ import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.zheng.common.base.BaseController;
+import com.zheng.common.util.MD5Util;
 import com.zheng.common.validator.LengthValidator;
 import com.zheng.common.validator.NotNullValidator;
 import com.zheng.upms.common.constant.UpmsResult;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 用户controller
@@ -192,6 +194,9 @@ public class UpmsUserController extends BaseController {
             return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
         }
         long time = System.currentTimeMillis();
+        String salt = UUID.randomUUID().toString().replaceAll("-", "");
+        upmsUser.setPassword(MD5Util.MD5(upmsUser.getPassword() + upmsUser.getSalt()));
+        upmsUser.setSalt(salt);
         upmsUser.setCtime(time);
         int count = upmsUserService.insertSelective(upmsUser);
         return new UpmsResult(UpmsResultConstant.SUCCESS, count);
@@ -228,6 +233,8 @@ public class UpmsUserController extends BaseController {
         if (!result.isSuccess()) {
             return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
         }
+        // 不允许直接改密码
+        upmsUser.setPassword(null);
         upmsUser.setUserId(id);
         int count = upmsUserService.updateByPrimaryKeySelective(upmsUser);
         return new UpmsResult(UpmsResultConstant.SUCCESS, count);
