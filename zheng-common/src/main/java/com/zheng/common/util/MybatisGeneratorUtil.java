@@ -75,7 +75,7 @@ public class MybatisGeneratorUtil {
 		// 生成代码
 		try {
 			List<String> warnings = new ArrayList<>();
-			File configFile = new File(MybatisGeneratorUtil.class.getResource("/generatorConfig.xml").getFile());
+			File configFile = new File(module_path);
 			ConfigurationParser cp = new ConfigurationParser(warnings);
 			Configuration config = cp.parseConfiguration(configFile);
 			DefaultShellCallback callback = new DefaultShellCallback(true);
@@ -88,6 +88,7 @@ public class MybatisGeneratorUtil {
 			e.printStackTrace();
 		}
 		System.out.println("========== 结束运行MybatisGenerator ==========");
+		System.out.println("========== 开始生成 ==========");
 	}
 
 	// 递归删除非空文件夹
