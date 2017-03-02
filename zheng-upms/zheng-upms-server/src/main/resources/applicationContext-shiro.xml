@@ -22,8 +22,8 @@
                 /swagger-ui.html = user
                 /druid/** = user
                 /manage/index = user
-                /manage/** = upmsSessionForceLogout,authc
-                /** = anon
+                /manage/** = authc
+                /** = upmsSessionForceLogout,anon
             </value>
         </property>
     </bean>
