@@ -19,11 +19,12 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /swagger-ui.html = user
-                /druid/** = user
+                /manage/** = upmsSessionForceLogout,authc
                 /manage/index = user
-                /manage/** = authc
-                /** = upmsSessionForceLogout,anon
+                /druid/** = user
+                /swagger-ui.html = user
+                /resources/** = anon
+                /** = anon
             </value>
         </property>
     </bean>
