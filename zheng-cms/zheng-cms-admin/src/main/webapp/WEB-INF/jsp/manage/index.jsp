@@ -89,7 +89,7 @@
                             <a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-settings"></i> 系统设置</a>
                         </li>
                         <li>
-                            <a class="waves-effect" href="${basePath}/sso/logout"><i class="zmdi zmdi-run"></i> 退出登录</a>
+                            <a class="waves-effect logout" href="javascript:;"><i class="zmdi zmdi-run"></i> 退出登录</a>
                         </li>
                     </ul>
                 </li>
@@ -108,7 +108,6 @@
                     <img src=""/>
                 </div>
                 <div class="sp-info">
-
                     <i class="zmdi zmdi-caret-down"></i>
                 </div>
             </a>
@@ -123,7 +122,7 @@
                     <a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-settings"></i> 系统设置</a>
                 </li>
                 <li>
-                    <a class="waves-effect" href="${basePath}/sso/logout"><i class="zmdi zmdi-run"></i> 退出登录</a>
+                    <a class="waves-effect" href="#"><i class="zmdi zmdi-run"></i> 退出登录</a>
                 </li>
             </ul>
         </div>
@@ -199,28 +198,10 @@
 <script src="${basePath}/resources/zheng-ui/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/BootstrapMenu.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/device.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/js/admin.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.fullPage.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.jdirk.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/template/template.js"></script>
-<script>
-    $("#sso_server_url").val($.cookie('sso_server_url'));
-    $.ajax({
-        url : $("#sso_server_url").val() + "/manage/api/index",
-        dataType: "jsonp",
-        data:{systemId:2},
-        jsonpCallback: "callback"
-    });
-    function callback(msg) {
-        if(msg.code == 1){
-            var umpsSystemTemplateHtml = template('upmsSysyemListTemplate', {data:msg.data});
-            var menuListTemplateHtml = template('menuListScriptTemplate', {data:msg.data});
-            $(".divider").after(umpsSystemTemplateHtml);
-            $(".menu-list > li:eq(0)").after(menuListTemplateHtml);
-            $(".sp-pic > img").attr("src",msg.data.upmsUser.avatar);
-            $(".sp-info > i:eq(0)").before(msg.data.upmsUser.realname+"，您好！");
-        }
-    }
-</script>
+<script src="${basePath}/resources/zheng-ui/js/admin.js"></script>
+
 </body>
 </html>
