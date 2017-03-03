@@ -94,6 +94,10 @@
             }
         });
     }
+    <c:if test="${param.forceLogout == 1}">
+    alert('您已被强制下线！');
+    top.location.href = '${basePath}/sso/login';
+    </c:if>
 </script>
 </body>
 </html>

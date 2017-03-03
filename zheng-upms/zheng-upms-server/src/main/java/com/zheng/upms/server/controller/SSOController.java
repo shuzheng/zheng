@@ -7,6 +7,8 @@ import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
+import com.zheng.upms.server.shiro.UpmsSession;
+import com.zheng.upms.server.shiro.UpmsSessionDao;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.BooleanUtils;
@@ -59,6 +61,9 @@ public class SSOController extends BaseController {
 
 	@Autowired
 	UpmsUserService upmsUserService;
+
+	@Autowired
+	UpmsSessionDao upmsSessionDao;
 
 	@ApiOperation(value = "认证中心首页")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -140,6 +145,8 @@ public class SSOController extends BaseController {
 		}
 		// serverSessionId
 		String serverSessionId = subject.getSession().getId().toString();
+		// 更新session状态
+		upmsSessionDao.updateStatus(serverSessionId, UpmsSession.OnlineStatus.on_line);
 		// 默认验证帐号密码正确，创建token
 		String token = UUID.randomUUID().toString();
 		// 全局会话sessionId

@@ -61,6 +61,10 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
     @Override
     protected void doUpdate(Session session) {
         // 更新session的最后一次访问时间
+        UpmsSession upmsSession = (UpmsSession) session;
+        UpmsSession cacheUpmsSession = (UpmsSession) doReadSession(session.getId());
+        upmsSession.setStatus(cacheUpmsSession.getStatus());
+        upmsSession.setAttribute("FORCE_LOGOUT", cacheUpmsSession.getAttribute("FORCE_LOGOUT"));
         super.doUpdate(session);
         RedisUtil.set((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + session.getId()).getBytes(), sessionToByte(session), (int) session.getTimeout() / 1000);
         _log.debug("[UpmsSessionDao]redis中更新session: sessionId={}, seconds={}", session.getId(), (int) session.getTimeout() / 1000);
@@ -160,6 +164,18 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
             }
         }
         return sessionIds.length;
+    }
+
+    /**
+     * 更改在线状态
+     * @param sessionId
+     * @param onlineStatus
+     */
+    public void updateStatus(Serializable sessionId, UpmsSession.OnlineStatus onlineStatus) {
+        UpmsSession session = (UpmsSession) doReadSession(sessionId);
+        session.setStatus(onlineStatus);
+        super.doUpdate(session);
+        RedisUtil.set((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + session.getId()).getBytes(), sessionToByte(session), (int) session.getTimeout() / 1000);
     }
 
     // 把Object对象转化为byte保存到redis中

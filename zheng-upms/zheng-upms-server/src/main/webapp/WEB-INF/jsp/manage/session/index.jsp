@@ -56,10 +56,22 @@ $(function() {
 			{field: 'expired', title: '是否过期', align: 'center'},
 			{field: 'host', title: '访问者IP', align: 'center'},
 			{field: 'userAgent', title: '用户标识', align: 'center'},
-			{field: 'status', title: '状态', align: 'center'}
+			{field: 'status', title: '状态', align: 'center', formatter: 'statusFormatter'}
 		]
 	});
 });
+// 格式化状态
+function statusFormatter(value, row, index) {
+	if (value == 'on_line') {
+		return '<span class="label label-success">在线</span>';
+	}
+	if (value == 'off_line') {
+		return '<span class="label label-default">离线</span>';
+	}
+	if (value == 'force_logout') {
+		return '<span class="label label-danger">踢离</span>';
+	}
+}
 // 强制退出
 var forceoutDialog;
 function forceoutAction() {
