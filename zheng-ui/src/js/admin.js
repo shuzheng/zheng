@@ -242,3 +242,22 @@ function fullPage() {
 		alert("当前浏览器不支持全屏 API，请更换至最新的 Chrome/Firefox/Safari 浏览器或通过 F11 快捷键进行操作。");
 	}
 }
+$("#sso_server_url").val($.cookie('sso_server_url'));
+$.ajax({
+    url : $("#sso_server_url").val() + "/manage/api/index",
+    dataType: "jsonp",
+    data:{systemId:2},
+    jsonpCallback: "callback"
+});
+function callback(msg) {
+    if(msg.code == 1){
+        var umpsSystemTemplateHtml = template('upmsSysyemListTemplate', {data:msg.data});
+        var menuListTemplateHtml = template('menuListScriptTemplate', {data:msg.data});
+        $(".divider").after(umpsSystemTemplateHtml);
+        $(".menu-list > li:eq(0)").after(menuListTemplateHtml);
+        $(".sp-pic > img").attr("src",msg.data.upmsUser.avatar);
+        $(".sp-info > i:eq(0)").before(msg.data.upmsUser.realname+"，您好！");
+        $(".s-profile  ul:last a").attr("href",$("#sso_server_url").val()+"/sso/logout");
+        $(".logout").attr("href",$("#sso_server_url").val()+"/sso/logout");
+    }
+}
