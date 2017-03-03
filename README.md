@@ -408,6 +408,8 @@ zheng-ui、zheng-common => zheng-upms => 其他
 
 - [Bootstrap在线手册](http://www.bootcss.com/ "Bootstrap在线手册")
 
+- [Git官网中文文档](https://git-scm.com/book/zh/v2 "Git官网中文文档")
+
 ## 许可证
 
 [MIT](http://opensource.org/licenses/MIT "MIT")
