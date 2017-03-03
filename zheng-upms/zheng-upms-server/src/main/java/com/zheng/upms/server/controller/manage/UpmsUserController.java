@@ -195,8 +195,8 @@ public class UpmsUserController extends BaseController {
         }
         long time = System.currentTimeMillis();
         String salt = UUID.randomUUID().toString().replaceAll("-", "");
-        upmsUser.setPassword(MD5Util.MD5(upmsUser.getPassword() + upmsUser.getSalt()));
         upmsUser.setSalt(salt);
+        upmsUser.setPassword(MD5Util.MD5(upmsUser.getPassword() + upmsUser.getSalt()));
         upmsUser.setCtime(time);
         int count = upmsUserService.insertSelective(upmsUser);
         return new UpmsResult(UpmsResultConstant.SUCCESS, count);
