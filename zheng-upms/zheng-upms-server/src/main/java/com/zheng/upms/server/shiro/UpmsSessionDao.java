@@ -132,12 +132,6 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
     public int forceout(String ids) {
         String[] sessionIds = ids.split(",");
         for (String serverSessionId : sessionIds) {
-//            byte[] bytes = RedisUtil.get((ZHENG_UPMS_SHIRO_SESSION_ID + "_" + serverSessionId).getBytes());
-//            if(null != bytes && bytes.length > 0) {
-//                Session session = (Session) byteToSession(bytes);
-//                doDelete(session);
-//            }
-
             // 清空所有注册的局部会话和token
             // 当前全局会话token
             String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);

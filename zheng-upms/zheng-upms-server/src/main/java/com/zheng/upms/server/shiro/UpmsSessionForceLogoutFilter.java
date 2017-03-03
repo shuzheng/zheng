@@ -19,7 +19,8 @@ public class UpmsSessionForceLogoutFilter extends AccessControlFilter {
         if(session == null) {
             return true;
         }
-        return session.getAttribute("FORCE_LOGOUT") == null;
+        boolean forceout = session.getAttribute("FORCE_LOGOUT") == null;
+        return  forceout;
     }
 
     @Override

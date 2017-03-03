@@ -102,8 +102,6 @@ public class SSOController extends BaseController {
 			}
 			_log.debug("认证中心帐号通过，带token回跳：{}", redirectUrl);
 			return "redirect:" + redirectUrl;
-		} else {
-			subject.logout();
 		}
 		return "/sso/login";
 	}
