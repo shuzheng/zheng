@@ -36,10 +36,21 @@ $(function() {
 		$('.system_menus').hide(0, function () {
 			$('.system_' + systemid).show();
 		});
-		$('#system_title').text(systemtitle);
 		$('body').attr("id", systemname);
+		$('#system_title').text(systemtitle);
+		$.cookie('zheng-upms-systemid', systemid, { expires: 7, path: '/' });
+		$.cookie('zheng-upms-systemname', systemname, { expires: 7, path: '/' });
+		$.cookie('zheng-upms-systemtitle', systemtitle, { expires: 7, path: '/' });
 	});
 	// 显示cookie菜单
+	var systemid = $.cookie('zheng-upms-systemid') || 1;
+	var systemname = $.cookie('zheng-upms-systemname') || 'zheng-upms';
+	var systemtitle = $.cookie('zheng-upms-systemtitle') || '权限管理系统';
+	$('.system_menus').hide(0, function () {
+		$('.system_' + systemid).show();
+	});
+	$('body').attr('id', systemname);
+	$('#system_title').text(systemtitle);
 });
 // iframe高度自适应
 function changeFrameHeight(ifm) {
