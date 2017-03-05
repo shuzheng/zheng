@@ -189,7 +189,7 @@
 	</section>
 </section>
 <footer id="footer"></footer>
-
+<script>var BASE_PATH = '${basePath}';</script>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
@@ -199,6 +199,5 @@
 <script src="${basePath}/resources/zheng-ui/js/admin.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.fullPage.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.jdirk.min.js"></script>
-
 </body>
 </html>

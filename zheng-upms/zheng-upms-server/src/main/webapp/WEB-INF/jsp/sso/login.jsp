@@ -46,7 +46,8 @@
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/checkbix/js/checkbix.min.js"></script>
-
+<script>var BASE_PATH = '${basePath}';</script>
+<script>var BACK_URL = '${param.backurl}';</script>
 <script src="${basePath}/resources/zheng-ui/js/login.js"></script>
 <script>
 <c:if test="${param.forceLogout == 1}">
