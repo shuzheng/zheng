@@ -38,9 +38,9 @@ $(function() {
 		});
 		$('body').attr("id", systemname);
 		$('#system_title').text(systemtitle);
-		$.cookie('zheng-upms-systemid', systemid, { expires: 7, path: '/' });
-		$.cookie('zheng-upms-systemname', systemname, { expires: 7, path: '/' });
-		$.cookie('zheng-upms-systemtitle', systemtitle, { expires: 7, path: '/' });
+		$.cookie('zheng-upms-systemid', systemid);
+		$.cookie('zheng-upms-systemname', systemname);
+		$.cookie('zheng-upms-systemtitle', systemtitle);
 	});
 	// 显示cookie菜单
 	var systemid = $.cookie('zheng-upms-systemid') || 1;
