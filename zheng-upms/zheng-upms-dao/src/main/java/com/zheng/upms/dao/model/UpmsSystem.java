@@ -18,6 +18,20 @@ public class UpmsSystem implements Serializable {
     private String icon;
 
     /**
+     * 背景
+     *
+     * @mbg.generated
+     */
+    private String banner;
+
+    /**
+     * 主题
+     *
+     * @mbg.generated
+     */
+    private String theme;
+
+    /**
      * 根目录
      *
      * @mbg.generated
@@ -84,6 +98,22 @@ public class UpmsSystem implements Serializable {
         this.icon = icon;
     }
 
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
     public String getBasepath() {
         return basepath;
     }
@@ -148,6 +178,8 @@ public class UpmsSystem implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", systemId=").append(systemId);
         sb.append(", icon=").append(icon);
+        sb.append(", banner=").append(banner);
+        sb.append(", theme=").append(theme);
         sb.append(", basepath=").append(basepath);
         sb.append(", status=").append(status);
         sb.append(", name=").append(name);
@@ -173,6 +205,8 @@ public class UpmsSystem implements Serializable {
         UpmsSystem other = (UpmsSystem) that;
         return (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
             && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
+            && (this.getBanner() == null ? other.getBanner() == null : this.getBanner().equals(other.getBanner()))
+            && (this.getTheme() == null ? other.getTheme() == null : this.getTheme().equals(other.getTheme()))
             && (this.getBasepath() == null ? other.getBasepath() == null : this.getBasepath().equals(other.getBasepath()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
@@ -188,6 +222,8 @@ public class UpmsSystem implements Serializable {
         int result = 1;
         result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
+        result = prime * result + ((getBanner() == null) ? 0 : getBanner().hashCode());
+        result = prime * result + ((getTheme() == null) ? 0 : getTheme().hashCode());
         result = prime * result + ((getBasepath() == null) ? 0 : getBasepath().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
