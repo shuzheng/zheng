@@ -77,7 +77,7 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
         // 当前全局会话token
         String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
         // 清除全局会话
-        RedisUtil.remove(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
+        // RedisUtil.remove(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
         // 清除token校验值
         RedisUtil.remove(ZHENG_UPMS_SERVER_TOKEN + "_" + token);
         // 清除所有局部会话
@@ -140,7 +140,7 @@ public class UpmsSessionDao extends EnterpriseCacheSessionDAO {
             // 当前全局会话token
             String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
             // 清除全局会话
-            RedisUtil.remove(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
+            // RedisUtil.remove(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
             // 清除token校验值
             RedisUtil.remove(ZHENG_UPMS_SERVER_TOKEN + "_" + token);
             // 清除所有局部会话

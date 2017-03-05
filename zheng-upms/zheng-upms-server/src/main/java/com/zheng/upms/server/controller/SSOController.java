@@ -187,24 +187,6 @@ public class SSOController extends BaseController {
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		// shiro退出登录
 		SecurityUtils.getSubject().logout();
-
-		Subject subject = SecurityUtils.getSubject();
-		String serverSessionId = subject.getSession().getId().toString();
-		// 当前全局会话token
-		String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
-		// 清除全局会话
-		RedisUtil.remove(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
-		// 清除token校验值
-		RedisUtil.remove(ZHENG_UPMS_SERVER_TOKEN + "_" + token);
-		// 清除所有局部会话
-		Jedis jedis = RedisUtil.getJedis();
-		Set<String> clientSessionIds = jedis.smembers(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token);
-		for (String clientSessionId : clientSessionIds) {
-			jedis.del(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId);
-			jedis.srem(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token, clientSessionId);
-		}
-		_log.debug("当前token={}，对应的注册系统个数：{}个", token, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
-        jedis.close();
 		// 跳回原地址
 		String redirectUrl = request.getHeader("Referer");
 		if (null == redirectUrl) {
