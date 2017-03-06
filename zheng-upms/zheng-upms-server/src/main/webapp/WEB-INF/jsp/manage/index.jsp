@@ -19,6 +19,14 @@
 	<link href="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/css/admin.css" rel="stylesheet"/>
+	<style>
+		/** skins **/
+		<c:forEach var="upmsSystem" items="${upmsSystems}">
+		#${upmsSystem.name} #header {background: ${upmsSystem.theme};}
+		#${upmsSystem.name} .content_tab{background: ${upmsSystem.theme};}
+		#${upmsSystem.name} .s-profile>a{background: url(${basePath}${upmsSystem.banner}) left top no-repeat;}
+		</c:forEach>
+	</style>
 </head>
 <body>
 <header id="header">
@@ -65,7 +73,7 @@
 						<li class="divider hidden-xs"></li>
 						<c:forEach var="upmsSystem" items="${upmsSystems}">
 						<li>
-							<a class="waves-effect switch-systems" href="javascript:;" systemid="${upmsSystem.systemId}" systemtitle="${upmsSystem.title}"><i class="${upmsSystem.icon}"></i> ${upmsSystem.title}</a>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="${upmsSystem.systemId}" systemname="${upmsSystem.name}" systemtitle="${upmsSystem.title}"><i class="${upmsSystem.icon}"></i> ${upmsSystem.title}</a>
 						</li>
 						</c:forEach>
 					</ul>
@@ -189,16 +197,16 @@
 	</section>
 </section>
 <footer id="footer"></footer>
-
+<script>var BASE_PATH = '${basePath}';</script>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/BootstrapMenu.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/device.min.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/jquery.cookie.js"></script>
 <script src="${basePath}/resources/zheng-ui/js/admin.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.fullPage.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.jdirk.min.js"></script>
-
 </body>
 </html>

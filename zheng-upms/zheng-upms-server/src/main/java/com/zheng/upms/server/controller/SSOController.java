@@ -7,6 +7,8 @@ import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
+import com.zheng.upms.server.shiro.UpmsSession;
+import com.zheng.upms.server.shiro.UpmsSessionDao;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.BooleanUtils;
@@ -59,6 +61,9 @@ public class SSOController extends BaseController {
 
 	@Autowired
 	UpmsUserService upmsUserService;
+
+	@Autowired
+	UpmsSessionDao upmsSessionDao;
 
 	@ApiOperation(value = "认证中心首页")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -140,6 +145,8 @@ public class SSOController extends BaseController {
 		}
 		// serverSessionId
 		String serverSessionId = subject.getSession().getId().toString();
+		// 更新session状态
+		upmsSessionDao.updateStatus(serverSessionId, UpmsSession.OnlineStatus.on_line);
 		// 默认验证帐号密码正确，创建token
 		String token = UUID.randomUUID().toString();
 		// 全局会话sessionId
@@ -180,24 +187,6 @@ public class SSOController extends BaseController {
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		// shiro退出登录
 		SecurityUtils.getSubject().logout();
-
-		Subject subject = SecurityUtils.getSubject();
-		String serverSessionId = subject.getSession().getId().toString();
-		// 当前全局会话token
-		String token = RedisUtil.get(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
-		// 清除全局会话
-		RedisUtil.remove(ZHENG_UPMS_SERVER_SESSION_ID + "_" + serverSessionId);
-		// 清除token校验值
-		RedisUtil.remove(ZHENG_UPMS_SERVER_TOKEN + "_" + token);
-		// 清除所有局部会话
-		Jedis jedis = RedisUtil.getJedis();
-		Set<String> clientSessionIds = jedis.smembers(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token);
-		for (String clientSessionId : clientSessionIds) {
-			jedis.del(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId);
-			jedis.srem(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token, clientSessionId);
-		}
-		_log.debug("当前token={}，对应的注册系统个数：{}个", token, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
-        jedis.close();
 		// 跳回原地址
 		String redirectUrl = request.getHeader("Referer");
 		if (null == redirectUrl) {

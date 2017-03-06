@@ -4,6 +4,8 @@
   <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsSystem">
     <id column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="banner" jdbcType="VARCHAR" property="banner" />
+    <result column="theme" jdbcType="VARCHAR" property="theme" />
     <result column="basepath" jdbcType="VARCHAR" property="basepath" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -71,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    system_id, icon, basepath, status, name, title, description, ctime, orders
+    system_id, icon, banner, theme, basepath, status, name, title, description, ctime, 
+    orders
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsSystemExample" resultMap="BaseResultMap">
     select
@@ -112,14 +115,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsSystem">
-    insert into upms_system (system_id, icon, basepath, 
-      status, name, title, 
-      description, ctime, orders
-      )
-    values (#{systemId,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{basepath,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}
-      )
+    insert into upms_system (system_id, icon, banner, 
+      theme, basepath, status, 
+      name, title, description, 
+      ctime, orders)
+    values (#{systemId,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{banner,jdbcType=VARCHAR}, 
+      #{theme,jdbcType=VARCHAR}, #{basepath,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsSystem">
     insert into upms_system
@@ -129,6 +132,12 @@
       </if>
       <if test="icon != null">
         icon,
+      </if>
+      <if test="banner != null">
+        banner,
+      </if>
+      <if test="theme != null">
+        theme,
       </if>
       <if test="basepath != null">
         basepath,
@@ -158,6 +167,12 @@
       </if>
       <if test="icon != null">
         #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null">
+        #{banner,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        #{theme,jdbcType=VARCHAR},
       </if>
       <if test="basepath != null">
         #{basepath,jdbcType=VARCHAR},
@@ -197,6 +212,12 @@
       <if test="record.icon != null">
         icon = #{record.icon,jdbcType=VARCHAR},
       </if>
+      <if test="record.banner != null">
+        banner = #{record.banner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.theme != null">
+        theme = #{record.theme,jdbcType=VARCHAR},
+      </if>
       <if test="record.basepath != null">
         basepath = #{record.basepath,jdbcType=VARCHAR},
       </if>
@@ -227,6 +248,8 @@
     update upms_system
     set system_id = #{record.systemId,jdbcType=INTEGER},
       icon = #{record.icon,jdbcType=VARCHAR},
+      banner = #{record.banner,jdbcType=VARCHAR},
+      theme = #{record.theme,jdbcType=VARCHAR},
       basepath = #{record.basepath,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
       name = #{record.name,jdbcType=VARCHAR},
@@ -243,6 +266,12 @@
     <set>
       <if test="icon != null">
         icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null">
+        banner = #{banner,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        theme = #{theme,jdbcType=VARCHAR},
       </if>
       <if test="basepath != null">
         basepath = #{basepath,jdbcType=VARCHAR},
@@ -271,6 +300,8 @@
   <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsSystem">
     update upms_system
     set icon = #{icon,jdbcType=VARCHAR},
+      banner = #{banner,jdbcType=VARCHAR},
+      theme = #{theme,jdbcType=VARCHAR},
       basepath = #{basepath,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
       name = #{name,jdbcType=VARCHAR},

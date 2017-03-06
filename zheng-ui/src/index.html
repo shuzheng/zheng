@@ -12,7 +12,31 @@
 	<link href="plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 	<link href="css/admin.css" rel="stylesheet"/>
+	<style>
+	/** skins **/
+	#zheng-upms #header {background: #29A176;}
+	#zheng-upms .content_tab{background:#29A176;}
+	#zheng-upms .s-profile>a{background:url(images/zheng-upms.png) left top no-repeat;}
+	
+	#zheng-cms #header {background: #455EC5;}
+	#zheng-cms .content_tab{background:#455EC5;}
+	#zheng-cms .s-profile>a{background:url(images/zheng-cms.png) left top no-repeat;}
 
+	
+	#zheng-pay #header {background: #F06292;}
+	#zheng-pay .content_tab{background:#F06292;}
+	#zheng-pay .s-profile>a{background:url(images/zheng-pay.png) left top no-repeat;}
+
+	
+	#zheng-ucenter #header {background: #6539B4;}
+	#zheng-ucenter .content_tab{background:#6539B4;}
+	#zheng-ucenter .s-profile>a{background:url(images/zheng-ucenter.png) left top no-repeat;}
+
+	
+	#zheng-oss #header {background: #0B8DE5;}
+	#zheng-oss .content_tab{background:#0B8DE5;}
+	#zheng-oss .s-profile>a{background:url(images/zheng-oss.png) left top no-repeat;}
+	</style>
 </head>
 <body>
 <header id="header">
@@ -58,16 +82,19 @@
 						</li>
 						<li class="divider hidden-xs"></li>
 						<li class="hidden-xs">
-							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> CMS系统</a>
+							<a class="waves-effect switch-systems" systemid="1" systemname="zheng-upms" systemtitle="权限管理系统" href="javascript:;"><i class="zmdi zmdi-shield-security"></i> 权限管理系统</a>
 						</li>
 						<li>
-							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> OA系统</a>
+							<a class="waves-effect switch-systems" systemid="2" systemname="zheng-cms" systemtitle="内容管理系统" href="javascript:;"><i class="zmdi zmdi-wikipedia"></i> 内容管理系统</a>
 						</li>
 						<li>
-							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> CRM系统</a>
+							<a class="waves-effect switch-systems" systemid="3" systemname="zheng-pay" systemtitle="支付管理系统" href="javascript:;"><i class="zmdi zmdi-paypal-alt"></i> 支付管理系统</a>
 						</li>
 						<li>
-							<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> QA系统</a>
+							<a class="waves-effect switch-systems" systemid="4" systemname="zheng-ucenter" systemtitle="用户管理系统" href="javascript:;"><i class="zmdi zmdi-account"></i> 用户管理系统</a>
+						</li>
+						<li>
+							<a class="waves-effect switch-systems" systemid="5" systemname="zheng-oss" systemtitle="存储管理系统" href="javascript:;"><i class="zmdi zmdi-cloud"></i> 存储管理系统</a>
 						</li>
 					</ul>
 				</li>
@@ -130,48 +157,55 @@
 		<!-- 菜单区 -->
 		<ul class="main-menu">
 			<li>
-				<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页</a>
+			<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页</a>
 			</li>
-			<li class="sub-menu">
-				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 系统组织管理</a>
-				<ul>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('系统注册', '1.html');">系统注册</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('组织管理', '2.html');">组织管理</a></li>
-				</ul>
+			<li class="sub-menu system_menus system_1 0">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-accounts-list"></i> 系统组织管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('系统管理', 'crud.html');">系统管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('组织管理', '/manage/organization/index');">组织管理</a></li>
+			</ul>
 			</li>
-			<li class="sub-menu">
-				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 用户角色管理</a>
-				<ul>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('用户管理', '3.html');">用户管理</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('角色管理', '4.html');">角色管理</a></li>
-				</ul>
+			<li class="sub-menu system_menus system_1 3">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-accounts"></i> 角色用户管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('角色管理', '/manage/role/index');">角色管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('用户管理', '/manage/user/index');">用户管理</a></li>
+			</ul>
 			</li>
-			<li class="sub-menu">
-				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 资源权限管理</a>
-				<ul>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('资源管理', '5.html');">资源管理</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('权限管理', '6.html');">权限管理</a></li>
-				</ul>
+			<li class="sub-menu system_menus system_1 6">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-lock-outline"></i> 权限资源管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('权限管理', '/manage/permission/index');">权限管理</a></li>
+			</ul>
 			</li>
-			<li class="sub-menu">
-				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> 权限分配管理</a>
-				<ul>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('角色权限', '7.html');">角色权限</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('用户权限', '8.html');">用户权限</a></li>
-				</ul>
+			<li class="sub-menu system_menus system_1 7">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-more"></i> 其他数据管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('公共码表', '/manage/coder/index');">公共码表</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('会话管理', '/manage/session/index');">会话管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('日志记录', '/manage/log/index');">日志记录</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('键值设置', '/manage/map/index');">键值设置</a></li>
+			</ul>
 			</li>
-			<li class="sub-menu toggled">
-				<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-widgets"></i> DEMO</a>
-				<ul>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('获取资源(DEMO)', '9.html');">获取资源(DEMO)</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('获取权限(DEMO)', '10.html');">获取权限(DEMO)</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('单点登录(DEMO)', '11.html');">单点登录(DEMO)</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('增删改查', 'crud.html');">增删改查</a></li>
-					<li><a class="waves-effect" href="javascript:Tab.addTab('公共素材', 'demo.html');">公共素材</a></li>
-				</ul>
+			<li class="sub-menu system_menus system_2 12" style="display:none;">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-menu"></i> 标签类目管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('标签管理', '/manage/tag/index');">标签管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('类目管理', '/manage/category/index');">类目管理</a></li>
+			</ul>
+			</li>
+			<li class="sub-menu system_menus system_2 15" style="display:none;">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-collection-text"></i> 文章内容管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('文章管理', '/manage/article/index');">文章管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('回收管理', '/manage/article/recycle');">回收管理</a></li>
+			</ul>
 			</li>
 			<li>
-				<div class="upms-version">&copy; ZHENG-UPMS V1.0.0</div>
+			<div class="upms-version">
+				&copy; ZHENG-UPMS V1.0.0
+			</div>
 			</li>
 		</ul>
 		<!-- /菜单区 -->
@@ -223,6 +257,7 @@
 <script src="plugins/device.min.js"></script>
 <script src="plugins/fullPage/jquery.fullPage.min.js"></script>
 <script src="plugins/fullPage/jquery.jdirk.min.js"></script>
+<script src="plugins/jquery.cookie.js"></script>
 
 <script src="js/admin.js"></script>
 </body>

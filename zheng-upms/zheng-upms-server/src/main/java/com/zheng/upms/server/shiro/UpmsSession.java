@@ -25,7 +25,7 @@ public class UpmsSession extends SimpleSession {
     private String userAgent;
 
     // 在线状态
-    private OnlineStatus status = OnlineStatus.on_line;
+    private OnlineStatus status = OnlineStatus.off_line;
 
     public String getUserAgent() {
         return userAgent;

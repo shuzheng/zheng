@@ -21,6 +21,14 @@
 			<input id="name" type="text" class="form-control" name="name" maxlength="20">
 		</div>
 		<div class="form-group">
+			<label for="theme">主题</label>
+			<input id="theme" type="text" class="form-control" name="theme" maxlength="50">
+		</div>
+		<div class="form-group">
+			<label for="banner">背景图</label>
+			<input id="banner" type="text" class="form-control" name="banner" maxlength="50">
+		</div>
+		<div class="form-group">
 			<label for="description">描述</label>
 			<input id="description" type="text" class="form-control" name="description" maxlength="300">
 		</div>

@@ -46,54 +46,14 @@
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/checkbix/js/checkbix.min.js"></script>
-
+<script>var BASE_PATH = '${basePath}';</script>
+<script>var BACK_URL = '${param.backurl}';</script>
 <script src="${basePath}/resources/zheng-ui/js/login.js"></script>
 <script>
-    Checkbix.init();
-    $(function() {
-        // 点击登录按钮
-        $('#login-bt').click(function() {
-            login();
-        });
-        // 回车事件
-        $('#username, #password').keypress(function (event) {
-            if (13 == event.keyCode) {
-                login();
-            }
-        });
-    });
-    // 登录
-    function login() {
-        $.ajax({
-            url: '${basePath}/sso/login',
-            type: 'POST',
-            data: {
-                username: $('#username').val(),
-                password: $('#password').val(),
-                rememberMe: $('#rememberMe').is(':checked'),
-                backurl: '${param.backurl}'
-            },
-            beforeSend: function() {
-
-            },
-            success: function(json){
-                if (json.code == 1) {
-                    location.href = json.data;
-                } else {
-                    alert(json.data);
-                    if (10101 == json.code) {
-                        $('#username').focus();
-                    }
-                    if (10102 == json.code) {
-                        $('#password').focus();
-                    }
-                }
-            },
-            error: function(error){
-                console.log(error);
-            }
-        });
-    }
+<c:if test="${param.forceLogout == 1}">
+alert('您已被强制下线！');
+top.location.href = '${basePath}/sso/login';
+</c:if>
 </script>
 </body>
 </html>
