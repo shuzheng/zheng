@@ -9,7 +9,7 @@
 <div id="roleDialog" class="crudDialog">
 	<form id="roleForm" method="post">
 		<div class="form-group">
-			<select id="organizationId" name="organizationId" multiple="multiple" style="width: 100%">
+			<select id="roleId" name="roleId" multiple="multiple" style="width: 100%">
 				<c:forEach var="upmsRole" items="${upmsRoles}">
 					<option value="${upmsRole.roleId}" <c:forEach var="upmsUserRole" items="${upmsUserRoles}"><c:if test="${upmsRole.roleId==upmsUserRole.roleId}">selected="selected"</c:if></c:forEach>>${upmsRole.title}</option>
 				</c:forEach>
