@@ -27,6 +27,7 @@ public class ZhengAdminUtil implements InitializingBean, ServletContextAware {
         _log.info("zheng-ui.jar 版本: {}", version);
         String jarPath = servletContext.getRealPath("/WEB-INF/lib/zheng-ui-" + version + ".jar");
         _log.info("zheng-ui.jar 包路径: {}", jarPath);
+
         String resources = servletContext.getRealPath("/") + "/resources/zheng-ui";
         _log.info("zheng-ui.jar 解压到: {}", resources);
         JarUtil.decompress(jarPath, resources);
