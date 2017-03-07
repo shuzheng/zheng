@@ -53,7 +53,8 @@ public class SSOFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
+        String initSsoServerUrl = filterConfig.getInitParameter(SSO_SERVER_URL);
+        CookieUtil.setCookie(response,SSO_SERVER_URL,initSsoServerUrl,0);
         // 是否开发模式，为true则直接放行
         String sso_debug = filterConfig.getInitParameter(SSO_DEBUG);
         if (null != sso_debug && "true".equals(sso_debug)) {

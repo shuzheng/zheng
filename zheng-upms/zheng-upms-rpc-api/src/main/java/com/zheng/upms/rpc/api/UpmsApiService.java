@@ -2,6 +2,7 @@ package com.zheng.upms.rpc.api;
 
 import com.zheng.upms.dao.model.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -51,5 +52,13 @@ public interface UpmsApiService {
      * @return
      */
     List<UpmsOrganization> selectUpmsOrganizationByExample(UpmsOrganizationExample upmsOrganizationExample);
+
+    /**
+     * 根据用户id和系统id查询所拥有的权限
+     * @param upmsUserId 用户id
+     * @param systemId   系统id
+     * @return
+     */
+    List<UpmsPermission> selectUpmsPermissionByUpmsUserIdAndSystemId(Integer upmsUserId, Integer systemId);
 
 }

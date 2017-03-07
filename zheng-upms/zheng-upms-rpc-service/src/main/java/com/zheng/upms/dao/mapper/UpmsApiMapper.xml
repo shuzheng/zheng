@@ -50,6 +50,20 @@
 		)
 	</select>
 
+	<!-- 根据用户和系统ID获取所拥有的权限 -->
+	<select id="selectUpmsPermissionByUpmsUserIdAndSystemId" parameterType="HashMap" resultMap="UpmsPermissionResultMap">
+		select
+		<include refid="UpmsPermission_Column_List" />
+		from upms_permission up where up.permission_id in (
+		select permission_id from upms_role_permission urp where urp.role_id in (
+		select uur.role_id role_id from upms_user_role uur where uur.user_id=#{upmsUserId,jdbcType=INTEGER}
+		AND up.system_id = #{systemId,jdbcType=INTEGER}
+		)
+		union
+		select permission_id from upms_user_permission uup where uup.user_id=#{upmsUserId,jdbcType=INTEGER}
+		)
+	</select>
+
 	<!-- 根据用户id获取所属的角色 -->
 	<select id="selectUpmsRoleByUpmsUserId" parameterType="java.lang.Integer" resultMap="UpmsRoleResultMap">
 		select
