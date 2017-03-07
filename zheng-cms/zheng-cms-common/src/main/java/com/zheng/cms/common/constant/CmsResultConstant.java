@@ -8,7 +8,9 @@ public enum CmsResultConstant {
 
     SUCCESS(1, "success"),
 
-    FILE_TYPE_ERROR(20001, "File type not supported!");
+    FILE_TYPE_ERROR(20001, "File type not supported!"),
+
+    INVALID_LENGTH(20002, "Invalid length");
 
     public int code;
 
