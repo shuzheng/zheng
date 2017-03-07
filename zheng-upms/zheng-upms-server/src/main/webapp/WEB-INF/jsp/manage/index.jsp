@@ -22,9 +22,9 @@
 	<style>
 		/** skins **/
 		<c:forEach var="upmsSystem" items="${upmsSystems}">
-		#${upmsSystem.name} #header {background: ${upmsSystem.banner};}
-		#${upmsSystem.name} .content_tab{background: ${upmsSystem.banner};}
-		#${upmsSystem.name} .s-profile>a{background: url(${basePath}${upmsSystem.theme}) left top no-repeat;}
+		#${upmsSystem.name} #header {background: ${upmsSystem.theme};}
+		#${upmsSystem.name} .content_tab{background: ${upmsSystem.theme};}
+		#${upmsSystem.name} .s-profile>a{background: url(${basePath}${upmsSystem.banner}) left top no-repeat;}
 		</c:forEach>
 	</style>
 </head>
