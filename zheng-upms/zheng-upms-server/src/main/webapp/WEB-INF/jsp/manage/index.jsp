@@ -146,7 +146,11 @@
 					<ul>
 						<c:forEach var="subUpmsPermission" items="${upmsPermissions}">
 							<c:if test="${subUpmsPermission.pid == upmsPermission.permissionId}">
-							<li><a class="waves-effect" href="javascript:Tab.addTab('${subUpmsPermission.name}', '${basePath}${subUpmsPermission.uri}');">${subUpmsPermission.name}</a></li>
+								<c:forEach var="upmsSystem" items="${upmsSystems}">
+									<c:if test="${subUpmsPermission.systemId == upmsSystem.systemId}">
+									<c:set var="systemBasePath" value="${upmsSystem.basepath}"/></c:if>
+								</c:forEach>
+								<li><a class="waves-effect" href="javascript:Tab.addTab('${subUpmsPermission.name}', '${systemBasePath}${subUpmsPermission.uri}');">${subUpmsPermission.name}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>
