@@ -2,7 +2,7 @@ package com.zheng.upms.client.filter;
 
 import com.zheng.common.util.CookieUtil;
 import com.zheng.common.util.RedisUtil;
-import com.zheng.upms.client.filter.util.RequestParameterUtil;
+import com.zheng.upms.client.util.RequestParameterUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
