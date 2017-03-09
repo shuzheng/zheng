@@ -1,4 +1,4 @@
-package com.zheng.upms.client.filter.util;
+package com.zheng.upms.client.util;
 
 import org.apache.commons.lang.StringUtils;
 
