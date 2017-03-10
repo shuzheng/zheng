@@ -22,10 +22,10 @@ zheng
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-common -- upms系统公共模块
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
-|    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、会话管理
+|    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、统一会话管理
 |    ├── zheng-upms-rpc-api -- rpc接口包
 |    ├── zheng-upms-rpc-service -- rpc服务提供者
-|    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
+|    └── zheng-upms-server -- 用户权限系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-common -- cms系统公共模块
 |    ├── zheng-cms-dao -- MyBatisGenerator代码生成模块，无需开发
