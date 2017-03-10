@@ -50,4 +50,10 @@ public class UpmsApiServiceMock implements UpmsApiService {
         return null;
     }
 
+    @Override
+    public UpmsUser selectUpmsUserByUsername(String username) {
+        _log.info("UpmsApiServiceMock => selectUpmsUserByUsername");
+        return null;
+    }
+
 }
