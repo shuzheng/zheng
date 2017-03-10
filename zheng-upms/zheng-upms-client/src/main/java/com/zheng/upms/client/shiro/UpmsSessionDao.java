@@ -1,7 +1,6 @@
-package com.zheng.upms.server.shiro;
+package com.zheng.upms.client.shiro;
 
 import com.zheng.common.util.RedisUtil;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;

@@ -1,11 +1,13 @@
 package com.zheng.upms.server.interceptor;
 
 import com.zheng.upms.dao.model.UpmsUser;
+import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.server.controller.manage.UpmsOrganizationController;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -20,6 +22,9 @@ public class UpmsInterceptor extends HandlerInterceptorAdapter {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
 
+    @Autowired
+    UpmsApiService upmsApiService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 过滤ajax
@@ -28,7 +33,8 @@ public class UpmsInterceptor extends HandlerInterceptorAdapter {
         }
         // 登录信息
         Subject subject = SecurityUtils.getSubject();
-        UpmsUser upmsUser = (UpmsUser) subject.getPrincipal();
+        String username = (String) subject.getPrincipal();
+        UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
         request.setAttribute("upmsUser", upmsUser);
         return true;
     }

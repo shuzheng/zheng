@@ -2,13 +2,13 @@ package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.RedisUtil;
+import com.zheng.upms.client.shiro.UpmsSession;
+import com.zheng.upms.client.shiro.UpmsSessionDao;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
-import com.zheng.upms.server.shiro.UpmsSession;
-import com.zheng.upms.server.shiro.UpmsSessionDao;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.BooleanUtils;

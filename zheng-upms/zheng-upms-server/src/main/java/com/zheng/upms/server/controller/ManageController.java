@@ -46,7 +46,8 @@ public class ManageController extends BaseController {
 		modelMap.put("upmsSystems", upmsSystems);
 		// 当前登录用户权限
 		Subject subject = SecurityUtils.getSubject();
-		UpmsUser upmsUser = (UpmsUser) subject.getPrincipal();
+		String username = (String) subject.getPrincipal();
+		UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
 		List<UpmsPermission> upmsPermissions = upmsApiService.selectUpmsPermissionByUpmsUserId(upmsUser.getUserId());
 		modelMap.put("upmsPermissions", upmsPermissions);
 		return "/manage/index";

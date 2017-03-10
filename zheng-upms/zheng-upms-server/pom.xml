@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-rpc-api</artifactId>
+            <artifactId>zheng-upms-client</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
