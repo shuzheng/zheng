@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
@@ -64,7 +64,7 @@
         <!-- SSO认证中心 -->
         <init-param>
             <param-name>sso_server_url</param-name>
-            <param-value>http://upms.zhangshuzheng.cn:1111</param-value>
+            <param-value>http://127.0.0.1:1111</param-value>
         </init-param>
         <!-- 开发模式 -->
         <init-param>
