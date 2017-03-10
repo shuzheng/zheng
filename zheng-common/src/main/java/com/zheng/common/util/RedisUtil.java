@@ -206,6 +206,7 @@ public class RedisUtil {
 			jedis.del(key);
 			jedis.close();
 		} catch (Exception e) {
+
 			_log.error("Remove keyex error : " + e);
 		}
 	}
