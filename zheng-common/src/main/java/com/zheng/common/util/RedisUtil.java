@@ -209,6 +209,7 @@ public class RedisUtil {
 			_log.error("Remove keyex error : " + e);
 		}
 	}
+
 	/**
 	 * 删除值
 	 * @param key
@@ -220,6 +221,54 @@ public class RedisUtil {
 			jedis.close();
 		} catch (Exception e) {
 			_log.error("Remove keyex error : " + e);
+		}
+	}
+
+	/**
+	 * lpush
+	 * @param key
+	 * @param key
+	 */
+	public synchronized static void lpush(String key, String... strings) {
+		try {
+			Jedis jedis = RedisUtil.getJedis();
+			jedis.lpush(key, strings);
+			jedis.close();
+		} catch (Exception e) {
+			_log.error("lpush error : " + e);
+		}
+	}
+
+	/**
+	 * lrem
+	 * @param key
+	 * @param count
+	 * @param value
+	 */
+	public synchronized static void lrem(String key, long count, String value) {
+		try {
+			Jedis jedis = RedisUtil.getJedis();
+			jedis.lrem(key, count, value);
+			jedis.close();
+		} catch (Exception e) {
+			_log.error("lpush error : " + e);
+		}
+	}
+
+	/**
+	 * sadd
+	 * @param key
+	 * @param value
+	 * @param seconds
+	 */
+	public synchronized static void sadd(String key, String value, int seconds) {
+		try {
+			Jedis jedis = RedisUtil.getJedis();
+			jedis.sadd(key, value);
+			jedis.expire(key, seconds);
+			jedis.close();
+		} catch (Exception e) {
+			_log.error("sadd error : " + e);
 		}
 	}
 

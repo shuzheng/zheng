@@ -67,6 +67,19 @@ public class PropertiesFileUtil {
         }
     }
 
+    // 根据key读取value(布尔)
+    public boolean getBool(String key) {
+        try {
+            String value = resourceBundle.getString(key);
+            if ("true".equals(value)) {
+                return true;
+            }
+            return false;
+        }catch (MissingResourceException e) {
+            return false;
+        }
+    }
+
     public Date getLoadTime() {
         return loadTime;
     }
