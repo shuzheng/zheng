@@ -12,16 +12,16 @@ import java.util.Map;
 public class RequestParameterUtil {
 
     /**
-     * 移除url中的token参数
+     * 移除url中的code参数
      * @param request
      * @return
      */
-    public static String getParameterWithOutToken(HttpServletRequest request) {
+    public static String getParameterWithOutCode(HttpServletRequest request) {
         StringBuffer backUrl = request.getRequestURL();
         String params = "";
         Map<String, String[]> parameterMap = request.getParameterMap();
         for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
-            if (!entry.getKey().equals("token")) {
+            if (!entry.getKey().equals("code")) {
                 if (params.equals("")) {
                     params = entry.getKey() + "=" + entry.getValue()[0];
                 } else {

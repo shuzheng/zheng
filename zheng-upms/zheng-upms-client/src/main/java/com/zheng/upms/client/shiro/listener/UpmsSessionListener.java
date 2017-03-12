@@ -1,4 +1,4 @@
-package com.zheng.upms.client.shiro;
+package com.zheng.upms.client.shiro.listener;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
@@ -14,7 +14,7 @@ public class UpmsSessionListener implements SessionListener {
 
     @Override
     public void onStart(Session session) {
-        _log.debug("会话创建：" + session.getId());
+        _log.info("会话创建：" + session.getId());
     }
 
     @Override

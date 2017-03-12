@@ -73,7 +73,7 @@ public class SSOFilter implements Filter {
         if (null != clientSessionId && !StringUtils.isBlank(cacheToken)) {
             // 移除url中的token参数
             if (null != request.getParameter("token")) {
-                String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
+                String backUrl = RequestParameterUtil.getParameterWithOutCode(request);
                 response.sendRedirect(backUrl.toString());
             } else {
                 filterChain.doFilter(request, response);
@@ -116,7 +116,7 @@ public class SSOFilter implements Filter {
                             jedis.close();
                             _log.debug("当前token={}，对应的注册系统个数：{}个", token, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + token));
                             // 移除url中的token参数
-                            String backUrl = RequestParameterUtil.getParameterWithOutToken(request);
+                            String backUrl = RequestParameterUtil.getParameterWithOutCode(request);
                             // 返回请求资源
                             response.sendRedirect(backUrl.toString());
                             return;

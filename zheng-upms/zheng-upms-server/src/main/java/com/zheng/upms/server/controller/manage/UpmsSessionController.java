@@ -1,7 +1,7 @@
 package com.zheng.upms.server.controller.manage;
 
 import com.zheng.common.base.BaseController;
-import com.zheng.upms.client.shiro.UpmsSessionDao;
+import com.zheng.upms.client.shiro.session.UpmsSessionDao;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import io.swagger.annotations.Api;
