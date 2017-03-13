@@ -18,9 +18,9 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<%--<shiro:hasPermission name="cms:tag:read"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增标签</a></shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="cms:tag:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑标签</a></shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="cms:tag:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除标签</a></shiro:hasPermission>--%>
+		<shiro:hasPermission name="cms:tag:read"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增标签</a></shiro:hasPermission>
+		<shiro:hasPermission name="cms:tag:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑标签</a></shiro:hasPermission>
+		<shiro:hasPermission name="cms:tag:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除标签</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
