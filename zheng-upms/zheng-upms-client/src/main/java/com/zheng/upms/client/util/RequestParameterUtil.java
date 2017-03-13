@@ -12,7 +12,7 @@ import java.util.Map;
 public class RequestParameterUtil {
 
     /**
-     * 移除url中的code参数
+     * 移除url中的code、username参数
      * @param request
      * @return
      */
@@ -21,7 +21,7 @@ public class RequestParameterUtil {
         String params = "";
         Map<String, String[]> parameterMap = request.getParameterMap();
         for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
-            if (!entry.getKey().equals("code")) {
+            if (!entry.getKey().equals("upms_code") && !entry.getKey().equals("upms_username")) {
                 if (params.equals("")) {
                     params = entry.getKey() + "=" + entry.getValue()[0];
                 } else {
