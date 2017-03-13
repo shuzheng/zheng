@@ -93,7 +93,7 @@ zheng
 - AliOSS|Qiniu|QcloudCOS: 云存储
 - Protobuf|json: 数据传输 
 - Jenkins: 持续集成工具
-- Maven|Gradle: 项目构建管理
+- Maven: 项目构建管理
 
 #### 前端技术:
 - jQuery
@@ -105,7 +105,8 @@ zheng
 - Select2
 - jquery-confirm
 - jQuery EasyUI
-- AngularJs
+- React
+- Editor.md [Github](https://github.com/pandao/editor.md "Github")
 - zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
 - autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
 - zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
