@@ -1,10 +1,12 @@
 package com.zheng.upms.client.shiro.filter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.shiro.session.UpmsSessionDao;
 import com.zheng.upms.client.util.RequestParameterUtil;
 import com.zheng.upms.common.constant.UpmsConstant;
+import com.zheng.upms.common.constant.UpmsResultConstant;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -16,7 +18,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.AuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -97,11 +101,6 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
         Session session = subject.getSession();
         String sessionId = session.getId().toString();
         int timeOut = (int) session.getTimeout() / 1000;
-        // 是否开发模式，为true则直接放行
-        boolean debug = PropertiesFileUtil.getInstance("zheng-upms-client-shiro").getBool("debug");
-        if (debug) {
-            return true;
-        }
         // 判断局部会话是否登录
         String cacheClientSession = RedisUtil.get(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + session.getId());
         if (StringUtils.isNotBlank(cacheClientSession)) {
@@ -124,7 +123,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
             }
         }
         // 判断是否有认证中心code
-        String code = request.getParameter("code");
+        String code = request.getParameter("upms_code");
         // 已拿到code
         if (StringUtils.isNotBlank(code)) {
             // HttpPost去校验code
@@ -140,23 +139,28 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
                 HttpResponse httpResponse = httpclient.execute(httpPost);
                 if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                     HttpEntity httpEntity = httpResponse.getEntity();
-                    String result = EntityUtils.toString(httpEntity);
-                    if (result.equals("success")) {
+                    JSONObject result = JSONObject.parseObject(EntityUtils.toString(httpEntity));
+                    if (1 == result.getIntValue("code") && result.getString("data").equals(code)) {
                         // code校验正确，创建局部会话
                         RedisUtil.set(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + sessionId, code, timeOut);
                         // 保存code对应的局部会话sessionId，方便退出操作
                         RedisUtil.sadd(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code, sessionId, timeOut);
-                        _log.info("当前code={}，对应的注册系统个数：{}个", code, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
+                        _log.debug("当前code={}，对应的注册系统个数：{}个", code, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
                         // 移除url中的token参数
                         String backUrl = RequestParameterUtil.getParameterWithOutCode(WebUtils.toHttp(request));
                         // 返回请求资源
                         try {
+                            // client无密认证
+                            String username = request.getParameter("upms_username");
+                            subject.login(new UsernamePasswordToken(username, ""));
                             HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
                             httpServletResponse.sendRedirect(backUrl.toString());
                             return true;
                         } catch (IOException e) {
                             _log.error("已拿到code，移除code参数跳转出错：", e);
                         }
+                    } else {
+                        _log.warn(result.getString("data"));
                     }
                 }
             } catch (IOException e) {

@@ -1,5 +1,6 @@
 package com.zheng.upms.server.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.shiro.session.UpmsSession;
@@ -91,13 +92,14 @@ public class SSOController extends BaseController {
         if (StringUtils.isNotBlank(code)) {
             // 回跳
             String backurl = request.getParameter("backurl");
+            String username = (String) subject.getPrincipal();
             if (StringUtils.isBlank(backurl)) {
                 backurl = "/";
             } else {
                 if (backurl.contains("?")) {
-                    backurl += "&code=" + code;
+                    backurl += "&upms_code=" + code + "&upms_username=" + username;
                 } else {
-                    backurl += "?code=" + code;
+                    backurl += "?upms_code=" + code + "&upms_username=" + username;
                 }
             }
             _log.debug("认证中心帐号通过，带code回跳：{}", backurl);
@@ -165,13 +167,13 @@ public class SSOController extends BaseController {
     @ApiOperation(value = "校验code")
     @RequestMapping(value = "/code", method = RequestMethod.POST)
     @ResponseBody
-    public String code(HttpServletRequest request) {
+    public Object code(HttpServletRequest request) {
         String codeParam = request.getParameter("code");
         String code = RedisUtil.get(ZHENG_UPMS_SERVER_CODE + "_" + codeParam);
         if (StringUtils.isBlank(codeParam) || !codeParam.equals(code)) {
-            return "failed";
+            new UpmsResult(UpmsResultConstant.FAILED, "无效code");
         }
-        return "success";
+        return new UpmsResult(UpmsResultConstant.SUCCESS, code);
     }
 
     @ApiOperation(value = "退出登录")

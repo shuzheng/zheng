@@ -1,6 +1,7 @@
 package com.zheng.upms.client.shiro.realm;
 
 import com.zheng.common.util.MD5Util;
+import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.upms.dao.model.UpmsPermission;
 import com.zheng.upms.dao.model.UpmsRole;
 import com.zheng.upms.dao.model.UpmsUser;
@@ -74,6 +75,11 @@ public class UpmsRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();
         String password = new String((char[]) authenticationToken.getCredentials());
+        // client无密认证
+        String upmsType = PropertiesFileUtil.getInstance("zheng-upms-client-shiro").get("upms.type");
+        if ("client".equals(upmsType)) {
+            return new SimpleAuthenticationInfo(username, password, getName());
+        }
 
         // 查询用户信息
         UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
