@@ -17,7 +17,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.AuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -76,7 +75,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
             WebUtils.toHttp(response).sendRedirect(sso_server_url.append("/sso/login").toString());
             return false;
         }
-        sso_server_url.append("/sso/index").append("?").append("appid").append("=").append(PropertiesFileUtil.getInstance("zheng-upms-client-shiro").get("AppID"));
+        sso_server_url.append("/sso/index").append("?").append("appid").append("=").append(PropertiesFileUtil.getInstance("zheng-upms-client").get("appID"));
         // 回跳地址
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         StringBuffer backurl = httpServletRequest.getRequestURL();

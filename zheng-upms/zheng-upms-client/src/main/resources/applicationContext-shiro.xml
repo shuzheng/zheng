@@ -7,12 +7,12 @@
 
     <description>zheng-upms</description>
 
-    <context:property-placeholder location="classpath*:zheng-upms-shiro-*.properties"/>
+    <context:property-placeholder location="classpath*:zheng-upms-client.properties"/>
 
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="${upms.loginUrl}"/>
+        <property name="loginUrl" value="${sso.server.url}"/>
         <property name="successUrl" value="${upms.successUrl}"/>
         <property name="unauthorizedUrl" value="${upms.unauthorizedUrl}"/>
         <property name="filters">
