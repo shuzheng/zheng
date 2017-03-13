@@ -14,7 +14,7 @@ public class UpmsSessionListener implements SessionListener {
 
     @Override
     public void onStart(Session session) {
-        _log.info("会话创建：" + session.getId());
+        _log.debug("会话创建：" + session.getId());
     }
 
     @Override
