@@ -326,7 +326,7 @@ zheng-ui、zheng-common => zheng-upms => 其他
 ### 预览图
 ![login](project-bootstrap/zheng-upms-login.png)
 ![index](project-bootstrap/zheng-upms-index.png)
-![crud](project-bootstrap/zheng-upms-crud.png)
+![crud](zheng-ui/src/images/zheng-upms-theme.png)
 ![swagger](project-bootstrap/api.png)
 
 ### 数据模型
