@@ -6,7 +6,6 @@ import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.shiro.session.UpmsSessionDao;
 import com.zheng.upms.client.util.RequestParameterUtil;
 import com.zheng.upms.common.constant.UpmsConstant;
-import com.zheng.upms.common.constant.UpmsResultConstant;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,7 +19,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.AuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -59,7 +57,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
         Subject subject = getSubject(request, response);
         Session session = subject.getSession();
         // 判断请求类型
-        String upmsType = PropertiesFileUtil.getInstance("zheng-upms-client-shiro").get("upms.type");
+        String upmsType = PropertiesFileUtil.getInstance("zheng-upms-client").get("upms.type");
         session.setAttribute(UpmsConstant.UPMS_TYPE, upmsType);
         if ("client".equals(upmsType)) {
             return validateClient(request, response);
@@ -72,9 +70,9 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        StringBuffer sso_server_url = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client-shiro").get("sso.server.url"));
+        StringBuffer sso_server_url = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-clien").get("sso.server.url"));
         // server需要登录
-        String upmsType = PropertiesFileUtil.getInstance("zheng-upms-client-shiro").get("upms.type");
+        String upmsType = PropertiesFileUtil.getInstance("zheng-upms-client").get("upms.type");
         if ("server".equals(upmsType)) {
             WebUtils.toHttp(response).sendRedirect(sso_server_url.append("/sso/login").toString());
             return false;
@@ -128,7 +126,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
         if (StringUtils.isNotBlank(code)) {
             // HttpPost去校验code
             try {
-                StringBuffer sso_server_url = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client-shiro").get("sso.server.url"));
+                StringBuffer sso_server_url = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client").get("sso.server.url"));
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(sso_server_url.toString() + "/sso/code");
 
