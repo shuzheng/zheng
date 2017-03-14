@@ -866,6 +866,76 @@ public class UpmsLogExample implements Serializable {
             addCriterion("ip not between", value1, value2, "ip");
             return (Criteria) this;
         }
+
+        public Criteria andPermissionsIsNull() {
+            addCriterion("permissions is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsIsNotNull() {
+            addCriterion("permissions is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsEqualTo(String value) {
+            addCriterion("permissions =", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsNotEqualTo(String value) {
+            addCriterion("permissions <>", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsGreaterThan(String value) {
+            addCriterion("permissions >", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsGreaterThanOrEqualTo(String value) {
+            addCriterion("permissions >=", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsLessThan(String value) {
+            addCriterion("permissions <", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsLessThanOrEqualTo(String value) {
+            addCriterion("permissions <=", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsLike(String value) {
+            addCriterion("permissions like", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsNotLike(String value) {
+            addCriterion("permissions not like", value, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsIn(List<String> values) {
+            addCriterion("permissions in", values, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsNotIn(List<String> values) {
+            addCriterion("permissions not in", values, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsBetween(String value1, String value2) {
+            addCriterion("permissions between", value1, value2, "permissions");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionsNotBetween(String value1, String value2) {
+            addCriterion("permissions not between", value1, value2, "permissions");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria implements Serializable {

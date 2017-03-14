@@ -81,6 +81,13 @@ public class UpmsLog implements Serializable {
     private String ip;
 
     /**
+     * 权限值
+     *
+     * @mbg.generated
+     */
+    private String permissions;
+
+    /**
      * 请求参数
      *
      * @mbg.generated
@@ -184,6 +191,14 @@ public class UpmsLog implements Serializable {
         this.ip = ip;
     }
 
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+
     public String getParameter() {
         return parameter;
     }
@@ -217,6 +232,7 @@ public class UpmsLog implements Serializable {
         sb.append(", method=").append(method);
         sb.append(", userAgent=").append(userAgent);
         sb.append(", ip=").append(ip);
+        sb.append(", permissions=").append(permissions);
         sb.append(", parameter=").append(parameter);
         sb.append(", result=").append(result);
         sb.append("]");
@@ -246,6 +262,7 @@ public class UpmsLog implements Serializable {
             && (this.getMethod() == null ? other.getMethod() == null : this.getMethod().equals(other.getMethod()))
             && (this.getUserAgent() == null ? other.getUserAgent() == null : this.getUserAgent().equals(other.getUserAgent()))
             && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
+            && (this.getPermissions() == null ? other.getPermissions() == null : this.getPermissions().equals(other.getPermissions()))
             && (this.getParameter() == null ? other.getParameter() == null : this.getParameter().equals(other.getParameter()))
             && (this.getResult() == null ? other.getResult() == null : this.getResult().equals(other.getResult()));
     }
@@ -265,6 +282,7 @@ public class UpmsLog implements Serializable {
         result = prime * result + ((getMethod() == null) ? 0 : getMethod().hashCode());
         result = prime * result + ((getUserAgent() == null) ? 0 : getUserAgent().hashCode());
         result = prime * result + ((getIp() == null) ? 0 : getIp().hashCode());
+        result = prime * result + ((getPermissions() == null) ? 0 : getPermissions().hashCode());
         result = prime * result + ((getParameter() == null) ? 0 : getParameter().hashCode());
         result = prime * result + ((getResult() == null) ? 0 : getResult().hashCode());
         return result;

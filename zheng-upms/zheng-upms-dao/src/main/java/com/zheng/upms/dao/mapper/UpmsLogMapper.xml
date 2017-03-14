@@ -13,6 +13,7 @@
     <result column="method" jdbcType="VARCHAR" property="method" />
     <result column="user_agent" jdbcType="VARCHAR" property="userAgent" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="permissions" jdbcType="VARCHAR" property="permissions" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zheng.upms.dao.model.UpmsLog">
     <result column="parameter" jdbcType="LONGVARCHAR" property="parameter" />
@@ -78,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List">
     log_id, description, username, start_time, spend_time, base_path, uri, url, method, 
-    user_agent, ip
+    user_agent, ip, permissions
   </sql>
   <sql id="Blob_Column_List">
     parameter, result
@@ -143,13 +144,13 @@
     insert into upms_log (log_id, description, username, 
       start_time, spend_time, base_path, 
       uri, url, method, user_agent, 
-      ip, parameter, result
-      )
+      ip, permissions, parameter, 
+      result)
     values (#{logId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{startTime,jdbcType=BIGINT}, #{spendTime,jdbcType=INTEGER}, #{basePath,jdbcType=VARCHAR}, 
       #{uri,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, 
-      #{ip,jdbcType=VARCHAR}, #{parameter,jdbcType=LONGVARCHAR}, #{result,jdbcType=LONGVARCHAR}
-      )
+      #{ip,jdbcType=VARCHAR}, #{permissions,jdbcType=VARCHAR}, #{parameter,jdbcType=LONGVARCHAR}, 
+      #{result,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsLog">
     insert into upms_log
@@ -186,6 +187,9 @@
       </if>
       <if test="ip != null">
         ip,
+      </if>
+      <if test="permissions != null">
+        permissions,
       </if>
       <if test="parameter != null">
         parameter,
@@ -227,6 +231,9 @@
       </if>
       <if test="ip != null">
         #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="permissions != null">
+        #{permissions,jdbcType=VARCHAR},
       </if>
       <if test="parameter != null">
         #{parameter,jdbcType=LONGVARCHAR},
@@ -278,6 +285,9 @@
       <if test="record.ip != null">
         ip = #{record.ip,jdbcType=VARCHAR},
       </if>
+      <if test="record.permissions != null">
+        permissions = #{record.permissions,jdbcType=VARCHAR},
+      </if>
       <if test="record.parameter != null">
         parameter = #{record.parameter,jdbcType=LONGVARCHAR},
       </if>
@@ -302,6 +312,7 @@
       method = #{record.method,jdbcType=VARCHAR},
       user_agent = #{record.userAgent,jdbcType=VARCHAR},
       ip = #{record.ip,jdbcType=VARCHAR},
+      permissions = #{record.permissions,jdbcType=VARCHAR},
       parameter = #{record.parameter,jdbcType=LONGVARCHAR},
       result = #{record.result,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -320,7 +331,8 @@
       url = #{record.url,jdbcType=VARCHAR},
       method = #{record.method,jdbcType=VARCHAR},
       user_agent = #{record.userAgent,jdbcType=VARCHAR},
-      ip = #{record.ip,jdbcType=VARCHAR}
+      ip = #{record.ip,jdbcType=VARCHAR},
+      permissions = #{record.permissions,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -358,6 +370,9 @@
       <if test="ip != null">
         ip = #{ip,jdbcType=VARCHAR},
       </if>
+      <if test="permissions != null">
+        permissions = #{permissions,jdbcType=VARCHAR},
+      </if>
       <if test="parameter != null">
         parameter = #{parameter,jdbcType=LONGVARCHAR},
       </if>
@@ -379,6 +394,7 @@
       method = #{method,jdbcType=VARCHAR},
       user_agent = #{userAgent,jdbcType=VARCHAR},
       ip = #{ip,jdbcType=VARCHAR},
+      permissions = #{permissions,jdbcType=VARCHAR},
       parameter = #{parameter,jdbcType=LONGVARCHAR},
       result = #{result,jdbcType=LONGVARCHAR}
     where log_id = #{logId,jdbcType=INTEGER}
@@ -394,7 +410,8 @@
       url = #{url,jdbcType=VARCHAR},
       method = #{method,jdbcType=VARCHAR},
       user_agent = #{userAgent,jdbcType=VARCHAR},
-      ip = #{ip,jdbcType=VARCHAR}
+      ip = #{ip,jdbcType=VARCHAR},
+      permissions = #{permissions,jdbcType=VARCHAR}
     where log_id = #{logId,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
