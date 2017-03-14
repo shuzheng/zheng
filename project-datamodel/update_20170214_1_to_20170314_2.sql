@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/3/14 17:26:30                           */
+/* Created on:     2017/3/14 17:46:45                           */
 /*==============================================================*/
 
 
@@ -22,6 +22,7 @@ create table upms_log
    user_agent           varchar(200) comment '用户标识',
    ip                   varchar(30) comment 'IP地址',
    result               text comment '响应结果',
+   permissions          varchar(100) comment '权限值',
    primary key (log_id)
 );
 
