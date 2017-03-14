@@ -59,4 +59,11 @@ public interface UpmsApiService {
      */
     UpmsUser selectUpmsUserByUsername(String username);
 
+    /**
+     * 写入操作日志
+     * @param record
+     * @return
+     */
+    int insertUpmsLogSelective(UpmsLog record);
+
 }
