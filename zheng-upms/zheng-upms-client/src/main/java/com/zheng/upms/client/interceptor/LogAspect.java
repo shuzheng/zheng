@@ -70,8 +70,11 @@ public class LogAspect {
 			upmsLog.setDescription(log.value());
 		}
 		if (method.isAnnotationPresent(RequiresPermissions.class)) {
-			RequiresPermissions permissions = method.getAnnotation(RequiresPermissions.class);
-			upmsLog.setPermissions(ObjectUtils.toString(permissions.value()));
+			RequiresPermissions requiresPermissions = method.getAnnotation(RequiresPermissions.class);
+			String[] permissions = requiresPermissions.value();
+			if (permissions.length > 0) {
+				upmsLog.setPermissions(permissions[0]);
+			}
 		}
 		endTime = System.currentTimeMillis();
 		_log.debug("doAround>>>result={},耗时：{}", result, endTime - startTime);

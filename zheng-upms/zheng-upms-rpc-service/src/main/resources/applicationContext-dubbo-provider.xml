@@ -49,6 +49,10 @@
     <bean id="upmsUserRoleService" class="com.zheng.upms.rpc.service.impl.UpmsUserRoleServiceImpl"/>
     <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserRoleService" ref="upmsUserRoleService" timeout="10000"/>
 
+    <!-- 操作日志 -->
+    <bean id="upmsLogService" class="com.zheng.upms.rpc.service.impl.UpmsLogServiceImpl"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsLogService" ref="upmsLogService" timeout="10000"/>
+
     <!-- 接口服务 -->
     <bean id="upmsApiService" class="com.zheng.upms.rpc.service.impl.UpmsApiServiceImpl"/>
     <dubbo:service interface="com.zheng.upms.rpc.api.UpmsApiService" ref="upmsApiService" timeout="10000"/>

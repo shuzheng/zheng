@@ -32,6 +32,8 @@
     <dubbo:reference id="upmsUserPermissionService" interface="com.zheng.upms.rpc.api.UpmsUserPermissionService" mock="true"/>
     <!-- 用户角色 -->
     <dubbo:reference id="upmsUserRoleService" interface="com.zheng.upms.rpc.api.UpmsUserRoleService" mock="true"/>
+    <!-- 操作日志 -->
+    <dubbo:reference id="upmsLogService" interface="com.zheng.upms.rpc.api.UpmsLogService" mock="true"/>
     <!-- 接口服务 -->
     <dubbo:reference id="upmsApiService" interface="com.zheng.upms.rpc.api.UpmsApiService" mock="true"/>
 
