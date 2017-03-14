@@ -44,7 +44,7 @@ $(function() {
 	});
 	// 显示cookie菜单
 	var systemid = $.cookie('zheng-upms-systemid') || 1;
-	var systemname = $.cookie('zheng-upms-systemname') || 'zheng-upms';
+	var systemname = $.cookie('zheng-upms-systemname') || 'zheng-upms-server';
 	var systemtitle = $.cookie('zheng-upms-systemtitle') || '权限管理系统';
 	$('.system_menus').hide(0, function () {
 		$('.system_' + systemid).show();
@@ -188,7 +188,7 @@ $(function() {
 // 选项卡对象
 var Tab = {
 	addTab: function(title, url) {
-		var index = url.replace('.', '_').replace(/\//g, '__');
+		var index = url.replace(/\./g, '_').replace(/\//g, '_').replace(/:/g, '_').replace(/\?/g, '_').replace(/,/g, '_').replace(/=/g, '_').replace(/&/g, '_');
 		// 如果存在选项卡，则激活，否则创建新选项卡
 		if ($('#tab_' + index).length == 0) {
 			// 添加选项卡

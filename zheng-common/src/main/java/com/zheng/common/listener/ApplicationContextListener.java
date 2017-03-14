@@ -21,11 +21,11 @@ public class ApplicationContextListener implements ApplicationListener<ContextRe
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         // root application context
         if(null == contextRefreshedEvent.getApplicationContext().getParent()) {
-            _log.info(">>>>> spring初始化完毕 <<<<<");
+            _log.debug(">>>>> spring初始化完毕 <<<<<");
             // spring初始化完毕后，通过反射调用所有使用BaseService注解的initMapper方法
             Map<String, Object> services = contextRefreshedEvent.getApplicationContext().getBeansWithAnnotation(BaseService.class);
             for(Object service : services.values()) {
-                _log.info(">>>>> {}.initMapper()", service.getClass().getName());
+                _log.debug(">>>>> {}.initMapper()", service.getClass().getName());
                 try {
                     Method initMapper = service.getClass().getMethod("initMapper");
                     initMapper.invoke(service);

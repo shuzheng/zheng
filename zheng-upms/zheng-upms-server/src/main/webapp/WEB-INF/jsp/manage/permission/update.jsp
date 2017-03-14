@@ -115,8 +115,6 @@ function initPid(val) {
 				data : datas
 			});
 			if (!!val) {
-				console.log(val);
-				//$('#pid').select2('val', val);
 				$('#pid').select2().val(val).trigger('change');
 			}
 		});

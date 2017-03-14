@@ -26,11 +26,11 @@ import java.util.Map;
  * Created by shuzheng on 2016/11/14.
  */
 @Controller
-@RequestMapping("/manage/comment")
 @Api(value = "评论管理", description = "评论管理")
+@RequestMapping("/manage/comment")
 public class CmsCommentController extends BaseController {
 
-	private final static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
+	private static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
 	
 	@Autowired
 	private CmsCommentService cmsCommentService;

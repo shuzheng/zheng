@@ -6,6 +6,7 @@ package com.zheng.upms.common.constant;
  */
 public enum UpmsResultConstant {
 
+    FAILED(0, "failed"),
     SUCCESS(1, "success"),
 
     INVALID_LENGTH(10001, "Invalid length"),

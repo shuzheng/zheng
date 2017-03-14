@@ -52,4 +52,11 @@ public interface UpmsApiService {
      */
     List<UpmsOrganization> selectUpmsOrganizationByExample(UpmsOrganizationExample upmsOrganizationExample);
 
+    /**
+     * 根据username获取UpmsUser
+     * @param username
+     * @return
+     */
+    UpmsUser selectUpmsUserByUsername(String username);
+
 }

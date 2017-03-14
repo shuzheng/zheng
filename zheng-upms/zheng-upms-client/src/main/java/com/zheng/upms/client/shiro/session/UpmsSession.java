@@ -1,4 +1,4 @@
-package com.zheng.upms.server.shiro;
+package com.zheng.upms.client.shiro.session;
 
 import org.apache.shiro.session.mgt.SimpleSession;
 

@@ -1,12 +1,11 @@
-package com.zheng.upms.server.shiro.realm;
+package com.zheng.upms.client.shiro.realm;
 
 import com.zheng.common.util.MD5Util;
+import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.upms.dao.model.UpmsPermission;
 import com.zheng.upms.dao.model.UpmsRole;
 import com.zheng.upms.dao.model.UpmsUser;
-import com.zheng.upms.dao.model.UpmsUserExample;
 import com.zheng.upms.rpc.api.UpmsApiService;
-import com.zheng.upms.rpc.api.UpmsUserService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -22,14 +21,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * 用户认证和授权
  * Created by shuzheng on 2017/1/20.
  */
 public class UpmsRealm extends AuthorizingRealm {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsRealm.class);
-
-    @Autowired
-    private UpmsUserService upmsUserService;
 
     @Autowired
     private UpmsApiService upmsApiService;
@@ -41,7 +38,8 @@ public class UpmsRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
+        String username = (String) principalCollection.getPrimaryPrincipal();
+        UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
 
         // 当前用户所有角色
         List<UpmsRole> upmsRoles = upmsApiService.selectUpmsRoleByUpmsUserId(upmsUser.getUserId());
@@ -77,12 +75,14 @@ public class UpmsRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();
         String password = new String((char[]) authenticationToken.getCredentials());
+        // client无密认证
+        String upmsType = PropertiesFileUtil.getInstance("zheng-upms-client").get("upms.type");
+        if ("client".equals(upmsType)) {
+            return new SimpleAuthenticationInfo(username, password, getName());
+        }
 
         // 查询用户信息
-        UpmsUserExample upmsUserExample = new UpmsUserExample();
-        upmsUserExample.createCriteria()
-            .andUsernameEqualTo(username);
-        UpmsUser upmsUser = upmsUserService.selectFirstByExample(upmsUserExample);
+        UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
 
         if (null == upmsUser) {
             throw new UnknownAccountException();
@@ -94,7 +94,7 @@ public class UpmsRealm extends AuthorizingRealm {
             throw new LockedAccountException();
         }
 
-        return new SimpleAuthenticationInfo(upmsUser, password, getName());
+        return new SimpleAuthenticationInfo(username, password, getName());
     }
 
 }

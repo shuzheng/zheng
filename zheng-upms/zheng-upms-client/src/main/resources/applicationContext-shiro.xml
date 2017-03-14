@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>zheng-upms</description>
+
+    <context:property-placeholder location="classpath*:zheng-upms-client.properties"/>
 
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/sso/login"/>
-        <property name="successUrl" value="/manage"/>
-        <property name="unauthorizedUrl" value="/403"/>
+        <property name="loginUrl" value="${sso.server.url}"/>
+        <property name="successUrl" value="${upms.successUrl}"/>
+        <property name="unauthorizedUrl" value="${upms.unauthorizedUrl}"/>
         <property name="filters">
             <util:map>
-                <entry key="authc" value-ref="formAuthenticationFilter"/>
+                <entry key="authc" value-ref="upmsAuthenticationFilter"/>
             </util:map>
         </property>
         <property name="filterChainDefinitions">
@@ -29,8 +32,11 @@
         </property>
     </bean>
 
+    <!-- 重写authc过滤器 -->
+    <bean id="upmsAuthenticationFilter" class="com.zheng.upms.client.shiro.filter.UpmsAuthenticationFilter"/>
+
     <!-- 强制退出会话过滤器 -->
-    <bean id="upmsSessionForceLogout" class="com.zheng.upms.server.shiro.UpmsSessionForceLogoutFilter"/>
+    <bean id="upmsSessionForceLogout" class="com.zheng.upms.client.shiro.filter.UpmsSessionForceLogoutFilter"/>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -39,41 +45,28 @@
         </property>
         <property name="sessionManager" ref="sessionManager"/>
         <property name="rememberMeManager" ref="rememberMeManager"/>
-        <!--<property name="cacheManager" ref="cacheManager"/>-->
     </bean>
 
     <!-- realm实现，继承自AuthorizingRealm -->
-    <bean id="upmsRealm" class="com.zheng.upms.server.shiro.realm.UpmsRealm"></bean>
+    <bean id="upmsRealm" class="com.zheng.upms.client.shiro.realm.UpmsRealm"></bean>
 
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-        <!-- 全局session超时时间,半小时（单位毫秒） -->
-        <property name="globalSessionTimeout" value="1800000"/>
-        <!-- 删除无效的session，默认为true -->
-        <property name="deleteInvalidSessions" value="true"/>
-        <!-- 是否开启session过期检测，默认为true -->
-        <property name="sessionValidationSchedulerEnabled" value="true"/>
-        <!-- session检测调度器 -->
-        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <!-- 全局session超时时间 -->
+        <property name="globalSessionTimeout" value="${upms.session.timeout}"/>
         <!-- sessionDAO -->
         <property name="sessionDAO" ref="sessionDAO"/>
         <property name="sessionIdCookieEnabled" value="true"/>
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionValidationSchedulerEnabled" value="false"/>
         <property name="sessionListeners">
             <list><ref bean="sessionListener"/></list>
         </property>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <!-- 会话验证调度器 -->
-    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
-        <!-- 相隔多久检查一次session的有效性,半小时（单位毫秒） -->
-        <property name="sessionValidationInterval" value="1800000"/>
-        <property name="sessionManager" ref="sessionManager"/>
-    </bean>
-
     <!-- 会话DAO，可重写，持久化session -->
-    <bean id="sessionDAO" class="com.zheng.upms.server.shiro.UpmsSessionDao"/>
+    <bean id="sessionDAO" class="com.zheng.upms.client.shiro.session.UpmsSessionDao"/>
 
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -82,14 +75,14 @@
         <!-- 设置Cookie的过期时间，秒为单位，默认-1表示关闭浏览器时过期Cookie -->
         <property name="maxAge" value="-1"/>
         <!-- Cookie名称 -->
-        <property name="name" value="zheng-upms-server-session-id"/>
+        <property name="name" value="${upms.session.id}"/>
     </bean>
 
     <!-- 会话监听器 -->
-    <bean id="sessionListener" class="com.zheng.upms.server.shiro.UpmsSessionListener"/>
+    <bean id="sessionListener" class="com.zheng.upms.client.shiro.listener.UpmsSessionListener"/>
 
     <!-- session工厂 -->
-    <bean id="sessionFactory" class="com.zheng.upms.server.shiro.UpmsSessionFactory"/>
+    <bean id="sessionFactory" class="com.zheng.upms.client.shiro.session.UpmsSessionFactory"/>
 
     <!-- rememberMe管理器 -->
     <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
@@ -103,19 +96,8 @@
         <constructor-arg value="rememberMe"/>
         <!-- 不会暴露给客户端 -->
         <property name="httpOnly" value="true"/>
-        <!-- 记住我cookie生效时间30天 -->
-        <property name="maxAge" value="2592000"/>
-    </bean>
-
-    <!-- cacheManager -->
-
-    <!-- 登录表单过滤器 -->
-    <bean id="formAuthenticationFilter"
-          class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
-        <property name="usernameParam" value="username"/>
-        <property name="passwordParam" value="password"/>
-        <property name="rememberMeParam" value="rememberMe"/>
-        <property name="loginUrl" value="/sso/login"/>
+        <!-- 记住我cookie生效时间 -->
+        <property name="maxAge" value="${upms.rememberMe.timeout}"/>
     </bean>
 
     <!-- 设置SecurityUtils，相当于调用SecurityUtils.setSecurityManager(securityManager) -->
