@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-03-14 17:29:10
+Date: 2017-03-14 17:49:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -419,6 +419,7 @@ CREATE TABLE `upms_log` (
   `user_agent` varchar(200) DEFAULT NULL COMMENT '用户标识',
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `result` text COMMENT '响应结果',
+  `permissions` varchar(100) DEFAULT NULL COMMENT '权限值',
   PRIMARY KEY (`log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
 
