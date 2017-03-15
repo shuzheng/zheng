@@ -39,6 +39,9 @@ public class UpmsApiServiceImpl implements UpmsApiService {
     @Autowired
     UpmsOrganizationMapper upmsOrganizationMapper;
 
+    @Autowired
+    UpmsLogMapper upmsLogMapper;
+
     /**
      * 根据用户id获取所拥有的权限
      * @param upmsUserId
@@ -136,6 +139,16 @@ public class UpmsApiServiceImpl implements UpmsApiService {
             return upmsUsers.get(0);
         }
         return null;
+    }
+
+    /**
+     * 写入操作日志
+     * @param record
+     * @return
+     */
+    @Override
+    public int insertUpmsLogSelective(UpmsLog record) {
+        return upmsLogMapper.insertSelective(record);
     }
 
 }

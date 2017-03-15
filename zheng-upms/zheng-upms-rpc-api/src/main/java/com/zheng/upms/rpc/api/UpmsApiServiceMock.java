@@ -56,4 +56,10 @@ public class UpmsApiServiceMock implements UpmsApiService {
         return null;
     }
 
+    @Override
+    public int insertUpmsLogSelective(UpmsLog record) {
+        _log.info("UpmsApiServiceMock => insertSelective");
+        return 0;
+    }
+
 }

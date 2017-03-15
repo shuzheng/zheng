@@ -5,15 +5,13 @@ import com.zheng.upms.client.util.SerializableUtil;
 import com.zheng.upms.common.constant.UpmsConstant;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
-import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -122,6 +120,12 @@ public class UpmsSessionDao extends CachingSessionDAO {
         List<Session> rows = new ArrayList<>();
         for (String id : ids) {
             String session = RedisUtil.get(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + id);
+            // 过滤redis过期session
+            if (null == session) {
+                RedisUtil.lrem(ZHENG_UPMS_SERVER_SESSION_IDS, 1, id);
+                total = total - 1;
+                continue;
+            }
              rows.add(SerializableUtil.deserialize(session));
         }
         jedis.close();
