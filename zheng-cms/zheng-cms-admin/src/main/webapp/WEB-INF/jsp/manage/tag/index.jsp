@@ -76,7 +76,7 @@ function iconFormatter(value, row, index) {
 // 格式化类型
 function typeFormatter(value, row, index) {
 	if (value == 1) {
-		return '<span class="label label-default">普通</span>';
+		return '<span class="label label-primary">普通</span>';
 	}
 	if (value == 2) {
 		return '<span class="label label-danger">热门</span>';
