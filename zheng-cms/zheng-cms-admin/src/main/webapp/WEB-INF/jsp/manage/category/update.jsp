@@ -1,42 +1,122 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+﻿<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="basePath" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8"/>
-<title>编辑</title>
-</head>
-<body>
-<div>
-	<a href="${basePath}/manage/index">首页</a> &gt; <a href="${basePath}/manage/category/list">类目列表</a> &gt; 编辑
-</div>
-<div>
-	<form method="post">
-	<table border="1">
-		<input type="hidden" name="categoryId" value="${category.categoryId}"/>
-		<tr><td>上级编号：</td><td><input type="text" name="pid" value="${category.pid}"/></td></tr>
-		<tr><td>层级：</td><td><input type="text" name="level" value="${category.level}"/></td></tr>
-		<tr><td>名称：</td><td><input type="text" name="name" value="${category.name}"/></td></tr>
-		<tr><td>描述：</td><td><input type="text" name="description" value="${category.description}"/></td></tr>
-		<tr><td>图标：</td><td><input type="text" name="icon" value="${category.icon}"/></td></tr>
-		<tr>
-			<td>类型：</td>
-			<td>
-				<select name="type">
-					<option value="1" <c:if test="${category.type==1}">selected="selected"</c:if>>普通</option>
-					<option value="2" <c:if test="${category.type==2}">selected="selected"</c:if>>热门</option>
-				</select>
-			</td>
-		</tr>
-		<tr><td>别名：</td><td><input type="text" name="alias" value="${category.alias}"/></td></tr>
-		<tr><td></td><td><a href="${basePath}/manage/category/list">取消</a>　<input type="submit" value="保存"/></td></tr>
-	</table>
+<div id="updateDialog" class="crudDialog">
+	<form id="updateForm" method="post">
+		<div class="form-group">
+			<label for="pid">上级</label>
+			<input id="pid" type="text" class="form-control" name="pid" maxlength="20" value="${category.pid}">
+		</div>
+		<div class="form-group">
+			<label for="level">层深</label>
+			<input id="level" type="text" class="form-control" name="level" maxlength="5" value="${category.level}">
+		</div>
+		<div class="form-group">
+			<label for="name">名称</label>
+			<input id="name" type="text" class="form-control" name="name" maxlength="20" value="${category.name}">
+		</div>
+		<div class="form-group">
+			<label for="alias">别名</label>
+			<input id="alias" type="text" class="form-control" name="alias" maxlength="20" value="${category.alias}">
+		</div>
+		<div class="form-group">
+			<label for="description">描述</label>
+			<input id="description" type="text" class="form-control" name="description" maxlength="200" value="${category.description}">
+		</div>
+		<div class="form-group">
+			<label for="icon">图标</label>
+			<input id="icon" type="text" class="form-control" name="icon" maxlength="20" value="${category.icon}">
+		</div>
+		<div class="radio">
+			<div class="radio radio-inline radio-info">
+				<input id="type_1" type="radio" name="type" value="1" <c:if test="${category.type==1}">checked</c:if>>
+				<label for="type_1">普通 </label>
+			</div>
+			<div class="radio radio-inline radio-danger">
+				<input id="type_2" type="radio" name="type" value="2" <c:if test="${category.type==2}">checked</c:if>>
+				<label for="type_2">热门 </label>
+			</div>
+		</div>
+		<div class="form-group text-right dialog-buttons">
+			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
+			<a class="waves-effect waves-button" href="javascript:;" onclick="updateDialog.close();">取消</a>
+		</div>
 	</form>
 </div>
-</body>
-</html>
+<script>
+	function createSubmit() {
+		$.ajax({
+			type: 'post',
+			url: '${basePath}/manage/category/update/${category.categoryId}',
+			data: $('#updateForm').serialize(),
+			beforeSend: function() {
+				if ($('#name').val() == '') {
+					$('#name').focus();
+					return false;
+				}
+				if ($('#alias').val() == '') {
+					$('#alias').focus();
+					return false;
+				}
+			},
+			success: function(result) {
+				if (result.code != 1) {
+					if (result.data instanceof Array) {
+						$.each(result.data, function(index, value) {
+							$.confirm({
+								theme: 'dark',
+								animation: 'rotateX',
+								closeAnimation: 'rotateX',
+								title: false,
+								content: value.errorMsg,
+								buttons: {
+									confirm: {
+										text: '确认',
+										btnClass: 'waves-effect waves-button waves-light'
+									}
+								}
+							});
+						});
+					} else {
+						$.confirm({
+							theme: 'dark',
+							animation: 'rotateX',
+							closeAnimation: 'rotateX',
+							title: false,
+							content: result.data.errorMsg,
+							buttons: {
+								confirm: {
+									text: '确认',
+									btnClass: 'waves-effect waves-button waves-light'
+								}
+							}
+						});
+					}
+				} else {
+					updateDialog.close();
+					$table.bootstrapTable('refresh');
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.confirm({
+					theme: 'dark',
+					animation: 'rotateX',
+					closeAnimation: 'rotateX',
+					title: false,
+					content: textStatus,
+					buttons: {
+						confirm: {
+							text: '确认',
+							btnClass: 'waves-effect waves-button waves-light'
+						}
+					}
+				});
+			}
+		});
+	}
+</script>
