@@ -3,7 +3,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819 (群内含各种工具和文档下载)
+交流QQ群：133107819🈵、284280411♨️(群内含各种工具和文档下载)
 
 ## 前言
 
@@ -22,10 +22,10 @@ zheng
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-common -- upms系统公共模块
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
-|    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、会话管理
+|    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、统一会话管理
 |    ├── zheng-upms-rpc-api -- rpc接口包
 |    ├── zheng-upms-rpc-service -- rpc服务提供者
-|    └── zheng-upms-server -- 系统及SSO服务端[端口:1111]
+|    └── zheng-upms-server -- 用户权限系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-common -- cms系统公共模块
 |    ├── zheng-cms-dao -- MyBatisGenerator代码生成模块，无需开发
@@ -93,13 +93,20 @@ zheng
 - AliOSS|Qiniu|QcloudCOS: 云存储
 - Protobuf|json: 数据传输 
 - Jenkins: 持续集成工具
-- Maven|Gradle: 项目构建管理
+- Maven: 项目构建管理
 
 #### 前端技术:
 - jQuery
 - Bootstrap
+- Bootstrap-table
+- Font-awesome
+- Waves
+- zTree
+- Select2
+- jquery-confirm
 - jQuery EasyUI
-- AngularJs
+- React
+- Editor.md [Github](https://github.com/pandao/editor.md "Github")
 - zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
 - autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
 - zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
@@ -244,7 +251,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 编译流程
 
-zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
+zheng-ui、zheng-common => zheng-upms => 其他
 
 ### 启动顺序
 
@@ -252,7 +259,7 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
 
-- 启动 zheng-upms-rpc-service => zheng-upms-server => zheng-xxx-rpc-service => zheng-xxx-webapp
+- 启动 zheng-upms-rpc-service(运行ZhengUpmsRpcServiceApplication#main方法启动) => zheng-upms-server(jetty) => zheng-xxx-rpc-service(main方法) => zheng-xxx-webapp(jetty)
 
 - 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，默认帐号密码：admin/123456
 
@@ -319,14 +326,14 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 ### 预览图
 ![login](project-bootstrap/zheng-upms-login.png)
 ![index](project-bootstrap/zheng-upms-index.png)
-![crud](project-bootstrap/zheng-upms-crud.png)
+![crud](zheng-ui/src/images/zheng-upms-theme.png)
 ![swagger](project-bootstrap/api.png)
 
 ### 数据模型
-![数据库模型](https://github.com/shuzheng/zheng/raw/master/project-datamodel/zheng.png)
+![数据库模型](project-datamodel/zheng.png)
 
 ### 拓扑图
-![拓扑图](https://github.com/shuzheng/zheng/raw/master/project-bootstrap/distributedSystem.png)
+![拓扑图](project-bootstrap/distributedSystem.png)
 
 ### 开发进度
 ![开发进度](project-bootstrap/progress.png)
@@ -363,6 +370,8 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 
 - [读懂Redis并配置主从集群及高可用部署](http://mp.weixin.qq.com/s?__biz=MzIxNTYzOTQ0Ng==&mid=2247483668&idx=1&sn=cd31574877d38cf7ff9c047b86c9bf23&chksm=979475eda0e3fcfb6b5006bcd19c5a838eca9e369252847dbdf97820bf418201dd75c1dadda3&mpshare=1&scene=23&srcid=0117KUiiITwi2ETRan16xRVg#rd "读懂Redis并配置主从集群及高可用部署")
 
+- [Redis哨兵-实现Redis高可用](http://redis.majunwei.com/topics/sentinel.html "Redis哨兵-实现Redis高可用")
+
 - [ELK(ElasticSearch, Logstash, Kibana)搭建实时日志分析平台](http://www.open-open.com/lib/view/open1451801542042.html "ELK(ElasticSearch, Logstash, Kibana)搭建实时日志分析平台")
 
 - [Nginx基本功能极速入门](http://xxgblog.com/2015/05/17/nginx-start/ "Nginx基本功能极速入门")
@@ -372,6 +381,8 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 - [Elasticsearch权威指南（中文版）](https://es.xiaoleilu.com/510_Deployment/20_hardware.html "Elasticsearch权威指南（中文版）")
 
 - [springMVC对简单对象、Set、List、Map的数据绑定和常见问题.](http://blog.csdn.net/z_dendy/article/details/12648641 "springMVC对简单对象、Set、List、Map的数据绑定和常见问题.")
+
+- [如何细粒度地控制你的MyBatis二级缓存](http://blog.csdn.net/luanlouis/article/details/41800511 "如何细粒度地控制你的MyBatis二级缓存")
 
 - [做个男人，做个成熟的男人，做个有城府的男人](http://shuzheng5201314.iteye.com/blog/1387820 "做个男人，做个成熟的男人，做个有城府的男人")
 
@@ -399,6 +410,8 @@ zheng-ui、zheng-common => zheng-oss、zheng-api => zheng-upms => 其他
 - [Velocity在线手册](http://velocity.apache.org/engine/devel/developer-guide.html "Velocity在线手册")
 
 - [Bootstrap在线手册](http://www.bootcss.com/ "Bootstrap在线手册")
+
+- [Git官网中文文档](https://git-scm.com/book/zh/v2 "Git官网中文文档")
 
 ## 许可证
 

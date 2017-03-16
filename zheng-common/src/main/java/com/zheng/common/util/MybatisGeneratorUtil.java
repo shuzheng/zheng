@@ -57,12 +57,14 @@ public class MybatisGeneratorUtil {
 			jdbcUtil.release();
 
 			String targetProject = PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-dao";
+			String targetProject_sqlMap = PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-rpc-service";
 			context.put("tables", tables);
 			context.put("generator_javaModelGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.model");
 			context.put("generator_sqlMapGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("generator_javaClientGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("targetProject", targetProject);
-			context.put("master_jdbc_password", AESUtil.AESDecode(jdbc_password));
+			context.put("targetProject_sqlMap", targetProject_sqlMap);
+			context.put("generator_jdbc_password", AESUtil.AESDecode(jdbc_password));
 			VelocityUtil.generate(VM_PATH, module_path, context);
 			// 删除旧代码
 			deleteDir(new File(targetProject + "/src/main/java/com/" + PROJECT_NAME + "/" + module_prefix_name.replaceAll("\\.", "/") + "/dao/model"));
@@ -74,9 +76,8 @@ public class MybatisGeneratorUtil {
 		System.out.println("========== 开始运行MybatisGenerator ==========");
 		// 生成代码
 		try {
-			Thread.sleep(2000);
 			List<String> warnings = new ArrayList<>();
-			File configFile = new File(MybatisGeneratorUtil.class.getResource("/generatorConfig.xml").getFile());
+			File configFile = new File(module_path);
 			ConfigurationParser cp = new ConfigurationParser(warnings);
 			Configuration config = cp.parseConfiguration(configFile);
 			DefaultShellCallback callback = new DefaultShellCallback(true);
@@ -89,6 +90,7 @@ public class MybatisGeneratorUtil {
 			e.printStackTrace();
 		}
 		System.out.println("========== 结束运行MybatisGenerator ==========");
+		System.out.println("========== 开始生成 ==========");
 	}
 
 	// 递归删除非空文件夹

@@ -13,10 +13,14 @@
 			<input id="name" type="text" class="form-control" name="name" maxlength="20" value="${role.name}">
 		</div>
 		<div class="form-group">
+			<label for="title">标题</label>
+			<input id="title" type="text" class="form-control" name="title" maxlength="20" value="${role.title}">
+		</div>
+		<div class="form-group">
 			<label for="description">描述</label>
 			<input id="description" type="text" class="form-control" name="description" maxlength="300" value="${role.description}">
 		</div>
-		<div class="form-group text-right">
+		<div class="form-group text-right dialog-buttons">
 			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
 			<a class="waves-effect waves-button" href="javascript:;" onclick="updateDialog.close();">取消</a>
 		</div>
@@ -29,10 +33,14 @@ function createSubmit() {
         url: '${basePath}/manage/role/update/${role.roleId}',
         data: $('#updateForm').serialize(),
         beforeSend: function() {
-            if ($('#name').val() == '') {
-                $('#name').focus();
-                return false;
-            }
+			if ($('#name').val() == '') {
+				$('#name').focus();
+				return false;
+			}
+			if ($('#title').val() == '') {
+				$('#title').focus();
+				return false;
+			}
         },
         success: function(result) {
 			if (result.code != 1) {

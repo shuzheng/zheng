@@ -1,20 +1,25 @@
 package com.zheng.cms.admin.controller.manage;
 
+import com.baidu.unbiz.fluentvalidator.ComplexResult;
+import com.baidu.unbiz.fluentvalidator.FluentValidator;
+import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.zheng.cms.common.constant.CmsResult;
 import com.zheng.cms.common.constant.CmsResultConstant;
 import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
 import com.zheng.cms.rpc.api.CmsArticleService;
 import com.zheng.common.base.BaseController;
+import com.zheng.common.validator.LengthValidator;
+import com.zheng.common.validator.NotNullValidator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -26,11 +31,11 @@ import java.util.Map;
  * Created by shuzheng on 2016/11/14.
  */
 @Controller
-@RequestMapping("/manage/article")
 @Api(value = "文章管理", description = "文章管理")
+@RequestMapping("/manage/article")
 public class CmsArticleController extends BaseController {
 
-	private final static Logger _log = LoggerFactory.getLogger(CmsArticleController.class);
+	private static Logger _log = LoggerFactory.getLogger(CmsArticleController.class);
 	
 	@Autowired
 	private CmsArticleService cmsArticleService;
@@ -54,7 +59,7 @@ public class CmsArticleController extends BaseController {
 		CmsArticleExample cmsArticleExample = new CmsArticleExample();
 		cmsArticleExample.setOffset(offset);
 		cmsArticleExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsArticleExample.setOrderByClause(sort + " " + order);
 		}
 		List<CmsArticle> rows = cmsArticleService.selectByExample(cmsArticleExample);
@@ -77,6 +82,13 @@ public class CmsArticleController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public Object create(CmsArticle cmsArticle) {
+		ComplexResult result = FluentValidator.checkAll()
+				.on(cmsArticle.getTitle(), new LengthValidator(1, 200, "标题"))
+				.doValidate()
+				.result(ResultCollectors.toComplex());
+		if (!result.isSuccess()) {
+			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
+		}
 		long time = System.currentTimeMillis();
 		cmsArticle.setCtime(time);
 		cmsArticle.setOrders(time);
@@ -107,10 +119,16 @@ public class CmsArticleController extends BaseController {
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Object update(@PathVariable("id") int id, CmsArticle cmsArticle) {
+		ComplexResult result = FluentValidator.checkAll()
+				.on(cmsArticle.getTitle(), new LengthValidator(1, 200, "标题"))
+				.doValidate()
+				.result(ResultCollectors.toComplex());
+		if (!result.isSuccess()) {
+			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
+		}
 		cmsArticle.setArticleId(id);
 		int count = cmsArticleService.updateByPrimaryKeySelective(cmsArticle);
 		return new CmsResult(CmsResultConstant.SUCCESS, count);
 	}
-
 
 }

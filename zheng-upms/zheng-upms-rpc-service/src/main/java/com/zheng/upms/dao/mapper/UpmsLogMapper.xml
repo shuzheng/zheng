@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.upms.dao.mapper.UpmsLogMapper">
+  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsLog">
+    <id column="log_id" jdbcType="INTEGER" property="logId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="start_time" jdbcType="BIGINT" property="startTime" />
+    <result column="spend_time" jdbcType="INTEGER" property="spendTime" />
+    <result column="base_path" jdbcType="VARCHAR" property="basePath" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="user_agent" jdbcType="VARCHAR" property="userAgent" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="permissions" jdbcType="VARCHAR" property="permissions" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zheng.upms.dao.model.UpmsLog">
+    <result column="parameter" jdbcType="LONGVARCHAR" property="parameter" />
+    <result column="result" jdbcType="LONGVARCHAR" property="result" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    log_id, description, username, start_time, spend_time, base_path, uri, url, method, 
+    user_agent, ip, permissions
+  </sql>
+  <sql id="Blob_Column_List">
+    parameter, result
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.zheng.upms.dao.model.UpmsLogExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from upms_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from upms_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from upms_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from upms_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.UpmsLogExample">
+    delete from upms_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsLog">
+    insert into upms_log (log_id, description, username, 
+      start_time, spend_time, base_path, 
+      uri, url, method, user_agent, 
+      ip, permissions, parameter, 
+      result)
+    values (#{logId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=BIGINT}, #{spendTime,jdbcType=INTEGER}, #{basePath,jdbcType=VARCHAR}, 
+      #{uri,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{permissions,jdbcType=VARCHAR}, #{parameter,jdbcType=LONGVARCHAR}, 
+      #{result,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsLog">
+    insert into upms_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="spendTime != null">
+        spend_time,
+      </if>
+      <if test="basePath != null">
+        base_path,
+      </if>
+      <if test="uri != null">
+        uri,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="userAgent != null">
+        user_agent,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="permissions != null">
+        permissions,
+      </if>
+      <if test="parameter != null">
+        parameter,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="spendTime != null">
+        #{spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="basePath != null">
+        #{basePath,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null">
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null">
+        #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="permissions != null">
+        #{permissions,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null">
+        #{parameter,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zheng.upms.dao.model.UpmsLogExample" resultType="java.lang.Long">
+    select count(*) from upms_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update upms_log
+    <set>
+      <if test="record.logId != null">
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.spendTime != null">
+        spend_time = #{record.spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.basePath != null">
+        base_path = #{record.basePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uri != null">
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.method != null">
+        method = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAgent != null">
+        user_agent = #{record.userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permissions != null">
+        permissions = #{record.permissions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parameter != null">
+        parameter = #{record.parameter,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.result != null">
+        result = #{record.result,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update upms_log
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=BIGINT},
+      spend_time = #{record.spendTime,jdbcType=INTEGER},
+      base_path = #{record.basePath,jdbcType=VARCHAR},
+      uri = #{record.uri,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      method = #{record.method,jdbcType=VARCHAR},
+      user_agent = #{record.userAgent,jdbcType=VARCHAR},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      permissions = #{record.permissions,jdbcType=VARCHAR},
+      parameter = #{record.parameter,jdbcType=LONGVARCHAR},
+      result = #{record.result,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update upms_log
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=BIGINT},
+      spend_time = #{record.spendTime,jdbcType=INTEGER},
+      base_path = #{record.basePath,jdbcType=VARCHAR},
+      uri = #{record.uri,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      method = #{record.method,jdbcType=VARCHAR},
+      user_agent = #{record.userAgent,jdbcType=VARCHAR},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      permissions = #{record.permissions,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsLog">
+    update upms_log
+    <set>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="spendTime != null">
+        spend_time = #{spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="basePath != null">
+        base_path = #{basePath,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null">
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null">
+        user_agent = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="permissions != null">
+        permissions = #{permissions,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null">
+        parameter = #{parameter,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zheng.upms.dao.model.UpmsLog">
+    update upms_log
+    set description = #{description,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=BIGINT},
+      spend_time = #{spendTime,jdbcType=INTEGER},
+      base_path = #{basePath,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      permissions = #{permissions,jdbcType=VARCHAR},
+      parameter = #{parameter,jdbcType=LONGVARCHAR},
+      result = #{result,jdbcType=LONGVARCHAR}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsLog">
+    update upms_log
+    set description = #{description,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=BIGINT},
+      spend_time = #{spendTime,jdbcType=INTEGER},
+      base_path = #{basePath,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      permissions = #{permissions,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

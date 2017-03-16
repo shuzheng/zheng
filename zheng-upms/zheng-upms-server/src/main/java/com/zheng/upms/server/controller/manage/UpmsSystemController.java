@@ -12,13 +12,13 @@ import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -58,7 +58,7 @@ public class UpmsSystemController extends BaseController {
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
 		upmsSystemExample.setOffset(offset);
 		upmsSystemExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			upmsSystemExample.setOrderByClause(sort + " " + order);
 		}
 		List<UpmsSystem> rows = upmsSystemService.selectByExample(upmsSystemExample);

@@ -13,12 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>权限管理</title>
-	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/css/common.css" rel="stylesheet"/>
+	<jsp:include page="/resources/inc/head.jsp" flush="true"/>
 </head>
 <body>
 <div id="main">
@@ -29,23 +24,10 @@
 	</div>
 	<table id="table"></table>
 </div>
-<script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/js/common.js"></script>
+<jsp:include page="/resources/inc/footer.jsp" flush="true"/>
 <script>
 var $table = $('#table');
 $(function() {
-	$(document).on('focus', 'input[type="text"]', function() {
-		$(this).parent().find('label').addClass('active');
-	}).on('blur', 'input[type="text"]', function() {
-		if ($(this).val() == '') {
-			$(this).parent().find('label').removeClass('active');
-		}
-	});
 	// bootstrap table初始化
 	$table.bootstrapTable({
 		url: '${basePath}/manage/permission/list',
@@ -97,9 +79,12 @@ function iconFormatter(value, row, index) {
 // 格式化类型
 function typeFormatter(value, row, index) {
 	if (value == 1) {
-		return '菜单';
+		return '目录';
 	}
 	if (value == 2) {
+		return '菜单';
+	}
+	if (value == 3) {
 		return '按钮';
 	}
 	return '-';
@@ -109,7 +94,7 @@ function statusFormatter(value, row, index) {
 	if (value == 1) {
 		return '<span class="label label-success">正常</span>';
 	} else {
-		return '<span class="label label-danger">锁定</span>';
+		return '<span class="label label-default">锁定</span>';
 	}
 }
 // 新增
@@ -118,7 +103,11 @@ function createAction() {
 	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增权限',
-		content: 'url:${basePath}/manage/permission/create'
+		content: 'url:${basePath}/manage/permission/create',
+		onContentReady: function () {
+			initMaterialInput();
+			$('select').select2();
+		}
 	});
 }
 // 编辑
@@ -142,7 +131,13 @@ function updateAction() {
 		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑权限',
-			content: 'url:${basePath}/manage/permission/update/' + rows[0].permissionId
+			content: 'url:${basePath}/manage/permission/update/' + rows[0].permissionId,
+			onContentReady: function () {
+				initMaterialInput();
+				$('select').select2();
+				initType();
+				initSelect2();
+			}
 		});
 	}
 }

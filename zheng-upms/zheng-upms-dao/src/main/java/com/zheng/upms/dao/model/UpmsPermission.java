@@ -32,7 +32,7 @@ public class UpmsPermission implements Serializable {
     private String name;
 
     /**
-     * 类型(1:菜单,2:按钮)
+     * 类型(1:目录,2:菜单,3:按钮)
      *
      * @mbg.generated
      */

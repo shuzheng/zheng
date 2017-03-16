@@ -13,12 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>用户管理</title>
-	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/css/common.css" rel="stylesheet"/>
+	<jsp:include page="/resources/inc/head.jsp" flush="true"/>
 </head>
 <body>
 <div id="main">
@@ -26,26 +21,16 @@
 		<shiro:hasPermission name="upms:user:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增用户</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:user:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑用户</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:user:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除用户</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:user:organization"><a class="waves-effect waves-button" href="javascript:;" onclick="organizationAction()"><i class="zmdi zmdi-accounts-list"></i> 用户组织</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:user:role"><a class="waves-effect waves-button" href="javascript:;" onclick="roleAction()"><i class="zmdi zmdi-accounts"></i> 用户角色</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:user:permission"><a class="waves-effect waves-button" href="javascript:;" onclick="permissionAction()"><i class="zmdi zmdi-key"></i> 用户权限</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
-<script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/js/common.js"></script>
+<jsp:include page="/resources/inc/footer.jsp" flush="true"/>
 <script>
 var $table = $('#table');
 $(function() {
-	$(document).on('focus', 'input[type="text"]', function() {
-		$(this).parent().find('label').addClass('active');
-	}).on('blur', 'input[type="text"]', function() {
-		if ($(this).val() == '') {
-			$(this).parent().find('label').removeClass('active');
-		}
-	});
 	// bootstrap table初始化
 	$table.bootstrapTable({
 		url: '${basePath}/manage/user/list',
@@ -106,7 +91,7 @@ function sexFormatter(value, row, index) {
 // 格式化状态
 function lockedFormatter(value, row, index) {
 	if (value == 1) {
-		return '<span class="label label-danger">锁定</span>';
+		return '<span class="label label-default">锁定</span>';
 	} else {
 		return '<span class="label label-success">正常</span>';
 	}
@@ -117,7 +102,10 @@ function createAction() {
 	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增用户',
-		content: 'url:${basePath}/manage/user/create'
+		content: 'url:${basePath}/manage/user/create',
+		onContentReady: function () {
+			initMaterialInput();
+		}
 	});
 }
 // 编辑
@@ -141,7 +129,10 @@ function updateAction() {
 		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑用户',
-			content: 'url:${basePath}/manage/user/update/' + rows[0].userId
+			content: 'url:${basePath}/manage/user/update/' + rows[0].userId,
+			onContentReady: function () {
+				initMaterialInput();
+			}
 		});
 	}
 }
@@ -240,6 +231,104 @@ function deleteAction() {
 					text: '取消',
 					btnClass: 'waves-effect waves-button'
 				}
+			}
+		});
+	}
+}
+// 用户组织
+var organizationDialog;
+var organizationUserId;
+function organizationAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		organizationUserId = rows[0].userId;
+		organizationDialog = $.dialog({
+			animationSpeed: 300,
+			title: '用户组织',
+			content: 'url:${basePath}/manage/user/organization/' + organizationUserId,
+			onContentReady: function () {
+				initMaterialInput();
+				$('select').select2({
+					placeholder: '请选择用户组织',
+					allowClear: true
+				});
+			}
+		});
+	}
+}
+// 用户角色
+var roleDialog;
+var roleUserId;
+function roleAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		roleUserId = rows[0].userId;
+		roleDialog = $.dialog({
+			animationSpeed: 300,
+			title: '用户角色',
+			content: 'url:${basePath}/manage/user/role/' + roleUserId,
+			onContentReady: function () {
+				initMaterialInput();
+				$('select').select2({
+					placeholder: '请选择用户角色',
+					allowClear: true
+				});
+			}
+		});
+	}
+}
+// 用户权限
+var permissionDialog;
+var permissionUserId;
+function permissionAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		permissionUserId = rows[0].userId;
+		permissionDialog = $.dialog({
+			animationSpeed: 300,
+			title: '用户授权',
+			content: 'url:${basePath}/manage/user/permission/' + permissionUserId,
+			onContentReady: function () {
+				initMaterialInput();
 			}
 		});
 	}

@@ -8,10 +8,6 @@ import com.zheng.common.base.BaseResult;
  */
 public class CmsResult extends BaseResult {
 
-    public CmsResult(int code, String message, Object data) {
-        super(code, message, data);
-    }
-
     public CmsResult(CmsResultConstant cmsResultConstant, Object data) {
         super(cmsResultConstant.getCode(), cmsResultConstant.getMessage(), data);
     }

@@ -31,12 +31,26 @@ $(function() {
 	// 切换系统
 	$('.switch-systems').click(function () {
 		var systemid = $(this).attr('systemid');
+		var systemname = $(this).attr('systemname');
 		var systemtitle = $(this).attr('systemtitle');
 		$('.system_menus').hide(0, function () {
 			$('.system_' + systemid).show();
-			$('#system_title').text(systemtitle);
 		});
+		$('body').attr("id", systemname);
+		$('#system_title').text(systemtitle);
+		$.cookie('zheng-upms-systemid', systemid);
+		$.cookie('zheng-upms-systemname', systemname);
+		$.cookie('zheng-upms-systemtitle', systemtitle);
 	});
+	// 显示cookie菜单
+	var systemid = $.cookie('zheng-upms-systemid') || 1;
+	var systemname = $.cookie('zheng-upms-systemname') || 'zheng-upms-server';
+	var systemtitle = $.cookie('zheng-upms-systemtitle') || '权限管理系统';
+	$('.system_menus').hide(0, function () {
+		$('.system_' + systemid).show();
+	});
+	$('body').attr('id', systemname);
+	$('#system_title').text(systemtitle);
 });
 // iframe高度自适应
 function changeFrameHeight(ifm) {
@@ -174,12 +188,12 @@ $(function() {
 // 选项卡对象
 var Tab = {
 	addTab: function(title, url) {
-		var index = url.replace('.', '_').replace(/\//g, '__');
+		var index = url.replace(/\./g, '_').replace(/\//g, '_').replace(/:/g, '_').replace(/\?/g, '_').replace(/,/g, '_').replace(/=/g, '_').replace(/&/g, '_');
 		// 如果存在选项卡，则激活，否则创建新选项卡
 		if ($('#tab_' + index).length == 0) {
 			// 添加选项卡
 			$('.content_tab li').removeClass('cur');
-			var tab = '<li id="tab_' + index +'" data-index="' + index + '" class="cur"><a class="waves-effect waves-light" href="javascript:;">' + title + '</a></li>';//<i class="zmdi zmdi-close"></i><
+			var tab = '<li id="tab_' + index +'" data-index="' + index + '" class="cur"><a class="waves-effect waves-light">' + title + '</a></li>';//<i class="zmdi zmdi-close"></i><
 			$('.content_tab>ul').append(tab);
 			// 添加iframe
 			$('.iframe').removeClass('cur');

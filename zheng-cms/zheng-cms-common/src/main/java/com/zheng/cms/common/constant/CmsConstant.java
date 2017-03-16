@@ -7,4 +7,5 @@ import com.zheng.common.base.BaseConstants;
  * Created by shuzheng on 2017/2/19.
  */
 public class CmsConstant extends BaseConstants {
+
 }

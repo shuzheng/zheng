@@ -13,12 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>角色管理</title>
-	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.css" rel="stylesheet"/>
-	<link href="${basePath}/resources/zheng-ui/css/common.css" rel="stylesheet"/>
+	<jsp:include page="/resources/inc/head.jsp" flush="true"/>
 </head>
 <body>
 <div id="main">
@@ -26,26 +21,14 @@
 		<shiro:hasPermission name="upms:role:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增角色</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:role:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑角色</a></shiro:hasPermission>
 		<shiro:hasPermission name="upms:role:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除角色</a></shiro:hasPermission>
+		<shiro:hasPermission name="upms:role:permission"><a class="waves-effect waves-button" href="javascript:;" onclick="permissionAction()"><i class="zmdi zmdi-key"></i> 角色权限</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
-<script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/plugins/jquery-confirm/jquery-confirm.min.js"></script>
-<script src="${basePath}/resources/zheng-ui/js/common.js"></script>
+<jsp:include page="/resources/inc/footer.jsp" flush="true"/>
 <script>
 var $table = $('#table');
 $(function() {
-	$(document).on('focus', 'input[type="text"]', function() {
-		$(this).parent().find('label').addClass('active');
-	}).on('blur', 'input[type="text"]', function() {
-		if ($(this).val() == '') {
-			$(this).parent().find('label').removeClass('active');
-		}
-	});
 	// bootstrap table初始化
 	$table.bootstrapTable({
 		url: '${basePath}/manage/role/list',
@@ -72,6 +55,7 @@ $(function() {
 			{field: 'ck', checkbox: true},
 			{field: 'roleId', title: '编号', sortable: true, align: 'center'},
 			{field: 'name', title: '角色名称'},
+			{field: 'title', title: '角色标题'},
             {field: 'description', title: '角色描述'},
 			{field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
@@ -90,7 +74,10 @@ function createAction() {
 	createDialog = $.dialog({
 		animationSpeed: 300,
 		title: '新增角色',
-		content: 'url:${basePath}/manage/role/create'
+		content: 'url:${basePath}/manage/role/create',
+		onContentReady: function () {
+			initMaterialInput();
+		}
 	});
 }
 // 编辑
@@ -114,7 +101,10 @@ function updateAction() {
 		updateDialog = $.dialog({
 			animationSpeed: 300,
 			title: '编辑角色',
-			content: 'url:${basePath}/manage/role/update/' + rows[0].roleId
+			content: 'url:${basePath}/manage/role/update/' + rows[0].roleId,
+			onContentReady: function () {
+				initMaterialInput();
+			}
 		});
 	}
 }
@@ -217,6 +207,38 @@ function deleteAction() {
 		});
 	}
 }
+// 角色权限
+var permissionDialog;
+var roleId;
+function permissionAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		roleId = rows[0].roleId;
+		permissionDialog = $.dialog({
+			animationSpeed: 300,
+			title: '角色权限',
+			content: 'url:${basePath}/manage/role/permission/' + roleId,
+			onContentReady: function () {
+				initMaterialInput();
+				initTree();
+			}
+		});
+	}
+}
+
 </script>
 </body>
 </html>

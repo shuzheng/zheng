@@ -55,7 +55,7 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 #sidebar {position: fixed; width: 268px; background: #fff; height: calc(100% - 70px); top: 70px; transition: all; -webkit-transition-duration: .3s; transition-duration: .3s; z-index: 10; overflow-y: auto; box-shadow: 1px 0 4px rgba(0,0,0,.3);}
 
 /* 侧边栏个人信息 */
-.s-profile>a{display:block;height:129px;margin-bottom:5px;width:100%;background:url(../images/profile-menu.png) left top no-repeat;background-size:100%;text-decoration:none}
+.s-profile>a{display:block;height:129px;margin-bottom:5px;width:100%;background-size:100%;text-decoration:none}
 .s-profile>a .sp-pic{padding:12px}
 .s-profile>a .sp-pic>img{width:47px;height:47px;border-radius:50%;border:3px solid rgba(0,0,0,.14);box-sizing:content-box}
 .s-profile>a .sp-info{background:rgba(0,0,0,.37);padding:7px 14px;color:#fff;margin-top:20px;position:relative}
@@ -147,7 +147,4 @@ a, a:hover, a:active, a:focus {text-decoration: none; -webkit-user-drag: none;}
 .mCSB_scrollTools.mCSB_scrollTools_horizontal,.mCSB_scrollTools.mCSB_scrollTools_vertical{margin:0!important}
 .mCSB_scrollTools.mCSB_scrollTools_horizontal{height:10px}
 
-/** skins **/
-#header {background: #29a176;}
-.content_tab{background:#25966F;}
 

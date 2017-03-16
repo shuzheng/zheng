@@ -52,33 +52,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- zhang-upms-client -->
-    <filter>
-        <filter-name>zheng-upms-client</filter-name>
-        <filter-class>com.zheng.upms.client.filter.SSOFilter</filter-class>
-        <!-- 系统名称 -->
-        <init-param>
-            <param-name>system_name</param-name>
-            <param-value>zheng-upms-server</param-value>
-        </init-param>
-        <!-- SSO认证中心 -->
-        <init-param>
-            <param-name>sso_server_url</param-name>
-            <param-value>http://upms.zhangshuzheng.cn:1111</param-value>
-        </init-param>
-        <!-- 开发模式 -->
-        <init-param>
-            <param-name>sso_debug</param-name>
-            <param-value>false</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>zheng-upms-client</filter-name>
-        <url-pattern>/manage/*</url-pattern>
-    </filter-mapping>
-
-    <!-- shiro -->
-    <!-- DelegatingFilterProxy作用是自动到spring容器查找名字为shiroFilter（filter-name）的bean并把所有Filter的操作委托给它。然后将shiroFilter配置到spring容器即可 -->
+    <!-- shiroFilter : DelegatingFilterProxy作用是自动到spring容器查找名字为shiroFilter（filter-name）的bean并把所有Filter的操作委托给它。然后将shiroFilter配置到spring容器即可 -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

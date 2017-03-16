@@ -12,13 +12,21 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>用户权限管理系统</title>
+	<title>权限管理系统</title>
 
 	<link href="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 	<link href="${basePath}/resources/zheng-ui/css/admin.css" rel="stylesheet"/>
+	<style>
+		/** skins **/
+		<c:forEach var="upmsSystem" items="${upmsSystems}">
+		#${upmsSystem.name} #header {background: ${upmsSystem.theme};}
+		#${upmsSystem.name} .content_tab{background: ${upmsSystem.theme};}
+		#${upmsSystem.name} .s-profile>a{background: url(${basePath}${upmsSystem.banner}) left top no-repeat;}
+		</c:forEach>
+	</style>
 </head>
 <body>
 <header id="header">
@@ -65,7 +73,7 @@
 						<li class="divider hidden-xs"></li>
 						<c:forEach var="upmsSystem" items="${upmsSystems}">
 						<li>
-							<a class="waves-effect switch-systems" href="javascript:;" systemid="${upmsSystem.systemId}" systemtitle="${upmsSystem.title}"><i class="${upmsSystem.icon}"></i> ${upmsSystem.title}</a>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="${upmsSystem.systemId}" systemname="${upmsSystem.name}" systemtitle="${upmsSystem.title}"><i class="${upmsSystem.icon}"></i> ${upmsSystem.title}</a>
 						</li>
 						</c:forEach>
 					</ul>
@@ -132,13 +140,17 @@
 				<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页</a>
 			</li>
 			<c:forEach var="upmsPermission" items="${upmsPermissions}" varStatus="status">
-				<c:if test="${upmsPermission.pid == null}">
+				<c:if test="${upmsPermission.pid == 0}">
 				<li class="sub-menu system_menus system_${upmsPermission.systemId} ${status.index}" <c:if test="${upmsPermission.systemId != 1}">style="display:none;"</c:if>>
 					<a class="waves-effect" href="javascript:;"><i class="${upmsPermission.icon}"></i> ${upmsPermission.name}</a>
 					<ul>
 						<c:forEach var="subUpmsPermission" items="${upmsPermissions}">
 							<c:if test="${subUpmsPermission.pid == upmsPermission.permissionId}">
-							<li><a class="waves-effect" href="javascript:Tab.addTab('${subUpmsPermission.name}', '${basePath}${subUpmsPermission.uri}');">${subUpmsPermission.name}</a></li>
+								<c:forEach var="upmsSystem" items="${upmsSystems}">
+									<c:if test="${subUpmsPermission.systemId == upmsSystem.systemId}">
+									<c:set var="systemBasePath" value="${upmsSystem.basepath}"/></c:if>
+								</c:forEach>
+								<li><a class="waves-effect" href="javascript:Tab.addTab('${subUpmsPermission.name}', '${systemBasePath}${subUpmsPermission.uri}');">${subUpmsPermission.name}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>
@@ -189,13 +201,16 @@
 	</section>
 </section>
 <footer id="footer"></footer>
-
+<script>var BASE_PATH = '${basePath}';</script>
 <script src="${basePath}/resources/zheng-ui/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/BootstrapMenu.min.js"></script>
 <script src="${basePath}/resources/zheng-ui/plugins/device.min.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/jquery.cookie.js"></script>
 <script src="${basePath}/resources/zheng-ui/js/admin.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.fullPage.min.js"></script>
+<script src="${basePath}/resources/zheng-ui/plugins/fullPage/jquery.jdirk.min.js"></script>
 </body>
 </html>

@@ -8,13 +8,13 @@ import com.zheng.cms.rpc.api.CmsCommentService;
 import com.zheng.common.base.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -26,11 +26,11 @@ import java.util.Map;
  * Created by shuzheng on 2016/11/14.
  */
 @Controller
-@RequestMapping("/manage/comment")
 @Api(value = "评论管理", description = "评论管理")
+@RequestMapping("/manage/comment")
 public class CmsCommentController extends BaseController {
 
-	private final static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
+	private static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
 	
 	@Autowired
 	private CmsCommentService cmsCommentService;
@@ -54,7 +54,7 @@ public class CmsCommentController extends BaseController {
 		CmsCommentExample cmsCommentExample = new CmsCommentExample();
 		cmsCommentExample.setOffset(offset);
 		cmsCommentExample.setLimit(limit);
-		if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsCommentExample.setOrderByClause(sort + " " + order);
 		}
 		List<CmsComment> rows = cmsCommentService.selectByExample(cmsCommentExample);

@@ -17,3 +17,5 @@ body:before{height:50%;width:100%;position:absolute;top:0;left:0;background:#29a
 .fg-line{position:relative;vertical-align:top;display:inline-block;width:100%;}
 .fg-line:after{position:absolute;z-index:3;bottom:0;left:0;height:2px;width:0;content:"";-webkit-transition:all;-o-transition:all;transition:all;-webkit-transition-duration:.3s;transition-duration:.3s;background:#29a176;}
 .fg-line.fg-toggled:after{width:100%}
+
+input[type=checkbox].checkbix:checked+label>span:before{box-sizing: content-box;}

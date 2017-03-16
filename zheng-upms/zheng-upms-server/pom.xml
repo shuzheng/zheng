@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-rpc-api</artifactId>
+            <artifactId>zheng-upms-client</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
@@ -41,12 +41,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
-        </dependency>
-        <!-- zheng-upms-client -->
-        <dependency>
-            <groupId>com.zheng</groupId>
-            <artifactId>zheng-upms-client</artifactId>
-            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
