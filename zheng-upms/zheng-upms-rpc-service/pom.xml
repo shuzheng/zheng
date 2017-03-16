@@ -69,6 +69,41 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+
+                <targetPath>${project.build.directory}/classes</targetPath>
+
+                <directory>src/main/resources</directory>
+
+                <filtering>true</filtering>
+
+                <includes>
+
+                    <include>**/*.xml</include>
+
+                    <include>**/*.properties</include>
+
+                </includes>
+
+            </resource>
+
+            <resource>
+
+                <targetPath>${project.build.directory}/classes/META-INF/spring</targetPath>
+
+                <directory>src/main/resources/</directory>
+
+                <filtering>true</filtering>
+
+                <!-- 这个是主配置，把他打包到META-INF/spring/ 其他的xml都在spring-all.xml里面包含了 当然名字自定义-->
+
+                <includes>
+
+                    <include>spring-all.xml</include>
+
+                </includes>
+
+            </resource>
         </resources>
         <plugins>
             <plugin>
@@ -79,6 +114,85 @@
                     <skipTests>true</skipTests>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
+            </plugin>
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+
+                <artifactId>maven-jar-plugin</artifactId>
+
+                <version>2.5</version>
+
+                <configuration>
+
+                    <archive>
+
+                        <manifest>
+
+                            <addClasspath>true</addClasspath>
+
+                            <classpathPrefix>lib</classpathPrefix>
+
+                            <mainClass>com.zheng.upms.rpc.service.ZhengUpmsRpcServiceApplication</mainClass>
+
+                            <useUniqueVersions>false</useUniqueVersions>
+
+                        </manifest>
+
+                    </archive>
+
+                </configuration>
+
+            </plugin>
+
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+
+                <artifactId>maven-dependency-plugin</artifactId>
+
+                <version>2.5</version>
+
+                <executions>
+
+                    <execution>
+
+                        <id>copy-dependencies</id>
+
+                        <phase>pre-package</phase>
+
+                        <goals>
+
+                            <goal>copy</goal>
+
+                        </goals>
+
+
+
+                        <configuration>
+
+                            <artifactItems>
+
+                                <artifactItem>
+
+                                    <groupId>com.demo.dubbox.service</groupId>
+
+                                    <artifactId>demo_order_api</artifactId>
+
+                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+
+                                    <overWrite>true</overWrite>
+
+                                </artifactItem>
+
+                            </artifactItems>
+
+                        </configuration>
+
+                    </execution>
+
+                </executions>
+
             </plugin>
         </plugins>
     </build>
