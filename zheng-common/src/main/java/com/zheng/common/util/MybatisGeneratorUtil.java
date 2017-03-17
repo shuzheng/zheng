@@ -57,11 +57,13 @@ public class MybatisGeneratorUtil {
 			jdbcUtil.release();
 
 			String targetProject = PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-dao";
+			String targetProject_sqlMap = PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "/" + PROJECT_NAME + "-" + module_prefix_name.replaceAll("\\.", "-") + "-rpc-service";
 			context.put("tables", tables);
 			context.put("generator_javaModelGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.model");
 			context.put("generator_sqlMapGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("generator_javaClientGenerator_targetPackage", "com." + PROJECT_NAME + "." + module_prefix_name + ".dao.mapper");
 			context.put("targetProject", targetProject);
+			context.put("targetProject_sqlMap", targetProject_sqlMap);
 			context.put("generator_jdbc_password", AESUtil.AESDecode(jdbc_password));
 			VelocityUtil.generate(VM_PATH, module_path, context);
 			// 删除旧代码

@@ -55,7 +55,7 @@
         <javaModelGenerator targetPackage="${generator_javaModelGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" />
 
         <!-- MapperXML生成 -->
-        <sqlMapGenerator targetPackage="${generator_sqlMapGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" />
+        <sqlMapGenerator targetPackage="${generator_sqlMapGenerator_targetPackage}" targetProject="${targetProject_sqlMap}/src/main/java" />
 
         <!-- Mapper接口生成 -->
         <javaClientGenerator targetPackage="${generator_javaClientGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" type="XMLMAPPER" />

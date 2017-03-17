@@ -12,15 +12,15 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>标签管理</title>
+	<title>类目管理</title>
 	<jsp:include page="/resources/inc/head.jsp" flush="true"/>
 </head>
 <body>
 <div id="main">
 	<div id="toolbar">
-		<shiro:hasPermission name="cms:tag:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增标签</a></shiro:hasPermission>
-		<shiro:hasPermission name="cms:tag:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑标签</a></shiro:hasPermission>
-		<shiro:hasPermission name="cms:tag:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除标签</a></shiro:hasPermission>
+		<shiro:hasPermission name="cms:category:create"><a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增类目</a></shiro:hasPermission>
+		<shiro:hasPermission name="cms:category:update"><a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑类目</a></shiro:hasPermission>
+		<shiro:hasPermission name="cms:category:delete"><a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除类目</a></shiro:hasPermission>
 	</div>
 	<table id="table"></table>
 </div>
@@ -30,7 +30,7 @@ var $table = $('#table');
 $(function() {
 	// bootstrap table初始化
 	$table.bootstrapTable({
-		url: '${basePath}/manage/tag/list',
+		url: '${basePath}/manage/category/list',
 		height: getHeight(),
 		striped: true,
 		search: true,
@@ -47,14 +47,15 @@ $(function() {
 		smartDisplay: false,
 		escape: true,
 		searchOnEnterKey: true,
-		idField: 'tagId',
+		idField: 'categoryId',
 		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
 			{field: 'ck', checkbox: true},
-			{field: 'tagId', title: '编号', sortable: true, align: 'center'},
-			{field: 'name', title: '标签名称'},
-			{field: 'alias', title: '标签别名'},
+			{field: 'categoryId', title: '编号', sortable: true, align: 'center'},
+			{field: 'pid', title: '上级编号'},
+			{field: 'name', title: '类目名称'},
+			{field: 'alias', title: '类目别名'},
 			{field: 'description', title: '描述'},
 			{field: 'icon', title: '图标', sortable: true, align: 'center', formatter: 'iconFormatter'},
 			{field: 'type', title: '类型', sortable: true, align: 'center', formatter: 'typeFormatter'},
@@ -87,8 +88,8 @@ var createDialog;
 function createAction() {
 	createDialog = $.dialog({
 		animationSpeed: 300,
-		title: '新增标签',
-		content: 'url:${basePath}/manage/tag/create',
+		title: '新增类目',
+		content: 'url:${basePath}/manage/category/create',
 		onContentReady: function () {
 			initMaterialInput();
 		}
@@ -114,8 +115,8 @@ function updateAction() {
 	} else {
 		updateDialog = $.dialog({
 			animationSpeed: 300,
-			title: '编辑标签',
-			content: 'url:${basePath}/manage/tag/update/' + rows[0].tagId,
+			title: '编辑类目',
+			content: 'url:${basePath}/manage/category/update/' + rows[0].categoryId,
 			onContentReady: function () {
 				initMaterialInput();
 			}
@@ -144,7 +145,7 @@ function deleteAction() {
 			type: 'red',
 			animationSpeed: 300,
 			title: false,
-			content: '确认删除该标签吗？',
+			content: '确认删除该类目吗？',
 			buttons: {
 				confirm: {
 					text: '确认',
@@ -152,11 +153,11 @@ function deleteAction() {
 					action: function () {
 						var ids = new Array();
 						for (var i in rows) {
-							ids.push(rows[i].tagId);
+							ids.push(rows[i].categoryId);
 						}
 						$.ajax({
 							type: 'get',
-							url: '${basePath}/manage/tag/delete/' + ids.join("-"),
+							url: '${basePath}/manage/category/delete/' + ids.join("-"),
 							success: function(result) {
 								if (result.code != 1) {
 									if (result.data instanceof Array) {

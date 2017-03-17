@@ -9,6 +9,14 @@
 <div id="createDialog" class="crudDialog">
 	<form id="createForm" method="post">
 		<div class="form-group">
+			<label for="pid">上级</label>
+			<input id="pid" type="text" class="form-control" name="pid" maxlength="20">
+		</div>
+		<div class="form-group">
+			<label for="level">层深</label>
+			<input id="level" type="text" class="form-control" name="level" maxlength="5">
+		</div>
+		<div class="form-group">
 			<label for="name">名称</label>
 			<input id="name" type="text" class="form-control" name="name" maxlength="20">
 		</div>
@@ -44,7 +52,7 @@
 function createSubmit() {
     $.ajax({
         type: 'post',
-        url: '${basePath}/manage/tag/create',
+        url: '${basePath}/manage/category/create',
         data: $('#createForm').serialize(),
         beforeSend: function() {
             if ($('#name').val() == '') {

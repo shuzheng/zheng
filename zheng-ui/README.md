@@ -19,6 +19,10 @@
 
 ![预览效果图](images/zheng-oss-theme.png)
 
+![预览效果图](images/zheng-cms-theme-m1.png)
+
+![预览效果图](images/zheng-cms-theme-m2.png)
+
 # License
   MIT
 
