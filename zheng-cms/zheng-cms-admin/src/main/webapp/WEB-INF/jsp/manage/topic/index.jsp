@@ -47,7 +47,7 @@ $(function() {
 		smartDisplay: false,
 		escape: true,
 		searchOnEnterKey: true,
-		idField: 'pageId',
+		idField: 'topicId',
 		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
