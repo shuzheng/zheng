@@ -47,7 +47,7 @@
 			)
 			union
 			select permission_id from upms_user_permission uup where uup.user_id=#{upmsUserId,jdbcType=INTEGER}
-		)
+		) order by up.orders asc
 	</select>
 
 	<!-- 根据用户id获取所属的角色 -->
