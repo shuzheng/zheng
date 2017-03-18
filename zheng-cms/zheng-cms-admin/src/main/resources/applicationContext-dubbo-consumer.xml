@@ -23,6 +23,10 @@
     <dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService" mock="true"/>
     <!-- 标签 -->
     <dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService" mock="true"/>
+    <!-- 专题 -->
+    <dubbo:reference id="cmsTopicService" interface="com.zheng.cms.rpc.api.CmsTopicService" mock="true"/>
+    <!-- 菜单 -->
+    <dubbo:reference id="cmsMenuService" interface="com.zheng.cms.rpc.api.CmsMenuService" mock="true"/>
     <!-- 用户 -->
     <dubbo:reference id="userService" interface="com.zheng.cms.rpc.api.UserService" mock="true"/>
 
