@@ -1,4 +1,4 @@
-package com.zheng.cms.web.controller;
+package com.zheng.cms.web.controller.test;
 
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.RedisUtil;

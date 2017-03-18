@@ -1,30 +1,24 @@
 package com.zheng.cms.web.controller;
 
 import com.zheng.common.base.BaseController;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 后台controller
- * @author shuzheng
- * @date 2016年10月18日
+ * 首页控制器
+ * Created by shuzheng on 2017/3/19.
  */
 @Controller
-@RequestMapping("/manage")
-public class ManageController extends BaseController {
+public class IndexController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
+	private static Logger _log = LoggerFactory.getLogger(IndexController.class);
 
 	@RequestMapping(value = {"", "/index"})
 	public String index() {
-		return "/manage/index";
-	}
-
-	@RequestMapping("/login")
-	public String login() {
-		return "/manage/login";
+		return "/index";
 	}
 
 }

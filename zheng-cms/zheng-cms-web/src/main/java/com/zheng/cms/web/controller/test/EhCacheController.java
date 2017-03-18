@@ -1,4 +1,4 @@
-package com.zheng.cms.web.controller;
+package com.zheng.cms.web.controller.test;
 
 import com.zheng.cms.rpc.api.UserService;
 import com.zheng.common.base.BaseController;
