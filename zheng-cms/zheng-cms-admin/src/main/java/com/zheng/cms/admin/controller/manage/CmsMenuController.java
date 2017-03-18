@@ -129,4 +129,64 @@ public class CmsMenuController extends BaseController {
 		return new CmsResult(CmsResultConstant.SUCCESS, count);
 	}
 
+	@ApiOperation(value = "上移菜单")
+	@RequiresPermissions("cms:menu:up")
+	@RequestMapping(value = "/up/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Object up(@PathVariable("id") int id) {
+		CmsMenu cmsMenu = cmsMenuService.selectByPrimaryKey(id);
+		if (null == cmsMenu) {
+			return new CmsResult(CmsResultConstant.INVALID_PARAMETER, "无效参数！");
+		}
+		CmsMenuExample cmsMenuExample = new CmsMenuExample();
+		CmsMenuExample.Criteria criteria = cmsMenuExample.createCriteria();
+		if (null == cmsMenu.getPid()) {
+			criteria.andPidIsNull();
+		} else {
+			criteria.andPidEqualTo(cmsMenu.getPid());
+		}
+		criteria.andOrdersLessThan(cmsMenu.getOrders());
+		cmsMenuExample.setOrderByClause("orders desc");
+		CmsMenu upCmsMenu = cmsMenuService.selectFirstByExample(cmsMenuExample);
+		if (null == upCmsMenu) {
+			return new CmsResult(CmsResultConstant.FAILED, "不能上移了！");
+		}
+		long tempOrders = upCmsMenu.getOrders();
+		upCmsMenu.setOrders(cmsMenu.getOrders());
+		cmsMenu.setOrders(tempOrders);
+		cmsMenuService.updateByPrimaryKeySelective(cmsMenu);
+		cmsMenuService.updateByPrimaryKeySelective(upCmsMenu);
+		return new CmsResult(CmsResultConstant.SUCCESS, 1);
+	}
+
+	@ApiOperation(value = "下移菜单")
+	@RequiresPermissions("cms:menu:down")
+	@RequestMapping(value = "/down/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Object down(@PathVariable("id") int id) {
+		CmsMenu cmsMenu = cmsMenuService.selectByPrimaryKey(id);
+		if (null == cmsMenu) {
+			return new CmsResult(CmsResultConstant.INVALID_PARAMETER, "无效参数！");
+		}
+		CmsMenuExample cmsMenuExample = new CmsMenuExample();
+		CmsMenuExample.Criteria criteria = cmsMenuExample.createCriteria();
+		if (null == cmsMenu.getPid()) {
+			criteria.andPidIsNull();
+		} else {
+			criteria.andPidEqualTo(cmsMenu.getPid());
+		}
+		criteria.andOrdersGreaterThan(cmsMenu.getOrders());
+		cmsMenuExample.setOrderByClause("orders asc");
+		CmsMenu upCmsMenu = cmsMenuService.selectFirstByExample(cmsMenuExample);
+		if (null == upCmsMenu) {
+			return new CmsResult(CmsResultConstant.FAILED, "不能下移了！");
+		}
+		long tempOrders = upCmsMenu.getOrders();
+		upCmsMenu.setOrders(cmsMenu.getOrders());
+		cmsMenu.setOrders(tempOrders);
+		cmsMenuService.updateByPrimaryKeySelective(cmsMenu);
+		cmsMenuService.updateByPrimaryKeySelective(upCmsMenu);
+		return new CmsResult(CmsResultConstant.SUCCESS, 1);
+	}
+
 }

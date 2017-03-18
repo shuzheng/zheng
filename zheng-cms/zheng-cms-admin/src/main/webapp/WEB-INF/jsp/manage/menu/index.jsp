@@ -50,6 +50,8 @@ $(function() {
 		escape: true,
 		searchOnEnterKey: true,
 		idField: 'menuId',
+		sortName: 'orders',
+		sortOrder: 'asc',
 		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
@@ -208,6 +210,158 @@ function deleteAction() {
 					text: '取消',
 					btnClass: 'waves-effect waves-button'
 				}
+			}
+		});
+	}
+}
+// 上移
+function upAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		$.ajax({
+			type: 'get',
+			url: '${basePath}/manage/menu/up/' + rows[0].menuId,
+			beforeSend: function() {},
+			success: function(result) {
+				if (result.code != 1) {
+					if (result.data instanceof Array) {
+						$.each(result.data, function(index, value) {
+							$.confirm({
+								theme: 'dark',
+								animation: 'rotateX',
+								closeAnimation: 'rotateX',
+								title: false,
+								content: value.errorMsg,
+								buttons: {
+									confirm: {
+										text: '确认',
+										btnClass: 'waves-effect waves-button waves-light'
+									}
+								}
+							});
+						});
+					} else {
+						$.confirm({
+							theme: 'dark',
+							animation: 'rotateX',
+							closeAnimation: 'rotateX',
+							title: false,
+							content: result.data,
+							buttons: {
+								confirm: {
+									text: '确认',
+									btnClass: 'waves-effect waves-button waves-light'
+								}
+							}
+						});
+					}
+				} else {
+					$table.bootstrapTable('refresh');
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.confirm({
+					theme: 'dark',
+					animation: 'rotateX',
+					closeAnimation: 'rotateX',
+					title: false,
+					content: textStatus,
+					buttons: {
+						confirm: {
+							text: '确认',
+							btnClass: 'waves-effect waves-button waves-light'
+						}
+					}
+				});
+			}
+		});
+	}
+}
+// 下移
+function downAction() {
+	var rows = $table.bootstrapTable('getSelections');
+	if (rows.length != 1) {
+		$.confirm({
+			title: false,
+			content: '请选择一条记录！',
+			autoClose: 'cancel|3000',
+			backgroundDismiss: true,
+			buttons: {
+				cancel: {
+					text: '取消',
+					btnClass: 'waves-effect waves-button'
+				}
+			}
+		});
+	} else {
+		$.ajax({
+			type: 'get',
+			url: '${basePath}/manage/menu/down/' + rows[0].menuId,
+			beforeSend: function() {},
+			success: function(result) {
+				if (result.code != 1) {
+					if (result.data instanceof Array) {
+						$.each(result.data, function(index, value) {
+							$.confirm({
+								theme: 'dark',
+								animation: 'rotateX',
+								closeAnimation: 'rotateX',
+								title: false,
+								content: value.errorMsg,
+								buttons: {
+									confirm: {
+										text: '确认',
+										btnClass: 'waves-effect waves-button waves-light'
+									}
+								}
+							});
+						});
+					} else {
+						$.confirm({
+							theme: 'dark',
+							animation: 'rotateX',
+							closeAnimation: 'rotateX',
+							title: false,
+							content: result.data,
+							buttons: {
+								confirm: {
+									text: '确认',
+									btnClass: 'waves-effect waves-button waves-light'
+								}
+							}
+						});
+					}
+				} else {
+					$table.bootstrapTable('refresh');
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.confirm({
+					theme: 'dark',
+					animation: 'rotateX',
+					closeAnimation: 'rotateX',
+					title: false,
+					content: textStatus,
+					buttons: {
+						confirm: {
+							text: '确认',
+							btnClass: 'waves-effect waves-button waves-light'
+						}
+					}
+				});
 			}
 		});
 	}
