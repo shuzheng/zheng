@@ -332,6 +332,10 @@ zheng-ui、zheng-common => zheng-upms => 其他
 ### 开发进度
 ![开发进度](project-bootstrap/progress.png)
 
+### 参与开发
+
+首先谢谢大家支持，如果你希望参与开发，欢迎通过[Github](https://github.com/shuzheng/zheng "Github")上fork本项目，并Pull Request您的commit。
+
 ## 附件
 
 ### 优秀文章和博客
