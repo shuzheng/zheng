@@ -49,7 +49,7 @@ from tmp_cms_article;
 /*==============================================================*/
 create table cms_menu
 (
-   page_id              int unsigned not null auto_increment comment '编号',
+   menu_id              int unsigned not null auto_increment comment '编号',
    pid                  int comment '父菜单',
    name                 varchar(20) comment '名称',
    url                  varchar(100) comment '链接',

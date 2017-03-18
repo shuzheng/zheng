@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-03-18 18:21:59
+Date: 2017-03-18 18:45:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -180,13 +180,13 @@ CREATE TABLE `cms_comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_menu`;
 CREATE TABLE `cms_menu` (
-  `page_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `menu_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `pid` int(11) DEFAULT NULL COMMENT '父菜单',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `url` varchar(100) DEFAULT NULL COMMENT '链接',
   `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
   `orders` bigint(20) DEFAULT NULL COMMENT '排序',
-  PRIMARY KEY (`page_id`)
+  PRIMARY KEY (`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='菜单';
 
 -- ----------------------------
