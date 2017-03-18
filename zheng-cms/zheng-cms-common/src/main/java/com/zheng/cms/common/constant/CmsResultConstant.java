@@ -6,11 +6,12 @@ package com.zheng.cms.common.constant;
  */
 public enum CmsResultConstant {
 
+    FAILED(0, "failed"),
     SUCCESS(1, "success"),
 
     FILE_TYPE_ERROR(20001, "File type not supported!"),
-
-    INVALID_LENGTH(20002, "Invalid length");
+    INVALID_LENGTH(20002, "Invalid length"),
+    INVALID_PARAMETER(20003, "Invalid parameter");
 
     public int code;
 
