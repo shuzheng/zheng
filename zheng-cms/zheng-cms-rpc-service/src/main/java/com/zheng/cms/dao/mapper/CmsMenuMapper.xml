@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zheng.cms.dao.mapper.CmsMenuMapper">
   <resultMap id="BaseResultMap" type="com.zheng.cms.dao.model.CmsMenu">
-    <id column="page_id" jdbcType="INTEGER" property="pageId" />
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="url" jdbcType="VARCHAR" property="url" />
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    page_id, pid, name, url, target, orders
+    menu_id, pid, name, url, target, orders
   </sql>
   <select id="selectByExample" parameterType="com.zheng.cms.dao.model.CmsMenuExample" resultMap="BaseResultMap">
     select
@@ -96,11 +96,11 @@
     select 
     <include refid="Base_Column_List" />
     from cms_menu
-    where page_id = #{pageId,jdbcType=INTEGER}
+    where menu_id = #{menuId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cms_menu
-    where page_id = #{pageId,jdbcType=INTEGER}
+    where menu_id = #{menuId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.CmsMenuExample">
     delete from cms_menu
@@ -109,16 +109,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.cms.dao.model.CmsMenu">
-    insert into cms_menu (page_id, pid, name, 
+    insert into cms_menu (menu_id, pid, name, 
       url, target, orders)
-    values (#{pageId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{menuId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsMenu">
     insert into cms_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="pageId != null">
-        page_id,
+      <if test="menuId != null">
+        menu_id,
       </if>
       <if test="pid != null">
         pid,
@@ -137,8 +137,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="pageId != null">
-        #{pageId,jdbcType=INTEGER},
+      <if test="menuId != null">
+        #{menuId,jdbcType=INTEGER},
       </if>
       <if test="pid != null">
         #{pid,jdbcType=INTEGER},
@@ -166,8 +166,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update cms_menu
     <set>
-      <if test="record.pageId != null">
-        page_id = #{record.pageId,jdbcType=INTEGER},
+      <if test="record.menuId != null">
+        menu_id = #{record.menuId,jdbcType=INTEGER},
       </if>
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=INTEGER},
@@ -191,7 +191,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update cms_menu
-    set page_id = #{record.pageId,jdbcType=INTEGER},
+    set menu_id = #{record.menuId,jdbcType=INTEGER},
       pid = #{record.pid,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
@@ -220,7 +220,7 @@
         orders = #{orders,jdbcType=BIGINT},
       </if>
     </set>
-    where page_id = #{pageId,jdbcType=INTEGER}
+    where menu_id = #{menuId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.CmsMenu">
     update cms_menu
@@ -229,7 +229,7 @@
       url = #{url,jdbcType=VARCHAR},
       target = #{target,jdbcType=VARCHAR},
       orders = #{orders,jdbcType=BIGINT}
-    where page_id = #{pageId,jdbcType=INTEGER}
+    where menu_id = #{menuId,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

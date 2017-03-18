@@ -127,63 +127,63 @@ public class CmsMenuExample implements Serializable {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andPageIdIsNull() {
-            addCriterion("page_id is null");
+        public Criteria andMenuIdIsNull() {
+            addCriterion("menu_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdIsNotNull() {
-            addCriterion("page_id is not null");
+        public Criteria andMenuIdIsNotNull() {
+            addCriterion("menu_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdEqualTo(Integer value) {
-            addCriterion("page_id =", value, "pageId");
+        public Criteria andMenuIdEqualTo(Integer value) {
+            addCriterion("menu_id =", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdNotEqualTo(Integer value) {
-            addCriterion("page_id <>", value, "pageId");
+        public Criteria andMenuIdNotEqualTo(Integer value) {
+            addCriterion("menu_id <>", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdGreaterThan(Integer value) {
-            addCriterion("page_id >", value, "pageId");
+        public Criteria andMenuIdGreaterThan(Integer value) {
+            addCriterion("menu_id >", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("page_id >=", value, "pageId");
+        public Criteria andMenuIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("menu_id >=", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdLessThan(Integer value) {
-            addCriterion("page_id <", value, "pageId");
+        public Criteria andMenuIdLessThan(Integer value) {
+            addCriterion("menu_id <", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdLessThanOrEqualTo(Integer value) {
-            addCriterion("page_id <=", value, "pageId");
+        public Criteria andMenuIdLessThanOrEqualTo(Integer value) {
+            addCriterion("menu_id <=", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdIn(List<Integer> values) {
-            addCriterion("page_id in", values, "pageId");
+        public Criteria andMenuIdIn(List<Integer> values) {
+            addCriterion("menu_id in", values, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdNotIn(List<Integer> values) {
-            addCriterion("page_id not in", values, "pageId");
+        public Criteria andMenuIdNotIn(List<Integer> values) {
+            addCriterion("menu_id not in", values, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdBetween(Integer value1, Integer value2) {
-            addCriterion("page_id between", value1, value2, "pageId");
+        public Criteria andMenuIdBetween(Integer value1, Integer value2) {
+            addCriterion("menu_id between", value1, value2, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andPageIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("page_id not between", value1, value2, "pageId");
+        public Criteria andMenuIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("menu_id not between", value1, value2, "menuId");
             return (Criteria) this;
         }
 

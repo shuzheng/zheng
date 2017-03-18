@@ -8,7 +8,7 @@ public class CmsMenu implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer pageId;
+    private Integer menuId;
 
     /**
      * 父菜单
@@ -47,12 +47,12 @@ public class CmsMenu implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getPageId() {
-        return pageId;
+    public Integer getMenuId() {
+        return menuId;
     }
 
-    public void setPageId(Integer pageId) {
-        this.pageId = pageId;
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
     }
 
     public Integer getPid() {
@@ -101,7 +101,7 @@ public class CmsMenu implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", pageId=").append(pageId);
+        sb.append(", menuId=").append(menuId);
         sb.append(", pid=").append(pid);
         sb.append(", name=").append(name);
         sb.append(", url=").append(url);
@@ -123,7 +123,7 @@ public class CmsMenu implements Serializable {
             return false;
         }
         CmsMenu other = (CmsMenu) that;
-        return (this.getPageId() == null ? other.getPageId() == null : this.getPageId().equals(other.getPageId()))
+        return (this.getMenuId() == null ? other.getMenuId() == null : this.getMenuId().equals(other.getMenuId()))
             && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
@@ -135,7 +135,7 @@ public class CmsMenu implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getPageId() == null) ? 0 : getPageId().hashCode());
+        result = prime * result + ((getMenuId() == null) ? 0 : getMenuId().hashCode());
         result = prime * result + ((getPid() == null) ? 0 : getPid().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getUrl() == null) ? 0 : getUrl().hashCode());
