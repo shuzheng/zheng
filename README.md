@@ -320,7 +320,7 @@ zheng-ui、zheng-common => zheng-upms => 其他
 ### 预览图
 ![login](project-bootstrap/zheng-login.png)
 ![upms](project-bootstrap/zheng-upms.png)
-![cms](zheng-ui/src/images/zheng-cms.png)
+![cms](project-bootstrap/zheng-cms.png)
 ![swagger](project-bootstrap/api.png)
 
 ### 数据模型
