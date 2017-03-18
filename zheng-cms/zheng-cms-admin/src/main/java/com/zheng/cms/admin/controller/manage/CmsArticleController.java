@@ -7,7 +7,10 @@ import com.zheng.cms.common.constant.CmsResult;
 import com.zheng.cms.common.constant.CmsResultConstant;
 import com.zheng.cms.dao.model.CmsArticle;
 import com.zheng.cms.dao.model.CmsArticleExample;
+import com.zheng.cms.dao.model.CmsTopic;
+import com.zheng.cms.dao.model.CmsTopicExample;
 import com.zheng.cms.rpc.api.CmsArticleService;
+import com.zheng.cms.rpc.api.CmsTopicService;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.validator.LengthValidator;
 import com.zheng.common.validator.NotNullValidator;
@@ -19,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +43,9 @@ public class CmsArticleController extends BaseController {
 	
 	@Autowired
 	private CmsArticleService cmsArticleService;
+
+	@Autowired
+	private CmsTopicService cmsTopicService;
 
 	@ApiOperation(value = "文章首页")
 	@RequiresPermissions("cms:article:read")
@@ -73,7 +80,11 @@ public class CmsArticleController extends BaseController {
 	@ApiOperation(value = "新增文章")
 	@RequiresPermissions("cms:article:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String create() {
+	public String create(ModelMap modelMap) {
+		CmsTopicExample cmsTopicExample = new CmsTopicExample();
+		cmsTopicExample.setOrderByClause("ctime desc");
+		List<CmsTopic> cmsTopics = cmsTopicService.selectByExample(cmsTopicExample);
+		modelMap.put("cmsTopics", cmsTopics);
 		return "/manage/article/create";
 	}
 

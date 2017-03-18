@@ -53,8 +53,20 @@
 			<div class="col-sm-4">
 				<div class="form-group">
 					<div class="fg-line">
+						<select id="topicId" name="topicId" style="width: 100%">
+							<option value="0">所属专题</option>
+							<c:forEach var="cmsTopic" items="${cmsTopics}">
+								<option value="${cmsTopic.topicId}">${cmsTopic.title}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<div class="fg-line">
 						<label for="image">封面图</label>
-						<input id="image" type="text" class="form-control" name="image" maxlength="300" value="http://">
+						<input id="image" type="text" class="form-control" name="image" maxlength="300">
 					</div>
 				</div>
 			</div>
@@ -62,15 +74,7 @@
 				<div class="form-group">
 					<div class="fg-line">
 						<label for="readnumber">阅读数量</label>
-						<input id="readnumber" type="text" class="form-control" name="readnumber" value="0">
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="form-group">
-					<div class="fg-line">
-						<label for="ctime">创建时间</label>
-						<input id="ctime" type="text" class="form-control" name="ctime">
+						<input id="readnumber" type="text" class="form-control" name="readnumber">
 					</div>
 				</div>
 			</div>

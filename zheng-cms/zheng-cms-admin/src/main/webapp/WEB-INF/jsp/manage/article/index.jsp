@@ -54,6 +54,7 @@ $(function() {
 		columns: [
 			{field: 'ck', checkbox: true},
 			{field: 'articleId', title: '编号', sortable: true, align: 'center'},
+			{field: 'topicId', title: '所属专题'},
 			{field: 'title', title: '标题'},
 			{field: 'author', title: '作者'},
 			{field: 'description', title: '描述'},
@@ -107,6 +108,7 @@ function createAction() {
 		content: 'url:${basePath}/manage/article/create',
 		onContentReady: function () {
 			initMaterialInput();
+			$('select').select2();
 		}
 	});
 }
@@ -135,6 +137,7 @@ function updateAction() {
 			content: 'url:${basePath}/manage/article/update/' + rows[0].articleId,
 			onContentReady: function () {
 				initMaterialInput();
+				$('select').select2();
 			}
 		});
 	}
