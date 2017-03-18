@@ -99,6 +99,7 @@ public class UpmsPermissionController extends BaseController {
         UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
         upmsPermissionExample.createCriteria()
             .andStatusEqualTo((byte) 1);
+        upmsPermissionExample.setOrderByClause("orders asc");
         List<UpmsPermission> permissions = upmsPermissionService.selectByExample(upmsPermissionExample);
         // 角色已有权限
         List<UpmsRolePermission> rolePermissions = upmsApiService.selectUpmsRolePermisstionByUpmsRoleId(id);
