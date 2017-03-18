@@ -89,6 +89,7 @@ public class CmsPageController extends BaseController {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
 		}
 		long time = System.currentTimeMillis();
+		cmsPage.setCtime(time);
 		cmsPage.setOrders(time);
 		int count = cmsPageService.insertSelective(cmsPage);
 		return new CmsResult(CmsResultConstant.SUCCESS, count);
