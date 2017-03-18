@@ -53,8 +53,12 @@
 			<div class="col-sm-4">
 				<div class="form-group">
 					<div class="fg-line">
-						<label for="topicId">所属专题</label>
-						<input id="topicId" type="text" class="form-control" name="topicId" value="${article.topicId}">
+						<select id="topicId" name="topicId" style="width: 100%">
+							<option value="0">所属专题</option>
+							<c:forEach var="cmsTopic" items="${cmsTopics}">
+								<option value="${cmsTopic.topicId}" <c:if test="${article.topicId==cmsTopic.topicId}">selected</c:if>>${cmsTopic.title}</option>
+							</c:forEach>
+						</select>
 					</div>
 				</div>
 			</div>

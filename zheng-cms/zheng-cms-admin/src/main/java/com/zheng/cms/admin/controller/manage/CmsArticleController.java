@@ -120,7 +120,11 @@ public class CmsArticleController extends BaseController {
 	@RequiresPermissions("cms:article:update")
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
+		CmsTopicExample cmsTopicExample = new CmsTopicExample();
+		cmsTopicExample.setOrderByClause("ctime desc");
+		List<CmsTopic> cmsTopics = cmsTopicService.selectByExample(cmsTopicExample);
 		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
+		modelMap.put("cmsTopics", cmsTopics);
 		modelMap.put("article", article);
 		return "/manage/article/update";
 	}

@@ -48,6 +48,7 @@ $(function() {
 		escape: true,
 		searchOnEnterKey: true,
 		idField: 'articleId',
+		sortName: 'orders',
         sortOrder: 'desc',
 		maintainSelected: true,
 		toolbar: '#toolbar',
