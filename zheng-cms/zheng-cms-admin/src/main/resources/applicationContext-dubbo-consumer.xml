@@ -27,6 +27,8 @@
     <dubbo:reference id="cmsTopicService" interface="com.zheng.cms.rpc.api.CmsTopicService" mock="true"/>
     <!-- 菜单 -->
     <dubbo:reference id="cmsMenuService" interface="com.zheng.cms.rpc.api.CmsMenuService" mock="true"/>
+    <!-- 单页 -->
+    <dubbo:reference id="cmsPageService" interface="com.zheng.cms.rpc.api.CmsPageService" mock="true"/>
     <!-- 用户 -->
     <dubbo:reference id="userService" interface="com.zheng.cms.rpc.api.UserService" mock="true"/>
 

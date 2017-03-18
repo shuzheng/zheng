@@ -37,6 +37,10 @@
     <bean id="cmsMenuImpl" class="com.zheng.cms.rpc.service.impl.CmsMenuServiceImpl"/>
     <dubbo:service interface="com.zheng.cms.rpc.api.CmsMenuService" ref="cmsMenuImpl" timeout="10000"/>
 
+    <!-- 单页 -->
+    <bean id="cmsPageImpl" class="com.zheng.cms.rpc.service.impl.CmsPageServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsPageService" ref="cmsPageImpl" timeout="10000"/>
+
     <!-- 用户 -->
     <bean id="userServiceImpl" class="com.zheng.cms.rpc.service.impl.UserServiceImpl"/>
     <dubbo:service interface="com.zheng.cms.rpc.api.UserService" ref="userServiceImpl" timeout="10000"/>
