@@ -39,7 +39,7 @@ public class CmsCommentController extends BaseController {
 	@RequiresPermissions("cms:comment:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/manage/commentcomment/index";
+		return "/manage/comment/index";
 	}
 
 	@ApiOperation(value = "评论列表")
@@ -57,7 +57,7 @@ public class CmsCommentController extends BaseController {
 		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsCommentExample.setOrderByClause(sort + " " + order);
 		}
-		List<CmsComment> rows = cmsCommentService.selectByExample(cmsCommentExample);
+		List<CmsComment> rows = cmsCommentService.selectByExampleWithBLOBs(cmsCommentExample);
 		long total = cmsCommentService.countByExample(cmsCommentExample);
 		Map<String, Object> result = new HashMap<>();
 		result.put("rows", rows);
