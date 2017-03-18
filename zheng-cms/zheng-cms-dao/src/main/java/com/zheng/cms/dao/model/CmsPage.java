@@ -3,20 +3,67 @@ package com.zheng.cms.dao.model;
 import java.io.Serializable;
 
 public class CmsPage implements Serializable {
+    /**
+     * 编码
+     *
+     * @mbg.generated
+     */
     private Integer pageId;
 
+    /**
+     * 父页面
+     *
+     * @mbg.generated
+     */
     private Integer pid;
 
+    /**
+     * 标题
+     *
+     * @mbg.generated
+     */
+    private String title;
+
+    /**
+     * 别名
+     *
+     * @mbg.generated
+     */
     private String alias;
 
+    /**
+     * 关键字
+     *
+     * @mbg.generated
+     */
     private String keywords;
 
+    /**
+     * 描述
+     *
+     * @mbg.generated
+     */
     private String description;
 
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
     private Long ctime;
 
+    /**
+     * 排序
+     *
+     * @mbg.generated
+     */
     private Long orders;
 
+    /**
+     * 页面内容
+     *
+     * @mbg.generated
+     */
     private String content;
 
     private static final long serialVersionUID = 1L;
@@ -35,6 +82,14 @@ public class CmsPage implements Serializable {
 
     public void setPid(Integer pid) {
         this.pid = pid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAlias() {
@@ -93,6 +148,7 @@ public class CmsPage implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", pageId=").append(pageId);
         sb.append(", pid=").append(pid);
+        sb.append(", title=").append(title);
         sb.append(", alias=").append(alias);
         sb.append(", keywords=").append(keywords);
         sb.append(", description=").append(description);
@@ -117,6 +173,7 @@ public class CmsPage implements Serializable {
         CmsPage other = (CmsPage) that;
         return (this.getPageId() == null ? other.getPageId() == null : this.getPageId().equals(other.getPageId()))
             && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getAlias() == null ? other.getAlias() == null : this.getAlias().equals(other.getAlias()))
             && (this.getKeywords() == null ? other.getKeywords() == null : this.getKeywords().equals(other.getKeywords()))
             && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
@@ -131,6 +188,7 @@ public class CmsPage implements Serializable {
         int result = 1;
         result = prime * result + ((getPageId() == null) ? 0 : getPageId().hashCode());
         result = prime * result + ((getPid() == null) ? 0 : getPid().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getAlias() == null) ? 0 : getAlias().hashCode());
         result = prime * result + ((getKeywords() == null) ? 0 : getKeywords().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());

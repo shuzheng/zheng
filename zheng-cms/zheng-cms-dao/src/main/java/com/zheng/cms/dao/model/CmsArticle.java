@@ -11,6 +11,13 @@ public class CmsArticle implements Serializable {
     private Integer articleId;
 
     /**
+     * 所属专题
+     *
+     * @mbg.generated
+     */
+    private Integer topicId;
+
+    /**
      * 文章标题
      *
      * @mbg.generated
@@ -116,6 +123,14 @@ public class CmsArticle implements Serializable {
 
     public void setArticleId(Integer articleId) {
         this.articleId = articleId;
+    }
+
+    public Integer getTopicId() {
+        return topicId;
+    }
+
+    public void setTopicId(Integer topicId) {
+        this.topicId = topicId;
     }
 
     public String getTitle() {
@@ -237,6 +252,7 @@ public class CmsArticle implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", articleId=").append(articleId);
+        sb.append(", topicId=").append(topicId);
         sb.append(", title=").append(title);
         sb.append(", author=").append(author);
         sb.append(", fromurl=").append(fromurl);
@@ -268,6 +284,7 @@ public class CmsArticle implements Serializable {
         }
         CmsArticle other = (CmsArticle) that;
         return (this.getArticleId() == null ? other.getArticleId() == null : this.getArticleId().equals(other.getArticleId()))
+            && (this.getTopicId() == null ? other.getTopicId() == null : this.getTopicId().equals(other.getTopicId()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getAuthor() == null ? other.getAuthor() == null : this.getAuthor().equals(other.getAuthor()))
             && (this.getFromurl() == null ? other.getFromurl() == null : this.getFromurl().equals(other.getFromurl()))
@@ -289,6 +306,7 @@ public class CmsArticle implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getArticleId() == null) ? 0 : getArticleId().hashCode());
+        result = prime * result + ((getTopicId() == null) ? 0 : getTopicId().hashCode());
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getAuthor() == null) ? 0 : getAuthor().hashCode());
         result = prime * result + ((getFromurl() == null) ? 0 : getFromurl().hashCode());
