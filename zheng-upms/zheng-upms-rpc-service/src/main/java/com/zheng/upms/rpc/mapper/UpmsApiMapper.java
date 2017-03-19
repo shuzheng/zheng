@@ -1,4 +1,4 @@
-package com.zheng.upms.rpc.dao.mapper;
+package com.zheng.upms.rpc.mapper;
 
 
 import com.zheng.upms.dao.model.UpmsPermission;

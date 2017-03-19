@@ -3,7 +3,7 @@ package com.zheng.upms.rpc.service.impl;
 import com.zheng.upms.dao.mapper.*;
 import com.zheng.upms.dao.model.*;
 import com.zheng.upms.rpc.api.UpmsApiService;
-import com.zheng.upms.rpc.dao.mapper.UpmsApiMapper;
+import com.zheng.upms.rpc.mapper.UpmsApiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

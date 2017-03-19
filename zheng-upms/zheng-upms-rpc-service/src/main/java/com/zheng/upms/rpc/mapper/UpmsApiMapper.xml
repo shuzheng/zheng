@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.upms.rpc.dao.mapper.UpmsApiMapper">
+<mapper namespace="com.zheng.upms.rpc.mapper.UpmsApiMapper">
 
 	<!-- 权限 -->
 	<resultMap id="UpmsPermissionResultMap" type="com.zheng.upms.dao.model.UpmsPermission">
