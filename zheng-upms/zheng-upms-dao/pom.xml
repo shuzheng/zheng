@@ -38,6 +38,10 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>generator.properties</exclude>
+                    <exclude>generatorConfig.xml</exclude>
+                </excludes>
             </resource>
         </resources>
         <plugins>
