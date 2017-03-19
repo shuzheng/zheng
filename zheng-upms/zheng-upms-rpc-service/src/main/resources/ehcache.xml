@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache>
-    <diskStore path="java.io.tmpdir/zheng-upms-dao/ehcache"/>
+    <diskStore path="java.io.tmpdir/zheng-upms-rpc-service/ehcache"/>
     <defaultCache
             maxElementsInMemory="10000"
             eternal="false"
@@ -12,7 +12,7 @@
         <persistence strategy="localTempSwap"/>
     </defaultCache>
     <cache
-            name="zheng-upms-ehcache"
+            name="zheng-upms-rpc-service-ehcache"
             eternal="false"
             timeToIdleSeconds="120"
             timeToLiveSeconds="300"
