@@ -1,7 +1,7 @@
 package com.zheng.cms.rpc.service.impl;
 
 import com.zheng.cms.dao.mapper.CmsUserMapper;
-import com.zheng.cms.dao.mapper.UserVOMapper;
+import com.zheng.cms.rpc.mapper.UserVOMapper;
 import com.zheng.cms.dao.model.CmsUser;
 import com.zheng.cms.dao.model.CmsUserExample;
 import com.zheng.cms.dao.model.UserVO;

@@ -1,4 +1,4 @@
-package com.zheng.cms.dao.mapper;
+package com.zheng.cms.rpc.mapper;
 
 /**
  * 类目VOMapper

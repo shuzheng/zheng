@@ -1,10 +1,10 @@
-package com.zheng.cms.dao.mapper;
+package com.zheng.cms.rpc.mapper;
 
 /**
- * 文章VOMapper
+ * 标签VOMapper
  * Created by shuzheng on 2017/01/07.
  */
-public interface CmsArticleVOMapper {
+public interface CmsTagVOMapper {
 
     int up(Integer articleId);
 
