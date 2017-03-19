@@ -1,8 +1,9 @@
 package com.zheng.cms.web.controller;
 
-import com.zheng.cms.dao.model.CmsMenu;
-import com.zheng.cms.dao.model.CmsMenuExample;
+import com.zheng.cms.dao.model.*;
+import com.zheng.cms.rpc.api.CmsCategoryService;
 import com.zheng.cms.rpc.api.CmsMenuService;
+import com.zheng.cms.rpc.api.CmsTagService;
 import com.zheng.common.base.BaseController;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -26,6 +27,12 @@ public class IndexController extends BaseController {
 	@Autowired
 	private CmsMenuService cmsMenuService;
 
+	@Autowired
+	private CmsCategoryService cmsCategoryService;
+
+	@Autowired
+	private CmsTagService cmsTagService;
+
 	@RequestMapping(value = {"", "/index"})
 	public String index(Model model) {
 		// 菜单
@@ -33,6 +40,16 @@ public class IndexController extends BaseController {
 		cmsMenuExample.setOrderByClause("orders asc");
 		List<CmsMenu> menus = cmsMenuService.selectByExample(cmsMenuExample);
 		model.addAttribute("menus", menus);
+		// 所有分类
+		CmsCategoryExample cmsCategoryExample = new CmsCategoryExample();
+		cmsCategoryExample.setOrderByClause("orders asc");
+		List<CmsCategory> categories = cmsCategoryService.selectByExample(cmsCategoryExample);
+		model.addAttribute("categories", categories);
+		// 所有标签
+		CmsTagExample cmsTagExample = new CmsTagExample();
+		cmsTagExample.setOrderByClause("orders asc");
+		List<CmsTag> tags = cmsTagService.selectByExample(cmsTagExample);
+		model.addAttribute("tags", tags);
 		return "/index";
 	}
 

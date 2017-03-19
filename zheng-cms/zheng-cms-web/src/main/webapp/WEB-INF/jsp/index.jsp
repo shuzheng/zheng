@@ -110,7 +110,18 @@
 <!-- /.navbar -->
 <!-- .container -->
 <div class="container" style="min-height: 900px;">
-
+    <dl>
+        <dt>所有类目</dt>
+        <c:forEach var="category" items="${categories}">
+        <dd><a href="${basePath}/category-${category.alias}">${category.name}</a></dd>
+        </c:forEach>
+    </dl>
+    <dl>
+        <dt>所有标签</dt>
+        <c:forEach var="tag" items="${tags}">
+            <dd><a href="${basePath}/tag-${tag.alias}">${tag.name}</a></dd>
+        </c:forEach>
+    </dl>
 </div>
 <!-- /.container -->
 <!-- footer -->
