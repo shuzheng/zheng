@@ -1,4 +1,4 @@
-package com.zheng.upms.rpc.service.impl;
+package ${package_name}.rpc.service.impl;
 
 import com.zheng.common.annotation.BaseService;
 import com.zheng.common.base.BaseServiceImpl;
