@@ -10,7 +10,10 @@ import com.zheng.common.util.PropertiesFileUtil;
 public class Generator {
 
 	// 根据命名规范，只修改此常量值即可
-	private static String MODULE_PREFIX_NAME = "cms";
+	private static String MODULE = "zheng-cms";
+	private static String DATABASE = "zheng";
+	private static String TABLE_PREFIX = "cms_";
+	private static String PACKAGE_NAME = "com.zheng.cms";
 	private static String JDBC_DRIVER = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.driver");
 	private static String JDBC_URL = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.url");
 	private static String JDBC_USERNAME = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.username");
@@ -21,7 +24,7 @@ public class Generator {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MybatisGeneratorUtil.generator(JDBC_DRIVER, JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD, MODULE_PREFIX_NAME);
+		MybatisGeneratorUtil.generator(JDBC_DRIVER, JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD, MODULE, DATABASE, TABLE_PREFIX, PACKAGE_NAME);
 	}
 
 }
