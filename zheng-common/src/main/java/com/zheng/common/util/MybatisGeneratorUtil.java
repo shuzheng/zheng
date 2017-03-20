@@ -77,9 +77,9 @@ public class MybatisGeneratorUtil {
 			context.put("generator_jdbc_password", AESUtil.AESDecode(jdbc_password));
 			VelocityUtil.generate(VM_PATH, module_path, context);
 			// 删除旧代码
-			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll(".", "/") + "/dao/model"));
-			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll(".", "/") + "/dao/mapper"));
-			deleteDir(new File(targetProject_sqlMap + "/src/main/java/" + package_name.replaceAll(".", "/") + "/dao/mapper"));
+			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/dao/model"));
+			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/dao/mapper"));
+			deleteDir(new File(targetProject_sqlMap + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/dao/mapper"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
