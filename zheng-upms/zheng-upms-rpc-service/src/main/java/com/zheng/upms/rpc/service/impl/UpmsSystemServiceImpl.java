@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 系统service实现
- * Created by shuzheng on 2016/12/18.
- */
+* UpmsSystemService实现
+* Created by shuzheng on 2017/3/20.
+*/
 @Service
 @Transactional
 @BaseService

@@ -5,10 +5,9 @@ import com.zheng.upms.dao.model.UpmsUserRole;
 import com.zheng.upms.dao.model.UpmsUserRoleExample;
 
 /**
- * 用户角色service接口
- * Created by shuzheng on 2017/2/26.
- */
+* UpmsUserRoleService接口
+* Created by shuzheng on 2017/3/20.
+*/
 public interface UpmsUserRoleService extends BaseService<UpmsUserRole, UpmsUserRoleExample> {
-
 
 }
