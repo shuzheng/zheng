@@ -89,7 +89,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.zheng.upms.rpc.service.ZhengUpmsRpcServiceApplication</mainClass>
+                            <mainClass>com.zheng.upms.rpc.ZhengUpmsRpcServiceApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

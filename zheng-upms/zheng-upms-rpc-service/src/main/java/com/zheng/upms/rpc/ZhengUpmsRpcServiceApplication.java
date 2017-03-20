@@ -1,4 +1,4 @@
-package com.zheng.upms.rpc.service;
+package com.zheng.upms.rpc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
