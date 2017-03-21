@@ -56,13 +56,14 @@ zheng
 |    ├── zheng-api-rpc-api -- rpc接口包
 |    ├── zheng-api-rpc-service -- rpc服务提供者
 |    └── zheng-api-server -- api系统服务端[端口:6666]
+├── zheng-oss -- 对象存储系统
+|    ├── zheng-oss-sdk -- 开发工具包
+|    └── zheng-oss-web -- 管理界面[端口:7771]
 ├── zheng-shop -- 电子商务系统
 ├── zheng-im -- 即时通讯系统
 ├── zheng-oa -- 办公自动化系统
 ├── zheng-eoms -- 运维系统
-└── zheng-oss -- 对象存储系统
-     ├── zheng-oss-sdk -- 开发工具包
-     └── zheng-oss-web -- 管理界面[端口:7771]
+└── zheng-demo -- 示例模块(包含一些示例代码等)
 ```
 
 ### 技术选型
