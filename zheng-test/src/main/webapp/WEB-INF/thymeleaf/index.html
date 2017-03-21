@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<h1 th:text="${host}">Hello World</h1>
+<ul  th:each="user : ${users}">
+    <li th:text="${user.id}"></li>
+    <li th:text="${user.age}"></li>
+    <li th:text="${user.name}"></li>
+</ul>
+</body>
+</html>
