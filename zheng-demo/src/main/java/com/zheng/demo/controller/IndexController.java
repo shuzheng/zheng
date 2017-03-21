@@ -1,7 +1,7 @@
-package com.zheng.test.controller;
+package com.zheng.demo.controller;
 
 import com.zheng.common.base.BaseController;
-import com.zheng.test.model.User;
+import com.zheng.demo.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

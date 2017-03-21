@@ -2,16 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.zheng</groupId>
-        <artifactId>zheng-upms</artifactId>
-        <version>1.0.0</version>
-    </parent>
-
-    <artifactId>zheng-test</artifactId>
+    <groupId>com.zheng</groupId>
+    <artifactId>zheng-demo</artifactId>
+    <version>1.0.0</version>
     <packaging>war</packaging>
 
-    <name>zheng-test Maven Webapp</name>
+    <name>zheng-demo Maven Webapp</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <dependencies>
@@ -69,7 +65,7 @@
     </profiles>
 
     <build>
-        <finalName>zheng-test</finalName>
+        <finalName>zheng-demo</finalName>
         <filters>
             <filter>src/main/resources/profiles/${env}.properties</filter>
         </filters>
