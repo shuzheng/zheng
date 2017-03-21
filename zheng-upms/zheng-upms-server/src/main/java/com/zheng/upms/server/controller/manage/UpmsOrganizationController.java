@@ -43,7 +43,7 @@ public class UpmsOrganizationController extends BaseController {
     @RequiresPermissions("upms:organization:read")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
-        return "/manage/organization/index";
+        return "/jsp/manage/organization/index";
     }
 
     @ApiOperation(value = "组织列表")
@@ -73,7 +73,7 @@ public class UpmsOrganizationController extends BaseController {
     @RequiresPermissions("upms:organization:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create() {
-        return "/manage/organization/create";
+        return "/jsp/manage/organization/create";
     }
 
     @ApiOperation(value = "新增组织")
@@ -109,7 +109,7 @@ public class UpmsOrganizationController extends BaseController {
     public String update(@PathVariable("id") int id, ModelMap modelMap) {
         UpmsOrganization organization = upmsOrganizationService.selectByPrimaryKey(id);
         modelMap.put("organization", organization);
-        return "/manage/organization/update";
+        return "/jsp/manage/organization/update";
     }
 
     @ApiOperation(value = "修改组织")

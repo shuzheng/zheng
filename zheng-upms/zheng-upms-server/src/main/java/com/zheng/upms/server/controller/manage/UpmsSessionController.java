@@ -31,7 +31,7 @@ public class UpmsSessionController extends BaseController {
     @RequiresPermissions("upms:session:read")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
-        return "/manage/session/index";
+        return "/jsp/manage/session/index";
     }
 
     @ApiOperation(value = "会话列表")

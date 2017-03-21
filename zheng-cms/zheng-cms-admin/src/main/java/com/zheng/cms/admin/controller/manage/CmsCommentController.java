@@ -39,7 +39,7 @@ public class CmsCommentController extends BaseController {
 	@RequiresPermissions("cms:comment:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/manage/comment/index";
+		return "/jsp/manage/comment/index";
 	}
 
 	@ApiOperation(value = "评论列表")
@@ -69,7 +69,7 @@ public class CmsCommentController extends BaseController {
 	@RequiresPermissions("cms:comment:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/manage/comment/create";
+		return "/jsp/manage/comment/create";
 	}
 
 	@ApiOperation(value = "新增评论")
@@ -98,7 +98,7 @@ public class CmsCommentController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsComment comment = cmsCommentService.selectByPrimaryKey(id);
 		modelMap.put("comment", comment);
-		return "/manage/comment/update";
+		return "/jsp/manage/comment/update";
 	}
 
 	@ApiOperation(value = "修改评论")

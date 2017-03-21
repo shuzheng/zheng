@@ -38,7 +38,7 @@ public class UpmsLogController extends BaseController {
     @RequiresPermissions("upms:log:read")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
-        return "/manage/log/index";
+        return "/jsp/manage/log/index";
     }
 
     @ApiOperation(value = "日志列表")

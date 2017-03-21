@@ -32,13 +32,13 @@ public abstract class BaseController {
 		}
 		// shiro没有权限异常
 		if (exception instanceof UnauthorizedException) {
-			return "/403";
+			return "/jsp/403";
 		}
 		// shiro会话已过期异常
 		if (exception instanceof InvalidSessionException) {
-			return "/error";
+			return "/jsp/error";
 		}
-		return "/error";
+		return "/jsp/error";
 	}
 
 }

@@ -62,7 +62,7 @@ public class UpmsUserController extends BaseController {
     @RequiresPermissions("upms:user:read")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
-        return "/manage/user/index";
+        return "/jsp/manage/user/index";
     }
 
     @ApiOperation(value = "用户组织")
@@ -78,7 +78,7 @@ public class UpmsUserController extends BaseController {
         List<UpmsUserOrganization> upmsUserOrganizations = upmsUserOrganizationService.selectByExample(upmsUserOrganizationExample);
         modelMap.put("upmsOrganizations", upmsOrganizations);
         modelMap.put("upmsUserOrganizations", upmsUserOrganizations);
-        return "/manage/user/organization";
+        return "/jsp/manage/user/organization";
     }
 
     @ApiOperation(value = "用户组织")
@@ -120,7 +120,7 @@ public class UpmsUserController extends BaseController {
         List<UpmsUserRole> upmsUserRoles = upmsUserRoleService.selectByExample(upmsUserRoleExample);
         modelMap.put("upmsRoles", upmsRoles);
         modelMap.put("upmsUserRoles", upmsUserRoles);
-        return "/manage/user/role";
+        return "/jsp/manage/user/role";
     }
 
     @ApiOperation(value = "用户角色")
@@ -176,7 +176,7 @@ public class UpmsUserController extends BaseController {
     @RequiresPermissions("upms:user:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create() {
-        return "/manage/user/create";
+        return "/jsp/manage/user/create";
     }
 
     @ApiOperation(value = "新增用户")
@@ -217,7 +217,7 @@ public class UpmsUserController extends BaseController {
     public String update(@PathVariable("id") int id, ModelMap modelMap) {
         UpmsUser user = upmsUserService.selectByPrimaryKey(id);
         modelMap.put("user", user);
-        return "/manage/user/update";
+        return "/jsp/manage/user/update";
     }
 
     @ApiOperation(value = "修改用户")
