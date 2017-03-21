@@ -43,7 +43,7 @@ public class CmsSettingController extends BaseController {
 	@RequiresPermissions("cms:setting:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/jsp/manage/setting/index";
+		return "/manage/setting/index.jsp";
 	}
 
 	@ApiOperation(value = "评论列表")
@@ -73,7 +73,7 @@ public class CmsSettingController extends BaseController {
 	@RequiresPermissions("cms:setting:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/jsp/manage/setting/create";
+		return "/manage/setting/create.jsp";
 	}
 
 	@ApiOperation(value = "新增设置")
@@ -107,7 +107,7 @@ public class CmsSettingController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsSetting setting = cmsSettingService.selectByPrimaryKey(id);
 		modelMap.put("setting", setting);
-		return "/jsp/manage/setting/update";
+		return "/manage/setting/update.jsp";
 	}
 
 	@ApiOperation(value = "修改设置")

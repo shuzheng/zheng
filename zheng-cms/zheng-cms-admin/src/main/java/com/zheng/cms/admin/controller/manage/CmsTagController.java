@@ -43,7 +43,7 @@ public class CmsTagController extends BaseController {
 	@RequiresPermissions("cms:tag:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/jsp/manage/tag/index";
+		return "/manage/tag/index.jsp";
 	}
 
 	@ApiOperation(value = "评论列表")
@@ -73,7 +73,7 @@ public class CmsTagController extends BaseController {
 	@RequiresPermissions("cms:tag:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/jsp/manage/tag/create";
+		return "/manage/tag/create.jsp";
 	}
 
 	@ApiOperation(value = "新增标签")
@@ -110,7 +110,7 @@ public class CmsTagController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsTag tag = cmsTagService.selectByPrimaryKey(id);
 		modelMap.put("tag", tag);
-		return "/jsp/manage/tag/update";
+		return "/manage/tag/update.jsp";
 	}
 
 	@ApiOperation(value = "修改标签")

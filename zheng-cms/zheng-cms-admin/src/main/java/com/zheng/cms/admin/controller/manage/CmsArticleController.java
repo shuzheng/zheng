@@ -49,7 +49,7 @@ public class CmsArticleController extends BaseController {
 	@RequiresPermissions("cms:article:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/jsp/manage/article/index";
+		return "/manage/article/index.jsp";
 	}
 
 	@ApiOperation(value = "文章列表")
@@ -83,7 +83,7 @@ public class CmsArticleController extends BaseController {
 		cmsTopicExample.setOrderByClause("ctime desc");
 		List<CmsTopic> cmsTopics = cmsTopicService.selectByExample(cmsTopicExample);
 		modelMap.put("cmsTopics", cmsTopics);
-		return "/jsp/manage/article/create";
+		return "/manage/article/create.jsp";
 	}
 
 	@ApiOperation(value = "新增文章")
@@ -124,7 +124,7 @@ public class CmsArticleController extends BaseController {
 		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
 		modelMap.put("cmsTopics", cmsTopics);
 		modelMap.put("article", article);
-		return "/jsp/manage/article/update";
+		return "/manage/article/update.jsp";
 	}
 
 	@ApiOperation(value = "修改文章")

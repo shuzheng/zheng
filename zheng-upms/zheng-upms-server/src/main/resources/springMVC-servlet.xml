@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 根目录'/'对应页面 -->
-    <mvc:view-controller path="/" view-name="/jsp/index"/>
+    <mvc:view-controller path="/" view-name="/index.jsp"/>
 
     <!-- 拦截器 -->
     <mvc:interceptors>

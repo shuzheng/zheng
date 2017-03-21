@@ -43,7 +43,7 @@ public class UpmsSystemController extends BaseController {
 	@RequiresPermissions("upms:system:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/jsp/manage/system/index";
+		return "/manage/system/index.jsp";
 	}
 
 	@ApiOperation(value = "系统列表")
@@ -73,7 +73,7 @@ public class UpmsSystemController extends BaseController {
 	@RequiresPermissions("upms:system:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/jsp/manage/system/create";
+		return "/manage/system/create.jsp";
 	}
 
 	@ApiOperation(value = "新增系统")
@@ -111,7 +111,7 @@ public class UpmsSystemController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		UpmsSystem system = upmsSystemService.selectByPrimaryKey(id);
 		modelMap.put("system", system);
-		return "/jsp/manage/system/update";
+		return "/manage/system/update.jsp";
 	}
 
 	@ApiOperation(value = "修改系统")

@@ -43,7 +43,7 @@ public class CmsPageController extends BaseController {
 	@RequiresPermissions("cms:page:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/jsp/manage/page/index";
+		return "/manage/page/index.jsp";
 	}
 
 	@ApiOperation(value = "评论列表")
@@ -73,7 +73,7 @@ public class CmsPageController extends BaseController {
 	@RequiresPermissions("cms:page:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/jsp/manage/page/create";
+		return "/manage/page/create.jsp";
 	}
 
 	@ApiOperation(value = "新增单页")
@@ -110,7 +110,7 @@ public class CmsPageController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsPage page = cmsPageService.selectByPrimaryKey(id);
 		modelMap.put("page", page);
-		return "/jsp/manage/page/update";
+		return "/manage/page/update.jsp";
 	}
 
 	@ApiOperation(value = "修改单页")

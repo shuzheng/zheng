@@ -104,7 +104,7 @@ public class SSOController extends BaseController {
             _log.debug("认证中心帐号通过，带code回跳：{}", backurl);
             return "redirect:" + backurl;
         }
-        return "/jsp/sso/login";
+        return "/sso/login.jsp";
     }
 
     @ApiOperation(value = "登录")

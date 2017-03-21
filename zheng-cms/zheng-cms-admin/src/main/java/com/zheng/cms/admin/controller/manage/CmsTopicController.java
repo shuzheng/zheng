@@ -43,7 +43,7 @@ public class CmsTopicController extends BaseController {
 	@RequiresPermissions("cms:topic:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/jsp/manage/topic/index";
+		return "/manage/topic/index.jsp";
 	}
 
 	@ApiOperation(value = "评论列表")
@@ -73,7 +73,7 @@ public class CmsTopicController extends BaseController {
 	@RequiresPermissions("cms:topic:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/jsp/manage/topic/create";
+		return "/manage/topic/create.jsp";
 	}
 
 	@ApiOperation(value = "新增专题")
@@ -109,7 +109,7 @@ public class CmsTopicController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsTopic topic = cmsTopicService.selectByPrimaryKey(id);
 		modelMap.put("topic", topic);
-		return "/jsp/manage/topic/update";
+		return "/manage/topic/update.jsp";
 	}
 
 	@ApiOperation(value = "修改专题")

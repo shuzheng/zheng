@@ -50,7 +50,7 @@ public class IndexController extends BaseController {
 		cmsTagExample.setOrderByClause("orders asc");
 		List<CmsTag> tags = cmsTagService.selectByExample(cmsTagExample);
 		model.addAttribute("tags", tags);
-		return "/jsp/index";
+		return "/index.jsp";
 	}
 
 }

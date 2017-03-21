@@ -53,7 +53,7 @@ public class UpmsRoleController extends BaseController {
     @RequiresPermissions("upms:role:read")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
-        return "/jsp/manage/role/index";
+        return "/manage/role/index.jsp";
     }
 
     @ApiOperation(value = "角色权限")
@@ -62,7 +62,7 @@ public class UpmsRoleController extends BaseController {
     public String permission(@PathVariable("id") int id, ModelMap modelMap) {
         UpmsRole role = upmsRoleService.selectByPrimaryKey(id);
         modelMap.put("role", role);
-        return "/jsp/manage/role/permission";
+        return "/manage/role/permission.jsp";
     }
 
     @ApiOperation(value = "角色权限")
@@ -119,7 +119,7 @@ public class UpmsRoleController extends BaseController {
     @RequiresPermissions("upms:role:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create() {
-        return "/jsp/manage/role/create";
+        return "/manage/role/create.jsp";
     }
 
     @ApiOperation(value = "新增角色")
@@ -157,7 +157,7 @@ public class UpmsRoleController extends BaseController {
     public String update(@PathVariable("id") int id, ModelMap modelMap) {
         UpmsRole role = upmsRoleService.selectByPrimaryKey(id);
         modelMap.put("role", role);
-        return "/jsp/manage/role/update";
+        return "/manage/role/update.jsp";
     }
 
     @ApiOperation(value = "修改角色")
