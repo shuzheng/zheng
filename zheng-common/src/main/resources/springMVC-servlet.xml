@@ -39,9 +39,9 @@
     <!-- Jsp视图 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="order" value="1"/>
-        <property name="viewNames" value="/jsp/*"/>
-        <property name="prefix" value="/WEB-INF"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="viewNames" value="*.jsp"/>
+        <property name="prefix" value="/WEB-INF/jsp"/>
+        <property name="suffix" value=""/>
         <property name="contentType" value="text/html; charset=utf-8"/>
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
