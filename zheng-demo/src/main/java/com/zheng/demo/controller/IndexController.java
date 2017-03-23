@@ -50,7 +50,7 @@ public class IndexController extends BaseController {
 		user.setName("lisi");
 		users.add(user);
 		model.addAttribute("users", users);
-		return "/index";
+		return "/zheng-demo/index";
 	}
 
 }
