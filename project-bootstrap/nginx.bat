@@ -26,20 +26,20 @@ ECHO.
 
 :MENU 
 
-ECHO.---------------------------- nginx è¿›ç¨‹åˆ—è¡¨ --------------------------------
+ECHO.---------------------------- nginx ½ø³ÌÁÐ±í --------------------------------
 tasklist|findstr /i "nginx.exe"
-if ERRORLEVEL 1 (echo nginxæœªå¯åŠ¨) else (echo nginxå·²å¯åŠ¨)
+if ERRORLEVEL 1 (echo nginxÎ´Æô¶¯) else (echo nginxÒÑÆô¶¯)
 ECHO.----------------------------------------------------------------------------
 
 
 ECHO. 
-	ECHO.  [1] å¯åŠ¨Nginx  
-	ECHO.  [2] å…³é—­Nginx  
-	ECHO.  [3] é‡å¯Nginx  
-	ECHO.  [4] é€€ å‡º 
+	ECHO.  [1] Æô¶¯Nginx  
+	ECHO.  [2] ¹Ø±ÕNginx  
+	ECHO.  [3] ÖØÆôNginx  
+	ECHO.  [4] ÍË ³ö 
 ECHO. 
 
-ECHO.è¯·è¾“å…¥é€‰æ‹©é¡¹ç›®çš„åºå·:
+ECHO.ÇëÊäÈëÑ¡ÔñÏîÄ¿µÄÐòºÅ:
 set /p ID=
 	IF "%id%"=="1" GOTO start 
 	IF "%id%"=="2" GOTO stop 
@@ -70,15 +70,15 @@ PAUSE
 
 :shutdownNginx
 	ECHO. 
-	ECHO.å…³é—­Nginx...... 
+	ECHO.¹Ø±ÕNginx...... 
 	taskkill /F /IM nginx.exe > nul
-	ECHO.OK,å…³é—­æ‰€æœ‰nginx è¿›ç¨‹
+	ECHO.OK,¹Ø±ÕËùÓÐnginx ½ø³Ì
 	goto :eof
 
 :startNginx
 	ECHO. 
-	ECHO.å¯åŠ¨Nginx...... 
-	IF NOT EXIST "%NGINX_DIR%nginx.exe" ECHO "%NGINX_DIR%nginx.exe"ä¸å­˜åœ¨ 
+	ECHO.Æô¶¯Nginx...... 
+	IF NOT EXIST "%NGINX_DIR%nginx.exe" ECHO "%NGINX_DIR%nginx.exe"²»´æÔÚ 
 
 	%NGINX_PATH% 
 
