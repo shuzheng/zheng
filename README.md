@@ -18,7 +18,7 @@
 ``` lua
 zheng
 ├── zheng-common -- SSM框架公共模块
-├── zheng-ui -- 后台管理系统UI模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
+├── zheng-ui -- 后台管理系统UI模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）[端口:1000]
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-common -- upms系统公共模块
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
@@ -233,6 +233,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 修改本地Host
 
+- 127.0.0.1	ui.zhangshuzheng.cn
 - 127.0.0.1	upms.zhangshuzheng.cn
 - 127.0.0.1	cms.zhangshuzheng.cn
 - 127.0.0.1	pay.zhangshuzheng.cn
