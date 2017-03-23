@@ -46,22 +46,6 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
 
-    <!-- 使用thymeleaf视图 -->
-    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-        <property name="order" value="0"/>
-        <property name="prefix" value="/WEB-INF/thymeleaf"/>
-        <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML"/>
-        <property name="cacheable" value="false"/>
-    </bean>
-    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver"/>
-        <property name="enableSpringELCompiler" value="true"/>
-    </bean>
-    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-        <property name="templateEngine" ref="templateEngine"/>
-    </bean>
-
     <!-- i18n国际化 -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <!-- 找不到key时用key作为返回值 -->
