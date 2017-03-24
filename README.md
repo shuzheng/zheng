@@ -117,6 +117,10 @@ zheng
 
 ![模块依赖](project-bootstrap/project.png)
 
+#### 架构图
+
+![架构图](project-bootstrap/architect.png)
+
 #### 模块介绍
 
 > zheng-common
