@@ -113,13 +113,13 @@ zheng
 - zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
 - zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
 
-#### 模块依赖
-
-![模块依赖](project-bootstrap/project.png)
-
 #### 架构图
 
 ![架构图](project-bootstrap/architect.png)
+
+#### 模块依赖
+
+![模块依赖](project-bootstrap/project.png)
 
 #### 模块介绍
 
