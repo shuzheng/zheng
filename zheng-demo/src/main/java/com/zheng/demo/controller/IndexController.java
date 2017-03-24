@@ -27,7 +27,7 @@ public class IndexController extends BaseController {
 	 */
 	@RequestMapping(value = "/jsp", method = RequestMethod.GET)
 	public String jsp() {
-		return "/index.jsp";
+		return jsp("/index");
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class IndexController extends BaseController {
 		user.setName("lisi");
 		users.add(user);
 		model.addAttribute("users", users);
-		return "/zheng-demo/index";
+		return thymeleaf("/index");
 	}
 
 }
