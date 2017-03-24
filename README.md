@@ -325,6 +325,7 @@ zheng-ui、zheng-common => zheng-upms => 其他
 演示地址： [http://www.zhangshuzheng.cn/zhengAdmin](http://www.zhangshuzheng.cn/zhengAdmin "演示地址")
 
 ### 预览图
+![idea](project-bootstrap/idea.png)
 ![login](project-bootstrap/zheng-login.png)
 ![upms](project-bootstrap/zheng-upms.png)
 ![cms](project-bootstrap/zheng-cms.png)
