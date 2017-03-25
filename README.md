@@ -253,20 +253,19 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 zheng-ui、zheng-common => zheng-upms => 其他
 
 ### 启动顺序（后台）
-
+```
 - 新建zheng数据库，导入project-bootstrap文件夹下的zheng-xxx.sql（使用最新版）
 
 - 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
 
 - 首先启动 zheng-upms-rpc-service(直接运行src目录下的ZhengUpmsRpcServiceApplication#main方法启动) => zheng-upms-server(jetty)，然后按需启动对应子系统xxx的zheng-xxx-rpc-service(main方法) => zheng-xxx-webapp(jetty)
-
-![rpc-service启动演示](project-bootstrap/start_rpc.png)
-
-![web启动演示](project-bootstrap/start_web.png)
-
+```
+![rpc-service启动演示](project-bootstrap/start_rpc.png) ![web启动演示](project-bootstrap/start_web.png)
+```
 - 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
 
 - 登录成功后，可在右上角切换已注册系统访问
+```
 
 ### 启动顺序（前台）
 
@@ -284,8 +283,11 @@ zheng-ui、zheng-common => zheng-upms => 其他
 - 直接运行对应项目dao模块中的generator.main()，可自动生成单表的CRUD功能和对应的model、example、mapper、service代码
 
     - 生成的model和example均已实现Serializable接口，支持分布式
+    
     - 生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit
+
     - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
+
     - BaseServiceImpl方法根据读写操作自动切换主从数据源，继承的扩展接口，可手动通过`DynamicDataSource.setDataSource(DataSourceEnum.XXX.getName())`指定数据源
 
 - 启动流程：优先rcp-service服务提供者，再启动其他webapp
