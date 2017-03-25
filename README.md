@@ -270,12 +270,15 @@ zheng-ui、zheng-common => zheng-upms => 其他
 
 ### 启动顺序（前台）
 
+```
 - 启动nginx代理zheng-ui静态资源，配置文件可参考 [nginx.conf](http://git.oschina.net/shuzheng/zheng/attach_files)
 
 - 启动前台系统应用服务器
+```
 
 ### 开发演示
 
+```
 - 创建数据表（建议使用PowerDesigner）
 
 - 直接运行对应项目dao模块中的generator.main()，可自动生成单表的CRUD功能和对应的model、example、mapper、service代码
@@ -288,10 +291,11 @@ zheng-ui、zheng-common => zheng-upms => 其他
 - 启动流程：优先rcp-service服务提供者，再启动其他webapp
 
 - 扩展流程：可扩展和拆分rpc-api和rpc-service模块，可按微服务拆分或场景拆分
+```
 
 ### 框架规范约定
 
-`约定优于配置(convention over configuration)`，此框架约定了很多编程规范，下面一一列举：
+约定优于配置(convention over configuration)，此框架约定了很多编程规范，下面一一列举：
 
 ```
 
