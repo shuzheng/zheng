@@ -69,45 +69,47 @@ zheng
 ### 技术选型
 
 #### 后端技术:
-- Spring Framework
-- SpringMVC: MVC框架
-- Spring secutity|Apache Shiro: 安全框架
-- Spring session: 分布式Session管理
-- MyBatis: ORM框架
-- MyBatis Generator: 代码生成
-- Druid: 数据库连接池
-- FluentValidator： 校验框架 [https://github.com/neoremind/fluent-validator](https://github.com/neoremind/fluent-validator "FluentValidator")
-- Jsp|Velocity|Thymeleaf: 模板引擎
-- ZooKeeper: 分布式协调服务
-- Dubbo: 分布式服务框架
-- TBSchedule|elastic-job: 分布式调度框架
-- Redis: 分布式缓存数据库
-- Solr|Elasticsearch: 分布式全文搜索引擎
-- Quartz: 作业调度框架
-- Ehcache: 进程内缓存框架
-- ActiveMQ: 消息队列
-- JStorm: 实时流式计算框架
-- FastDFS: 分布式文件系统
-- Log4J: 日志管理
-- Swagger2: 接口测试框架
-- sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence "sequence")
-- AliOSS|Qiniu|QcloudCOS: 云存储
-- Protobuf|json: 数据传输 
-- Jenkins: 持续集成工具
-- Maven: 项目构建管理
+- Spring Framework [http://projects.spring.io/spring-framework/](http://projects.spring.io/spring-framework/)
+- SpringMVC: MVC框架 [http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc](http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc)
+- Spring secutity: 安全框架 [http://projects.spring.io/spring-security/](http://projects.spring.io/spring-security/)
+- Apache Shiro: 安全框架 [http://shiro.apache.org/](http://shiro.apache.org/)
+- Spring session: 分布式Session管理 [http://projects.spring.io/spring-session/](http://projects.spring.io/spring-session/)
+- MyBatis: ORM框架 [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)
+- MyBatis Generator: 代码生成 [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)
+- Druid: 数据库连接池 [https://github.com/alibaba/druid](https://github.com/alibaba/druid)
+- FluentValidator： 校验框架 [https://github.com/neoremind/fluent-validator](https://github.com/neoremind/fluent-validator)
+- Jsp|Thymeleaf: 模板引擎 [http://www.thymeleaf.org/](http://www.thymeleaf.org/)
+- Velocity [http://velocity.apache.org/](http://velocity.apache.org/)
+- ZooKeeper: 分布式协调服务 [http://zookeeper.apache.org/](http://zookeeper.apache.org/)
+- Dubbo: 分布式服务框架 [http://dubbo.io/](http://dubbo.io/)
+- TBSchedule|elastic-job: 分布式调度框架 [https://github.com/dangdangdotcom/elastic-job](https://github.com/dangdangdotcom/elastic-job)
+- Redis: 分布式缓存数据库 [https://redis.io/](https://redis.io/)
+- Solr|Elasticsearch: 分布式全文搜索引擎 [http://lucene.apache.org/solr/](http://lucene.apache.org/solr/) [https://www.elastic.co/](https://www.elastic.co/)
+- Quartz: 作业调度框架 [http://www.quartz-scheduler.org/](http://www.quartz-scheduler.org/)
+- Ehcache: 进程内缓存框架 [http://www.ehcache.org/](http://www.ehcache.org/)
+- ActiveMQ: 消息队列 [http://activemq.apache.org/](http://activemq.apache.org/)
+- JStorm: 实时流式计算框架 [http://jstorm.io/](http://jstorm.io/)
+- FastDFS: 分布式文件系统 [https://github.com/happyfish100/fastdfs](https://github.com/happyfish100/fastdfs)
+- Log4J: 日志管理 [http://logging.apache.org/log4j/1.2/](http://logging.apache.org/log4j/1.2/)
+- Swagger2: 接口测试框架 [http://swagger.io/](http://swagger.io/)
+- sequence: 分布式高效ID生产 [http://git.oschina.net/yu120/sequence](http://git.oschina.net/yu120/sequence)
+- AliOSS|Qiniu|QcloudCOS: 云存储 [https://www.aliyun.com/product/oss/](https://www.aliyun.com/product/oss/) [http://www.qiniu.com/](http://www.qiniu.com/) [https://www.qcloud.com/product/cos](https://www.qcloud.com/product/cos)
+- Protobuf|json: 数据传输 [https://github.com/google/protobuf](https://github.com/google/protobuf)
+- Jenkins: 持续集成工具 [https://jenkins.io/index.html](https://jenkins.io/index.html)
+- Maven: 项目构建管理 [http://maven.apache.org/](http://maven.apache.org/)
 
 #### 前端技术:
-- jQuery
-- Bootstrap
-- Bootstrap-table
-- Font-awesome
-- Waves
-- zTree
-- Select2
-- jquery-confirm
-- jQuery EasyUI
-- React
-- Editor.md [Github](https://github.com/pandao/editor.md "Github")
+- jQuery: 代码库 [http://jquery.com/](http://jquery.com/)
+- Bootstrap: 前端框架 [http://getbootstrap.com/](http://getbootstrap.com/)
+- Bootstrap-table Bootstrap数据表格 [http://bootstrap-table.wenzhixin.net.cn/](http://bootstrap-table.wenzhixin.net.cn/)
+- Font-awesome: 字体图标 [http://fontawesome.io/](http://fontawesome.io/)
+- Waves: 点击效果插件 [https://github.com/fians/Waves](https://github.com/fians/Waves)
+- zTree: 树插件 [http://www.treejs.cn/v3/](http://www.treejs.cn/v3/)
+- Select2: 选择框插件 [https://github.com/select2/select2](https://github.com/select2/select2)
+- jquery-confirm: 对话框 [https://github.com/craftpip/jquery-confirm](https://github.com/craftpip/jquery-confirm)
+- jQuery EasyUI: 基于jQuery的UI插件集合体 [http://www.jeasyui.com](http://www.jeasyui.com)
+- React: 界面构建框架 [https://github.com/facebook/react])(https://github.com/facebook/react)
+- Editor.md [Markdown编辑器](https://github.com/pandao/editor.md)
 - zhengAdmin [基于bootstrap实现的响应式Material Design风格的通用后台管理系统](https://github.com/shuzheng/zhengAdmin "zhengAdmin")
 - autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
 - zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
