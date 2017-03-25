@@ -293,6 +293,8 @@ zheng-ui、zheng-common => zheng-upms => 其他
 
 `约定优于配置(convention over configuration)`，此框架约定了很多编程规范，下面一一列举：
 
+```
+
 - service类，需要在叫名`service`的包下，并以`Service`结尾，如`CmsArticleServiceImpl`
 
 - controller类，需要在以`controller`结尾的包下，类名以Controller结尾，如`CmsArticleController.java`，并继承`BaseController`
@@ -327,6 +329,7 @@ zheng-ui、zheng-common => zheng-upms => 其他
 
 - 更多规范，参考[[阿里巴巴Java开发手册](http://git.oschina.net/shuzheng/zheng/attach_files "Alibaba Java Development Manual.pdf")]
 
+```
 
 ## 演示地址
 
