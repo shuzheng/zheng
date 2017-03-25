@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 权限service实现
- * Created by shuzheng on 2017/2/6.
- */
+* UpmsPermissionService实现
+* Created by shuzheng on 2017/3/20.
+*/
 @Service
 @Transactional
 @BaseService

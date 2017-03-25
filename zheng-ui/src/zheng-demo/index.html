@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8"/>
+<title>zheng-demo</title>
+</head>
+<body>
+<h1 th:text="${host}">Hello World</h1>
+<ul  th:each="user : ${users}">
+    <li th:text="${user.id}">1</li>
+    <li th:text="${user.age}">2</li>
+    <li th:text="${user.name}">3</li>
+</ul>
+<img src="http://ui.zhangshuzheng.cn:1000/resources/images/avatar.jpg"/>
+</body>
+</html>

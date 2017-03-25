@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 用户角色service实现
- * Created by shuzheng on 2017/2/26.
- */
+* UpmsUserRoleService实现
+* Created by shuzheng on 2017/3/20.
+*/
 @Service
 @Transactional
 @BaseService

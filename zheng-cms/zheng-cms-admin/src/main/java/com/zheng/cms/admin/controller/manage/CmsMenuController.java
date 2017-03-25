@@ -43,7 +43,7 @@ public class CmsMenuController extends BaseController {
 	@RequiresPermissions("cms:menu:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/manage/menu/index";
+		return "/manage/menu/index.jsp";
 	}
 
 	@ApiOperation(value = "评论列表")
@@ -73,7 +73,7 @@ public class CmsMenuController extends BaseController {
 	@RequiresPermissions("cms:menu:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/manage/menu/create";
+		return "/manage/menu/create.jsp";
 	}
 
 	@ApiOperation(value = "新增菜单")
@@ -109,7 +109,7 @@ public class CmsMenuController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsMenu menu = cmsMenuService.selectByPrimaryKey(id);
 		modelMap.put("menu", menu);
-		return "/manage/menu/update";
+		return "/manage/menu/update.jsp";
 	}
 
 	@ApiOperation(value = "修改菜单")

@@ -27,7 +27,7 @@ public class ManageController extends BaseController {
 	@ApiOperation(value = "后台首页")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/manage/index";
+		return "/manage/index.jsp";
 	}
 
 }

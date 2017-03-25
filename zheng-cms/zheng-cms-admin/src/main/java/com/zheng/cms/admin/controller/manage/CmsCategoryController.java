@@ -43,7 +43,7 @@ public class CmsCategoryController extends BaseController {
 	@RequiresPermissions("cms:category:read")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "/manage/category/index";
+		return "/manage/category/index.jsp";
 	}
 
 	@ApiOperation(value = "类目列表")
@@ -73,7 +73,7 @@ public class CmsCategoryController extends BaseController {
 	@RequiresPermissions("cms:category:create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
-		return "/manage/category/create";
+		return "/manage/category/create.jsp";
 	}
 
 	@ApiOperation(value = "新增类目")
@@ -110,7 +110,7 @@ public class CmsCategoryController extends BaseController {
 	public String update(@PathVariable("id") int id, ModelMap modelMap) {
 		CmsCategory category = cmsCategoryService.selectByPrimaryKey(id);
 		modelMap.put("category", category);
-		return "/manage/category/update";
+		return "/manage/category/update.jsp";
 	}
 
 	@ApiOperation(value = "修改类目")

@@ -5,7 +5,6 @@ import com.zheng.cms.rpc.api.CmsCategoryService;
 import com.zheng.cms.rpc.api.CmsMenuService;
 import com.zheng.cms.rpc.api.CmsTagService;
 import com.zheng.common.base.BaseController;
-import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +50,7 @@ public class IndexController extends BaseController {
 		cmsTagExample.setOrderByClause("orders asc");
 		List<CmsTag> tags = cmsTagService.selectByExample(cmsTagExample);
 		model.addAttribute("tags", tags);
-		return "/index";
+		return "/index.jsp";
 	}
 
 }

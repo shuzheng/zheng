@@ -3,7 +3,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819🈵、284280411♨️、528049386♨️(群内含各种工具和文档下载)
+交流QQ群：133107819🈵、284280411🈵、528049386♨️(群内含各种工具和文档下载)
 
 ## 前言
 
@@ -11,14 +11,14 @@
 
 ## 项目介绍
 
-基于Spring+SpringMVC+Mybatis分布式敏捷开发系统架构：内容管理系统（门户、博客、论坛、问答等）、统一支付中心（微信、支付宝、在线网银等）、用户权限管理系统（RBAC细粒度用户权限、统一后台、单点登录、会话管理）、微信管理系统、第三方登录系统、会员系统、存储系统等，努力为中小型企业打造全方位J2EE企业级开发解决方案。
+　　基于Spring+SpringMVC+Mybatis分布式敏捷开发系统架构：内容管理系统（门户、博客、论坛、问答等）、统一支付中心（微信、支付宝、在线网银等）、用户权限管理系统（RBAC细粒度用户权限、统一后台、单点登录、会话管理）、微信管理系统、第三方登录系统、会员系统、存储系统等，努力为中小型企业打造全方位J2EE企业级开发解决方案。
 
 ### 组织结构
 
 ``` lua
 zheng
 ├── zheng-common -- SSM框架公共模块
-├── zheng-ui -- 后台管理系统UI模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）
+├── zheng-ui -- 后台管理系统UI模板（基于bootstrap实现的响应式Material Design风格的通用后台管理系统模板）[端口:1000]
 ├── zheng-upms -- 用户权限管理系统（网关）
 |    ├── zheng-upms-common -- upms系统公共模块
 |    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
@@ -56,13 +56,14 @@ zheng
 |    ├── zheng-api-rpc-api -- rpc接口包
 |    ├── zheng-api-rpc-service -- rpc服务提供者
 |    └── zheng-api-server -- api系统服务端[端口:6666]
+├── zheng-oss -- 对象存储系统
+|    ├── zheng-oss-sdk -- 开发工具包
+|    └── zheng-oss-web -- 管理界面[端口:7771]
 ├── zheng-shop -- 电子商务系统
 ├── zheng-im -- 即时通讯系统
 ├── zheng-oa -- 办公自动化系统
 ├── zheng-eoms -- 运维系统
-└── zheng-oss -- 对象存储系统
-     ├── zheng-oss-sdk -- 开发工具包
-     └── zheng-oss-web -- 管理界面[端口:7771]
+└── zheng-demo -- 示例模块(包含一些示例代码等)
 ```
 
 ### 技术选型
@@ -111,6 +112,10 @@ zheng
 - autoMail [邮箱地址自动补全插件](https://github.com/shuzheng/autoMail "autoMail")
 - zheng.jprogress.js [一款模仿youtube加载进度条插件](https://github.com/shuzheng/zheng.jprogress.js "zheng.jprogress.js")
 - zheng.jtotop.js [返回顶部插件(可以任意速度滑动到指定任意位置)](https://github.com/shuzheng/zheng.jtotop.js "zheng.jtotop.js")
+
+#### 架构图
+
+![架构图](project-bootstrap/architect.png)
 
 #### 模块依赖
 
@@ -219,6 +224,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - ZooKeeper [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://www.apache.org/dyn/closer.cgi/zookeeper/ "ZooKeeper")
 - Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
 - Elastic Stack [https://www.elastic.co/downloads](https://www.elastic.co/downloads "Elastic Stack")
+- Nginx [http://nginx.org/en/download.html "Nginx"]
 - Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
 - dubbo-admin-2.5.3 [http://download.csdn.net/detail/shuzheng5201314/9733652](http://download.csdn.net/detail/shuzheng5201314/9733652 "dubbo-admin-2.5.3")
 - dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/detail/shuzheng5201314/9733657](http://download.csdn.net/detail/shuzheng5201314/9733657 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
@@ -231,6 +237,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 修改本地Host
 
+- 127.0.0.1	ui.zhangshuzheng.cn
 - 127.0.0.1	upms.zhangshuzheng.cn
 - 127.0.0.1	cms.zhangshuzheng.cn
 - 127.0.0.1	pay.zhangshuzheng.cn
@@ -318,6 +325,7 @@ zheng-ui、zheng-common => zheng-upms => 其他
 演示地址： [http://www.zhangshuzheng.cn/zhengAdmin](http://www.zhangshuzheng.cn/zhengAdmin "演示地址")
 
 ### 预览图
+![idea](project-bootstrap/idea.png)
 ![login](project-bootstrap/zheng-login.png)
 ![upms](project-bootstrap/zheng-upms.png)
 ![cms](project-bootstrap/zheng-cms.png)
@@ -335,6 +343,12 @@ zheng-ui、zheng-common => zheng-upms => 其他
 ### 参与开发
 
 首先谢谢大家支持，如果你希望参与开发，欢迎通过[Github](https://github.com/shuzheng/zheng "Github")上fork本项目，并Pull Request您的commit。
+
+### 常见问题
+
+- Eclipse下，dubbo找不到dubbo.xsd报错，不影响使用，如果要解决，可参考 [http://blog.csdn.net/gjldwz/article/details/50555922](http://blog.csdn.net/gjldwz/article/details/50555922)
+
+- 报zheng-xxx.jar包找不到,请按照文档编译顺序，将源代码编译并安装到本地maven仓库
 
 ## 附件
 
@@ -410,6 +424,8 @@ zheng-ui、zheng-common => zheng-upms => 其他
 - [Bootstrap在线手册](http://www.bootcss.com/ "Bootstrap在线手册")
 
 - [Git官网中文文档](https://git-scm.com/book/zh/v2 "Git官网中文文档")
+
+- [Thymeleaf](http://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html "Thymeleaf")
 
 ## 许可证
 

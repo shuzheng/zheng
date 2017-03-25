@@ -1,6 +1,5 @@
 package com.zheng.upms.server.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.shiro.session.UpmsSession;
@@ -105,7 +104,7 @@ public class SSOController extends BaseController {
             _log.debug("认证中心帐号通过，带code回跳：{}", backurl);
             return "redirect:" + backurl;
         }
-        return "/sso/login";
+        return "/sso/login.jsp";
     }
 
     @ApiOperation(value = "登录")

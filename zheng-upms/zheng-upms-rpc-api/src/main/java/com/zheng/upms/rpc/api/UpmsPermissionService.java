@@ -5,10 +5,9 @@ import com.zheng.upms.dao.model.UpmsPermission;
 import com.zheng.upms.dao.model.UpmsPermissionExample;
 
 /**
- * 权限service接口
- * Created by shuzheng on 2017/2/6.
- */
+* UpmsPermissionService接口
+* Created by shuzheng on 2017/3/20.
+*/
 public interface UpmsPermissionService extends BaseService<UpmsPermission, UpmsPermissionExample> {
-
 
 }
