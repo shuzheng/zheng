@@ -1,0 +1,55 @@
+﻿@charset "utf-8";
+/*** 兼容 ***/
+@media print {
+  .container { width: auto;}
+}
+
+/*** 补充 ***/
+.container { min-width: 360px;}
+@media (min-width: 1200px) {
+	.container { width: 1200px;}
+}
+@media (min-width: 1400px) {
+	.container { width: 1400px;}
+}
+.dropdown-menu > li > a { line-height: 1.8em;}
+/* 浮动菜单 */
+body { padding-top: 70px;}
+/* 手机上浮动下拉菜单适配高度 */
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse { max-height: 540px;}
+
+/** public **/
+.navbar-brand { font-size: 20px; font-family: 'Helvetica';}
+.navbar-text { font-family: 楷体;}
+#logo-text-left { color: #00A2F7;}
+#logo-text-right { color: #F9F9F9;}
+
+/** index **/
+#search-form { margin: 6px 15px;}
+#keywords { min-width: 150px;}
+.dropdown-menu a { }
+#messages .badge { position: absolute; top:15px; right:2px; padding: 1px 4px; background: #c00; font-style: normal;}
+.msg-txt { color: #c00;}
+
+
+#daily { margin-top: 15px;}
+#daily ol { margin-bottom: 0; padding-left: 30px;}
+#daily li { margin: 5px auto;}
+#daily li a { color: #000;}
+
+#recruit { }
+#recruit .row { padding: 10px 0;}
+#recruit dt img { float: left; width: 20%;}
+#recruit dd { padding-left: 22%;}
+#recruit dd h5 { font-weight: bold;}
+#recruit dd mark { font-size: 12px; color:#c00; background: none;}
+#recruit dd  p { font-size: 12px; margin-top: 5px;}
+
+#tools {}
+#tools dl { margin-bottom: 0;}
+#tools dt { float: left; width: 60px; font-weight: bolder; line-height: 1.8em;}
+#tools dd { padding-left:70px; line-height: 1.8em; }
+#tools a { font-size: 12px; color: #000; text-decoration: none;}
+#tools dd a { margin-right: 10px;}
+#tools dd a:hover { text-decoration:underline;}
+#tools .media-left img { width: 24px;}

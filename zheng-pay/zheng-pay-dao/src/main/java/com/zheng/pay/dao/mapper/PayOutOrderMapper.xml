@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.pay.dao.mapper.PayOutOrderMapper">
+  <resultMap id="BaseResultMap" type="com.zheng.pay.dao.model.PayOutOrder">
+    <id column="pay_out_order_id" jdbcType="INTEGER" property="payOutOrderId" />
+    <result column="pay_mch_id" jdbcType="INTEGER" property="payMchId" />
+    <result column="pay_vendor_id" jdbcType="INTEGER" property="payVendorId" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="ctime" jdbcType="BIGINT" property="ctime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pay_out_order_id, pay_mch_id, pay_vendor_id, amount, status, ctime
+  </sql>
+  <select id="selectByExample" parameterType="com.zheng.pay.dao.model.PayOutOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pay_out_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_out_order
+    where pay_out_order_id = #{payOutOrderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_out_order
+    where pay_out_order_id = #{payOutOrderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zheng.pay.dao.model.PayOutOrderExample">
+    delete from pay_out_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zheng.pay.dao.model.PayOutOrder">
+    insert into pay_out_order (pay_out_order_id, pay_mch_id, pay_vendor_id, 
+      amount, status, ctime
+      )
+    values (#{payOutOrderId,jdbcType=INTEGER}, #{payMchId,jdbcType=INTEGER}, #{payVendorId,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.pay.dao.model.PayOutOrder">
+    insert into pay_out_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payOutOrderId != null">
+        pay_out_order_id,
+      </if>
+      <if test="payMchId != null">
+        pay_mch_id,
+      </if>
+      <if test="payVendorId != null">
+        pay_vendor_id,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payOutOrderId != null">
+        #{payOutOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="payMchId != null">
+        #{payMchId,jdbcType=INTEGER},
+      </if>
+      <if test="payVendorId != null">
+        #{payVendorId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zheng.pay.dao.model.PayOutOrderExample" resultType="java.lang.Long">
+    select count(*) from pay_out_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pay_out_order
+    <set>
+      <if test="record.payOutOrderId != null">
+        pay_out_order_id = #{record.payOutOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payMchId != null">
+        pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payVendorId != null">
+        pay_vendor_id = #{record.payVendorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pay_out_order
+    set pay_out_order_id = #{record.payOutOrderId,jdbcType=INTEGER},
+      pay_mch_id = #{record.payMchId,jdbcType=INTEGER},
+      pay_vendor_id = #{record.payVendorId,jdbcType=INTEGER},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=TINYINT},
+      ctime = #{record.ctime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.pay.dao.model.PayOutOrder">
+    update pay_out_order
+    <set>
+      <if test="payMchId != null">
+        pay_mch_id = #{payMchId,jdbcType=INTEGER},
+      </if>
+      <if test="payVendorId != null">
+        pay_vendor_id = #{payVendorId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where pay_out_order_id = #{payOutOrderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.pay.dao.model.PayOutOrder">
+    update pay_out_order
+    set pay_mch_id = #{payMchId,jdbcType=INTEGER},
+      pay_vendor_id = #{payVendorId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=TINYINT},
+      ctime = #{ctime,jdbcType=BIGINT}
+    where pay_out_order_id = #{payOutOrderId,jdbcType=INTEGER}
+  </update>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>
