@@ -2,7 +2,7 @@
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8"/>
-    <title>首页 - ZhengCms</title>
+    <title>专题列表 - ZhengCms</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="renderer" content="webkit"/>
@@ -91,25 +91,10 @@
 <!-- .container -->
 <div class="container" style="padding-bottom:80px;">
     <dl>
-        <dt>所有类目</dt>
-        <dd th:each="category : ${categories}"><a href="category/index.html" th:href="@{'/category/' + ${category.alias}}" th:text="${category.name}">类目</a></dd>
+        <dt>专题列表</dt>
+        <dd th:each="topic : ${topics}"><a href="topic/index.html" th:href="@{'/topic/' + ${topic.topicId}}" th:text="${topic.title}">专题标题</a></dd>
     </dl>
-    <dl>
-        <dt>所有标签</dt>
-        <dd th:each="tag : ${tags}"><a href="tag/index.html" th:href="@{'/tag/' + ${tag.alias}}" th:text="${tag.name}">标签</a></dd>
-    </dl>
-    <dl>
-        <dt>最新5个专题</dt>
-        <dd th:each="topic : ${topics}"><a href="topic/index.html" th:href="@{${topic.url}}" th:text="${topic.title}">专题</a></dd>
-    </dl>
-    <dl>
-        <dt>最新5条文章</dt>
-        <dd th:each="newArticle : ${newArticles}"><a href="article/index.html" th:href="@{'/article/' + ${newArticle.articleId}}" th:text="${newArticle.title}">文章标题</a></dd>
-    </dl>
-    <dl>
-        <dt>最热5个文章</dt>
-        <dd th:each="hotArticle : ${hotArticles}"><a href="article/index.html" th:href="@{'/article/' + ${hotArticle.articleId}}" th:text="${hotArticle.title}">文章标题</a></dd>
-    </dl>
+    <div th:utext="${paginator.html}"></div>
 </div>
 <!-- /.container -->
 <!-- footer -->
