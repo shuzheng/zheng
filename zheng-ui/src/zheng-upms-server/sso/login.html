@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>权限管理系统</title>
+
+    <link href="http://ui.zhangshuzheng.cn:1000/plugins/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="http://ui.zhangshuzheng.cn:1000/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
+    <link href="http://ui.zhangshuzheng.cn:1000/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
+    <link href="http://ui.zhangshuzheng.cn:1000/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
+    <link href="http://ui.zhangshuzheng.cn:1000/plugins/checkbix/css/checkbix.min.css" rel="stylesheet"/>
+    <link href="http://ui.zhangshuzheng.cn:1000/css/login.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="login-window">
+    <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+        <div class="fg-line">
+            <input id="username" type="text" class="form-control" name="username" placeholder="帐号" required autofocus value="admin">
+        </div>
+    </div>
+    <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+        <div class="fg-line">
+            <input id="password" type="password" class="form-control" name="password" placeholder="密码" required value="123456">
+        </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    <div class="checkbox">
+        <input id="rememberMe" type="checkbox" class="checkbix" data-text="自动登录" name="rememberMe">
+    </div>
+    <a id="login-bt" href="javascript:;" class="waves-effect waves-button waves-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+</div>
+<script src="http://ui.zhangshuzheng.cn:1000/plugins/jquery.1.12.4.min.js"></script>
+<script src="http://ui.zhangshuzheng.cn:1000/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script src="http://ui.zhangshuzheng.cn:1000/plugins/waves-0.7.5/waves.min.js"></script>
+<script src="http://ui.zhangshuzheng.cn:1000/plugins/checkbix/js/checkbix.min.js"></script>
+<script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+<script>var BACK_URL = '[[${#httpServletRequest.getParameter("backurl")}]]';</script>
+<p th:text="${#httpServletRequest.getParameter('backurl')}"></p>
+<script src="http://ui.zhangshuzheng.cn:1000/js/login.js"></script>
+<script>
+var forceLogout = '[[${#httpServletRequest.getParameter("forceLogout")}]]';
+if (forceLogout == '1') {
+    alert('您已被强制下线！');
+    top.location.href = BASE_PATH + '/sso/login';
+}
+</script>
+</body>
+</html>
