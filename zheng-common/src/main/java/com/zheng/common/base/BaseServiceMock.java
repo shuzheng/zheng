@@ -51,6 +51,11 @@ public abstract class BaseServiceMock<Mapper, Record, Example> implements BaseSe
 	}
 
 	@Override
+	public Record selectFirstByExampleWithBLOBs(Example example) {
+		return null;
+	}
+
+	@Override
 	public Record selectByPrimaryKey(Integer id) {
 		return null;
 	}
