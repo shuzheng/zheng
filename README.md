@@ -226,7 +226,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - ZooKeeper [http://www.apache.org/dyn/closer.cgi/zookeeper/](http://www.apache.org/dyn/closer.cgi/zookeeper/ "ZooKeeper")
 - Dubbo [http://dubbo.io/Download-zh.htm](http://dubbo.io/Download-zh.htm "Dubbo")
 - Elastic Stack [https://www.elastic.co/downloads](https://www.elastic.co/downloads "Elastic Stack")
-- Nginx [http://nginx.org/en/download.html "Nginx"]
+- Nginx [http://nginx.org/en/download.html](http://nginx.org/en/download.html "Nginx")
 - Jenkins [http://updates.jenkins-ci.org/download/war/](http://updates.jenkins-ci.org/download/war/ "Jenkins")
 - dubbo-admin-2.5.3 [http://download.csdn.net/detail/shuzheng5201314/9733652](http://download.csdn.net/detail/shuzheng5201314/9733652 "dubbo-admin-2.5.3")
 - dubbo-admin-2.5.4-SNAPSHOT-jdk8 [http://download.csdn.net/detail/shuzheng5201314/9733657](http://download.csdn.net/detail/shuzheng5201314/9733657 "dubbo-admin-2.5.4-SNAPSHOT-jdk8")
@@ -252,7 +252,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 zheng-ui、zheng-common => zheng-upms => 其他
 
-### 启动顺序
+### 启动顺序（后台）
 
 - 新建zheng数据库，导入project-bootstrap文件夹下的zheng-xxx.sql（使用最新版）
 
@@ -267,6 +267,12 @@ zheng-ui、zheng-common => zheng-upms => 其他
 - 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
 
 - 登录成功后，可在右上角切换已注册系统访问
+
+### 启动顺序（前台）
+
+- 启动nginx代理zheng-ui静态资源，配置文件可参考 [nginx.conf](http://git.oschina.net/shuzheng/zheng/attach_files)
+
+- 启动前台系统应用服务器
 
 ### 开发演示
 
