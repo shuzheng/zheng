@@ -26,7 +26,7 @@
 	<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
 		<property name="order" value="0"/>
 		<property name="prefix" value="${zheng-ui.path}"/>
-		<property name="suffix" value=".html"/>
+		<property name="suffix" value=""/>
 		<property name="templateMode" value="HTML"/>
 		<property name="cacheable" value="false"/>
 		<!--<property name="cacheable" value="true"/>-->
@@ -39,6 +39,7 @@
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine"/>
 		<property name="characterEncoding" value="UTF-8"/>
+		<property name="viewNames" value="/${app.name}/*"/>
 	</bean>
 
 </beans>

@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zheng</groupId>
-    <artifactId>zheng-ui</artifactId>
+    <artifactId>zheng-admin</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>zheng-ui</name>
+    <name>zheng-admin</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -19,7 +19,7 @@
     </properties>
 
     <build>
-        <finalName>zheng-ui</finalName>
+        <finalName>zheng-admin</finalName>
         <resources>
             <resource>
                 <directory>src</directory>
