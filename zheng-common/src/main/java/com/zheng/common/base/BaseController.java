@@ -49,7 +49,7 @@ public abstract class BaseController {
 	 * @return
 	 */
 	public static String jsp(String path) {
-		return path + ".jsp";
+		return path.concat(".jsp");
 	}
 
 	/**
