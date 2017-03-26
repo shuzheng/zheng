@@ -117,6 +117,8 @@
     Copyright &copy; 2017 ZhangShuzheng All Rights Reserved
 </footer>
 <!-- /footer -->
+<script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+<script>var BACK_URL = '[[${#httpServletRequest.getParameter("backurl")}]]';</script>
 <script src="js/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js/jquery-1.11.2.min.js'}"></script>
 <script src="js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
 <script src="js/main.js" th:src="@{${uiPath} + ${appName} + '/js/main.js'}"></script>
