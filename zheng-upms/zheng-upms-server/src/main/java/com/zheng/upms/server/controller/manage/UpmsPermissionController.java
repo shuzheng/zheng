@@ -60,6 +60,7 @@ public class UpmsPermissionController extends BaseController {
     public Object list(
             @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
             @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
+            @RequestParam(required = false, defaultValue = "", value = "search") String search,
             @RequestParam(required = false, defaultValue = "0", value = "type") int type,
             @RequestParam(required = false, defaultValue = "0", value = "systemId") int systemId,
             @RequestParam(required = false, value = "sort") String sort,
@@ -76,6 +77,10 @@ public class UpmsPermissionController extends BaseController {
         upmsPermissionExample.setLimit(limit);
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsPermissionExample.setOrderByClause(sort + " " + order);
+        }
+        if (StringUtils.isNotBlank(search)) {
+            upmsPermissionExample.or()
+                    .andNameLike("%" + search + "%");
         }
         List<UpmsPermission> rows = upmsPermissionService.selectByExample(upmsPermissionExample);
         long total = upmsPermissionService.countByExample(upmsPermissionExample);

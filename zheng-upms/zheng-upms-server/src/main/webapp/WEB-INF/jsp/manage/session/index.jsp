@@ -31,7 +31,7 @@ $(function() {
 		url: '${basePath}/manage/session/list',
 		height: getHeight(),
 		striped: true,
-		search: true,
+		search: false,
 		showRefresh: true,
 		showColumns: true,
 		minimumCountColumns: 2,
