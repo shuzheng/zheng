@@ -11,6 +11,13 @@ public class UpmsOrganization implements Serializable {
     private Integer organizationId;
 
     /**
+     * 所属上级
+     *
+     * @mbg.generated
+     */
+    private Integer pid;
+
+    /**
      * 组织名称
      *
      * @mbg.generated
@@ -39,6 +46,14 @@ public class UpmsOrganization implements Serializable {
 
     public void setOrganizationId(Integer organizationId) {
         this.organizationId = organizationId;
+    }
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
 
     public String getName() {
@@ -72,6 +87,7 @@ public class UpmsOrganization implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", organizationId=").append(organizationId);
+        sb.append(", pid=").append(pid);
         sb.append(", name=").append(name);
         sb.append(", description=").append(description);
         sb.append(", ctime=").append(ctime);
@@ -92,6 +108,7 @@ public class UpmsOrganization implements Serializable {
         }
         UpmsOrganization other = (UpmsOrganization) that;
         return (this.getOrganizationId() == null ? other.getOrganizationId() == null : this.getOrganizationId().equals(other.getOrganizationId()))
+            && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()));
@@ -102,6 +119,7 @@ public class UpmsOrganization implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getOrganizationId() == null) ? 0 : getOrganizationId().hashCode());
+        result = prime * result + ((getPid() == null) ? 0 : getPid().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
