@@ -1,6 +1,7 @@
 # zheng
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
 交流QQ群：133107819🈵、284280411🈵、528049386♨️(群内含各种工具和文档下载)
@@ -20,16 +21,16 @@ zheng
 ├── zheng-common -- SSM框架公共模块
 ├── zheng-admin -- 后台管理模板
 ├── zheng-ui -- 前台thymeleaf模板[端口:1000]
-├── zheng-upms -- 用户权限管理系统（网关）
+├── zheng-upms -- 用户权限管理系统
 |    ├── zheng-upms-common -- upms系统公共模块
-|    ├── zheng-upms-dao -- MyBatisGenerator代码生成模块，无需开发
+|    ├── zheng-upms-dao -- 代码生成模块，无需开发
 |    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、统一会话管理
 |    ├── zheng-upms-rpc-api -- rpc接口包
 |    ├── zheng-upms-rpc-service -- rpc服务提供者
 |    └── zheng-upms-server -- 用户权限系统及SSO服务端[端口:1111]
 ├── zheng-cms -- 内容管理系统
 |    ├── zheng-cms-common -- cms系统公共模块
-|    ├── zheng-cms-dao -- MyBatisGenerator代码生成模块，无需开发
+|    ├── zheng-cms-dao -- 代码生成模块，无需开发
 |    ├── zheng-cms-rpc-api -- rpc接口包
 |    ├── zheng-cms-rpc-service -- rpc服务提供者
 |    ├── zheng-cms-search -- 搜索服务[端口:2221]
@@ -37,18 +38,18 @@ zheng
 |    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
 |    └── zheng-cms-web -- 网站前台[端口:2224]
 ├── zheng-pay -- 支付系统
-|    ├── zheng-pay-dao -- MyBatisGenerator代码生成模块，无需开发
+|    ├── zheng-pay-dao -- 代码生成模块，无需开发
 |    ├── zheng-pay-service -- 业务逻辑
 |    ├── zheng-pay-sdk -- 开发工具包
 |    ├── zheng-pay-admin -- 后台管理[端口:3331]
 |    └── zheng-pay-web -- 演示示例[端口:3332]
 ├── zheng-ucenter -- 用户系统(包括第三方登录)
-|    ├── zheng-ucenter-dao -- MyBatisGenerator代码生成模块，无需开发
+|    ├── zheng-ucenter-dao -- 代码生成模块，无需开发
 |    ├── zheng-ucenter-service -- 业务逻辑
 |    └── zheng-ucenter-home -- 网站前台[端口:4441]
 ├── zheng-wechat -- 微信系统
 |    ├── zheng-wechat-mp -- 微信公众号管理系统
-|    |    ├── zheng-wechat-mp-dao -- MyBatisGenerator代码生成模块，无需开发
+|    |    ├── zheng-wechat-mp-dao -- 代码生成模块，无需开发
 |    |    ├── zheng-wechat-mp-service -- 业务逻辑
 |    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
 |    └── zheng-ucenter-app -- 微信小程序后台
