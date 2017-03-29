@@ -17,9 +17,13 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-pay-service</artifactId>
+            <artifactId>zheng-pay-rpc-api</artifactId>
             <version>1.0.0</version>
-            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-admin</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.alipay</groupId>
@@ -44,6 +48,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+        </dependency>
+        <!-- zheng-upms-client -->
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-upms-client</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
@@ -87,11 +97,12 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.0.0.v20130308</version>
+                <!--<version>9.0.0.v20130308</version>-->
+                <version>9.2.7.v20150116</version>
                 <configuration>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/zheng-pay-web</contextPath>
+                        <contextPath>/</contextPath>
                     </webApp>
                     <httpConnector>
                         <port>3332</port>

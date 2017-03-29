@@ -7,14 +7,14 @@
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
 
-    <dubbo:application name="zheng-api-rpc-service"/>
+    <dubbo:application name="zheng-pay-rpc-service"/>
 
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
-    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:protocol name="dubbo" port="20883"/>
 
-    <!-- API总系统 -->
-    <bean id="apiService" class="com.zheng.api.rpc.service.impl.ApiServiceImpl"/>
-    <dubbo:service interface="com.zheng.api.rpc.api.ApiService" ref="apiService" timeout="10000"/>
+    <!-- 支付方式服务 -->
+    <bean id="payVendorService" class="com.zheng.pay.rpc.service.impl.PayVendorServiceImpl"/>
+    <dubbo:service interface="com.zheng.pay.rpc.api.PayVendorService" ref="payVendorService" timeout="10000"/>
 
 </beans>
