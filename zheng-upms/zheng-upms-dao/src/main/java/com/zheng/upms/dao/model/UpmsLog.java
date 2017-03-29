@@ -87,18 +87,8 @@ public class UpmsLog implements Serializable {
      */
     private String permissions;
 
-    /**
-     * 请求参数
-     *
-     * @mbg.generated
-     */
     private String parameter;
 
-    /**
-     * 响应结果
-     *
-     * @mbg.generated
-     */
     private String result;
 
     private static final long serialVersionUID = 1L;

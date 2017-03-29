@@ -24,6 +24,13 @@ public class UpmsUserPermission implements Serializable {
      */
     private Integer permissionId;
 
+    /**
+     * 权限类型(-1:减权限,1:增权限)
+     *
+     * @mbg.generated
+     */
+    private Byte type;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getUserPermissionId() {
@@ -50,6 +57,14 @@ public class UpmsUserPermission implements Serializable {
         this.permissionId = permissionId;
     }
 
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -59,6 +74,7 @@ public class UpmsUserPermission implements Serializable {
         sb.append(", userPermissionId=").append(userPermissionId);
         sb.append(", userId=").append(userId);
         sb.append(", permissionId=").append(permissionId);
+        sb.append(", type=").append(type);
         sb.append("]");
         return sb.toString();
     }
@@ -77,7 +93,8 @@ public class UpmsUserPermission implements Serializable {
         UpmsUserPermission other = (UpmsUserPermission) that;
         return (this.getUserPermissionId() == null ? other.getUserPermissionId() == null : this.getUserPermissionId().equals(other.getUserPermissionId()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()));
+            && (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()));
     }
 
     @Override
@@ -87,6 +104,7 @@ public class UpmsUserPermission implements Serializable {
         result = prime * result + ((getUserPermissionId() == null) ? 0 : getUserPermissionId().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getPermissionId() == null) ? 0 : getPermissionId().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         return result;
     }
 }

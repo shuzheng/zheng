@@ -5,6 +5,7 @@
     <id column="user_permission_id" jdbcType="INTEGER" property="userPermissionId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_permission_id, user_id, permission_id
+    user_permission_id, user_id, permission_id, type
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsUserPermissionExample" resultMap="BaseResultMap">
     select
@@ -106,10 +107,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsUserPermission">
-    insert into upms_user_permission (user_permission_id, user_id, permission_id
-      )
-    values (#{userPermissionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER}
-      )
+    insert into upms_user_permission (user_permission_id, user_id, permission_id, 
+      type)
+    values (#{userPermissionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER}, 
+      #{type,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsUserPermission">
     insert into upms_user_permission
@@ -123,6 +124,9 @@
       <if test="permissionId != null">
         permission_id,
       </if>
+      <if test="type != null">
+        type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userPermissionId != null">
@@ -133,6 +137,9 @@
       </if>
       <if test="permissionId != null">
         #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -154,6 +161,9 @@
       <if test="record.permissionId != null">
         permission_id = #{record.permissionId,jdbcType=INTEGER},
       </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -163,7 +173,8 @@
     update upms_user_permission
     set user_permission_id = #{record.userPermissionId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      permission_id = #{record.permissionId,jdbcType=INTEGER}
+      permission_id = #{record.permissionId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,13 +188,17 @@
       <if test="permissionId != null">
         permission_id = #{permissionId,jdbcType=INTEGER},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
     </set>
     where user_permission_id = #{userPermissionId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsUserPermission">
     update upms_user_permission
     set user_id = #{userId,jdbcType=INTEGER},
-      permission_id = #{permissionId,jdbcType=INTEGER}
+      permission_id = #{permissionId,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT}
     where user_permission_id = #{userPermissionId,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
