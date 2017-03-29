@@ -38,8 +38,10 @@ zheng
 |    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
 |    └── zheng-cms-web -- 网站前台[端口:2224]
 ├── zheng-pay -- 支付系统
+|    ├── zheng-pay-common -- pay系统公共模块
 |    ├── zheng-pay-dao -- 代码生成模块，无需开发
-|    ├── zheng-pay-service -- 业务逻辑
+|    ├── zheng-pay-rpc-api -- rpc接口包
+|    ├── zheng-pay-rpc-service -- rpc服务提供者
 |    ├── zheng-pay-sdk -- 开发工具包
 |    ├── zheng-pay-admin -- 后台管理[端口:3331]
 |    └── zheng-pay-web -- 演示示例[端口:3332]
