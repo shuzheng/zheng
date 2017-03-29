@@ -14,10 +14,10 @@ public class Generator {
 	private static String DATABASE = "zheng";
 	private static String TABLE_PREFIX = "pay_";
 	private static String PACKAGE_NAME = "com.zheng.pay";
-	private static String JDBC_DRIVER = PropertiesFileUtil.getInstance("jdbc").get("master.jdbc.driver");
-	private static String JDBC_URL = PropertiesFileUtil.getInstance("jdbc").get("master.jdbc.url");
-	private static String JDBC_USERNAME = PropertiesFileUtil.getInstance("jdbc").get("master.jdbc.username");
-	private static String JDBC_PASSWORD = PropertiesFileUtil.getInstance("jdbc").get("master.jdbc.password");
+	private static String JDBC_DRIVER = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.driver");
+	private static String JDBC_URL = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.url");
+	private static String JDBC_USERNAME = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.username");
+	private static String JDBC_PASSWORD = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.password");
 
 	/**
 	 * 自动代码生成
