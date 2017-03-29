@@ -135,6 +135,10 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有后台系统都是使用该模块界面作为前端展示。
 
+> zheng-ui
+
+各个子系统前台thymeleaf模板，前端资源模块，使用nginx代理，实现动静分离。
+
 > zheng-upms
 
 本系统是基于RBAC授权和基于用户授权的细粒度权限控制通用平台，并提供单点登录、会话管理和日志管理。接入的系统可自由定义组织、角色、权限、资源等。
@@ -207,7 +211,6 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - Navicat for MySQL: 数据库客户端
 
 #### 开发环境：
-
 - Jdk7
 - Mysql5.5
 - Redis
@@ -264,7 +267,7 @@ zheng-admin、zheng-common => zheng-upms => 其他
 ```
 ![rpc-service启动演示](project-bootstrap/start_rpc.png) ![web启动演示](project-bootstrap/start_web.png)
 ```
-- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
+- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/]，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
 
 - 登录成功后，可在右上角切换已注册系统访问
 ```
