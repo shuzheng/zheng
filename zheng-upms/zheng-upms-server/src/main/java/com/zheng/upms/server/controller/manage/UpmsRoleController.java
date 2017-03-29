@@ -87,7 +87,7 @@ public class UpmsRoleController extends BaseController {
         // 减权限
         UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
         upmsRolePermissionExample.createCriteria()
-            .andPermissionIdIn(deleteIds);
+            .andPermissionIdIn(deleteIds).andRoleIdEqualTo(id);
         upmsRolePermissionService.deleteByExample(upmsRolePermissionExample);
         return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
     }
