@@ -236,7 +236,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ## 开发指南:
 
-- 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口即可
+- 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并**启动相关服务**，使用默认配置默认端口即可
 - 2、克隆源代码到本地并打开，**推荐使用IntelliJ IDEA**，本地编译并安装到本地maven仓库
 
 ### 修改本地Host
@@ -368,6 +368,12 @@ zheng-admin、zheng-common => zheng-upms => 其他
 - Eclipse下，dubbo找不到dubbo.xsd报错，不影响使用，如果要解决，可参考 [http://blog.csdn.net/gjldwz/article/details/50555922](http://blog.csdn.net/gjldwz/article/details/50555922)
 
 - 报zheng-xxx.jar包找不到,请按照文档编译顺序，将源代码编译并安装到本地maven仓库
+
+- zheng-cms-admin启动卡住：因为没有启动activemq
+
+- zheng-upms-server访问报session不存在：因为没有启动redis服务
+
+- 界面没有样式：因为zheng-admin没有编译安装到本地仓库
 
 ## 附件
 
