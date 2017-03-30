@@ -99,6 +99,7 @@ public class UpmsRoleController extends BaseController {
     public Object list(
             @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
             @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
+            @RequestParam(required = false, defaultValue = "", value = "search") String search,
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         UpmsRoleExample upmsRoleExample = new UpmsRoleExample();
@@ -106,6 +107,10 @@ public class UpmsRoleController extends BaseController {
         upmsRoleExample.setLimit(limit);
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsRoleExample.setOrderByClause(sort + " " + order);
+        }
+        if (StringUtils.isNotBlank(search)) {
+            upmsRoleExample.or()
+                    .andTitleLike("%" + search + "%");
         }
         List<UpmsRole> rows = upmsRoleService.selectByExample(upmsRoleExample);
         long total = upmsRoleService.countByExample(upmsRoleExample);

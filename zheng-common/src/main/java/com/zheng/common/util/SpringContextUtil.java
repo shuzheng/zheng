@@ -14,13 +14,7 @@ import java.util.Map;
  */
 public class SpringContextUtil implements ApplicationContextAware {
 
-	public static SpringContextUtil springContextUtil = new SpringContextUtil();
-
 	private static ApplicationContext context = null;
-
-	public final static synchronized SpringContextUtil getInstance() {
-		return springContextUtil;
-	}
 
 	private SpringContextUtil() {
 		super();

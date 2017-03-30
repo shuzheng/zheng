@@ -3,6 +3,7 @@
 <mapper namespace="com.zheng.upms.dao.mapper.UpmsOrganizationMapper">
   <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsOrganization">
     <id column="organization_id" jdbcType="INTEGER" property="organizationId" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    organization_id, name, description, ctime
+    organization_id, pid, name, description, ctime
   </sql>
   <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsOrganizationExample" resultMap="BaseResultMap">
     select
@@ -107,16 +108,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsOrganization">
-    insert into upms_organization (organization_id, name, description, 
-      ctime)
-    values (#{organizationId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{ctime,jdbcType=BIGINT})
+    insert into upms_organization (organization_id, pid, name, 
+      description, ctime)
+    values (#{organizationId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsOrganization">
     insert into upms_organization
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="organizationId != null">
         organization_id,
+      </if>
+      <if test="pid != null">
+        pid,
       </if>
       <if test="name != null">
         name,
@@ -131,6 +135,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="organizationId != null">
         #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -155,6 +162,9 @@
       <if test="record.organizationId != null">
         organization_id = #{record.organizationId,jdbcType=INTEGER},
       </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
@@ -172,6 +182,7 @@
   <update id="updateByExample" parameterType="map">
     update upms_organization
     set organization_id = #{record.organizationId,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       ctime = #{record.ctime,jdbcType=BIGINT}
@@ -182,6 +193,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsOrganization">
     update upms_organization
     <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -196,7 +210,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsOrganization">
     update upms_organization
-    set name = #{name,jdbcType=VARCHAR},
+    set pid = #{pid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       ctime = #{ctime,jdbcType=BIGINT}
     where organization_id = #{organizationId,jdbcType=INTEGER}

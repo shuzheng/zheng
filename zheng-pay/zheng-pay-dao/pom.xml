@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-common</artifactId>
+            <artifactId>zheng-pay-common</artifactId>
             <version>1.0.0</version>
             <type>jar</type>
         </dependency>

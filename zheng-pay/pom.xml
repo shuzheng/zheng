@@ -19,8 +19,10 @@
     </properties>
 
     <modules>
+        <module>zheng-pay-common</module>
         <module>zheng-pay-dao</module>
-        <module>zheng-pay-service</module>
+        <module>zheng-pay-rpc-api</module>
+        <module>zheng-pay-rpc-service</module>
         <module>zheng-pay-sdk</module>
         <module>zheng-pay-web</module>
         <module>zheng-pay-admin</module>

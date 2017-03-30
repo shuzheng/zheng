@@ -11,7 +11,7 @@
 
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
-    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:protocol name="dubbo" port="20882"/>
 
     <!-- 文章 -->
     <bean id="cmsArticleServiceImpl" class="com.zheng.cms.rpc.service.impl.CmsArticleServiceImpl"/>

@@ -38,8 +38,10 @@ zheng
 |    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
 |    └── zheng-cms-web -- 网站前台[端口:2224]
 ├── zheng-pay -- 支付系统
+|    ├── zheng-pay-common -- pay系统公共模块
 |    ├── zheng-pay-dao -- 代码生成模块，无需开发
-|    ├── zheng-pay-service -- 业务逻辑
+|    ├── zheng-pay-rpc-api -- rpc接口包
+|    ├── zheng-pay-rpc-service -- rpc服务提供者
 |    ├── zheng-pay-sdk -- 开发工具包
 |    ├── zheng-pay-admin -- 后台管理[端口:3331]
 |    └── zheng-pay-web -- 演示示例[端口:3332]
@@ -135,6 +137,10 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 基于bootstrap实现的响应式Material Design风格的通用后台管理系统，`zheng`项目所有后台系统都是使用该模块界面作为前端展示。
 
+> zheng-ui
+
+各个子系统前台thymeleaf模板，前端资源模块，使用nginx代理，实现动静分离。
+
 > zheng-upms
 
 本系统是基于RBAC授权和基于用户授权的细粒度权限控制通用平台，并提供单点登录、会话管理和日志管理。接入的系统可自由定义组织、角色、权限、资源等。
@@ -207,7 +213,6 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - Navicat for MySQL: 数据库客户端
 
 #### 开发环境：
-
 - Jdk7
 - Mysql5.5
 - Redis
@@ -236,7 +241,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ## 开发指南:
 
-- 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并启动相关服务，使用默认配置默认端口即可
+- 1、本机安装Jdk7、Mysql、Redis、Zookeeper、ActiveMQ并**启动相关服务**，使用默认配置默认端口即可
 - 2、克隆源代码到本地并打开，**推荐使用IntelliJ IDEA**，本地编译并安装到本地maven仓库
 
 ### 修改本地Host
@@ -264,7 +269,7 @@ zheng-admin、zheng-common => zheng-upms => 其他
 ```
 ![rpc-service启动演示](project-bootstrap/start_rpc.png) ![web启动演示](project-bootstrap/start_web.png)
 ```
-- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/ ](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
+- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/]，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
 
 - 登录成功后，可在右上角切换已注册系统访问
 ```
@@ -368,6 +373,12 @@ zheng-admin、zheng-common => zheng-upms => 其他
 - Eclipse下，dubbo找不到dubbo.xsd报错，不影响使用，如果要解决，可参考 [http://blog.csdn.net/gjldwz/article/details/50555922](http://blog.csdn.net/gjldwz/article/details/50555922)
 
 - 报zheng-xxx.jar包找不到,请按照文档编译顺序，将源代码编译并安装到本地maven仓库
+
+- zheng-cms-admin启动卡住：因为没有启动activemq
+
+- zheng-upms-server访问报session不存在：因为没有启动redis服务
+
+- 界面没有样式：因为zheng-admin没有编译安装到本地仓库
 
 ## 附件
 
