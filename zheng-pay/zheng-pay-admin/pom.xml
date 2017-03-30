@@ -17,9 +17,13 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-pay-service</artifactId>
+            <artifactId>zheng-pay-rpc-api</artifactId>
             <version>1.0.0</version>
-            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-admin</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

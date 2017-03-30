@@ -21,11 +21,6 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.zheng</groupId>
-            <artifactId>zheng-admin</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.alipay</groupId>
             <artifactId>sdk-java</artifactId>
             <version>20170324180803</version>
