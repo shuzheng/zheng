@@ -1,4 +1,4 @@
-package com.zheng.api.rpc.service;
+package com.zheng.api.rpc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
