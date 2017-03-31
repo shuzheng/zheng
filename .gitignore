@@ -8,3 +8,4 @@ target
 *.log.*
 **/resources/zheng-admin
 generatorConfig.xml
+.DS_Store
