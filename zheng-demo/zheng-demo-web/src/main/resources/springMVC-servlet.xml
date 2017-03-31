@@ -11,13 +11,13 @@
         <!-- 获取登录信息 -->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.zheng.demo.interceptor.DemoInterceptor"></bean>
+            <bean class="com.zheng.demo.web.interceptor.DemoInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 
     <context:property-placeholder location="classpath:config.properties"/>
 
-    <!-- 使用thymeleaf视图 -->
+    <!-- thymeleaf视图 -->
     <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="order" value="0"/>
         <property name="prefix" value="${zheng-ui.path}"/>
@@ -35,6 +35,16 @@
         <property name="templateEngine" ref="templateEngine"/>
         <property name="characterEncoding" value="UTF-8"/>
         <property name="viewNames" value="*.html"/>
+    </bean>
+
+    <!-- Jsp视图 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="1"/>
+        <property name="viewNames" value="*.jsp"/>
+        <property name="prefix" value="/WEB-INF/jsp"/>
+        <property name="suffix" value=""/>
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
 
 </beans>

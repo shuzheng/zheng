@@ -1,4 +1,4 @@
-package com.zheng.demo.model;
+package com.zheng.demo.web.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

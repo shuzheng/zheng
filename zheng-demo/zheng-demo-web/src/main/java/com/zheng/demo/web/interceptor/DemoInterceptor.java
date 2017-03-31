@@ -1,4 +1,4 @@
-package com.zheng.demo.interceptor;
+package com.zheng.demo.web.interceptor;
 
 import com.zheng.common.util.PropertiesFileUtil;
 import org.slf4j.Logger;
