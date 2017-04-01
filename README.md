@@ -68,6 +68,9 @@ zheng
 ├── zheng-oa -- 办公自动化系统
 ├── zheng-eoms -- 运维系统
 └── zheng-demo -- 示例模块(包含一些示例代码等)
+     ├── zheng-demo-rpc-api -- rpc接口包
+     ├── zheng-demo-rpc-service -- rpc服务提供者
+     └── zheng-demo-web -- 演示示例[端口:8888]
 ```
 
 ### 技术选型
