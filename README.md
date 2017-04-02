@@ -305,6 +305,14 @@ zheng-admin、zheng-common => zheng-upms => 其他
 - 扩展流程：可扩展和拆分rpc-api和rpc-service模块，可按微服务拆分或场景拆分
 ```
 
+### 部署方式
+
+```
+- war包项目：使用tomcat等web容器启动
+
+- rpc-service服务提供者jar包：将打包后的zheng-xxx-rpc-service-assembly.tar.gz文件解压，使用bin目录的管理脚本运行即可，支持优雅停机。
+```
+
 ### 框架规范约定
 
 约定优于配置(convention over configuration)，此框架约定了很多编程规范，下面一一列举：
