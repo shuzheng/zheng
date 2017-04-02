@@ -16,8 +16,8 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
         "classpath:applicationContext.xml",
-        "classpath:applicationContext-jdbc.xml",
-        "classpath:applicationContext-listener.xml"
+        "classpath:META-INF/spring/applicationContext-jdbc.xml",
+        "classpath:META-INF/spring/applicationContext-listener.xml"
 })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class UpmsServiceTest {
