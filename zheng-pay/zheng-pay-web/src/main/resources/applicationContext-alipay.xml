@@ -8,7 +8,7 @@
     <context:property-placeholder location="classpath:config.properties"/>
 
     <!-- 支付宝手机网站支付 -->
-    <bean id="alipayWebClient" class="com.alipay.api.DefaultAlipayClient">
+    <bean id="alipayClient" class="com.alipay.api.DefaultAlipayClient">
         <constructor-arg value="${alipay.gateway}"/>
         <constructor-arg value="${alipay.appid}"/>
         <constructor-arg value="${alipay.rsa.private_key}"/>
@@ -16,6 +16,10 @@
         <constructor-arg value="${alipay.charset}"/>
         <constructor-arg value="${alipay.alipay_public_key}"/>
         <constructor-arg value="${alipay.sign_type}"/>
+    </bean>
+    <bean id="alipayRequest" class="com.alipay.api.request.AlipayTradeWapPayRequest">
+        <property name="returnUrl" value="${alipay.returnUrl}"/>
+        <property name="notifyUrl" value="${alipay.notifyUrl}"/>
     </bean>
 
 </beans>
