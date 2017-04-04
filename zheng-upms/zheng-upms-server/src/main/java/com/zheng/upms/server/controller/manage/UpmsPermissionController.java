@@ -16,6 +16,7 @@ import com.zheng.upms.rpc.api.UpmsSystemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,28 +106,8 @@ public class UpmsPermissionController extends BaseController {
     @RequiresPermissions("upms:permission:read")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public Object user(@PathVariable("id") int id) {
-        // 所有正常系统
-        UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
-        upmsSystemExample.createCriteria()
-                .andStatusEqualTo((byte) 1);
-        List<UpmsSystem> systems = upmsSystemService.selectByExample(upmsSystemExample);
-        // 所有正常权限
-        UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
-        upmsPermissionExample.createCriteria()
-                .andStatusEqualTo((byte) 1);
-        List<UpmsPermission> permissions = upmsPermissionService.selectByExample(upmsPermissionExample);
-        // 用户已有权限
-        List<UpmsUserPermission> rolePermissions = upmsApiService.selectUpmsUserPermissionByUpmsUserId(id);
-        // 用户已有角色
-        List<UpmsRole> roles = upmsApiService.selectUpmsRoleByUpmsUserId(id);
-        // 返回结果集
-        Map result = new HashMap();
-        result.put("systems", systems);
-        result.put("permissions", permissions);
-        result.put("rolePermissions", rolePermissions);
-        result.put("roles", roles);
-        return result;
+    public Object user(@PathVariable("id") int id, HttpServletRequest request) {
+        return upmsPermissionService.getTreeByUserId(id, NumberUtils.toByte(request.getParameter("type")));
     }
 
     @ApiOperation(value = "新增权限")

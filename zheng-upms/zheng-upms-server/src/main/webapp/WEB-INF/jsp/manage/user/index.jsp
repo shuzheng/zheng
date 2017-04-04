@@ -326,9 +326,11 @@ function permissionAction() {
 		permissionDialog = $.dialog({
 			animationSpeed: 300,
 			title: '用户授权',
+			columnClass: 'large',
 			content: 'url:${basePath}/manage/user/permission/' + permissionUserId,
 			onContentReady: function () {
 				initMaterialInput();
+				initTree();
 			}
 		});
 	}

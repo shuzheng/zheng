@@ -1,5 +1,7 @@
 package com.zheng.upms.server.controller.manage;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
@@ -24,10 +26,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 用户controller
@@ -147,6 +146,42 @@ public class UpmsUserController extends BaseController {
             }
         }
         return new UpmsResult(UpmsResultConstant.SUCCESS, "");
+    }
+
+    @ApiOperation(value = "用户权限")
+    @RequiresPermissions("upms:user:permission")
+    @RequestMapping(value = "/permission/{id}", method = RequestMethod.GET)
+    public String permission(@PathVariable("id") int id, ModelMap modelMap) {
+        UpmsUser user = upmsUserService.selectByPrimaryKey(id);
+        modelMap.put("user", user);
+        return "/manage/user/permission.jsp";
+    }
+
+    @ApiOperation(value = "用户权限")
+    @RequiresPermissions("upms:user:permission")
+    @RequestMapping(value = "/permission/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object permission(@PathVariable("id") int id, HttpServletRequest request) {
+        JSONArray datas = JSONArray.parseArray(request.getParameter("datas"));
+        for (int i = 0; i < datas.size(); i ++) {
+            JSONObject json = datas.getJSONObject(i);
+            if (json.getBoolean("checked")) {
+                // 新增权限
+                UpmsUserPermission upmsUserPermission = new UpmsUserPermission();
+                upmsUserPermission.setUserId(id);
+                upmsUserPermission.setPermissionId(json.getIntValue("id"));
+                upmsUserPermission.setType(json.getByte("type"));
+                upmsUserPermissionService.insertSelective(upmsUserPermission);
+            } else {
+                // 删除权限
+                UpmsUserPermissionExample upmsUserPermissionExample = new UpmsUserPermissionExample();
+                upmsUserPermissionExample.createCriteria()
+                        .andPermissionIdEqualTo(json.getIntValue("id"))
+                        .andTypeEqualTo(json.getByte("type"));
+                upmsUserPermissionService.deleteByExample(upmsUserPermissionExample);
+            }
+        }
+        return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
     }
 
     @ApiOperation(value = "用户列表")
