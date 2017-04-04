@@ -1,5 +1,7 @@
 package com.zheng.upms.server.controller.manage;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
@@ -95,25 +97,7 @@ public class UpmsPermissionController extends BaseController {
     @RequestMapping(value = "/role/{id}", method = RequestMethod.POST)
     @ResponseBody
     public Object role(@PathVariable("id") int id) {
-        // 所有正常系统
-        UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
-        upmsSystemExample.createCriteria()
-                .andStatusEqualTo((byte) 1);
-        List<UpmsSystem> systems = upmsSystemService.selectByExample(upmsSystemExample);
-        // 所有正常权限
-        UpmsPermissionExample upmsPermissionExample = new UpmsPermissionExample();
-        upmsPermissionExample.createCriteria()
-            .andStatusEqualTo((byte) 1);
-        upmsPermissionExample.setOrderByClause("orders asc");
-        List<UpmsPermission> permissions = upmsPermissionService.selectByExample(upmsPermissionExample);
-        // 角色已有权限
-        List<UpmsRolePermission> rolePermissions = upmsApiService.selectUpmsRolePermisstionByUpmsRoleId(id);
-        // 返回结果集
-        Map result = new HashMap();
-        result.put("systems", systems);
-        result.put("permissions", permissions);
-        result.put("rolePermissions", rolePermissions);
-        return result;
+        return upmsPermissionService.getTreeByRoleId(id);
     }
 
     @ApiOperation(value = "用户权限列表")
