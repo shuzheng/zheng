@@ -33,7 +33,5 @@
     <dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService" mock="true"/>
     <!-- 标签 -->
     <dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService" mock="true"/>
-    <!-- 用户 -->
-    <dubbo:reference id="userService" interface="com.zheng.cms.rpc.api.UserService" mock="true"/>
 
 </beans>

@@ -27,7 +27,7 @@ public class DefaultMessageQueueListener implements MessageListener {
 				if (message instanceof TextMessage) {
 					TextMessage textMessage = (TextMessage) message;
 					try {
-						_log.info("消费消息：{}", textMessage.getText());
+						_log.info("消费：{}", textMessage.getText());
 					} catch (Exception e){
 						e.printStackTrace();
 					}
