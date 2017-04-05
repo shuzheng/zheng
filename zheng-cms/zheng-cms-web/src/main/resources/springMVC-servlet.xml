@@ -22,7 +22,7 @@
 
 	<context:property-placeholder location="classpath:config.properties"/>
 
-	<!-- 使用thymeleaf视图 -->
+	<!-- thymeleaf视图 -->
 	<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
 		<property name="order" value="0"/>
 		<property name="prefix" value="${zheng-ui.path}"/>
