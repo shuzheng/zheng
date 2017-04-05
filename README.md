@@ -212,7 +212,7 @@ zheng-admin、zheng-common => zheng-upms => 其他
 
 ### 启动顺序（后台）
 ```
-- 新建zheng数据库，导入project-datamodel文件夹下的zheng-xxx.sql（使用最新版）
+- 新建zheng数据库，导入project-datamodel文件夹下的zheng.sql
 
 - 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
 
