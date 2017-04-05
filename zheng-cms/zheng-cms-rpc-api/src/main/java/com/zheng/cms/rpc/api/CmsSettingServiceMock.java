@@ -7,7 +7,7 @@ import com.zheng.cms.dao.model.CmsSettingExample;
 
 /**
 * 降级实现CmsSettingService接口
-* Created by shuzheng on 2017/3/20.
+* Created by shuzheng on 2017/4/5.
 */
 public class CmsSettingServiceMock extends BaseServiceMock<CmsSettingMapper, CmsSetting, CmsSettingExample> implements CmsSettingService {
 

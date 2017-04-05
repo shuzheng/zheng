@@ -45,8 +45,4 @@
     <bean id="cmsSettingImpl" class="com.zheng.cms.rpc.service.impl.CmsSettingServiceImpl"/>
     <dubbo:service interface="com.zheng.cms.rpc.api.CmsSettingService" ref="cmsSettingImpl" timeout="10000"/>
 
-    <!-- 用户 -->
-    <bean id="userServiceImpl" class="com.zheng.cms.rpc.service.impl.UserServiceImpl"/>
-    <dubbo:service interface="com.zheng.cms.rpc.api.UserService" ref="userServiceImpl" timeout="10000"/>
-
 </beans>

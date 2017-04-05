@@ -15,6 +15,8 @@
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="readnumber" jdbcType="INTEGER" property="readnumber" />
+    <result column="top" jdbcType="INTEGER" property="top" />
+    <result column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
     <result column="orders" jdbcType="BIGINT" property="orders" />
   </resultMap>
@@ -81,7 +83,7 @@
   </sql>
   <sql id="Base_Column_List">
     article_id, topic_id, title, author, fromurl, image, keywords, description, type, 
-    allowcomments, status, user_id, readnumber, ctime, orders
+    allowcomments, status, user_id, readnumber, top, system_id, ctime, orders
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -147,14 +149,16 @@
       author, fromurl, image, 
       keywords, description, type, 
       allowcomments, status, user_id, 
-      readnumber, ctime, orders, 
-      content)
+      readnumber, top, system_id, 
+      ctime, orders, content
+      )
     values (#{articleId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{fromurl,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
       #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
       #{allowcomments,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, 
-      #{readnumber,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{readnumber,jdbcType=INTEGER}, #{top,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, 
+      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsArticle">
     insert into cms_article
@@ -197,6 +201,12 @@
       </if>
       <if test="readnumber != null">
         readnumber,
+      </if>
+      <if test="top != null">
+        top,
+      </if>
+      <if test="systemId != null">
+        system_id,
       </if>
       <if test="ctime != null">
         ctime,
@@ -247,6 +257,12 @@
       </if>
       <if test="readnumber != null">
         #{readnumber,jdbcType=INTEGER},
+      </if>
+      <if test="top != null">
+        #{top,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=INTEGER},
       </if>
       <if test="ctime != null">
         #{ctime,jdbcType=BIGINT},
@@ -307,6 +323,12 @@
       <if test="record.readnumber != null">
         readnumber = #{record.readnumber,jdbcType=INTEGER},
       </if>
+      <if test="record.top != null">
+        top = #{record.top,jdbcType=INTEGER},
+      </if>
+      <if test="record.systemId != null">
+        system_id = #{record.systemId,jdbcType=INTEGER},
+      </if>
       <if test="record.ctime != null">
         ctime = #{record.ctime,jdbcType=BIGINT},
       </if>
@@ -336,6 +358,8 @@
       status = #{record.status,jdbcType=TINYINT},
       user_id = #{record.userId,jdbcType=INTEGER},
       readnumber = #{record.readnumber,jdbcType=INTEGER},
+      top = #{record.top,jdbcType=INTEGER},
+      system_id = #{record.systemId,jdbcType=INTEGER},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT},
       content = #{record.content,jdbcType=LONGVARCHAR}
@@ -358,6 +382,8 @@
       status = #{record.status,jdbcType=TINYINT},
       user_id = #{record.userId,jdbcType=INTEGER},
       readnumber = #{record.readnumber,jdbcType=INTEGER},
+      top = #{record.top,jdbcType=INTEGER},
+      system_id = #{record.systemId,jdbcType=INTEGER},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null">
@@ -403,6 +429,12 @@
       <if test="readnumber != null">
         readnumber = #{readnumber,jdbcType=INTEGER},
       </if>
+      <if test="top != null">
+        top = #{top,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
       <if test="ctime != null">
         ctime = #{ctime,jdbcType=BIGINT},
       </if>
@@ -429,6 +461,8 @@
       status = #{status,jdbcType=TINYINT},
       user_id = #{userId,jdbcType=INTEGER},
       readnumber = #{readnumber,jdbcType=INTEGER},
+      top = #{top,jdbcType=INTEGER},
+      system_id = #{systemId,jdbcType=INTEGER},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT},
       content = #{content,jdbcType=LONGVARCHAR}
@@ -448,6 +482,8 @@
       status = #{status,jdbcType=TINYINT},
       user_id = #{userId,jdbcType=INTEGER},
       readnumber = #{readnumber,jdbcType=INTEGER},
+      top = #{top,jdbcType=INTEGER},
+      system_id = #{systemId,jdbcType=INTEGER},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT}
     where article_id = #{articleId,jdbcType=INTEGER}

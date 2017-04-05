@@ -7,7 +7,7 @@ import com.zheng.cms.dao.model.CmsArticleCategoryExample;
 
 /**
 * 降级实现CmsArticleCategoryService接口
-* Created by shuzheng on 2017/3/20.
+* Created by shuzheng on 2017/4/5.
 */
 public class CmsArticleCategoryServiceMock extends BaseServiceMock<CmsArticleCategoryMapper, CmsArticleCategory, CmsArticleCategoryExample> implements CmsArticleCategoryService {
 

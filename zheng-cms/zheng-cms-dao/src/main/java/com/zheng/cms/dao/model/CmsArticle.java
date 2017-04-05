@@ -95,6 +95,20 @@ public class CmsArticle implements Serializable {
     private Integer readnumber;
 
     /**
+     * 置顶等级
+     *
+     * @mbg.generated
+     */
+    private Integer top;
+
+    /**
+     * 所属系统
+     *
+     * @mbg.generated
+     */
+    private Integer systemId;
+
+    /**
      * 创建时间
      *
      * @mbg.generated
@@ -221,6 +235,22 @@ public class CmsArticle implements Serializable {
         this.readnumber = readnumber;
     }
 
+    public Integer getTop() {
+        return top;
+    }
+
+    public void setTop(Integer top) {
+        this.top = top;
+    }
+
+    public Integer getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(Integer systemId) {
+        this.systemId = systemId;
+    }
+
     public Long getCtime() {
         return ctime;
     }
@@ -264,6 +294,8 @@ public class CmsArticle implements Serializable {
         sb.append(", status=").append(status);
         sb.append(", userId=").append(userId);
         sb.append(", readnumber=").append(readnumber);
+        sb.append(", top=").append(top);
+        sb.append(", systemId=").append(systemId);
         sb.append(", ctime=").append(ctime);
         sb.append(", orders=").append(orders);
         sb.append(", content=").append(content);
@@ -296,6 +328,8 @@ public class CmsArticle implements Serializable {
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getReadnumber() == null ? other.getReadnumber() == null : this.getReadnumber().equals(other.getReadnumber()))
+            && (this.getTop() == null ? other.getTop() == null : this.getTop().equals(other.getTop()))
+            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
             && (this.getOrders() == null ? other.getOrders() == null : this.getOrders().equals(other.getOrders()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
@@ -318,6 +352,8 @@ public class CmsArticle implements Serializable {
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getReadnumber() == null) ? 0 : getReadnumber().hashCode());
+        result = prime * result + ((getTop() == null) ? 0 : getTop().hashCode());
+        result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         result = prime * result + ((getOrders() == null) ? 0 : getOrders().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());

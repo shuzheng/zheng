@@ -53,6 +53,13 @@ public class CmsComment implements Serializable {
     private String agent;
 
     /**
+     * 所属系统
+     *
+     * @mbg.generated
+     */
+    private Integer systemId;
+
+    /**
      * 创建时间
      *
      * @mbg.generated
@@ -124,6 +131,14 @@ public class CmsComment implements Serializable {
         this.agent = agent;
     }
 
+    public Integer getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(Integer systemId) {
+        this.systemId = systemId;
+    }
+
     public Long getCtime() {
         return ctime;
     }
@@ -153,6 +168,7 @@ public class CmsComment implements Serializable {
         sb.append(", status=").append(status);
         sb.append(", ip=").append(ip);
         sb.append(", agent=").append(agent);
+        sb.append(", systemId=").append(systemId);
         sb.append(", ctime=").append(ctime);
         sb.append(", content=").append(content);
         sb.append("]");
@@ -178,6 +194,7 @@ public class CmsComment implements Serializable {
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
             && (this.getAgent() == null ? other.getAgent() == null : this.getAgent().equals(other.getAgent()))
+            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
     }
@@ -193,6 +210,7 @@ public class CmsComment implements Serializable {
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getIp() == null) ? 0 : getIp().hashCode());
         result = prime * result + ((getAgent() == null) ? 0 : getAgent().hashCode());
+        result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         return result;

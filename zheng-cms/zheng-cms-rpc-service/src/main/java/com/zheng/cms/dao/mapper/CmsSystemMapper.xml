@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.cms.dao.mapper.CmsBookMapper">
-  <resultMap id="BaseResultMap" type="com.zheng.cms.dao.model.CmsBook">
-    <id column="book_id" jdbcType="INTEGER" property="bookId" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+<mapper namespace="com.zheng.cms.dao.mapper.CmsSystemMapper">
+  <resultMap id="BaseResultMap" type="com.zheng.cms.dao.model.CmsSystem">
+    <id column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="ctime" jdbcType="BIGINT" property="ctime" />
+    <result column="orders" jdbcType="BIGINT" property="orders" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    book_id, user_id, name
+    system_id, name, code, description, ctime, orders
   </sql>
-  <select id="selectByExample" parameterType="com.zheng.cms.dao.model.CmsBookExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.zheng.cms.dao.model.CmsSystemExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from cms_book
+    from cms_system
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,67 +95,96 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from cms_book
-    where book_id = #{bookId,jdbcType=INTEGER}
+    from cms_system
+    where system_id = #{systemId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cms_book
-    where book_id = #{bookId,jdbcType=INTEGER}
+    delete from cms_system
+    where system_id = #{systemId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.CmsBookExample">
-    delete from cms_book
+  <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.CmsSystemExample">
+    delete from cms_system
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.cms.dao.model.CmsBook">
-    insert into cms_book (book_id, user_id, name
+  <insert id="insert" parameterType="com.zheng.cms.dao.model.CmsSystem">
+    insert into cms_system (system_id, name, code, 
+      description, ctime, orders
       )
-    values (#{bookId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}
+    values (#{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsBook">
-    insert into cms_book
+  <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsSystem">
+    insert into cms_system
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="bookId != null">
-        book_id,
-      </if>
-      <if test="userId != null">
-        user_id,
+      <if test="systemId != null">
+        system_id,
       </if>
       <if test="name != null">
         name,
       </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="bookId != null">
-        #{bookId,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="systemId != null">
+        #{systemId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=BIGINT},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.cms.dao.model.CmsBookExample" resultType="java.lang.Long">
-    select count(*) from cms_book
+  <select id="countByExample" parameterType="com.zheng.cms.dao.model.CmsSystemExample" resultType="java.lang.Long">
+    select count(*) from cms_system
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update cms_book
+    update cms_system
     <set>
-      <if test="record.bookId != null">
-        book_id = #{record.bookId,jdbcType=INTEGER},
-      </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.systemId != null">
+        system_id = #{record.systemId,jdbcType=INTEGER},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+      <if test="record.orders != null">
+        orders = #{record.orders,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -160,31 +192,46 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update cms_book
-    set book_id = #{record.bookId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR}
+    update cms_system
+    set system_id = #{record.systemId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=BIGINT},
+      orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.dao.model.CmsBook">
-    update cms_book
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.dao.model.CmsSystem">
+    update cms_system
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
     </set>
-    where book_id = #{bookId,jdbcType=INTEGER}
+    where system_id = #{systemId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.CmsBook">
-    update cms_book
-    set user_id = #{userId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR}
-    where book_id = #{bookId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.CmsSystem">
+    update cms_system
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=BIGINT},
+      orders = #{orders,jdbcType=BIGINT}
+    where system_id = #{systemId,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

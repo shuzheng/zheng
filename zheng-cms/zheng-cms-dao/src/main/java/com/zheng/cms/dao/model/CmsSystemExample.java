@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CmsTagExample implements Serializable {
+public class CmsSystemExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -17,7 +17,7 @@ public class CmsTagExample implements Serializable {
 
     private Integer offset;
 
-    public CmsTagExample() {
+    public CmsSystemExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -127,63 +127,63 @@ public class CmsTagExample implements Serializable {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andTagIdIsNull() {
-            addCriterion("tag_id is null");
+        public Criteria andSystemIdIsNull() {
+            addCriterion("system_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdIsNotNull() {
-            addCriterion("tag_id is not null");
+        public Criteria andSystemIdIsNotNull() {
+            addCriterion("system_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdEqualTo(Integer value) {
-            addCriterion("tag_id =", value, "tagId");
+        public Criteria andSystemIdEqualTo(Integer value) {
+            addCriterion("system_id =", value, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdNotEqualTo(Integer value) {
-            addCriterion("tag_id <>", value, "tagId");
+        public Criteria andSystemIdNotEqualTo(Integer value) {
+            addCriterion("system_id <>", value, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdGreaterThan(Integer value) {
-            addCriterion("tag_id >", value, "tagId");
+        public Criteria andSystemIdGreaterThan(Integer value) {
+            addCriterion("system_id >", value, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("tag_id >=", value, "tagId");
+        public Criteria andSystemIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("system_id >=", value, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdLessThan(Integer value) {
-            addCriterion("tag_id <", value, "tagId");
+        public Criteria andSystemIdLessThan(Integer value) {
+            addCriterion("system_id <", value, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdLessThanOrEqualTo(Integer value) {
-            addCriterion("tag_id <=", value, "tagId");
+        public Criteria andSystemIdLessThanOrEqualTo(Integer value) {
+            addCriterion("system_id <=", value, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdIn(List<Integer> values) {
-            addCriterion("tag_id in", values, "tagId");
+        public Criteria andSystemIdIn(List<Integer> values) {
+            addCriterion("system_id in", values, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdNotIn(List<Integer> values) {
-            addCriterion("tag_id not in", values, "tagId");
+        public Criteria andSystemIdNotIn(List<Integer> values) {
+            addCriterion("system_id not in", values, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdBetween(Integer value1, Integer value2) {
-            addCriterion("tag_id between", value1, value2, "tagId");
+        public Criteria andSystemIdBetween(Integer value1, Integer value2) {
+            addCriterion("system_id between", value1, value2, "systemId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("tag_id not between", value1, value2, "tagId");
+        public Criteria andSystemIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("system_id not between", value1, value2, "systemId");
             return (Criteria) this;
         }
 
@@ -257,6 +257,76 @@ public class CmsTagExample implements Serializable {
             return (Criteria) this;
         }
 
+        public Criteria andCodeIsNull() {
+            addCriterion("code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIsNotNull() {
+            addCriterion("code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeEqualTo(String value) {
+            addCriterion("code =", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotEqualTo(String value) {
+            addCriterion("code <>", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGreaterThan(String value) {
+            addCriterion("code >", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("code >=", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLessThan(String value) {
+            addCriterion("code <", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLessThanOrEqualTo(String value) {
+            addCriterion("code <=", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLike(String value) {
+            addCriterion("code like", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotLike(String value) {
+            addCriterion("code not like", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIn(List<String> values) {
+            addCriterion("code in", values, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotIn(List<String> values) {
+            addCriterion("code not in", values, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeBetween(String value1, String value2) {
+            addCriterion("code between", value1, value2, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotBetween(String value1, String value2) {
+            addCriterion("code not between", value1, value2, "code");
+            return (Criteria) this;
+        }
+
         public Criteria andDescriptionIsNull() {
             addCriterion("description is null");
             return (Criteria) this;
@@ -324,266 +394,6 @@ public class CmsTagExample implements Serializable {
 
         public Criteria andDescriptionNotBetween(String value1, String value2) {
             addCriterion("description not between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconIsNull() {
-            addCriterion("icon is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconIsNotNull() {
-            addCriterion("icon is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconEqualTo(String value) {
-            addCriterion("icon =", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconNotEqualTo(String value) {
-            addCriterion("icon <>", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconGreaterThan(String value) {
-            addCriterion("icon >", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconGreaterThanOrEqualTo(String value) {
-            addCriterion("icon >=", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconLessThan(String value) {
-            addCriterion("icon <", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconLessThanOrEqualTo(String value) {
-            addCriterion("icon <=", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconLike(String value) {
-            addCriterion("icon like", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconNotLike(String value) {
-            addCriterion("icon not like", value, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconIn(List<String> values) {
-            addCriterion("icon in", values, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconNotIn(List<String> values) {
-            addCriterion("icon not in", values, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconBetween(String value1, String value2) {
-            addCriterion("icon between", value1, value2, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andIconNotBetween(String value1, String value2) {
-            addCriterion("icon not between", value1, value2, "icon");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeEqualTo(Byte value) {
-            addCriterion("type =", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotEqualTo(Byte value) {
-            addCriterion("type <>", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeGreaterThan(Byte value) {
-            addCriterion("type >", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeGreaterThanOrEqualTo(Byte value) {
-            addCriterion("type >=", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeLessThan(Byte value) {
-            addCriterion("type <", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeLessThanOrEqualTo(Byte value) {
-            addCriterion("type <=", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeIn(List<Byte> values) {
-            addCriterion("type in", values, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotIn(List<Byte> values) {
-            addCriterion("type not in", values, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeBetween(Byte value1, Byte value2) {
-            addCriterion("type between", value1, value2, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotBetween(Byte value1, Byte value2) {
-            addCriterion("type not between", value1, value2, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasIsNull() {
-            addCriterion("alias is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasIsNotNull() {
-            addCriterion("alias is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasEqualTo(String value) {
-            addCriterion("alias =", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasNotEqualTo(String value) {
-            addCriterion("alias <>", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasGreaterThan(String value) {
-            addCriterion("alias >", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasGreaterThanOrEqualTo(String value) {
-            addCriterion("alias >=", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasLessThan(String value) {
-            addCriterion("alias <", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasLessThanOrEqualTo(String value) {
-            addCriterion("alias <=", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasLike(String value) {
-            addCriterion("alias like", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasNotLike(String value) {
-            addCriterion("alias not like", value, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasIn(List<String> values) {
-            addCriterion("alias in", values, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasNotIn(List<String> values) {
-            addCriterion("alias not in", values, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasBetween(String value1, String value2) {
-            addCriterion("alias between", value1, value2, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andAliasNotBetween(String value1, String value2) {
-            addCriterion("alias not between", value1, value2, "alias");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdIsNull() {
-            addCriterion("system_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdIsNotNull() {
-            addCriterion("system_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdEqualTo(Integer value) {
-            addCriterion("system_id =", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdNotEqualTo(Integer value) {
-            addCriterion("system_id <>", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdGreaterThan(Integer value) {
-            addCriterion("system_id >", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("system_id >=", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdLessThan(Integer value) {
-            addCriterion("system_id <", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdLessThanOrEqualTo(Integer value) {
-            addCriterion("system_id <=", value, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdIn(List<Integer> values) {
-            addCriterion("system_id in", values, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdNotIn(List<Integer> values) {
-            addCriterion("system_id not in", values, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdBetween(Integer value1, Integer value2) {
-            addCriterion("system_id between", value1, value2, "systemId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSystemIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("system_id not between", value1, value2, "systemId");
             return (Criteria) this;
         }
 
