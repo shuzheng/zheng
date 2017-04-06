@@ -27,25 +27,7 @@ var setting = {
 	},
 	async: {
 		enable: true,
-		url: '${basePath}/manage/permission/role/' + roleId,
-		dataFilter: function(treeId, parentNode, datas) {
-			var nodes = [];
-			for (var i = 0; i < datas.permissions.length; i ++) {
-				var node = {};
-				node.id = datas.permissions[i].permissionId;
-				node.pId = datas.permissions[i].pid;
-				node.name = datas.permissions[i].name;
-				node.open = true;
-				// 是否已拥有
-				for (var j = 0; j < datas.rolePermissions.length; j ++) {
-					if (datas.permissions[i].permissionId == datas.rolePermissions[j].permissionId) {
-						node.checked = true;
-					}
-				}
-				nodes.push(node)
-			}
-			return nodes;
-		}
+		url: '${basePath}/manage/permission/role/' + roleId
 	},
 	data: {
 		simpleData: {

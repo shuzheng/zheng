@@ -46,6 +46,13 @@ public class CmsTag implements Serializable {
     private String alias;
 
     /**
+     * 所属系统
+     *
+     * @mbg.generated
+     */
+    private Integer systemId;
+
+    /**
      * 创建时间
      *
      * @mbg.generated
@@ -109,6 +116,14 @@ public class CmsTag implements Serializable {
         this.alias = alias;
     }
 
+    public Integer getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(Integer systemId) {
+        this.systemId = systemId;
+    }
+
     public Long getCtime() {
         return ctime;
     }
@@ -137,6 +152,7 @@ public class CmsTag implements Serializable {
         sb.append(", icon=").append(icon);
         sb.append(", type=").append(type);
         sb.append(", alias=").append(alias);
+        sb.append(", systemId=").append(systemId);
         sb.append(", ctime=").append(ctime);
         sb.append(", orders=").append(orders);
         sb.append("]");
@@ -161,6 +177,7 @@ public class CmsTag implements Serializable {
             && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getAlias() == null ? other.getAlias() == null : this.getAlias().equals(other.getAlias()))
+            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
             && (this.getCtime() == null ? other.getCtime() == null : this.getCtime().equals(other.getCtime()))
             && (this.getOrders() == null ? other.getOrders() == null : this.getOrders().equals(other.getOrders()));
     }
@@ -175,6 +192,7 @@ public class CmsTag implements Serializable {
         result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getAlias() == null) ? 0 : getAlias().hashCode());
+        result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         result = prime * result + ((getCtime() == null) ? 0 : getCtime().hashCode());
         result = prime * result + ((getOrders() == null) ? 0 : getOrders().hashCode());
         return result;

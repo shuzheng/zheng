@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <bean id="demoService" class="com.zheng.demo.rpc.service.impl.DemoServiceImpl"/>
+    <dubbo:service interface="com.zheng.demo.rpc.api.DemoService" ref="demoService" timeout="5000" retries="0" />
+
+</beans>
+

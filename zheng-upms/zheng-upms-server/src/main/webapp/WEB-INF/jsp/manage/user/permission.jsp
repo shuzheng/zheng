@@ -8,13 +8,23 @@
 <c:set var="basePath" value="${pageContext.request.contextPath}"/>
 <div id="permissionDialog" class="crudDialog">
 	<form id="permissionForm" method="post">
-		<div class="form-group">
-			<select id="systemId" name="systemId">
-				<option value="0">请选择系统</option>
-				<c:forEach var="upmsSystem" items="${upmsSystems}">
-					<option value="${upmsSystem.systemId}">${upmsSystem.title}</option>
-				</c:forEach>
-			</select>
+		<div class="row">
+			<div class="col-sm-6">
+				<label>加权限</label>
+				<div class="form-group">
+					<div class="fg-line">
+						<ul id="ztree1" class="ztree"></ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<label>减权限</label>
+				<div class="form-group">
+					<div class="fg-line">
+						<ul id="ztree2" class="ztree"></ul>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="form-group text-right dialog-buttons">
 			<a class="waves-effect waves-button" href="javascript:;" onclick="permissionSubmit();">保存</a>
@@ -23,40 +33,94 @@
 	</form>
 </div>
 <script>
-function permissionSubmit() {
-    $.ajax({
-        type: 'post',
-        url: '${basePath}/manage/user/permission',
-        data: $('#permissionForm').serialize(),
-        beforeSend: function() {
-            if ($('#name').val() == '') {
-                $('#name').focus();
-                return false;
-            }
-			if ($('#title').val() == '') {
-				$('#title').focus();
-				return false;
+	var changeDatas = [];
+	var setting1 = {
+		check: {
+			enable: true,
+			// 勾选关联父，取消关联子
+			chkboxType: { "Y" : "", "N" : "" }
+		},
+		async: {
+			enable: true,
+			url: '${basePath}/manage/permission/user/' + permissionUserId + '?type=1'
+		},
+		data: {
+			simpleData: {
+				enable: true
 			}
-        },
-        success: function(result) {
-			if (result.code != 1) {
-				if (result.data instanceof Array) {
-					$.each(result.data, function(index, value) {
-						$.confirm({
-							theme: 'dark',
-							animation: 'rotateX',
-							closeAnimation: 'rotateX',
-							title: false,
-							content: value.errorMsg,
-							buttons: {
-								confirm: {
-									text: '确认',
-									btnClass: 'waves-effect waves-button waves-light'
+		},
+		callback: {
+			onCheck: function() {
+				var zTree = $.fn.zTree.getZTreeObj("ztree1")
+				var changeNodes = zTree.getChangeCheckedNodes();
+				for (var i = 0; i < changeNodes.length; i ++) {
+					var changeData = {};
+					changeData.id = changeNodes[i].id;
+					changeData.checked = changeNodes[i].checked;
+					changeData.type = 1;
+					changeDatas.push(changeData);
+				}
+			}
+		}
+	};
+	var setting2 = {
+		check: {
+			enable: true,
+			// 勾选关联父，取消关联子
+			chkboxType: { "Y" : "", "N" : "" }
+		},
+		async: {
+			enable: true,
+			url: '${basePath}/manage/permission/user/' + permissionUserId + '?type=-1'
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		callback: {
+			onCheck: function() {
+				var zTree = $.fn.zTree.getZTreeObj("ztree2")
+				var changeNodes = zTree.getChangeCheckedNodes();
+				for (var i = 0; i < changeNodes.length; i ++) {
+					var changeData = {};
+					changeData.id = changeNodes[i].id;
+					changeData.checked = changeNodes[i].checked;
+					changeData.type = -1;
+					changeDatas.push(changeData);
+				}
+			}
+		}
+	};
+	function initTree() {
+		$.fn.zTree.init($('#ztree1'), setting1);
+		$.fn.zTree.init($('#ztree2'), setting2);
+	}
+
+	function permissionSubmit() {
+		$.ajax({
+			type: 'post',
+			url: '${basePath}/manage/user/permission/' + permissionUserId,
+			data: {datas: JSON.stringify(changeDatas), permissionUserId: permissionUserId},
+			success: function(result) {
+				if (result.code != 1) {
+					if (result.data instanceof Array) {
+						$.each(result.data, function(index, value) {
+							$.confirm({
+								theme: 'dark',
+								animation: 'rotateX',
+								closeAnimation: 'rotateX',
+								title: false,
+								content: value.errorMsg,
+								buttons: {
+									confirm: {
+										text: '确认',
+										btnClass: 'waves-effect waves-button waves-light'
+									}
 								}
-							}
+							});
 						});
-					});
-				} else {
+					} else {
 						$.confirm({
 							theme: 'dark',
 							animation: 'rotateX',
@@ -70,27 +134,27 @@ function permissionSubmit() {
 								}
 							}
 						});
-				}
-			} else {
-				permissionDialog.close();
-				$table.bootstrapTable('refresh');
-			}
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-			$.confirm({
-				theme: 'dark',
-				animation: 'rotateX',
-				closeAnimation: 'rotateX',
-				title: false,
-				content: textStatus,
-				buttons: {
-					confirm: {
-						text: '确认',
-						btnClass: 'waves-effect waves-button waves-light'
 					}
+				} else {
+					permissionDialog.close();
+					$table.bootstrapTable('refresh');
 				}
-			});
-        }
-    });
-}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.confirm({
+					theme: 'dark',
+					animation: 'rotateX',
+					closeAnimation: 'rotateX',
+					title: false,
+					content: textStatus,
+					buttons: {
+						confirm: {
+							text: '确认',
+							btnClass: 'waves-effect waves-button waves-light'
+						}
+					}
+				});
+			}
+		});
+	}
 </script>

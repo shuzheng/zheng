@@ -1,6 +1,5 @@
 package com.zheng.cms.admin.jms;
 
-import com.zheng.cms.rpc.api.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ public class DefaultMessageQueueListener implements MessageListener {
 
 	@Autowired
 	ThreadPoolTaskExecutor threadPoolTaskExecutor;
-
-    @Autowired
-    UserService userService;
 
 	public void onMessage(final Message message) {
 		// 使用线程池多线程处理

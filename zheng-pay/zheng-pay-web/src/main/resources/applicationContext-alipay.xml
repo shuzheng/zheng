@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:config.properties"/>
+
+    <!-- 支付宝手机网站支付 -->
+    <bean id="alipayClient" class="com.alipay.api.DefaultAlipayClient">
+        <constructor-arg value="${alipay.gateway}"/>
+        <constructor-arg value="${alipay.appid}"/>
+        <constructor-arg value="${alipay.rsa.private_key}"/>
+        <constructor-arg value="${alipay.format}"/>
+        <constructor-arg value="${alipay.charset}"/>
+        <constructor-arg value="${alipay.alipay_public_key}"/>
+        <constructor-arg value="${alipay.sign_type}"/>
+    </bean>
+    <bean id="alipayRequest" class="com.alipay.api.request.AlipayTradeWapPayRequest">
+        <property name="returnUrl" value="${alipay.returnUrl}"/>
+        <property name="notifyUrl" value="${alipay.notifyUrl}"/>
+    </bean>
+
+</beans>

@@ -7,7 +7,7 @@ import com.zheng.cms.dao.model.CmsCategoryTagExample;
 
 /**
 * 降级实现CmsCategoryTagService接口
-* Created by shuzheng on 2017/3/20.
+* Created by shuzheng on 2017/4/5.
 */
 public class CmsCategoryTagServiceMock extends BaseServiceMock<CmsCategoryTagMapper, CmsCategoryTag, CmsCategoryTagExample> implements CmsCategoryTagService {
 

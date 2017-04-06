@@ -45,9 +45,6 @@ public class ApiServiceImpl implements ApiService {
     @Autowired
     private CmsTagService cmsTagService;
 
-    @Autowired
-    private UserService userService;
-
     @Override
     public String hello(String name) {
         return "hello," + name + "!";

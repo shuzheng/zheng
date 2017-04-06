@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 查找最新的schemaLocation 访问 http://www.springframework.org/schema/ -->
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amq="http://activemq.apache.org/schema/core"
-	   xmlns:jms="http://www.springframework.org/schema/jms"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context-3.2.xsd
-		http://www.springframework.org/schema/jms
-		http://www.springframework.org/schema/jms/spring-jms-4.1.xsd
-		http://activemq.apache.org/schema/core
-		http://activemq.apache.org/schema/core/activemq-core-5.8.0.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-	<!-- 连接工厂 -->
-	<bean id="activeMqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-		<property name="brokerURL" value="${AvtiveMQ.brokerURL}"/>
-		<property name="useAsyncSend" value="true"/>
-	</bean>
-	<bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
-		<property name="targetConnectionFactory" ref="activeMqConnectionFactory"/>
-		<property name="sessionCacheSize" value="100"/>
-	</bean>
+    <!-- 连接工厂 -->
+    <bean id="activeMqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${AvtiveMQ.brokerURL}"/>
+        <property name="useAsyncSend" value="true"/>
+    </bean>
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="activeMqConnectionFactory"/>
+        <property name="sessionCacheSize" value="100"/>
+    </bean>
 
-	<!-- 点对点队列 -->
-	<bean id="defaultQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
-		<constructor-arg index="0" value="com.zheng.cms.admin.queue.default"/>
-	</bean>
-	<!-- 一对多队列 -->
-	<bean id="defaultTopicDestination" class="org.apache.activemq.command.ActiveMQTopic">
-		<constructor-arg index="0" value="com.zheng.cms.admin.topic.default"/>
-	</bean>
+    <!-- 点对点队列 -->
+    <bean id="defaultQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="com.zheng.cms.admin.queue.default"/>
+    </bean>
+    <!-- 一对多队列 -->
+    <bean id="defaultTopicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg index="0" value="com.zheng.cms.admin.topic.default"/>
+    </bean>
 
-	<!-- 生产者 -->
-	<bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="connectionFactory"/>
-		<property name="pubSubDomain" value="false" />
-	</bean>
-	<bean id="jmsTopicTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="connectionFactory"/>
-		<property name="pubSubDomain" value="true" />
-	</bean>
+    <!-- 生产者 -->
+    <bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="pubSubDomain" value="false"/>
+    </bean>
+    <bean id="jmsTopicTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="pubSubDomain" value="true"/>
+    </bean>
 
-	<!-- 消费者 -->
-	<bean id="defaultMessageQueueListener" class="com.zheng.cms.admin.jms.DefaultMessageQueueListener"/>
-	<bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-		<property name="connectionFactory" ref="connectionFactory"/>
-		<property name="destination" ref="defaultQueueDestination"/>
-		<property name="messageListener" ref="defaultMessageQueueListener"/>
-		<property name="sessionTransacted" value="true"/>
-		<!--<property name="concurrency" value="4-10"/>-->
-	</bean>
+    <!-- 消费者 -->
+    <bean id="defaultMessageQueueListener" class="com.zheng.cms.admin.jms.DefaultMessageQueueListener"/>
+    <bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="defaultQueueDestination"/>
+        <property name="messageListener" ref="defaultMessageQueueListener"/>
+        <property name="sessionTransacted" value="true"/>
+        <!--<property name="concurrency" value="4-10"/>-->
+    </bean>
 
 </beans>

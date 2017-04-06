@@ -47,7 +47,8 @@ public class MybatisGeneratorUtil {
 			String module,
 			String database,
 			String table_prefix,
-			String package_name) throws Exception{
+			String package_name,
+			Map<String, String> last_insert_id_tables) throws Exception{
 
 		String targetProject = module + "/" + module + "-dao";
 		String module_path = module + "/" + module + "-dao/src/main/resources/generatorConfig.xml";
@@ -79,6 +80,7 @@ public class MybatisGeneratorUtil {
 			context.put("targetProject", targetProject);
 			context.put("targetProject_sqlMap", targetProject_sqlMap);
 			context.put("generator_jdbc_password", AESUtil.AESDecode(jdbc_password));
+			context.put("last_insert_id_tables", last_insert_id_tables);
 			VelocityUtil.generate(generatorConfig_vm, module_path, context);
 			// 删除旧代码
 			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/dao/model"));

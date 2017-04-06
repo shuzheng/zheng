@@ -14,7 +14,7 @@ public class ZhengCmsRpcServiceApplication {
 
 	public static void main(String[] args) {
 		_log.info(">>>>> zheng-cms-rpc-service 正在启动 <<<<<");
-		new ClassPathXmlApplicationContext("classpath*:applicationContext*.xml");
+		new ClassPathXmlApplicationContext("classpath:META-INF/spring/*.xml");
 		_log.info(">>>>> zheng-cms-rpc-service 启动完成 <<<<<");
 	}
 

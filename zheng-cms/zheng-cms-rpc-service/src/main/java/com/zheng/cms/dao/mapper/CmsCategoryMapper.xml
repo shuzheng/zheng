@@ -10,6 +10,7 @@
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="type" jdbcType="TINYINT" property="type" />
     <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="ctime" jdbcType="BIGINT" property="ctime" />
     <result column="orders" jdbcType="BIGINT" property="orders" />
   </resultMap>
@@ -72,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    category_id, pid, level, name, description, icon, type, alias, ctime, orders
+    category_id, pid, level, name, description, icon, type, alias, system_id, ctime, 
+    orders
   </sql>
   <select id="selectByExample" parameterType="com.zheng.cms.dao.model.CmsCategoryExample" resultMap="BaseResultMap">
     select
@@ -115,12 +117,12 @@
   <insert id="insert" parameterType="com.zheng.cms.dao.model.CmsCategory">
     insert into cms_category (category_id, pid, level, 
       name, description, icon, 
-      type, alias, ctime, 
-      orders)
+      type, alias, system_id, 
+      ctime, orders)
     values (#{categoryId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{level,jdbcType=TINYINT}, 
       #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{type,jdbcType=TINYINT}, #{alias,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, 
-      #{orders,jdbcType=BIGINT})
+      #{type,jdbcType=TINYINT}, #{alias,jdbcType=VARCHAR}, #{systemId,jdbcType=INTEGER}, 
+      #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsCategory">
     insert into cms_category
@@ -148,6 +150,9 @@
       </if>
       <if test="alias != null">
         alias,
+      </if>
+      <if test="systemId != null">
+        system_id,
       </if>
       <if test="ctime != null">
         ctime,
@@ -180,6 +185,9 @@
       </if>
       <if test="alias != null">
         #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=INTEGER},
       </if>
       <if test="ctime != null">
         #{ctime,jdbcType=BIGINT},
@@ -222,6 +230,9 @@
       <if test="record.alias != null">
         alias = #{record.alias,jdbcType=VARCHAR},
       </if>
+      <if test="record.systemId != null">
+        system_id = #{record.systemId,jdbcType=INTEGER},
+      </if>
       <if test="record.ctime != null">
         ctime = #{record.ctime,jdbcType=BIGINT},
       </if>
@@ -243,6 +254,7 @@
       icon = #{record.icon,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=TINYINT},
       alias = #{record.alias,jdbcType=VARCHAR},
+      system_id = #{record.systemId,jdbcType=INTEGER},
       ctime = #{record.ctime,jdbcType=BIGINT},
       orders = #{record.orders,jdbcType=BIGINT}
     <if test="_parameter != null">
@@ -273,6 +285,9 @@
       <if test="alias != null">
         alias = #{alias,jdbcType=VARCHAR},
       </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
       <if test="ctime != null">
         ctime = #{ctime,jdbcType=BIGINT},
       </if>
@@ -291,6 +306,7 @@
       icon = #{icon,jdbcType=VARCHAR},
       type = #{type,jdbcType=TINYINT},
       alias = #{alias,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=INTEGER},
       ctime = #{ctime,jdbcType=BIGINT},
       orders = #{orders,jdbcType=BIGINT}
     where category_id = #{categoryId,jdbcType=INTEGER}

@@ -114,21 +114,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsUser">
-    insert into upms_user (user_id, username, password, 
-      salt, realname, avatar, 
-      phone, email, sex, 
-      locked, ctime)
-    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{salt,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, 
-      #{locked,jdbcType=TINYINT}, #{ctime,jdbcType=BIGINT})
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into upms_user (username, password, salt, 
+      realname, avatar, phone, 
+      email, sex, locked, 
+      ctime)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{locked,jdbcType=TINYINT}, 
+      #{ctime,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsUser">
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into upms_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
       <if test="username != null">
         username,
       </if>
@@ -161,9 +164,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>

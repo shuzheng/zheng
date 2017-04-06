@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+
+    <dubbo:application name="zheng-cms-rpc-service"/>
+
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <dubbo:protocol name="dubbo" port="20882"/>
+
+    <!-- 文章 -->
+    <bean id="cmsArticleServiceImpl" class="com.zheng.cms.rpc.service.impl.CmsArticleServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsArticleService" ref="cmsArticleServiceImpl" timeout="10000"/>
+
+    <!-- 类目 -->
+    <bean id="cmsCategoryServiceImpl" class="com.zheng.cms.rpc.service.impl.CmsCategoryServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsCategoryService" ref="cmsCategoryServiceImpl" timeout="10000"/>
+
+    <!-- 评论 -->
+    <bean id="cmsCommentServiceImpl" class="com.zheng.cms.rpc.service.impl.CmsCommentServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsCommentService" ref="cmsCommentServiceImpl" timeout="10000"/>
+
+    <!-- 标签 -->
+    <bean id="cmsTagServiceImpl" class="com.zheng.cms.rpc.service.impl.CmsTagServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsTagService" ref="cmsTagServiceImpl" timeout="10000"/>
+
+    <!-- 专题 -->
+    <bean id="cmsTopicImpl" class="com.zheng.cms.rpc.service.impl.CmsTopicServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsTopicService" ref="cmsTopicImpl" timeout="10000"/>
+
+    <!-- 菜单 -->
+    <bean id="cmsMenuImpl" class="com.zheng.cms.rpc.service.impl.CmsMenuServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsMenuService" ref="cmsMenuImpl" timeout="10000"/>
+
+    <!-- 单页 -->
+    <bean id="cmsPageImpl" class="com.zheng.cms.rpc.service.impl.CmsPageServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsPageService" ref="cmsPageImpl" timeout="10000"/>
+
+    <!-- 设置 -->
+    <bean id="cmsSettingImpl" class="com.zheng.cms.rpc.service.impl.CmsSettingServiceImpl"/>
+    <dubbo:service interface="com.zheng.cms.rpc.api.CmsSettingService" ref="cmsSettingImpl" timeout="10000"/>
+
+</beans>

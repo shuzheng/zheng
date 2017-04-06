@@ -77,17 +77,18 @@ public class UpmsRoleController extends BaseController {
             if (!json.getBoolean("checked")) {
                 deleteIds.add(json.getIntValue("id"));
             } else {
-                // 加权限
+                // 新增权限
                 UpmsRolePermission upmsRolePermission = new UpmsRolePermission();
                 upmsRolePermission.setRoleId(id);
                 upmsRolePermission.setPermissionId(json.getIntValue("id"));
                 upmsRolePermissionService.insertSelective(upmsRolePermission);
             }
         }
-        // 减权限
+        // 删除权限
         UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
         upmsRolePermissionExample.createCriteria()
-            .andPermissionIdIn(deleteIds);
+            .andPermissionIdIn(deleteIds)
+            .andRoleIdEqualTo(id);
         upmsRolePermissionService.deleteByExample(upmsRolePermissionExample);
         return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
     }

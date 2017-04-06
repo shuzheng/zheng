@@ -967,6 +967,126 @@ public class CmsArticleExample implements Serializable {
             return (Criteria) this;
         }
 
+        public Criteria andTopIsNull() {
+            addCriterion("top is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopIsNotNull() {
+            addCriterion("top is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopEqualTo(Integer value) {
+            addCriterion("top =", value, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNotEqualTo(Integer value) {
+            addCriterion("top <>", value, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopGreaterThan(Integer value) {
+            addCriterion("top >", value, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopGreaterThanOrEqualTo(Integer value) {
+            addCriterion("top >=", value, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopLessThan(Integer value) {
+            addCriterion("top <", value, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopLessThanOrEqualTo(Integer value) {
+            addCriterion("top <=", value, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopIn(List<Integer> values) {
+            addCriterion("top in", values, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNotIn(List<Integer> values) {
+            addCriterion("top not in", values, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopBetween(Integer value1, Integer value2) {
+            addCriterion("top between", value1, value2, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNotBetween(Integer value1, Integer value2) {
+            addCriterion("top not between", value1, value2, "top");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdIsNull() {
+            addCriterion("system_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdIsNotNull() {
+            addCriterion("system_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdEqualTo(Integer value) {
+            addCriterion("system_id =", value, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdNotEqualTo(Integer value) {
+            addCriterion("system_id <>", value, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdGreaterThan(Integer value) {
+            addCriterion("system_id >", value, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("system_id >=", value, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdLessThan(Integer value) {
+            addCriterion("system_id <", value, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdLessThanOrEqualTo(Integer value) {
+            addCriterion("system_id <=", value, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdIn(List<Integer> values) {
+            addCriterion("system_id in", values, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdNotIn(List<Integer> values) {
+            addCriterion("system_id not in", values, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdBetween(Integer value1, Integer value2) {
+            addCriterion("system_id between", value1, value2, "systemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSystemIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("system_id not between", value1, value2, "systemId");
+            return (Criteria) this;
+        }
+
         public Criteria andCtimeIsNull() {
             addCriterion("ctime is null");
             return (Criteria) this;
