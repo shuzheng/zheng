@@ -8,16 +8,16 @@
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="shortcut icon" href="../favicon.ico" th:href="@{${uiPath} + ${appName} + '/favicon.ico'}"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} + '/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="../../favicon.ico" th:href="@{${uiPath} + ${appName} + '/favicon.ico'}"/>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} + '/css/bootstrap.min.css'}"/>
     <!--[if lt IE 9]>
-    <script src="../js/vendor/html5shiv.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/html5shiv.js'}"></script>
-    <script src="../js/vendor/respond.min.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/respond.min.js'}"></script>
+    <script src="../../js/vendor/html5shiv.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/html5shiv.js'}"></script>
+    <script src="../../js/vendor/respond.min.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/respond.min.js'}"></script>
     <![endif]-->
     <script type="text/javascript">
         if (/msie [6|7|8]/i.test(navigator.userAgent)) {};
     </script>
-    <link rel="stylesheet" href="../css/main.css" th:href="@{${uiPath} + ${appName} + '/css/main.css'}"/>
+    <link rel="stylesheet" href="../../css/main.css" th:href="@{${uiPath} + ${appName} + '/css/main.css'}"/>
 </head>
 <body>
 <!-- .navbar -->
@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html" th:href="@{/}" title="zhengCMS"><span id="logo-text-left">zheng</span><span id="logo-text-right">CMS</span></a>
+            <a class="navbar-brand" href="../../index.html" th:href="@{/}" title="zhengCMS"><span id="logo-text-left">zheng</span><span id="logo-text-right">CMS</span></a>
             <p class="navbar-text hidden-sm">最简约的内容管理系统</p>
         </div>
         <!-- /.navbar-header -->
@@ -107,9 +107,9 @@
     Copyright &copy; 2017 ZhangShuzheng All Rights Reserved
 </footer>
 <!-- /footer -->
-<script src="../js/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js/jquery-1.11.2.min.js'}"></script>
-<script src="../js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
-<script src="../js/main.js" th:src="@{${uiPath} + ${appName} + '/js/main.js'}"></script>
+<script src="../../js/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js/jquery-1.11.2.min.js'}"></script>
+<script src="../../js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
+<script src="../../js/main.js" th:src="@{${uiPath} + ${appName} + '/js/main.js'}"></script>
 <script>
 $('#submit').click(function () {
     $.post($('#commentForm').attr('action'), $('#commentForm').serialize(), function (json) {

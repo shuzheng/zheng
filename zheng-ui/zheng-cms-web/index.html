@@ -91,24 +91,16 @@
 <!-- .container -->
 <div class="container" style="padding-bottom:80px;">
     <dl>
+        <dt>所有系统</dt>
+        <dd th:each="system : ${systems}" th:text="${system.name}">系统名称</dd>
+    </dl>
+    <dl>
         <dt>所有类目</dt>
-        <dd th:each="category : ${categories}"><a href="category/index.html" th:href="@{'/category/' + ${category.alias}}" th:text="${category.name}">类目</a></dd>
+        <dd th:each="category : ${categories}"><a href="news/category/index.html" th:href="@{'/category/' + ${category.alias}}" th:text="${category.name}">类目</a></dd>
     </dl>
     <dl>
         <dt>所有标签</dt>
-        <dd th:each="tag : ${tags}"><a href="tag/index.html" th:href="@{'/tag/' + ${tag.alias}}" th:text="${tag.name}">标签</a></dd>
-    </dl>
-    <dl>
-        <dt>最新5个专题</dt>
-        <dd th:each="topic : ${topics}"><a href="topic/index.html" th:href="@{${topic.url}}" th:text="${topic.title}">专题</a></dd>
-    </dl>
-    <dl>
-        <dt>最新5条文章</dt>
-        <dd th:each="newArticle : ${newArticles}"><a href="article/index.html" th:href="@{'/article/' + ${newArticle.articleId}}" th:text="${newArticle.title}">文章标题</a></dd>
-    </dl>
-    <dl>
-        <dt>最热5个文章</dt>
-        <dd th:each="hotArticle : ${hotArticles}"><a href="article/index.html" th:href="@{'/article/' + ${hotArticle.articleId}}" th:text="${hotArticle.title}">文章标题</a></dd>
+        <dd th:each="tag : ${tags}"><a href="news/tag/index.html" th:href="@{'/tag/' + ${tag.alias}}" th:text="${tag.name}">标签</a></dd>
     </dl>
 </div>
 <!-- /.container -->
