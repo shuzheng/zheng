@@ -92,7 +92,7 @@
 <div class="container" style="padding-bottom:80px;">
     <h3 th:text="${article.title}">标题</h3>
     <div th:utext="${article.content}">内容</div>
-    <form id="commentForm" th:action="@{'/comment/create/' + ${article.articleId}}" method="post">
+    <form id="commentForm" th:action="@{'/news/comment/' + ${article.articleId}}" method="post">
         <textarea id="" name="content" style="width:100%;height:50px;"></textarea>
         <input id="submit" type="button" value="评论"/><!--{"code":1,"message":"success","data":1}-->
     </form>

@@ -1,19 +1,20 @@
 package com.zheng.cms.web.controller;
 
+import com.zheng.cms.common.constant.CmsResult;
+import com.zheng.cms.common.constant.CmsResultConstant;
 import com.zheng.cms.dao.model.*;
 import com.zheng.cms.rpc.api.*;
 import com.zheng.common.base.BaseController;
 import com.zheng.common.util.Paginator;
+import com.zheng.common.util.RequestUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -28,6 +29,7 @@ public class NewsController extends BaseController {
 
     private static Logger _log = LoggerFactory.getLogger(NewsController.class);
     private static String CODE = "news";
+    private static Integer USERID = 1;
 
     @Autowired
     private CmsArticleService cmsArticleService;
@@ -44,6 +46,15 @@ public class NewsController extends BaseController {
     @Autowired
     private CmsCommentService cmsCommentService;
 
+    /**
+     * 首页
+     * @param page
+     * @param sort
+     * @param order
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(@RequestParam(required = false, defaultValue = "1", value = "page") int page,
                         @RequestParam(required = false, defaultValue = "orders", value = "sort") String sort,
@@ -91,6 +102,14 @@ public class NewsController extends BaseController {
         return thymeleaf("/news/index");
     }
 
+    /**
+     * 类目页
+     * @param alias
+     * @param page
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/category/{alias}", method = RequestMethod.GET)
     public String category(@PathVariable("alias") String alias,
                         @RequestParam(required = false, defaultValue = "1", value = "page") int page,
@@ -121,6 +140,14 @@ public class NewsController extends BaseController {
         return thymeleaf("/news/category/index");
     }
 
+    /**
+     * 标签页
+     * @param alias
+     * @param page
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/tag/{alias}", method = RequestMethod.GET)
     public String tag(@PathVariable("alias") String alias,
                         @RequestParam(required = false, defaultValue = "1", value = "page") int page,
@@ -151,6 +178,12 @@ public class NewsController extends BaseController {
         return thymeleaf("/news/tag/index");
     }
 
+    /**
+     * 详情页
+     * @param articleId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/article/{articleId}", method = RequestMethod.GET)
     public String article(@PathVariable("articleId") int articleId, Model model) {
         CmsArticle article = cmsArticleService.selectByPrimaryKey(articleId);
@@ -171,6 +204,33 @@ public class NewsController extends BaseController {
         List<CmsComment> comments = cmsCommentService.selectByExampleWithBLOBs(cmsCommentExample);
         model.addAttribute("comments", comments);
         return thymeleaf("/news/article/index");
+    }
+
+    /**
+     * 新增回复
+     * @param articleId
+     * @param cmsComment
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/comment/{articleId}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object comment(@PathVariable("articleId") int articleId, CmsComment cmsComment, HttpServletRequest request) {
+        // 系统id
+        CmsSystemExample cmsSystemExample = new CmsSystemExample();
+        cmsSystemExample.createCriteria()
+                .andCodeEqualTo(CODE);
+        CmsSystem system = cmsSystemService.selectFirstByExample(cmsSystemExample);
+        long time = System.currentTimeMillis();
+        cmsComment.setCtime(time);
+        cmsComment.setArticleId(articleId);
+        cmsComment.setUserId(USERID);
+        cmsComment.setStatus((byte) 1);
+        cmsComment.setIp(RequestUtil.getIpAddr(request));
+        cmsComment.setAgent(request.getHeader("User-Agent"));
+        cmsComment.setSystemId(system.getSystemId());
+        int count = cmsCommentService.insertSelective(cmsComment);
+        return new CmsResult(CmsResultConstant.SUCCESS, count);
     }
 
 }
