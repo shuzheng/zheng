@@ -17,6 +17,10 @@
 			<input id="level" type="text" class="form-control" name="level" maxlength="5">
 		</div>
 		<div class="form-group">
+			<label for="systemId">所属系统</label>
+			<input id="systemId" type="text" class="form-control" name="systemId">
+		</div>
+		<div class="form-group">
 			<label for="name">名称</label>
 			<input id="name" type="text" class="form-control" name="name" maxlength="20">
 		</div>

@@ -101,6 +101,7 @@ public class CmsArticleController extends BaseController {
 		long time = System.currentTimeMillis();
 		cmsArticle.setCtime(time);
 		cmsArticle.setOrders(time);
+		cmsArticle.setReadnumber(0);
 		int count = cmsArticleService.insertSelective(cmsArticle);
 		return new CmsResult(CmsResultConstant.SUCCESS, count);
 	}

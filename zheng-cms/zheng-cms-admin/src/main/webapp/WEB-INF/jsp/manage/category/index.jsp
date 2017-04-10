@@ -54,6 +54,7 @@ $(function() {
 			{field: 'ck', checkbox: true},
 			{field: 'categoryId', title: '编号', sortable: true, align: 'center'},
 			{field: 'pid', title: '上级编号'},
+			{field: 'systemId', title: '所属系统'},
 			{field: 'name', title: '类目名称'},
 			{field: 'alias', title: '类目别名'},
 			{field: 'description', title: '描述'},
