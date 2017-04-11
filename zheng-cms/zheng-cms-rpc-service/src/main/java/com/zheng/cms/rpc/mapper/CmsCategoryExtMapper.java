@@ -1,10 +1,10 @@
 package com.zheng.cms.rpc.mapper;
 
 /**
- * 文章VOMapper
+ * 类目VOMapper
  * Created by shuzheng on 2017/01/07.
  */
-public interface CmsArticleVOMapper {
+public interface CmsCategoryExtMapper {
 
     int up(Integer articleId);
 

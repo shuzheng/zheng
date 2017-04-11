@@ -2,22 +2,22 @@
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8"/>
-    <title>资讯首页 - ZhengCms</title>
+    <title th:text="${category.name} + ' - ZhengCms'">类目 - ZhengCms</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="shortcut icon" href="../favicon.ico" th:href="@{${uiPath} + ${appName} + '/favicon.ico'}"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} + '/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="../../favicon.ico" th:href="@{${uiPath} + ${appName} + '/favicon.ico'}"/>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} + '/css/bootstrap.min.css'}"/>
     <!--[if lt IE 9]>
-    <script src="../js/vendor/html5shiv.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/html5shiv.js'}"></script>
-    <script src="../js/vendor/respond.min.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/respond.min.js'}"></script>
+    <script src="../../js/vendor/html5shiv.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/html5shiv.js'}"></script>
+    <script src="../../js/vendor/respond.min.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/respond.min.js'}"></script>
     <![endif]-->
     <script type="text/javascript">
         if (/msie [6|7|8]/i.test(navigator.userAgent)) {};
     </script>
-    <link rel="stylesheet" href="../css/main.css" th:href="@{${uiPath} + ${appName} + '/css/main.css'}"/>
+    <link rel="stylesheet" href="../../css/main.css" th:href="@{${uiPath} + ${appName} + '/css/main.css'}"/>
 </head>
 <body>
 <!-- .navbar -->
@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html" th:href="@{/}" title="zhengCMS"><span id="logo-text-left">zheng</span><span id="logo-text-right">CMS</span></a>
+            <a class="navbar-brand" href="../../index.html" th:href="@{/}" title="zhengCMS"><span id="logo-text-left">zheng</span><span id="logo-text-right">CMS</span></a>
             <p class="navbar-text hidden-sm">最简约的内容管理系统</p>
         </div>
         <!-- /.navbar-header -->
@@ -91,16 +91,8 @@
 <!-- .container -->
 <div class="container" style="padding-bottom:80px;">
     <dl>
-        <dt>博客类目</dt>
-        <dd th:each="category : ${categories}"><a href="category/index.html" th:href="@{'/blog/category/' + ${category.alias}}" th:text="${category.name}">类目</a></dd>
-    </dl>
-    <dl>
-        <dt>博客标签</dt>
-        <dd th:each="tag : ${tags}"><a href="tag/index.html" th:href="@{'/blog/tag/' + ${tag.alias}}" th:text="${tag.name}">标签</a></dd>
-    </dl>
-    <dl>
-        <dt>博客博文列表</dt>
-        <dd th:each="article : ${articles}"><a href="details/index.html" th:href="@{'/blog/details/' + ${article.articleId}}" th:text="${article.title}">博文标题</a></dd>
+        <dt><span th:text="${category.name}">类目</span>文章列表</dt>
+        <dd th:each="article : ${articles}"><a href="../news/article/index.html" th:href="@{'/news/article/' + ${article.articleId}}" th:text="${article.title}">文章标题</a></dd>
     </dl>
     <div th:utext="${paginator.html}"></div>
 </div>
@@ -110,8 +102,8 @@
     Copyright &copy; 2017 ZhangShuzheng All Rights Reserved
 </footer>
 <!-- /footer -->
-<script src="../js/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js/jquery-1.11.2.min.js'}"></script>
-<script src="../js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
-<script src="../js/main.js" th:src="@{${uiPath} + ${appName} + '/js/main.js'}"></script>
+<script src="../../js/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js/jquery-1.11.2.min.js'}"></script>
+<script src="../../js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
+<script src="../../js/main.js" th:src="@{${uiPath} + ${appName} + '/js/main.js'}"></script>
 </body>
 </html>

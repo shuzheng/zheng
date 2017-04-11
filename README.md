@@ -419,7 +419,3 @@ zheng-admin、zheng-common => zheng-upms => 其他
 ## 许可证
 
 [MIT](http://opensource.org/licenses/MIT "MIT")
-
-## 捐赠打赏
-
-![捐赠打赏](project-bootstrap/pay.png)

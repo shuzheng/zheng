@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.cms.rpc.mapper.CmsArticleExtMapper">
+
+	<resultMap id="BaseResultMap" type="com.zheng.cms.dao.model.CmsArticle">
+		<id column="article_id" jdbcType="INTEGER" property="articleId" />
+		<result column="topic_id" jdbcType="INTEGER" property="topicId" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="author" jdbcType="VARCHAR" property="author" />
+		<result column="fromurl" jdbcType="VARCHAR" property="fromurl" />
+		<result column="image" jdbcType="VARCHAR" property="image" />
+		<result column="keywords" jdbcType="VARCHAR" property="keywords" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="type" jdbcType="TINYINT" property="type" />
+		<result column="allowcomments" jdbcType="TINYINT" property="allowcomments" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="readnumber" jdbcType="INTEGER" property="readnumber" />
+		<result column="top" jdbcType="INTEGER" property="top" />
+		<result column="system_id" jdbcType="INTEGER" property="systemId" />
+		<result column="ctime" jdbcType="BIGINT" property="ctime" />
+		<result column="orders" jdbcType="BIGINT" property="orders" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zheng.cms.dao.model.CmsArticle">
+		<result column="content" jdbcType="LONGVARCHAR" property="content" />
+	</resultMap>
+
+	<!-- 排序上移 -->
+	<select id="up" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select
+			u.id u_id,u.username,u.password,u.nickname,u.sex,u.ctime,u.content,
+			b.id b_id,b.userid,b.name
+		from
+			cms_user u
+		left join
+			cms_book b
+		on
+			u.id=b.userid
+		where
+			u.id=#{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 根据类目获取文章列表 -->
+	<select id="selectCmsArticlesByCategoryId" resultMap="ResultMapWithBLOBs" parameterType="map">
+		select ca.* from cms_article_category cac left join cms_article ca on cac.article_id=ca.article_id join (
+			select article_id from cms_article order by article_id desc
+		) ca_order on ca_order.article_id=ca.article_id where ca.status=1 and cac.category_id=#{categoryId,jdbcType=INTEGER} limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+	</select>
+
+	<!-- 根据类目获取文章数量 -->
+	<select id="countByCategoryId" resultType="java.lang.Long" parameterType="map">
+		select count(*) from cms_article_category cac left join cms_article ca on cac.article_id=ca.article_id join (
+		    select article_id from cms_article order by article_id desc
+		) ca_order on ca_order.article_id=ca.article_id where ca.status=1 and cac.category_id=#{categoryId,jdbcType=INTEGER}
+	</select>
+
+	<!-- 根据标签获取文章列表 -->
+	<select id="selectCmsArticlesByTagId" resultMap="ResultMapWithBLOBs" parameterType="map">
+		select ca.* from cms_article_tag cat left join cms_article ca on cat.article_id=ca.article_id join (
+			select article_id from cms_article order by article_id desc
+		) ca_order on ca_order.article_id=ca.article_id where ca.status=1 and cat.tag_id=#{tagId,jdbcType=INTEGER} limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+	</select>
+
+	<!-- 根据标签获取文章数量 -->
+	<select id="countByTagId" resultType="java.lang.Long" parameterType="map">
+		select count(*) from cms_article_tag cat left join cms_article ca on cat.article_id=ca.article_id join (
+			select article_id from cms_article order by article_id desc
+		) ca_order on ca_order.article_id=ca.article_id where ca.status=1 and cat.tag_id=#{tagId,jdbcType=INTEGER}
+	</select>
+
+	<!-- 缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
+</mapper>

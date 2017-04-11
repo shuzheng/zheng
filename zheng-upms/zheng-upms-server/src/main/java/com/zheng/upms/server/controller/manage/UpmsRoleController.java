@@ -85,11 +85,13 @@ public class UpmsRoleController extends BaseController {
             }
         }
         // 删除权限
-        UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
-        upmsRolePermissionExample.createCriteria()
-            .andPermissionIdIn(deleteIds)
-            .andRoleIdEqualTo(id);
-        upmsRolePermissionService.deleteByExample(upmsRolePermissionExample);
+        if (deleteIds.size() > 0) {
+            UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
+            upmsRolePermissionExample.createCriteria()
+                    .andPermissionIdIn(deleteIds)
+                    .andRoleIdEqualTo(id);
+            upmsRolePermissionService.deleteByExample(upmsRolePermissionExample);
+        }
         return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
     }
 

@@ -33,7 +33,7 @@
 	</form>
 </div>
 <script>
-	var changeDatas = [];
+	var changeDatas1 = [];
 	var setting1 = {
 		check: {
 			enable: true,
@@ -53,16 +53,18 @@
 			onCheck: function() {
 				var zTree = $.fn.zTree.getZTreeObj("ztree1")
 				var changeNodes = zTree.getChangeCheckedNodes();
+				changeDatas1 = [];
 				for (var i = 0; i < changeNodes.length; i ++) {
 					var changeData = {};
 					changeData.id = changeNodes[i].id;
 					changeData.checked = changeNodes[i].checked;
 					changeData.type = 1;
-					changeDatas.push(changeData);
+					changeDatas1.push(changeData);
 				}
 			}
 		}
 	};
+	var changeDatas2 = [];
 	var setting2 = {
 		check: {
 			enable: true,
@@ -82,12 +84,13 @@
 			onCheck: function() {
 				var zTree = $.fn.zTree.getZTreeObj("ztree2")
 				var changeNodes = zTree.getChangeCheckedNodes();
+				changeDatas2 = [];
 				for (var i = 0; i < changeNodes.length; i ++) {
 					var changeData = {};
 					changeData.id = changeNodes[i].id;
 					changeData.checked = changeNodes[i].checked;
 					changeData.type = -1;
-					changeDatas.push(changeData);
+					changeDatas2.push(changeData);
 				}
 			}
 		}
@@ -98,6 +101,8 @@
 	}
 
 	function permissionSubmit() {
+		// 合并提交
+		var changeDatas = changeDatas1.concat(changeDatas2);
 		$.ajax({
 			type: 'post',
 			url: '${basePath}/manage/user/permission/' + permissionUserId,

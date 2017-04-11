@@ -90,7 +90,19 @@
 <!-- /.navbar -->
 <!-- .container -->
 <div class="container" style="padding-bottom:80px;">
-    问答首页
+    <dl>
+        <dt>问答类目</dt>
+        <dd th:each="category : ${categories}"><a href="category/index.html" th:href="@{'/qa/category/' + ${category.alias}}" th:text="${category.name}">类目</a></dd>
+    </dl>
+    <dl>
+        <dt>问答标签</dt>
+        <dd th:each="tag : ${tags}"><a href="tag/index.html" th:href="@{'/qa/tag/' + ${tag.alias}}" th:text="${tag.name}">标签</a></dd>
+    </dl>
+    <dl>
+        <dt>问答问题列表</dt>
+        <dd th:each="article : ${articles}"><a href="article/index.html" th:href="@{'/qa/question/' + ${article.articleId}}" th:text="${article.title}">问题标题</a></dd>
+    </dl>
+    <div th:utext="${paginator.html}"></div>
 </div>
 <!-- /.container -->
 <!-- footer -->

@@ -26,4 +26,9 @@ public class UpmsUserServiceImpl extends BaseServiceImpl<UpmsUserMapper, UpmsUse
     @Autowired
     UpmsUserMapper upmsUserMapper;
 
+    @Override
+    public UpmsUser insert2(UpmsUser upmsUser) {
+        upmsUserMapper.insert(upmsUser);
+        return upmsUser;
+    }
 }
