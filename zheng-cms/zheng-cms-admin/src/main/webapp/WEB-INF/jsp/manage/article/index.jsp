@@ -55,6 +55,7 @@ $(function() {
 		columns: [
 			{field: 'ck', checkbox: true},
 			{field: 'articleId', title: '编号', sortable: true, align: 'center'},
+			{field: 'systemId', title: '所属系统'},
 			{field: 'topicId', title: '所属专题'},
 			{field: 'title', title: '标题'},
 			{field: 'author', title: '作者'},
