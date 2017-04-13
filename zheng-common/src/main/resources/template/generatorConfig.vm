@@ -62,14 +62,18 @@
 
         <!-- 需要映射的表 -->
         #foreach($table in $tables)
-            #foreach($last_insert_id_table in $last_insert_id_tables.entrySet())
-                #if($!last_insert_id_table.key == $!table.table_name)
-                    <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
-                        <generatedKey column="$!last_insert_id_table.value" sqlStatement="MySql" identity="true" />
-                    </table>
-                #else
-                    <table tableName="$!table.table_name" domainObjectName="$!table.model_name"></table>
+            #if($last_insert_id_tables.size() != 0)
+                #foreach($last_insert_id_table in $last_insert_id_tables.entrySet())
+                    #if($!last_insert_id_table.key == $!table.table_name)
+                        <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
+                            <generatedKey column="$!last_insert_id_table.value" sqlStatement="MySql" identity="true" />
+                        </table>
+                    #else
+                        <table tableName="$!table.table_name" domainObjectName="$!table.model_name"></table>
+                    #end
                 #end
+            #else
+                <table tableName="$!table.table_name" domainObjectName="$!table.model_name"></table>
             #end
         #end
     </context>
