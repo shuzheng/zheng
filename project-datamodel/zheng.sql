@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-04-09 20:14:43
+Date: 2017-04-14 23:07:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -502,17 +502,17 @@ CREATE TABLE `upms_log` (
   `username` varchar(20) DEFAULT NULL COMMENT '操作用户',
   `start_time` bigint(20) DEFAULT NULL COMMENT '操作时间',
   `spend_time` int(11) DEFAULT NULL COMMENT '消耗时间',
-  `base_path` varchar(100) DEFAULT NULL COMMENT '根路径',
-  `uri` varchar(200) DEFAULT NULL COMMENT 'URI',
-  `url` varchar(200) DEFAULT NULL COMMENT 'URL',
+  `base_path` varchar(500) DEFAULT NULL COMMENT '根路径',
+  `uri` varchar(500) DEFAULT NULL COMMENT 'URI',
+  `url` varchar(500) DEFAULT NULL COMMENT 'URL',
   `method` varchar(10) DEFAULT NULL COMMENT '请求类型',
   `parameter` mediumtext,
-  `user_agent` varchar(200) DEFAULT NULL COMMENT '用户标识',
+  `user_agent` varchar(500) DEFAULT NULL COMMENT '用户标识',
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `result` mediumtext,
   `permissions` varchar(100) DEFAULT NULL COMMENT '权限值',
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=348 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of upms_log
@@ -818,7 +818,7 @@ CREATE TABLE `upms_user` (
   `locked` tinyint(4) DEFAULT NULL COMMENT '状态(0:正常,1:锁定)',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COMMENT='用户';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户';
 
 -- ----------------------------
 -- Records of upms_user
