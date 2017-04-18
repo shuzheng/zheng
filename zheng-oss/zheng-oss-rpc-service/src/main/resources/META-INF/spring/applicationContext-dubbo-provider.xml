@@ -15,6 +15,6 @@
 
     <!-- OSS -->
     <bean id="ossApiService" class="com.zheng.oss.rpc.service.impl.OssApiServiceImpl"/>
-    <dubbo:service interface="com.zheng.oss.rpc.api.OssApiService" ref="ossApiService" timeout="10000"/>
+    <dubbo:service interface="com.zheng.oss.rpc.api.OssApiService" ref="ossApiService"/>
 
 </beans>
