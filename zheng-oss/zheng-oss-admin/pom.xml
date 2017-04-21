@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-oss-rpc-api</artifactId>
+            <artifactId>zheng-oss-sdk</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
