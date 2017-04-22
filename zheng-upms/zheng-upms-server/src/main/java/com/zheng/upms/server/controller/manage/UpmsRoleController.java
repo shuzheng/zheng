@@ -71,28 +71,8 @@ public class UpmsRoleController extends BaseController {
     @ResponseBody
     public Object permission(@PathVariable("id") int id, HttpServletRequest request) {
         JSONArray datas = JSONArray.parseArray(request.getParameter("datas"));
-        List<Integer> deleteIds = new ArrayList<>();
-        for (int i = 0; i < datas.size(); i ++) {
-            JSONObject json = datas.getJSONObject(i);
-            if (!json.getBoolean("checked")) {
-                deleteIds.add(json.getIntValue("id"));
-            } else {
-                // 新增权限
-                UpmsRolePermission upmsRolePermission = new UpmsRolePermission();
-                upmsRolePermission.setRoleId(id);
-                upmsRolePermission.setPermissionId(json.getIntValue("id"));
-                upmsRolePermissionService.insertSelective(upmsRolePermission);
-            }
-        }
-        // 删除权限
-        if (deleteIds.size() > 0) {
-            UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
-            upmsRolePermissionExample.createCriteria()
-                    .andPermissionIdIn(deleteIds)
-                    .andRoleIdEqualTo(id);
-            upmsRolePermissionService.deleteByExample(upmsRolePermissionExample);
-        }
-        return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
+        int result = upmsRolePermissionService.rolePermission(datas, id);
+        return new UpmsResult(UpmsResultConstant.SUCCESS, result);
     }
 
     @ApiOperation(value = "角色列表")
