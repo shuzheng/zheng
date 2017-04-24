@@ -51,7 +51,8 @@ zheng
 |    └── zheng-api-server -- api系统服务端[端口:6666]
 ├── zheng-oss -- 对象存储系统
 |    ├── zheng-oss-sdk -- 开发工具包
-|    └── zheng-oss-web -- 管理界面[端口:7771]
+|    ├── zheng-oss-web -- 前台接口[端口:7771]
+|    └── zheng-oss-admin -- 后台管理[端口:7772]
 ├── zheng-shop -- 电子商务系统
 ├── zheng-im -- 即时通讯系统
 ├── zheng-oa -- 办公自动化系统

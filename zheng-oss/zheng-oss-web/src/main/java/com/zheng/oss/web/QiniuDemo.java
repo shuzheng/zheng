@@ -1,4 +1,4 @@
-package com.zheng.oss.sdk;
+package com.zheng.oss.web;
 
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by shuzheng on 2016/11/12.
  */
-public class App {
+public class QiniuDemo {
 	//设置好账号的ACCESS_KEY和SECRET_KEY
 	String ACCESS_KEY = "";
 	String SECRET_KEY = "";
@@ -50,6 +50,6 @@ public class App {
 		}
 	}
 	public static void main(String[] args) throws IOException {
-		new App().upload();
+		new QiniuDemo().upload();
 	}
 }
