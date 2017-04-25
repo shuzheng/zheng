@@ -8,21 +8,29 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-oss-web</artifactId>
+    <artifactId>zheng-oss-admin</artifactId>
     <packaging>war</packaging>
 
-    <name>zheng-oss-web Maven Webapp</name>
+    <name>zheng-oss-admin Maven Webapp</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <dependencies>
-        <!-- 测试 -->
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-oss-sdk</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zheng</groupId>
+            <artifactId>zheng-admin</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -34,9 +42,10 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- zheng-upms-client -->
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-oss-sdk</artifactId>
+            <artifactId>zheng-upms-client</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
@@ -66,7 +75,7 @@
     </profiles>
 
     <build>
-        <finalName>zheng-oss-web</finalName>
+        <finalName>zheng-oss-admin</finalName>
         <filters>
             <filter>src/main/resources/profiles/${env}.properties</filter>
         </filters>
@@ -89,7 +98,7 @@
                         <contextPath>/</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>7771</port>
+                        <port>7772</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>

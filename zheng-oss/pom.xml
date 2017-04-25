@@ -21,5 +21,6 @@
     <modules>
         <module>zheng-oss-sdk</module>
         <module>zheng-oss-web</module>
+        <module>zheng-oss-admin</module>
     </modules>
 </project>

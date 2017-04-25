@@ -1,4 +1,4 @@
-package com.zheng.oss.sdk;
+package com.zheng.oss.web;
 
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;

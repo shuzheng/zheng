@@ -19,13 +19,11 @@
 
     <!-- 组织 -->
     <bean id="upmsOrganizationService" class="com.zheng.upms.rpc.service.impl.UpmsOrganizationServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsOrganizationService" ref="upmsOrganizationService"
-                   timeout="10000"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsOrganizationService" ref="upmsOrganizationService" timeout="10000"/>
 
     <!-- 用户组织 -->
     <bean id="upmsUserOrganizationService" class="com.zheng.upms.rpc.service.impl.UpmsUserOrganizationServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserOrganizationService" ref="upmsUserOrganizationService"
-                   timeout="10000"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserOrganizationService" ref="upmsUserOrganizationService" timeout="10000"/>
 
     <!-- 用户 -->
     <bean id="upmsUserService" class="com.zheng.upms.rpc.service.impl.UpmsUserServiceImpl"/>
@@ -37,18 +35,15 @@
 
     <!-- 权限 -->
     <bean id="upmsPermissionService" class="com.zheng.upms.rpc.service.impl.UpmsPermissionServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsPermissionService" ref="upmsPermissionService"
-                   timeout="10000"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsPermissionService" ref="upmsPermissionService" timeout="10000"/>
 
     <!-- 角色权限 -->
     <bean id="upmsRolePermissionService" class="com.zheng.upms.rpc.service.impl.UpmsRolePermissionServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsRolePermissionService" ref="upmsRolePermissionService"
-                   timeout="10000"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsRolePermissionService" ref="upmsRolePermissionService" timeout="10000"/>
 
     <!-- 用户权限 -->
     <bean id="upmsUserPermissionService" class="com.zheng.upms.rpc.service.impl.UpmsUserPermissionServiceImpl"/>
-    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserPermissionService" ref="upmsUserPermissionService"
-                   timeout="10000"/>
+    <dubbo:service interface="com.zheng.upms.rpc.api.UpmsUserPermissionService" ref="upmsUserPermissionService" timeout="10000"/>
 
     <!-- 用户角色 -->
     <bean id="upmsUserRoleService" class="com.zheng.upms.rpc.service.impl.UpmsUserRoleServiceImpl"/>
