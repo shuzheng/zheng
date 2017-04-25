@@ -10,9 +10,9 @@
 
 	<!-- 阿里云OSS客户端 -->
 	<bean id="aliyunOssClient" class="com.aliyun.oss.OSSClient">
-		<constructor-arg value="${alipay.oss.endpoint}"/>
-		<constructor-arg value="${alipay.oss.accessKeyId}"/>
-		<constructor-arg value="${alipay.oss.accessKeySecret}"/>
+		<constructor-arg value="${aliyun.oss.endpoint}"/>
+		<constructor-arg value="${aliyun.oss.accessKeyId}"/>
+		<constructor-arg value="${aliyun.oss.accessKeySecret}"/>
 	</bean>
 
 </beans>
