@@ -1,41 +1,30 @@
 package com.zheng.oss.web.controller;
 
 import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.model.PutObjectResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 
 /**
  * Created by shuzheng on 2017/4/18.
  */
-@Controller
+@RestController
 @RequestMapping("/demo")
 public class DemoController {
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    @ResponseBody
-    public String index(ModelMap modelMap) {
-        // endpoint以杭州为例，其它region请按实际情况填写
-        String endpoint = "oss-cn-shanghai.aliyuncs.com";
-        // accessKey请登录https://ak-console.aliyun.com/#/查看
-        String accessKeyId = "LTAIf5dDIthJN3h0";
-        String accessKeySecret = "2IZVHc1Qzxul8rC0ZQGKCEjjnpvm5d";
+    @Autowired
+    private OSSClient aliyunOssClient;
 
-        // 创建OSSClient实例
-        OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
-
-        // 使用访问OSS
-        String content = "Hello OSS";
-        ossClient.putObject("shuzheng", "test", new ByteArrayInputStream(content.getBytes()));
-
-        // 关闭ossClient
-        ossClient.shutdown();
-
+    @GetMapping("/aliyun/put")
+    public String index() {
+        for (int i = 0; i < 10; i++) {
+            PutObjectResult putObjectResult = aliyunOssClient.putObject("shuzheng", "test" + i, new ByteArrayInputStream(("Hello OSS" + i).getBytes()));
+            System.out.println(putObjectResult);
+        }
         return "success";
     }
 
