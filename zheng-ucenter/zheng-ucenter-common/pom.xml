@@ -8,10 +8,10 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-ucenter-dao</artifactId>
+    <artifactId>zheng-ucenter-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>zheng-ucenter-dao</name>
+    <name>zheng-ucenter-common</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -21,13 +21,14 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-ucenter-common</artifactId>
+            <artifactId>zheng-common</artifactId>
             <version>1.0.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>zheng-ucenter-dao</finalName>
+        <finalName>zheng-ucenter-common</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -38,28 +39,9 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>generatorConfig.xml</exclude>
-                </excludes>
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.2</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.zheng</groupId>
-                        <artifactId>zheng-common</artifactId>
-                        <version>1.0.0</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
