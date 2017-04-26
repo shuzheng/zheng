@@ -208,7 +208,9 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 编译流程
 
-zheng-admin、zheng-common => zheng-upms => 其他
+~~zheng-admin、zheng-common => zheng-upms => 其他~~
+
+maven编译安装zheng/pom.xml文件即可
 
 ### 启动顺序（后台）
 ```
