@@ -19,10 +19,7 @@
     </properties>
 
     <modules>
-        <module>zheng-oss-common</module>
-        <module>zheng-oss-dao</module>
-        <module>zheng-oss-rpc-api</module>
-        <module>zheng-oss-rpc-service</module>
+        <module>zheng-oss-sdk</module>
         <module>zheng-oss-web</module>
         <module>zheng-oss-admin</module>
     </modules>
