@@ -2,7 +2,7 @@
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8"/>
-    <title>博客首页 - ZhengCms</title>
+    <title>资讯首页 - ZhengCms</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="renderer" content="webkit"/>
@@ -90,7 +90,19 @@
 <!-- /.navbar -->
 <!-- .container -->
 <div class="container" style="padding-bottom:80px;">
-    博客首页
+    <dl>
+        <dt>博客类目</dt>
+        <dd th:each="category : ${categories}"><a href="category/index.html" th:href="@{'/blog/category/' + ${category.alias}}" th:text="${category.name}">类目</a></dd>
+    </dl>
+    <dl>
+        <dt>博客标签</dt>
+        <dd th:each="tag : ${tags}"><a href="tag/index.html" th:href="@{'/blog/tag/' + ${tag.alias}}" th:text="${tag.name}">标签</a></dd>
+    </dl>
+    <dl>
+        <dt>博客博文列表</dt>
+        <dd th:each="article : ${articles}"><a href="details/index.html" th:href="@{'/blog/details/' + ${article.articleId}}" th:text="${article.title}">博文标题</a></dd>
+    </dl>
+    <div th:utext="${paginator.html}"></div>
 </div>
 <!-- /.container -->
 <!-- footer -->

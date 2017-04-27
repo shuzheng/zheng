@@ -38,6 +38,7 @@ var setting = {
 		onCheck: function() {
 			var zTree = $.fn.zTree.getZTreeObj("ztree")
 			var changeNodes = zTree.getChangeCheckedNodes();
+			changeDatas = [];
 			for (var i = 0; i < changeNodes.length; i ++) {
 				var changeData = {};
 				changeData.id = changeNodes[i].id;

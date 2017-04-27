@@ -86,23 +86,7 @@ public class UpmsUserController extends BaseController {
     @ResponseBody
     public Object organization(@PathVariable("id") int id, HttpServletRequest request) {
         String[] organizationIds = request.getParameterValues("organizationId");
-        // 删除旧记录
-        UpmsUserOrganizationExample upmsUserOrganizationExample = new UpmsUserOrganizationExample();
-        upmsUserOrganizationExample.createCriteria()
-                .andUserIdEqualTo(id);
-        upmsUserOrganizationService.deleteByExample(upmsUserOrganizationExample);
-        // 增加新记录
-        if (null != organizationIds) {
-            for (String organizationId : organizationIds) {
-                if (StringUtils.isBlank(organizationId)) {
-                    continue;
-                }
-                UpmsUserOrganization upmsUserOrganization = new UpmsUserOrganization();
-                upmsUserOrganization.setUserId(id);
-                upmsUserOrganization.setOrganizationId(NumberUtils.toInt(organizationId));
-                upmsUserOrganizationService.insertSelective(upmsUserOrganization);
-            }
-        }
+        upmsUserOrganizationService.organization(organizationIds, id);
         return new UpmsResult(UpmsResultConstant.SUCCESS, "");
     }
 
@@ -128,23 +112,7 @@ public class UpmsUserController extends BaseController {
     @ResponseBody
     public Object role(@PathVariable("id") int id, HttpServletRequest request) {
         String[] roleIds = request.getParameterValues("roleId");
-        // 删除旧记录
-        UpmsUserRoleExample upmsUserRoleExample = new UpmsUserRoleExample();
-        upmsUserRoleExample.createCriteria()
-                .andUserIdEqualTo(id);
-        upmsUserRoleService.deleteByExample(upmsUserRoleExample);
-        // 增加新记录
-        if (null != roleIds) {
-            for (String roleId : roleIds) {
-                if (StringUtils.isBlank(roleId)) {
-                    continue;
-                }
-                UpmsUserRole upmsUserRole = new UpmsUserRole();
-                upmsUserRole.setUserId(id);
-                upmsUserRole.setRoleId(NumberUtils.toInt(roleId));
-                upmsUserRoleService.insertSelective(upmsUserRole);
-            }
-        }
+        upmsUserRoleService.role(roleIds, id);
         return new UpmsResult(UpmsResultConstant.SUCCESS, "");
     }
 
@@ -163,24 +131,7 @@ public class UpmsUserController extends BaseController {
     @ResponseBody
     public Object permission(@PathVariable("id") int id, HttpServletRequest request) {
         JSONArray datas = JSONArray.parseArray(request.getParameter("datas"));
-        for (int i = 0; i < datas.size(); i ++) {
-            JSONObject json = datas.getJSONObject(i);
-            if (json.getBoolean("checked")) {
-                // 新增权限
-                UpmsUserPermission upmsUserPermission = new UpmsUserPermission();
-                upmsUserPermission.setUserId(id);
-                upmsUserPermission.setPermissionId(json.getIntValue("id"));
-                upmsUserPermission.setType(json.getByte("type"));
-                upmsUserPermissionService.insertSelective(upmsUserPermission);
-            } else {
-                // 删除权限
-                UpmsUserPermissionExample upmsUserPermissionExample = new UpmsUserPermissionExample();
-                upmsUserPermissionExample.createCriteria()
-                        .andPermissionIdEqualTo(json.getIntValue("id"))
-                        .andTypeEqualTo(json.getByte("type"));
-                upmsUserPermissionService.deleteByExample(upmsUserPermissionExample);
-            }
-        }
+        upmsUserPermissionService.permission(datas, id);
         return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
     }
 
@@ -241,6 +192,7 @@ public class UpmsUserController extends BaseController {
         upmsUser.setPassword(MD5Util.MD5(upmsUser.getPassword() + upmsUser.getSalt()));
         upmsUser.setCtime(time);
         int count = upmsUserService.insertSelective(upmsUser);
+        upmsUser = upmsUserService.insert2(upmsUser);
         _log.info("新增用户，主键：userId={}", upmsUser.getUserId());
         return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }

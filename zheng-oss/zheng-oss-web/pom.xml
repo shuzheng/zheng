@@ -34,17 +34,10 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!-- service -->
         <dependency>
             <groupId>com.zheng</groupId>
             <artifactId>zheng-oss-sdk</artifactId>
             <version>1.0.0</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <version>8.1.16.v20140903</version>
         </dependency>
     </dependencies>
 
@@ -88,11 +81,12 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.0.0.v20130308</version>
+                <!--<version>9.0.0.v20130308</version>-->
+                <version>9.2.7.v20150116</version>
                 <configuration>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/zheng-oss-web</contextPath>
+                        <contextPath>/</contextPath>
                     </webApp>
                     <httpConnector>
                         <port>7771</port>

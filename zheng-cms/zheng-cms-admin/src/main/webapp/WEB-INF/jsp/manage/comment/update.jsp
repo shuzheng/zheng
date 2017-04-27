@@ -20,6 +20,7 @@
 	<table border="1">
 		<input type="hidden" name="commentId" value="${comment.commentId}"/>
 		<tr><td>楼中楼编号：</td><td><input type="text" name="pid" value="${comment.pid}"/></td></tr>
+		<tr><td>所属系统：</td><td><input type="text" name="systemId" value="${comment.systemId}"/></td></tr>
 		<tr><td>文章编号：</td><td><input type="text" name="articleId" value="${comment.articleId}"/></td></tr>
 		<tr><td>用户编号：</td><td><input type="text" name="userId" value="${comment.userId}"/></td></tr>
 		<tr><td>评论内容：</td><td><input type="text" name="content" value="${comment.content}"/></td></tr>

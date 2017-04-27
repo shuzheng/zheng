@@ -53,6 +53,7 @@ $(function() {
 		columns: [
 			{field: 'ck', checkbox: true},
 			{field: 'tagId', title: '编号', sortable: true, align: 'center'},
+			{field: 'systemId', title: '所属系统'},
 			{field: 'name', title: '标签名称'},
 			{field: 'alias', title: '标签别名'},
 			{field: 'description', title: '描述'},

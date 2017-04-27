@@ -73,8 +73,8 @@
 			<div class="col-sm-4">
 				<div class="form-group">
 					<div class="fg-line">
-						<label for="readnumber">阅读数量</label>
-						<input id="readnumber" type="text" class="form-control" name="readnumber">
+						<label for="systemId">所属系统</label>
+						<input id="systemId" type="text" class="form-control" name="systemId">
 					</div>
 				</div>
 			</div>

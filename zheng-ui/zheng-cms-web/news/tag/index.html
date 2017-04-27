@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="${tag.name} + ' - ZhengCms'">标签 - ZhengCms</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="../../favicon.ico" th:href="@{${uiPath} + ${appName} + '/favicon.ico'}"/>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{${uiPath} + ${appName} + '/css/bootstrap.min.css'}"/>
+    <!--[if lt IE 9]>
+    <script src="../../js/vendor/html5shiv.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/html5shiv.js'}"></script>
+    <script src="../../js/vendor/respond.min.js" th:src="@{${uiPath} + ${appName} + '/js/vendor/respond.min.js'}"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        if (/msie [6|7|8]/i.test(navigator.userAgent)) {};
+    </script>
+    <link rel="stylesheet" href="../../css/main.css" th:href="@{${uiPath} + ${appName} + '/css/main.css'}"/>
+</head>
+<body>
+<!-- .navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top"><!--navbar-inverse-->
+    <div class="container">
+        <!-- navbar-header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
+                <span class="sr-only">切换菜单</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../index.html" th:href="@{/}" title="zhengCMS"><span id="logo-text-left">zheng</span><span id="logo-text-right">CMS</span></a>
+            <p class="navbar-text hidden-sm">最简约的内容管理系统</p>
+        </div>
+        <!-- /.navbar-header -->
+        <!-- navbar-collapse -->
+        <div class="collapse navbar-collapse" id="nav-menu">
+            <ul class="nav navbar-nav">
+                <li th:each="menu : ${menus}" th:if="${menu.pid} == null"><a th:href="@{${menu.url}}" th:target="${menu.target}" th:text="${menu.name}">菜单</a></li>
+            </ul>
+            <ul class="nav navbar-right navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span></a>
+                    <ul class="dropdown-menu">
+                        <form id="search-form" class="form-inline">
+                            <div class="input-group">
+                                <input id="keywords" type="text" name="keywords" class="form-control" placeholder="搜索"/>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </ul>
+                </li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="reg.html">注册</a></li>
+                <li id="messages" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-bell"></span>
+                        <span class="badge bg-important">5</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="home/letter.html"><span class="glyphicon glyphicon-envelope"></span> 我的私信(<span class="msg-txt">1</span>)</a></li>
+                        <li><a href="home/message.html"><span class="glyphicon glyphicon-volume-up"></span> 系统消息(<span class="msg-txt">4</span>)</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="home/index.html"><span class="glyphicon glyphicon-home"></span> 个人博客</a></li>
+                        <li><a href="home/question.html"><span class="glyphicon glyphicon-question-sign"></span> 我的提问</a></li>
+                        <li><a href="home/answer.html"><span class="glyphicon glyphicon-ok-sign"></span> 我的回答</a></li>
+                        <li><a href="home/collection.html"><span class="glyphicon glyphicon-star"></span> 我的收藏</a></li>
+                        <li class="divider"></li>
+                        <li><a href="setting/info.html"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
+                        <li><a href="setting/password.html"><span class="glyphicon glyphicon-lock"></span> 密码安全</a></li>
+                        <li><a href="logout.html"><span class="glyphicon glyphicon-log-out"></span> 安全退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+<!-- /.navbar -->
+<!-- .container -->
+<div class="container" style="padding-bottom:80px;">
+    <dl>
+        <dt><span th:text="${tag.name}">标签</span>文章列表</dt>
+        <dd th:each="article : ${articles}"><a href="../news/article/index.html" th:href="@{'/news/article/' + ${article.articleId}}" th:text="${article.title}">文章标题</a></dd>
+    </dl>
+    <div th:utext="${paginator.html}"></div>
+</div>
+<!-- /.container -->
+<!-- footer -->
+<footer class="container-fuild text-center" style="position:fixed;bottom:0;width:100%;background:#eee;padding:20px 0;">
+    Copyright &copy; 2017 ZhangShuzheng All Rights Reserved
+</footer>
+<!-- /footer -->
+<script src="../../js/jquery-1.11.2.min.js" th:src="@{${uiPath} + ${appName} + '/js/jquery-1.11.2.min.js'}"></script>
+<script src="../../js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
+<script src="../../js/main.js" th:src="@{${uiPath} + ${appName} + '/js/main.js'}"></script>
+</body>
+</html>

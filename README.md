@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819🈵、284280411🈵、305155242♨️、528049386🈵(群内含各种工具和文档下载)
+交流QQ群：133107819🈵、284280411🈵、305155242🈵、528049386🈵、157869467♨️(群内含各种工具和文档下载)
 
 ## 前言
 
@@ -208,7 +208,9 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 编译流程
 
-zheng-admin、zheng-common => zheng-upms => 其他
+~~zheng-admin、zheng-common => zheng-upms => 其他~~
+
+maven编译安装zheng/pom.xml文件即可
 
 ### 启动顺序（后台）
 ```
@@ -419,7 +421,3 @@ zheng-admin、zheng-common => zheng-upms => 其他
 ## 许可证
 
 [MIT](http://opensource.org/licenses/MIT "MIT")
-
-## 捐赠打赏
-
-![捐赠打赏](project-bootstrap/pay.png)

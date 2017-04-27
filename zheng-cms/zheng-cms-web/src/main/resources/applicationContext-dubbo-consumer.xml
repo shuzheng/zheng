@@ -30,5 +30,7 @@
     <dubbo:reference id="cmsPageService" interface="com.zheng.cms.rpc.api.CmsPageService" mock="true"/>
     <!-- 设置 -->
     <dubbo:reference id="cmsSettingService" interface="com.zheng.cms.rpc.api.CmsSettingService" mock="true"/>
+    <!-- 系统 -->
+    <dubbo:reference id="cmsSystemService" interface="com.zheng.cms.rpc.api.CmsSystemService" mock="true"/>
 
 </beans>

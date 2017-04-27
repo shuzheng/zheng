@@ -32,18 +32,15 @@ public class IndexController extends BaseController {
     private CmsTagService cmsTagService;
 
     @Autowired
-    private CmsTopicService cmsTopicService;
-
-    @Autowired
-    private CmsArticleService cmsArticleService;
+    private CmsSystemService cmsSystemService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
-        // 菜单
-        CmsMenuExample cmsMenuExample = new CmsMenuExample();
-        cmsMenuExample.setOrderByClause("orders asc");
-        List<CmsMenu> menus = cmsMenuService.selectByExample(cmsMenuExample);
-        model.addAttribute("menus", menus);
+        // 所有系统
+        CmsSystemExample cmsSystemExample = new CmsSystemExample();
+        cmsSystemExample.setOrderByClause("orders asc");
+        List<CmsSystem> systems = cmsSystemService.selectByExample(cmsSystemExample);
+        model.addAttribute("systems", systems);
         // 所有类目
         CmsCategoryExample cmsCategoryExample = new CmsCategoryExample();
         cmsCategoryExample.setOrderByClause("orders asc");
@@ -54,22 +51,6 @@ public class IndexController extends BaseController {
         cmsTagExample.setOrderByClause("orders asc");
         List<CmsTag> tags = cmsTagService.selectByExample(cmsTagExample);
         model.addAttribute("tags", tags);
-        // 最新5个专题
-        CmsTopicExample cmsTopicExample = new CmsTopicExample();
-        cmsTopicExample.setOrderByClause("ctime desc");
-        List<CmsTopic> topics = cmsTopicService.selectByExample(cmsTopicExample);
-        model.addAttribute("topics", topics);
-        // 最新5条文章
-        CmsArticleExample cmsArticleExample = new CmsArticleExample();
-        cmsArticleExample.createCriteria()
-                .andStatusEqualTo((byte) 1);
-        cmsArticleExample.setOrderByClause("orders desc");
-        List<CmsArticle> newArticles = cmsArticleService.selectByExample(cmsArticleExample);
-        model.addAttribute("newArticles", newArticles);
-        // 最火5条文章
-        cmsArticleExample.setOrderByClause("readnumber desc");
-        List<CmsArticle> hotArticles = cmsArticleService.selectByExample(cmsArticleExample);
-        model.addAttribute("hotArticles", hotArticles);
         return thymeleaf("/index");
     }
 

@@ -92,7 +92,7 @@
 <div class="container" style="padding-bottom:80px;">
     <dl>
         <dt>搜索结果</dt>
-        <dd th:each="article : ${articles}"><a href="../article/index.html" th:href="@{'/article/' + ${article.articleId}}" th:text="${article.title}">文章标题</a></dd>
+        <dd th:each="article : ${articles}"><a href="../news/article/index.html" th:href="@{'/article/' + ${article.articleId}}" th:text="${article.title}">文章标题</a></dd>
     </dl>
     <div th:utext="${paginator.html}"></div>
 </div>
