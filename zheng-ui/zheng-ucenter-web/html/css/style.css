@@ -1,0 +1,99 @@
+/*
+ * Page: Login & Register
+ * ----------------------
+ */
+.login-logo,
+.register-logo {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+.login-logo a,
+.register-logo a {
+    color: #444;
+}
+.login-page,
+.register-page {
+    background: #ebebeb;
+}
+.login-box,.register-box{
+    width: 360px;
+    margin: 7% auto;
+}
+
+@media (max-width: 768px) {
+    .login-box,
+    .register-box {
+        width: 90%;
+        margin-top: 20px;
+    }
+}
+.login-box-body,
+.register-box-body {
+    background: #fff;
+    padding: 20px;
+    border-top: 0;
+    color: #666;
+}
+.login-box-body .form-control-feedback,
+.register-box-body .form-control-feedback {
+    color: #777;
+}
+.login-box-msg,
+.register-box-msg {
+    margin: 0;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+}
+.tabs-menu{
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    margin:0;
+    padding: 0;
+}
+.tabs-menu li{
+    width: 50%;
+    float: left;
+    padding: 10px 0 10px 0;
+    list-style: none;
+    text-align: center;
+}
+.tabs-menu li>a{
+    text-decoration: none;
+    font-size: 18px;
+    color:#000;
+}
+.tabs-menu li.active{
+    color: #2b72de;
+    border-bottom: 2px solid #2b72de;
+}
+.tabs-menu li.active a{
+    color: #2b72de;
+}
+
+.social-auth-links {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.social-auth-links a{
+    display: inline-block;
+    margin-left:34px;
+    color: #777777;
+    text-decoration:none;
+}
+.social-auth-links a:hover{
+    display: inline-block;
+    margin-left:34px;
+    color: #222222;
+}
+.social-auth-links .iconfont{
+    font-size: 40px;
+}
+.logo-tip .iconfont{
+    font-size: 20px;
+}
+
+
