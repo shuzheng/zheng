@@ -192,8 +192,8 @@ public class UpmsUserController extends BaseController {
         upmsUser.setPassword(MD5Util.MD5(upmsUser.getPassword() + upmsUser.getSalt()));
         upmsUser.setCtime(time);
         int count = upmsUserService.insertSelective(upmsUser);
-        upmsUser = upmsUserService.insert2(upmsUser);
-        _log.info("新增用户，主键：userId={}", upmsUser.getUserId());
+        //upmsUser = upmsUserService.insert2(upmsUser);
+        //_log.info("新增用户，主键：userId={}", upmsUser.getUserId());
         return new UpmsResult(UpmsResultConstant.SUCCESS, count);
     }
 
