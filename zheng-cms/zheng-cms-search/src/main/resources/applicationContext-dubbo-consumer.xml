@@ -9,7 +9,7 @@
 
     <dubbo:application name="zheng-cms-search"/>
 
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:registry file="./zheng-cms-search-dubbo.cache" address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 订阅服务 -->
     <dubbo:consumer check="false"/>
@@ -21,7 +21,5 @@
     <dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService" mock="true"/>
 
     <dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService" mock="true"/>
-
-    <dubbo:reference id="userService" interface="com.zheng.cms.rpc.api.UserService" mock="true"/>
 
 </beans>
