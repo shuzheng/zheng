@@ -307,7 +307,7 @@ maven编译安装zheng/pom.xml文件即可
 
 ## 演示地址
 
-演示地址： [http://upms.zhangshuzheng.cn/](http://47.93.195.63:8080/zheng-upms-server/sso/login?backurl=http%3A%2F%2F47.93.195.63%3A8080%2Fzheng-upms-server%2Fmanage%2Findex "演示地址")
+演示地址： [http://upms.zhangshuzheng.cn/](http://47.93.195.63/zheng-upms-server/sso/login?backurl=http%3A%2F%2F47.93.195.63%2Fzheng-upms-server%2Fmanage%2Findex "演示地址")
 
 ### 预览图
 ![idea](project-bootstrap/idea.png)
