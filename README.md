@@ -29,6 +29,7 @@ Apache Shiro | 安全框架  | [http://shiro.apache.org/](http://shiro.apache.or
 Spring session | 分布式Session管理  | [http://projects.spring.io/spring-session/](http://projects.spring.io/spring-session/)
 MyBatis | ORM框架  | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)
 MyBatis Generator | 代码生成  | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)
+PageHelper | MyBatis物理分页插件  | [http://git.oschina.net/free/Mybatis_PageHelper](http://git.oschina.net/free/Mybatis_PageHelper)
 Druid | 数据库连接池  | [https://github.com/alibaba/druid](https://github.com/alibaba/druid)
 FluentValidator | 校验框架  | [https://github.com/neoremind/fluent-validator](https://github.com/neoremind/fluent-validator)
 Thymeleaf | 模板引擎  | [http://www.thymeleaf.org/](http://www.thymeleaf.org/)
@@ -243,10 +244,10 @@ maven编译安装zheng/pom.xml文件即可
 - 直接运行对应项目dao模块中的generator.main()，可自动生成单表的CRUD功能和对应的model、example、mapper、service代码
 
     - 生成的model和example均已实现Serializable接口，支持分布式
-    
-    - 生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit
 
     - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
+    
+    - BaseServiceImpl默认已实现`selectByExampleWithBLOBsForStartPage()`、`selectByExampleForStartPage()`、`selectByExampleWithBLOBsForOffsetPage()`、`selectByExampleForOffsetPage()`四种根据条件分页接口
 
     - BaseServiceImpl方法根据读写操作自动切换主从数据源，继承的扩展接口，可手动通过`DynamicDataSource.setDataSource(DataSourceEnum.XXX.getName())`指定数据源
 
