@@ -146,8 +146,6 @@ public class UpmsUserController extends BaseController {
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         UpmsUserExample upmsUserExample = new UpmsUserExample();
-        upmsUserExample.setOffset(offset);
-        upmsUserExample.setLimit(limit);
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsUserExample.setOrderByClause(sort + " " + order);
         }
@@ -157,7 +155,7 @@ public class UpmsUserController extends BaseController {
             upmsUserExample.or()
                     .andUsernameLike("%" + search + "%");
         }
-        List<UpmsUser> rows = upmsUserService.selectByExample(upmsUserExample);
+        List<UpmsUser> rows = upmsUserService.selectByExampleForOffsetPage(upmsUserExample, offset, limit);
         long total = upmsUserService.countByExample(upmsUserExample);
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);
