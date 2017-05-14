@@ -56,12 +56,10 @@ public class CmsSettingController extends BaseController {
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
 		CmsSettingExample cmsSettingExample = new CmsSettingExample();
-		cmsSettingExample.setOffset(offset);
-		cmsSettingExample.setLimit(limit);
 		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsSettingExample.setOrderByClause(sort + " " + order);
 		}
-		List<CmsSetting> rows = cmsSettingService.selectByExample(cmsSettingExample);
+		List<CmsSetting> rows = cmsSettingService.selectByExampleForOffsetPage(cmsSettingExample, offset, limit);
 		long total = cmsSettingService.countByExample(cmsSettingExample);
 		Map<String, Object> result = new HashMap<>();
 		result.put("rows", rows);

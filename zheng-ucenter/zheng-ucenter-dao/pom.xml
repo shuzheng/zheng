@@ -21,9 +21,8 @@
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
-            <artifactId>zheng-common</artifactId>
+            <artifactId>zheng-ucenter-common</artifactId>
             <version>1.0.0</version>
-            <type>jar</type>
         </dependency>
     </dependencies>
 
@@ -39,6 +38,9 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>generatorConfig.xml</exclude>
+                </excludes>
             </resource>
         </resources>
         <plugins>

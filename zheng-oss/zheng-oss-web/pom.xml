@@ -34,12 +34,10 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!-- sdk -->
         <dependency>
             <groupId>com.zheng</groupId>
             <artifactId>zheng-oss-sdk</artifactId>
             <version>1.0.0</version>
-            <type>jar</type>
         </dependency>
     </dependencies>
 

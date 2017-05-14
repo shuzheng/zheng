@@ -77,8 +77,6 @@ public class UpmsPermissionController extends BaseController {
         if (0 != systemId) {
             criteria.andSystemIdEqualTo(systemId);
         }
-        upmsPermissionExample.setOffset(offset);
-        upmsPermissionExample.setLimit(limit);
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsPermissionExample.setOrderByClause(sort + " " + order);
         }
@@ -86,7 +84,7 @@ public class UpmsPermissionController extends BaseController {
             upmsPermissionExample.or()
                     .andNameLike("%" + search + "%");
         }
-        List<UpmsPermission> rows = upmsPermissionService.selectByExample(upmsPermissionExample);
+        List<UpmsPermission> rows = upmsPermissionService.selectByExampleForOffsetPage(upmsPermissionExample, offset, limit);
         long total = upmsPermissionService.countByExample(upmsPermissionExample);
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);

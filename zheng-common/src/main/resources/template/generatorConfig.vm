@@ -20,8 +20,8 @@
             <property name="suppressJavaInterface" value="false"/>
         </plugin>
 
-        <!-- 生成一个新的selectByExample方法，这个方法可以接收offset和limit参数，主要用来实现分页 -->
-        <plugin type="com.zheng.common.plugin.PaginationPlugin"></plugin>
+        <!-- 生成一个新的selectByExample方法，这个方法可以接收offset和limit参数，主要用来实现分页，只支持mysql(已使用pagehelper代替) -->
+        <!--<plugin type="com.zheng.common.plugin.PaginationPlugin"></plugin>-->
 
         <!-- 生成在XML中的<cache>元素 -->
         <plugin type="org.mybatis.generator.plugins.CachePlugin">

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.ucenter.dao.mapper.UcenterUserOauthMapper">
+  <resultMap id="BaseResultMap" type="com.zheng.ucenter.dao.model.UcenterUserOauth">
+    <id column="user_oauth_id" jdbcType="INTEGER" property="userOauthId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="oauth_id" jdbcType="INTEGER" property="oauthId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zheng.ucenter.dao.model.UcenterUserOauth">
+    <result column="open_id" jdbcType="VARBINARY" property="openId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    user_oauth_id, user_id, oauth_id, status, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    open_id
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauthExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ucenter_user_oauth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauthExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ucenter_user_oauth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ucenter_user_oauth
+    where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ucenter_user_oauth
+    where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauthExample">
+    delete from ucenter_user_oauth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauth">
+    insert into ucenter_user_oauth (user_oauth_id, user_id, oauth_id, 
+      status, create_time, open_id
+      )
+    values (#{userOauthId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{oauthId,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{openId,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauth">
+    insert into ucenter_user_oauth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userOauthId != null">
+        user_oauth_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="oauthId != null">
+        oauth_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userOauthId != null">
+        #{userOauthId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="oauthId != null">
+        #{oauthId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauthExample" resultType="java.lang.Long">
+    select count(*) from ucenter_user_oauth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ucenter_user_oauth
+    <set>
+      <if test="record.userOauthId != null">
+        user_oauth_id = #{record.userOauthId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.oauthId != null">
+        oauth_id = #{record.oauthId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openId != null">
+        open_id = #{record.openId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ucenter_user_oauth
+    set user_oauth_id = #{record.userOauthId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      oauth_id = #{record.oauthId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      open_id = #{record.openId,jdbcType=VARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ucenter_user_oauth
+    set user_oauth_id = #{record.userOauthId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      oauth_id = #{record.oauthId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauth">
+    update ucenter_user_oauth
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="oauthId != null">
+        oauth_id = #{oauthId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauth">
+    update ucenter_user_oauth
+    set user_id = #{userId,jdbcType=INTEGER},
+      oauth_id = #{oauthId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      open_id = #{openId,jdbcType=VARBINARY}
+    where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.ucenter.dao.model.UcenterUserOauth">
+    update ucenter_user_oauth
+    set user_id = #{userId,jdbcType=INTEGER},
+      oauth_id = #{oauthId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
+  </update>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

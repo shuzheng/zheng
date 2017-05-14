@@ -35,9 +35,11 @@ zheng
 |    ├── zheng-pay-admin -- 后台管理[端口:3331]
 |    └── zheng-pay-web -- 演示示例[端口:3332]
 ├── zheng-ucenter -- 用户系统(包括第三方登录)
+|    ├── zheng-ucenter-common -- ucenter系统公共模块
 |    ├── zheng-ucenter-dao -- 代码生成模块，无需开发
-|    ├── zheng-ucenter-service -- 业务逻辑
-|    └── zheng-ucenter-home -- 网站前台[端口:4441]
+|    ├── zheng-ucenter-rpc-api -- rpc接口包
+|    ├── zheng-ucenter-rpc-service -- rpc服务提供者
+|    └── zheng-ucenter-web -- 网站前台[端口:4441]
 ├── zheng-wechat -- 微信系统
 |    ├── zheng-wechat-mp -- 微信公众号管理系统
 |    |    ├── zheng-wechat-mp-dao -- 代码生成模块，无需开发
@@ -51,7 +53,8 @@ zheng
 |    └── zheng-api-server -- api系统服务端[端口:6666]
 ├── zheng-oss -- 对象存储系统
 |    ├── zheng-oss-sdk -- 开发工具包
-|    └── zheng-oss-web -- 管理界面[端口:7771]
+|    ├── zheng-oss-web -- 前台接口[端口:7771]
+|    └── zheng-oss-admin -- 后台管理[端口:7772]
 ├── zheng-shop -- 电子商务系统
 ├── zheng-im -- 即时通讯系统
 ├── zheng-oa -- 办公自动化系统

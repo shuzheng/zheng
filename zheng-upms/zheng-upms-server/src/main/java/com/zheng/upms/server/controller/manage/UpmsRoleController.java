@@ -71,28 +71,8 @@ public class UpmsRoleController extends BaseController {
     @ResponseBody
     public Object permission(@PathVariable("id") int id, HttpServletRequest request) {
         JSONArray datas = JSONArray.parseArray(request.getParameter("datas"));
-        List<Integer> deleteIds = new ArrayList<>();
-        for (int i = 0; i < datas.size(); i ++) {
-            JSONObject json = datas.getJSONObject(i);
-            if (!json.getBoolean("checked")) {
-                deleteIds.add(json.getIntValue("id"));
-            } else {
-                // 新增权限
-                UpmsRolePermission upmsRolePermission = new UpmsRolePermission();
-                upmsRolePermission.setRoleId(id);
-                upmsRolePermission.setPermissionId(json.getIntValue("id"));
-                upmsRolePermissionService.insertSelective(upmsRolePermission);
-            }
-        }
-        // 删除权限
-        if (deleteIds.size() > 0) {
-            UpmsRolePermissionExample upmsRolePermissionExample = new UpmsRolePermissionExample();
-            upmsRolePermissionExample.createCriteria()
-                    .andPermissionIdIn(deleteIds)
-                    .andRoleIdEqualTo(id);
-            upmsRolePermissionService.deleteByExample(upmsRolePermissionExample);
-        }
-        return new UpmsResult(UpmsResultConstant.SUCCESS, datas.size());
+        int result = upmsRolePermissionService.rolePermission(datas, id);
+        return new UpmsResult(UpmsResultConstant.SUCCESS, result);
     }
 
     @ApiOperation(value = "角色列表")
@@ -106,8 +86,6 @@ public class UpmsRoleController extends BaseController {
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         UpmsRoleExample upmsRoleExample = new UpmsRoleExample();
-        upmsRoleExample.setOffset(offset);
-        upmsRoleExample.setLimit(limit);
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsRoleExample.setOrderByClause(sort + " " + order);
         }
@@ -115,7 +93,7 @@ public class UpmsRoleController extends BaseController {
             upmsRoleExample.or()
                     .andTitleLike("%" + search + "%");
         }
-        List<UpmsRole> rows = upmsRoleService.selectByExample(upmsRoleExample);
+        List<UpmsRole> rows = upmsRoleService.selectByExampleForOffsetPage(upmsRoleExample, offset, limit);
         long total = upmsRoleService.countByExample(upmsRoleExample);
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);
