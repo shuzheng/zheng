@@ -106,7 +106,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - **七牛云**
 - 本地分布式存储
 
-![阿里云OSS](../project-bootstrap/aliyun-oss-post-callback.png)
+![阿里云OSS](project-bootstrap/aliyun-oss-post-callback.png)
 
 > zheng-api
 
