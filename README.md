@@ -106,6 +106,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - **七牛云**
 - 本地分布式存储
 
+![阿里云OSS](../project-bootstrap/aliyun-oss-post-callback.png)
+
 > zheng-api
 
 接口总线系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
