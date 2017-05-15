@@ -1,6 +1,7 @@
 package com.zheng.oss.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zheng.oss.common.constant.OssConstant;
 import com.zheng.oss.common.constant.OssResult;
 import com.zheng.oss.common.constant.OssResultConstant;
 import com.zheng.oss.web.service.AliyunOssService;
@@ -53,7 +54,9 @@ public class AliyunOssController {
 	@ResponseBody
 	public Object callback(HttpServletRequest request) {
 		JSONObject data = new JSONObject();
-		data.put("filename", request.getParameter("filename"));
+		String filename = request.getParameter("filename");
+		filename = "http://".concat(OssConstant.ALIYUN_OSS_BUCKET_NAME).concat(".").concat(OssConstant.ALIYUN_OSS_ENDPOINT).concat("/").concat(filename);
+		data.put("filename", filename);
 		data.put("size", request.getParameter("size"));
 		data.put("mimeType", request.getParameter("mimeType"));
 		data.put("width", request.getParameter("width"));
