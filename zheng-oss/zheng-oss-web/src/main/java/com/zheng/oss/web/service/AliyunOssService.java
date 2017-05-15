@@ -5,6 +5,7 @@ import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
+import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.oss.common.constant.OssConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +42,7 @@ public class AliyunOssService {
 		long maxSize = OssConstant.ALIYUN_OSS_MAX_SIZE * 1024 * 1024;
 		// 回调
 		JSONObject callback = new JSONObject();
-		callback.put("callbackUrl", "http://shuzheng.tunnel.qydev.com/aliyun/oss/callback");
+		callback.put("callbackUrl", PropertiesFileUtil.getInstance("config").get("aliyun.oss.callback"));
 		callback.put("callbackBody", "filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}");
 		callback.put("callbackBodyType", "application/x-www-form-urlencoded");
 		try {
