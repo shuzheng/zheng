@@ -2,13 +2,14 @@ package com.zheng.oss.web.controller;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.OSSObject;
-import com.aliyun.oss.model.ObjectListing;
 import com.aliyun.oss.model.PutObjectResult;
-import com.zheng.common.util.PropertiesFileUtil;
+import com.zheng.oss.common.constant.OssConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
 
@@ -20,29 +21,28 @@ import java.io.*;
 @RequestMapping("/demo")
 public class DemoController {
 
+    private static Logger _log = LoggerFactory.getLogger(DemoController.class);
+
     @Autowired
     private OSSClient aliyunOssClient;
 
-    private String endPoint = PropertiesFileUtil.getInstance("zheng-oss-client").get("aliyun.oss.endpoint");
-    private String bucketName = PropertiesFileUtil.getInstance("zheng-oss-client").get("aliyun.oss.bucketName");
-
     @GetMapping("/aliyun/upload1")
     public String upload1() {
-        PutObjectResult putObjectResult = aliyunOssClient.putObject(bucketName, "text.txt", new ByteArrayInputStream("Hello OSS".getBytes()));
+        PutObjectResult putObjectResult = aliyunOssClient.putObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "text.txt", new ByteArrayInputStream("Hello OSS".getBytes()));
         return "success";
     }
 
     @GetMapping("/aliyun/upload2")
     public String upload2() throws FileNotFoundException {
-        File file = new File("C:\\Users\\shuzheng\\Documents\\zheng.png");
-        PutObjectResult putObjectResult = aliyunOssClient.putObject(bucketName, "file.png", file);
+        File file = new File("d:\\zheng.png");
+        PutObjectResult putObjectResult = aliyunOssClient.putObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "file.png", file);
         return "success";
     }
 
     @GetMapping("/aliyun/download1")
     public String download1() throws IOException {
         StringBuffer result = new StringBuffer();
-        OSSObject ossObject = aliyunOssClient.getObject(bucketName, "text.txt");
+        OSSObject ossObject = aliyunOssClient.getObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "text.txt");
         InputStream content = ossObject.getObjectContent();
         if (content != null) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(content));
@@ -58,7 +58,7 @@ public class DemoController {
 
     @GetMapping("/aliyun/download2")
     public String download2() throws IOException {
-        return "http://" + bucketName + "." + endPoint + "/file.png";
+        return "http://" + OssConstant.ALIYUN_OSS_BUCKET_NAME + "." + OssConstant.ALIYUN_OSS_ENDPOINT + "/file.png";
     }
 
 }
