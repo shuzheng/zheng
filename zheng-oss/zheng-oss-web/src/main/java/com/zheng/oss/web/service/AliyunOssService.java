@@ -45,6 +45,8 @@ public class AliyunOssService {
 		callback.put("callbackUrl", PropertiesFileUtil.getInstance("config").get("aliyun.oss.callback"));
 		callback.put("callbackBody", "filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}");
 		callback.put("callbackBodyType", "application/x-www-form-urlencoded");
+		// 提交节点
+		String action = "http://" + OssConstant.ALIYUN_OSS_BUCKET_NAME + "." + OssConstant.ALIYUN_OSS_ENDPOINT;
 		try {
 			PolicyConditions policyConds = new PolicyConditions();
 			policyConds.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE, 0, maxSize);
@@ -60,6 +62,7 @@ public class AliyunOssService {
 			result.put("signature", signature);
 			result.put("dir", dir);
 			result.put("callback", callbackData);
+			result.put("action", action);
 		} catch (Exception e) {
 			_log.error("签名生成失败", e);
 		}

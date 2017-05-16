@@ -5,7 +5,7 @@
 <title>zheng-oss-web AliyunOSS demo</title>
 </head>
 <body>
-<form action="http://shuzheng.oss-cn-shanghai.aliyuncs.com" method="post" enctype="multipart/form-data">
+<form action="" th:action="${policy.action}" method="post" enctype="multipart/form-data">
 <p>key : <input type="text" name="key" th:value="${policy.dir + '/${filename}'}"/></p>
 <p>policy : <input type="text" name="policy" th:value="${policy.policy}"/></p>
 <p>OSSAccessKeyId : <input type="text" name="OSSAccessKeyId" th:value="${policy.OSSAccessKeyId}"/></p>
