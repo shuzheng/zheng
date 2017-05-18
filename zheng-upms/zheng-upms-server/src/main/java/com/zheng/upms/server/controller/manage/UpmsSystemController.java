@@ -57,8 +57,6 @@ public class UpmsSystemController extends BaseController {
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
 		UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
-		upmsSystemExample.setOffset(offset);
-		upmsSystemExample.setLimit(limit);
 		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			upmsSystemExample.setOrderByClause(sort + " " + order);
 		}
@@ -66,7 +64,7 @@ public class UpmsSystemController extends BaseController {
 			upmsSystemExample.or()
 					.andTitleLike("%" + search + "%");
 		}
-		List<UpmsSystem> rows = upmsSystemService.selectByExample(upmsSystemExample);
+		List<UpmsSystem> rows = upmsSystemService.selectByExampleForOffsetPage(upmsSystemExample, offset, limit);
 		long total = upmsSystemService.countByExample(upmsSystemExample);
 		Map<String, Object> result = new HashMap<>();
 		result.put("rows", rows);

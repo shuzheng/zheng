@@ -20,13 +20,13 @@ import static com.zheng.common.util.StringUtil.lineToHump;
 public class MybatisGeneratorUtil {
 
 	// generatorConfig模板路径
-	private static String generatorConfig_vm = "zheng-common/src/main/resources/template/generatorConfig.vm";
+	private static String generatorConfig_vm = "/template/generatorConfig.vm";
 	// Service模板路径
-	private static String service_vm = "zheng-common/src/main/resources/template/Service.vm";
+	private static String service_vm = "/template/Service.vm";
 	// ServiceMock模板路径
-	private static String serviceMock_vm = "zheng-common/src/main/resources/template/ServiceMock.vm";
+	private static String serviceMock_vm = "/template/ServiceMock.vm";
 	// ServiceImpl模板路径
-	private static String serviceImpl_vm = "zheng-common/src/main/resources/template/ServiceImpl.vm";
+	private static String serviceImpl_vm = "/template/ServiceImpl.vm";
 
 	/**
 	 * 根据模板生成generatorConfig.xml文件
@@ -49,6 +49,11 @@ public class MybatisGeneratorUtil {
 			String table_prefix,
 			String package_name,
 			Map<String, String> last_insert_id_tables) throws Exception{
+
+		generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath().replaceFirst("/", "");
+		service_vm = MybatisGeneratorUtil.class.getResource(service_vm).getPath().replaceFirst("/", "");
+		serviceMock_vm = MybatisGeneratorUtil.class.getResource(serviceMock_vm).getPath().replaceFirst("/", "");
+		serviceImpl_vm = MybatisGeneratorUtil.class.getResource(serviceImpl_vm).getPath().replaceFirst("/", "");
 
 		String targetProject = module + "/" + module + "-dao";
 		String module_path = module + "/" + module + "-dao/src/main/resources/generatorConfig.xml";

@@ -12,7 +12,8 @@ import com.zheng.upms.dao.model.UpmsUserExample;
 public class UpmsUserServiceMock extends BaseServiceMock<UpmsUserMapper, UpmsUser, UpmsUserExample> implements UpmsUserService {
 
     @Override
-    public UpmsUser insert2(UpmsUser upmsUser) {
+    public UpmsUser createUser(UpmsUser upmsUser) {
         return null;
     }
+
 }

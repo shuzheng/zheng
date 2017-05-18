@@ -56,12 +56,10 @@ public class CmsMenuController extends BaseController {
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
 		CmsMenuExample cmsMenuExample = new CmsMenuExample();
-		cmsMenuExample.setOffset(offset);
-		cmsMenuExample.setLimit(limit);
 		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsMenuExample.setOrderByClause(sort + " " + order);
 		}
-		List<CmsMenu> rows = cmsMenuService.selectByExample(cmsMenuExample);
+		List<CmsMenu> rows = cmsMenuService.selectByExampleForOffsetPage(cmsMenuExample, offset, limit);
 		long total = cmsMenuService.countByExample(cmsMenuExample);
 		Map<String, Object> result = new HashMap<>();
 		result.put("rows", rows);
