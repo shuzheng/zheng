@@ -128,7 +128,7 @@ public class AESUtil {
 
     public static void main(String[] args) {
         String[] keys = {
-                "", "123456"
+                "changeme", "1234561"
         };
         System.out.println("key | AESEncode | AESDecode");
         for (String key : keys) {
