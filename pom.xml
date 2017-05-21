@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zheng</groupId>
+    <artifactId>zheng</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>zheng</name>
+    <url>http://www.zhangshuzheng.cn</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
+    </properties>
+
+    <modules>
+        <module>zheng-admin</module>
+        <module>zheng-common</module>
+        <module>zheng-oss</module>
+        <module>zheng-upms</module>
+        <module>zheng-cms</module>
+        <module>zheng-pay</module>
+        <module>zheng-ucenter</module>
+        <module>zheng-wechat</module>
+        <module>zheng-shop</module>
+        <module>zheng-im</module>
+        <module>zheng-oa</module>
+        <module>zheng-eoms</module>
+        <module>zheng-api</module>
+        <module>zheng-demo</module>
+    </modules>
+</project>

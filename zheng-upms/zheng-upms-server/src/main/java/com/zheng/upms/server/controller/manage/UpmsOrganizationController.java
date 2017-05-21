@@ -57,8 +57,6 @@ public class UpmsOrganizationController extends BaseController {
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         UpmsOrganizationExample upmsOrganizationExample = new UpmsOrganizationExample();
-        upmsOrganizationExample.setOffset(offset);
-        upmsOrganizationExample.setLimit(limit);
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsOrganizationExample.setOrderByClause(sort + " " + order);
         }
@@ -66,7 +64,7 @@ public class UpmsOrganizationController extends BaseController {
             upmsOrganizationExample.or()
                     .andNameLike("%" + search + "%");
         }
-        List<UpmsOrganization> rows = upmsOrganizationService.selectByExample(upmsOrganizationExample);
+        List<UpmsOrganization> rows = upmsOrganizationService.selectByExampleForOffsetPage(upmsOrganizationExample, offset, limit);
         long total = upmsOrganizationService.countByExample(upmsOrganizationExample);
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);

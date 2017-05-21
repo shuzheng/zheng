@@ -19,9 +19,11 @@
     </properties>
 
     <modules>
+        <module>zheng-ucenter-common</module>
         <module>zheng-ucenter-dao</module>
-        <module>zheng-ucenter-service</module>
-        <module>zheng-ucenter-home</module>
+        <module>zheng-ucenter-rpc-api</module>
+        <module>zheng-ucenter-web</module>
+        <module>zheng-ucenter-rpc-service</module>
     </modules>
 
 </project>

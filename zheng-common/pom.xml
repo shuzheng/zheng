@@ -22,6 +22,7 @@
 
         <mybatis.version>3.4.2</mybatis.version>
         <mybatis-spring.version>1.3.1</mybatis-spring.version>
+        <mybatis-pagehelper.version>5.0.1</mybatis-pagehelper.version>
         <mybatis-generator.version>1.3.5</mybatis-generator.version>
         <mybatis-ehcache.version>1.0.0</mybatis-ehcache.version>
         <ehcache.version>2.10.0</ehcache.version>
@@ -112,13 +113,11 @@
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
         </dependency>
-        <!--
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>2.0</version>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${mybatis-pagehelper.version}</version>
         </dependency>
-        -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
