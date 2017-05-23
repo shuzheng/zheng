@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819🈵、284280411🈵、305155242🈵、528049386🈵、157869467♨️(群内含各种工具和文档下载)
+交流QQ群：133107819(群内含各种工具和文档下载)
 
 ## 前言
 
@@ -29,6 +29,7 @@ Apache Shiro | 安全框架  | [http://shiro.apache.org/](http://shiro.apache.or
 Spring session | 分布式Session管理  | [http://projects.spring.io/spring-session/](http://projects.spring.io/spring-session/)
 MyBatis | ORM框架  | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)
 MyBatis Generator | 代码生成  | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)
+PageHelper | MyBatis物理分页插件  | [http://git.oschina.net/free/Mybatis_PageHelper](http://git.oschina.net/free/Mybatis_PageHelper)
 Druid | 数据库连接池  | [https://github.com/alibaba/druid](https://github.com/alibaba/druid)
 FluentValidator | 校验框架  | [https://github.com/neoremind/fluent-validator](https://github.com/neoremind/fluent-validator)
 Thymeleaf | 模板引擎  | [http://www.thymeleaf.org/](http://www.thymeleaf.org/)
@@ -58,6 +59,7 @@ jQuery | 函式库  | [http://jquery.com/](http://jquery.com/)
 Bootstrap | 前端框架  | [http://getbootstrap.com/](http://getbootstrap.com/)
 Bootstrap-table | Bootstrap数据表格  | [http://bootstrap-table.wenzhixin.net.cn/](http://bootstrap-table.wenzhixin.net.cn/)
 Font-awesome | 字体图标  | [http://fontawesome.io/](http://fontawesome.io/)
+material-design-iconic-font | 字体图标  | [https://github.com/zavoloklom/material-design-iconic-font](https://github.com/zavoloklom/material-design-iconic-font)
 Waves | 点击效果插件  | [https://github.com/fians/Waves](https://github.com/fians/Waves)
 zTree | 树插件  | [http://www.treejs.cn/v3/](http://www.treejs.cn/v3/)
 Select2 | 选择框插件  | [https://github.com/select2/select2](https://github.com/select2/select2)
@@ -105,6 +107,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - **七牛云**
 - 本地分布式存储
 
+![阿里云OSS](project-bootstrap/aliyun-oss-post-callback.png)
+
 > zheng-api
 
 接口总线系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
@@ -121,6 +125,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 一站式支付解决方案，统一下单接口，支持支付宝、微信、网银等多种支付方式。不涉及业务的纯粹的支付平台。
 
 - 统一下单（统一下单接口、统一扫码）、订单管理、数据分析、财务报表、商户管理、渠道管理、对账系统、系统监控。
+
+![统一扫码支付](project-bootstrap/zheng-pay.png)
 
 > zheng-ucenter
 
@@ -243,10 +249,10 @@ maven编译安装zheng/pom.xml文件即可
 - 直接运行对应项目dao模块中的generator.main()，可自动生成单表的CRUD功能和对应的model、example、mapper、service代码
 
     - 生成的model和example均已实现Serializable接口，支持分布式
-    
-    - 生成的mapper.xml的selectByExample方法自动包含分页参数offset和limit
 
     - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
+    
+    - BaseServiceImpl默认已实现`selectByExampleWithBLOBsForStartPage()`、`selectByExampleForStartPage()`、`selectByExampleWithBLOBsForOffsetPage()`、`selectByExampleForOffsetPage()`四种根据条件分页接口
 
     - BaseServiceImpl方法根据读写操作自动切换主从数据源，继承的扩展接口，可手动通过`DynamicDataSource.setDataSource(DataSourceEnum.XXX.getName())`指定数据源
 
@@ -307,7 +313,7 @@ maven编译安装zheng/pom.xml文件即可
 
 ## 演示地址
 
-演示地址： [http://www.zhangshuzheng.cn/zhengAdmin](http://www.zhangshuzheng.cn/zhengAdmin "演示地址")
+演示地址： [http://upms.zhangshuzheng.cn/](http://47.93.195.63/zheng-upms-server/sso/login?backurl=http%3A%2F%2F47.93.195.63%2Fzheng-upms-server%2Fmanage%2Findex "演示地址")
 
 ### 预览图
 ![idea](project-bootstrap/idea.png)

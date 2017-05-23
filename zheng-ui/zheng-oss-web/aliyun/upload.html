@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8"/>
+<title>zheng-oss-web AliyunOSS demo</title>
+</head>
+<body>
+<input id="dir" type="hidden" name="dir" th:value="${policy.dir}"/>
+<form id="form" th:action="${policy.action}" method="post" enctype="multipart/form-data">
+<p>key : <input id="key" type="text" name="key"/></p>
+<p>policy : <input type="text" name="policy" th:value="${policy.policy}"/></p>
+<p>OSSAccessKeyId : <input type="text" name="OSSAccessKeyId" th:value="${policy.OSSAccessKeyId}"/></p>
+<p>success_action_status : <input type="text" name="success_action_status" value="200"/></p>
+<p>callback : <input type="text" name="callback" th:value="${policy.callback}"/></p>
+<p>signature : <input type="text" name="signature" th:value="${policy.signature}"/></p>
+<p>file : <input id="file" type="file" name="file"/></p>
+<p><input id="submit" type="submit" value="上传"/></p>
+</form>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	// 选择文件后，随机文件名
+	$('#file').change(function() {
+		var suffix = get_suffix($(this).val());
+		var random_name = random_string();
+		$('#key').val($('#dir').val() + '/' + random_name + suffix);
+	});
+	// 提交校验
+	$('#form').submit(function() {
+		if ($('#key').val() == '') {
+			return false;
+		}
+	});
+});
+// 根据路径获取后缀
+function get_suffix(filename) {
+	var pos = filename.lastIndexOf('.');
+	var suffix = '';
+	if (pos != -1) {
+		suffix = filename.substring(pos);
+	}
+	return suffix;
+}
+// 随机字符串
+function random_string(len) {
+	len = len || 32;
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	var maxPos = chars.length;
+	var pwd = '';
+	for (i = 0; i < len; i++) {
+		pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+	}
+	return pwd;
+}
+</script>
+</body>
+</html>

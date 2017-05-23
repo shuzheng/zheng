@@ -1,7 +1,6 @@
 package com.zheng.upms.server.controller.manage;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
@@ -16,7 +15,6 @@ import com.zheng.upms.rpc.api.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +24,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * 用户controller
@@ -146,8 +147,6 @@ public class UpmsUserController extends BaseController {
             @RequestParam(required = false, value = "sort") String sort,
             @RequestParam(required = false, value = "order") String order) {
         UpmsUserExample upmsUserExample = new UpmsUserExample();
-        upmsUserExample.setOffset(offset);
-        upmsUserExample.setLimit(limit);
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
             upmsUserExample.setOrderByClause(sort + " " + order);
         }
@@ -157,7 +156,7 @@ public class UpmsUserController extends BaseController {
             upmsUserExample.or()
                     .andUsernameLike("%" + search + "%");
         }
-        List<UpmsUser> rows = upmsUserService.selectByExample(upmsUserExample);
+        List<UpmsUser> rows = upmsUserService.selectByExampleForOffsetPage(upmsUserExample, offset, limit);
         long total = upmsUserService.countByExample(upmsUserExample);
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);
@@ -191,10 +190,12 @@ public class UpmsUserController extends BaseController {
         upmsUser.setSalt(salt);
         upmsUser.setPassword(MD5Util.MD5(upmsUser.getPassword() + upmsUser.getSalt()));
         upmsUser.setCtime(time);
-        int count = upmsUserService.insertSelective(upmsUser);
-        upmsUser = upmsUserService.insert2(upmsUser);
+        upmsUser = upmsUserService.createUser(upmsUser);
+        if (null == upmsUser) {
+            return new UpmsResult(UpmsResultConstant.FAILED, "帐号名已存在！");
+        }
         _log.info("新增用户，主键：userId={}", upmsUser.getUserId());
-        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
+        return new UpmsResult(UpmsResultConstant.SUCCESS, 1);
     }
 
     @ApiOperation(value = "删除用户")

@@ -10,7 +10,7 @@
 	<form id="updateForm" method="post">
 		<div class="form-group">
 			<label for="username">帐号</label>
-			<input id="username" type="text" class="form-control" name="username" maxlength="20" value="${user.username}">
+			<input id="username" type="text" class="form-control" name="username" maxlength="20" value="${user.username}" readonly>
 		</div>
 		<div class="form-group">
 			<label for="realname">姓名</label>

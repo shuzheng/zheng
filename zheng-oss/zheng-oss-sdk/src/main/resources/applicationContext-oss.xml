@@ -6,9 +6,9 @@
 
 	<description>zheng-oss-sdk</description>
 
-	<context:property-placeholder location="classpath*:zheng-oss-client.properties"/>
+	<context:property-placeholder location="classpath*:config.properties"/>
 
-	<!-- 阿里云OSS客户端 -->
+	<!-- 阿里云OSS -->
 	<bean id="aliyunOssClient" class="com.aliyun.oss.OSSClient">
 		<constructor-arg value="${aliyun.oss.endpoint}"/>
 		<constructor-arg value="${aliyun.oss.accessKeyId}"/>
