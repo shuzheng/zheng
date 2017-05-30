@@ -7,6 +7,7 @@ import com.zheng.upms.rpc.mapper.UpmsApiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +50,7 @@ public class UpmsApiServiceImpl implements UpmsApiService {
      * @return
      */
     @Override
+    @Cacheable(value = "zheng-upms-rpc-service-ehcache", key = "'selectUpmsPermissionByUpmsUserId_' + #upmsUserId")
     public List<UpmsPermission> selectUpmsPermissionByUpmsUserId(Integer upmsUserId) {
         // 用户不存在或锁定状态
         UpmsUser upmsUser = upmsUserMapper.selectByPrimaryKey(upmsUserId);
@@ -66,6 +68,7 @@ public class UpmsApiServiceImpl implements UpmsApiService {
      * @return
      */
     @Override
+    @Cacheable(value = "zheng-upms-rpc-service-ehcache", key = "'selectUpmsRoleByUpmsUserId_' + #upmsUserId")
     public List<UpmsRole> selectUpmsRoleByUpmsUserId(Integer upmsUserId) {
         // 用户不存在或锁定状态
         UpmsUser upmsUser = upmsUserMapper.selectByPrimaryKey(upmsUserId);
