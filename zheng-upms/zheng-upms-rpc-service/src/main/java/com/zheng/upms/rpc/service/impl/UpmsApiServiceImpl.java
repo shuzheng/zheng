@@ -7,6 +7,7 @@ import com.zheng.upms.rpc.mapper.UpmsApiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,6 +62,17 @@ public class UpmsApiServiceImpl implements UpmsApiService {
     }
 
     /**
+     * 根据用户id获取所拥有的权限
+     * @param upmsUserId
+     * @return
+     */
+    @Override
+    @Cacheable(value = "zheng-upms-rpc-service-ehcache", key = "'selectUpmsPermissionByUpmsUserId_' + #upmsUserId")
+    public List<UpmsPermission> selectUpmsPermissionByUpmsUserIdByCache(Integer upmsUserId) {
+        return selectUpmsPermissionByUpmsUserId(upmsUserId);
+    }
+
+    /**
      * 根据用户id获取所属的角色
      * @param upmsUserId
      * @return
@@ -75,6 +87,17 @@ public class UpmsApiServiceImpl implements UpmsApiService {
         }
         List<UpmsRole> upmsRoles = upmsApiMapper.selectUpmsRoleByUpmsUserId(upmsUserId);
         return upmsRoles;
+    }
+
+    /**
+     * 根据用户id获取所属的角色
+     * @param upmsUserId
+     * @return
+     */
+    @Override
+    @Cacheable(value = "zheng-upms-rpc-service-ehcache", key = "'selectUpmsRoleByUpmsUserId_' + #upmsUserId")
+    public List<UpmsRole> selectUpmsRoleByUpmsUserIdByCache(Integer upmsUserId) {
+        return selectUpmsRoleByUpmsUserId(upmsUserId);
     }
 
     /**
