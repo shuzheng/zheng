@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819(群内含各种工具和文档下载)
+交流QQ群：133107819(群内含各种工具、文档、视频教程下载)
 
 ## 前言
 
@@ -214,8 +214,6 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 编译流程
 
-~~zheng-admin、zheng-common => zheng-upms => 其他~~
-
 maven编译安装zheng/pom.xml文件即可
 
 ### 启动顺序（后台）
@@ -232,7 +230,7 @@ maven编译安装zheng/pom.xml文件即可
 
 ![启动演示](project-bootstrap/start.png)
 
-- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/]，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
+- 访问 [http://upms.zhangshuzheng.cn:1111/](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
 
 - 登录成功后，可在右上角切换已注册系统访问
 
