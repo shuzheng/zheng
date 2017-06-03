@@ -9,6 +9,10 @@
 <div id="createDialog" class="crudDialog">
 	<form id="createForm" method="post">
 		<div class="form-group">
+			<label for="theme">主题</label>
+			<input id="theme" type="color" class="form-control" name="theme" maxlength="50">
+		</div>
+		<div class="form-group">
 			<label for="icon">图标</label>
 			<input id="icon" type="text" class="form-control" name="icon" maxlength="20">
 		</div>
@@ -19,10 +23,6 @@
 		<div class="form-group">
 			<label for="name">名称</label>
 			<input id="name" type="text" class="form-control" name="name" maxlength="20">
-		</div>
-		<div class="form-group">
-			<label for="theme">主题</label>
-			<input id="theme" type="text" class="form-control" name="theme" maxlength="50">
 		</div>
 		<div class="form-group">
 			<label for="banner">背景图</label>
