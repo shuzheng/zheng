@@ -156,7 +156,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 运维系统
 
-## 环境搭建
+## 环境搭建（QQ群内有“zheng环境搭建和系统部署文档.doc”）
 
 #### 开发工具:
 - MySql: 数据库
@@ -249,9 +249,8 @@ maven编译安装zheng/pom.xml文件即可
 - 启动nginx代理zheng-ui静态资源
 
 
-### 开发演示
+### 开发演示（QQ群内有“zheng十分钟视频：从检出到启动.wmv”）
 
-```
 - 创建数据表（建议使用PowerDesigner）
 
 - 直接运行对应项目dao模块中的generator.main()，可自动生成单表的CRUD功能和对应的model、example、mapper、service代码
@@ -267,15 +266,12 @@ maven编译安装zheng/pom.xml文件即可
 - 启动流程：优先rcp-service服务提供者，再启动其他webapp
 
 - 扩展流程：可扩展和拆分rpc-api和rpc-service模块，可按微服务拆分或场景拆分
-```
 
-### 部署方式
+### 部署方式（QQ群内有“zheng十分钟视频：从打包到linux服务器部署.wmv”）
 
-```
 - war包项目：使用tomcat等web容器启动
 
 - rpc-service服务提供者jar包：将打包后的zheng-xxx-rpc-service-assembly.tar.gz文件解压，使用bin目录的管理脚本运行即可，支持优雅停机。
-```
 
 ### 框架规范约定
 
