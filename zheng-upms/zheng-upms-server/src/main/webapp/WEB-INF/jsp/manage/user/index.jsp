@@ -105,6 +105,7 @@ function createAction() {
 		content: 'url:${basePath}/manage/user/create',
 		onContentReady: function () {
 			initMaterialInput();
+            initUploader();
 		}
 	});
 }
@@ -132,6 +133,7 @@ function updateAction() {
 			content: 'url:${basePath}/manage/user/update/' + rows[0].userId,
 			onContentReady: function () {
 				initMaterialInput();
+                initUploader();
 			}
 		});
 	}
