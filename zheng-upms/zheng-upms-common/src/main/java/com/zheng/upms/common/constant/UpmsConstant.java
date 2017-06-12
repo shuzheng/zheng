@@ -8,6 +8,6 @@ import com.zheng.common.base.BaseConstants;
  */
 public class UpmsConstant extends BaseConstants {
 
-    public static final String UPMS_TYPE = "upms.type";
+    public static final String UPMS_TYPE = "zheng.upms.type";
 
 }
