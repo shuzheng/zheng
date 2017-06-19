@@ -33,4 +33,8 @@
     <bean id="ucenterUserDetailsService" class="com.zheng.ucenter.rpc.service.impl.UcenterUserDetailsServiceImpl"/>
     <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterUserDetailsService" ref="ucenterUserDetailsService" timeout="10000"/>
 
+    <!-- 接口服务 -->
+    <bean id="ucenterApiService" class="com.zheng.ucenter.rpc.service.impl.UcenterApiServiceImpl"/>
+    <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterApiService" ref="ucenterApiService" timeout="10000"/>
+
 </beans>
