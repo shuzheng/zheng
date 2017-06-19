@@ -1,15 +1,6 @@
 MIT License
 
-项目名称：zheng
-项目介绍：基于Spring+SpringMVC+Mybatis分布式敏捷开发系统架构，提供整套公共微服务服务模块：集中权限管理（单点登录）、内容管理、支付中心、用户管理（支持第三方登录）、微信平台、存储系统、配置中心、日志分析、任务和通知等，支持服务治理、监控和追踪，努力为中小型企业打造全方位J2EE企业级开发解决方案。
-
-作者：张恕征
-ＱＱ：469741414
-官网：http://www.zhangshuzheng.cn
-Github：https://github.com/shuzheng/zheng
-码云：http://git.oschina.net/shuzheng/zheng
-
-Copyright (c) 2017 ZhangShuzheng
+Copyright (c) 2017 https://github.com/shuzheng/zheng
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

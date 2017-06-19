@@ -54,6 +54,10 @@
 alert('您已被强制下线！');
 top.location.href = '${basePath}/sso/login';
 </c:if>
+//解决iframe下系统超时无法跳出iframe框架的问题
+if (window != top){
+    top.location.href = location.href;
+}
 </script>
 </body>
 </html>

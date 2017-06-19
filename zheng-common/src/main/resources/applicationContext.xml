@@ -14,6 +14,11 @@
 	<!-- 装载service -->
 	<context:component-scan base-package="**.service" />
 
+	<!-- 装载自定义bean -->
+	<context:component-scan base-package="**.*" use-default-filters="false">
+		<context:include-filter type="assignable" expression="com.zheng.common.base.BaseInterface"></context:include-filter>
+	</context:component-scan>
+
 	<!-- 启动时初始化Spring上下文环境工具类 -->
 	<bean id="springContextUtil" class="com.zheng.common.util.SpringContextUtil"></bean>
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-04-26 23:23:32
+Date: 2017-06-03 17:43:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -613,11 +613,20 @@ CREATE TABLE `upms_log` (
   `result` mediumtext,
   `permissions` varchar(100) DEFAULT NULL COMMENT '权限值',
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=647 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of upms_log
 -- ----------------------------
+INSERT INTO `upms_log` VALUES ('638', '修改系统', 'admin', '1496482968582', '46', 'http://upms.zhangshuzheng.cn:1111', '/manage/system/update/6', 'http://upms.zhangshuzheng.cn:1111/manage/system/update/6', 'POST', '{basepath=[6],icon=[1],name=[test],banner=[http://shuzheng.oss-cn-shanghai.aliyuncs.com/20170603/K9SeEgAb4WaMzv2UNtMKaDDEJPdtinPQ.png],description=[5],theme=[#408080],title=[test],status=[1]}', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', 'com.zheng.upms.common.constant.UpmsResult@709962ff', 'upms:system:update');
+INSERT INTO `upms_log` VALUES ('639', '系统列表', 'admin', '1496482968704', '7', 'http://upms.zhangshuzheng.cn:1111', '/manage/system/list', 'http://upms.zhangshuzheng.cn:1111/manage/system/list', 'GET', 'order=asc&offset=0&limit=10', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', '{total=7, rows=[UpmsSystem [Hash = 1641885411, systemId=1, icon=zmdi zmdi-shield-security, banner=/resources/zheng-admin/images/zheng-upms.png, theme=#29A176, basepath=http://upms.zhangshuzheng.cn:1111, status=1, name=zheng-upms-server, title=权限管理系统, description=用户权限管理系统（RBAC细粒度用户权限、统一后台、单点登录、会话管理）, ctime=1, orders=1], UpmsSystem [Hash = 2020796001, systemId=2, icon=zmdi zmdi-wikipedia, banner=/resources/zheng-admin/images/zheng-cms.png, theme=#455EC5, basepath=http://cms.zhangshuzheng.cn:2222, status=1, name=zheng-cms-admin, title=内容管理系统, description=内容管理系统（门户、博客、论坛、问答等）, ctime=2, orders=2], UpmsSystem [Hash = 744121144, systemId=3, icon=zmdi zmdi-paypal-alt, banner=/resources/zheng-admin/images/zheng-pay.png, theme=#F06292, basepath=http://pay.zhangshuzheng.cn:3331, status=1, name=zheng-pay-admin, title=支付管理系统, description=支付管理系统, ctime=3, orders=3], UpmsSystem [Hash = -2076287598, systemId=4, icon=zmdi zmdi-account, banner=/resources/zheng-admin/images/zheng-ucenter.png, theme=#6539B4, basepath=http://ucenter.zhangshuzheng.cn:4441, status=1, name=zheng-ucenter-home, title=用户管理系统, description=用户管理系统, ctime=4, orders=4], UpmsSystem [Hash = -1546531115, systemId=5, icon=zmdi zmdi-cloud, banner=/resources/zheng-admin/images/zheng-oss.png, theme=#0B8DE5, basepath=http://oss.zhangshuzheng.cn:7771, status=1, name=zheng-oss-web, title=存储管理系统, description=存储管理系统, ctime=5, orders=5], UpmsSystem [Hash = -22665516, systemId=6, icon=1, banner=http://shuzheng.oss-cn-shanghai.aliyuncs.com/20170603/K9SeEgAb4WaMzv2UNtMKaDDEJPdtinPQ.png, theme=#408080, basepath=6, status=1, name=test, title=test, description=5, ctime=1496463790282, orders=1496463790282], UpmsSystem [Hash = 344597582, systemId=7, icon=, banner=,,,, theme=#ff0000, basepath=, status=1, name=add, title=add, description=, ctime=1496465063224, orders=1496465063224]]}', 'upms:system:read');
+INSERT INTO `upms_log` VALUES ('640', '修改系统', 'admin', '1496482971351', '3', 'http://upms.zhangshuzheng.cn:1111', '/manage/system/update/6', 'http://upms.zhangshuzheng.cn:1111/manage/system/update/6', 'GET', null, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', '/manage/system/update.jsp', 'upms:system:update');
+INSERT INTO `upms_log` VALUES ('641', '修改系统', 'admin', '1496482976830', '3', 'http://upms.zhangshuzheng.cn:1111', '/manage/system/update/7', 'http://upms.zhangshuzheng.cn:1111/manage/system/update/7', 'GET', null, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', '/manage/system/update.jsp', 'upms:system:update');
+INSERT INTO `upms_log` VALUES ('642', '修改系统', 'admin', '1496482987575', '41', 'http://upms.zhangshuzheng.cn:1111', '/manage/system/update/7', 'http://upms.zhangshuzheng.cn:1111/manage/system/update/7', 'POST', '{basepath=[],icon=[],name=[add],banner=[http://shuzheng.oss-cn-shanghai.aliyuncs.com/20170603/b8VbzvSHqfsvVXrn9L5aG5ARrsD0UMDt.jpg],description=[],theme=[#ff0000],title=[add],status=[1]}', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', 'com.zheng.upms.common.constant.UpmsResult@563fe43a', 'upms:system:update');
+INSERT INTO `upms_log` VALUES ('643', '系统列表', 'admin', '1496482987695', '6', 'http://upms.zhangshuzheng.cn:1111', '/manage/system/list', 'http://upms.zhangshuzheng.cn:1111/manage/system/list', 'GET', 'order=asc&offset=0&limit=10', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', '{total=7, rows=[UpmsSystem [Hash = 1641885411, systemId=1, icon=zmdi zmdi-shield-security, banner=/resources/zheng-admin/images/zheng-upms.png, theme=#29A176, basepath=http://upms.zhangshuzheng.cn:1111, status=1, name=zheng-upms-server, title=权限管理系统, description=用户权限管理系统（RBAC细粒度用户权限、统一后台、单点登录、会话管理）, ctime=1, orders=1], UpmsSystem [Hash = 2020796001, systemId=2, icon=zmdi zmdi-wikipedia, banner=/resources/zheng-admin/images/zheng-cms.png, theme=#455EC5, basepath=http://cms.zhangshuzheng.cn:2222, status=1, name=zheng-cms-admin, title=内容管理系统, description=内容管理系统（门户、博客、论坛、问答等）, ctime=2, orders=2], UpmsSystem [Hash = 744121144, systemId=3, icon=zmdi zmdi-paypal-alt, banner=/resources/zheng-admin/images/zheng-pay.png, theme=#F06292, basepath=http://pay.zhangshuzheng.cn:3331, status=1, name=zheng-pay-admin, title=支付管理系统, description=支付管理系统, ctime=3, orders=3], UpmsSystem [Hash = -2076287598, systemId=4, icon=zmdi zmdi-account, banner=/resources/zheng-admin/images/zheng-ucenter.png, theme=#6539B4, basepath=http://ucenter.zhangshuzheng.cn:4441, status=1, name=zheng-ucenter-home, title=用户管理系统, description=用户管理系统, ctime=4, orders=4], UpmsSystem [Hash = -1546531115, systemId=5, icon=zmdi zmdi-cloud, banner=/resources/zheng-admin/images/zheng-oss.png, theme=#0B8DE5, basepath=http://oss.zhangshuzheng.cn:7771, status=1, name=zheng-oss-web, title=存储管理系统, description=存储管理系统, ctime=5, orders=5], UpmsSystem [Hash = -22665516, systemId=6, icon=1, banner=http://shuzheng.oss-cn-shanghai.aliyuncs.com/20170603/K9SeEgAb4WaMzv2UNtMKaDDEJPdtinPQ.png, theme=#408080, basepath=6, status=1, name=test, title=test, description=5, ctime=1496463790282, orders=1496463790282], UpmsSystem [Hash = 992448646, systemId=7, icon=, banner=http://shuzheng.oss-cn-shanghai.aliyuncs.com/20170603/b8VbzvSHqfsvVXrn9L5aG5ARrsD0UMDt.jpg, theme=#ff0000, basepath=, status=1, name=add, title=add, description=, ctime=1496465063224, orders=1496465063224]]}', 'upms:system:read');
+INSERT INTO `upms_log` VALUES ('644', '后台首页', 'admin', '1496482990223', '22', 'http://upms.zhangshuzheng.cn:1111', '/manage/index', 'http://upms.zhangshuzheng.cn:1111/manage/index', 'GET', null, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', '/manage/index.jsp', null);
+INSERT INTO `upms_log` VALUES ('645', '后台首页', 'admin', '1496482993183', '23', 'http://upms.zhangshuzheng.cn:1111', '/manage/index', 'http://upms.zhangshuzheng.cn:1111/manage/index', 'GET', null, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', '/manage/index.jsp', null);
+INSERT INTO `upms_log` VALUES ('646', '后台首页', 'admin', '1496482995340', '22', 'http://upms.zhangshuzheng.cn:1111', '/manage/index', 'http://upms.zhangshuzheng.cn:1111/manage/index', 'GET', null, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', '127.0.0.1', '/manage/index.jsp', null);
 
 -- ----------------------------
 -- Table structure for upms_organization
@@ -881,7 +890,7 @@ DROP TABLE IF EXISTS `upms_system`;
 CREATE TABLE `upms_system` (
   `system_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `icon` varchar(50) DEFAULT NULL COMMENT '图标',
-  `banner` varchar(50) DEFAULT NULL COMMENT '背景',
+  `banner` varchar(150) DEFAULT NULL COMMENT '背景',
   `theme` varchar(50) DEFAULT NULL COMMENT '主题',
   `basepath` varchar(100) DEFAULT NULL COMMENT '根目录',
   `status` tinyint(4) DEFAULT NULL COMMENT '状态(-1:黑名单,1:正常)',
@@ -891,7 +900,7 @@ CREATE TABLE `upms_system` (
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   `orders` bigint(20) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`system_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='系统';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='系统';
 
 -- ----------------------------
 -- Records of upms_system
@@ -912,19 +921,20 @@ CREATE TABLE `upms_user` (
   `password` varchar(32) NOT NULL COMMENT '密码MD5(密码+盐)',
   `salt` varchar(32) DEFAULT NULL COMMENT '盐',
   `realname` varchar(20) DEFAULT NULL COMMENT '姓名',
-  `avatar` varchar(50) DEFAULT NULL COMMENT '头像',
+  `avatar` varchar(150) DEFAULT NULL COMMENT '头像',
   `phone` varchar(20) DEFAULT NULL COMMENT '电话',
   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
   `sex` tinyint(4) DEFAULT NULL COMMENT '性别',
   `locked` tinyint(4) DEFAULT NULL COMMENT '状态(0:正常,1:锁定)',
   `ctime` bigint(20) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='用户';
 
 -- ----------------------------
 -- Records of upms_user
 -- ----------------------------
 INSERT INTO `upms_user` VALUES ('1', 'admin', '3038D9CB63B3152A79B8153FB06C02F7', '66f1b370c660445a8657bf8bf1794486', '张恕征', '/resources/zheng-admin/images/avatar.jpg', '', '469741414@qq.com', '1', '0', '1');
+INSERT INTO `upms_user` VALUES ('2', 'test', '285C9762F5F9046F5893F752DFAF3476', 'd2d0d03310444ad388a8b290b0fe8564', '张恕征', '/resources/zheng-admin/images/avatar.jpg', '', '469741414@qq.com', '1', '0', '1493394720495');
 
 -- ----------------------------
 -- Table structure for upms_user_organization
@@ -956,13 +966,33 @@ CREATE TABLE `upms_user_permission` (
   `permission_id` int(10) unsigned NOT NULL COMMENT '权限编号',
   `type` tinyint(4) NOT NULL COMMENT '权限类型(-1:减权限,1:增权限)',
   PRIMARY KEY (`user_permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='用户权限关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COMMENT='用户权限关联表';
 
 -- ----------------------------
 -- Records of upms_user_permission
 -- ----------------------------
 INSERT INTO `upms_user_permission` VALUES ('3', '1', '22', '-1');
 INSERT INTO `upms_user_permission` VALUES ('4', '1', '22', '1');
+INSERT INTO `upms_user_permission` VALUES ('5', '2', '24', '-1');
+INSERT INTO `upms_user_permission` VALUES ('6', '2', '26', '-1');
+INSERT INTO `upms_user_permission` VALUES ('7', '2', '27', '-1');
+INSERT INTO `upms_user_permission` VALUES ('8', '2', '29', '-1');
+INSERT INTO `upms_user_permission` VALUES ('9', '2', '32', '-1');
+INSERT INTO `upms_user_permission` VALUES ('10', '2', '51', '-1');
+INSERT INTO `upms_user_permission` VALUES ('11', '2', '48', '-1');
+INSERT INTO `upms_user_permission` VALUES ('12', '2', '50', '-1');
+INSERT INTO `upms_user_permission` VALUES ('13', '2', '35', '-1');
+INSERT INTO `upms_user_permission` VALUES ('14', '2', '46', '-1');
+INSERT INTO `upms_user_permission` VALUES ('15', '2', '37', '-1');
+INSERT INTO `upms_user_permission` VALUES ('16', '2', '38', '-1');
+INSERT INTO `upms_user_permission` VALUES ('17', '2', '57', '-1');
+INSERT INTO `upms_user_permission` VALUES ('18', '2', '56', '-1');
+INSERT INTO `upms_user_permission` VALUES ('19', '2', '59', '-1');
+INSERT INTO `upms_user_permission` VALUES ('20', '2', '78', '-1');
+INSERT INTO `upms_user_permission` VALUES ('21', '2', '67', '-1');
+INSERT INTO `upms_user_permission` VALUES ('22', '2', '83', '-1');
+INSERT INTO `upms_user_permission` VALUES ('23', '2', '71', '-1');
+INSERT INTO `upms_user_permission` VALUES ('24', '2', '75', '-1');
 
 -- ----------------------------
 -- Table structure for upms_user_role
@@ -973,10 +1003,29 @@ CREATE TABLE `upms_user_role` (
   `user_id` int(10) unsigned NOT NULL COMMENT '用户编号',
   `role_id` int(10) DEFAULT NULL COMMENT '角色编号',
   PRIMARY KEY (`user_role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='用户角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='用户角色关联表';
 
 -- ----------------------------
 -- Records of upms_user_role
 -- ----------------------------
 INSERT INTO `upms_user_role` VALUES ('4', '1', '1');
 INSERT INTO `upms_user_role` VALUES ('5', '1', '2');
+INSERT INTO `upms_user_role` VALUES ('6', '2', '1');
+INSERT INTO `upms_user_role` VALUES ('7', '2', '2');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `age` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '20', 'zhangsan');
+INSERT INTO `user` VALUES ('2', '21', 'lisi');

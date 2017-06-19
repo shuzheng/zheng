@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819🈵、284280411🈵、305155242🈵、528049386🈵、157869467🈵、570766789🈵、601147566♨️(群内含各种工具和文档下载)
+交流QQ群：133107819🈵、284280411(群内含各种工具、文档、视频教程下载)
 
 ## 前言
 
@@ -59,6 +59,7 @@ jQuery | 函式库  | [http://jquery.com/](http://jquery.com/)
 Bootstrap | 前端框架  | [http://getbootstrap.com/](http://getbootstrap.com/)
 Bootstrap-table | Bootstrap数据表格  | [http://bootstrap-table.wenzhixin.net.cn/](http://bootstrap-table.wenzhixin.net.cn/)
 Font-awesome | 字体图标  | [http://fontawesome.io/](http://fontawesome.io/)
+material-design-iconic-font | 字体图标  | [https://github.com/zavoloklom/material-design-iconic-font](https://github.com/zavoloklom/material-design-iconic-font)
 Waves | 点击效果插件  | [https://github.com/fians/Waves](https://github.com/fians/Waves)
 zTree | 树插件  | [http://www.treejs.cn/v3/](http://www.treejs.cn/v3/)
 Select2 | 选择框插件  | [https://github.com/select2/select2](https://github.com/select2/select2)
@@ -106,6 +107,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - **七牛云**
 - 本地分布式存储
 
+![阿里云OSS](project-bootstrap/aliyun-oss-post-callback.png)
+
 > zheng-api
 
 接口总线系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
@@ -122,6 +125,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 一站式支付解决方案，统一下单接口，支持支付宝、微信、网银等多种支付方式。不涉及业务的纯粹的支付平台。
 
 - 统一下单（统一下单接口、统一扫码）、订单管理、数据分析、财务报表、商户管理、渠道管理、对账系统、系统监控。
+
+![统一扫码支付](project-bootstrap/zheng-pay.png)
 
 > zheng-ucenter
 
@@ -151,7 +156,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 运维系统
 
-## 环境搭建
+## 环境搭建（QQ群内有“zheng环境搭建和系统部署文档.doc”）
 
 #### 开发工具:
 - MySql: 数据库
@@ -209,36 +214,43 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 编译流程
 
-~~zheng-admin、zheng-common => zheng-upms => 其他~~
-
 maven编译安装zheng/pom.xml文件即可
 
 ### 启动顺序（后台）
-```
+
+> 准备工作
+
 - 新建zheng数据库，导入project-datamodel文件夹下的zheng.sql
 
 - 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
 
+> **zheng-upms**
+
 - 首先启动 zheng-upms-rpc-service(直接运行src目录下的ZhengUpmsRpcServiceApplication#main方法启动) => zheng-upms-server(jetty)，然后按需启动对应子系统xxx的zheng-xxx-rpc-service(main方法) => zheng-xxx-webapp(jetty)
-```
+
 ![启动演示](project-bootstrap/start.png)
-```
-- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/]，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
+
+- 访问 [http://upms.zhangshuzheng.cn:1111/](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
 
 - 登录成功后，可在右上角切换已注册系统访问
-```
 
-### 启动顺序（前台）
+> **zheng-cms**
 
-```
-- 启动nginx代理zheng-ui静态资源，配置文件可参考 [nginx.conf](http://git.oschina.net/shuzheng/zheng/attach_files)
+- zheng-cms-admin：启动ActiveMQ-启动 => 启动zheng-rpc-service => 启动zheng-cms-admin
 
-- 启动前台系统应用服务器
-```
+- zheng-cms-web：启动nginx代理zheng-ui静态资源，配置文件可参考 [nginx.conf](http://git.oschina.net/shuzheng/zheng/attach_files)
 
-### 开发演示
+> **zheng-oss**
 
-```
+- 首先启动zheng-oss-web服务
+
+- 开发阶段，如果zheng-oss-web没有公网域名，推荐使用`ngrok`内网穿透工具，为开发环境提供公网域名，实现上传回调
+
+- 启动nginx代理zheng-ui静态资源
+
+
+### 开发演示（QQ群内有“zheng十分钟视频：从检出到启动.wmv”）
+
 - 创建数据表（建议使用PowerDesigner）
 
 - 直接运行对应项目dao模块中的generator.main()，可自动生成单表的CRUD功能和对应的model、example、mapper、service代码
@@ -254,15 +266,12 @@ maven编译安装zheng/pom.xml文件即可
 - 启动流程：优先rcp-service服务提供者，再启动其他webapp
 
 - 扩展流程：可扩展和拆分rpc-api和rpc-service模块，可按微服务拆分或场景拆分
-```
 
-### 部署方式
+### 部署方式（QQ群内有“zheng十分钟视频：从打包到linux服务器部署.wmv”）
 
-```
 - war包项目：使用tomcat等web容器启动
 
 - rpc-service服务提供者jar包：将打包后的zheng-xxx-rpc-service-assembly.tar.gz文件解压，使用bin目录的管理脚本运行即可，支持优雅停机。
-```
 
 ### 框架规范约定
 
@@ -421,4 +430,4 @@ maven编译安装zheng/pom.xml文件即可
 
 ## 许可证
 
-[MIT](http://opensource.org/licenses/MIT "MIT")
+[MIT](LICENSE "MIT")
