@@ -320,7 +320,15 @@ maven编译安装zheng/pom.xml文件即可
 
     - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
     
-    - BaseServiceImpl默认已实现`selectByExampleWithBLOBsForStartPage()`、`selectByExampleForStartPage()`、`selectByExampleWithBLOBsForOffsetPage()`、`selectByExampleForOffsetPage()`四种根据条件分页接口
+    - BaseServiceImpl默认已实现四种根据条件分页接口
+     
+        - selectByExampleWithBLOBsForStartPage()
+        
+        - selectByExampleForStartPage()
+        
+        - selectByExampleWithBLOBsForOffsetPage()
+        
+        - selectByExampleForOffsetPage()
 
     - BaseServiceImpl方法根据读写操作自动切换主从数据源，继承的扩展接口，可手动通过`DynamicDataSource.setDataSource(DataSourceEnum.XXX.getName())`指定数据源
 
