@@ -7,7 +7,7 @@
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
 
-    <dubbo:registry file="./zheng-api-dubbo.cache" address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:registry file="./zheng-api-dubbo.cache" address="zookeeper://zkserver:2181"/>
 
     <!-- 订阅服务 -->
     <dubbo:consumer check="false"/>
