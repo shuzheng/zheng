@@ -95,7 +95,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath*:com/zheng/ucenter/dao/mapper/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath*:com/zheng/ucenter/dao/mapper/UcenterUserDetailsMapper.xml"/>
     </bean>
     <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

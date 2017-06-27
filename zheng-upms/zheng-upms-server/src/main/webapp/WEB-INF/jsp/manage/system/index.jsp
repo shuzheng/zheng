@@ -90,6 +90,7 @@ function createAction() {
 		content: 'url:${basePath}/manage/system/create',
 		onContentReady: function () {
 			initMaterialInput();
+			initUploader();
 		}
 	});
 }
@@ -117,6 +118,7 @@ function updateAction() {
 			content: 'url:${basePath}/manage/system/update/' + rows[0].systemId,
 			onContentReady: function () {
 				initMaterialInput();
+				initUploader();
 			}
 		});
 	}

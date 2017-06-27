@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+
+    <dubbo:application name="zheng-ucenter-rpc-service"/>
+
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <dubbo:protocol name="dubbo" port="20884"/>
+
+    <!-- 认证方式 -->
+    <bean id="ucenterOauthService" class="com.zheng.ucenter.rpc.service.impl.UcenterOauthServiceImpl"/>
+    <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterOauthService" ref="ucenterOauthService" timeout="10000"/>
+
+    <!-- 用户认证 -->
+    <bean id="ucenterUserOauthService" class="com.zheng.ucenter.rpc.service.impl.UcenterUserOauthServiceImpl"/>
+    <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterUserOauthService" ref="ucenterUserOauthService" timeout="10000"/>
+
+    <!-- 用户操作日志 -->
+    <bean id="ucenterUserLogService" class="com.zheng.ucenter.rpc.service.impl.UcenterUserLogServiceImpl"/>
+    <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterUserLogService" ref="ucenterUserLogService" timeout="10000"/>
+
+    <!-- 用户 -->
+    <bean id="uenterUserService" class="com.zheng.ucenter.rpc.service.impl.UcenterUserServiceImpl"/>
+    <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterUserService" ref="uenterUserService" timeout="10000"/>
+
+    <!-- 用户详情 -->
+    <bean id="ucenterUserDetailsService" class="com.zheng.ucenter.rpc.service.impl.UcenterUserDetailsServiceImpl"/>
+    <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterUserDetailsService" ref="ucenterUserDetailsService" timeout="10000"/>
+
+    <!-- 接口服务 -->
+    <bean id="ucenterApiService" class="com.zheng.ucenter.rpc.service.impl.UcenterApiServiceImpl"/>
+    <dubbo:service interface="com.zheng.ucenter.rpc.api.UcenterApiService" ref="ucenterApiService" timeout="10000"/>
+
+</beans>

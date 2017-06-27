@@ -33,7 +33,7 @@ public class CmsWebInterceptor extends HandlerInterceptorAdapter {
         }
         // zheng-ui静态资源配置信息
         String appName = PropertiesFileUtil.getInstance().get("app.name");
-        String uiPath = PropertiesFileUtil.getInstance().get("zheng-ui.path");
+        String uiPath = PropertiesFileUtil.getInstance().get("zheng.ui.path");
         request.setAttribute("appName", appName);
         request.setAttribute("uiPath", uiPath);
         // 菜单
