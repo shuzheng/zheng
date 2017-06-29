@@ -129,7 +129,7 @@ public class AESUtil {
 
     public static void main(String[] args) {
         String[] keys = {
-                "", "123456"
+                "", "dpw123"
         };
         System.out.println("key | AESEncode | AESDecode");
         for (String key : keys) {
