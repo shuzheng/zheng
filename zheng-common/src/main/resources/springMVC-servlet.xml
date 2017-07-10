@@ -54,8 +54,8 @@
     <!-- 配置静态资源，不被DispatcherServlet处理，增加缓存时间10秒 -->
     <mvc:resources mapping="/favicon.ico" location="/favicon.ico"/>
     <mvc:resources mapping="/resources/**" location="/resources/" cache-period="10"/>
-    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+    <mvc:resources mapping="/swagger-ui.html" location="classpath:/META-INF/resources/"/>
 
     <!-- 上传文件配置 20*1024*1024即20M resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -15,4 +15,5 @@
 <script src="${basePath}/resources/zheng-admin/plugins/jquery-confirm/jquery-confirm.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/select2/js/select2.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/zTree_v3/js/jquery.ztree.all.min.js"></script>
+<script src="${basePath}/resources/zheng-admin/plugins/webuploader-0.1.5/webuploader.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/js/common.js"></script>

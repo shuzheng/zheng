@@ -1,5 +1,6 @@
 package com.zheng.upms.server.interceptor;
 
+import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.server.controller.manage.UpmsOrganizationController;
@@ -21,12 +22,14 @@ import javax.servlet.http.HttpServletResponse;
 public class UpmsInterceptor extends HandlerInterceptorAdapter {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
+    private static final String ZHENG_OSS_ALIYUN_OSS_POLICY = PropertiesFileUtil.getInstance("zheng-oss-client").get("zheng.oss.aliyun.oss.policy");
 
     @Autowired
     UpmsApiService upmsApiService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        request.setAttribute("ZHENG_OSS_ALIYUN_OSS_POLICY", ZHENG_OSS_ALIYUN_OSS_POLICY);
         // 过滤ajax
         if (null != request.getHeader("X-Requested-With") && request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
             return true;
