@@ -195,25 +195,9 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等。
 
-> zheng-ucenter-app 
+> zheng-wechat-app 
 
 微信小程序后台
-
-> zheng-shop
-
-电子商务系统
-
-> zheng-im
-
-即时通讯系统
-
-> zheng-oa
-
-办公自动化系统
-
-> zheng-eoms
-
-运维系统
 
 ## 环境搭建（QQ群内有“zheng环境搭建和系统部署文档.doc”）
 
@@ -229,8 +213,8 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - Navicat for MySQL: 数据库客户端
 
 #### 开发环境：
-- Jdk7
-- Mysql5.5
+- Jdk7+
+- Mysql5.5+
 - Redis
 - Zookeeper
 - ActiveMQ
@@ -238,7 +222,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 ### 工具安装
 
-[环境搭建和系统部署文档(作者：小兵)](http://git.oschina.net/shuzheng/zheng/attach_files "环境搭建和系统部署文档(作者：小兵)")
+环境搭建和系统部署文档(作者：小兵，QQ群共享提供下载)
 
 ### 资源下载
 
@@ -271,10 +255,11 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 127.0.0.1	api.zhangshuzheng.cn
 - 127.0.0.1	oss.zhangshuzheng.cn
 
-- 127.0.0.1   zkserver
-- 127.0.0.1   rdserver
-- 127.0.0.1   dbserver
-- 127.0.0.1   mqserver
+- 127.0.0.1	zkserver
+- 127.0.0.1	rdserver
+- 127.0.0.1	dbserver
+- 127.0.0.1	mqserver
+
 ### 编译流程
 
 maven编译安装zheng/pom.xml文件即可
