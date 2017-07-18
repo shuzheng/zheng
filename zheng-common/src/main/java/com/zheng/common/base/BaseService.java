@@ -15,6 +15,8 @@ public interface BaseService<Record, Example> {
 	int deleteByExample(Example example);
 
 	int deleteByPrimaryKey(Integer id);
+	
+	int deleteByPrimaryKey(Long id);
 
 	int insert(Record record);
 
