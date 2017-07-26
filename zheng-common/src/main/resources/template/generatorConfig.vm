@@ -61,7 +61,6 @@
         <javaClientGenerator targetPackage="${generator_javaClientGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
-        <!-- 需要映射的表 -->
         #foreach($table in $tables)
             #if($last_insert_id_tables.containsKey($!table.table_name) == true)
                 <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
