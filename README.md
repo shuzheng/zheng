@@ -219,6 +219,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - Zookeeper
 - ActiveMQ
 - Dubbo-admin
+- Dubbo-monitor
 
 ### 工具安装
 
