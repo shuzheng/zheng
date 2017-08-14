@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819(群内含各种工具和文档下载)
+交流QQ群：133107819🈵、284280411🈵、305155242🈵、528049386🈵、157869467🈵、570766789🈵、601147566🈵、309985359🈵、336380857(群内含各种工具、文档、视频教程下载)
 
 ## 前言
 
@@ -16,7 +16,66 @@
 
 ### 组织结构
 
-![组织结构](project-bootstrap/zheng_project.png)
+``` lua
+zheng
+├── zheng-common -- SSM框架公共模块
+├── zheng-admin -- 后台管理模板
+├── zheng-ui -- 前台thymeleaf模板[端口:1000]
+├── zheng-config -- 配置中心[端口:1001]
+├── zheng-upms -- 用户权限管理系统
+|    ├── zheng-upms-common -- upms系统公共模块
+|    ├── zheng-upms-dao -- 代码生成模块，无需开发
+|    ├── zheng-upms-client -- 集成upms依赖包，提供单点认证、授权、统一会话管理
+|    ├── zheng-upms-rpc-api -- rpc接口包
+|    ├── zheng-upms-rpc-service -- rpc服务提供者
+|    └── zheng-upms-server -- 用户权限系统及SSO服务端[端口:1111]
+├── zheng-cms -- 内容管理系统
+|    ├── zheng-cms-common -- cms系统公共模块
+|    ├── zheng-cms-dao -- 代码生成模块，无需开发
+|    ├── zheng-cms-rpc-api -- rpc接口包
+|    ├── zheng-cms-rpc-service -- rpc服务提供者
+|    ├── zheng-cms-search -- 搜索服务[端口:2221]
+|    ├── zheng-cms-admin -- 后台管理[端口:2222]
+|    ├── zheng-cms-job -- 消息队列、任务调度等[端口:2223]
+|    └── zheng-cms-web -- 网站前台[端口:2224]
+├── zheng-pay -- 支付系统
+|    ├── zheng-pay-common -- pay系统公共模块
+|    ├── zheng-pay-dao -- 代码生成模块，无需开发
+|    ├── zheng-pay-rpc-api -- rpc接口包
+|    ├── zheng-pay-rpc-service -- rpc服务提供者
+|    ├── zheng-pay-sdk -- 开发工具包
+|    ├── zheng-pay-admin -- 后台管理[端口:3331]
+|    └── zheng-pay-web -- 演示示例[端口:3332]
+├── zheng-ucenter -- 用户系统(包括第三方登录)
+|    ├── zheng-ucenter-common -- ucenter系统公共模块
+|    ├── zheng-ucenter-dao -- 代码生成模块，无需开发
+|    ├── zheng-ucenter-rpc-api -- rpc接口包
+|    ├── zheng-ucenter-rpc-service -- rpc服务提供者
+|    └── zheng-ucenter-web -- 网站前台[端口:4441]
+├── zheng-wechat -- 微信系统
+|    ├── zheng-wechat-mp -- 微信公众号管理系统
+|    |    ├── zheng-wechat-mp-dao -- 代码生成模块，无需开发
+|    |    ├── zheng-wechat-mp-service -- 业务逻辑
+|    |    └── zheng-wechat-mp-admin -- 后台管理[端口:5551]
+|    └── zheng-ucenter-app -- 微信小程序后台
+├── zheng-api -- API接口总线系统
+|    ├── zheng-api-common -- api系统公共模块
+|    ├── zheng-api-rpc-api -- rpc接口包
+|    ├── zheng-api-rpc-service -- rpc服务提供者
+|    └── zheng-api-server -- api系统服务端[端口:6666]
+├── zheng-oss -- 对象存储系统
+|    ├── zheng-oss-sdk -- 开发工具包
+|    ├── zheng-oss-web -- 前台接口[端口:7771]
+|    └── zheng-oss-admin -- 后台管理[端口:7772]
+├── zheng-shop -- 电子商务系统
+├── zheng-im -- 即时通讯系统
+├── zheng-oa -- 办公自动化系统
+├── zheng-eoms -- 运维系统
+└── zheng-demo -- 示例模块(包含一些示例代码等)
+     ├── zheng-demo-rpc-api -- rpc接口包
+     ├── zheng-demo-rpc-service -- rpc服务提供者
+     └── zheng-demo-web -- 演示示例[端口:8888]
+```
 
 ### 技术选型
 
@@ -136,27 +195,11 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等。
 
-> zheng-ucenter-app 
+> zheng-wechat-app 
 
 微信小程序后台
 
-> zheng-shop
-
-电子商务系统
-
-> zheng-im
-
-即时通讯系统
-
-> zheng-oa
-
-办公自动化系统
-
-> zheng-eoms
-
-运维系统
-
-## 环境搭建
+## 环境搭建（QQ群内有“zheng环境搭建和系统部署文档.doc”）
 
 #### 开发工具:
 - MySql: 数据库
@@ -170,16 +213,17 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - Navicat for MySQL: 数据库客户端
 
 #### 开发环境：
-- Jdk7
-- Mysql5.5
+- Jdk7+
+- Mysql5.5+
 - Redis
 - Zookeeper
 - ActiveMQ
 - Dubbo-admin
+- Dubbo-monitor
 
 ### 工具安装
 
-[环境搭建和系统部署文档(作者：小兵)](http://git.oschina.net/shuzheng/zheng/attach_files "环境搭建和系统部署文档(作者：小兵)")
+环境搭建和系统部署文档(作者：小兵，QQ群共享提供下载)
 
 ### 资源下载
 
@@ -211,39 +255,54 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 127.0.0.1	wechat.zhangshuzheng.cn
 - 127.0.0.1	api.zhangshuzheng.cn
 - 127.0.0.1	oss.zhangshuzheng.cn
+- 127.0.0.1 config.zhangshuzheng.cn
+
+- 127.0.0.1	zkserver
+- 127.0.0.1	rdserver
+- 127.0.0.1	dbserver
+- 127.0.0.1	mqserver
 
 ### 编译流程
-
-~~zheng-admin、zheng-common => zheng-upms => 其他~~
 
 maven编译安装zheng/pom.xml文件即可
 
 ### 启动顺序（后台）
-```
+
+> 准备工作
+
 - 新建zheng数据库，导入project-datamodel文件夹下的zheng.sql
 
 - 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
 
+- 启动Zookeeper、Redis、ActiveMQ、Nginx（配置文件参考project-tools/nginx下的*.conf文件）
+
+> **zheng-upms**
+
 - 首先启动 zheng-upms-rpc-service(直接运行src目录下的ZhengUpmsRpcServiceApplication#main方法启动) => zheng-upms-server(jetty)，然后按需启动对应子系统xxx的zheng-xxx-rpc-service(main方法) => zheng-xxx-webapp(jetty)
-```
+
 ![启动演示](project-bootstrap/start.png)
-```
-- 访问 [统一后台地址 http://upms.zhangshuzheng.cn:1111/]，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
+
+- 访问 [http://upms.zhangshuzheng.cn:1111/](http://upms.zhangshuzheng.cn:1111/ "统一后台地址")，子系统菜单已经配置到zheng-upms权限中，不用直接访问子系统，默认帐号密码：admin/123456
 
 - 登录成功后，可在右上角切换已注册系统访问
-```
 
-### 启动顺序（前台）
+> **zheng-cms**
 
-```
-- 启动nginx代理zheng-ui静态资源，配置文件可参考 [nginx.conf](http://git.oschina.net/shuzheng/zheng/attach_files)
+- zheng-cms-admin：启动ActiveMQ-启动 => 启动zheng-rpc-service => 启动zheng-cms-admin
 
-- 启动前台系统应用服务器
-```
+- zheng-cms-web：启动nginx代理zheng-ui静态资源，配置文件可参考 [nginx.conf](http://git.oschina.net/shuzheng/zheng/attach_files)
 
-### 开发演示
+> **zheng-oss**
 
-```
+- 首先启动zheng-oss-web服务
+
+- 开发阶段，如果zheng-oss-web没有公网域名，推荐使用`ngrok`内网穿透工具，为开发环境提供公网域名，实现上传回调
+
+- 启动nginx代理zheng-ui静态资源
+
+
+### 开发演示（QQ群内有“zheng十分钟视频：从检出到启动.wmv”）
+
 - 创建数据表（建议使用PowerDesigner）
 
 - 直接运行对应项目dao模块中的generator.main()，可自动生成单表的CRUD功能和对应的model、example、mapper、service代码
@@ -252,22 +311,27 @@ maven编译安装zheng/pom.xml文件即可
 
     - 已包含抽象类BaseServiceImpl，只需要继承抽象类并传入泛型参数，即可默认实现mapper接口所有方法，特殊需求直接扩展即可
     
-    - BaseServiceImpl默认已实现`selectByExampleWithBLOBsForStartPage()`、`selectByExampleForStartPage()`、`selectByExampleWithBLOBsForOffsetPage()`、`selectByExampleForOffsetPage()`四种根据条件分页接口
+    - BaseServiceImpl默认已实现四种根据条件分页接口
+     
+        - selectByExampleWithBLOBsForStartPage()
+        
+        - selectByExampleForStartPage()
+        
+        - selectByExampleWithBLOBsForOffsetPage()
+        
+        - selectByExampleForOffsetPage()
 
     - BaseServiceImpl方法根据读写操作自动切换主从数据源，继承的扩展接口，可手动通过`DynamicDataSource.setDataSource(DataSourceEnum.XXX.getName())`指定数据源
 
 - 启动流程：优先rcp-service服务提供者，再启动其他webapp
 
 - 扩展流程：可扩展和拆分rpc-api和rpc-service模块，可按微服务拆分或场景拆分
-```
 
-### 部署方式
+### 部署方式（QQ群内有“zheng十分钟视频：从打包到linux服务器部署.wmv”）
 
-```
 - war包项目：使用tomcat等web容器启动
 
 - rpc-service服务提供者jar包：将打包后的zheng-xxx-rpc-service-assembly.tar.gz文件解压，使用bin目录的管理脚本运行即可，支持优雅停机。
-```
 
 ### 框架规范约定
 
@@ -426,4 +490,4 @@ maven编译安装zheng/pom.xml文件即可
 
 ## 许可证
 
-[MIT](http://opensource.org/licenses/MIT "MIT")
+[MIT](LICENSE "MIT")

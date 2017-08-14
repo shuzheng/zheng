@@ -118,7 +118,8 @@ public class AESUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
+            throw new RuntimeException("兄弟，配置文件中的密码需要使用AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值！");
+            //e.printStackTrace();
         } catch (BadPaddingException e) {
             e.printStackTrace();
         }

@@ -16,9 +16,14 @@
 			<label for="realname">姓名</label>
 			<input id="realname" type="text" class="form-control" name="realname" maxlength="20" value="${user.realname}">
 		</div>
-		<div class="form-group">
-			<label for="avatar">头像</label>
-			<input id="avatar" type="text" class="form-control" name="avatar" maxlength="50" value="${user.avatar}">
+		<div class="row">
+			<div class="col-lg-8 form-group">
+				<label for="avatar">头像</label>
+				<input id="avatar" type="text" class="form-control" name="avatar" maxlength="150" value="${user.avatar}">
+			</div>
+			<div class="col-lg-4">
+				<div id="picker">上传头像</div>
+			</div>
 		</div>
 		<div class="form-group">
 			<label for="phone">电话</label>
@@ -53,6 +58,80 @@
 	</form>
 </div>
 <script>
+function initUploader() {
+	//百度上传按钮
+	var uploader = WebUploader.create({
+		// swf文件路径
+		swf: '${basePath}/resources/zheng-admin/plugins/webuploader-0.1.5/Uploader.swf',
+		// 文件接收服务端
+		method: 'POST',
+		// 选择文件的按钮。可选。
+		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		pick: {
+			"id": '#picker',
+			"multiple": false
+		},
+		// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+		resize: false,
+		// 选完文件后，是否自动上传。
+		auto: false,
+		// 只允许选择图片文件
+		accept: {
+			title: '图片文件',
+			extensions: 'gif,jpg,jpeg,bmp,png',
+			mimeTypes: 'image/*'
+		}
+	});
+	uploader.on( 'fileQueued', function(file) {
+		$.ajax({
+			url: '${ZHENG_OSS_ALIYUN_OSS_POLICY}',
+			type: 'GET',
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			success: function(result) {
+				var suffix = get_suffix(file.name);
+				var random_name = random_string();
+				uploader.options.formData.key = result.dir + '/' + random_name + suffix;
+				uploader.options.formData.policy = result.policy;
+				uploader.options.formData.OSSAccessKeyId = result.OSSAccessKeyId;
+				uploader.options.formData.success_action_status = 200;
+				uploader.options.formData.callback = result.callback;
+				uploader.options.formData.signature = result.signature;
+				uploader.options.server = result.action;
+				uploader.upload();
+			},
+			error: function(msg) {
+				console.log(msg);
+			}
+		});
+	});
+	uploader.on( 'uploadSuccess', function(file, response) {
+		$('#avatar').val(response.data.filename).focus();
+	});
+	uploader.on( 'uploadError', function(file) {
+		console.log('uploadError', file);
+	});
+}
+// 根据路径获取后缀
+function get_suffix(filename) {
+	var pos = filename.lastIndexOf('.');
+	var suffix = '';
+	if (pos != -1) {
+		suffix = filename.substring(pos);
+	}
+	return suffix;
+}
+// 随机字符串
+function random_string(len) {
+	len = len || 32;
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	var maxPos = chars.length;
+	var pwd = '';
+	for (i = 0; i < len; i++) {
+		pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+	}
+	return pwd;
+}
 function createSubmit() {
     $.ajax({
         type: 'post',

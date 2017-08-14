@@ -74,7 +74,6 @@ public class DemoController extends BaseController {
         JSONObject policy = aliyunOssService.policy();
         _log.info("policy={}", policy);
         model.addAttribute("policy", policy);
-        model.addAttribute("policy", policy);
         return thymeleaf("/aliyun/upload");
     }
 

@@ -1,5 +1,6 @@
 package com.zheng.upms.client.interceptor;
 
+import com.alibaba.fastjson.JSON;
 import com.zheng.common.util.RequestUtil;
 import com.zheng.upms.dao.model.UpmsLog;
 import com.zheng.upms.rpc.api.UpmsApiService;
@@ -87,7 +88,7 @@ public class LogAspect {
 		} else {
 			upmsLog.setParameter(ObjectUtils.toString(request.getParameterMap()));
 		}
-		upmsLog.setResult(ObjectUtils.toString(result));
+		upmsLog.setResult(JSON.toJSONString(result));
 		upmsLog.setSpendTime((int) (endTime - startTime));
 		upmsLog.setStartTime(startTime);
 		upmsLog.setUri(request.getRequestURI());
