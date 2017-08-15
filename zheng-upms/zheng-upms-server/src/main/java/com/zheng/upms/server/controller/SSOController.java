@@ -170,7 +170,7 @@ public class SSOController extends BaseController {
         String codeParam = request.getParameter("code");
         String code = RedisUtil.get(ZHENG_UPMS_SERVER_CODE + "_" + codeParam);
         if (StringUtils.isBlank(codeParam) || !codeParam.equals(code)) {
-            new UpmsResult(UpmsResultConstant.FAILED, "无效code");
+            return new UpmsResult(UpmsResultConstant.FAILED, "无效code");
         }
         return new UpmsResult(UpmsResultConstant.SUCCESS, code);
     }
