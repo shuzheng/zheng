@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819🈵、284280411🈵、305155242🈵、528049386🈵、157869467🈵、570766789🈵、601147566🈵、309985359🈵、336380857(群内含各种工具、文档、视频教程下载)
+交流QQ群：133107819🈵、284280411🈵、305155242🈵、528049386🈵、157869467🈵、570766789🈵、601147566🈵、309985359🈵、336380857🈵、522723488(群内含各种工具、文档、视频教程下载)
 
 ## 前言
 
