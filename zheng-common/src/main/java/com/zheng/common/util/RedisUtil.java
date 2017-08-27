@@ -272,4 +272,34 @@ public class RedisUtil {
 		}
 	}
 
+	/**
+	 * incr
+	 * @param key
+	 * @return value
+	 */
+	public synchronized static Long incr(String key) {
+		Jedis jedis = getJedis();
+		if (null == jedis) {
+			return null;
+		}
+		long value = jedis.incr(key);
+		jedis.close();
+		return value;
+	}
+
+	/**
+	 * decr
+	 * @param key
+	 * @return value
+	 */
+	public synchronized static Long decr(String key) {
+		Jedis jedis = getJedis();
+		if (null == jedis) {
+			return null;
+		}
+		long value = jedis.decr(key);
+		jedis.close();
+		return value;
+	}
+
 }
