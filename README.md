@@ -170,9 +170,9 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 > zheng-api
 
-接口总线系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
+服务网关，对外暴露统一规范的接口和包装响应结果，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，可在该模块支持验签、鉴权、路由、限流、监控、容错、日志等功能。示例图：
 
-![API网关](project-bootstrap/zheng-api.png)
+![API网关](project-bootstrap/gateway_config.png)
 
 
 > zheng-cms
