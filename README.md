@@ -413,6 +413,12 @@ maven编译安装zheng/pom.xml文件即可
 
 ## 附件
 
+### zheng相关博客
+
+- [zheng-1：环境搭建及项目部署](http://www.jianshu.com/p/b2fb42e17b58 "zheng-1：环境搭建及项目部署")
+
+- [zheng项目新建一个module学习学习](http://blog.csdn.net/u014449653/article/details/78294862 "zheng项目新建一个module学习学习")
+
 ### 优秀文章和博客
 
 - [创业互联网公司如何搭建自己的技术框架](http://shuzheng5201314.iteye.com/blog/2330151 "创业互联网公司如何搭建自己的技术框架")
