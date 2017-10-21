@@ -28,9 +28,6 @@
         <module>zheng-ucenter</module>
         <module>zheng-wechat</module>
         <module>zheng-shop</module>
-        <module>zheng-im</module>
-        <module>zheng-oa</module>
-        <module>zheng-eoms</module>
         <module>zheng-api</module>
         <module>zheng-demo</module>
     </modules>

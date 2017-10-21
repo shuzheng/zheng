@@ -68,9 +68,6 @@ zheng
 |    ├── zheng-oss-web -- 前台接口[端口:7771]
 |    └── zheng-oss-admin -- 后台管理[端口:7772]
 ├── zheng-shop -- 电子商务系统
-├── zheng-im -- 即时通讯系统
-├── zheng-oa -- 办公自动化系统
-├── zheng-eoms -- 运维系统
 └── zheng-demo -- 示例模块(包含一些示例代码等)
      ├── zheng-demo-rpc-api -- rpc接口包
      ├── zheng-demo-rpc-service -- rpc服务提供者
