@@ -25,5 +25,3 @@
 - PowerDesigner导出`zheng.apm`
 
 - PowerDesigner保存得到`zheng.pdm`
-
-测试提交。
