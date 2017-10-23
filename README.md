@@ -408,6 +408,8 @@ maven编译安装zheng/pom.xml文件即可
 
 - 界面没有样式：因为zheng-admin没有编译安装到本地仓库
 
+- linux下执行rpc-service脚本报“bin/bash^M 坏的解释器”，使用sed -i 's/\r$//' filename删除脚本中\r字符
+
 ## 附件
 
 ### zheng相关博客
