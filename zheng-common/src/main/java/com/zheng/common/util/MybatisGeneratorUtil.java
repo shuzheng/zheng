@@ -50,10 +50,18 @@ public class MybatisGeneratorUtil {
 			String package_name,
 			Map<String, String> last_insert_id_tables) throws Exception{
 
-		generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath().replaceFirst("/", "");
-		service_vm = MybatisGeneratorUtil.class.getResource(service_vm).getPath().replaceFirst("/", "");
-		serviceMock_vm = MybatisGeneratorUtil.class.getResource(serviceMock_vm).getPath().replaceFirst("/", "");
-		serviceImpl_vm = MybatisGeneratorUtil.class.getResource(serviceImpl_vm).getPath().replaceFirst("/", "");
+		String os = System.getProperty("os.name");
+		if (os.toLowerCase().startsWith("win")) {
+			generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath().replaceFirst("/", "");
+			service_vm = MybatisGeneratorUtil.class.getResource(service_vm).getPath().replaceFirst("/", "");
+			serviceMock_vm = MybatisGeneratorUtil.class.getResource(serviceMock_vm).getPath().replaceFirst("/", "");
+			serviceImpl_vm = MybatisGeneratorUtil.class.getResource(serviceImpl_vm).getPath().replaceFirst("/", "");
+		} else {
+			generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath();
+			service_vm = MybatisGeneratorUtil.class.getResource(service_vm).getPath();
+			serviceMock_vm = MybatisGeneratorUtil.class.getResource(serviceMock_vm).getPath();
+			serviceImpl_vm = MybatisGeneratorUtil.class.getResource(serviceImpl_vm).getPath();
+		}
 
 		String targetProject = module + "/" + module + "-dao";
 		String basePath = MybatisGeneratorUtil.class.getResource("/").getPath().replace("/target/classes/", "").replace(targetProject, "").replaceFirst("/", "");
@@ -153,9 +161,6 @@ public class MybatisGeneratorUtil {
 			}
 		}
 		System.out.println("========== 结束生成Service ==========");
-
-		System.out.println("========== 开始生成Controller ==========");
-		System.out.println("========== 结束生成Controller ==========");
 	}
 
 	// 递归删除非空文件夹
