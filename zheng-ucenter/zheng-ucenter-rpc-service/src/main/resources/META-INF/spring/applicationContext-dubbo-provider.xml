@@ -13,7 +13,7 @@
 
     <dubbo:protocol name="dubbo" port="20884"/>
 
-    <dubbo:monitor protocol="registry"/>
+    <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- 认证方式 -->
     <bean id="ucenterOauthService" class="com.zheng.ucenter.rpc.service.impl.UcenterOauthServiceImpl"/>

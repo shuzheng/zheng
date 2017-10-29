@@ -13,7 +13,7 @@
 
     <dubbo:protocol name="dubbo" port="20881"/>
 
-    <dubbo:monitor protocol="registry"/>
+    <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- 系统 -->
     <bean id="upmsSystemService" class="com.zheng.upms.rpc.service.impl.UpmsSystemServiceImpl"/>

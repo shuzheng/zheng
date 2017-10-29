@@ -15,36 +15,36 @@ public class ApiServiceImpl implements ApiService {
 
     private static Logger _log = LoggerFactory.getLogger(ApiServiceImpl.class);
 
-    @Autowired
-    private UpmsSystemService upmsSystemService;
-
-    @Autowired
-    private UpmsOrganizationService upmsOrganizationService;
-
-    @Autowired
-    private UpmsUserService upmsUserService;
-
-    @Autowired
-    private UpmsRoleService upmsRoleService;
-
-    @Autowired
-    private UpmsPermissionService upmsPermissionService;
-
-    @Autowired
-    private UpmsApiService upmsApiService;
-
-    @Autowired
-    private CmsArticleService cmsArticleService;
-
-    @Autowired
-    private CmsCategoryService cmsCategoryService;
-
-    @Autowired
-    private CmsCommentService cmsCommentService;
-
-    @Autowired
-    private CmsTagService cmsTagService;
-
+//    @Autowired
+//    private UpmsSystemService upmsSystemService;
+//
+//    @Autowired
+//    private UpmsOrganizationService upmsOrganizationService;
+//
+//    @Autowired
+//    private UpmsUserService upmsUserService;
+//
+//    @Autowired
+//    private UpmsRoleService upmsRoleService;
+//
+//    @Autowired
+//    private UpmsPermissionService upmsPermissionService;
+//
+//    @Autowired
+//    private UpmsApiService upmsApiService;
+//
+//    @Autowired
+//    private CmsArticleService cmsArticleService;
+//
+//    @Autowired
+//    private CmsCategoryService cmsCategoryService;
+//
+//    @Autowired
+//    private CmsCommentService cmsCommentService;
+//
+//    @Autowired
+//    private CmsTagService cmsTagService;
+//
     @Override
     public String hello(String name) {
         return "hello," + name + "!";

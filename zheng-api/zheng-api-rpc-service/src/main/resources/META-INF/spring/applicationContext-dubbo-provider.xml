@@ -13,10 +13,10 @@
 
     <dubbo:protocol name="dubbo" port="20880"/>
 
-    <dubbo:monitor protocol="registry"/>
+    <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- API总系统 -->
-    <bean id="apiService" class="com.zheng.api.rpc.service.impl.ApiServiceImpl"/>
-    <dubbo:service interface="com.zheng.api.rpc.api.ApiService" ref="apiService" timeout="10000"/>
+    <!--<bean id="apiService" class="com.zheng.api.rpc.service.impl.ApiServiceImpl"/>-->
+    <!--<dubbo:service interface="com.zheng.api.rpc.api.ApiService" ref="apiService" timeout="10000"/>-->
 
 </beans>

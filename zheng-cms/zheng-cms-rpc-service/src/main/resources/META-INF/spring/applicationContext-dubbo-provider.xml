@@ -13,7 +13,7 @@
 
     <dubbo:protocol name="dubbo" port="20882"/>
 
-    <dubbo:monitor protocol="registry"/>
+    <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- 文章 -->
     <bean id="cmsArticleServiceImpl" class="com.zheng.cms.rpc.service.impl.CmsArticleServiceImpl"/>

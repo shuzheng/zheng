@@ -13,7 +13,7 @@
 
     <dubbo:protocol name="dubbo" port="20883"/>
 
-    <dubbo:monitor protocol="registry"/>
+    <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- 支付方式服务 -->
     <bean id="payVendorService" class="com.zheng.pay.rpc.service.impl.PayVendorServiceImpl"/>

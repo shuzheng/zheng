@@ -1,11 +1,13 @@
 package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
+import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.shiro.session.UpmsSession;
 import com.zheng.upms.client.shiro.session.UpmsSessionDao;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
+import com.zheng.upms.dao.model.UpmsSystem;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
@@ -157,7 +159,9 @@ public class SSOController extends BaseController {
         // 回跳登录前地址
         String backurl = request.getParameter("backurl");
         if (StringUtils.isBlank(backurl)) {
-            return new UpmsResult(UpmsResultConstant.SUCCESS, "/");
+            UpmsSystem upmsSystem = upmsSystemService.selectUpmsSystemByName(PropertiesFileUtil.getInstance().get("app.name"));
+            backurl = null == upmsSystem ? "/" : upmsSystem.getBasepath();
+            return new UpmsResult(UpmsResultConstant.SUCCESS, backurl);
         } else {
             return new UpmsResult(UpmsResultConstant.SUCCESS, backurl);
         }
