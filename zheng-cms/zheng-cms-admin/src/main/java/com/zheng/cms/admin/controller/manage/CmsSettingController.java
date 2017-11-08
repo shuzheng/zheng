@@ -35,7 +35,7 @@ import java.util.Map;
 @RequestMapping("/manage/setting")
 public class CmsSettingController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsSettingController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CmsSettingController.class);
 	
 	@Autowired
 	private CmsSettingService cmsSettingService;
@@ -62,7 +62,7 @@ public class CmsSettingController extends BaseController {
 		}
 		List<CmsSetting> rows = cmsSettingService.selectByExampleForOffsetPage(cmsSettingExample, offset, limit);
 		long total = cmsSettingService.countByExample(cmsSettingExample);
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(2);
 		result.put("rows", rows);
 		result.put("total", total);
 		return result;

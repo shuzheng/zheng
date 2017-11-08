@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 */
 public class UpmsUserOrganizationServiceMock extends BaseServiceMock<UpmsUserOrganizationMapper, UpmsUserOrganization, UpmsUserOrganizationExample> implements UpmsUserOrganizationService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserOrganizationServiceMock.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsUserOrganizationServiceMock.class);
 
     @Override
     public int organization(String[] organizationIds, int id) {
-        _log.info("UpmsUserOrganizationServiceMock => organization");
+        LOGGER.info("UpmsUserOrganizationServiceMock => organization");
         return 0;
     }
 

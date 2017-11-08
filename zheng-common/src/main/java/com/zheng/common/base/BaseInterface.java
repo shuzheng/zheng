@@ -6,7 +6,9 @@ package com.zheng.common.base;
  */
 public interface BaseInterface {
 
-	// 系统初始化
+	/**
+	 * 系统初始化
+	 */
 	void init();
 
 }

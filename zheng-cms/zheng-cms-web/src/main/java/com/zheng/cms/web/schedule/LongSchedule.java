@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class LongSchedule implements IScheduleTaskDealSingle<Long> {
 
-    private static Logger _log = LoggerFactory.getLogger(LongSchedule.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LongSchedule.class);
 
     /**
      * 执行单个任务
@@ -25,7 +25,7 @@ public class LongSchedule implements IScheduleTaskDealSingle<Long> {
      */
     @Override
     public boolean execute(Long item, String ownSign) throws Exception {
-        _log.info("执行任务：{}", item);
+        LOGGER.info("执行任务：{}", item);
         return true;
     }
 
@@ -53,6 +53,7 @@ public class LongSchedule implements IScheduleTaskDealSingle<Long> {
     @Override
     public Comparator<Long> getComparator() {
         return new Comparator<Long>() {
+            @Override
             public int compare(Long o1, Long o2) {
                 return o1.compareTo(o2);
             }

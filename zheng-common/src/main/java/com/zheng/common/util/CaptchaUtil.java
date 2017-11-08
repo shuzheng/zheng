@@ -53,8 +53,10 @@ public class CaptchaUtil {
 
 	// 生成图片
 	private void creatImage() {
-		int fontWidth = width / codeCount;// 字体的宽度
-		int fontHeight = height - 5;// 字体的高度
+		// 字体的宽度
+		int fontWidth = width / codeCount;
+		// 字体的高度
+		int fontHeight = height - 5;
 		int codeY = height - 8;
 
 		// 图像buffer
@@ -118,10 +120,12 @@ public class CaptchaUtil {
 
 	// 得到随机颜色
 	private Color getRandColor(int fc, int bc) {// 给定范围获得随机颜色
-		if (fc > 255)
+		if (fc > 255) {
 			fc = 255;
-		if (bc > 255)
+		}
+		if (bc > 255) {
 			bc = 255;
+		}
 		int r = fc + random.nextInt(bc - fc);
 		int g = fc + random.nextInt(bc - fc);
 		int b = fc + random.nextInt(bc - fc);
@@ -133,7 +137,7 @@ public class CaptchaUtil {
 	 */
 	private Font getFont(int size) {
 		Random random = new Random();
-		Font font[] = new Font[5];
+		Font[] font = new Font[5];
 		font[0] = new Font("Ravie", Font.PLAIN, size);
 		font[1] = new Font("Antique Olive Compact", Font.PLAIN, size);
 		font[2] = new Font("Fixedsys", Font.PLAIN, size);

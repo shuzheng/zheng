@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(IndexController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired
 	private DemoService demoService;
@@ -45,12 +45,12 @@ public class IndexController extends BaseController {
 		model.addAttribute("host", demoService.sayHello("http://www.zhangshuzheng.cn/"));
 		List<User> users = new ArrayList<>();
 		User user = new User();
-		user.setId(1l);
+		user.setId(1L);
 		user.setAge(11);
 		user.setName("zhangsan");
 		users.add(user);
 		user = new User();
-		user.setId(2l);
+		user.setId(2L);
 		user.setAge(22);
 		user.setName("lisi");
 		users.add(user);

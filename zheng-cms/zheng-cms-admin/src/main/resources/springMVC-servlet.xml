@@ -19,7 +19,7 @@
             <!-- 非拦截路径 -->
             <mvc:exclude-mapping path="/manage/login"/>
             <!-- 拦截器对象 -->
-            <bean id="manageInterceptor" class="com.zheng.cms.admin.Interceptor.ManageInterceptor"/>
+            <bean id="manageInterceptor" class="com.zheng.cms.admin.interceptor.ManageInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

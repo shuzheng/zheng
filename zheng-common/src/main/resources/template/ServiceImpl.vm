@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class ${model}ServiceImpl extends BaseServiceImpl<${model}Mapper, ${model}, ${model}Example> implements ${model}Service {
 
-    private static Logger _log = LoggerFactory.getLogger(${model}ServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(${model}ServiceImpl.class);
 
     @Autowired
     ${model}Mapper ${mapper}Mapper;

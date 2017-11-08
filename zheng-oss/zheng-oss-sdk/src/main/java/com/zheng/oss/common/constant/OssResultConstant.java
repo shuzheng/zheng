@@ -6,7 +6,14 @@ package com.zheng.oss.common.constant;
  */
 public enum OssResultConstant {
 
+    /**
+     * 失败
+     */
     FAILED(0, "failed"),
+
+    /**
+     * 成功
+     */
     SUCCESS(1, "success");
 
     public int code;

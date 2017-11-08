@@ -6,7 +6,14 @@ package com.zheng.pay.common.constant;
  */
 public enum PayResultConstant {
 
+    /**
+     * 失败
+     */
     FAILED(0, "failed"),
+
+    /**
+     * 成功
+     */
     SUCCESS(1, "success");
 
     public int code;

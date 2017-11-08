@@ -6,13 +6,19 @@ package com.zheng.common.base;
  */
 public class BaseResult {
 
-    // 状态码：1成功，其他为失败
+    /**
+     * 状态码：1成功，其他为失败
+     */
     public int code;
 
-    // 成功为success，其他为失败原因
+    /**
+     * 成功为success，其他为失败原因
+     */
     public String message;
 
-    // 数据结果集
+    /**
+     * 数据结果集
+     */
     public Object data;
 
     public BaseResult(int code, String message, Object data) {

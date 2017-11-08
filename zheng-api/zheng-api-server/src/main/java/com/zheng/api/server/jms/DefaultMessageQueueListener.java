@@ -15,25 +15,27 @@ import javax.jms.TextMessage;
  */
 public class DefaultMessageQueueListener implements MessageListener {
 
-	private static Logger _log = LoggerFactory.getLogger(DefaultMessageQueueListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultMessageQueueListener.class);
 
-	@Autowired
-	ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    @Autowired
+    ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
-	public void onMessage(final Message message) {
-		// 使用线程池多线程处理
-		threadPoolTaskExecutor.execute(new Runnable() {
-			public void run() {
-				if (message instanceof TextMessage) {
-					TextMessage textMessage = (TextMessage) message;
-					try {
-						_log.info("消费：{}", textMessage.getText());
-					} catch (Exception e){
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-	}
+    @Override
+    public void onMessage(final Message message) {
+        // 使用线程池多线程处理
+        threadPoolTaskExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                if (message instanceof TextMessage) {
+                    TextMessage textMessage = (TextMessage) message;
+                    try {
+                        LOGGER.info("消费：{}", textMessage.getText());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
 
 }

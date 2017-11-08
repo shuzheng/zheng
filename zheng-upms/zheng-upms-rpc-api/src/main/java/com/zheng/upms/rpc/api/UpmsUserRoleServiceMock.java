@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 */
 public class UpmsUserRoleServiceMock extends BaseServiceMock<UpmsUserRoleMapper, UpmsUserRole, UpmsUserRoleExample> implements UpmsUserRoleService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserRoleServiceMock.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsUserRoleServiceMock.class);
 
     @Override
     public int role(String[] roleIds, int id) {
-        _log.info("UpmsUserRoleServiceMock => role");
+        LOGGER.info("UpmsUserRoleServiceMock => role");
         return 0;
     }
 

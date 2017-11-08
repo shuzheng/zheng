@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 
 /**
  * 控制器基类
@@ -17,7 +16,7 @@ import java.io.File;
  */
 public abstract class BaseController {
 
-	private final static Logger _log = LoggerFactory.getLogger(BaseController.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
 	/**
 	 * 统一异常处理
@@ -27,9 +26,9 @@ public abstract class BaseController {
 	 */
 	@ExceptionHandler
 	public String exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) {
-		_log.error("统一异常处理：", exception);
+		LOGGER.error("统一异常处理：", exception);
 		request.setAttribute("ex", exception);
-		if (null != request.getHeader("X-Requested-With") && request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
+		if (null != request.getHeader("X-Requested-With") && "XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With"))) {
 			request.setAttribute("requestHeader", "ajax");
 		}
 		// shiro没有权限异常

@@ -25,7 +25,7 @@ public class RequestUtil {
 			if (key.equals(paramName)) {
 				continue;
 			}
-			if (queryString.equals("")) {
+			if ("".equals(queryString)) {
 				queryString = key + "=" + request.getParameter(key);
 			} else {
 				queryString += "&" + key + "=" + request.getParameter(key);

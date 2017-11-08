@@ -34,7 +34,7 @@ import java.util.Map;
 @RequestMapping("/manage/category")
 public class CmsCategoryController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsCategoryController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CmsCategoryController.class);
 	
 	@Autowired
 	private CmsCategoryService cmsCategoryService;
@@ -61,7 +61,7 @@ public class CmsCategoryController extends BaseController {
 		}
 		List<CmsCategory> rows = cmsCategoryService.selectByExampleForOffsetPage(cmsCategoryExample, offset, limit);
 		long total = cmsCategoryService.countByExample(cmsCategoryExample);
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(2);
 		result.put("rows", rows);
 		result.put("total", total);
 		return result;

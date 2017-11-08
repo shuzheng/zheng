@@ -38,7 +38,7 @@ import java.util.UUID;
 @RequestMapping("/manage/user")
 public class UpmsUserController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsUserController.class);
 
     @Autowired
     private UpmsUserService upmsUserService;
@@ -194,7 +194,7 @@ public class UpmsUserController extends BaseController {
         if (null == upmsUser) {
             return new UpmsResult(UpmsResultConstant.FAILED, "帐号名已存在！");
         }
-        _log.info("新增用户，主键：userId={}", upmsUser.getUserId());
+        LOGGER.info("新增用户，主键：userId={}", upmsUser.getUserId());
         return new UpmsResult(UpmsResultConstant.SUCCESS, 1);
     }
 

@@ -45,7 +45,7 @@ import java.util.UUID;
 @Api(value = "单点登录管理", description = "单点登录管理")
 public class SSOController extends BaseController {
 
-    private final static Logger _log = LoggerFactory.getLogger(SSOController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SSOController.class);
     // 全局会话key
     private final static String ZHENG_UPMS_SERVER_SESSION_ID = "zheng-upms-server-session-id";
     // 全局会话key列表
@@ -103,7 +103,7 @@ public class SSOController extends BaseController {
                     backurl += "?upms_code=" + code + "&upms_username=" + username;
                 }
             }
-            _log.debug("认证中心帐号通过，带code回跳：{}", backurl);
+            LOGGER.debug("认证中心帐号通过，带code回跳：{}", backurl);
             return "redirect:" + backurl;
         }
         return "/sso/login.jsp";

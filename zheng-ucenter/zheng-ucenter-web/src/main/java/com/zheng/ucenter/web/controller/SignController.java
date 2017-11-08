@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SignController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(SignController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SignController.class);
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
@@ -56,7 +56,7 @@ public class SignController extends BaseController {
     }
 
     @RequestMapping(value = "/password_reset", method = RequestMethod.GET)
-    public String password_reset(Model model) {
+    public String passwordReset(Model model) {
 
         return thymeleaf("/password");
     }
