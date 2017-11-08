@@ -468,6 +468,8 @@ maven编译安装zheng/pom.xml文件即可
 
 - [如何细粒度地控制你的MyBatis二级缓存](http://blog.csdn.net/luanlouis/article/details/41800511 "如何细粒度地控制你的MyBatis二级缓存")
 
+- [Git 在团队中的最佳实践--如何正确使用Git Flow](hhttps://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow "Git 在团队中的最佳实践--如何正确使用Git Flow")
+
 - [做个男人，做个成熟的男人，做个有城府的男人](http://shuzheng5201314.iteye.com/blog/1387820 "做个男人，做个成熟的男人，做个有城府的男人")
 
 
