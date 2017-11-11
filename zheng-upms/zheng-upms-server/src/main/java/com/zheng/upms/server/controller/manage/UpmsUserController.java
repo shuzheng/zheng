@@ -188,7 +188,7 @@ public class UpmsUserController extends BaseController {
         long time = System.currentTimeMillis();
         String salt = UUID.randomUUID().toString().replaceAll("-", "");
         upmsUser.setSalt(salt);
-        upmsUser.setPassword(MD5Util.MD5(upmsUser.getPassword() + upmsUser.getSalt()));
+        upmsUser.setPassword(MD5Util.md5(upmsUser.getPassword() + upmsUser.getSalt()));
         upmsUser.setCtime(time);
         upmsUser = upmsUserService.createUser(upmsUser);
         if (null == upmsUser) {
