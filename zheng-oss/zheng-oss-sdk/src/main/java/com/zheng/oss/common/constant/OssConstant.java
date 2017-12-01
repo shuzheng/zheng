@@ -21,4 +21,6 @@ public class OssConstant extends BaseConstants {
 	// 签名有效期(单位:分钟)
 	public static final int ALIYUN_OSS_EXPIRE = PropertiesFileUtil.getInstance("config").getInt("aliyun.oss.policy.expire");
 
+
+//	main
 }
