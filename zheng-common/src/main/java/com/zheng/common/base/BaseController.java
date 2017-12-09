@@ -47,7 +47,7 @@ public abstract class BaseController {
 	 * @param path
 	 * @return
 	 */
-	public static String jsp(String path) {
+	public static String addSuffixJsp(String path) {
 		return path.concat(".jsp");
 	}
 
