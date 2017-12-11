@@ -32,7 +32,7 @@ public class IndexController extends BaseController {
 	 */
 	@RequestMapping(value = "/jsp", method = RequestMethod.GET)
 	public String jsp() {
-		return jsp("/index");
+		return addSuffixJsp("/index");
 	}
 
 	/**
