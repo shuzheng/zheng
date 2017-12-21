@@ -4,6 +4,9 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * Unit test for simple App.
  */
@@ -34,5 +37,9 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+
+    public static void main(String[] args) throws UnknownHostException {
+        System.out.println("本机的IP = " + InetAddress.getLocalHost());
     }
 }
