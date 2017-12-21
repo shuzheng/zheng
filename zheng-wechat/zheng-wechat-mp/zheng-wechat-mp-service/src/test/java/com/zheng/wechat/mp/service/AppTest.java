@@ -40,7 +40,7 @@ public class AppTest
     }
 
     public static void main(String[] args) throws UnknownHostException {
-        System.out.println("args22 = " + args);
+        System.out.println("args11 = " + args);
         System.out.println("args22 = " + args);
         System.out.println("本机的IP = " + InetAddress.getLocalHost());
     }
