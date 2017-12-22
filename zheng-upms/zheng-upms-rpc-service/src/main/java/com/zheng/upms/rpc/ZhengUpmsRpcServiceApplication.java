@@ -14,8 +14,21 @@ public class ZhengUpmsRpcServiceApplication {
 
 	public static void main(String[] args) {
 		_log.info(">>>>> zheng-upms-rpc-service 正在启动 <<<<<");
-		new ClassPathXmlApplicationContext("classpath:META-INF/spring/*.xml");
-		_log.info(">>>>> zheng-upms-rpc-service 启动完成 <<<<<");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:META-INF/spring/*.xml");
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+
+        for(String beanName : beanDefinitionNames){
+            System.out.println("beanName = " + beanName);
+        }
+
+//        int[] a = new int[5];
+//        try {
+//            Thread.sleep(1000 * 1200);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        _log.info(">>>>> zheng-upms-rpc-service 启动完成 <<<<<");
 	}
 
 }
