@@ -425,6 +425,8 @@ maven编译安装zheng/pom.xml文件即可
 
 - [进击zheng项目zheng-umps-server](http://blog.csdn.net/u014449653/article/details/78355849 "进击zheng项目zheng-umps-server")
 
+- [zheng环境搭建](http://blog.csdn.net/u011781521/article/details/79012311 "zheng环境搭建")
+
 ### 优秀文章和博客
 
 - [创业互联网公司如何搭建自己的技术框架](http://shuzheng5201314.iteye.com/blog/2330151 "创业互联网公司如何搭建自己的技术框架")
