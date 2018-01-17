@@ -427,6 +427,10 @@ maven编译安装zheng/pom.xml文件即可
 
 - [zheng环境搭建](http://blog.csdn.net/u011781521/article/details/79012311 "zheng环境搭建")
 
+- [让zheng支持activiti工作流](http://blog.csdn.net/ctmold/article/details/79082406 "让zheng支持activiti工作流")
+
+- [让zheng更完美地支持ajax提交的json数据](http://blog.csdn.net/ctmold/article/details/79081483 "让zheng更完美地支持ajax提交的json数据")
+
 ### 优秀文章和博客
 
 - [创业互联网公司如何搭建自己的技术框架](http://shuzheng5201314.iteye.com/blog/2330151 "创业互联网公司如何搭建自己的技术框架")
