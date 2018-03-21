@@ -51,11 +51,13 @@ public class MybatisGeneratorUtil {
 			Map<String, String> lastInsertIdTables) throws Exception{
 
 		String os = System.getProperty("os.name");
+		String basePath = MybatisGeneratorUtil.class.getResource("/").getPath().replace("/target/classes/", "").replace(targetProject, "");
 		if (os.toLowerCase().startsWith("win")) {
 			generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath().replaceFirst("/", "");
 			service_vm = MybatisGeneratorUtil.class.getResource(service_vm).getPath().replaceFirst("/", "");
 			serviceMock_vm = MybatisGeneratorUtil.class.getResource(serviceMock_vm).getPath().replaceFirst("/", "");
 			serviceImpl_vm = MybatisGeneratorUtil.class.getResource(serviceImpl_vm).getPath().replaceFirst("/", "");
+			basePath = basePath.replaceFirst("/", "");
 		} else {
 			generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath();
 			service_vm = MybatisGeneratorUtil.class.getResource(service_vm).getPath();
@@ -64,7 +66,6 @@ public class MybatisGeneratorUtil {
 		}
 
 		String targetProject = module + "/" + module + "-dao";
-		String basePath = MybatisGeneratorUtil.class.getResource("/").getPath().replace("/target/classes/", "").replace(targetProject, "").replaceFirst("/", "");
 		String generatorConfigXml = MybatisGeneratorUtil.class.getResource("/").getPath().replace("/target/classes/", "") + "/src/main/resources/generatorConfig.xml";
 		targetProject = basePath + targetProject;
 		String sql = "SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE table_schema = '" + database + "' AND table_name LIKE '" + tablePrefix + "_%';";
