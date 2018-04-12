@@ -19,6 +19,7 @@
     </properties>
 
     <modules>
+	
         <module>zheng-admin</module>
         <module>zheng-common</module>
         <module>zheng-oss</module>
@@ -33,5 +34,6 @@
         <module>zheng-eoms</module>
         <module>zheng-api</module>
         <module>zheng-demo</module>
+		
     </modules>
 </project>
