@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/aliyun/oss")
 public class AliyunOssController {
 
-	private static Logger _log = LoggerFactory.getLogger(AliyunOssController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AliyunOssController.class);
 
 	@Autowired
 	private AliyunOssService aliyunOssService;

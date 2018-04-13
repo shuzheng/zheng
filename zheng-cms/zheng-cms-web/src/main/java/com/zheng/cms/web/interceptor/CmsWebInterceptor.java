@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class CmsWebInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsWebInterceptor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CmsWebInterceptor.class);
 
     @Autowired
     private CmsMenuService cmsMenuService;
@@ -28,7 +28,7 @@ public class CmsWebInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 过滤ajax
-        if (null != request.getHeader("X-Requested-With") && request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
+        if (null != request.getHeader("X-Requested-With") && "XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With"))) {
             return true;
         }
         // zheng-ui静态资源配置信息

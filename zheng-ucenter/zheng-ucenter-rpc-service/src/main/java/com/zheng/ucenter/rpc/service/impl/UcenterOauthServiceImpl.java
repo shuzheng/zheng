@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UcenterOauthServiceImpl extends BaseServiceImpl<UcenterOauthMapper, UcenterOauth, UcenterOauthExample> implements UcenterOauthService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterOauthServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UcenterOauthServiceImpl.class);
 
     @Autowired
     UcenterOauthMapper ucenterOauthMapper;

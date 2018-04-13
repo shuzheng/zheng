@@ -11,6 +11,15 @@
 	<!-- 根目录'/'对应页面 -->
 	<mvc:view-controller path="/" view-name="/index.jsp"/>
 
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 公共拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.zheng.ucenter.web.interceptor.UcenterWebInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<context:property-placeholder location="classpath:config.properties"/>
 
 	<!-- thymeleaf视图 -->

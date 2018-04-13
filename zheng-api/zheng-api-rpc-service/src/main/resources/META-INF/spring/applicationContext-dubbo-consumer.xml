@@ -12,26 +12,26 @@
     <!-- 订阅服务 -->
     <dubbo:consumer check="false"/>
 
-    <!-- 系统 -->
-    <dubbo:reference id="upmsSystemService" interface="com.zheng.upms.rpc.api.UpmsSystemService" mock="true"/>
-    <!-- 组织 -->
-    <dubbo:reference id="upmsOrganizationService" interface="com.zheng.upms.rpc.api.UpmsOrganizationService" mock="true"/>
-    <!-- 用户 -->
-    <dubbo:reference id="upmsUserService" interface="com.zheng.upms.rpc.api.UpmsUserService" mock="true"/>
-    <!-- 角色 -->
-    <dubbo:reference id="upmsRoleService" interface="com.zheng.upms.rpc.api.UpmsRoleService" mock="true"/>
-    <!-- 权限 -->
-    <dubbo:reference id="upmsPermissionService" interface="com.zheng.upms.rpc.api.UpmsPermissionService" mock="true"/>
-    <!-- 接口服务 -->
-    <dubbo:reference id="upmsApiService" interface="com.zheng.upms.rpc.api.UpmsApiService" mock="true"/>
+    <!--&lt;!&ndash; 系统 &ndash;&gt;-->
+    <!--<dubbo:reference id="upmsSystemService" interface="com.zheng.upms.rpc.api.UpmsSystemService" mock="true"/>-->
+    <!--&lt;!&ndash; 组织 &ndash;&gt;-->
+    <!--<dubbo:reference id="upmsOrganizationService" interface="com.zheng.upms.rpc.api.UpmsOrganizationService" mock="true"/>-->
+    <!--&lt;!&ndash; 用户 &ndash;&gt;-->
+    <!--<dubbo:reference id="upmsUserService" interface="com.zheng.upms.rpc.api.UpmsUserService" mock="true"/>-->
+    <!--&lt;!&ndash; 角色 &ndash;&gt;-->
+    <!--<dubbo:reference id="upmsRoleService" interface="com.zheng.upms.rpc.api.UpmsRoleService" mock="true"/>-->
+    <!--&lt;!&ndash; 权限 &ndash;&gt;-->
+    <!--<dubbo:reference id="upmsPermissionService" interface="com.zheng.upms.rpc.api.UpmsPermissionService" mock="true"/>-->
+    <!--&lt;!&ndash; 接口服务 &ndash;&gt;-->
+    <!--<dubbo:reference id="upmsApiService" interface="com.zheng.upms.rpc.api.UpmsApiService" mock="true"/>-->
 
-    <!-- 文章 -->
-    <dubbo:reference id="cmsArticleService" interface="com.zheng.cms.rpc.api.CmsArticleService" mock="true"/>
-    <!-- 类目 -->
-    <dubbo:reference id="cmsCategoryService" interface="com.zheng.cms.rpc.api.CmsCategoryService" mock="true"/>
-    <!-- 评论 -->
-    <dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService" mock="true"/>
-    <!-- 标签 -->
-    <dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService" mock="true"/>
+    <!--&lt;!&ndash; 文章 &ndash;&gt;-->
+    <!--<dubbo:reference id="cmsArticleService" interface="com.zheng.cms.rpc.api.CmsArticleService" mock="true"/>-->
+    <!--&lt;!&ndash; 类目 &ndash;&gt;-->
+    <!--<dubbo:reference id="cmsCategoryService" interface="com.zheng.cms.rpc.api.CmsCategoryService" mock="true"/>-->
+    <!--&lt;!&ndash; 评论 &ndash;&gt;-->
+    <!--<dubbo:reference id="cmsCommentService" interface="com.zheng.cms.rpc.api.CmsCommentService" mock="true"/>-->
+    <!--&lt;!&ndash; 标签 &ndash;&gt;-->
+    <!--<dubbo:reference id="cmsTagService" interface="com.zheng.cms.rpc.api.CmsTagService" mock="true"/>-->
 
 </beans>

@@ -26,7 +26,7 @@ import java.util.Set;
  */
 public class UpmsRealm extends AuthorizingRealm {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsRealm.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsRealm.class);
 
     @Autowired
     private UpmsApiService upmsApiService;
@@ -87,7 +87,7 @@ public class UpmsRealm extends AuthorizingRealm {
         if (null == upmsUser) {
             throw new UnknownAccountException();
         }
-        if (!upmsUser.getPassword().equals(MD5Util.MD5(password + upmsUser.getSalt()))) {
+        if (!upmsUser.getPassword().equals(MD5Util.md5(password + upmsUser.getSalt()))) {
             throw new IncorrectCredentialsException();
         }
         if (upmsUser.getLocked() == 1) {

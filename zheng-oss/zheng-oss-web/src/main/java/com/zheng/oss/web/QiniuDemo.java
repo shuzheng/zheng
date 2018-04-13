@@ -12,17 +12,17 @@ import java.io.IOException;
  */
 public class QiniuDemo {
 	//设置好账号的ACCESS_KEY和SECRET_KEY
-	String ACCESS_KEY = "";
-	String SECRET_KEY = "";
+	String accessKey = "";
+	String secretKey = "";
 	//要上传的空间
 	String bucketname = "zheng";
 	//上传到七牛后保存的文件名
 	String key = "my-java.png";
 	//上传文件的路径
-	String FilePath = "C:\\Users\\admin\\Pictures\\zsz\\20161108161228.png";
+	String filePath = "C:\\Users\\admin\\Pictures\\zsz\\20161108161228.png";
 
 	//密钥配置
-	Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+	Auth auth = Auth.create(accessKey, secretKey);
 	//创建上传对象
 	UploadManager uploadManager = new UploadManager();
 
@@ -34,7 +34,7 @@ public class QiniuDemo {
 	public void upload() throws IOException {
 		try {
 			//调用put方法上传
-			Response res = uploadManager.put(FilePath, key, getUpToken());
+			Response res = uploadManager.put(filePath, key, getUpToken());
 			//打印返回的信息
 			System.out.println(res.bodyString());
 		} catch (QiniuException e) {

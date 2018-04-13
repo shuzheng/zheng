@@ -7,7 +7,7 @@
 
     <context:property-placeholder location="classpath:config.properties"/>
 
-    <!-- 支付宝手机网站支付 -->
+    <!-- 支付客户端 -->
     <bean id="alipayClient" class="com.alipay.api.DefaultAlipayClient">
         <constructor-arg value="${alipay.gateway}"/>
         <constructor-arg value="${alipay.appid}"/>
@@ -17,9 +17,32 @@
         <constructor-arg value="${alipay.alipay_public_key}"/>
         <constructor-arg value="${alipay.sign_type}"/>
     </bean>
-    <bean id="alipayRequest" class="com.alipay.api.request.AlipayTradeWapPayRequest">
+
+    <!-- 电脑网站支付 -->
+    <bean id="alipayTradePagePayRequest" class="com.alipay.api.request.AlipayTradePagePayRequest">
         <property name="returnUrl" value="${alipay.returnUrl}"/>
         <property name="notifyUrl" value="${alipay.notifyUrl}"/>
     </bean>
+
+    <!-- 手机网站支付 -->
+    <bean id="alipayTradeWapPayRequest" class="com.alipay.api.request.AlipayTradeWapPayRequest">
+        <property name="returnUrl" value="${alipay.returnUrl}"/>
+        <property name="notifyUrl" value="${alipay.notifyUrl}"/>
+    </bean>
+
+    <!-- 交易查询 -->
+    <bean id="alipayTradeQueryRequest" class="com.alipay.api.request.AlipayTradeQueryRequest"></bean>
+
+    <!-- 交易退款 -->
+    <bean id="alipayTradeRefundRequest" class="com.alipay.api.request.AlipayTradeRefundRequest"></bean>
+
+    <!-- 交易退款查询 -->
+    <bean id="alipayTradeFastpayRefundQueryRequest" class="com.alipay.api.request.AlipayTradeFastpayRefundQueryRequest"></bean>
+
+    <!-- 交易关闭 -->
+    <bean id="alipayTradeCloseRequest" class="com.alipay.api.request.AlipayTradeCloseRequest"></bean>
+
+    <!-- 查询对账单下载地址 -->
+    <bean id="alipayDataDataserviceBillDownloadurlQueryRequest" class="com.alipay.api.request.AlipayDataDataserviceBillDownloadurlQueryRequest"></bean>
 
 </beans>

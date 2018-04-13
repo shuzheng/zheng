@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping(value = "/topic")
 public class TopicController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(TopicController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TopicController.class);
 
     @Autowired
     private CmsTopicService cmsTopicService;

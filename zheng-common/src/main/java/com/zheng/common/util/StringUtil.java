@@ -39,20 +39,11 @@ public class StringUtil {
     }
 
     /**
-     * 驼峰转下划线(简单写法，效率低于{@link #humpToLine2(String)})
-     * @param str
-     * @return
-     */
-    public static String humpToLine(String str) {
-        return str.replaceAll("[A-Z]", "_$0").toLowerCase();
-    }
-
-    /**
      * 驼峰转下划线,效率比上面高
      * @param str
      * @return
      */
-    public static String humpToLine2(String str) {
+    public static String humpToLine(String str) {
         Matcher matcher = humpPattern.matcher(str);
         StringBuffer sb = new StringBuffer();
         while (matcher.find()) {
@@ -60,6 +51,15 @@ public class StringUtil {
         }
         matcher.appendTail(sb);
         return sb.toString();
+    }
+
+    /**
+     * 驼峰转下划线(简单写法，效率低于{@link #humpToLine(String)})
+     * @param str
+     * @return
+     */
+    public static String humpToLine2(String str) {
+        return str.replaceAll("[A-Z]", "_$0").toLowerCase();
     }
 
     /**

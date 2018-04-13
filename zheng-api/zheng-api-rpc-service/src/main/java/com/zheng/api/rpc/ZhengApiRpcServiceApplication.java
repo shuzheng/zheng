@@ -10,12 +10,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ZhengApiRpcServiceApplication {
 
-	private static Logger _log = LoggerFactory.getLogger(ZhengApiRpcServiceApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZhengApiRpcServiceApplication.class);
 
-	public static void main(String[] args) {
-		_log.info(">>>>> zheng-api-rpc-service 正在启动 <<<<<");
-		new ClassPathXmlApplicationContext("classpath:META-INF/spring/*.xml");
-		_log.info(">>>>> zheng-api-rpc-service 启动完成 <<<<<");
-	}
-
+    public static void main(String[] args) {
+        LOGGER.info(">>>>> zheng-api-rpc-service 正在启动 <<<<<");
+        new ClassPathXmlApplicationContext("classpath:META-INF/spring/*.xml");
+        LOGGER.info(">>>>> zheng-api-rpc-service 启动完成 <<<<<");
+    }
 }

@@ -9,7 +9,21 @@ import org.apache.shiro.session.mgt.SimpleSession;
 public class UpmsSession extends SimpleSession {
 
     public static enum OnlineStatus {
-        on_line("在线"), off_line("离线"), force_logout("强制退出");
+        /**
+         * 在线
+         */
+        on_line("在线"),
+
+        /**
+         * 离线
+         */
+        off_line("离线"),
+
+        /**
+         * 强制退出
+         */
+        force_logout("强制退出");
+
         private final String info;
 
         private OnlineStatus(String info) {

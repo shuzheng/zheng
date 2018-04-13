@@ -14,6 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UcenterApiServiceImpl implements UcenterApiService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterApiServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UcenterApiServiceImpl.class);
 
 }

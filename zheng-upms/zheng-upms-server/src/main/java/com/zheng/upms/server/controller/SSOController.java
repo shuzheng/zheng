@@ -1,11 +1,13 @@
 package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
+import com.zheng.common.util.PropertiesFileUtil;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.upms.client.shiro.session.UpmsSession;
 import com.zheng.upms.client.shiro.session.UpmsSessionDao;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
+import com.zheng.upms.dao.model.UpmsSystem;
 import com.zheng.upms.dao.model.UpmsSystemExample;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import com.zheng.upms.rpc.api.UpmsUserService;
@@ -43,7 +45,7 @@ import java.util.UUID;
 @Api(value = "单点登录管理", description = "单点登录管理")
 public class SSOController extends BaseController {
 
-    private final static Logger _log = LoggerFactory.getLogger(SSOController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SSOController.class);
     // 全局会话key
     private final static String ZHENG_UPMS_SERVER_SESSION_ID = "zheng-upms-server-session-id";
     // 全局会话key列表
@@ -101,7 +103,7 @@ public class SSOController extends BaseController {
                     backurl += "?upms_code=" + code + "&upms_username=" + username;
                 }
             }
-            _log.debug("认证中心帐号通过，带code回跳：{}", backurl);
+            LOGGER.debug("认证中心帐号通过，带code回跳：{}", backurl);
             return "redirect:" + backurl;
         }
         return "/sso/login.jsp";
@@ -157,7 +159,9 @@ public class SSOController extends BaseController {
         // 回跳登录前地址
         String backurl = request.getParameter("backurl");
         if (StringUtils.isBlank(backurl)) {
-            return new UpmsResult(UpmsResultConstant.SUCCESS, "/");
+            UpmsSystem upmsSystem = upmsSystemService.selectUpmsSystemByName(PropertiesFileUtil.getInstance().get("app.name"));
+            backurl = null == upmsSystem ? "/" : upmsSystem.getBasepath();
+            return new UpmsResult(UpmsResultConstant.SUCCESS, backurl);
         } else {
             return new UpmsResult(UpmsResultConstant.SUCCESS, backurl);
         }

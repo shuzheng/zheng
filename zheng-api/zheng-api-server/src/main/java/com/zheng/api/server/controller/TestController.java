@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Api(value = "test", description = "test")
 public class TestController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(TestController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
 	@Autowired
 	private ApiService apiService;

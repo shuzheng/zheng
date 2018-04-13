@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>用户中心</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css/bootstrap.min.css'}">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_ay4w4j5c2tke29.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{${uiPath} + ${appName} + '/css/style.css'}">
 </head>
 <body class="login-page">
 <div class="login-box">
@@ -21,7 +21,7 @@
                 <i class="iconfont icon-icon053"></i> <span>登录</span>
             </div>
             <div class="col-xs-6" style="text-align: right">
-                <a href="reg.html">注册</a>
+                <a href="signup">注册</a>
             </div>
         </div>
         <!-- Nav tabs -->
@@ -55,7 +55,7 @@
                             <div class="col-xs-6" style="text-align: right">
                                 <div class="checkbox icheck">
                                     <label>
-                                        <a href="password.html">忘记密码？</a>
+                                        <a href="password_reset">忘记密码？</a>
                                     </label>
                                 </div>
                             </div>
@@ -132,7 +132,9 @@
 </div>
 <!-- /.login-box -->
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script>var BASE_PATH = '[[${#httpServletRequest.getContextPath()}]]';</script>
+<script>var BACK_URL = '[[${#httpServletRequest.getParameter("backurl")}]]';</script>
+<script src="js/jquery.min.js" th:src="@{${uiPath} + ${appName} + '/js/jquery.min.js'}"></script>
+<script src="js/bootstrap.min.js" th:src="@{${uiPath} + ${appName} + '/js/bootstrap.min.js'}"></script>
 </body>
 </html>

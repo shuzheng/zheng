@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class CmsArticleTagServiceImpl extends BaseServiceImpl<CmsArticleTagMapper, CmsArticleTag, CmsArticleTagExample> implements CmsArticleTagService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsArticleTagServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CmsArticleTagServiceImpl.class);
 
     @Autowired
     CmsArticleTagMapper cmsArticleTagMapper;

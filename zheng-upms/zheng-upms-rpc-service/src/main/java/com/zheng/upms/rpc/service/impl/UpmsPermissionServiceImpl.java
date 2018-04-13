@@ -27,7 +27,7 @@ import java.util.List;
 @BaseService
 public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMapper, UpmsPermission, UpmsPermissionExample> implements UpmsPermissionService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsPermissionServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsPermissionServiceImpl.class);
 
     @Autowired
     UpmsSystemMapper upmsSystemMapper;
@@ -70,11 +70,15 @@ public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMap
                         .andSystemIdEqualTo(((JSONObject) system).getIntValue("id"));
                 upmsPermissionExample.setOrderByClause("orders asc");
                 List<UpmsPermission> upmsPermissions = upmsPermissionMapper.selectByExample(upmsPermissionExample);
-                if (upmsPermissions.size() == 0) continue;
+                if (upmsPermissions.size() == 0) {
+                    continue;
+                }
                 // 目录
                 JSONArray folders = new JSONArray();
                 for (UpmsPermission upmsPermission: upmsPermissions) {
-                    if (upmsPermission.getPid().intValue() != 0 || upmsPermission.getType() != 1) continue;
+                    if (upmsPermission.getPid().intValue() != 0 || upmsPermission.getType() != 1) {
+                        continue;
+                    }
                     JSONObject node = new JSONObject();
                     node.put("id", upmsPermission.getPermissionId());
                     node.put("name", upmsPermission.getName());
@@ -89,7 +93,9 @@ public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMap
                     JSONArray menus = new JSONArray();
                     for (Object folder : folders) {
                         for (UpmsPermission upmsPermission2: upmsPermissions) {
-                            if (upmsPermission2.getPid().intValue() != ((JSONObject) folder).getIntValue("id") || upmsPermission2.getType() != 2) continue;
+                            if (upmsPermission2.getPid().intValue() != ((JSONObject) folder).getIntValue("id") || upmsPermission2.getType() != 2) {
+                                continue;
+                            }
                             JSONObject node2 = new JSONObject();
                             node2.put("id", upmsPermission2.getPermissionId());
                             node2.put("name", upmsPermission2.getName());
@@ -104,7 +110,9 @@ public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMap
                             JSONArray buttons = new JSONArray();
                             for (Object menu : menus) {
                                 for (UpmsPermission upmsPermission3: upmsPermissions) {
-                                    if (upmsPermission3.getPid().intValue() != ((JSONObject) menu).getIntValue("id") || upmsPermission3.getType() != 3) continue;
+                                    if (upmsPermission3.getPid().intValue() != ((JSONObject) menu).getIntValue("id") || upmsPermission3.getType() != 3) {
+                                        continue;
+                                    }
                                     JSONObject node3 = new JSONObject();
                                     node3.put("id", upmsPermission3.getPermissionId());
                                     node3.put("name", upmsPermission3.getName());
@@ -169,11 +177,15 @@ public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMap
                         .andSystemIdEqualTo(((JSONObject) system).getIntValue("id"));
                 upmsPermissionExample.setOrderByClause("orders asc");
                 List<UpmsPermission> upmsPermissions = upmsPermissionMapper.selectByExample(upmsPermissionExample);
-                if (upmsPermissions.size() == 0) continue;
+                if (upmsPermissions.size() == 0) {
+                    continue;
+                }
                 // 目录
                 JSONArray folders = new JSONArray();
                 for (UpmsPermission upmsPermission: upmsPermissions) {
-                    if (upmsPermission.getPid().intValue() != 0 || upmsPermission.getType() != 1) continue;
+                    if (upmsPermission.getPid().intValue() != 0 || upmsPermission.getType() != 1) {
+                        continue;
+                    }
                     JSONObject node = new JSONObject();
                     node.put("id", upmsPermission.getPermissionId());
                     node.put("name", upmsPermission.getName());
@@ -188,7 +200,9 @@ public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMap
                     JSONArray menus = new JSONArray();
                     for (Object folder : folders) {
                         for (UpmsPermission upmsPermission2: upmsPermissions) {
-                            if (upmsPermission2.getPid().intValue() != ((JSONObject) folder).getIntValue("id") || upmsPermission2.getType() != 2) continue;
+                            if (upmsPermission2.getPid().intValue() != ((JSONObject) folder).getIntValue("id") || upmsPermission2.getType() != 2) {
+                                continue;
+                            }
                             JSONObject node2 = new JSONObject();
                             node2.put("id", upmsPermission2.getPermissionId());
                             node2.put("name", upmsPermission2.getName());
@@ -203,7 +217,9 @@ public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMap
                             JSONArray buttons = new JSONArray();
                             for (Object menu : menus) {
                                 for (UpmsPermission upmsPermission3: upmsPermissions) {
-                                    if (upmsPermission3.getPid().intValue() != ((JSONObject) menu).getIntValue("id") || upmsPermission3.getType() != 3) continue;
+                                    if (upmsPermission3.getPid().intValue() != ((JSONObject) menu).getIntValue("id") || upmsPermission3.getType() != 3) {
+                                        continue;
+                                    }
                                     JSONObject node3 = new JSONObject();
                                     node3.put("id", upmsPermission3.getPermissionId());
                                     node3.put("name", upmsPermission3.getName());

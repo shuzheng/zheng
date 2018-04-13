@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class PayOutOrderServiceImpl extends BaseServiceImpl<PayOutOrderMapper, PayOutOrder, PayOutOrderExample> implements PayOutOrderService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayOutOrderServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(PayOutOrderServiceImpl.class);
 
     @Autowired
     PayOutOrderMapper payOutOrderMapper;

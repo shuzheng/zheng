@@ -27,7 +27,7 @@ import java.util.List;
 @Api(value = "后台管理", description = "后台管理")
 public class ManageController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ManageController.class);
 
 	@Autowired
 	private UpmsSystemService upmsSystemService;

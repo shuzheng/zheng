@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping(value = "/qa")
 public class QaController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(QaController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QaController.class);
     private static String CODE = "qa";
     private static Integer USERID = 1;
 

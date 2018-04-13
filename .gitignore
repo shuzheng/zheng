@@ -11,3 +11,5 @@ generatorConfig.xml
 .DS_Store
 *.cache
 *.lock
+/build/
+*.settings

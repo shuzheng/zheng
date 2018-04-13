@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class MapSchedule implements IScheduleTaskDealSingle<Map> {
 
-    private static Logger _log = LoggerFactory.getLogger(MapSchedule.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MapSchedule.class);
 
     /**
      * 执行单个任务
@@ -23,7 +23,7 @@ public class MapSchedule implements IScheduleTaskDealSingle<Map> {
      */
     @Override
     public boolean execute(Map item, String ownSign) throws Exception {
-        _log.info("执行任务：{}", item);
+        LOGGER.info("执行任务：{}", item);
         return true;
     }
 
@@ -40,7 +40,7 @@ public class MapSchedule implements IScheduleTaskDealSingle<Map> {
     @Override
     public List<Map> selectTasks(String taskParameter, String ownSign, int taskItemNum, List<TaskItemDefine> taskItemList, int eachFetchDataNum) throws Exception {
         List<Map> allDrawList = new ArrayList<>();
-        Map map = new HashMap();
+        Map map = new HashMap(1);
         map.put("ID", System.currentTimeMillis());
         allDrawList.add(map);
         return allDrawList;
@@ -53,11 +53,14 @@ public class MapSchedule implements IScheduleTaskDealSingle<Map> {
     @Override
     public Comparator<Map> getComparator() {
         return new Comparator<Map>() {
+            @Override
             public int compare(Map o1, Map o2) {
                 Long l1 = (Long) o1.get("ID");
                 Long l2 = (Long) o2.get("ID");
                 return l1.compareTo(l2);
             }
+
+            @Override
             public boolean equals(Object obj) {
                 return this == obj;
             }

@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(IndexController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private CmsMenuService cmsMenuService;

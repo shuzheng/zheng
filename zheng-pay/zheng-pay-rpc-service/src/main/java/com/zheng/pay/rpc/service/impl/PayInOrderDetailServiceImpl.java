@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class PayInOrderDetailServiceImpl extends BaseServiceImpl<PayInOrderDetailMapper, PayInOrderDetail, PayInOrderDetailExample> implements PayInOrderDetailService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayInOrderDetailServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PayInOrderDetailServiceImpl.class);
 
     @Autowired
     PayInOrderDetailMapper payInOrderDetailMapper;

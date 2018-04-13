@@ -20,6 +20,7 @@ public class JmsUtil {
      */
     public static void sendMessage(JmsTemplate jmsTemplate, Destination destination, final String textMessage) {
         jmsTemplate.send(destination, new MessageCreator() {
+            @Override
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage(textMessage);
             }
@@ -34,6 +35,7 @@ public class JmsUtil {
      */
     public static void sendMessage(JmsTemplate jmsTemplate, Destination destination, final Serializable objectMessage) {
         jmsTemplate.send(destination, new MessageCreator() {
+            @Override
             public Message createMessage(Session session) throws JMSException {
                 return session.createObjectMessage(objectMessage);
             }
@@ -49,6 +51,7 @@ public class JmsUtil {
      */
     public static void sendMessageDelay(JmsTemplate jmsTemplate, Destination destination, final Serializable objectMessage, final long delay) {
         jmsTemplate.send(destination, new MessageCreator() {
+            @Override
             public Message createMessage(Session session) throws JMSException {
                 ObjectMessage om = session.createObjectMessage(objectMessage);
                 om.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
