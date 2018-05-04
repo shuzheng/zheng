@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DemoInterceptor extends HandlerInterceptorAdapter {
 
     @SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(DemoInterceptor.class);
+	private static Logger logger = LoggerFactory.getLogger(DemoInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

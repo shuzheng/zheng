@@ -26,7 +26,7 @@ import java.util.Set;
 public class UpmsRealm extends AuthorizingRealm {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsRealm.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsRealm.class);
 
 	@Autowired
 	private UpmsApiService upmsApiService;

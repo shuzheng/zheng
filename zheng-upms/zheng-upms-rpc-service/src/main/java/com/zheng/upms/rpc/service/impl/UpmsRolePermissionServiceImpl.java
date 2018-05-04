@@ -28,7 +28,7 @@ public class UpmsRolePermissionServiceImpl
 		implements UpmsRolePermissionService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsRolePermissionServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsRolePermissionServiceImpl.class);
 
 	@Autowired
 	UpmsRolePermissionMapper upmsRolePermissionMapper;

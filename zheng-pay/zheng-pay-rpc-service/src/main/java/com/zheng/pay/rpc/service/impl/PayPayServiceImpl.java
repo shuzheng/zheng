@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PayPayServiceImpl extends BaseServiceImpl<PayPayMapper, PayPay, PayPayExample> implements PayPayService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(PayPayServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(PayPayServiceImpl.class);
 
 	@Autowired
 	PayPayMapper payPayMapper;

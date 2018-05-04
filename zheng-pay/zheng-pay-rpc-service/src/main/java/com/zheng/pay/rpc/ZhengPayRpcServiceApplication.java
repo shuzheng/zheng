@@ -9,13 +9,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ZhengPayRpcServiceApplication {
 
-	private static Logger _log = LoggerFactory.getLogger(ZhengPayRpcServiceApplication.class);
+	private static Logger logger = LoggerFactory.getLogger(ZhengPayRpcServiceApplication.class);
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		_log.info(">>>>> zheng-pay-rpc-service 正在启动 <<<<<");
+		logger.info(">>>>> zheng-pay-rpc-service 正在启动 <<<<<");
 		new ClassPathXmlApplicationContext("classpath:META-INF/spring/*.xml");
-		_log.info(">>>>> zheng-pay-rpc-service 启动完成 <<<<<");
+		logger.info(">>>>> zheng-pay-rpc-service 启动完成 <<<<<");
 	}
 
 }

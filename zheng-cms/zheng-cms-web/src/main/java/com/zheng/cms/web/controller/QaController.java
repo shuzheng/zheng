@@ -45,7 +45,7 @@ import com.zheng.common.util.RequestUtil;
 public class QaController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(QaController.class);
+	private static Logger logger = LoggerFactory.getLogger(QaController.class);
 	private static String CODE = "qa";
 	private static Integer USERID = 1;
 

@@ -23,7 +23,7 @@ public class PayInOrderDetailServiceImpl
 		implements PayInOrderDetailService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(PayInOrderDetailServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(PayInOrderDetailServiceImpl.class);
 
 	@Autowired
 	PayInOrderDetailMapper payInOrderDetailMapper;

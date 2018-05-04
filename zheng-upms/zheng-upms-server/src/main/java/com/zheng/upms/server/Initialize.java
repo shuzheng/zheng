@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
  */
 public class Initialize implements BaseInterface {
 
-	private static Logger _log = LoggerFactory.getLogger(Initialize.class);
+	private static Logger logger = LoggerFactory.getLogger(Initialize.class);
 
 	@Override
 	public void init() {
-		_log.info(">>>>> 系统初始化");
+		logger.info(">>>>> 系统初始化");
 	}
 
 }

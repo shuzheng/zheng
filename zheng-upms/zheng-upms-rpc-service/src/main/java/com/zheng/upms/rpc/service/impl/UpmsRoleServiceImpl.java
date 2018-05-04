@@ -22,7 +22,7 @@ public class UpmsRoleServiceImpl extends BaseServiceImpl<UpmsRoleMapper, UpmsRol
 		implements UpmsRoleService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsRoleServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsRoleServiceImpl.class);
 
 	@Autowired
 	UpmsRoleMapper upmsRoleMapper;

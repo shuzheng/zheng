@@ -22,7 +22,7 @@ public class CmsSystemServiceImpl extends BaseServiceImpl<CmsSystemMapper, CmsSy
 		implements CmsSystemService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsSystemServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsSystemServiceImpl.class);
 
 	@Autowired
 	CmsSystemMapper cmsSystemMapper;

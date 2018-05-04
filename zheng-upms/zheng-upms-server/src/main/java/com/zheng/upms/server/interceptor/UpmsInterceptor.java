@@ -22,7 +22,7 @@ import com.zheng.upms.rpc.api.UpmsApiService;
 public class UpmsInterceptor extends HandlerInterceptorAdapter {
 
     @SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsInterceptor.class);
     private static final String ZHENG_OSS_ALIYUN_OSS_POLICY = PropertiesFileUtil.getInstance("zheng-oss-client").get("zheng.oss.aliyun.oss.policy");
 
     @Autowired

@@ -22,7 +22,7 @@ public class CmsTopicServiceImpl extends BaseServiceImpl<CmsTopicMapper, CmsTopi
 		implements CmsTopicService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsTopicServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsTopicServiceImpl.class);
 
 	@Autowired
 	CmsTopicMapper cmsTopicMapper;

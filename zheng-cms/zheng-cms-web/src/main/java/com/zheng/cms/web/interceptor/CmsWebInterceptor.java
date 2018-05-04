@@ -20,7 +20,7 @@ import java.util.List;
 public class CmsWebInterceptor extends HandlerInterceptorAdapter {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsWebInterceptor.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsWebInterceptor.class);
 
 	@Autowired
 	private CmsMenuService cmsMenuService;

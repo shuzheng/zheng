@@ -23,7 +23,7 @@ public class UcenterUserOauthServiceImpl
 		implements UcenterUserOauthService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UcenterUserOauthServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UcenterUserOauthServiceImpl.class);
 
 	@Autowired
 	UcenterUserOauthMapper ucenterUserOauthMapper;

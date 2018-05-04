@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ManageInterceptor extends HandlerInterceptorAdapter {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(ManageInterceptor.class);
+	private static Logger logger = LoggerFactory.getLogger(ManageInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

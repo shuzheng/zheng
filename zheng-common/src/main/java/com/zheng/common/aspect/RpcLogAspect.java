@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RpcLogAspect {
 
-	private static Logger _log = LoggerFactory.getLogger(RpcLogAspect.class);
+	private static Logger logger = LoggerFactory.getLogger(RpcLogAspect.class);
 
 	// 开始时间
 	@SuppressWarnings("unused")
@@ -25,13 +25,13 @@ public class RpcLogAspect {
 
 	@Before("execution(* *..rpc..*.*(..))")
 	public void doBeforeInServiceLayer(JoinPoint joinPoint) {
-		_log.debug("doBeforeInServiceLayer");
+		logger.debug("doBeforeInServiceLayer");
 		startTime = System.currentTimeMillis();
 	}
 
 	@After("execution(* *..rpc..*.*(..))")
 	public void doAfterInServiceLayer(JoinPoint joinPoint) {
-		_log.debug("doAfterInServiceLayer");
+		logger.debug("doAfterInServiceLayer");
 	}
 
 	@Around("execution(* *..rpc..*.*(..))")
@@ -43,7 +43,7 @@ public class RpcLogAspect {
 		String ip = RpcContext.getContext().getRemoteHost();
 		// 服务url
 		String rpcUrl = RpcContext.getContext().getUrl().getParameter("application");
-		_log.info("consumerSide={}, ip={}, url={}", consumerSide, ip, rpcUrl);
+		logger.info("consumerSide={}, ip={}, url={}", consumerSide, ip, rpcUrl);
 		return result;
 	}
 

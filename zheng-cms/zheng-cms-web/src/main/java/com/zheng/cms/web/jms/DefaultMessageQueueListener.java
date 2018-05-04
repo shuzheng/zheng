@@ -14,7 +14,7 @@ import javax.jms.TextMessage;
  */
 public class DefaultMessageQueueListener implements MessageListener {
 
-	private static Logger _log = LoggerFactory.getLogger(DefaultMessageQueueListener.class);
+	private static Logger logger = LoggerFactory.getLogger(DefaultMessageQueueListener.class);
 
 	@Autowired
 	ThreadPoolTaskExecutor threadPoolTaskExecutor;
@@ -26,7 +26,7 @@ public class DefaultMessageQueueListener implements MessageListener {
 				TextMessage textMessage = (TextMessage) message;
 				try {
 					String text = textMessage.getText();
-					_log.info("消费：{}", text);
+					logger.info("消费：{}", text);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

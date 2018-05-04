@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AliyunOssController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(AliyunOssController.class);
+	private static Logger logger = LoggerFactory.getLogger(AliyunOssController.class);
 
 	@Autowired
 	private AliyunOssService aliyunOssService;

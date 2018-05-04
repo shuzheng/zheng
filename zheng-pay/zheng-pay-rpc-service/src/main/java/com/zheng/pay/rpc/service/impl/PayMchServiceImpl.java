@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PayMchServiceImpl extends BaseServiceImpl<PayMchMapper, PayMch, PayMchExample> implements PayMchService {
 
     @SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(PayMchServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(PayMchServiceImpl.class);
 
     @Autowired
     PayMchMapper payMchMapper;

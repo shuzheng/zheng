@@ -115,62 +115,62 @@ public class UcenterUserLogExample implements Serializable {
         }
 
         public Criteria andUserLogIdIsNull() {
-            addCriterion("user_log_id is null");
+            addCriterion("userlogger_id is null");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdIsNotNull() {
-            addCriterion("user_log_id is not null");
+            addCriterion("userlogger_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdEqualTo(Integer value) {
-            addCriterion("user_log_id =", value, "userLogId");
+            addCriterion("userlogger_id =", value, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdNotEqualTo(Integer value) {
-            addCriterion("user_log_id <>", value, "userLogId");
+            addCriterion("userlogger_id <>", value, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdGreaterThan(Integer value) {
-            addCriterion("user_log_id >", value, "userLogId");
+            addCriterion("userlogger_id >", value, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_log_id >=", value, "userLogId");
+            addCriterion("userlogger_id >=", value, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdLessThan(Integer value) {
-            addCriterion("user_log_id <", value, "userLogId");
+            addCriterion("userlogger_id <", value, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_log_id <=", value, "userLogId");
+            addCriterion("userlogger_id <=", value, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdIn(List<Integer> values) {
-            addCriterion("user_log_id in", values, "userLogId");
+            addCriterion("userlogger_id in", values, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdNotIn(List<Integer> values) {
-            addCriterion("user_log_id not in", values, "userLogId");
+            addCriterion("userlogger_id not in", values, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_log_id between", value1, value2, "userLogId");
+            addCriterion("userlogger_id between", value1, value2, "userLogId");
             return (Criteria) this;
         }
 
         public Criteria andUserLogIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_log_id not between", value1, value2, "userLogId");
+            addCriterion("userlogger_id not between", value1, value2, "userLogId");
             return (Criteria) this;
         }
 

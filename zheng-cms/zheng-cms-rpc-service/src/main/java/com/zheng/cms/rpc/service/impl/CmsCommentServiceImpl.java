@@ -22,7 +22,7 @@ public class CmsCommentServiceImpl extends BaseServiceImpl<CmsCommentMapper, Cms
 		implements CmsCommentService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsCommentServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsCommentServiceImpl.class);
 
 	@Autowired
 	CmsCommentMapper cmsCommentMapper;

@@ -28,7 +28,7 @@ public class UpmsPermissionServiceImpl extends
 		BaseServiceImpl<UpmsPermissionMapper, UpmsPermission, UpmsPermissionExample> implements UpmsPermissionService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsPermissionServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsPermissionServiceImpl.class);
 
 	@Autowired
 	UpmsSystemMapper upmsSystemMapper;

@@ -22,7 +22,7 @@ public class UpmsUserServiceImpl extends BaseServiceImpl<UpmsUserMapper, UpmsUse
 		implements UpmsUserService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsUserServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsUserServiceImpl.class);
 
 	@Autowired
 	UpmsUserMapper upmsUserMapper;

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(TestController.class);
+	private static Logger logger = LoggerFactory.getLogger(TestController.class);
 
 	@Autowired
 	private ApiService apiService;

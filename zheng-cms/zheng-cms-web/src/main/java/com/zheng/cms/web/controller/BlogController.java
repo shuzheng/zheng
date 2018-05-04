@@ -45,7 +45,7 @@ import com.zheng.common.util.RequestUtil;
 public class BlogController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(BlogController.class);
+	private static Logger logger = LoggerFactory.getLogger(BlogController.class);
 	private static String CODE = "blog";
 	private static Integer USERID = 1;
 

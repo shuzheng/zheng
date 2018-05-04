@@ -22,7 +22,7 @@ public class CmsSettingServiceImpl extends BaseServiceImpl<CmsSettingMapper, Cms
 		implements CmsSettingService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
 
 	@Autowired
 	CmsSettingMapper cmsSettingMapper;

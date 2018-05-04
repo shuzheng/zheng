@@ -22,7 +22,7 @@ public class UcenterUserLogServiceImpl extends
 		BaseServiceImpl<UcenterUserLogMapper, UcenterUserLog, UcenterUserLogExample> implements UcenterUserLogService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UcenterUserLogServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UcenterUserLogServiceImpl.class);
 
 	@Autowired
 	UcenterUserLogMapper ucenterUserLogMapper;

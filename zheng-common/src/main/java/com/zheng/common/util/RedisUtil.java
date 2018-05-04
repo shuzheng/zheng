@@ -18,7 +18,7 @@ public class RedisUtil {
 	protected static ReentrantLock lockPool = new ReentrantLock();
 	protected static ReentrantLock lockJedis = new ReentrantLock();
 
-	private static Logger _log = LoggerFactory.getLogger(RedisUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(RedisUtil.class);
 
 	// Redis服务器IP
 	private static String IP = PropertiesFileUtil.getInstance("redis").get("master.redis.ip");
@@ -65,7 +65,7 @@ public class RedisUtil {
 			config.setTestOnBorrow(TEST_ON_BORROW);
 			jedisPool = new JedisPool(config, IP, PORT, TIMEOUT);
 		} catch (Exception e) {
-			_log.error("First create JedisPool error : " + e);
+			logger.error("First create JedisPool error : " + e);
 		}
 	}
 
@@ -96,7 +96,7 @@ public class RedisUtil {
 				}
 			}
 		} catch (Exception e) {
-			_log.error("Get jedis error : " + e);
+			logger.error("Get jedis error : " + e);
 		}
 		return jedis;
 	}
@@ -113,7 +113,7 @@ public class RedisUtil {
 			jedis.set(key, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set key error : " + e);
+			logger.error("Set key error : " + e);
 		}
 	}
 
@@ -128,7 +128,7 @@ public class RedisUtil {
 			jedis.set(key, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set key error : " + e);
+			logger.error("Set key error : " + e);
 		}
 	}
 
@@ -145,7 +145,7 @@ public class RedisUtil {
 			jedis.setex(key, seconds, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set keyex error : " + e);
+			logger.error("Set keyex error : " + e);
 		}
 	}
 
@@ -162,7 +162,7 @@ public class RedisUtil {
 			jedis.expire(key, seconds);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set key error : " + e);
+			logger.error("Set key error : " + e);
 		}
 	}
 
@@ -206,7 +206,7 @@ public class RedisUtil {
 			jedis.del(key);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Remove keyex error : " + e);
+			logger.error("Remove keyex error : " + e);
 		}
 	}
 
@@ -220,7 +220,7 @@ public class RedisUtil {
 			jedis.del(key);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Remove keyex error : " + e);
+			logger.error("Remove keyex error : " + e);
 		}
 	}
 
@@ -235,7 +235,7 @@ public class RedisUtil {
 			jedis.lpush(key, strings);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("lpush error : " + e);
+			logger.error("lpush error : " + e);
 		}
 	}
 
@@ -251,7 +251,7 @@ public class RedisUtil {
 			jedis.lrem(key, count, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("lpush error : " + e);
+			logger.error("lpush error : " + e);
 		}
 	}
 
@@ -268,7 +268,7 @@ public class RedisUtil {
 			jedis.expire(key, seconds);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("sadd error : " + e);
+			logger.error("sadd error : " + e);
 		}
 	}
 

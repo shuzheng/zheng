@@ -10,6 +10,6 @@ import org.slf4j.LoggerFactory;
 public class UcenterApiServiceMock implements UcenterApiService {
 
     @SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UcenterApiServiceMock.class);
+	private static Logger logger = LoggerFactory.getLogger(UcenterApiServiceMock.class);
 
 }

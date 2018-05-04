@@ -34,7 +34,7 @@ import java.util.Map;
 public class CmsMenuController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsMenuController.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsMenuController.class);
 
 	@Autowired
 	private CmsMenuService cmsMenuService;

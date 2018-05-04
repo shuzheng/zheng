@@ -22,7 +22,7 @@ public class CmsPageServiceImpl extends BaseServiceImpl<CmsPageMapper, CmsPage, 
 		implements CmsPageService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsPageServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsPageServiceImpl.class);
 
 	@Autowired
 	CmsPageMapper cmsPageMapper;

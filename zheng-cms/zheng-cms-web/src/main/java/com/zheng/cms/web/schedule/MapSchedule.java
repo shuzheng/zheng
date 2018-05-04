@@ -13,7 +13,7 @@ import java.util.*;
 @SuppressWarnings("rawtypes")
 public class MapSchedule implements IScheduleTaskDealSingle<Map> {
 
-	private static Logger _log = LoggerFactory.getLogger(MapSchedule.class);
+	private static Logger logger = LoggerFactory.getLogger(MapSchedule.class);
 
 	/**
 	 * 执行单个任务
@@ -26,7 +26,7 @@ public class MapSchedule implements IScheduleTaskDealSingle<Map> {
 	 */
 	@Override
 	public boolean execute(Map item, String ownSign) throws Exception {
-		_log.info("执行任务：{}", item);
+		logger.info("执行任务：{}", item);
 		return true;
 	}
 

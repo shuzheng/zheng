@@ -22,7 +22,7 @@ public class UpmsLogServiceImpl extends BaseServiceImpl<UpmsLogMapper, UpmsLog, 
 		implements UpmsLogService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsLogServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsLogServiceImpl.class);
 
 	@Autowired
 	UpmsLogMapper upmsLogMapper;

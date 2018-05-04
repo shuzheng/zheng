@@ -22,7 +22,7 @@ public class CmsMenuServiceImpl extends BaseServiceImpl<CmsMenuMapper, CmsMenu, 
 		implements CmsMenuService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsMenuServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsMenuServiceImpl.class);
 
 	@Autowired
 	CmsMenuMapper cmsMenuMapper;

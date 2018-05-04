@@ -34,7 +34,7 @@ import java.util.Map;
 public class CmsCategoryController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsCategoryController.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsCategoryController.class);
 
 	@Autowired
 	private CmsCategoryService cmsCategoryService;

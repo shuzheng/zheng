@@ -46,7 +46,7 @@ import com.zheng.common.util.RequestUtil;
 public class NewsController extends BaseController {
 
     @SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(NewsController.class);
+	private static Logger logger = LoggerFactory.getLogger(NewsController.class);
     private static String CODE = "news";
     private static Integer USERID = 1;
 

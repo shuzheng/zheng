@@ -22,7 +22,7 @@ public class PayVestServiceImpl extends BaseServiceImpl<PayVestMapper, PayVest, 
 		implements PayVestService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(PayVestServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(PayVestServiceImpl.class);
 
 	@Autowired
 	PayVestMapper payVestMapper;

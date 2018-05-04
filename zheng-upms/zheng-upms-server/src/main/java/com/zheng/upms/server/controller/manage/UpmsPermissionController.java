@@ -47,7 +47,7 @@ import io.swagger.annotations.ApiOperation;
 public class UpmsPermissionController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsPermissionController.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsPermissionController.class);
 
 	@Autowired
 	private UpmsPermissionService upmsPermissionService;

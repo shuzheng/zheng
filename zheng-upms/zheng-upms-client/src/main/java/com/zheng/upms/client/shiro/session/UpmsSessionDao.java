@@ -19,7 +19,7 @@ import java.util.*;
  */
 public class UpmsSessionDao extends CachingSessionDAO {
 
-	private static Logger _log = LoggerFactory.getLogger(UpmsSessionDao.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsSessionDao.class);
 	// 会话key
 	private final static String ZHENG_UPMS_SHIRO_SESSION_ID = "zheng-upms-shiro-session-id";
 	// 全局会话key
@@ -39,14 +39,14 @@ public class UpmsSessionDao extends CachingSessionDAO {
 		assignSessionId(session, sessionId);
 		RedisUtil.set(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId, SerializableUtil.serialize(session),
 				(int) session.getTimeout() / 1000);
-		_log.debug("doCreate >>>>> sessionId={}", sessionId);
+		logger.debug("doCreate >>>>> sessionId={}", sessionId);
 		return sessionId;
 	}
 
 	@Override
 	protected Session doReadSession(Serializable sessionId) {
 		String session = RedisUtil.get(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId);
-		_log.debug("doReadSession >>>>> sessionId={}", sessionId);
+		logger.debug("doReadSession >>>>> sessionId={}", sessionId);
 		return SerializableUtil.deserialize(session);
 	}
 
@@ -61,12 +61,12 @@ public class UpmsSessionDao extends CachingSessionDAO {
 		UpmsSession cacheUpmsSession = (UpmsSession) doReadSession(session.getId());
 		if (null != cacheUpmsSession) {
 			upmsSession.setStatus(cacheUpmsSession.getStatus());
-			upmsSession.setAttribute("FORCE_LOGOUT", cacheUpmsSession.getAttribute("FORCE_LOGOUT"));
+			upmsSession.setAttribute("FORCEloggerOUT", cacheUpmsSession.getAttribute("FORCEloggerOUT"));
 		}
 		RedisUtil.set(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + session.getId(), SerializableUtil.serialize(session),
 				(int) session.getTimeout() / 1000);
 		// 更新ZHENG_UPMS_SERVER_SESSION_ID、ZHENG_UPMS_SERVER_CODE过期时间 TODO
-		_log.debug("doUpdate >>>>> sessionId={}", session.getId());
+		logger.debug("doUpdate >>>>> sessionId={}", session.getId());
 	}
 
 	@Override
@@ -95,14 +95,14 @@ public class UpmsSessionDao extends CachingSessionDAO {
 				jedis.del(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + clientSessionId);
 				jedis.srem(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code, clientSessionId);
 			}
-			_log.debug("当前code={}，对应的注册系统个数：{}个", code, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
+			logger.debug("当前code={}，对应的注册系统个数：{}个", code, jedis.scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
 			jedis.close();
 			// 维护会话id列表，提供会话分页管理
 			RedisUtil.lrem(ZHENG_UPMS_SERVER_SESSION_IDS, 1, sessionId);
 		}
 		// 删除session
 		RedisUtil.remove(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId);
-		_log.debug("doUpdate >>>>> sessionId={}", sessionId);
+		logger.debug("doUpdate >>>>> sessionId={}", sessionId);
 	}
 
 	/**
@@ -148,8 +148,8 @@ public class UpmsSessionDao extends CachingSessionDAO {
 			// 会话增加强制退出属性标识，当此会话访问系统时，判断有该标识，则退出登录
 			String session = RedisUtil.get(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId);
 			UpmsSession upmsSession = (UpmsSession) SerializableUtil.deserialize(session);
-			upmsSession.setStatus(UpmsSession.OnlineStatus.force_logout);
-			upmsSession.setAttribute("FORCE_LOGOUT", "FORCE_LOGOUT");
+			upmsSession.setStatus(UpmsSession.OnlineStatus.forceloggerout);
+			upmsSession.setAttribute("FORCEloggerOUT", "FORCEloggerOUT");
 			RedisUtil.set(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId, SerializableUtil.serialize(upmsSession),
 					(int) upmsSession.getTimeout() / 1000);
 		}

@@ -34,7 +34,7 @@ import java.util.Map;
 public class CmsPageController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsPageController.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsPageController.class);
 
 	@Autowired
 	private CmsPageService cmsPageService;

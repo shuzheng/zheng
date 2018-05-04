@@ -25,7 +25,7 @@ public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, Cms
 		implements CmsArticleService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsArticleServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsArticleServiceImpl.class);
 
 	@Autowired
 	CmsArticleMapper cmsArticleMapper;

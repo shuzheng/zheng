@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PayOutOrderDetailServiceImpl extends BaseServiceImpl<PayOutOrderDetailMapper, PayOutOrderDetail, PayOutOrderDetailExample> implements PayOutOrderDetailService {
 
     @SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(PayOutOrderDetailServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(PayOutOrderDetailServiceImpl.class);
 
     @Autowired
     PayOutOrderDetailMapper payOutOrderDetailMapper;

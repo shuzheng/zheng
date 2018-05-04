@@ -29,7 +29,7 @@ import java.util.Map;
 public class UpmsLogController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsLogController.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsLogController.class);
 
 	@Autowired
 	private UpmsLogService upmsLogService;

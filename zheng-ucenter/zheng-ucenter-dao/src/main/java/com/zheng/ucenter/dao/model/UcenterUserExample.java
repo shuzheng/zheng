@@ -645,132 +645,132 @@ public class UcenterUserExample implements Serializable {
         }
 
         public Criteria andLastLoginTimeIsNull() {
-            addCriterion("last_login_time is null");
+            addCriterion("lastloggerin_time is null");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeIsNotNull() {
-            addCriterion("last_login_time is not null");
+            addCriterion("lastloggerin_time is not null");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeEqualTo(Date value) {
-            addCriterion("last_login_time =", value, "lastLoginTime");
+            addCriterion("lastloggerin_time =", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeNotEqualTo(Date value) {
-            addCriterion("last_login_time <>", value, "lastLoginTime");
+            addCriterion("lastloggerin_time <>", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeGreaterThan(Date value) {
-            addCriterion("last_login_time >", value, "lastLoginTime");
+            addCriterion("lastloggerin_time >", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_login_time >=", value, "lastLoginTime");
+            addCriterion("lastloggerin_time >=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeLessThan(Date value) {
-            addCriterion("last_login_time <", value, "lastLoginTime");
+            addCriterion("lastloggerin_time <", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeLessThanOrEqualTo(Date value) {
-            addCriterion("last_login_time <=", value, "lastLoginTime");
+            addCriterion("lastloggerin_time <=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeIn(List<Date> values) {
-            addCriterion("last_login_time in", values, "lastLoginTime");
+            addCriterion("lastloggerin_time in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeNotIn(List<Date> values) {
-            addCriterion("last_login_time not in", values, "lastLoginTime");
+            addCriterion("lastloggerin_time not in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeBetween(Date value1, Date value2) {
-            addCriterion("last_login_time between", value1, value2, "lastLoginTime");
+            addCriterion("lastloggerin_time between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeNotBetween(Date value1, Date value2) {
-            addCriterion("last_login_time not between", value1, value2, "lastLoginTime");
+            addCriterion("lastloggerin_time not between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpIsNull() {
-            addCriterion("last_login_ip is null");
+            addCriterion("lastloggerin_ip is null");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpIsNotNull() {
-            addCriterion("last_login_ip is not null");
+            addCriterion("lastloggerin_ip is not null");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpEqualTo(String value) {
-            addCriterion("last_login_ip =", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip =", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpNotEqualTo(String value) {
-            addCriterion("last_login_ip <>", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip <>", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpGreaterThan(String value) {
-            addCriterion("last_login_ip >", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip >", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpGreaterThanOrEqualTo(String value) {
-            addCriterion("last_login_ip >=", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip >=", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpLessThan(String value) {
-            addCriterion("last_login_ip <", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip <", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpLessThanOrEqualTo(String value) {
-            addCriterion("last_login_ip <=", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip <=", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpLike(String value) {
-            addCriterion("last_login_ip like", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip like", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpNotLike(String value) {
-            addCriterion("last_login_ip not like", value, "lastLoginIp");
+            addCriterion("lastloggerin_ip not like", value, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpIn(List<String> values) {
-            addCriterion("last_login_ip in", values, "lastLoginIp");
+            addCriterion("lastloggerin_ip in", values, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpNotIn(List<String> values) {
-            addCriterion("last_login_ip not in", values, "lastLoginIp");
+            addCriterion("lastloggerin_ip not in", values, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpBetween(String value1, String value2) {
-            addCriterion("last_login_ip between", value1, value2, "lastLoginIp");
+            addCriterion("lastloggerin_ip between", value1, value2, "lastLoginIp");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginIpNotBetween(String value1, String value2) {
-            addCriterion("last_login_ip not between", value1, value2, "lastLoginIp");
+            addCriterion("lastloggerin_ip not between", value1, value2, "lastLoginIp");
             return (Criteria) this;
         }
     }

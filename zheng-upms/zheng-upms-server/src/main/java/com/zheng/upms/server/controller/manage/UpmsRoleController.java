@@ -44,7 +44,7 @@ import io.swagger.annotations.ApiOperation;
 public class UpmsRoleController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsRoleController.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsRoleController.class);
 
 	@Autowired
 	private UpmsRoleService upmsRoleService;

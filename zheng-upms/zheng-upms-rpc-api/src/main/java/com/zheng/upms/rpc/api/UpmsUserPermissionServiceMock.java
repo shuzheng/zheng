@@ -14,11 +14,11 @@ import org.slf4j.LoggerFactory;
 */
 public class UpmsUserPermissionServiceMock extends BaseServiceMock<UpmsUserPermissionMapper, UpmsUserPermission, UpmsUserPermissionExample> implements UpmsUserPermissionService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsUserPermissionServiceMock.class);
+    private static Logger logger = LoggerFactory.getLogger(UpmsUserPermissionServiceMock.class);
 
     @Override
     public int permission(JSONArray datas, int id) {
-        _log.info("UpmsUserPermissionServiceMock => permission");
+        logger.info("UpmsUserPermissionServiceMock => permission");
         return 0;
     }
 

@@ -14,6 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UcenterApiServiceImpl implements UcenterApiService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UcenterApiServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UcenterApiServiceImpl.class);
 
 }

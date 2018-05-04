@@ -14,17 +14,17 @@ import org.slf4j.LoggerFactory;
 */
 public class UpmsPermissionServiceMock extends BaseServiceMock<UpmsPermissionMapper, UpmsPermission, UpmsPermissionExample> implements UpmsPermissionService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsPermissionServiceMock.class);
+    private static Logger logger = LoggerFactory.getLogger(UpmsPermissionServiceMock.class);
 
     @Override
     public JSONArray getTreeByRoleId(Integer roleId) {
-        _log.info("UpmsPermissionServiceMock => getTreeByRoleId");
+        logger.info("UpmsPermissionServiceMock => getTreeByRoleId");
         return null;
     }
 
     @Override
     public JSONArray getTreeByUserId(Integer usereId, Byte type) {
-        _log.info("UpmsPermissionServiceMock => getTreeByUserId");
+        logger.info("UpmsPermissionServiceMock => getTreeByUserId");
         return null;
     }
 

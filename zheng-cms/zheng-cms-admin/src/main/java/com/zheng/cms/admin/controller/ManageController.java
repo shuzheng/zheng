@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ManageController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
+	private static Logger logger = LoggerFactory.getLogger(ManageController.class);
 
 	/**
 	 * 后台首页

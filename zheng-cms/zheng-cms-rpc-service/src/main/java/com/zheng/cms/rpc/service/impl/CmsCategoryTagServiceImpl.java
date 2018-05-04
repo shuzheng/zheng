@@ -22,7 +22,7 @@ public class CmsCategoryTagServiceImpl extends
 		BaseServiceImpl<CmsCategoryTagMapper, CmsCategoryTag, CmsCategoryTagExample> implements CmsCategoryTagService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsCategoryTagServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsCategoryTagServiceImpl.class);
 
 	@Autowired
 	CmsCategoryTagMapper cmsCategoryTagMapper;

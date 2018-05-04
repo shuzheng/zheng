@@ -16,7 +16,7 @@ public class UpmsSession extends SimpleSession {
 	private static final long serialVersionUID = 8179248499955022070L;
 
 	public static enum OnlineStatus {
-        on_line("在线"), off_line("离线"), force_logout("强制退出");
+        on_line("在线"), off_line("离线"), forceloggerout("强制退出");
         private final String info;
 
         private OnlineStatus(String info) {

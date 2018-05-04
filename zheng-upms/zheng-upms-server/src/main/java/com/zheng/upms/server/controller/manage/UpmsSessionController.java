@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class UpmsSessionController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsSessionController.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsSessionController.class);
 
 	@Autowired
 	private UpmsSessionDao sessionDAO;

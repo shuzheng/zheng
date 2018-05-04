@@ -29,7 +29,7 @@ import com.zheng.common.util.Paginator;
 public class SearchController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(SearchController.class);
+	private static Logger logger = LoggerFactory.getLogger(SearchController.class);
 
 	@Autowired
 	private CmsArticleService cmsArticleService;

@@ -32,7 +32,7 @@ import com.zheng.oss.web.service.AliyunOssService;
 @RequestMapping("/demo")
 public class DemoController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(DemoController.class);
+    private static Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Autowired
     private AliyunOssService aliyunOssService;
@@ -80,7 +80,7 @@ public class DemoController extends BaseController {
     @GetMapping("/aliyun/upload")
     public String upload(Model model) {
         JSONObject policy = aliyunOssService.policy();
-        _log.info("policy={}", policy);
+        logger.info("policy={}", policy);
         model.addAttribute("policy", policy);
         return thymeleaf("/aliyun/upload");
     }

@@ -25,7 +25,7 @@ public class UpmsUserOrganizationServiceImpl
 		implements UpmsUserOrganizationService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsUserOrganizationServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsUserOrganizationServiceImpl.class);
 
 	@Autowired
 	UpmsUserOrganizationMapper upmsUserOrganizationMapper;

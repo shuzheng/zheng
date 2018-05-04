@@ -26,7 +26,7 @@ import java.util.List;
 public class TopicController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(TopicController.class);
+	private static Logger logger = LoggerFactory.getLogger(TopicController.class);
 
 	@Autowired
 	private CmsTopicService cmsTopicService;

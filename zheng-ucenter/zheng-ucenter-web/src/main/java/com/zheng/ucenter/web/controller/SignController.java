@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class SignController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(SignController.class);
+	private static Logger logger = LoggerFactory.getLogger(SignController.class);
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {

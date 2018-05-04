@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ApiServiceImpl implements ApiService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(ApiServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(ApiServiceImpl.class);
 
 	@SuppressWarnings("unused")
 	@Autowired

@@ -22,7 +22,7 @@ public class CmsArticleTagServiceImpl extends BaseServiceImpl<CmsArticleTagMappe
 		implements CmsArticleTagService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsArticleTagServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsArticleTagServiceImpl.class);
 
 	@Autowired
 	CmsArticleTagMapper cmsArticleTagMapper;

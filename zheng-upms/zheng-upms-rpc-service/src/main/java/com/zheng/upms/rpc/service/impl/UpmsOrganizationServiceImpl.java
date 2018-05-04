@@ -23,7 +23,7 @@ public class UpmsOrganizationServiceImpl
 		implements UpmsOrganizationService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UpmsOrganizationServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UpmsOrganizationServiceImpl.class);
 
 	@Autowired
 	UpmsOrganizationMapper upmsOrganizationMapper;

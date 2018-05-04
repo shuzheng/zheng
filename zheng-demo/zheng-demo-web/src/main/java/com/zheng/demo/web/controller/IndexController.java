@@ -22,7 +22,7 @@ import java.util.List;
 public class IndexController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(IndexController.class);
+	private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired
 	private DemoService demoService;

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class LongSchedule implements IScheduleTaskDealSingle<Long> {
 
-    private static Logger _log = LoggerFactory.getLogger(LongSchedule.class);
+    private static Logger logger = LoggerFactory.getLogger(LongSchedule.class);
 
     /**
      * 执行单个任务
@@ -25,7 +25,7 @@ public class LongSchedule implements IScheduleTaskDealSingle<Long> {
      */
     @Override
     public boolean execute(Long item, String ownSign) throws Exception {
-        _log.info("执行任务：{}", item);
+        logger.info("执行任务：{}", item);
         return true;
     }
 

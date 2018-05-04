@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UcenterWebInterceptor extends HandlerInterceptorAdapter {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UcenterWebInterceptor.class);
+	private static Logger logger = LoggerFactory.getLogger(UcenterWebInterceptor.class);
 
 	// @Autowired
 	// private CmsMenuService cmsMenuService;

@@ -12,65 +12,65 @@ import java.util.List;
  */
 public class UpmsApiServiceMock implements UpmsApiService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsApiServiceMock.class);
+    private static Logger logger = LoggerFactory.getLogger(UpmsApiServiceMock.class);
 
     @Override
     public List<UpmsPermission> selectUpmsPermissionByUpmsUserId(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsPermissionByUpmsUserId");
+        logger.info("UpmsApiServiceMock => selectUpmsPermissionByUpmsUserId");
         return null;
     }
 
     @Override
     public List<UpmsPermission> selectUpmsPermissionByUpmsUserIdByCache(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsPermissionByUpmsUserIdByCache");
+        logger.info("UpmsApiServiceMock => selectUpmsPermissionByUpmsUserIdByCache");
         return null;
     }
 
     @Override
     public List<UpmsRole> selectUpmsRoleByUpmsUserId(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsRoleByUpmsUserId");
+        logger.info("UpmsApiServiceMock => selectUpmsRoleByUpmsUserId");
         return null;
     }
 
     @Override
     public List<UpmsRole> selectUpmsRoleByUpmsUserIdByCache(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsRoleByUpmsUserIdByCache");
+        logger.info("UpmsApiServiceMock => selectUpmsRoleByUpmsUserIdByCache");
         return null;
     }
 
     @Override
     public List<UpmsRolePermission> selectUpmsRolePermisstionByUpmsRoleId(Integer upmsRoleId) {
-        _log.info("UpmsApiServiceMock => selectUpmsRolePermisstionByUpmsRoleId");
+        logger.info("UpmsApiServiceMock => selectUpmsRolePermisstionByUpmsRoleId");
         return null;
     }
 
     @Override
     public List<UpmsUserPermission> selectUpmsUserPermissionByUpmsUserId(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsUserPermissionByUpmsUserId");
+        logger.info("UpmsApiServiceMock => selectUpmsUserPermissionByUpmsUserId");
         return null;
     }
 
     @Override
     public List<UpmsSystem> selectUpmsSystemByExample(UpmsSystemExample upmsSystemExample) {
-        _log.info("UpmsApiServiceMock => selectUpmsSystemByExample");
+        logger.info("UpmsApiServiceMock => selectUpmsSystemByExample");
         return null;
     }
 
     @Override
     public List<UpmsOrganization> selectUpmsOrganizationByExample(UpmsOrganizationExample upmsOrganizationExample) {
-        _log.info("UpmsApiServiceMock => selectUpmsOrganizationByExample");
+        logger.info("UpmsApiServiceMock => selectUpmsOrganizationByExample");
         return null;
     }
 
     @Override
     public UpmsUser selectUpmsUserByUsername(String username) {
-        _log.info("UpmsApiServiceMock => selectUpmsUserByUsername");
+        logger.info("UpmsApiServiceMock => selectUpmsUserByUsername");
         return null;
     }
 
     @Override
     public int insertUpmsLogSelective(UpmsLog record) {
-        _log.info("UpmsApiServiceMock => insertSelective");
+        logger.info("UpmsApiServiceMock => insertSelective");
         return 0;
     }
 

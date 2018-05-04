@@ -22,7 +22,7 @@ public class PayOutOrderServiceImpl extends BaseServiceImpl<PayOutOrderMapper, P
 		implements PayOutOrderService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(PayOutOrderServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(PayOutOrderServiceImpl.class);
 
 	@Autowired
 	PayOutOrderMapper payOutOrderMapper;

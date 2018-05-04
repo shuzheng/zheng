@@ -23,7 +23,7 @@ public class CmsArticleCategoryServiceImpl
 		implements CmsArticleCategoryService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsArticleCategoryServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsArticleCategoryServiceImpl.class);
 
 	@Autowired
 	CmsArticleCategoryMapper cmsArticleCategoryMapper;

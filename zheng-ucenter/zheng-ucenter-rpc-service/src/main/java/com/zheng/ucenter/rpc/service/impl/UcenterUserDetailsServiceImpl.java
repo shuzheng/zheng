@@ -23,7 +23,7 @@ public class UcenterUserDetailsServiceImpl
 		implements UcenterUserDetailsService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(UcenterUserDetailsServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UcenterUserDetailsServiceImpl.class);
 
 	@Autowired
 	UcenterUserDetailsMapper ucenterUserDetailsMapper;

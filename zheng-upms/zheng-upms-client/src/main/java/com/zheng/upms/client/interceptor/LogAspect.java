@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
 @Aspect
 public class LogAspect {
 
-	private static Logger _log = LoggerFactory.getLogger(LogAspect.class);
+	private static Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
 	// 开始时间
 	private long startTime = 0L;
@@ -44,13 +44,13 @@ public class LogAspect {
 
 	@Before("execution(* *..controller..*.*(..))")
 	public void doBeforeInServiceLayer(JoinPoint joinPoint) {
-		_log.debug("doBeforeInServiceLayer");
+		logger.debug("doBeforeInServiceLayer");
 		startTime = System.currentTimeMillis();
 	}
 
 	@After("execution(* *..controller..*.*(..))")
 	public void doAfterInServiceLayer(JoinPoint joinPoint) {
-		_log.debug("doAfterInServiceLayer");
+		logger.debug("doAfterInServiceLayer");
 	}
 
 	@Around("execution(* *..controller..*.*(..))")
@@ -78,7 +78,7 @@ public class LogAspect {
 			}
 		}
 		endTime = System.currentTimeMillis();
-		_log.debug("doAround>>>result={},耗时：{}", result, endTime - startTime);
+		logger.debug("doAround>>>result={},耗时：{}", result, endTime - startTime);
 
 		upmsLog.setBasePath(RequestUtil.getBasePath(request));
 		upmsLog.setIp(RequestUtil.getIpAddr(request));

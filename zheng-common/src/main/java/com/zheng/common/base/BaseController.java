@@ -16,7 +16,7 @@ import com.zheng.common.util.PropertiesFileUtil;
  */
 public abstract class BaseController {
 
-	private final static Logger _log = LoggerFactory.getLogger(BaseController.class);
+	private final static Logger logger = LoggerFactory.getLogger(BaseController.class);
 
 	/**
 	 * 统一异常处理
@@ -27,7 +27,7 @@ public abstract class BaseController {
 	 */
 	@ExceptionHandler
 	public String exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) {
-		_log.error("统一异常处理：", exception);
+		logger.error("统一异常处理：", exception);
 		request.setAttribute("ex", exception);
 		if (null != request.getHeader("X-Requested-With")
 				&& request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {

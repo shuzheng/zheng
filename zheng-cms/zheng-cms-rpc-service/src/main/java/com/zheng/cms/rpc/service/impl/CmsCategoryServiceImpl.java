@@ -22,7 +22,7 @@ public class CmsCategoryServiceImpl extends BaseServiceImpl<CmsCategoryMapper, C
 		implements CmsCategoryService {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsCategoryServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsCategoryServiceImpl.class);
 
 	@Autowired
 	CmsCategoryMapper cmsCategoryMapper;

@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PayVendorServiceImpl extends BaseServiceImpl<PayVendorMapper, PayVendor, PayVendorExample> implements PayVendorService {
 
     @SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(PayVendorServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(PayVendorServiceImpl.class);
 
     @Autowired
     PayVendorMapper payVendorMapper;

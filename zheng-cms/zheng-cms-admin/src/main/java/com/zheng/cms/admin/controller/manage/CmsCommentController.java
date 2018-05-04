@@ -30,7 +30,7 @@ import java.util.Map;
 public class CmsCommentController extends BaseController {
 
 	@SuppressWarnings("unused")
-	private static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
+	private static Logger logger = LoggerFactory.getLogger(CmsCommentController.class);
 
 	@Autowired
 	private CmsCommentService cmsCommentService;
