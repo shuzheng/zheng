@@ -1,23 +1,41 @@
 package com.zheng.cms.web.controller;
 
-import com.zheng.cms.common.constant.CmsResult;
-import com.zheng.cms.common.constant.CmsResultConstant;
-import com.zheng.cms.dao.model.*;
-import com.zheng.cms.rpc.api.*;
-import com.zheng.common.base.BaseController;
-import com.zheng.common.util.Paginator;
-import com.zheng.common.util.RequestUtil;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import com.zheng.cms.common.constant.CmsResult;
+import com.zheng.cms.common.constant.CmsResultConstant;
+import com.zheng.cms.dao.model.CmsArticle;
+import com.zheng.cms.dao.model.CmsArticleExample;
+import com.zheng.cms.dao.model.CmsCategory;
+import com.zheng.cms.dao.model.CmsCategoryExample;
+import com.zheng.cms.dao.model.CmsComment;
+import com.zheng.cms.dao.model.CmsCommentExample;
+import com.zheng.cms.dao.model.CmsSystem;
+import com.zheng.cms.dao.model.CmsSystemExample;
+import com.zheng.cms.dao.model.CmsTag;
+import com.zheng.cms.dao.model.CmsTagExample;
+import com.zheng.cms.rpc.api.CmsArticleService;
+import com.zheng.cms.rpc.api.CmsCategoryService;
+import com.zheng.cms.rpc.api.CmsCommentService;
+import com.zheng.cms.rpc.api.CmsSystemService;
+import com.zheng.cms.rpc.api.CmsTagService;
+import com.zheng.common.base.BaseController;
+import com.zheng.common.util.Paginator;
+import com.zheng.common.util.RequestUtil;
 
 /**
  * 资讯首页控制器
@@ -27,7 +45,8 @@ import java.util.List;
 @RequestMapping(value = "/news")
 public class NewsController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(NewsController.class);
+    @SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(NewsController.class);
     private static String CODE = "news";
     private static Integer USERID = 1;
 

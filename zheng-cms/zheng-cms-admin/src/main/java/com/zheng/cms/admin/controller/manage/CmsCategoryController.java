@@ -26,16 +26,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 类目控制器
- * Created by shuzheng on 2016/11/14.
+ * 类目控制器 Created by shuzheng on 2016/11/14.
  */
 @Controller
 @Api(value = "类目管理", description = "类目管理")
 @RequestMapping("/manage/category")
 public class CmsCategoryController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(CmsCategoryController.class);
-	
+
 	@Autowired
 	private CmsCategoryService cmsCategoryService;
 
@@ -50,8 +50,7 @@ public class CmsCategoryController extends BaseController {
 	@RequiresPermissions("cms:category:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Object list(
-			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+	public Object list(@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
 			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
@@ -79,10 +78,8 @@ public class CmsCategoryController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public Object create(CmsCategory cmsCategory) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsCategory.getName(), new LengthValidator(1, 20, "名称"))
-				.doValidate()
-				.result(ResultCollectors.toComplex());
+		ComplexResult result = FluentValidator.checkAll().on(cmsCategory.getName(), new LengthValidator(1, 20, "名称"))
+				.doValidate().result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
 		}
@@ -95,7 +92,7 @@ public class CmsCategoryController extends BaseController {
 
 	@ApiOperation(value = "删除类目")
 	@RequiresPermissions("cms:category:delete")
-	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
 	@ResponseBody
 	public Object delete(@PathVariable("ids") String ids) {
 		int count = cmsCategoryService.deleteByPrimaryKeys(ids);
@@ -116,10 +113,8 @@ public class CmsCategoryController extends BaseController {
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Object update(@PathVariable("id") int id, CmsCategory cmsCategory) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsCategory.getName(), new LengthValidator(1, 20, "名称"))
-				.doValidate()
-				.result(ResultCollectors.toComplex());
+		ComplexResult result = FluentValidator.checkAll().on(cmsCategory.getName(), new LengthValidator(1, 20, "名称"))
+				.doValidate().result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
 		}

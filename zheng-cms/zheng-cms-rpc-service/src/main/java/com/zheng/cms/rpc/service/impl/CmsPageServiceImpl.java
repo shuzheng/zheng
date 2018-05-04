@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* CmsPageService实现
-* Created by shuzheng on 2017/4/5.
-*/
+ * CmsPageService实现 Created by shuzheng on 2017/4/5.
+ */
 @Service
 @Transactional
 @BaseService
-public class CmsPageServiceImpl extends BaseServiceImpl<CmsPageMapper, CmsPage, CmsPageExample> implements CmsPageService {
+public class CmsPageServiceImpl extends BaseServiceImpl<CmsPageMapper, CmsPage, CmsPageExample>
+		implements CmsPageService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsPageServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(CmsPageServiceImpl.class);
 
-    @Autowired
-    CmsPageMapper cmsPageMapper;
+	@Autowired
+	CmsPageMapper cmsPageMapper;
 
 }

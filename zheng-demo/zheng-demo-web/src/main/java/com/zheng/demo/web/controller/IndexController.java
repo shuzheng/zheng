@@ -21,6 +21,7 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired

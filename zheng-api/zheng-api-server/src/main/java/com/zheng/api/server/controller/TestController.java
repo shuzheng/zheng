@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 后台controller
- * Created by shuzheng on 2017/2/19.
+ * 后台controller Created by shuzheng on 2017/2/19.
  */
 @Controller
 @Api(value = "test", description = "test")
 public class TestController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(TestController.class);
 
 	@Autowired

@@ -8,7 +8,14 @@ import org.apache.shiro.session.mgt.SimpleSession;
  */
 public class UpmsSession extends SimpleSession {
 
-    public static enum OnlineStatus {
+    /**
+	 * @fieldName: serialVersionUID
+	 * @fieldType: long
+	 * @Description: TODO
+	 */
+	private static final long serialVersionUID = 8179248499955022070L;
+
+	public static enum OnlineStatus {
         on_line("在线"), off_line("离线"), force_logout("强制退出");
         private final String info;
 

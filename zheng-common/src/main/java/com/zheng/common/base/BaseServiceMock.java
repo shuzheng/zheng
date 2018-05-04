@@ -5,8 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 降级实现BaseService抽象类
- * Created by ZhangShuzheng on 2017/02/14.
+ * 降级实现BaseService抽象类 Created by ZhangShuzheng on 2017/02/14.
  */
 public abstract class BaseServiceMock<Mapper, Record, Example> implements BaseService<Record, Example> {
 
@@ -116,6 +115,7 @@ public abstract class BaseServiceMock<Mapper, Record, Example> implements BaseSe
 	}
 
 	@Override
-	public void initMapper() {}
+	public void initMapper() {
+	}
 
 }

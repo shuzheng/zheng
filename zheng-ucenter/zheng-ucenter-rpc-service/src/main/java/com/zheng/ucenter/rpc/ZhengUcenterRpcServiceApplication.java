@@ -12,6 +12,7 @@ public class ZhengUcenterRpcServiceApplication {
 
 	private static Logger _log = LoggerFactory.getLogger(ZhengUcenterRpcServiceApplication.class);
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		_log.info(">>>>> zheng-ucenter-rpc-service 正在启动 <<<<<");
 		new ClassPathXmlApplicationContext("classpath:META-INF/spring/*.xml");

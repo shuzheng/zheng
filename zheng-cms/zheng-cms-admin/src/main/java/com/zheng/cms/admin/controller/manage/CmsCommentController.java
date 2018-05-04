@@ -22,16 +22,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 评论控制器
- * Created by shuzheng on 2016/11/14.
+ * 评论控制器 Created by shuzheng on 2016/11/14.
  */
 @Controller
 @Api(value = "评论管理", description = "评论管理")
 @RequestMapping("/manage/comment")
 public class CmsCommentController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
-	
+
 	@Autowired
 	private CmsCommentService cmsCommentService;
 
@@ -46,8 +46,7 @@ public class CmsCommentController extends BaseController {
 	@RequiresPermissions("cms:comment:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Object list(
-			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+	public Object list(@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
 			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
@@ -55,7 +54,8 @@ public class CmsCommentController extends BaseController {
 		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
 			cmsCommentExample.setOrderByClause(sort + " " + order);
 		}
-		List<CmsComment> rows = cmsCommentService.selectByExampleWithBLOBsForOffsetPage(cmsCommentExample, offset, limit);
+		List<CmsComment> rows = cmsCommentService.selectByExampleWithBLOBsForOffsetPage(cmsCommentExample, offset,
+				limit);
 		long total = cmsCommentService.countByExample(cmsCommentExample);
 		Map<String, Object> result = new HashMap<>();
 		result.put("rows", rows);
@@ -83,7 +83,7 @@ public class CmsCommentController extends BaseController {
 
 	@ApiOperation(value = "删除评论")
 	@RequiresPermissions("cms:comment:delete")
-	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
 	@ResponseBody
 	public Object delete(@PathVariable("ids") String ids) {
 		int count = cmsCommentService.deleteByPrimaryKeys(ids);

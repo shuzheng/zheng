@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Api(value = "后台控制器", description = "后台管理")
 public class ManageController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
 
 	/**

@@ -69,8 +69,8 @@ public class MybatisGeneratorUtil {
 
 			// 查询定制前缀项目的所有表
 			JdbcUtil jdbcUtil = new JdbcUtil(jdbc_driver, jdbc_url, jdbc_username, AESUtil.AESDecode(jdbc_password));
-			List<Map> result = jdbcUtil.selectByParams(sql, null);
-			for (Map map : result) {
+			List<Map<String,Object>> result = jdbcUtil.selectByParams(sql, null);
+			for (Map<String,Object> map : result) {
 				System.out.println(map.get("TABLE_NAME"));
 				table = new HashMap<>();
 				table.put("table_name", map.get("TABLE_NAME"));

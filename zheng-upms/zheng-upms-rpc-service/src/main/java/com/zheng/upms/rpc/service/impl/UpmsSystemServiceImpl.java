@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* UpmsSystemService实现
-* Created by shuzheng on 2017/3/20.
-*/
+ * UpmsSystemService实现 Created by shuzheng on 2017/3/20.
+ */
 @Service
 @Transactional
 @BaseService
-public class UpmsSystemServiceImpl extends BaseServiceImpl<UpmsSystemMapper, UpmsSystem, UpmsSystemExample> implements UpmsSystemService {
+public class UpmsSystemServiceImpl extends BaseServiceImpl<UpmsSystemMapper, UpmsSystem, UpmsSystemExample>
+		implements UpmsSystemService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsSystemServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(UpmsSystemServiceImpl.class);
 
-    @Autowired
-    UpmsSystemMapper upmsSystemMapper;
+	@Autowired
+	UpmsSystemMapper upmsSystemMapper;
 
 }

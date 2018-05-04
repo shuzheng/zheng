@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* CmsSettingService实现
-* Created by shuzheng on 2017/4/5.
-*/
+ * CmsSettingService实现 Created by shuzheng on 2017/4/5.
+ */
 @Service
 @Transactional
 @BaseService
-public class CmsSettingServiceImpl extends BaseServiceImpl<CmsSettingMapper, CmsSetting, CmsSettingExample> implements CmsSettingService {
+public class CmsSettingServiceImpl extends BaseServiceImpl<CmsSettingMapper, CmsSetting, CmsSettingExample>
+		implements CmsSettingService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
 
-    @Autowired
-    CmsSettingMapper cmsSettingMapper;
+	@Autowired
+	CmsSettingMapper cmsSettingMapper;
 
 }

@@ -13,8 +13,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
- * 实现BaseService抽象类
- * Created by ZhangShuzheng on 2017/01/07.
+ * 实现BaseService抽象类 Created by ZhangShuzheng on 2017/01/07.
  */
 public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseService<Record, Example> {
 
@@ -110,11 +109,13 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return 0;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> selectByExampleWithBLOBs(Example example) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.SLAVE.getName());
-			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs", example.getClass());
+			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs",
+					example.getClass());
 			Object result = selectByExampleWithBLOBs.invoke(mapper, example);
 			return (List<Record>) result;
 		} catch (IllegalAccessException e) {
@@ -128,6 +129,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> selectByExample(Example example) {
 		try {
@@ -146,11 +148,13 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> selectByExampleWithBLOBsForStartPage(Example example, Integer pageNum, Integer pageSize) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.SLAVE.getName());
-			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs", example.getClass());
+			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs",
+					example.getClass());
 			PageHelper.startPage(pageNum, pageSize, false);
 			Object result = selectByExampleWithBLOBs.invoke(mapper, example);
 			return (List<Record>) result;
@@ -165,6 +169,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> selectByExampleForStartPage(Example example, Integer pageNum, Integer pageSize) {
 		try {
@@ -184,11 +189,13 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> selectByExampleWithBLOBsForOffsetPage(Example example, Integer offset, Integer limit) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.SLAVE.getName());
-			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs", example.getClass());
+			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs",
+					example.getClass());
 			PageHelper.offsetPage(offset, limit, false);
 			Object result = selectByExampleWithBLOBs.invoke(mapper, example);
 			return (List<Record>) result;
@@ -203,6 +210,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> selectByExampleForOffsetPage(Example example, Integer offset, Integer limit) {
 		try {
@@ -227,6 +235,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.SLAVE.getName());
 			Method selectByExample = mapper.getClass().getDeclaredMethod("selectByExample", example.getClass());
+			@SuppressWarnings("unchecked")
 			List<Record> result = (List<Record>) selectByExample.invoke(mapper, example);
 			if (null != result && result.size() > 0) {
 				return result.get(0);
@@ -246,7 +255,9 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 	public Record selectFirstByExampleWithBLOBs(Example example) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.SLAVE.getName());
-			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs", example.getClass());
+			Method selectByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("selectByExampleWithBLOBs",
+					example.getClass());
+			@SuppressWarnings("unchecked")
 			List<Record> result = (List<Record>) selectByExampleWithBLOBs.invoke(mapper, example);
 			if (null != result && result.size() > 0) {
 				return result.get(0);
@@ -262,6 +273,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Record selectByPrimaryKey(Integer id) {
 		try {
@@ -284,7 +296,8 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 	public int updateByExampleSelective(@Param("record") Record record, @Param("example") Example example) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.MASTER.getName());
-			Method updateByExampleSelective = mapper.getClass().getDeclaredMethod("updateByExampleSelective", record.getClass(), example.getClass());
+			Method updateByExampleSelective = mapper.getClass().getDeclaredMethod("updateByExampleSelective",
+					record.getClass(), example.getClass());
 			Object result = updateByExampleSelective.invoke(mapper, record, example);
 			return Integer.parseInt(String.valueOf(result));
 		} catch (IllegalAccessException e) {
@@ -302,7 +315,8 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 	public int updateByExampleWithBLOBs(@Param("record") Record record, @Param("example") Example example) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.MASTER.getName());
-			Method updateByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("updateByExampleWithBLOBs", record.getClass(), example.getClass());
+			Method updateByExampleWithBLOBs = mapper.getClass().getDeclaredMethod("updateByExampleWithBLOBs",
+					record.getClass(), example.getClass());
 			Object result = updateByExampleWithBLOBs.invoke(mapper, record, example);
 			return Integer.parseInt(String.valueOf(result));
 		} catch (IllegalAccessException e) {
@@ -320,7 +334,8 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 	public int updateByExample(@Param("record") Record record, @Param("example") Example example) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.MASTER.getName());
-			Method updateByExample = mapper.getClass().getDeclaredMethod("updateByExample", record.getClass(), example.getClass());
+			Method updateByExample = mapper.getClass().getDeclaredMethod("updateByExample", record.getClass(),
+					example.getClass());
 			Object result = updateByExample.invoke(mapper, record, example);
 			return Integer.parseInt(String.valueOf(result));
 		} catch (IllegalAccessException e) {
@@ -338,7 +353,8 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 	public int updateByPrimaryKeySelective(Record record) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.MASTER.getName());
-			Method updateByPrimaryKeySelective = mapper.getClass().getDeclaredMethod("updateByPrimaryKeySelective", record.getClass());
+			Method updateByPrimaryKeySelective = mapper.getClass().getDeclaredMethod("updateByPrimaryKeySelective",
+					record.getClass());
 			Object result = updateByPrimaryKeySelective.invoke(mapper, record);
 			return Integer.parseInt(String.valueOf(result));
 		} catch (IllegalAccessException e) {
@@ -356,7 +372,8 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 	public int updateByPrimaryKeyWithBLOBs(Record record) {
 		try {
 			DynamicDataSource.setDataSource(DataSourceEnum.MASTER.getName());
-			Method updateByPrimaryKeyWithBLOBs = mapper.getClass().getDeclaredMethod("updateByPrimaryKeyWithBLOBs", record.getClass());
+			Method updateByPrimaryKeyWithBLOBs = mapper.getClass().getDeclaredMethod("updateByPrimaryKeyWithBLOBs",
+					record.getClass());
 			Object result = updateByPrimaryKeyWithBLOBs.invoke(mapper, record);
 			return Integer.parseInt(String.valueOf(result));
 		} catch (IllegalAccessException e) {
@@ -425,8 +442,10 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
 
 	/**
 	 * 获取类泛型class
+	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public Class<Mapper> getMapperClass() {
 		return (Class<Mapper>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}

@@ -27,6 +27,7 @@ import java.util.List;
 @Api(value = "后台管理", description = "后台管理")
 public class ManageController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(ManageController.class);
 
 	@Autowired

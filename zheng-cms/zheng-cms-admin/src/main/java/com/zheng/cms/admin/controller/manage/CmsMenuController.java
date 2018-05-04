@@ -26,16 +26,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 菜单控制器
- * Created by shuzheng on 2017/3/18.
+ * 菜单控制器 Created by shuzheng on 2017/3/18.
  */
 @Controller
 @Api(value = "菜单管理", description = "菜单管理")
 @RequestMapping("/manage/menu")
 public class CmsMenuController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(CmsMenuController.class);
-	
+
 	@Autowired
 	private CmsMenuService cmsMenuService;
 
@@ -50,8 +50,7 @@ public class CmsMenuController extends BaseController {
 	@RequiresPermissions("cms:menu:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Object list(
-			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+	public Object list(@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
 			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
@@ -79,10 +78,8 @@ public class CmsMenuController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public Object create(CmsMenu cmsMenu) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsMenu.getName(), new LengthValidator(1, 20, "名称"))
-				.doValidate()
-				.result(ResultCollectors.toComplex());
+		ComplexResult result = FluentValidator.checkAll().on(cmsMenu.getName(), new LengthValidator(1, 20, "名称"))
+				.doValidate().result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
 		}
@@ -94,7 +91,7 @@ public class CmsMenuController extends BaseController {
 
 	@ApiOperation(value = "删除菜单")
 	@RequiresPermissions("cms:menu:delete")
-	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
 	@ResponseBody
 	public Object delete(@PathVariable("ids") String ids) {
 		int count = cmsMenuService.deleteByPrimaryKeys(ids);
@@ -115,10 +112,8 @@ public class CmsMenuController extends BaseController {
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Object update(@PathVariable("id") int id, CmsMenu cmsMenu) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsMenu.getName(), new LengthValidator(1, 20, "名称"))
-				.doValidate()
-				.result(ResultCollectors.toComplex());
+		ComplexResult result = FluentValidator.checkAll().on(cmsMenu.getName(), new LengthValidator(1, 20, "名称"))
+				.doValidate().result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
 		}

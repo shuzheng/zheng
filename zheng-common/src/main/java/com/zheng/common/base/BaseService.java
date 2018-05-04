@@ -5,8 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * BaseService接口
- * Created by ZhangShuzheng on 2017/01/07.
+ * BaseService接口 Created by ZhangShuzheng on 2017/01/07.
  */
 public interface BaseService<Record, Example> {
 

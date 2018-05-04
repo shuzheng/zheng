@@ -40,6 +40,7 @@ import java.util.List;
  * 重写authc过滤器
  * Created by shuzheng on 2017/3/11.
  */
+@SuppressWarnings("deprecation")
 public class UpmsAuthenticationFilter extends AuthenticationFilter {
 
     private final static Logger _log = LoggerFactory.getLogger(UpmsAuthenticationFilter.class);
@@ -127,7 +128,8 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
             // HttpPost去校验code
             try {
                 StringBuffer sso_server_url = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.sso.server.url"));
-                HttpClient httpclient = new DefaultHttpClient();
+                @SuppressWarnings("resource")
+				HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(sso_server_url.toString() + "/sso/code");
 
                 List<NameValuePair> nameValuePairs = new ArrayList<>();

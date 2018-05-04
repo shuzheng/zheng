@@ -1,29 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zheng</groupId>
-    <artifactId>zheng-ucenter</artifactId>
-    <version>1.0.0</version>
-    <packaging>pom</packaging>
+	<groupId>com.zheng</groupId>
+	<artifactId>zheng-ucenter</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
 
-    <name>zheng-ucenter</name>
-    <url>http://www.zhangshuzheng.cn</url>
+	<name>zheng-ucenter</name>
+	<url>http://www.zhangshuzheng.cn</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+	</properties>
 
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
-    </properties>
+	<modules>
+		<module>zheng-ucenter-common</module>
+		<module>zheng-ucenter-dao</module>
+		<module>zheng-ucenter-rpc-api</module>
+		<module>zheng-ucenter-web</module>
+		<module>zheng-ucenter-rpc-service</module>
+	</modules>
 
-    <modules>
-        <module>zheng-ucenter-common</module>
-        <module>zheng-ucenter-dao</module>
-        <module>zheng-ucenter-rpc-api</module>
-        <module>zheng-ucenter-web</module>
-        <module>zheng-ucenter-rpc-service</module>
-    </modules>
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.source}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

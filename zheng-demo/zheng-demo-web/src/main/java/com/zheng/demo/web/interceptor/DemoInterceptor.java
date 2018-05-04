@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DemoInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(DemoInterceptor.class);
+    @SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(DemoInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -23,7 +24,8 @@ public class DemoInterceptor extends HandlerInterceptorAdapter {
         if (null != request.getHeader("X-Requested-With") && request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
             return true;
         }
-        String appName = PropertiesFileUtil.getInstance().get("app.name");
+        @SuppressWarnings("unused")
+		String appName = PropertiesFileUtil.getInstance().get("app.name");
         //request.setAttribute("");
         return true;
     }

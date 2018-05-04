@@ -8,8 +8,7 @@ import java.io.OutputStream;
 import java.util.Random;
 
 /**
- * 验证码工具类
- * Created by ZhangShuzheng on 2017/6/28.
+ * 验证码工具类 Created by ZhangShuzheng on 2017/6/28.
  */
 public class CaptchaUtil {
 	// 图片的宽度。
@@ -60,14 +59,13 @@ public class CaptchaUtil {
 		// 图像buffer
 		buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffImg.getGraphics();
-		//Graphics2D g = buffImg.createGraphics();
+		// Graphics2D g = buffImg.createGraphics();
 		// 设置背景色
 		g.setColor(getRandColor(200, 250));
 		g.fillRect(0, 0, width, height);
 
-
 		// 设置字体
-		//Font font1 = getFont(fontHeight);
+		// Font font1 = getFont(fontHeight);
 		Font font = new Font("Fixedsys", Font.BOLD, fontHeight);
 		g.setFont(font);
 
@@ -131,6 +129,7 @@ public class CaptchaUtil {
 	/**
 	 * 产生随机字体
 	 */
+	@SuppressWarnings("unused")
 	private Font getFont(int size) {
 		Random random = new Random();
 		Font font[] = new Font[5];
@@ -143,6 +142,7 @@ public class CaptchaUtil {
 	}
 
 	// 扭曲方法
+	@SuppressWarnings("unused")
 	private void shear(Graphics g, int w1, int h1, Color color) {
 		shearX(g, w1, h1, color);
 		shearY(g, w1, h1, color);
@@ -158,9 +158,7 @@ public class CaptchaUtil {
 
 		for (int i = 0; i < h1; i++) {
 			double d = (double) (period >> 1)
-					* Math.sin((double) i / (double) period
-					+ (6.2831853071795862D * (double) phase)
-					/ (double) frames);
+					* Math.sin((double) i / (double) period + (6.2831853071795862D * (double) phase) / (double) frames);
 			g.copyArea(0, i, w1, 1, (int) d, 0);
 			if (borderGap) {
 				g.setColor(color);
@@ -179,9 +177,7 @@ public class CaptchaUtil {
 		int phase = 7;
 		for (int i = 0; i < w1; i++) {
 			double d = (double) (period >> 1)
-					* Math.sin((double) i / (double) period
-					+ (6.2831853071795862D * (double) phase)
-					/ (double) frames);
+					* Math.sin((double) i / (double) period + (6.2831853071795862D * (double) phase) / (double) frames);
 			g.copyArea(i, 0, 1, h1, 0, (int) d);
 			if (borderGap) {
 				g.setColor(color);
@@ -204,34 +200,35 @@ public class CaptchaUtil {
 		return code.toLowerCase();
 	}
 
-//	/**
-//	 * 验证码
-//	 * @param request
-//	 * @param response
-//	 * @param session
-//	 * @throws IOException
-//	 */
-//	@RequestMapping("/code.jpg")
-//	public void getCode3(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
-//		int width = NumberUtils.toInt(request.getParameter("width"), 100);
-//		int height = NumberUtils.toInt(request.getParameter("height"), 30);
-//		int codeCount = NumberUtils.toInt(request.getParameter("codeCount"), 4);
-//		int lineCount = NumberUtils.toInt(request.getParameter("lineCount"), 10);
-//		if (width > 1000) width = 100;
-//		if (height > 300) height = 30;
-//		if (codeCount > 10) codeCount = 4;
-//		if (lineCount > 100) lineCount = 10;
-//		// 设置响应的类型格式为图片格式
-//		response.setContentType("image/jpeg");
-//		// 禁止图像缓存。
-//		response.setHeader("Pragma", "no-cache");
-//		response.setHeader("Cache-Control", "no-cache");
-//		response.setDateHeader("Expires", 0);
-//		// 自定义参数
-//		CaptchaUtil code = new CaptchaUtil(width, height, codeCount, lineCount);
-//		String sessionId = session.getId();
-//		RedisUtil.set("captcha_" + sessionId, code.getCode(), 60 * 30);
-//		code.write(response.getOutputStream());
-//	}
+	// /**
+	// * 验证码
+	// * @param request
+	// * @param response
+	// * @param session
+	// * @throws IOException
+	// */
+	// @RequestMapping("/code.jpg")
+	// public void getCode3(HttpServletRequest request, HttpServletResponse
+	// response, HttpSession session) throws IOException {
+	// int width = NumberUtils.toInt(request.getParameter("width"), 100);
+	// int height = NumberUtils.toInt(request.getParameter("height"), 30);
+	// int codeCount = NumberUtils.toInt(request.getParameter("codeCount"), 4);
+	// int lineCount = NumberUtils.toInt(request.getParameter("lineCount"), 10);
+	// if (width > 1000) width = 100;
+	// if (height > 300) height = 30;
+	// if (codeCount > 10) codeCount = 4;
+	// if (lineCount > 100) lineCount = 10;
+	// // 设置响应的类型格式为图片格式
+	// response.setContentType("image/jpeg");
+	// // 禁止图像缓存。
+	// response.setHeader("Pragma", "no-cache");
+	// response.setHeader("Cache-Control", "no-cache");
+	// response.setDateHeader("Expires", 0);
+	// // 自定义参数
+	// CaptchaUtil code = new CaptchaUtil(width, height, codeCount, lineCount);
+	// String sessionId = session.getId();
+	// RedisUtil.set("captcha_" + sessionId, code.getCode(), 60 * 30);
+	// code.write(response.getOutputStream());
+	// }
 
 }

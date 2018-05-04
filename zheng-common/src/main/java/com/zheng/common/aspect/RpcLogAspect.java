@@ -10,16 +10,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * rpc提供者和消费者日志打印
- * Created by ZhangShuzheng on 2017/4/19.
+ * rpc提供者和消费者日志打印 Created by ZhangShuzheng on 2017/4/19.
  */
 public class RpcLogAspect {
 
 	private static Logger _log = LoggerFactory.getLogger(RpcLogAspect.class);
 
 	// 开始时间
+	@SuppressWarnings("unused")
 	private long startTime = 0L;
 	// 结束时间
+	@SuppressWarnings("unused")
 	private long endTime = 0L;
 
 	@Before("execution(* *..rpc..*.*(..))")

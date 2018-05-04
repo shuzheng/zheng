@@ -26,14 +26,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 系统controller
- * Created by shuzheng on 2016/12/18.
+ * 系统controller Created by shuzheng on 2016/12/18.
  */
 @Controller
 @Api(value = "系统管理", description = "系统管理")
 @RequestMapping("/manage/system")
 public class UpmsSystemController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(UpmsSystemController.class);
 
 	@Autowired
@@ -50,8 +50,7 @@ public class UpmsSystemController extends BaseController {
 	@RequiresPermissions("upms:system:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Object list(
-			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+	public Object list(@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
 			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
 			@RequestParam(required = false, defaultValue = "", value = "search") String search,
 			@RequestParam(required = false, value = "sort") String sort,
@@ -61,8 +60,7 @@ public class UpmsSystemController extends BaseController {
 			upmsSystemExample.setOrderByClause(sort + " " + order);
 		}
 		if (StringUtils.isNotBlank(search)) {
-			upmsSystemExample.or()
-					.andTitleLike("%" + search + "%");
+			upmsSystemExample.or().andTitleLike("%" + search + "%");
 		}
 		List<UpmsSystem> rows = upmsSystemService.selectByExampleForOffsetPage(upmsSystemExample, offset, limit);
 		long total = upmsSystemService.countByExample(upmsSystemExample);
@@ -84,10 +82,8 @@ public class UpmsSystemController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public Object create(UpmsSystem upmsSystem) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(upmsSystem.getTitle(), new LengthValidator(1, 20, "标题"))
-				.on(upmsSystem.getName(), new LengthValidator(1, 20, "名称"))
-				.doValidate()
+		ComplexResult result = FluentValidator.checkAll().on(upmsSystem.getTitle(), new LengthValidator(1, 20, "标题"))
+				.on(upmsSystem.getName(), new LengthValidator(1, 20, "名称")).doValidate()
 				.result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());
@@ -101,7 +97,7 @@ public class UpmsSystemController extends BaseController {
 
 	@ApiOperation(value = "删除系统")
 	@RequiresPermissions("upms:system:delete")
-	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
 	@ResponseBody
 	public Object delete(@PathVariable("ids") String ids) {
 		int count = upmsSystemService.deleteByPrimaryKeys(ids);
@@ -122,10 +118,8 @@ public class UpmsSystemController extends BaseController {
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Object update(@PathVariable("id") int id, UpmsSystem upmsSystem) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(upmsSystem.getTitle(), new LengthValidator(1, 20, "标题"))
-				.on(upmsSystem.getName(), new LengthValidator(1, 20, "名称"))
-				.doValidate()
+		ComplexResult result = FluentValidator.checkAll().on(upmsSystem.getTitle(), new LengthValidator(1, 20, "标题"))
+				.on(upmsSystem.getName(), new LengthValidator(1, 20, "名称")).doValidate()
 				.result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new UpmsResult(UpmsResultConstant.INVALID_LENGTH, result.getErrors());

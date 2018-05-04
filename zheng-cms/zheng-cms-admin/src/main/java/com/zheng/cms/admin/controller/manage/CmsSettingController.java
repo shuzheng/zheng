@@ -26,16 +26,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 设置控制器
- * Created by shuzheng on 2017/3/18.
+ * 设置控制器 Created by shuzheng on 2017/3/18.
  */
 @Controller
 @Api(value = "设置管理", description = "设置管理")
 @RequestMapping("/manage/setting")
 public class CmsSettingController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(CmsSettingController.class);
-	
+
 	@Autowired
 	private CmsSettingService cmsSettingService;
 
@@ -50,8 +50,7 @@ public class CmsSettingController extends BaseController {
 	@RequiresPermissions("cms:setting:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Object list(
-			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+	public Object list(@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
 			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
@@ -80,8 +79,7 @@ public class CmsSettingController extends BaseController {
 	@ResponseBody
 	public Object create(CmsSetting cmsSetting) {
 		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsSetting.getSettingKey(), new LengthValidator(1, 20, "键"))
-				.doValidate()
+				.on(cmsSetting.getSettingKey(), new LengthValidator(1, 20, "键")).doValidate()
 				.result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
@@ -92,7 +90,7 @@ public class CmsSettingController extends BaseController {
 
 	@ApiOperation(value = "删除设置")
 	@RequiresPermissions("cms:setting:delete")
-	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
 	@ResponseBody
 	public Object delete(@PathVariable("ids") String ids) {
 		int count = cmsSettingService.deleteByPrimaryKeys(ids);
@@ -114,8 +112,7 @@ public class CmsSettingController extends BaseController {
 	@ResponseBody
 	public Object update(@PathVariable("id") int id, CmsSetting cmsSetting) {
 		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsSetting.getSettingKey(), new LengthValidator(1, 20, "键"))
-				.doValidate()
+				.on(cmsSetting.getSettingKey(), new LengthValidator(1, 20, "键")).doValidate()
 				.result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());

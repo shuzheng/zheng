@@ -16,10 +16,12 @@ public class Producer {
 			producer.start();
 			long time = System.currentTimeMillis();
 			System.out.println("开始：" + time);
-			for (int i = 1; i <= 100000; i ++) {
+			for (int i = 1; i <= 100000; i++) {
 				Message msg = new Message("PushTopic", "push", i + "", "Just for test.".getBytes());
+				@SuppressWarnings("unused")
 				SendResult result = producer.send(msg);
-				//System.out.println("id:" + result.getMsgId() + " result:" + result.getSendStatus());
+				// System.out.println("id:" + result.getMsgId() + " result:" +
+				// result.getSendStatus());
 			}
 			System.out.println("结束，消耗：" + (System.currentTimeMillis() - time));
 		} catch (Exception e) {

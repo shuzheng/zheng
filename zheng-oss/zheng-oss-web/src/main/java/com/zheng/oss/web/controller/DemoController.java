@@ -1,12 +1,13 @@
 package com.zheng.oss.web.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.model.OSSObject;
-import com.aliyun.oss.model.PutObjectResult;
-import com.zheng.common.base.BaseController;
-import com.zheng.oss.common.constant.OssConstant;
-import com.zheng.oss.web.service.AliyunOssService;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.io.*;
+import com.alibaba.fastjson.JSONObject;
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.model.OSSObject;
+import com.aliyun.oss.model.PutObjectResult;
+import com.zheng.common.base.BaseController;
+import com.zheng.oss.common.constant.OssConstant;
+import com.zheng.oss.web.service.AliyunOssService;
 
 /**
  * oss测试
@@ -36,14 +42,16 @@ public class DemoController extends BaseController {
 
     @GetMapping("/aliyun/upload1")
     public String upload1() {
-        PutObjectResult putObjectResult = aliyunOssClient.putObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "text.txt", new ByteArrayInputStream("Hello OSS".getBytes()));
+        @SuppressWarnings("unused")
+		PutObjectResult putObjectResult = aliyunOssClient.putObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "text.txt", new ByteArrayInputStream("Hello OSS".getBytes()));
         return "success";
     }
 
     @GetMapping("/aliyun/upload2")
     public String upload2() throws FileNotFoundException {
         File file = new File("d:\\zheng.png");
-        PutObjectResult putObjectResult = aliyunOssClient.putObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "file.png", file);
+        @SuppressWarnings("unused")
+		PutObjectResult putObjectResult = aliyunOssClient.putObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "file.png", file);
         return "success";
     }
 

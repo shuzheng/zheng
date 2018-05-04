@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* CmsCommentService实现
-* Created by shuzheng on 2017/4/5.
-*/
+ * CmsCommentService实现 Created by shuzheng on 2017/4/5.
+ */
 @Service
 @Transactional
 @BaseService
-public class CmsCommentServiceImpl extends BaseServiceImpl<CmsCommentMapper, CmsComment, CmsCommentExample> implements CmsCommentService {
+public class CmsCommentServiceImpl extends BaseServiceImpl<CmsCommentMapper, CmsComment, CmsCommentExample>
+		implements CmsCommentService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsCommentServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(CmsCommentServiceImpl.class);
 
-    @Autowired
-    CmsCommentMapper cmsCommentMapper;
+	@Autowired
+	CmsCommentMapper cmsCommentMapper;
 
 }

@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* PayOutOrderService实现
-* Created by shuzheng on 2017/3/29.
-*/
+ * PayOutOrderService实现 Created by shuzheng on 2017/3/29.
+ */
 @Service
 @Transactional
 @BaseService
-public class PayOutOrderServiceImpl extends BaseServiceImpl<PayOutOrderMapper, PayOutOrder, PayOutOrderExample> implements PayOutOrderService {
+public class PayOutOrderServiceImpl extends BaseServiceImpl<PayOutOrderMapper, PayOutOrder, PayOutOrderExample>
+		implements PayOutOrderService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayOutOrderServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(PayOutOrderServiceImpl.class);
 
-    @Autowired
-    PayOutOrderMapper payOutOrderMapper;
+	@Autowired
+	PayOutOrderMapper payOutOrderMapper;
 
 }

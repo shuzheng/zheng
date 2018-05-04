@@ -1,9 +1,8 @@
 package com.zheng.upms.server.interceptor;
 
-import com.zheng.common.util.PropertiesFileUtil;
-import com.zheng.upms.dao.model.UpmsUser;
-import com.zheng.upms.rpc.api.UpmsApiService;
-import com.zheng.upms.server.controller.manage.UpmsOrganizationController;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -12,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.zheng.common.util.PropertiesFileUtil;
+import com.zheng.upms.dao.model.UpmsUser;
+import com.zheng.upms.rpc.api.UpmsApiService;
 
 /**
  * 登录信息拦截器
@@ -21,7 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UpmsInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
+    @SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
     private static final String ZHENG_OSS_ALIYUN_OSS_POLICY = PropertiesFileUtil.getInstance("zheng-oss-client").get("zheng.oss.aliyun.oss.policy");
 
     @Autowired

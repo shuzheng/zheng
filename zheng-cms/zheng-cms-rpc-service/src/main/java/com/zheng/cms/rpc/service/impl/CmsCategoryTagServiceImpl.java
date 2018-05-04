@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* CmsCategoryTagService实现
-* Created by shuzheng on 2017/4/5.
-*/
+ * CmsCategoryTagService实现 Created by shuzheng on 2017/4/5.
+ */
 @Service
 @Transactional
 @BaseService
-public class CmsCategoryTagServiceImpl extends BaseServiceImpl<CmsCategoryTagMapper, CmsCategoryTag, CmsCategoryTagExample> implements CmsCategoryTagService {
+public class CmsCategoryTagServiceImpl extends
+		BaseServiceImpl<CmsCategoryTagMapper, CmsCategoryTag, CmsCategoryTagExample> implements CmsCategoryTagService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsCategoryTagServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(CmsCategoryTagServiceImpl.class);
 
-    @Autowired
-    CmsCategoryTagMapper cmsCategoryTagMapper;
+	@Autowired
+	CmsCategoryTagMapper cmsCategoryTagMapper;
 
 }

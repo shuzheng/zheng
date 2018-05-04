@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* CmsMenuService实现
-* Created by shuzheng on 2017/4/5.
-*/
+ * CmsMenuService实现 Created by shuzheng on 2017/4/5.
+ */
 @Service
 @Transactional
 @BaseService
-public class CmsMenuServiceImpl extends BaseServiceImpl<CmsMenuMapper, CmsMenu, CmsMenuExample> implements CmsMenuService {
+public class CmsMenuServiceImpl extends BaseServiceImpl<CmsMenuMapper, CmsMenu, CmsMenuExample>
+		implements CmsMenuService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsMenuServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(CmsMenuServiceImpl.class);
 
-    @Autowired
-    CmsMenuMapper cmsMenuMapper;
+	@Autowired
+	CmsMenuMapper cmsMenuMapper;
 
 }

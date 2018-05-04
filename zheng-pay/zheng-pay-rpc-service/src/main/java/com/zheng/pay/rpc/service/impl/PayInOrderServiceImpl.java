@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* PayInOrderService实现
-* Created by shuzheng on 2017/3/29.
-*/
+ * PayInOrderService实现 Created by shuzheng on 2017/3/29.
+ */
 @Service
 @Transactional
 @BaseService
-public class PayInOrderServiceImpl extends BaseServiceImpl<PayInOrderMapper, PayInOrder, PayInOrderExample> implements PayInOrderService {
+public class PayInOrderServiceImpl extends BaseServiceImpl<PayInOrderMapper, PayInOrder, PayInOrderExample>
+		implements PayInOrderService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayInOrderServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(PayInOrderServiceImpl.class);
 
-    @Autowired
-    PayInOrderMapper payInOrderMapper;
+	@Autowired
+	PayInOrderMapper payInOrderMapper;
 
 }

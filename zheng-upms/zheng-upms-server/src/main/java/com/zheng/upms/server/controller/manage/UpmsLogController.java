@@ -21,59 +21,57 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 日志controller
- * Created by shuzheng on 2017/3/14.
+ * 日志controller Created by shuzheng on 2017/3/14.
  */
 @Controller
 @Api(value = "日志管理", description = "日志管理")
 @RequestMapping("/manage/log")
 public class UpmsLogController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsLogController.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(UpmsLogController.class);
 
-    @Autowired
-    private UpmsLogService upmsLogService;
+	@Autowired
+	private UpmsLogService upmsLogService;
 
-    @ApiOperation(value = "日志首页")
-    @RequiresPermissions("upms:log:read")
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index() {
-        return "/manage/log/index.jsp";
-    }
+	@ApiOperation(value = "日志首页")
+	@RequiresPermissions("upms:log:read")
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index() {
+		return "/manage/log/index.jsp";
+	}
 
-    @ApiOperation(value = "日志列表")
-    @RequiresPermissions("upms:log:read")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
-    public Object list(
-            @RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
-            @RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
-            @RequestParam(required = false, defaultValue = "", value = "search") String search,
-            @RequestParam(required = false, value = "sort") String sort,
-            @RequestParam(required = false, value = "order") String order) {
-        UpmsLogExample upmsLogExample = new UpmsLogExample();
-        if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
-            upmsLogExample.setOrderByClause(sort + " " + order);
-        }
-        if (StringUtils.isNotBlank(search)) {
-            upmsLogExample.or()
-                    .andDescriptionLike("%" + search + "%");
-        }
-        List<UpmsLog> rows = upmsLogService.selectByExampleForOffsetPage(upmsLogExample, offset, limit);
-        long total = upmsLogService.countByExample(upmsLogExample);
-        Map<String, Object> result = new HashMap<>();
-        result.put("rows", rows);
-        result.put("total", total);
-        return result;
-    }
+	@ApiOperation(value = "日志列表")
+	@RequiresPermissions("upms:log:read")
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@ResponseBody
+	public Object list(@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
+			@RequestParam(required = false, defaultValue = "", value = "search") String search,
+			@RequestParam(required = false, value = "sort") String sort,
+			@RequestParam(required = false, value = "order") String order) {
+		UpmsLogExample upmsLogExample = new UpmsLogExample();
+		if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
+			upmsLogExample.setOrderByClause(sort + " " + order);
+		}
+		if (StringUtils.isNotBlank(search)) {
+			upmsLogExample.or().andDescriptionLike("%" + search + "%");
+		}
+		List<UpmsLog> rows = upmsLogService.selectByExampleForOffsetPage(upmsLogExample, offset, limit);
+		long total = upmsLogService.countByExample(upmsLogExample);
+		Map<String, Object> result = new HashMap<>();
+		result.put("rows", rows);
+		result.put("total", total);
+		return result;
+	}
 
-    @ApiOperation(value = "删除日志")
-    @RequiresPermissions("upms:log:delete")
-    @RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
-    @ResponseBody
-    public Object delete(@PathVariable("ids") String ids) {
-        int count = upmsLogService.deleteByPrimaryKeys(ids);
-        return new UpmsResult(UpmsResultConstant.SUCCESS, count);
-    }
+	@ApiOperation(value = "删除日志")
+	@RequiresPermissions("upms:log:delete")
+	@RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
+	@ResponseBody
+	public Object delete(@PathVariable("ids") String ids) {
+		int count = upmsLogService.deleteByPrimaryKeys(ids);
+		return new UpmsResult(UpmsResultConstant.SUCCESS, count);
+	}
 
 }

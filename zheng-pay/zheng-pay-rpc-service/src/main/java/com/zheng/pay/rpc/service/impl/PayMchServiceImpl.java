@@ -21,7 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class PayMchServiceImpl extends BaseServiceImpl<PayMchMapper, PayMch, PayMchExample> implements PayMchService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayMchServiceImpl.class);
+    @SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(PayMchServiceImpl.class);
 
     @Autowired
     PayMchMapper payMchMapper;

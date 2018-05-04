@@ -1,10 +1,7 @@
 package com.zheng.upms.rpc.service;
 
-import com.zheng.upms.dao.mapper.UpmsUserMapper;
-import com.zheng.upms.dao.model.*;
-import com.zheng.upms.rpc.api.UpmsPermissionService;
-import com.zheng.upms.rpc.api.UpmsSystemService;
-import com.zheng.upms.rpc.api.UpmsUserService;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +9,19 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import java.util.List;
+import com.zheng.upms.dao.mapper.UpmsUserMapper;
+import com.zheng.upms.dao.model.UpmsPermission;
+import com.zheng.upms.dao.model.UpmsPermissionExample;
+import com.zheng.upms.dao.model.UpmsUser;
+import com.zheng.upms.rpc.api.UpmsPermissionService;
+import com.zheng.upms.rpc.api.UpmsSystemService;
+import com.zheng.upms.rpc.api.UpmsUserService;
 
 /**
  * 单元测试
  * Created by shuzheng on 2017/2/19.
  */
+@SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
         "classpath:applicationContext.xml",
@@ -27,10 +31,12 @@ import java.util.List;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class UpmsServiceTest {
 
-    @Autowired
-    private UpmsSystemService upmsSystemService;
+    @SuppressWarnings("unused")
+	@Autowired
+	private UpmsSystemService upmsSystemService;
 
-    @Autowired
+    @SuppressWarnings("unused")
+	@Autowired
     private UpmsUserMapper upmsUserMapper;
 
     @Autowired

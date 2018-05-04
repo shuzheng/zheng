@@ -19,41 +19,39 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 专题首页控制器
- * Created by shuzheng on 2017/3/26.
+ * 专题首页控制器 Created by shuzheng on 2017/3/26.
  */
 @Controller
 @RequestMapping(value = "/topic")
 public class TopicController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(TopicController.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(TopicController.class);
 
-    @Autowired
-    private CmsTopicService cmsTopicService;
+	@Autowired
+	private CmsTopicService cmsTopicService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(
-            @RequestParam(required = false, defaultValue = "1", value = "page") int page,
-            HttpServletRequest request,
-            Model model) {
-        // 专题列表
-        int rows = 10;
-        CmsTopicExample cmsTopicExample = new CmsTopicExample();
-        List<CmsTopic> topics = cmsTopicService.selectByExampleForOffsetPage(cmsTopicExample, (page - 1) * rows, rows);
-        model.addAttribute("topics", topics);
-        // 文章总数
-        long total = cmsTopicService.countByExample(cmsTopicExample);
-        // 分页
-        Paginator paginator = new Paginator(total, page, rows, request);
-        model.addAttribute("paginator", paginator);
-        return thymeleaf("/topic/list");
-    }
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String list(@RequestParam(required = false, defaultValue = "1", value = "page") int page,
+			HttpServletRequest request, Model model) {
+		// 专题列表
+		int rows = 10;
+		CmsTopicExample cmsTopicExample = new CmsTopicExample();
+		List<CmsTopic> topics = cmsTopicService.selectByExampleForOffsetPage(cmsTopicExample, (page - 1) * rows, rows);
+		model.addAttribute("topics", topics);
+		// 文章总数
+		long total = cmsTopicService.countByExample(cmsTopicExample);
+		// 分页
+		Paginator paginator = new Paginator(total, page, rows, request);
+		model.addAttribute("paginator", paginator);
+		return thymeleaf("/topic/list");
+	}
 
-    @RequestMapping(value = "{topicId}", method = RequestMethod.GET)
-    public String index(@PathVariable("topicId") int topicId, Model model) {
-        CmsTopic topic = cmsTopicService.selectByPrimaryKey(topicId);
-        model.addAttribute("topic", topic);
-        return thymeleaf("/topic/index");
-    }
+	@RequestMapping(value = "{topicId}", method = RequestMethod.GET)
+	public String index(@PathVariable("topicId") int topicId, Model model) {
+		CmsTopic topic = cmsTopicService.selectByPrimaryKey(topicId);
+		model.addAttribute("topic", topic);
+		return thymeleaf("/topic/index");
+	}
 
 }

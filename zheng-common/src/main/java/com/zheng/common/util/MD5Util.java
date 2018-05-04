@@ -1,7 +1,6 @@
 package com.zheng.common.util;
 
 import java.security.MessageDigest;
-import java.util.UUID;
 
 /**
  * Created by shuzheng on 2017/1/19.

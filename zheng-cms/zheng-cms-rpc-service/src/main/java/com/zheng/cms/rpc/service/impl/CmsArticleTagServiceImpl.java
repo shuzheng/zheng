@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* CmsArticleTagService实现
-* Created by shuzheng on 2017/4/5.
-*/
+ * CmsArticleTagService实现 Created by shuzheng on 2017/4/5.
+ */
 @Service
 @Transactional
 @BaseService
-public class CmsArticleTagServiceImpl extends BaseServiceImpl<CmsArticleTagMapper, CmsArticleTag, CmsArticleTagExample> implements CmsArticleTagService {
+public class CmsArticleTagServiceImpl extends BaseServiceImpl<CmsArticleTagMapper, CmsArticleTag, CmsArticleTagExample>
+		implements CmsArticleTagService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsArticleTagServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(CmsArticleTagServiceImpl.class);
 
-    @Autowired
-    CmsArticleTagMapper cmsArticleTagMapper;
+	@Autowired
+	CmsArticleTagMapper cmsArticleTagMapper;
 
 }

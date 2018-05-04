@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* PayVestService实现
-* Created by shuzheng on 2017/3/29.
-*/
+ * PayVestService实现 Created by shuzheng on 2017/3/29.
+ */
 @Service
 @Transactional
 @BaseService
-public class PayVestServiceImpl extends BaseServiceImpl<PayVestMapper, PayVest, PayVestExample> implements PayVestService {
+public class PayVestServiceImpl extends BaseServiceImpl<PayVestMapper, PayVest, PayVestExample>
+		implements PayVestService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayVestServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(PayVestServiceImpl.class);
 
-    @Autowired
-    PayVestMapper payVestMapper;
+	@Autowired
+	PayVestMapper payVestMapper;
 
 }

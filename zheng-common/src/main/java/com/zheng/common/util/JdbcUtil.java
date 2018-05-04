@@ -31,7 +31,7 @@ public class JdbcUtil {
 	}
 
 	// 更新数据
-	public boolean updateByParams(String sql, List params) throws SQLException {
+	public boolean updateByParams(String sql, List<?> params) throws SQLException {
 		// 影响行数
 		int result = -1;
 		pstmt = conn.prepareStatement(sql);
@@ -47,8 +47,8 @@ public class JdbcUtil {
 	}
 
 	// 查询多条记录
-	public List<Map> selectByParams(String sql, List params) throws SQLException {
-		List<Map> list = new ArrayList<> ();
+	public List<Map<String,Object>> selectByParams(String sql, List<?> params) throws SQLException {
+		List<Map<String,Object>> list = new ArrayList<> ();
 		int index = 1;
 		pstmt = conn.prepareStatement(sql);
 		if (null != params && !params.isEmpty()) {
@@ -60,7 +60,7 @@ public class JdbcUtil {
 		ResultSetMetaData metaData = rs.getMetaData();
 		int cols_len = metaData.getColumnCount();
 		while (rs.next()) {
-			Map map = new HashMap();
+			Map<String,Object> map = new HashMap<String,Object>();
 			for (int i = 0; i < cols_len; i ++) {
 				String cols_name = metaData.getColumnName(i + 1);
 				Object cols_value = rs.getObject(cols_name);

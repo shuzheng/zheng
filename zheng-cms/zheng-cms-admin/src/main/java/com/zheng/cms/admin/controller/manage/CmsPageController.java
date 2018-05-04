@@ -26,16 +26,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 单页控制器
- * Created by shuzheng on 2017/3/18.
+ * 单页控制器 Created by shuzheng on 2017/3/18.
  */
 @Controller
 @Api(value = "单页管理", description = "单页管理")
 @RequestMapping("/manage/page")
 public class CmsPageController extends BaseController {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(CmsPageController.class);
-	
+
 	@Autowired
 	private CmsPageService cmsPageService;
 
@@ -50,8 +50,7 @@ public class CmsPageController extends BaseController {
 	@RequiresPermissions("cms:page:read")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Object list(
-			@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
+	public Object list(@RequestParam(required = false, defaultValue = "0", value = "offset") int offset,
 			@RequestParam(required = false, defaultValue = "10", value = "limit") int limit,
 			@RequestParam(required = false, value = "sort") String sort,
 			@RequestParam(required = false, value = "order") String order) {
@@ -79,10 +78,8 @@ public class CmsPageController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public Object create(CmsPage cmsPage) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsPage.getTitle(), new LengthValidator(1, 20, "标题"))
-				.doValidate()
-				.result(ResultCollectors.toComplex());
+		ComplexResult result = FluentValidator.checkAll().on(cmsPage.getTitle(), new LengthValidator(1, 20, "标题"))
+				.doValidate().result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
 		}
@@ -95,7 +92,7 @@ public class CmsPageController extends BaseController {
 
 	@ApiOperation(value = "删除单页")
 	@RequiresPermissions("cms:page:delete")
-	@RequestMapping(value = "/delete/{ids}",method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{ids}", method = RequestMethod.GET)
 	@ResponseBody
 	public Object delete(@PathVariable("ids") String ids) {
 		int count = cmsPageService.deleteByPrimaryKeys(ids);
@@ -116,10 +113,8 @@ public class CmsPageController extends BaseController {
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Object update(@PathVariable("id") int id, CmsPage cmsPage) {
-		ComplexResult result = FluentValidator.checkAll()
-				.on(cmsPage.getTitle(), new LengthValidator(1, 20, "标题"))
-				.doValidate()
-				.result(ResultCollectors.toComplex());
+		ComplexResult result = FluentValidator.checkAll().on(cmsPage.getTitle(), new LengthValidator(1, 20, "标题"))
+				.doValidate().result(ResultCollectors.toComplex());
 		if (!result.isSuccess()) {
 			return new CmsResult(CmsResultConstant.INVALID_LENGTH, result.getErrors());
 		}

@@ -9,26 +9,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 后台过滤器
- * Created by ZhangShuzheng on 2017/01/12.
+ * 后台过滤器 Created by ZhangShuzheng on 2017/01/12.
  */
 public class ManageInterceptor extends HandlerInterceptorAdapter {
 
+	@SuppressWarnings("unused")
 	private static Logger _log = LoggerFactory.getLogger(ManageInterceptor.class);
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
 
 		return true;
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
 
 	}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
 
 	}
 

@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* UcenterUserService实现
-* Created by shuzheng on 2017/4/27.
-*/
+ * UcenterUserService实现 Created by shuzheng on 2017/4/27.
+ */
 @Service
 @Transactional
 @BaseService
-public class UcenterUserServiceImpl extends BaseServiceImpl<UcenterUserMapper, UcenterUser, UcenterUserExample> implements UcenterUserService {
+public class UcenterUserServiceImpl extends BaseServiceImpl<UcenterUserMapper, UcenterUser, UcenterUserExample>
+		implements UcenterUserService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterUserServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(UcenterUserServiceImpl.class);
 
-    @Autowired
-    UcenterUserMapper ucenterUserMapper;
+	@Autowired
+	UcenterUserMapper ucenterUserMapper;
 
 }

@@ -13,17 +13,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
-* UcenterUserOauthService实现
-* Created by shuzheng on 2017/4/27.
-*/
+ * UcenterUserOauthService实现 Created by shuzheng on 2017/4/27.
+ */
 @Service
 @Transactional
 @BaseService
-public class UcenterUserOauthServiceImpl extends BaseServiceImpl<UcenterUserOauthMapper, UcenterUserOauth, UcenterUserOauthExample> implements UcenterUserOauthService {
+public class UcenterUserOauthServiceImpl
+		extends BaseServiceImpl<UcenterUserOauthMapper, UcenterUserOauth, UcenterUserOauthExample>
+		implements UcenterUserOauthService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterUserOauthServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(UcenterUserOauthServiceImpl.class);
 
-    @Autowired
-    UcenterUserOauthMapper ucenterUserOauthMapper;
+	@Autowired
+	UcenterUserOauthMapper ucenterUserOauthMapper;
 
 }

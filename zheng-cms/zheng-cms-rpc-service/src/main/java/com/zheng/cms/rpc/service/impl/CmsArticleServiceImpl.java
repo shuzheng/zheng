@@ -16,40 +16,41 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
-* CmsArticleService实现
-* Created by shuzheng on 2017/4/5.
-*/
+ * CmsArticleService实现 Created by shuzheng on 2017/4/5.
+ */
 @Service
 @Transactional
 @BaseService
-public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, CmsArticle, CmsArticleExample> implements CmsArticleService {
+public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, CmsArticle, CmsArticleExample>
+		implements CmsArticleService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsArticleServiceImpl.class);
+	@SuppressWarnings("unused")
+	private static Logger _log = LoggerFactory.getLogger(CmsArticleServiceImpl.class);
 
-    @Autowired
-    CmsArticleMapper cmsArticleMapper;
+	@Autowired
+	CmsArticleMapper cmsArticleMapper;
 
-    @Autowired
-    CmsArticleExtMapper cmsArticleExtMapper;
+	@Autowired
+	CmsArticleExtMapper cmsArticleExtMapper;
 
-    @Override
-    public List<CmsArticle> selectCmsArticlesByCategoryId(Integer categoryId, Integer offset, Integer limit) {
-        return cmsArticleExtMapper.selectCmsArticlesByCategoryId(categoryId, offset, limit);
-    }
+	@Override
+	public List<CmsArticle> selectCmsArticlesByCategoryId(Integer categoryId, Integer offset, Integer limit) {
+		return cmsArticleExtMapper.selectCmsArticlesByCategoryId(categoryId, offset, limit);
+	}
 
-    @Override
-    public long countByCategoryId(Integer categoryId) {
-        return cmsArticleExtMapper.countByCategoryId(categoryId);
-    }
+	@Override
+	public long countByCategoryId(Integer categoryId) {
+		return cmsArticleExtMapper.countByCategoryId(categoryId);
+	}
 
-    @Override
-    public List<CmsArticle> selectCmsArticlesByTagId(Integer tagId, Integer offset, Integer limit) {
-        return cmsArticleExtMapper.selectCmsArticlesByTagId(tagId, offset, limit);
-    }
+	@Override
+	public List<CmsArticle> selectCmsArticlesByTagId(Integer tagId, Integer offset, Integer limit) {
+		return cmsArticleExtMapper.selectCmsArticlesByTagId(tagId, offset, limit);
+	}
 
-    @Override
-    public long countByTagId(Integer tagId) {
-        return cmsArticleExtMapper.countByTagId(tagId);
-    }
+	@Override
+	public long countByTagId(Integer tagId) {
+		return cmsArticleExtMapper.countByTagId(tagId);
+	}
 
 }
