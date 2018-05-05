@@ -156,6 +156,12 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-ehcache</artifactId>
             <version>${mybatis-ehcache.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>net.sf.ehcache</groupId>
+                    <artifactId>ehcache-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- mysql -->
         <dependency>
