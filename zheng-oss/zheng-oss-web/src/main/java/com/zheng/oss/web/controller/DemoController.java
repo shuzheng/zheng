@@ -49,7 +49,7 @@ public class DemoController extends BaseController {
 
     @GetMapping("/aliyun/download1")
     public String download1() throws IOException {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         OSSObject ossObject = aliyunOssClient.getObject(OssConstant.ALIYUN_OSS_BUCKET_NAME, "text.txt");
         InputStream content = ossObject.getObjectContent();
         if (content != null) {
