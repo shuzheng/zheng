@@ -3,7 +3,16 @@ services:
     zheng-nginx:
         image: nginx:1.15
         volumes:
-            - ./data/nginx/conf/conf.d:/etc/nginx/conf.d:z
+            # - ./data/nginx/conf/conf.d:/etc/nginx/conf.d:z
+            # use custom nginx.conf
+            - ./data/nginx/config/nginx.conf:/etc/nginx/nginx.conf:z
+            - ./data/nginx/config/servers:/etc/nginx/conf.d:z
+            - ./data/nginx/logs:/var/log/nginx:z
+            - ./../zheng-ui:/www/zheng-ui:z
+            - ./../zheng-cms/zheng-cms-web/src/main/webapp/resources:/www/zheng-cms-web:z
         ports:
             - 80:80
             - 443:443
+            - 1000:1000
+            - 1001:1001
+            - 1002:1002

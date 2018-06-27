@@ -1,9 +1,11 @@
 version: '2'
 services:
     zheng-redis:
-        image: redis:3.2.12
+        image: bitnami/redis:4.0
+        environment:
+#            - REDIS_PASSWORD=
+            - ALLOW_EMPTY_PASSWORD=yes
         volumes:
-            - ./data/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
-            - ./data/redis/data:/data
+            - ./data/redis/data:/bitnami
         ports:
             - 6379:6379

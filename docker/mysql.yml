@@ -5,10 +5,12 @@ services:
         volumes:
             - ./data/mysql/conf:/etc/mysql/conf.d
             - ./data/mysql/data:/var/lib/mysql
+            - ./script/zheng.sql:/docker-entrypoint-initdb.d/zheng.sql
+            - ./script/zheng-ucenter.sql:/docker-entrypoint-initdb.d/zheng-ucenter.sql
         environment:
             - MYSQL_USER=root
-            - MYSQL_ROOT_PASSWORD=zheng12345
+            - MYSQL_ROOT_PASSWORD=123456
             - MYSQL_DATABASE=zheng
         ports:
             - 3306:3306
-        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+        command: mysqld  --skip-ssl --character_set_server=utf8mb4 --sql_mode=""
