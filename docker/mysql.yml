@@ -1,0 +1,14 @@
+version: '2'
+services:
+    zheng-mysql:
+        image: mysql:5.7.22
+        volumes:
+            - ./data/mysql/conf:/etc/mysql/conf.d
+            - ./data/mysql/data:/var/lib/mysql
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ROOT_PASSWORD=zheng12345
+            - MYSQL_DATABASE=zheng
+        ports:
+            - 3306:3306
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp

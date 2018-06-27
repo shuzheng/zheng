@@ -1,0 +1,9 @@
+version: '2'
+services:
+    zheng-redis:
+        image: redis:3.2.12
+        volumes:
+            - ./data/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+            - ./data/redis/data:/data
+        ports:
+            - 6379:6379

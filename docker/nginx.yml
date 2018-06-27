@@ -1,0 +1,9 @@
+version: '2'
+services:
+    zheng-nginx:
+        image: nginx:1.15
+        volumes:
+            - ./data/nginx/conf/conf.d:/etc/nginx/conf.d:z
+        ports:
+            - 80:80
+            - 443:443

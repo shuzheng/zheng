@@ -13,3 +13,16 @@ generatorConfig.xml
 *.lock
 /build/
 *.settings
+doc
+docker/data/mysql/data/*
+docker/data/mysql/conf/*
+!docker/data/mysql/data/.gitkeep
+!docker/data/mysql/conf/.gitkeep
+docker/data/redis/data/*
+docker/data/redis/conf/*
+!docker/data/redis/data/.gitkeep
+!docker/data/redis/conf/.gitkeep
+docker/data/activemq/data/*
+docker/data/activemq/log/*
+!docker/data/activemq/data/.gitkeep
+!docker/data/activemq/log/.gitkeep
