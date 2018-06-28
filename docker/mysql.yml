@@ -11,6 +11,7 @@ services:
             - MYSQL_USER=root
             - MYSQL_ROOT_PASSWORD=123456
             - MYSQL_DATABASE=zheng
+            - LANG=C.UTF-8
         ports:
             - 3306:3306
         command: mysqld  --skip-ssl --character_set_server=utf8mb4 --sql_mode=""
