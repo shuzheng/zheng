@@ -1,4 +1,3 @@
-.idea
 .classpath
 .project
 *.iml
@@ -28,3 +27,12 @@ docker/data/activemq/log/*
 !docker/data/activemq/log/.gitkeep
 docker/data/nginx/logs/*
 !docker/data/nginx/logs/.gitkeep
+!/.idea/
+/.idea/**
+!/.idea/runConfigurations/
+/.idea/runConfigurations/**
+!.idea/runConfigurations/zheng_cms_admin.xml
+!.idea/runConfigurations/zheng_cms_web.xml
+!.idea/runConfigurations/zheng_upms_server.xml
+!.idea/runConfigurations/ZhengCmsRpcServiceApplication.xml
+!.idea/runConfigurations/ZhengUpmsRpcServiceApplication.xml
