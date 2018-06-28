@@ -27,3 +27,4 @@ docker/data/activemq/log/*
 !docker/data/activemq/data/.gitkeep
 !docker/data/activemq/log/.gitkeep
 docker/data/nginx/logs/*
+!docker/data/nginx/logs/.gitkeep
