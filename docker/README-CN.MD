@@ -34,6 +34,8 @@ docker-compose -f docker/dubbo.yml up -d
 docker-compose -f docker/app.yml up -d
 ```
 
+![所有服务启动完毕](https://github.com/xmeng1/zheng/raw/7456a1c084021c4c30366687fe90ff379b39f473/docker/zheng-docker-env.png)
+
 ## 一键关闭所有的服务
 
 该操作会保留所有数据，因为数据会被存放在 Volume 中， 注意这些文件不会被 git 管理，请自行管理。
