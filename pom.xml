@@ -29,6 +29,7 @@
         <module>zheng-wechat</module>
         <module>zheng-shop</module>
         <module>zheng-api</module>
+        <module>zheng-notify</module>
         <module>zheng-demo</module>
     </modules>
 </project>

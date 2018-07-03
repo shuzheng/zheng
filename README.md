@@ -68,11 +68,15 @@ zheng
 |    ├── zheng-oss-sdk -- 开发工具包
 |    ├── zheng-oss-web -- 前台接口[端口:7771]
 |    └── zheng-oss-admin -- 后台管理[端口:7772]
+├── zheng-notify -- 实时推送系统
+|    ├── zheng-notify-sdk -- 开发工具包
+|    ├── zheng-notify-server -- 服务端[端口:8881,SocketIO端口:8882]
+|    └── zheng-notify-client -- 客户端
 ├── zheng-shop -- 电子商务系统
 └── zheng-demo -- 示例模块(包含一些示例代码等)
      ├── zheng-demo-rpc-api -- rpc接口包
      ├── zheng-demo-rpc-service -- rpc服务提供者
-     └── zheng-demo-web -- 演示示例[端口:8888]
+     └── zheng-demo-web -- 演示示例[端口:9999]
 ```
 
 ### 技术选型
@@ -108,6 +112,7 @@ AliOSS & Qiniu & QcloudCOS | 云存储  | [https://www.aliyun.com/product/oss/](
 Protobuf & json | 数据序列化  | [https://github.com/google/protobuf](https://github.com/google/protobuf)
 Jenkins | 持续集成工具  | [https://jenkins.io/index.html](https://jenkins.io/index.html)
 Maven | 项目构建管理  | [http://maven.apache.org/](http://maven.apache.org/)
+Netty-socketio | 实时推送  | [https://github.com/mrniko/netty-socketio](https://github.com/mrniko/netty-socketio)
 
 #### 前端技术:
 技术 | 名称 | 官网
@@ -128,6 +133,7 @@ zhengAdmin | 后台管理系统模板  | [https://github.com/shuzheng/zhengAdmin
 autoMail | 邮箱地址自动补全插件  | [https://github.com/shuzheng/autoMail](https://github.com/shuzheng/autoMail)
 zheng.jprogress.js | 加载进度条插件  | [https://github.com/shuzheng/zheng.jprogress.js](https://github.com/shuzheng/zheng.jprogress.js)
 zheng.jtotop.js | 返回顶部插件  | [https://github.com/shuzheng/zheng.jtotop.js](https://github.com/shuzheng/zheng.jtotop.js)
+socket.io.js | SocketIO插件  | [https://socket.io/](https://socket.io/)
 
 #### 架构图
 
@@ -196,6 +202,10 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 > zheng-wechat-app 
 
 微信小程序后台
+
+> zheng-notify
+
+基于Netty实现SocketIO的实时推送系统。支持命名空间、二进制数据、SSL、ACK等功能。
 
 ## 环境搭建（QQ群内有“zheng环境搭建和系统部署文档.doc”）
 
