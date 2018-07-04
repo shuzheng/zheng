@@ -4,14 +4,14 @@
 
     <parent>
         <groupId>com.zheng</groupId>
-        <artifactId>zheng-notify</artifactId>
+        <artifactId>zheng-message</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-notify-server</artifactId>
+    <artifactId>zheng-message-server</artifactId>
     <packaging>jar</packaging>
 
-    <name>zheng-notify-server</name>
+    <name>zheng-message-server</name>
     <url>http://www.zhangshuzheng.cn</url>
 
     <properties>
@@ -69,7 +69,7 @@
     </profiles>
 
     <build>
-        <finalName>zheng-notify-server</finalName>
+        <finalName>zheng-message-server</finalName>
         <filters>
             <filter>src/main/resources/profiles/${env}.properties</filter>
         </filters>

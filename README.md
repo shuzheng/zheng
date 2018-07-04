@@ -68,10 +68,10 @@ zheng
 |    ├── zheng-oss-sdk -- 开发工具包
 |    ├── zheng-oss-web -- 前台接口[端口:7771]
 |    └── zheng-oss-admin -- 后台管理[端口:7772]
-├── zheng-notify -- 实时推送系统
-|    ├── zheng-notify-sdk -- 开发工具包
-|    ├── zheng-notify-server -- 服务端[端口:8881,SocketIO端口:8882]
-|    └── zheng-notify-client -- 客户端
+├── zheng-message -- 实时推送系统
+|    ├── zheng-message-sdk -- 开发工具包
+|    ├── zheng-message-server -- 服务端[端口:8881,SocketIO端口:8882]
+|    └── zheng-message-client -- 客户端
 ├── zheng-shop -- 电子商务系统
 └── zheng-demo -- 示例模块(包含一些示例代码等)
      ├── zheng-demo-rpc-api -- rpc接口包
@@ -203,7 +203,7 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 微信小程序后台
 
-> zheng-notify
+> zheng-message
 
 基于Netty实现SocketIO的实时推送系统。支持命名空间、二进制数据、SSL、ACK等功能。
 

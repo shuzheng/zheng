@@ -1,4 +1,4 @@
-package com.zheng.notify.server.controller;
+package com.zheng.message.server.controller;
 
 import com.zheng.common.base.BaseController;
 import org.slf4j.Logger;

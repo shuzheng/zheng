@@ -1,4 +1,4 @@
-package com.zheng.notify.sdk;
+package com.zheng.message.sdk;
 
 /**
  * 统一返回结果类

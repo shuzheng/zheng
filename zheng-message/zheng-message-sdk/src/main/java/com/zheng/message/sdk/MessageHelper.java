@@ -1,4 +1,4 @@
-package com.zheng.notify.sdk;
+package com.zheng.message.sdk;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
  * 推送工具类
  * Created by shuzheng on 2018/6/28.
  */
-public class NotifyHelper {
+public class MessageHelper {
 
     /**
      * 推送消息
@@ -55,13 +55,13 @@ public class NotifyHelper {
     }
 
     public static void main(String[] args) {
-        String url = "http://localhost:8881/notify/publish";
+        String url = "http://localhost:8881/message/publish";
         PublishDto publishDto = new PublishDto();
-        publishDto.setType(NotifyConstants.PUBLISH_TYPE_BROADCAST);
+        publishDto.setType(MessageConstants.PUBLISH_TYPE_BROADCAST);
         publishDto.setNamespace("/demo");
         publishDto.setAccessKey("1");
         publishDto.setPayload("hi");
-        BaseResult result = new NotifyHelper().publish(url, publishDto);
+        BaseResult result = new MessageHelper().publish(url, publishDto);
         System.out.println(result.message);
     }
 
