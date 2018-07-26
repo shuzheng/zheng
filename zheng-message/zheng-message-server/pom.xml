@@ -1,29 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.zheng</groupId>
-        <artifactId>zheng-demo</artifactId>
+        <artifactId>zheng-message</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>zheng-demo-web</artifactId>
-    <packaging>war</packaging>
+    <artifactId>zheng-message-server</artifactId>
+    <packaging>jar</packaging>
 
-    <name>zheng-demo-web Maven Webapp</name>
+    <name>zheng-message-server</name>
     <url>http://www.zhangshuzheng.cn</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.zheng</groupId>
             <artifactId>zheng-common</artifactId>
-            <version>1.0.0</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.zheng</groupId>
-            <artifactId>zheng-demo-rpc-api</artifactId>
             <version>1.0.0</version>
             <type>jar</type>
         </dependency>
@@ -71,7 +69,7 @@
     </profiles>
 
     <build>
-        <finalName>zheng-demo-web</finalName>
+        <finalName>zheng-message-server</finalName>
         <filters>
             <filter>src/main/resources/profiles/${env}.properties</filter>
         </filters>
@@ -94,7 +92,7 @@
                         <contextPath>/</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>9999</port>
+                        <port>8881</port>
                     </httpConnector>
                     <reload>automatic</reload>
                 </configuration>

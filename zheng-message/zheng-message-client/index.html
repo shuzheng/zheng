@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>实时推送系统前端示例</title>
+    <style>
+        #main{width:100%;height:400px;margin:0 auto;}
+        .namespace{width:100%;height:400px;background:#000;}
+        .title{width:100%;height:40px;font-size:0;background:#666;}
+        .input,.button{float:left;height:40px;border:none;background:none;outline:none;color:#fff;}
+        .input{width:25%;text-indent:10px;font-weight:bold;}
+        .button{width:10%;cursor:pointer;}
+        #token{width:20%;}
+        #env{background:rgb(194, 53, 49);}
+        .messages{width:100%;height:340px;overflow-y:auto;font-size:12px;line-height:2em;color:#fff;}
+        .messages li{list-style-type:none;}
+        .messages .connect{color:#00cc00;}
+        .messages .warn{color:#cccc00;}
+        .messages .disconnect{color:#cc0000;}
+        table{width:100%;border-collapse:collapse;border:solid #ccc;border-width:1px 0 0 1px}
+        table th,table td{border:solid #ccc;border-width:0 1px 1px 0;padding:14px;text-align:center}
+    </style>
+</head>
+<body>
+<div id="main">
+    <div class="namespace">
+        <div class="title">
+            <select id="env" class="input">
+                <option value="http://localhost:8882">开发环境</option>
+            </select>
+            <input id="namespace" class="input" type="text" placeholder="namespace" value=""/>
+            <input id="token" class="input" type="text" placeholder="token" value=""/>
+            <input id="connect" class="button" type="button" value="连接"/>
+            <input id="send" class="button" type="button" value="发言"/>
+            <input id="disconnect" class="button" type="button" value="断开"/>
+        </div>
+        <div class="messages">
+            <ul id="list">
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/socket.io/2.1.1/socket.io.js"></script>
+<script type="text/javascript">
+    $(function() {
+        // SocketIO客户端
+        var socket;
+        $('#connect').click(function() {
+            // 获取token，请求业务系统接口
+            var token = $('#token').val();
+            // 创建socketio连接
+            socket = io.connect($('#env').val() + $('#namespace').val() + '?token=' + token);
+            socket.on('connect', function() {
+                $('#list').prepend('<li class="connect">已连接服务器！</li>');
+            });
+            socket.on('message', function(data, ackServerCallback) {
+                $('#list').prepend('<li class="data">收到服务器消息：' + JSON.stringify(data) + '</li>');
+                if (ackServerCallback) {
+                    ackServerCallback();
+                }
+            });
+            socket.on('connect_error', function(error) {
+                $('#list').prepend('<li class="warn">连接服务器失败！</li>');
+                console.log(error);
+            });
+            socket.on('disconnect', function() {
+                $('#list').prepend('<li class="disconnect">已断开服务器！</li>');
+            });
+            $('#send').click(function() {
+                socket.emit('message', {userName: 'userName', message: new Date()});
+            });
+            $('#disconnect').click(function() {
+                socket.close();
+            });
+            // 防止重复连接
+            $(this).attr('disabled','disabled');
+        });
+    });
+</script>
+</body>
+</html>
