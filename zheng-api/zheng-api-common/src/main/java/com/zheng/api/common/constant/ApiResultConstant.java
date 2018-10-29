@@ -6,6 +6,9 @@ package com.zheng.api.common.constant;
  */
 public enum ApiResultConstant {
 
+    /**
+     * 成功
+     */
     SUCCESS(1, "success");
 
     public int code;

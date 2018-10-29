@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class PayVestServiceImpl extends BaseServiceImpl<PayVestMapper, PayVest, PayVestExample> implements PayVestService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayVestServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(PayVestServiceImpl.class);
 
     @Autowired
     PayVestMapper payVestMapper;

@@ -1,4 +1,4 @@
-package com.zheng.cms.admin.Interceptor;
+package com.zheng.cms.admin.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ManageInterceptor extends HandlerInterceptorAdapter {
 
-	private static Logger _log = LoggerFactory.getLogger(ManageInterceptor.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ManageInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

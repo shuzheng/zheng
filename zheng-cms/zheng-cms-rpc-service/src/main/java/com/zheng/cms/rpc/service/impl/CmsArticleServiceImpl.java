@@ -24,7 +24,7 @@ import java.util.List;
 @BaseService
 public class CmsArticleServiceImpl extends BaseServiceImpl<CmsArticleMapper, CmsArticle, CmsArticleExample> implements CmsArticleService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsArticleServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CmsArticleServiceImpl.class);
 
     @Autowired
     CmsArticleMapper cmsArticleMapper;

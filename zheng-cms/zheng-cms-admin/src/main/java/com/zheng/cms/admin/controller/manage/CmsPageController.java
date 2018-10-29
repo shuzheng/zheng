@@ -34,7 +34,7 @@ import java.util.Map;
 @RequestMapping("/manage/page")
 public class CmsPageController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsPageController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CmsPageController.class);
 	
 	@Autowired
 	private CmsPageService cmsPageService;
@@ -61,7 +61,7 @@ public class CmsPageController extends BaseController {
 		}
 		List<CmsPage> rows = cmsPageService.selectByExampleForOffsetPage(cmsPageExample, offset, limit);
 		long total = cmsPageService.countByExample(cmsPageExample);
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(2);
 		result.put("rows", rows);
 		result.put("total", total);
 		return result;

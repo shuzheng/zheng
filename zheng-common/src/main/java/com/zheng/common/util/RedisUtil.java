@@ -18,7 +18,7 @@ public class RedisUtil {
 	protected static ReentrantLock lockPool = new ReentrantLock();
 	protected static ReentrantLock lockJedis = new ReentrantLock();
 
-	private static Logger _log = LoggerFactory.getLogger(RedisUtil.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RedisUtil.class);
 
 	// Redis服务器IP
 	private static String IP = PropertiesFileUtil.getInstance("redis").get("master.redis.ip");
@@ -27,7 +27,7 @@ public class RedisUtil {
 	private static int PORT = PropertiesFileUtil.getInstance("redis").getInt("master.redis.port");
 
 	// 访问密码
-	private static String PASSWORD = AESUtil.AESDecode(PropertiesFileUtil.getInstance("redis").get("master.redis.password"));
+	private static String PASSWORD = AESUtil.aesDecode(PropertiesFileUtil.getInstance("redis").get("master.redis.password"));
 	// 可用连接实例的最大数目，默认值为8；
 	// 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。
 	private static int MAX_ACTIVE = PropertiesFileUtil.getInstance("redis").getInt("master.redis.max_active");
@@ -49,9 +49,12 @@ public class RedisUtil {
 	/**
 	 * redis过期时间,以秒为单位
 	 */
-	public final static int EXRP_HOUR = 60 * 60;            //一小时
-	public final static int EXRP_DAY = 60 * 60 * 24;        //一天
-	public final static int EXRP_MONTH = 60 * 60 * 24 * 30;    //一个月
+	// 一小时
+	public final static int EXRP_HOUR = 60 * 60;
+	// 一天
+	public final static int EXRP_DAY = 60 * 60 * 24;
+	// 一个月
+	public final static int EXRP_MONTH = 60 * 60 * 24 * 30;
 
 	/**
 	 * 初始化Redis连接池
@@ -65,7 +68,7 @@ public class RedisUtil {
 			config.setTestOnBorrow(TEST_ON_BORROW);
 			jedisPool = new JedisPool(config, IP, PORT, TIMEOUT);
 		} catch (Exception e) {
-			_log.error("First create JedisPool error : " + e);
+			LOGGER.error("First create JedisPool error : " + e);
 		}
 	}
 
@@ -96,7 +99,7 @@ public class RedisUtil {
 				}
 			}
 		} catch (Exception e) {
-			_log.error("Get jedis error : " + e);
+			LOGGER.error("Get jedis error : " + e);
 		}
 		return jedis;
 	}
@@ -113,7 +116,7 @@ public class RedisUtil {
 			jedis.set(key, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set key error : " + e);
+			LOGGER.error("Set key error : " + e);
 		}
 	}
 
@@ -128,7 +131,7 @@ public class RedisUtil {
 			jedis.set(key, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set key error : " + e);
+			LOGGER.error("Set key error : " + e);
 		}
 	}
 
@@ -145,7 +148,7 @@ public class RedisUtil {
 			jedis.setex(key, seconds, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set keyex error : " + e);
+			LOGGER.error("Set keyex error : " + e);
 		}
 	}
 
@@ -162,7 +165,7 @@ public class RedisUtil {
 			jedis.expire(key, seconds);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Set key error : " + e);
+			LOGGER.error("Set key error : " + e);
 		}
 	}
 
@@ -206,7 +209,7 @@ public class RedisUtil {
 			jedis.del(key);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Remove keyex error : " + e);
+			LOGGER.error("Remove keyex error : " + e);
 		}
 	}
 
@@ -220,7 +223,7 @@ public class RedisUtil {
 			jedis.del(key);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("Remove keyex error : " + e);
+			LOGGER.error("Remove keyex error : " + e);
 		}
 	}
 
@@ -235,7 +238,7 @@ public class RedisUtil {
 			jedis.lpush(key, strings);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("lpush error : " + e);
+			LOGGER.error("lpush error : " + e);
 		}
 	}
 
@@ -251,7 +254,7 @@ public class RedisUtil {
 			jedis.lrem(key, count, value);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("lpush error : " + e);
+			LOGGER.error("lpush error : " + e);
 		}
 	}
 
@@ -268,8 +271,38 @@ public class RedisUtil {
 			jedis.expire(key, seconds);
 			jedis.close();
 		} catch (Exception e) {
-			_log.error("sadd error : " + e);
+			LOGGER.error("sadd error : " + e);
 		}
+	}
+
+	/**
+	 * incr
+	 * @param key
+	 * @return value
+	 */
+	public synchronized static Long incr(String key) {
+		Jedis jedis = getJedis();
+		if (null == jedis) {
+			return null;
+		}
+		long value = jedis.incr(key);
+		jedis.close();
+		return value;
+	}
+
+	/**
+	 * decr
+	 * @param key
+	 * @return value
+	 */
+	public synchronized static Long decr(String key) {
+		Jedis jedis = getJedis();
+		if (null == jedis) {
+			return null;
+		}
+		long value = jedis.decr(key);
+		jedis.close();
+		return value;
 	}
 
 }

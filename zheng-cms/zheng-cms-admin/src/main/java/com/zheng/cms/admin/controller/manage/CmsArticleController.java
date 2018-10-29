@@ -37,7 +37,7 @@ import java.util.Map;
 @RequestMapping("/manage/article")
 public class CmsArticleController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsArticleController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CmsArticleController.class);
 	
 	@Autowired
 	private CmsArticleService cmsArticleService;
@@ -67,7 +67,7 @@ public class CmsArticleController extends BaseController {
 		}
 		List<CmsArticle> rows = cmsArticleService.selectByExampleForOffsetPage(cmsArticleExample, offset, limit);
 		long total = cmsArticleService.countByExample(cmsArticleExample);
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(2);
 		result.put("rows", rows);
 		result.put("total", total);
 		return result;

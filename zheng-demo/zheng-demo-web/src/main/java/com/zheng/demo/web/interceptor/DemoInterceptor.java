@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DemoInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(DemoInterceptor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DemoInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 过滤ajax
-        if (null != request.getHeader("X-Requested-With") && request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
+        if (null != request.getHeader("X-Requested-With") && "XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With"))) {
             return true;
         }
         String appName = PropertiesFileUtil.getInstance().get("app.name");

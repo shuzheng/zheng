@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UpmsOrganizationServiceImpl extends BaseServiceImpl<UpmsOrganizationMapper, UpmsOrganization, UpmsOrganizationExample> implements UpmsOrganizationService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsOrganizationServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsOrganizationServiceImpl.class);
 
     @Autowired
     UpmsOrganizationMapper upmsOrganizationMapper;

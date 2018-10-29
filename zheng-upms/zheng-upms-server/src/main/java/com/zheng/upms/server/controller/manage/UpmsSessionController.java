@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/manage/session")
 public class UpmsSessionController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsSessionController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsSessionController.class);
 
     @Autowired
     private UpmsSessionDao sessionDAO;

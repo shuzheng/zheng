@@ -1,14 +1,15 @@
 # zheng
+[![Build Status](https://travis-ci.org/shuzheng/zheng.svg?branch=master)](https://travis-ci.org/shuzheng/zheng)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/shuzheng/zheng/pulls)
 [![GitHub stars](https://img.shields.io/github/stars/shuzheng/zheng.svg?style=social&label=Stars)](https://github.com/shuzheng/zheng)
 [![GitHub forks](https://img.shields.io/github/forks/shuzheng/zheng.svg?style=social&label=Fork)](https://github.com/shuzheng/zheng)
 
-交流QQ群：133107819🈵、284280411、305155242(群内含各种工具、文档、视频教程下载)
+交流QQ群：133107819、284280411、305155242🈵、528049386、157869467🈵、570766789🈵、601147566🈵、309985359🈵、336380857🈵、522723488、556447629、654558397🈵、392564561🈵、494594000🈵、494070275🈵、168267539🈵、652798487🈵、650979251🈵、622461564🈵、219381522🈵、487874426🈵、398342630🈵、205986087🈵、574153262🈵、606890936🈵、565434047🈵、680947971🈵、341884034🈵、562977817🈵、478962414🈵、679219230🈵、676766033🈵、621874750🈵、522903600🈵、524932879🈵、376261902🈵、481096887🈵、232104667🈵、637879277🈵、697575367🈵、702995203🈵、708665910🈵、697141239🈵、574057714🈵、631332162🈵、591739143🈵、731016871🈵、598738752🈵、748759166🈵、159816595(群内含各种工具、文档、视频教程下载)
 
 ## 前言
 
-　　`zheng`项目创建于2016年10月4日，正在慢慢成长中，目的不仅仅是一个开发架构，而是努力打造一套从 **前端模板** - **基础框架** - **分布式架构** - **开源项目** - **持续集成** - **自动化部署** - **系统监测** - **无缝升级** 的全方位J2EE企业级开发解决方案。
+　　`zheng`项目不仅仅是一个开发架构，而是努力打造一套从 **前端模板** - **基础框架** - **分布式架构** - **开源项目** - **持续集成** - **自动化部署** - **系统监测** - **无缝升级** 的全方位J2EE企业级开发解决方案。
 
 ## 项目介绍
 
@@ -67,14 +68,15 @@ zheng
 |    ├── zheng-oss-sdk -- 开发工具包
 |    ├── zheng-oss-web -- 前台接口[端口:7771]
 |    └── zheng-oss-admin -- 后台管理[端口:7772]
+├── zheng-message -- 任务通知系统
+|    ├── zheng-message-sdk -- 开发工具包
+|    ├── zheng-message-server -- 服务端[端口:8881,SocketIO端口:8882]
+|    └── zheng-message-client -- 客户端
 ├── zheng-shop -- 电子商务系统
-├── zheng-im -- 即时通讯系统
-├── zheng-oa -- 办公自动化系统
-├── zheng-eoms -- 运维系统
 └── zheng-demo -- 示例模块(包含一些示例代码等)
      ├── zheng-demo-rpc-api -- rpc接口包
      ├── zheng-demo-rpc-service -- rpc服务提供者
-     └── zheng-demo-web -- 演示示例[端口:8888]
+     └── zheng-demo-web -- 演示示例[端口:9999]
 ```
 
 ### 技术选型
@@ -110,6 +112,7 @@ AliOSS & Qiniu & QcloudCOS | 云存储  | [https://www.aliyun.com/product/oss/](
 Protobuf & json | 数据序列化  | [https://github.com/google/protobuf](https://github.com/google/protobuf)
 Jenkins | 持续集成工具  | [https://jenkins.io/index.html](https://jenkins.io/index.html)
 Maven | 项目构建管理  | [http://maven.apache.org/](http://maven.apache.org/)
+Netty-socketio | 实时推送  | [https://github.com/mrniko/netty-socketio](https://github.com/mrniko/netty-socketio)
 
 #### 前端技术:
 技术 | 名称 | 官网
@@ -130,6 +133,7 @@ zhengAdmin | 后台管理系统模板  | [https://github.com/shuzheng/zhengAdmin
 autoMail | 邮箱地址自动补全插件  | [https://github.com/shuzheng/autoMail](https://github.com/shuzheng/autoMail)
 zheng.jprogress.js | 加载进度条插件  | [https://github.com/shuzheng/zheng.jprogress.js](https://github.com/shuzheng/zheng.jprogress.js)
 zheng.jtotop.js | 返回顶部插件  | [https://github.com/shuzheng/zheng.jtotop.js](https://github.com/shuzheng/zheng.jtotop.js)
+socket.io.js | SocketIO插件  | [https://socket.io/](https://socket.io/)
 
 #### 架构图
 
@@ -170,9 +174,9 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 > zheng-api
 
-接口总线系统，对外暴露统一规范的接口，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，示例图：
+服务网关，对外暴露统一规范的接口和包装响应结果，包括各个子系统的交互接口、对外开放接口、开发加密接口、接口文档等服务，可在该模块支持验签、鉴权、路由、限流、监控、容错、日志等功能。示例图：
 
-![API网关](project-bootstrap/zheng-api.png)
+![API网关](project-bootstrap/gateway_config.png)
 
 
 > zheng-cms
@@ -195,25 +199,13 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 
 微信公众号管理平台，除实现官网后台自动回复、菜单管理、素材管理、用户管理、消息群发等基础功能外，还有二维码推广、营销活动、微网站、会员卡、优惠券等。
 
-> zheng-ucenter-app 
+> zheng-wechat-app 
 
 微信小程序后台
 
-> zheng-shop
+> zheng-message
 
-电子商务系统
-
-> zheng-im
-
-即时通讯系统
-
-> zheng-oa
-
-办公自动化系统
-
-> zheng-eoms
-
-运维系统
+基于Netty实现SocketIO的实时推送系统。支持命名空间、二进制数据、SSL、ACK等功能。
 
 ## 环境搭建（QQ群内有“zheng环境搭建和系统部署文档.doc”）
 
@@ -229,16 +221,17 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - Navicat for MySQL: 数据库客户端
 
 #### 开发环境：
-- Jdk7
-- Mysql5.5
+- Jdk7+
+- Mysql5.5+
 - Redis
 - Zookeeper
 - ActiveMQ
 - Dubbo-admin
+- Dubbo-monitor
 
 ### 工具安装
 
-[环境搭建和系统部署文档(作者：小兵)](http://git.oschina.net/shuzheng/zheng/attach_files "环境搭建和系统部署文档(作者：小兵)")
+环境搭建和系统部署文档(作者：小兵，QQ群共享提供下载)
 
 ### 资源下载
 
@@ -270,6 +263,12 @@ Spring+SpringMVC+Mybatis框架集成公共模块，包括公共配置、MybatisG
 - 127.0.0.1	wechat.zhangshuzheng.cn
 - 127.0.0.1	api.zhangshuzheng.cn
 - 127.0.0.1	oss.zhangshuzheng.cn
+- 127.0.0.1 config.zhangshuzheng.cn
+
+- 127.0.0.1	zkserver
+- 127.0.0.1	rdserver
+- 127.0.0.1	dbserver
+- 127.0.0.1	mqserver
 
 ### 编译流程
 
@@ -420,7 +419,27 @@ maven编译安装zheng/pom.xml文件即可
 
 - 界面没有样式：因为zheng-admin没有编译安装到本地仓库
 
+- linux下执行rpc-service脚本报“bin/bash^M 坏的解释器”，使用sed -i 's/\r$//' filename删除脚本中\r字符
+
 ## 附件
+
+### zheng相关博客
+
+- [zheng-1：环境搭建及项目部署](http://www.jianshu.com/p/b2fb42e17b58 "zheng-1：环境搭建及项目部署")
+
+- [zheng项目新建一个module学习学习](http://blog.csdn.net/u014449653/article/details/78294862 "zheng项目新建一个module学习学习")
+
+- [zheng项目系统简单的分析记录](http://blog.csdn.net/u014449653/article/details/78319135 "zheng项目系统简单的分析记录")
+
+- [zheng项目-从rpc-service开始！](http://blog.csdn.net/u014449653/article/details/78341171 "zheng项目-从rpc-service开始！")
+
+- [进击zheng项目zheng-umps-server](http://blog.csdn.net/u014449653/article/details/78355849 "进击zheng项目zheng-umps-server")
+
+- [zheng环境搭建](http://blog.csdn.net/u011781521/article/details/79012311 "zheng环境搭建")
+
+- [让zheng支持activiti工作流](http://blog.csdn.net/ctmold/article/details/79082406 "让zheng支持activiti工作流")
+
+- [让zheng更完美地支持ajax提交的json数据](http://blog.csdn.net/ctmold/article/details/79081483 "让zheng更完美地支持ajax提交的json数据")
 
 ### 优秀文章和博客
 
@@ -465,6 +484,8 @@ maven编译安装zheng/pom.xml文件即可
 - [springMVC对简单对象、Set、List、Map的数据绑定和常见问题.](http://blog.csdn.net/z_dendy/article/details/12648641 "springMVC对简单对象、Set、List、Map的数据绑定和常见问题.")
 
 - [如何细粒度地控制你的MyBatis二级缓存](http://blog.csdn.net/luanlouis/article/details/41800511 "如何细粒度地控制你的MyBatis二级缓存")
+
+- [Git 在团队中的最佳实践--如何正确使用Git Flow](hhttps://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow "Git 在团队中的最佳实践--如何正确使用Git Flow")
 
 - [做个男人，做个成熟的男人，做个有城府的男人](http://shuzheng5201314.iteye.com/blog/1387820 "做个男人，做个成熟的男人，做个有城府的男人")
 

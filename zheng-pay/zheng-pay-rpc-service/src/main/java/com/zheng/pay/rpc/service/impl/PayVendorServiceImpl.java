@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class PayVendorServiceImpl extends BaseServiceImpl<PayVendorMapper, PayVendor, PayVendorExample> implements PayVendorService {
 
-    private static Logger _log = LoggerFactory.getLogger(PayVendorServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(PayVendorServiceImpl.class);
 
     @Autowired
     PayVendorMapper payVendorMapper;

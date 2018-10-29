@@ -1,6 +1,7 @@
 package com.zheng.upms.server.controller.manage;
 
 import com.zheng.common.base.BaseController;
+import com.zheng.common.util.StringUtil;
 import com.zheng.upms.common.constant.UpmsResult;
 import com.zheng.upms.common.constant.UpmsResultConstant;
 import com.zheng.upms.dao.model.UpmsLog;
@@ -29,7 +30,7 @@ import java.util.Map;
 @RequestMapping("/manage/log")
 public class UpmsLogController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsLogController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsLogController.class);
 
     @Autowired
     private UpmsLogService upmsLogService;
@@ -53,7 +54,7 @@ public class UpmsLogController extends BaseController {
             @RequestParam(required = false, value = "order") String order) {
         UpmsLogExample upmsLogExample = new UpmsLogExample();
         if (!StringUtils.isBlank(sort) && !StringUtils.isBlank(order)) {
-            upmsLogExample.setOrderByClause(sort + " " + order);
+            upmsLogExample.setOrderByClause(StringUtil.humpToLine(sort) + " " + order);
         }
         if (StringUtils.isNotBlank(search)) {
             upmsLogExample.or()

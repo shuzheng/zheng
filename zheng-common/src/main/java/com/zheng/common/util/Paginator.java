@@ -10,14 +10,22 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class Paginator {
 
-	private long total = 0l;			// 总记录数
-	private int page = 1;				// 当前页数
-	private long totalPage = 1;			// 总页数
-	private int rows = 10;				// 每页记录数
-	private int step = 5;				// 最多显示分页页码数
-	private String param = "page";		// 分页参数名称，用于支持一个页面多个分页功能
-	private String url = "";			// 项目路径
-	private String query = "";			// 当前页所有参数
+	// 总记录数
+	private long total = 0L;
+	// 当前页数
+	private int page = 1;
+	// 总页数
+	private long totalPage = 1;
+	// 每页记录数
+	private int rows = 10;
+	// 最多显示分页页码数
+	private int step = 5;
+	// 分页参数名称，用于支持一个页面多个分页功能
+	private String param = "page";
+	// 项目路径
+	private String url = "";
+	// 当前页所有参数
+	private String query = "";
 
 	public Paginator() {
 
@@ -129,15 +137,18 @@ public class Paginator {
 			String params = "";
 			String[] querys = query.split("&");
 			for (int i = 0; i < querys.length; i++) {
-				if (querys[i].startsWith(param))
+				if (querys[i].startsWith(param)) {
 					continue;
-				if (params.equals(""))
+				}
+				if ("".equals(params)) {
 					params = querys[i];
-				else
+				} else {
 					params += "&" + querys[i];
+				}
 			}
-			if (!params.equals(""))
+			if (!"".equals(params)) {
 				url += "?" + params;
+			}
 		}
 		// 结果html
 		String pages = "";

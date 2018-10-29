@@ -34,7 +34,7 @@ import java.util.Map;
 @RequestMapping("/manage/organization")
 public class UpmsOrganizationController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsOrganizationController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsOrganizationController.class);
 
     @Autowired
     private UpmsOrganizationService upmsOrganizationService;

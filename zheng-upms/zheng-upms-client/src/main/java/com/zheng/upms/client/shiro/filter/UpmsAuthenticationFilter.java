@@ -42,7 +42,7 @@ import java.util.List;
  */
 public class UpmsAuthenticationFilter extends AuthenticationFilter {
 
-    private final static Logger _log = LoggerFactory.getLogger(UpmsAuthenticationFilter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsAuthenticationFilter.class);
 
     // 局部会话key
     private final static String ZHENG_UPMS_CLIENT_SESSION_ID = "zheng-upms-client-session-id";
@@ -70,14 +70,14 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        StringBuffer sso_server_url = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.sso.server.url"));
+        StringBuffer ssoServerUrl = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.sso.server.url"));
         // server需要登录
         String upmsType = PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.type");
         if ("server".equals(upmsType)) {
-            WebUtils.toHttp(response).sendRedirect(sso_server_url.append("/sso/login").toString());
+            WebUtils.toHttp(response).sendRedirect(ssoServerUrl.append("/sso/login").toString());
             return false;
         }
-        sso_server_url.append("/sso/index").append("?").append("appid").append("=").append(PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.appID"));
+        ssoServerUrl.append("/sso/index").append("?").append("appid").append("=").append(PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.appID"));
         // 回跳地址
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         StringBuffer backurl = httpServletRequest.getRequestURL();
@@ -85,8 +85,8 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
         if (StringUtils.isNotBlank(queryString)) {
             backurl.append("?").append(queryString);
         }
-        sso_server_url.append("&").append("backurl").append("=").append(URLEncoder.encode(backurl.toString(), "utf-8"));
-        WebUtils.toHttp(response).sendRedirect(sso_server_url.toString());
+        ssoServerUrl.append("&").append("backurl").append("=").append(URLEncoder.encode(backurl.toString(), "utf-8"));
+        WebUtils.toHttp(response).sendRedirect(ssoServerUrl.toString());
         return false;
     }
 
@@ -114,7 +114,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
                 try {
                     httpServletResponse.sendRedirect(backUrl.toString());
                 } catch (IOException e) {
-                    _log.error("局部会话已登录，移除code参数跳转出错：", e);
+                    LOGGER.error("局部会话已登录，移除code参数跳转出错：", e);
                 }
             } else {
                 return true;
@@ -126,9 +126,9 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
         if (StringUtils.isNotBlank(code)) {
             // HttpPost去校验code
             try {
-                StringBuffer sso_server_url = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.sso.server.url"));
+                StringBuffer ssoServerUrl = new StringBuffer(PropertiesFileUtil.getInstance("zheng-upms-client").get("zheng.upms.sso.server.url"));
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(sso_server_url.toString() + "/sso/code");
+                HttpPost httpPost = new HttpPost(ssoServerUrl.toString() + "/sso/code");
 
                 List<NameValuePair> nameValuePairs = new ArrayList<>();
                 nameValuePairs.add(new BasicNameValuePair("code", code));
@@ -143,7 +143,7 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
                         RedisUtil.set(ZHENG_UPMS_CLIENT_SESSION_ID + "_" + sessionId, code, timeOut);
                         // 保存code对应的局部会话sessionId，方便退出操作
                         RedisUtil.sadd(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code, sessionId, timeOut);
-                        _log.debug("当前code={}，对应的注册系统个数：{}个", code, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
+                        LOGGER.debug("当前code={}，对应的注册系统个数：{}个", code, RedisUtil.getJedis().scard(ZHENG_UPMS_CLIENT_SESSION_IDS + "_" + code));
                         // 移除url中的token参数
                         String backUrl = RequestParameterUtil.getParameterWithOutCode(WebUtils.toHttp(request));
                         // 返回请求资源
@@ -155,14 +155,14 @@ public class UpmsAuthenticationFilter extends AuthenticationFilter {
                             httpServletResponse.sendRedirect(backUrl.toString());
                             return true;
                         } catch (IOException e) {
-                            _log.error("已拿到code，移除code参数跳转出错：", e);
+                            LOGGER.error("已拿到code，移除code参数跳转出错：", e);
                         }
                     } else {
-                        _log.warn(result.getString("data"));
+                        LOGGER.warn(result.getString("data"));
                     }
                 }
             } catch (IOException e) {
-                _log.error("验证token失败：", e);
+                LOGGER.error("验证token失败：", e);
             }
         }
         return false;

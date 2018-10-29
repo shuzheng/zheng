@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping("/manage/comment")
 public class CmsCommentController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsCommentController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CmsCommentController.class);
 	
 	@Autowired
 	private CmsCommentService cmsCommentService;
@@ -57,7 +57,7 @@ public class CmsCommentController extends BaseController {
 		}
 		List<CmsComment> rows = cmsCommentService.selectByExampleWithBLOBsForOffsetPage(cmsCommentExample, offset, limit);
 		long total = cmsCommentService.countByExample(cmsCommentExample);
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(2);
 		result.put("rows", rows);
 		result.put("total", total);
 		return result;

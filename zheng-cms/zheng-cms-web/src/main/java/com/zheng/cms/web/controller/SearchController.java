@@ -30,7 +30,7 @@ import java.util.List;
 @RequestMapping(value = "/search")
 public class SearchController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(SearchController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SearchController.class);
 
 	@Autowired
 	private CmsArticleService cmsArticleService;

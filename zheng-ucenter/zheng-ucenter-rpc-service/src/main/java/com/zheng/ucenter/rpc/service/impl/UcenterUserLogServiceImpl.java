@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class UcenterUserLogServiceImpl extends BaseServiceImpl<UcenterUserLogMapper, UcenterUserLog, UcenterUserLogExample> implements UcenterUserLogService {
 
-    private static Logger _log = LoggerFactory.getLogger(UcenterUserLogServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UcenterUserLogServiceImpl.class);
 
     @Autowired
     UcenterUserLogMapper ucenterUserLogMapper;

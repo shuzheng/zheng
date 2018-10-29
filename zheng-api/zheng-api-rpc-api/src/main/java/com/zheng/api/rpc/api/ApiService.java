@@ -6,6 +6,11 @@ package com.zheng.api.rpc.api;
  */
 public interface ApiService {
 
+    /**
+     * hello
+     * @param name
+     * @return
+     */
     String hello(String name);
 
 }

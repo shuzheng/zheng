@@ -15,19 +15,21 @@ import javax.jms.TextMessage;
  */
 public class DefaultMessageQueueListener implements MessageListener {
 
-    private static Logger _log = LoggerFactory.getLogger(DefaultMessageQueueListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultMessageQueueListener.class);
 
     @Autowired
     ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
+    @Override
     public void onMessage(final Message message) {
         // 使用线程池多线程处理
         threadPoolTaskExecutor.execute(new Runnable() {
+            @Override
             public void run() {
                 TextMessage textMessage = (TextMessage) message;
                 try {
                     String text = textMessage.getText();
-                    _log.info("消费：{}", text);
+                    LOGGER.info("消费：{}", text);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

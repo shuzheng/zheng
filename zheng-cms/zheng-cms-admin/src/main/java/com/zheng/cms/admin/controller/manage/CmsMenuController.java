@@ -34,7 +34,7 @@ import java.util.Map;
 @RequestMapping("/manage/menu")
 public class CmsMenuController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsMenuController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CmsMenuController.class);
 	
 	@Autowired
 	private CmsMenuService cmsMenuService;
@@ -61,7 +61,7 @@ public class CmsMenuController extends BaseController {
 		}
 		List<CmsMenu> rows = cmsMenuService.selectByExampleForOffsetPage(cmsMenuExample, offset, limit);
 		long total = cmsMenuService.countByExample(cmsMenuExample);
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(2);
 		result.put("rows", rows);
 		result.put("total", total);
 		return result;

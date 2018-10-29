@@ -9,9 +9,11 @@
 
     <dubbo:application name="zheng-pay-rpc-service"/>
 
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:registry address="zookeeper://zkserver:2181"/>
 
     <dubbo:protocol name="dubbo" port="20883"/>
+
+    <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- 支付方式服务 -->
     <bean id="payVendorService" class="com.zheng.pay.rpc.service.impl.PayVendorServiceImpl"/>
