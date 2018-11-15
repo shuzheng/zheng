@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>zheng-message-server</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>zheng-message-server</name>
     <url>http://www.zhangshuzheng.cn</url>
@@ -24,6 +24,13 @@
             <artifactId>zheng-common</artifactId>
             <version>1.0.0</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.corundumstudio.socketio</groupId>
+            <artifactId>netty-socketio</artifactId>
+            <version>1.7.12.zheng</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/netty-socketio-1.7.12.zheng.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -105,6 +112,24 @@
                     <skipTests>true</skipTests>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/lib</outputDirectory>
+                            <includeScope>system</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
