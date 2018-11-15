@@ -25,7 +25,7 @@
 
 	<script src="js/socket.io/socket.io.js"></script>
         <script src="js/moment.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="js/jquery-1.7.2.min.js"></script>
 
 	<script>
 
@@ -37,12 +37,30 @@
 			output('<span class="connect-msg">Client has connected to the server!</span>');
 		});
 
-		socket.on('chatevent', function(data) {
+		socket.on('message', function(data, ackServerCallback) {
 			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+			if (ackServerCallback) {
+                                // send ack data to server
+                        	ackServerCallback('server message was delivered to client!');
+                        }
 		});
 
 		socket.on('disconnect', function() {
 			output('<span class="disconnect-msg">The client has disconnected!</span>');
+		});
+
+		socket.on('ackevent2', function(data, ackServerCallback, arg1) {
+			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+                        if (ackServerCallback) {
+                           ackServerCallback('server message was delivered to client!');
+                        }
+		});
+
+		socket.on('ackevent3', function(data, ackServerCallback) {
+			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+                        if (ackServerCallback) {
+                           ackServerCallback();
+                        }
 		});
 
                 function sendDisconnect() {
@@ -53,9 +71,13 @@
                         var message = $('#msg').val();
                         $('#msg').val('');
 
-                        var jsonObject = {userName: userName,
+                        var jsonObject = {'@class': 'com.corundumstudio.socketio.demo.ChatObject',
+                                          userName: userName,
                                           message: message};
-                        socket.emit('chatevent', jsonObject);
+
+                        socket.emit('ackevent1', jsonObject, function(arg1, arg2) {
+                            alert("ack from server! arg1: " + arg1 + ", arg2: " + arg2);
+                        });
 		}
 
 		function output(message) {
@@ -69,6 +91,7 @@
                 $('#send').click();
             }
         });
+
 	</script>
 </head>
 

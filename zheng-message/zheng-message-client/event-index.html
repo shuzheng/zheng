@@ -52,10 +52,7 @@
 		function sendMessage() {
                         var message = $('#msg').val();
                         $('#msg').val('');
-
-                        var jsonObject = {userName: userName,
-                                          message: message};
-                        socket.emit('chatevent', jsonObject);
+                        socket.emit('chatevent', {userName: userName, message: message});
 		}
 
 		function output(message) {

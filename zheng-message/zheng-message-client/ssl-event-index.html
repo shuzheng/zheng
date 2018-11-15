@@ -2,8 +2,6 @@
 <html>
 <head>
 
-        <meta charset="utf-8" />
-
         <title>Demo Chat</title>
 
         <link href="bootstrap.css" rel="stylesheet">
@@ -31,7 +29,7 @@
 
                 var userName = 'user' + Math.floor((Math.random()*1000)+1);
 
-		var socket =  io.connect('http://localhost:9092');
+		var socket =  io.connect('https://localhost:10443');
 
 		socket.on('connect', function() {
 			output('<span class="connect-msg">Client has connected to the server!</span>');
@@ -52,10 +50,7 @@
 		function sendMessage() {
                         var message = $('#msg').val();
                         $('#msg').val('');
-
-                        var jsonObject = {userName: userName,
-                                          message: message};
-                        socket.emit('chatevent', jsonObject);
+                        socket.emit('chatevent', {userName: userName, message: message});
 		}
 
 		function output(message) {
@@ -69,6 +64,7 @@
                 $('#send').click();
             }
         });
+
 	</script>
 </head>
 
