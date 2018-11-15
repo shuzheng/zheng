@@ -68,7 +68,7 @@ zheng
 |    ├── zheng-oss-sdk -- 开发工具包
 |    ├── zheng-oss-web -- 前台接口[端口:7771]
 |    └── zheng-oss-admin -- 后台管理[端口:7772]
-├── zheng-message -- 任务通知系统
+├── zheng-message -- 实时通知系统
 |    ├── zheng-message-sdk -- 开发工具包
 |    ├── zheng-message-server -- 服务端[端口:8881,SocketIO端口:8882]
 |    └── zheng-message-client -- 客户端
