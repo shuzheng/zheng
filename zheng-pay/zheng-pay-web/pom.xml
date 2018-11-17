@@ -23,9 +23,9 @@
         <dependency>
             <groupId>com.alipay</groupId>
             <artifactId>sdk-java</artifactId>
-            <version>20170324180803</version>
+            <version>20170829142630</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/alipay-sdk-java20170324180803.jar</systemPath>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/alipay-sdk-java20170829142630.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

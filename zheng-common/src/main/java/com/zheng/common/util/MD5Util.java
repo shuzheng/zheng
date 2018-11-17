@@ -8,9 +8,9 @@ import java.util.UUID;
  */
 public class MD5Util {
 
-    public final static String MD5(String content) {
+    public final static String md5(String content) {
         //用于加密的字符
-        char md5String[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+        char[] md5String = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                 'A', 'B', 'C', 'D', 'E', 'F'};
         try {
             //使用平台的默认字符集将此 String 编码为 byte序列，并将结果存储到一个新的 byte数组中
@@ -27,7 +27,7 @@ public class MD5Util {
 
             // 把密文转换成十六进制的字符串形式
             int j = md.length;
-            char str[] = new char[j * 2];
+            char[] str = new char[j * 2];
             int k = 0;
             for (int i = 0; i < j; i++) {   //  i = 0
                 byte byte0 = md[i];  //95

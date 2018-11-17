@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping(value = "/blog")
 public class BlogController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(BlogController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BlogController.class);
     private static String CODE = "blog";
     private static Integer USERID = 1;
 

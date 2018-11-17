@@ -34,7 +34,7 @@ import java.util.Map;
 @RequestMapping("/manage/topic")
 public class CmsTopicController extends BaseController {
 
-	private static Logger _log = LoggerFactory.getLogger(CmsTopicController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CmsTopicController.class);
 	
 	@Autowired
 	private CmsTopicService cmsTopicService;
@@ -61,7 +61,7 @@ public class CmsTopicController extends BaseController {
 		}
 		List<CmsTopic> rows = cmsTopicService.selectByExampleForOffsetPage(cmsTopicExample, offset, limit);
 		long total = cmsTopicService.countByExample(cmsTopicExample);
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(2);
 		result.put("rows", rows);
 		result.put("total", total);
 		return result;

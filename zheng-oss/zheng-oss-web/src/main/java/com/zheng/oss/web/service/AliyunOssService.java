@@ -21,7 +21,7 @@ import java.util.Date;
 @Service
 public class AliyunOssService {
 
-	private static Logger _log = LoggerFactory.getLogger(AliyunOssService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AliyunOssService.class);
 
 	@Autowired
 	private OSSClient aliyunOssClient;
@@ -64,7 +64,7 @@ public class AliyunOssService {
 			result.put("callback", callbackData);
 			result.put("action", action);
 		} catch (Exception e) {
-			_log.error("签名生成失败", e);
+			LOGGER.error("签名生成失败", e);
 		}
 		return result;
 	}

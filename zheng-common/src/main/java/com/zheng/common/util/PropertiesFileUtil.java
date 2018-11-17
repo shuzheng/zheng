@@ -40,7 +40,7 @@ public class PropertiesFileUtil {
             configMap.put(name, conf);
         }
         // 判断是否打开的资源文件是否超时1分钟
-        if ((new Date().getTime() - conf.getLoadTime().getTime()) > TIME_OUT) {
+        if ((System.currentTimeMillis() - conf.getLoadTime().getTime()) > TIME_OUT) {
             conf = new PropertiesFileUtil(name);
             configMap.put(name, conf);
         }
@@ -52,7 +52,7 @@ public class PropertiesFileUtil {
         try {
             String value = resourceBundle.getString(key);
             return value;
-        }catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return "";
         }
     }
@@ -62,7 +62,7 @@ public class PropertiesFileUtil {
         try {
             String value = resourceBundle.getString(key);
             return Integer.parseInt(value);
-        }catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return null;
         }
     }
@@ -75,7 +75,7 @@ public class PropertiesFileUtil {
                 return true;
             }
             return false;
-        }catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return false;
         }
     }

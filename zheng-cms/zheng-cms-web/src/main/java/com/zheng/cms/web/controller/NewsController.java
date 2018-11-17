@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping(value = "/news")
 public class NewsController extends BaseController {
 
-    private static Logger _log = LoggerFactory.getLogger(NewsController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewsController.class);
     private static String CODE = "news";
     private static Integer USERID = 1;
 

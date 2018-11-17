@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @BaseService
 public class CmsSettingServiceImpl extends BaseServiceImpl<CmsSettingMapper, CmsSetting, CmsSettingExample> implements CmsSettingService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CmsSettingServiceImpl.class);
 
     @Autowired
     CmsSettingMapper cmsSettingMapper;

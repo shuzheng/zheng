@@ -8,4 +8,8 @@ import com.zheng.common.base.BaseConstants;
  */
 public class PayConstant extends BaseConstants {
 
+    public static final String SUCCESS = "success";
+
+    public static final String FAILED = "failed";
+
 }

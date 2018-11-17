@@ -2,6 +2,8 @@ package com.zheng.common.util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * request工具类
@@ -23,7 +25,7 @@ public class RequestUtil {
 			if (key.equals(paramName)) {
 				continue;
 			}
-			if (queryString.equals("")) {
+			if ("".equals(queryString)) {
 				queryString = key + "=" + request.getParameter(key);
 			} else {
 				queryString += "&" + key + "=" + request.getParameter(key);
@@ -76,6 +78,21 @@ public class RequestUtil {
 			ip = request.getRemoteAddr(); // 获取真实ip
 		}
 		return ip;
+	}
+
+	/**
+	 * 请求中参数转Map<String, String>,for支付宝异步回调,平时建议直接使用request.getParameterMap(),返回Map<String, String[]>
+	 * @param request
+	 * @return
+	 */
+	public static Map<String, String> getParameterMap(HttpServletRequest request) {
+		Map<String, String> result = new HashMap<>();
+		Enumeration parameterNames = request.getParameterNames();
+		while (parameterNames.hasMoreElements()) {
+			String parameterName = (String) parameterNames.nextElement();
+			result.put(parameterName, request.getParameter(parameterName));
+		}
+		return result;
 	}
 
 }

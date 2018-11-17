@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+        
+        <meta charset="utf-8" />
+
+        <title>Demo Chat</title>
+
+        <link href="bootstrap.css" rel="stylesheet">
+
+	<style>
+		body { 
+			padding:20px;
+		}
+		#console { 
+			height: 400px; 
+			overflow: auto; 
+		}
+		.username-msg {color:orange;}
+		.connect-msg {color:green;}
+		.disconnect-msg {color:red;}
+		.send-msg {color:#888}
+	</style>
+
+
+	<script src="js/socket.io/socket.io.js"></script>
+        <script src="js/moment.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	
+	<script>
+
+		var socket =  io.connect('http://localhost:9092');
+
+		socket.on('connect', function() {
+			alert('socketio client connected');
+		});
+		
+		socket.on('msg', function(file) {
+
+                      var arrayBuffer = new Uint8Array(file).buffer;
+                      var blob        = new Blob([arrayBuffer]);
+
+                      var imgList = $('ul#img-list');
+
+                      var li = $('<li/>').appendTo(imgList);
+                      $('<div/>').text(file.name).appendTo(li);
+                      var img = $('<img/>').appendTo(li);
+
+                      var reader = new FileReader();
+                      reader.onload = (function(aImg) {
+                        return function(e) {
+                          aImg.attr('src', e.target.result);
+                          aImg.attr('width', 150);
+                        };
+                      })(img);
+                      
+                      reader.readAsDataURL(blob);
+		});
+		
+                $(document).ready(function() {
+
+                    var fileInput = $('#file-field');
+                    
+                    fileInput.bind({
+                      change: function() {
+                        displayFiles(this.files);
+                      }
+                    });
+
+                    function displayFiles(files) {
+                        $.each(files, function(i, file) {      
+                          if (!file.type.match(/image.*/)) {
+                            return true;
+                          }           
+
+                          var reader = new FileReader();
+                          reader.onload = function(e) {
+                              socket.emit('msg', e.target.result);
+                          };
+                          
+                          reader.readAsArrayBuffer(file);
+                        });
+                    }
+
+                });		
+	</script>
+</head>
+
+<body>
+	
+        Please upload any image file.
+        <br/>
+        <br/>
+
+        <div>
+         <input type="file" name="file" id="file-field" />
+        </div>    
+
+<div id="img-container">
+ <ul id="img-list"></ul>
+</div>
+	
+</body>
+
+</html>

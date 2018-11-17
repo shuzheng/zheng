@@ -15,29 +15,29 @@ import java.util.List;
 */
 public class CmsArticleServiceMock extends BaseServiceMock<CmsArticleMapper, CmsArticle, CmsArticleExample> implements CmsArticleService {
 
-    private static Logger _log = LoggerFactory.getLogger(CmsArticleServiceMock.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CmsArticleServiceMock.class);
 
     @Override
     public List<CmsArticle> selectCmsArticlesByCategoryId(Integer categoryId, Integer offset, Integer limit) {
-        _log.info("CmsArticleServiceMock => getCmsArticlesByCategoryId");
+        LOGGER.info("CmsArticleServiceMock => getCmsArticlesByCategoryId");
         return null;
     }
 
     @Override
     public long countByCategoryId(Integer categoryId) {
-        _log.info("CmsArticleServiceMock => countByCategoryId");
+        LOGGER.info("CmsArticleServiceMock => countByCategoryId");
         return 0;
     }
 
     @Override
     public List<CmsArticle> selectCmsArticlesByTagId(Integer tagId, Integer offset, Integer limit) {
-        _log.info("CmsArticleServiceMock => getCmsArticlesByCategoryId");
+        LOGGER.info("CmsArticleServiceMock => getCmsArticlesByCategoryId");
         return null;
     }
 
     @Override
     public long countByTagId(Integer tagId) {
-        _log.info("CmsArticleServiceMock => countByTagId");
+        LOGGER.info("CmsArticleServiceMock => countByTagId");
         return 0;
     }
 

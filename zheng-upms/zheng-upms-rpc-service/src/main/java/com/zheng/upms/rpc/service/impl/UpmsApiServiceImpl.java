@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * 用户service实现
+ * UpmsApiService实现
  * Created by shuzheng on 2016/01/19.
  */
 @Service
 @Transactional
 public class UpmsApiServiceImpl implements UpmsApiService {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsApiServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpmsApiServiceImpl.class);
 
     @Autowired
     UpmsUserMapper upmsUserMapper;
@@ -54,7 +54,7 @@ public class UpmsApiServiceImpl implements UpmsApiService {
         // 用户不存在或锁定状态
         UpmsUser upmsUser = upmsUserMapper.selectByPrimaryKey(upmsUserId);
         if (null == upmsUser || 1 == upmsUser.getLocked()) {
-            _log.info("selectUpmsPermissionByUpmsUserId : upmsUserId={}", upmsUserId);
+            LOGGER.info("selectUpmsPermissionByUpmsUserId : upmsUserId={}", upmsUserId);
             return null;
         }
         List<UpmsPermission> upmsPermissions = upmsApiMapper.selectUpmsPermissionByUpmsUserId(upmsUserId);
@@ -82,7 +82,7 @@ public class UpmsApiServiceImpl implements UpmsApiService {
         // 用户不存在或锁定状态
         UpmsUser upmsUser = upmsUserMapper.selectByPrimaryKey(upmsUserId);
         if (null == upmsUser || 1 == upmsUser.getLocked()) {
-            _log.info("selectUpmsRoleByUpmsUserId : upmsUserId={}", upmsUserId);
+            LOGGER.info("selectUpmsRoleByUpmsUserId : upmsUserId={}", upmsUserId);
             return null;
         }
         List<UpmsRole> upmsRoles = upmsApiMapper.selectUpmsRoleByUpmsUserId(upmsUserId);
