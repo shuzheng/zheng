@@ -5,7 +5,7 @@ a i{font-size: 13px;}
 
 body{background:#ECECEC;}
 body:before{height:50%;width:100%;position:absolute;top:0;left:0;background:#29a176;content:"";z-index:0}
-#login-window{position:relative;top:50%;left:50%;width:300px;height:200px;margin-left:-150px;margin-top:-100px;padding:35px 55px 35px 25px;z-index:10;background:#fff;box-shadow:0 1px 11px rgba(0,0,0,.27);border-radius:2px;}
+#login-window{position:relative;top:50%;left:50%;width:500px;height:200px;margin-left:-250px;margin-top:-100px;padding:35px 55px 35px 25px;z-index:10;background:#fff;box-shadow:0 1px 11px rgba(0,0,0,.27);border-radius:2px;}
 .m-b-20{margin-bottom:20px !important;}
 
 #login-bt{position:absolute;width:50px;height:50px;border-radius:50%;line-height:36px!important;top:50%;margin-top:-25px;right:-25px;background:#FF4F0F;}

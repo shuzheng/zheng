@@ -174,7 +174,7 @@
 			</div>
 			<ul id="tabs" class="tabs">
 				<li id="tab_home" data-index="home" data-closeable="false" class="cur">
-					<a class="waves-effect waves-light" href="javascript:;">首页</a>
+					<span class="waves-effect waves-light" href="javascript:;">首页</span>
 				</li>
 			</ul>
 		</div>
