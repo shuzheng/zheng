@@ -443,6 +443,8 @@ maven编译安装zheng/pom.xml文件即可
 
 ### 优秀文章和博客
 
+- [Git原理及使用](https://zhuanlan.zhihu.com/p/66506485 "Git原理及使用")
+
 - [创业互联网公司如何搭建自己的技术框架](http://shuzheng5201314.iteye.com/blog/2330151 "创业互联网公司如何搭建自己的技术框架")
 
 - [微服务实战](https://segmentfault.com/a/1190000004634172 "微服务实战")
