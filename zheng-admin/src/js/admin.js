@@ -193,7 +193,7 @@ var Tab = {
 		if ($('#tab_' + index).length == 0) {
 			// 添加选项卡
 			$('.content_tab li').removeClass('cur');
-			var tab = '<li id="tab_' + index +'" data-index="' + index + '" class="cur"><a class="waves-effect waves-light">' + title + '</a></li>';//<i class="zmdi zmdi-close"></i><
+            var tab = '<li id="tab_' + index +'" data-index="' + index + '" class="cur"><span class="waves-effect waves-light">' + title + '</span><i class="waves-effect waves-light zmdi zmdi-close" onclick="Tab.closeTab($(\'#tab_' + index +'\'));"></i></li>';
 			$('.content_tab>ul').append(tab);
 			// 添加iframe
 			$('.iframe').removeClass('cur');
