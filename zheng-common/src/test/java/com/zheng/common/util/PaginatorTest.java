@@ -1,26 +1,15 @@
 package com.zheng.common.util;
 
 import static org.mockito.Matchers.anyDouble;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-
 import com.diffblue.deeptestutils.Reflector;
-import com.diffblue.deeptestutils.mock.DTUMemberMatcher;
-import com.zheng.common.util.Paginator;
-
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import javax.servlet.http.HttpServletRequest;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockIgnore({"javax.management.*"})
