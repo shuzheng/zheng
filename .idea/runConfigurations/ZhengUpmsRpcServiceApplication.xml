@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ZhengUpmsRpcServiceApplication" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.zheng.upms.rpc.ZhengUpmsRpcServiceApplication" />
+    <module name="zheng-upms-rpc-service" />
+    <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.zheng.upms.rpc.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method />
+  </configuration>
+</component>

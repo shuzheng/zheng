@@ -1,0 +1,9 @@
+version: '2'
+services:
+    zheng-activemq:
+        image: webcenter/activemq:5.14.3
+        volumes:
+            - ./data/activemq/log:/var/log/activemq
+            - ./data/activemq/data:/data
+        ports:
+            - 8161:8161

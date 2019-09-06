@@ -1,0 +1,11 @@
+version: '2'
+services:
+    zheng-redis:
+        image: bitnami/redis:4.0
+        environment:
+#            - REDIS_PASSWORD=
+            - ALLOW_EMPTY_PASSWORD=yes
+        volumes:
+            - ./data/redis/data:/bitnami
+        ports:
+            - 6379:6379

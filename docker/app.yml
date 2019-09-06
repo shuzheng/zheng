@@ -1,0 +1,58 @@
+version: '2'
+services:
+  zheng-mysql:
+    extends:
+      file: mysql.yml
+      service: zheng-mysql
+    networks:
+      zheng-net:
+        aliases:
+          - mysql
+  zheng-redis:
+    extends:
+      file: redis.yml
+      service: zheng-redis
+    networks:
+      zheng-net:
+        aliases:
+          - redis
+  zheng-activemq:
+    extends:
+      file: activemq.yml
+      service: zheng-activemq
+    networks:
+      zheng-net:
+        aliases:
+          - activemq
+  zheng-nginx:
+    extends:
+      file: nginx.yml
+      service: zheng-nginx
+    networks:
+      zheng-net:
+        aliases:
+          - nginx
+  zheng-zookeeper:
+    extends:
+      file: zookeeper.yml
+      service: zheng-zookeeper
+    networks:
+      zheng-net:
+        aliases:
+          - zookeeper
+  zheng-dubbo:
+    image: xinmeng/dubbo-admin:2.0.0
+    depends_on:
+      - zheng-zookeeper
+    environment:
+      - ZOOKEEPER=zookeeper:2181
+      - ROOT_PASS=root
+      - GUEST_PASS=guest
+    ports:
+      - 8090:7001
+    networks:
+      zheng-net:
+        aliases:
+          - dubbo
+networks:
+    zheng-net:
