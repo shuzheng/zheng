@@ -26,7 +26,7 @@
         <mybatis-generator.version>1.3.5</mybatis-generator.version>
         <mybatis-ehcache.version>1.0.0</mybatis-ehcache.version>
         <ehcache.version>2.10.0</ehcache.version>
-        <shiro.version>1.3.2</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
 
         <thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
     </properties>
