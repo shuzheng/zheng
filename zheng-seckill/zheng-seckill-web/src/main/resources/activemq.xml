@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/jms
+		http://www.springframework.org/schema/jms/spring-jms-4.0.xsd">
+
+    <!-- ActiveMQ连接工厂 -->
+    <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${activemq.brokerURL}"/>
+        <property name="userName" value="${activemq.userName}"/>
+        <property name="password" value="${activemq.password}"/>
+        <!-- 关闭重试机制，防止死循环 -->
+        <property name="transportListener">
+            <bean class="org.apache.activemq.transport.DefaultTransportListener"/>
+        </property>
+    </bean>
+
+    <!-- Spring Caching连接工厂 -->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <constructor-arg ref="activeMQConnectionFactory"/>
+        <property name="sessionCacheSize" value="100"/>
+    </bean>
+
+    <!-- 消息队列模板 -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <!-- 消息发送模式：true为持久化，false为非持久化 -->
+        <property name="deliveryMode" value="2"/>
+        <!-- 消息优先级，0-9，数值越大优先级越高 -->
+        <property name="priority" value="4"/>
+        <!-- 消息存活时间，单位毫秒，0为永久 -->
+        <property name="timeToLive" value="0"/>
+        <!-- 消息确认模式 -->
+        <property name="sessionAcknowledgeMode" value="1"/>
+    </bean>
+
+    <!-- 消息监听器容器 -->
+    <jms:listener-container container-type="default"
+                            connection-factory="connectionFactory"
+                            acknowledge="auto"
+                            concurrency="5-10">
+        <!-- 秒杀消息监听器 -->
+        <jms:listener destination="seckill.queue" ref="seckillMessageConsumer"/>
+    </jms:listener-container>
+
+</beans>
