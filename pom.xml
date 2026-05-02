@@ -31,5 +31,6 @@
         <module>zheng-api</module>
         <module>zheng-message</module>
         <module>zheng-demo</module>
+        <module>zheng-seckill</module>
     </modules>
 </project>
