@@ -4,10 +4,8 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <!-- 显示名称 -->
     <display-name>zheng-seckill-web</display-name>
 
-    <!-- 强制进行转码 -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -23,20 +21,6 @@
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
-    <!-- SSO鉴权过滤器 -->
-    <!-- 实际项目中应该配置UPMS的SSO过滤器 -->
-    <!-- 
-    <filter>
-        <filter-name>upmsClientFilter</filter-name>
-        <filter-class>com.zheng.upms.client.filter.UpmsClientFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>upmsClientFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-     -->
-
-    <!-- 默认的spring配置文件是在WEB-INF下的applicationContext.xml -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -47,13 +31,11 @@
         </param-value>
     </context-param>
 
-    <!-- 日志配置文件 -->
     <context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:log4j.properties</param-value>
     </context-param>
 
-    <!-- springMVC的核心控制器 -->
     <servlet>
         <servlet-name>springMVC</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -69,32 +51,13 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- session配置 -->
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
 
-    <!-- 欢迎页面 -->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <!-- 错误页面 -->
-    <error-page>
-        <error-code>403</error-code>
-        <location>/WEB-INF/jsp/403.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/WEB-INF/jsp/404.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/WEB-INF/jsp/500.jsp</location>
-    </error-page>
-    <error-page>
-        <exception-type>java.lang.Throwable</exception-type>
-        <location>/WEB-INF/jsp/error.jsp</location>
-    </error-page>
 </web-app>

@@ -5,9 +5,32 @@ import com.zheng.seckill.common.dto.SeckillResultDTO;
 /**
  * 秒杀服务降级接口
  * 用于防止雪崩效应，当秒杀服务不可用时提供降级处理
+ * 支持区分不同的故障场景：Redis、MQ、DB
  */
 public interface SeckillFallbackService {
     
+    String FAILURE_TYPE_REDIS = "Redis";
+    String FAILURE_TYPE_MQ = "MQ";
+    String FAILURE_TYPE_DB = "DB";
+    String FAILURE_TYPE_UNKNOWN = "UNKNOWN";
+
+    /**
+     * 设置故障类型
+     * @param failureType 故障类型：Redis/MQ/DB/UNKNOWN
+     */
+    void setFailureType(String failureType);
+
+    /**
+     * 获取故障类型
+     * @return 故障类型
+     */
+    String getFailureType();
+
+    /**
+     * 清除故障类型
+     */
+    void clearFailureType();
+
     /**
      * 秒杀服务降级处理
      * 当秒杀服务调用失败时，返回友好的降级结果
@@ -40,4 +63,10 @@ public interface SeckillFallbackService {
      * @return 降级处理结果
      */
     SeckillResultDTO getSeckillResultFallback(Integer userId, Long goodsId);
+
+    /**
+     * 根据故障类型获取降级消息
+     * @return 降级消息
+     */
+    String getFallbackMessage();
 }

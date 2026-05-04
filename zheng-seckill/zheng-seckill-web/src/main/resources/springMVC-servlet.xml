@@ -11,14 +11,11 @@
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.zheng.seckill.web.controller">
+    <context:component-scan base-package="com.zheng.seckill.web">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven>
-        <!-- 解决返回字符串中文乱码问题 -->
         <mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <constructor-arg value="UTF-8"/>
@@ -40,25 +37,30 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <!-- 静态资源处理 -->
     <mvc:default-servlet-handler/>
 
-    <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 默认编码 -->
         <property name="defaultEncoding" value="utf-8"/>
-        <!-- 文件大小最大值 -->
         <property name="maxUploadSize" value="10485760000"/>
-        <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960"/>
     </bean>
 
-    <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!-- 自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <bean id="seckillLimitInterceptor" class="com.zheng.seckill.web.interceptor.SeckillLimitInterceptor">
+        <property name="blacklistDuration" value="60"/>
+        <property name="maxBlacklistCount" value="10"/>
+    </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/seckill/action/**"/>
+            <ref bean="seckillLimitInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
