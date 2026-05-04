@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="zheng-seckill-web"/>
+
+    <!-- 使用multicast广播注册中心暴露发现服务地址 -->
+    <!-- <dubbo:registry address="multicast://224.5.6.7:1234"/> -->
+
+    <!-- 使用zookeeper注册中心暴露发现服务地址 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <!-- 秒杀服务 -->
+    <dubbo:reference id="seckillApiService" interface="com.zheng.seckill.rpc.api.SeckillApiService" check="false"/>
+
+    <!-- UPMS服务（用于SSO鉴权） -->
+    <dubbo:reference id="upmsApiService" interface="com.zheng.upms.rpc.api.UpmsApiService" check="false"/>
+
+    <!-- 支付服务 -->
+    <dubbo:reference id="payApiService" interface="com.zheng.pay.rpc.api.PayApiService" check="false"/>
+
+    <!-- 用户中心服务 -->
+    <dubbo:reference id="ucenterApiService" interface="com.zheng.ucenter.rpc.api.UcenterApiService" check="false"/>
+
+    <!-- 消费者配置 -->
+    <dubbo:consumer check="false" retries="0" timeout="30000"/>
+
+</beans>
