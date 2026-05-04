@@ -29,6 +29,7 @@ import java.util.UUID;
 /**
  * 秒杀核心服务实现类
  * 实现秒杀相关的核心业务逻辑
+ * 故障类型通过参数传递给降级服务，避免ThreadLocal线程安全问题
  */
 @Service("seckillApiService")
 public class SeckillApiServiceImpl implements SeckillApiService {
@@ -76,8 +77,8 @@ public class SeckillApiServiceImpl implements SeckillApiService {
             return dtoList;
         } catch (Exception e) {
             logger.error("获取秒杀商品列表失败", e);
-            seckillFallbackService.setFailureType("DB");
-            return (List<SeckillGoodsDTO>) seckillFallbackService.getSeckillGoodsListFallback();
+            return (List<SeckillGoodsDTO>) seckillFallbackService.getSeckillGoodsListFallback(
+                SeckillFallbackService.FAILURE_TYPE_DB);
         }
     }
 
@@ -117,13 +118,13 @@ public class SeckillApiServiceImpl implements SeckillApiService {
                 return dto;
             } catch (Exception ex) {
                 logger.error("数据库也连接失败，goodsId: {}", goodsId, ex);
-                seckillFallbackService.setFailureType("DB");
-                return (SeckillGoodsDTO) seckillFallbackService.getSeckillGoodsDetailFallback(goodsId);
+                return (SeckillGoodsDTO) seckillFallbackService.getSeckillGoodsDetailFallback(
+                    goodsId, SeckillFallbackService.FAILURE_TYPE_DB);
             }
         } catch (Exception e) {
             logger.error("获取秒杀商品详情失败，goodsId: {}", goodsId, e);
-            seckillFallbackService.setFailureType("DB");
-            return (SeckillGoodsDTO) seckillFallbackService.getSeckillGoodsDetailFallback(goodsId);
+            return (SeckillGoodsDTO) seckillFallbackService.getSeckillGoodsDetailFallback(
+                goodsId, SeckillFallbackService.FAILURE_TYPE_DB);
         }
     }
 
@@ -154,8 +155,8 @@ public class SeckillApiServiceImpl implements SeckillApiService {
             Long stock = RedisUtil.decr(stockKey);
             if (stock == null) {
                 logger.error("Redis操作失败，无法减库存，userId: {}, goodsId: {}", userId, goodsId);
-                seckillFallbackService.setFailureType("Redis");
-                return seckillFallbackService.seckillFallback(userId, goodsId);
+                return seckillFallbackService.seckillFallback(
+                    userId, goodsId, SeckillFallbackService.FAILURE_TYPE_REDIS);
             }
             
             if (stock < 0) {
@@ -189,8 +190,8 @@ public class SeckillApiServiceImpl implements SeckillApiService {
                     logger.error("消息队列发送失败，userId: {}, goodsId: {}", userId, goodsId, e);
                     RedisUtil.incr(stockKey);
                     RedisUtil.remove(userKey);
-                    seckillFallbackService.setFailureType("MQ");
-                    return seckillFallbackService.seckillFallback(userId, goodsId);
+                    return seckillFallbackService.seckillFallback(
+                        userId, goodsId, SeckillFallbackService.FAILURE_TYPE_MQ);
                 }
                 
                 return SeckillResultDTO.processing("秒杀请求已提交，正在处理中，请稍后查询结果");
@@ -203,12 +204,12 @@ public class SeckillApiServiceImpl implements SeckillApiService {
             
         } catch (redis.clients.jedis.exceptions.JedisConnectionException e) {
             logger.error("Redis连接失败，秒杀失败，userId: {}, goodsId: {}", userId, goodsId, e);
-            seckillFallbackService.setFailureType("Redis");
-            return seckillFallbackService.seckillFallback(userId, goodsId);
+            return seckillFallbackService.seckillFallback(
+                userId, goodsId, SeckillFallbackService.FAILURE_TYPE_REDIS);
         } catch (Exception e) {
             logger.error("执行秒杀操作失败，userId: {}, goodsId: {}", userId, goodsId, e);
-            seckillFallbackService.setFailureType("DB");
-            return seckillFallbackService.seckillFallback(userId, goodsId);
+            return seckillFallbackService.seckillFallback(
+                userId, goodsId, SeckillFallbackService.FAILURE_TYPE_DB);
         }
     }
 
@@ -246,8 +247,8 @@ public class SeckillApiServiceImpl implements SeckillApiService {
             
         } catch (Exception e) {
             logger.error("查询秒杀结果失败，userId: {}, goodsId: {}", userId, goodsId, e);
-            seckillFallbackService.setFailureType("DB");
-            return seckillFallbackService.getSeckillResultFallback(userId, goodsId);
+            return seckillFallbackService.getSeckillResultFallback(
+                userId, goodsId, SeckillFallbackService.FAILURE_TYPE_DB);
         }
     }
 

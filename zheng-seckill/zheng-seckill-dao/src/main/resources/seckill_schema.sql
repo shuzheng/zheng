@@ -27,7 +27,9 @@ CREATE TABLE `seckill_goods` (
   KEY `idx_status` (`status`),
   KEY `idx_start_time` (`start_time`),
   KEY `idx_end_time` (`end_time`),
-  KEY `idx_status_time` (`status`, `start_time`, `end_time`)
+  KEY `idx_status_time` (`status`, `start_time`, `end_time`),
+  KEY `idx_stock_count` (`stock_count`),
+  KEY `idx_status_stock` (`status`, `stock_count`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='秒杀商品表';
 
 -- -------------------------------------------------------------
@@ -47,7 +49,7 @@ CREATE TABLE `seckill_order` (
   `total_amount` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单总金额',
   `pay_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '支付方式：1-支付宝，2-微信，3-其他',
   `pay_time` datetime DEFAULT NULL COMMENT '支付时间',
-  `pay_order_no` varchar(128) DEFAULT '' COMMENT '支付订单号',
+  `pay_order_no` varchar(128) DEFAULT '' COMMENT '支付平台订单号（支付宝/微信交易号）',
   `pay_in_order_id` int(11) DEFAULT NULL COMMENT '支付中心订单ID',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '订单状态：0-待支付，1-已支付，2-已取消，3-已退款',
   `address_id` bigint(20) DEFAULT NULL COMMENT '收货地址ID',
@@ -63,7 +65,11 @@ CREATE TABLE `seckill_order` (
   KEY `idx_goods_id` (`goods_id`),
   KEY `idx_user_goods` (`user_id`, `goods_id`),
   KEY `idx_status` (`status`),
-  KEY `idx_create_time` (`create_time`)
+  KEY `idx_create_time` (`create_time`),
+  KEY `idx_pay_in_order_id` (`pay_in_order_id`),
+  KEY `idx_pay_order_no` (`pay_order_no`),
+  KEY `idx_status_create_time` (`status`, `create_time`),
+  KEY `idx_user_status` (`user_id`, `status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='秒杀订单表';
 
 -- -------------------------------------------------------------
@@ -84,14 +90,15 @@ CREATE TABLE `seckill_message` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_message_id` (`message_id`),
   KEY `idx_user_goods` (`user_id`, `goods_id`),
-  KEY `idx_status` (`status`)
+  KEY `idx_status` (`status`),
+  KEY `idx_status_retry` (`status`, `retry_count`),
+  KEY `idx_create_time` (`create_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='秒杀消息记录表';
 
 -- -------------------------------------------------------------
 -- 插入测试数据
 -- -------------------------------------------------------------
 
--- 插入测试秒杀商品
 INSERT INTO `seckill_goods` (`goods_id`, `goods_name`, `goods_image`, `original_price`, `seckill_price`, `stock_count`, `start_time`, `end_time`, `status`, `description`)
 VALUES
 (1, '测试秒杀商品1', 'https://example.com/image1.jpg', 100.00, 10.00, 100, '2026-01-01 00:00:00', '2026-12-31 23:59:59', 1, '测试秒杀商品1，限量100件'),
@@ -102,22 +109,31 @@ VALUES
 -- 数据库表结构说明
 -- =============================================================
 -- 
--- 1. seckill_goods 表：
---    - 存储秒杀商品信息
---    - goods_id 关联原有商品表的商品ID
---    - start_time 和 end_time 定义秒杀时间窗口
---    - status 控制商品上下架
+-- 1. seckill_goods 表索引说明：
+--    - uk_goods_id: 唯一索引，用于根据商品ID快速查询
+--    - idx_status: 普通索引，用于查询上架/下架商品
+--    - idx_start_time / idx_end_time: 时间索引，用于秒杀时间范围查询
+--    - idx_status_time: 联合索引，用于查询指定状态和时间范围内的秒杀商品
+--    - idx_stock_count: 库存索引，用于库存相关查询
+--    - idx_status_stock: 联合索引，用于查询指定状态且库存充足的商品
 -- 
--- 2. seckill_order 表：
---    - 存储秒杀订单信息
---    - order_no 唯一订单号
---    - user_id + goods_id 建立联合索引，用于快速查询用户是否秒杀过某商品
---    - pay_in_order_id 关联支付中心的订单ID
+-- 2. seckill_order 表索引说明：
+--    - uk_order_no: 唯一索引，订单号唯一
+--    - idx_user_id: 用户ID索引，查询用户订单
+--    - idx_goods_id: 商品ID索引，查询商品订单
+--    - idx_user_goods: 联合索引，快速查询用户是否秒杀过某商品（防重复秒杀）
+--    - idx_status: 状态索引，查询待支付/已支付/已取消订单
+--    - idx_create_time: 创建时间索引，用于时间范围查询和超时订单检查
+--    - idx_pay_in_order_id: 支付中心订单ID索引，支付回调时快速查找订单
+--    - idx_pay_order_no: 支付平台订单号索引，用于对账
+--    - idx_status_create_time: 联合索引，用于查询指定状态且在指定时间内的订单（超时订单检查）
+--    - idx_user_status: 联合索引，查询用户指定状态的订单
 -- 
--- 3. seckill_message 表：
---    - 存储秒杀消息，用于消息重试和幂等性
---    - message_id 唯一消息ID
---    - retry_count 记录重试次数
---    - error_msg 记录错误信息，便于排查问题
+-- 3. seckill_message 表索引说明：
+--    - uk_message_id: 唯一索引，消息ID唯一（幂等性保障）
+--    - idx_user_goods: 联合索引，查询用户商品相关消息
+--    - idx_status: 状态索引，查询待处理/处理中/成功/失败消息
+--    - idx_status_retry: 联合索引，查询指定状态且重试次数未超限的消息
+--    - idx_create_time: 创建时间索引，用于消息清理和时间范围查询
 -- 
 -- =============================================================

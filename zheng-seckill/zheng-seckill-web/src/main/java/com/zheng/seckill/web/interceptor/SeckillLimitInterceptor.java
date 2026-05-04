@@ -1,31 +1,30 @@
 package com.zheng.seckill.web.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.zheng.common.base.BaseResult;
 import com.zheng.common.util.RedisUtil;
 import com.zheng.seckill.web.annotation.SeckillLimit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 秒杀限流防刷拦截器
  * 用于防止恶意刷接口和限流
+ * 继承 HandlerInterceptorAdapter 与现有架构统一
  */
-public class SeckillLimitInterceptor implements HandlerInterceptor {
+public class SeckillLimitInterceptor extends HandlerInterceptorAdapter {
     
-    private static final Logger logger = LoggerFactory.getLogger(SeckillLimitInterceptor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SeckillLimitInterceptor.class);
     
     private static final String BLACKLIST_PREFIX = "seckill:blacklist:";
     private static final String ACCESS_COUNT_PREFIX = "seckill:access:count:";
-    private static final String BLACKLIST_DURATION = "seckill:blacklist:duration";
     
     private int blacklistDuration = 60;
     private int maxBlacklistCount = 10;
@@ -43,7 +42,7 @@ public class SeckillLimitInterceptor implements HandlerInterceptor {
             String userId = getUserId(request);
             
             if (seckillLimit.needLogin() && userId == null) {
-                renderError(response, 401, "用户未登录，请先登录");
+                renderError(response, 0, "用户未登录，请先登录");
                 return false;
             }
             
@@ -51,7 +50,7 @@ public class SeckillLimitInterceptor implements HandlerInterceptor {
             String key = generateKey(userId, ip, request.getRequestURI());
             
             if (isBlacklisted(key)) {
-                renderError(response, 429, "操作过于频繁，请稍后再试");
+                renderError(response, 0, "操作过于频繁，请稍后再试");
                 return false;
             }
             
@@ -61,7 +60,7 @@ public class SeckillLimitInterceptor implements HandlerInterceptor {
                 if (seckillLimit.level() == SeckillLimit.LimitLevel.STRICT) {
                     recordAccessCount(key);
                 }
-                renderError(response, 429, "请求过于频繁，请稍后再试");
+                renderError(response, 0, "请求过于频繁，请稍后再试");
                 return false;
             }
             
@@ -152,7 +151,7 @@ public class SeckillLimitInterceptor implements HandlerInterceptor {
         if (count >= maxBlacklistCount) {
             String blacklistKey = BLACKLIST_PREFIX + key;
             RedisUtil.set(blacklistKey, "1", blacklistDuration);
-            logger.warn("用户/IP被加入黑名单，key: {}, 违规次数: {}", key, count);
+            LOGGER.warn("用户/IP被加入黑名单，key: {}, 违规次数: {}", key, count);
         }
     }
 
@@ -160,10 +159,7 @@ public class SeckillLimitInterceptor implements HandlerInterceptor {
         response.setStatus(200);
         response.setContentType("application/json;charset=UTF-8");
         
-        Map<String, Object> result = new HashMap<>();
-        result.put("code", code);
-        result.put("message", message);
-        result.put("data", null);
+        BaseResult result = new BaseResult(code, message, null);
         
         PrintWriter writer = response.getWriter();
         writer.write(JSON.toJSONString(result));

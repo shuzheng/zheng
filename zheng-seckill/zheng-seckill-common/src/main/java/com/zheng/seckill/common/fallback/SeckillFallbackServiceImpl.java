@@ -14,43 +14,18 @@ import java.util.Map;
  * 秒杀服务降级实现类
  * 当秒杀服务不可用时，提供友好的降级处理
  * 支持区分不同的故障场景：Redis、MQ、DB
+ * 故障类型通过参数传递，避免ThreadLocal线程安全问题
  */
 @Service
 public class SeckillFallbackServiceImpl implements SeckillFallbackService {
     
     private static final Logger logger = LoggerFactory.getLogger(SeckillFallbackServiceImpl.class);
-    
-    private ThreadLocal<String> failureTypeHolder = new ThreadLocal<String>() {
-        @Override
-        protected String initialValue() {
-            return FAILURE_TYPE_UNKNOWN;
+
+    @Override
+    public String getFallbackMessage(String failureType) {
+        if (failureType == null) {
+            failureType = FAILURE_TYPE_UNKNOWN;
         }
-    };
-
-    @Override
-    public void setFailureType(String failureType) {
-        if (FAILURE_TYPE_REDIS.equals(failureType) || 
-            FAILURE_TYPE_MQ.equals(failureType) || 
-            FAILURE_TYPE_DB.equals(failureType)) {
-            this.failureTypeHolder.set(failureType);
-        } else {
-            this.failureTypeHolder.set(FAILURE_TYPE_UNKNOWN);
-        }
-    }
-
-    @Override
-    public String getFailureType() {
-        return this.failureTypeHolder.get();
-    }
-
-    @Override
-    public void clearFailureType() {
-        this.failureTypeHolder.remove();
-    }
-
-    @Override
-    public String getFallbackMessage() {
-        String failureType = getFailureType();
         if (FAILURE_TYPE_REDIS.equals(failureType)) {
             return "Redis缓存服务暂时不可用，请稍后再试";
         } else if (FAILURE_TYPE_MQ.equals(failureType)) {
@@ -63,21 +38,22 @@ public class SeckillFallbackServiceImpl implements SeckillFallbackService {
     }
 
     @Override
-    public SeckillResultDTO seckillFallback(Integer userId, Long goodsId) {
-        String failureType = getFailureType();
+    public SeckillResultDTO seckillFallback(Integer userId, Long goodsId, String failureType) {
+        if (failureType == null) {
+            failureType = FAILURE_TYPE_UNKNOWN;
+        }
         logger.warn("秒杀服务降级处理，userId: {}, goodsId: {}, failureType: {}", 
             userId, goodsId, failureType);
         
-        String message = getFallbackMessage();
-        SeckillResultDTO result = SeckillResultDTO.fail(message);
-        
-        clearFailureType();
-        return result;
+        String message = getFallbackMessage(failureType);
+        return SeckillResultDTO.fail(message);
     }
 
     @Override
-    public Object getSeckillGoodsListFallback() {
-        String failureType = getFailureType();
+    public Object getSeckillGoodsListFallback(String failureType) {
+        if (failureType == null) {
+            failureType = FAILURE_TYPE_UNKNOWN;
+        }
         logger.warn("获取秒杀商品列表服务降级处理，failureType: {}", failureType);
         
         List<Map<String, Object>> fallbackList = new ArrayList<>();
@@ -104,13 +80,14 @@ public class SeckillFallbackServiceImpl implements SeckillFallbackService {
             fallbackList.add(fallbackItem);
         }
         
-        clearFailureType();
         return fallbackList;
     }
 
     @Override
-    public Object getSeckillGoodsDetailFallback(Long goodsId) {
-        String failureType = getFailureType();
+    public Object getSeckillGoodsDetailFallback(Long goodsId, String failureType) {
+        if (failureType == null) {
+            failureType = FAILURE_TYPE_UNKNOWN;
+        }
         logger.warn("获取秒杀商品详情服务降级处理，goodsId: {}, failureType: {}", goodsId, failureType);
         
         Map<String, Object> fallbackDetail = new HashMap<>();
@@ -130,13 +107,14 @@ public class SeckillFallbackServiceImpl implements SeckillFallbackService {
             fallbackDetail.put("message", "当前访问人数较多，请稍后再试");
         }
         
-        clearFailureType();
         return fallbackDetail;
     }
 
     @Override
-    public SeckillResultDTO getSeckillResultFallback(Integer userId, Long goodsId) {
-        String failureType = getFailureType();
+    public SeckillResultDTO getSeckillResultFallback(Integer userId, Long goodsId, String failureType) {
+        if (failureType == null) {
+            failureType = FAILURE_TYPE_UNKNOWN;
+        }
         logger.warn("查询秒杀结果服务降级处理，userId: {}, goodsId: {}, failureType: {}", 
             userId, goodsId, failureType);
         
@@ -148,7 +126,6 @@ public class SeckillFallbackServiceImpl implements SeckillFallbackService {
             result = SeckillResultDTO.processing("秒杀结果正在处理中，请稍后查询");
         }
         
-        clearFailureType();
         return result;
     }
 }
